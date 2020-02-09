@@ -49,7 +49,7 @@ Example:
 ```julia
 textlogo("Turing")
 ```
-![](turinglogo-new.svg)
+![](https://github.com/TuringLang/turing-logo-graphics/blob/master/images/logo-text-small.png?raw=true)
 """
 function textlogo(
     txt::String;
