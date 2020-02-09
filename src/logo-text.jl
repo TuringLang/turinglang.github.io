@@ -50,6 +50,8 @@ Example:
 textlogo("Turing")
 ```
 ![](https://github.com/TuringLang/turing-logo-graphics/blob/master/images/logo-text-small.png?raw=true)
+
+Acknowledgement for https://github.com/JuliaGraphics/Luxor.jl/issues/78#issuecomment-570317514
 """
 function textlogo(
     txt::String;
