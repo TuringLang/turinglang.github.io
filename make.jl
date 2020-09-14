@@ -72,7 +72,7 @@ with_baseurl(() -> run(`$jekyll_build`), baseurl)
 repo = "github.com:TuringLang/Turing.jl.git"
 
 # Lying to GitHub
-ENV["GITHUB_REPOSITORY"] = "TuringLang/Turing.jl"
+# ENV["GITHUB_REPOSITORY"] = "TuringLang/Turing.jl"
 
 deploydocs(
     target = "_site",
