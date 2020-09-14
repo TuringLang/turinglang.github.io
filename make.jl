@@ -76,7 +76,8 @@ ENV["GITHUB_REPOSITORY"] = "TuringLang/Turing.jl"
 
 deploydocs(
     target = "_site",
-    repo = repo,
+    # repo = repo,
+    repo = "github.com:cpfiffer/turing.ml.git",
     branch = "gh-pages",
     devbranch = "master",
     devurl = devurl,
