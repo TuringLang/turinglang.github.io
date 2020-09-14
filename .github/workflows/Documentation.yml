@@ -25,7 +25,8 @@ jobs:
           julia --project=docs -e '
             using Pkg
             Pkg.activate(".")
-            Pkg.instantiate()'
+            Pkg.instantiate()
+            println(Pkg.status())'
       - name: Build and deploy
         run: julia --project=docs --color=yes make.jl
         env:
