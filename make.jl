@@ -1,3 +1,6 @@
+import Pkg
+Pkg.activate(".")
+
 using Documenter, DocumenterMarkdown, Turing, AdvancedHMC, Bijectors, AdvancedMH
 using LibGit2: clone, tag_list, GitRepo
 
