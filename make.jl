@@ -69,6 +69,8 @@ end
 jekyll_build = joinpath(@__DIR__, "jekyll-build")
 with_baseurl(() -> run(`$jekyll_build`), baseurl)
 
+repo = "github.com:TuringLang/Turing.jl.git"
+
 deploydocs(
     target = "_site",
     repo = repo,
