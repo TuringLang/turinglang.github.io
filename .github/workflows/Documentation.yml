@@ -37,9 +37,9 @@ jobs:
           TURING_VERSION: dev
       - name: Build and deploy (stable)
         run: |
-          git -C ~/.julia/dev/Turing checkout $(git tag --sort version:refname | tail -n 1)
+          git -C ~/.julia/dev/Turing checkout $(git -C ~/.julia/dev/Turing tag --sort version:refname | tail -n 1)
           julia --project=docs --color=yes make.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
-          TURING_VERSION: $(git tag --sort version:refname | tail -n 1)
+          TURING_VERSION: $(git -C ~/.julia/dev/Turing tag --sort version:refname | tail -n 1)
