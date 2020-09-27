@@ -31,7 +31,7 @@ tutorial_path = joinpath(@__DIR__, "_tutorials")
 in("no-tutorials", ARGS) || copy_tutorial(tutorial_path)
 
 # set default baseurl for the master branch
-baseurl = "/turing.ml/dev"
+baseurl = "/turing.ml/" * ENV["TURING_VERSION"]
 
 # deploy
 devurl = "dev"
@@ -61,10 +61,10 @@ highest = maximum(highest_tags(versions))
 # set baseurl for version tag when current head is tagged
 vtag = "v" * string(highest)
 
-version_match = match(r"^(v\d+\.\d+\.\d+)$", vtag)
-if !isnothing(version_match)
-    baseurl = "/" * version_match[1]
-end
+# version_match = match(r"^(v\d+\.\d+\.\d+)$", vtag)
+# if !isnothing(version_match)
+#     baseurl = "/" * version_match[1]
+# end
 
 jekyll_build = joinpath(@__DIR__, "jekyll-build")
 with_baseurl(() -> run(`$jekyll_build`), baseurl)
