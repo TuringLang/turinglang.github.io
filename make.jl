@@ -59,12 +59,12 @@ end
 highest = maximum(highest_tags(versions))
 
 # set baseurl for version tag when current head is tagged
-# vtag = "v" * string(highest)
+vtag = "v" * string(highest)
 
-# version_match = match(r"^(v\d+\.\d+\.\d+)$", vtag)
-# if !isnothing(version_match)
-#     baseurl = "/" * version_match[1]
-# end
+version_match = match(r"^(v\d+\.\d+\.\d+)$", vtag)
+if !isnothing(version_match)
+    baseurl = "/" * version_match[1]
+end
 
 jekyll_build = joinpath(@__DIR__, "jekyll-build")
 with_baseurl(() -> run(`$jekyll_build`), baseurl)
