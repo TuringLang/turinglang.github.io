@@ -31,7 +31,7 @@ tutorial_path = joinpath(@__DIR__, "_tutorials")
 in("no-tutorials", ARGS) || copy_tutorial(tutorial_path)
 
 # set default baseurl for the master branch
-baseurl = "/dev"
+baseurl = "/turing.ml/dev"
 
 # deploy
 devurl = "dev"
