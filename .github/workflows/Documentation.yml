@@ -30,16 +30,13 @@ jobs:
             Pkg.update()'
       - name: Build and deploy (master)
         run: |
-          cd ~/.julia/dev/Turing
-          git checkout master
           julia --project=docs --color=yes make.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
       - name: Build and deploy (stable)
         run: |
-          cd ~/.julia/dev/Turing
-          git checkout $(git tag --sort version:refname | tail -n 1)
+          git -C ~/.julia/dev/Turing checkout $(git tag --sort version:refname | tail -n 1)
           julia --project=docs --color=yes make.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
