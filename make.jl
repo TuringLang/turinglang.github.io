@@ -42,7 +42,7 @@ tutorial_path = joinpath(@__DIR__, "_tutorials")
 in("no-tutorials", ARGS) || copy_tutorial(tutorial_path)
 
 # set default baseurl for the master branch
-baseurl = "/turing.ml/" * ENV["TURING_VERSION"]
+baseurl = "/turing.ml/" * version
 
 @info "" baseurl
 
