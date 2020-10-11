@@ -37,11 +37,7 @@ jobs:
           TURING_VERSION: dev
       - name: Build and deploy (stable)
         run: |
-          julia --project=docs -e '
-            using Pkg
-            Pkg.activate(".")
-            Pkg.free("Turing")
-            Pkg.update()'
+          git -C ~/.julia/dev/Turing checkout $(git -C ~/.julia/dev/Turing tag --sort version:refname | tail -n 1)
           julia --project=docs --color=yes make.jl $(git -C ~/.julia/dev/Turing tag --sort version:refname | tail -n 1)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
