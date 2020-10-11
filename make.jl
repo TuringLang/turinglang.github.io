@@ -8,11 +8,12 @@ using LibGit2: clone, tag_list, GitRepo
 include("make-utils.jl")
 
 # Get the version number
+trim_version(x) = x[1:findlast('.', x) - 1]
 version = if haskey(ENV, "TURING_VERSION")
     ENV["TURING_VERSION"]
 else
     if length(ARGS) > 0
-        ARGS[1]
+        trim_version(ARGS[1])
     else
         error("Version unknown")
     end
@@ -47,19 +48,14 @@ baseurl = "/turing.ml/" * version
 @info "" baseurl
 
 # deploy
-devurl = "dev"
-
 jekyll_build = joinpath(@__DIR__, "jekyll-build")
 with_baseurl(() -> run(`$jekyll_build`), baseurl)
 
-# repo = "github.com:TuringLang/Turing.jl.git"
-
 deploydocs(
     target = "_site",
-    # repo = repo,
     repo = "github.com:cpfiffer/turing.ml.git",
     branch = "gh-pages",
     devbranch = "master",
-    devurl = devurl,
+    devurl = "dev",
     versions = ["stable" => "v^", "v#.#", devurl => devurl]
 )
