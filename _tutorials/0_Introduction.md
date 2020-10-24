@@ -200,7 +200,8 @@ Now we can build our plot:
 # Compute the posterior distribution in closed-form.
 N = length(data)
 heads = sum(data)
-updated_belief = Beta(prior_belief.α + heads, prior_belief.β + N - heads)
+tails = N - heads
+updated_belief = Beta(prior_belief.α + tails, prior_belief.β + heads)
 
 # Visualize a blue density plot of the approximate posterior distribution using HMC (see Chain 1 in the legend).
 p = plot(p_summary, seriestype = :density, xlim = (0,1), legend = :best, w = 2, c = :blue)
