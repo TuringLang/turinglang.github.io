@@ -3,7 +3,7 @@ Pkg.activate(".")
 
 using Documenter, DocumenterMarkdown, Turing, AdvancedHMC, Bijectors, AdvancedMH
 using LibGit2: clone, tag_list, GitRepo
-using Documenter: GithubActions
+using Documenter: GitHubActions
 
 # Include the utility functions.
 include("make-utils.jl")
