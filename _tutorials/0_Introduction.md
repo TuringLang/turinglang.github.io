@@ -109,7 +109,7 @@ animation = @gif for (i, N) in enumerate(Ns)
     # Plotting
     plot(updated_belief, 
         size = (500, 250), 
-        title = "Updated belief after $$N observations",
+        title = "Updated belief after $N observations",
         xlabel = "probability of heads", 
         ylabel = "", 
         legend = nothing,
