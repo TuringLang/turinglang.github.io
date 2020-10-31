@@ -250,7 +250,7 @@ function copy_tutorial(tutorial_path)
                 fix_image_path(target_path)
             end
         end
-        index = joinpath(tutorial_path, "src/tutorials/index.md")
+        index = joinpath(tmp_path, "docs/src/tutorials/index.md")
         cp(index, tutorial_path * "/index.md", force=true)
     catch e
         rethrow(e)
