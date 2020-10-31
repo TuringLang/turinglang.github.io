@@ -41,7 +41,7 @@ end
 
 # You can skip this part if you are on a metered
 # connection by calling `julia make.jl no-tutorials`
-tutorial_path = joinpath(@__DIR__, "_tutorials")
+tutorial_path = joinpath(package_directory, "docs", "_tutorials")
 in("no-tutorials", ARGS) || copy_tutorial(tutorial_path)
 
 # set default baseurl for the master branch
