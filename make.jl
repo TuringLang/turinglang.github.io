@@ -26,7 +26,7 @@ package_directory = dirname(dirname(pathof(Turing)))
 source_path = joinpath(package_directory, "docs", "src")
 
 # Paths.
-build_path = joinpath(@__DIR__, "_docs")
+build_path = joinpath(package_directory, "_docs")
 
 # Build docs
 with_clean_docs(source_path, build_path) do source, build
