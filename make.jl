@@ -52,10 +52,10 @@ baseurl = "/" * version
 # deploy
 jekyll_build = joinpath(@__DIR__, "jekyll-build")
 with_baseurl(() -> run(`$jekyll_build`), baseurl)
-repo = "github.com:TuringLang/turing.ml.git"
+repo = "github.com:cpfiffer/turing.ml.git"
 
 deploy_config = GitHubActions(
-    "TuringLang/turing.ml", #github_repository::String
+    "cpfiffer/turing.ml", #github_repository::String
     "push", #github_event_name::String
     is_dev ? "refs/branch/master" : "refs/tags/$(ARGS[1])" #github_ref::String
 )
