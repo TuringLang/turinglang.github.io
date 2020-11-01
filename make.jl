@@ -77,7 +77,7 @@ tutorial_path = joinpath(tmp_path, "_tutorials")
 in("no-tutorials", ARGS) || copy_tutorial(tutorial_path)
 
 # set default baseurl for the master branch
-baseurl = "/turing.ml/" * version
+baseurl = "/" * version
 
 @info "" baseurl
 
@@ -88,10 +88,10 @@ new_jekyll_build = joinpath(tmp_path, "jekyll-build")
 # Move jekyll-build to the temporary path
 cp(old_jekyll_build, new_jekyll_build, force=true)
 with_baseurl(() -> run(`$new_jekyll_build`), baseurl, joinpath(local_path, "_config.yml"))
-repo = "github.com:cpfiffer/turing.ml.git"
+repo = "github.com:TuringLang/turing.ml.git"
 
 deploy_config = GitHubActions(
-    "cpfiffer/turing.ml", #github_repository::String
+    "TuringLang/turing.ml", #github_repository::String
     "push", #github_event_name::String
     is_dev ? "refs/branch/master" : "refs/tags/$(ARGS[1])" #github_ref::String
 )
