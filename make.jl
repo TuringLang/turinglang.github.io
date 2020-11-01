@@ -17,22 +17,48 @@ else
     if length(ARGS) > 0
         trim_version(ARGS[1]), false
     else
-        error("Version unknown")
+        "dev", true
     end
 end
 
-# Find the package directory
-package_directory = dirname(dirname(pathof(Turing)))
-source_path = joinpath(package_directory, "docs", "src")
-
-# Need to copy all the Turing data into a temp folder
-# NOTE: This is where all the built documents will go, 
-#       and it's where the site should ultimately be 
-#       built from.
+# Make a temporary folder to build from
 tmp_path = mktempdir()
 
-# Paths.
+# Paths
+## The location of the package to build (Turing())
+package_directory = dirname(dirname(pathof(Turing)))
+## The location of the docs folder inside that package
+docs_path = joinpath(package_directory, "docs")
+## The src files for the docs -- markdown documents, typically.
+source_path = joinpath(package_directory, "docs", "src")
+## The path of turing.ml that we are running this code from.
+local_path = @__DIR__
+## The place to put the files from source_path after they go through Documenter.jl
 build_path = joinpath(tmp_path, "_docs")
+
+# Get any files from Turing's directory
+for (root, dirs, files) in walkdir(docs_path)
+    new_root = replace(root, docs_path => tmp_path)
+
+    for file in files
+        old_file = joinpath(root, file)
+        new_file = joinpath(new_root, file)
+        @debug "" old_file new_file
+        if !isdir(dirname(new_file))
+            mkpath(dirname(new_file))
+        end
+        cp(old_file, new_file, force=true)
+    end
+end
+
+# Copy all the local files to the temporary path
+paths = readdir(local_path, join=true)
+filter!(x -> !(basename(x) in ["make.jl", "make-utils.jl"]), paths)
+for path in paths
+    new_path = replace(path, local_path => tmp_path)
+    @debug "" path new_path
+    cp(path, new_path, force=true)
+end
 
 # Build docs
 with_clean_docs(source_path, build_path) do source, build
@@ -56,8 +82,12 @@ baseurl = "/turing.ml/" * version
 @info "" baseurl
 
 # deploy
-jekyll_build = joinpath(@__DIR__, "jekyll-build")
-with_baseurl(() -> run(`$jekyll_build`), baseurl, joinpath(package_directory, "_config.yml"))
+old_jekyll_build = joinpath(local_path, "jekyll-build")
+new_jekyll_build = joinpath(tmp_path, "jekyll-build")
+
+# Move jekyll-build to the temporary path
+cp(old_jekyll_build, new_jekyll_build, force=true)
+with_baseurl(() -> run(`$new_jekyll_build`), baseurl, joinpath(local_path, "_config.yml"))
 repo = "github.com:cpfiffer/turing.ml.git"
 
 deploy_config = GitHubActions(
