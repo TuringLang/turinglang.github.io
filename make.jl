@@ -25,8 +25,14 @@ end
 package_directory = dirname(dirname(pathof(Turing)))
 source_path = joinpath(package_directory, "docs", "src")
 
+# Need to copy all the Turing data into a temp folder
+# NOTE: This is where all the built documents will go, 
+#       and it's where the site should ultimately be 
+#       built from.
+tmp_path = mktempdir()
+
 # Paths.
-build_path = joinpath(package_directory, "_docs")
+build_path = joinpath(tmp_path, "_docs")
 
 # Build docs
 with_clean_docs(source_path, build_path) do source, build
@@ -41,21 +47,21 @@ end
 
 # You can skip this part if you are on a metered
 # connection by calling `julia make.jl no-tutorials`
-tutorial_path = joinpath(package_directory, "docs", "_tutorials")
+tutorial_path = joinpath(tmp_path, "_tutorials")
 in("no-tutorials", ARGS) || copy_tutorial(tutorial_path)
 
 # set default baseurl for the master branch
-baseurl = "/" * version
+baseurl = "/turing.ml/" * version
 
 @info "" baseurl
 
 # deploy
 jekyll_build = joinpath(@__DIR__, "jekyll-build")
-with_baseurl(() -> run(`$jekyll_build`), baseurl)
-repo = "github.com:TuringLang/turing.ml.git"
+with_baseurl(() -> run(`$jekyll_build`), baseurl, joinpath(package_directory, "_config.yml"))
+repo = "github.com:cpfiffer/turing.ml.git"
 
 deploy_config = GitHubActions(
-    "TuringLang/turing.ml", #github_repository::String
+    "cpfiffer/turing.ml", #github_repository::String
     "push", #github_event_name::String
     is_dev ? "refs/branch/master" : "refs/tags/$(ARGS[1])" #github_ref::String
 )
