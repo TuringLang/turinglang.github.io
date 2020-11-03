@@ -47,7 +47,7 @@ for (root, dirs, files) in walkdir(docs_path)
         if !isdir(dirname(new_file))
             mkpath(dirname(new_file))
         end
-        cp(old_file, new_file, force=true)
+        cp(old_file, new_file)
     end
 end
 
@@ -57,7 +57,7 @@ filter!(x -> !(basename(x) in ["make.jl", "make-utils.jl"]), paths)
 for path in paths
     new_path = replace(path, local_path => tmp_path)
     @debug "" path new_path
-    cp(path, new_path)
+    cp(path, new_path, force=true)
 end
 
 # Build docs
