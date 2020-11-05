@@ -250,8 +250,6 @@ function copy_tutorial(tutorial_path)
                 fix_image_path(target_path)
             end
         end
-        index = joinpath(@__DIR__, "src/tutorials/index.md")
-        cp(index, tutorial_path * "/index.md", force=true)
     catch e
         rethrow(e)
     finally
@@ -259,8 +257,8 @@ function copy_tutorial(tutorial_path)
     end
 end
 
-function with_baseurl(func, baseurl)
-    jekyll_config = joinpath(@__DIR__, "_config.yml")
+function with_baseurl(func, baseurl, config_path)
+    jekyll_config = config_path
     lines = readlines(jekyll_config, keep=true)
     open(jekyll_config, "w+") do f
         for line in lines

@@ -1,15 +1,64 @@
+import Pkg
+Pkg.activate(".")
+
 using Documenter, DocumenterMarkdown, Turing, AdvancedHMC, Bijectors, AdvancedMH
 using LibGit2: clone, tag_list, GitRepo
+using Documenter: GitHubActions
 
 # Include the utility functions.
 include("make-utils.jl")
 
-# Find the package directory
-package_directory = dirname(dirname(pathof(Turing)))
-source_path = joinpath(package_directory, "docs", "src")
+# Get the version number
+trim_version(x) = x[1:findlast('.', x) - 1]
 
-# Paths.
-build_path = joinpath(@__DIR__, "_docs")
+version, is_dev = if haskey(ENV, "TURING_VERSION")
+    ENV["TURING_VERSION"], true
+else
+    if length(ARGS) > 0
+        trim_version(ARGS[1]), false
+    else
+        "dev", true
+    end
+end
+
+# Make a temporary folder to build from
+tmp_path = mktempdir()
+
+# Paths
+## The location of the package to build (Turing())
+package_directory = dirname(dirname(pathof(Turing)))
+## The location of the docs folder inside that package
+docs_path = joinpath(package_directory, "docs")
+## The src files for the docs -- markdown documents, typically.
+source_path = joinpath(package_directory, "docs", "src")
+## The path of turing.ml that we are running this code from.
+local_path = @__DIR__
+## The place to put the files from source_path after they go through Documenter.jl
+build_path = joinpath(tmp_path, "_docs")
+
+# Get any files from Turing's directory
+for (root, dirs, files) in walkdir(docs_path)
+    new_root = replace(root, docs_path => tmp_path)
+
+    for file in files
+        old_file = joinpath(root, file)
+        new_file = joinpath(new_root, file)
+        @debug "" old_file new_file
+        if !isdir(dirname(new_file))
+            mkpath(dirname(new_file))
+        end
+        cp(old_file, new_file)
+    end
+end
+
+# Copy all the local files to the temporary path
+paths = readdir(local_path, join=true)
+filter!(x -> !(basename(x) in ["make.jl", "make-utils.jl"]), paths)
+for path in paths
+    new_path = replace(path, local_path => tmp_path)
+    @debug "" path new_path
+    cp(path, new_path, force=true)
+end
 
 # Build docs
 with_clean_docs(source_path, build_path) do source, build
@@ -24,53 +73,35 @@ end
 
 # You can skip this part if you are on a metered
 # connection by calling `julia make.jl no-tutorials`
-tutorial_path = joinpath(@__DIR__, "_tutorials")
+tutorial_path = joinpath(tmp_path, "_tutorials")
 in("no-tutorials", ARGS) || copy_tutorial(tutorial_path)
 
 # set default baseurl for the master branch
-baseurl = "/dev"
+baseurl = "/" * version
+
+@info "" baseurl
 
 # deploy
-devurl = "dev"
-tags = tag_list(GitRepo(package_directory))
-versions = VersionNumber.(tags)
+old_jekyll_build = joinpath(local_path, "jekyll-build")
+new_jekyll_build = joinpath(tmp_path, "jekyll-build")
 
-# Find the most recent tag
-function highest_tags(versions)
-    majors = unique(map(x -> x.major, versions))
-    tags_to_use = []
+# Move jekyll-build to the temporary path
+cp(old_jekyll_build, new_jekyll_build, force=true)
+with_baseurl(() -> run(`$new_jekyll_build`), baseurl, joinpath(local_path, "_config.yml"))
+repo = "github.com:TuringLang/turing.ml.git"
 
-    for major in majors
-        filtered = filter(x -> x.major == major, versions)
-        minors = unique(map(x -> x.minor, filtered))
-
-        for minor in minors
-            minor_filtered = sort(filter(x -> x.minor == minor, filtered))
-            
-            push!(tags_to_use, minor_filtered[end])
-        end
-    end
-    return sort(tags_to_use)
-end
-
-highest = maximum(highest_tags(versions))
-
-# set baseurl for version tag when current head is tagged
-vtag = "v" * string(highest)
-
-version_match = match(r"^(v\d+\.\d+\.\d+)$", vtag)
-if !isnothing(version_match)
-    baseurl = "/" * version_match[1]
-end
-
-jekyll_build = joinpath(@__DIR__, "jekyll-build")
-with_baseurl(() -> run(`$jekyll_build`), baseurl)
+deploy_config = GitHubActions(
+    "TuringLang/turing.ml", #github_repository::String
+    "push", #github_event_name::String
+    is_dev ? "refs/branch/master" : "refs/tags/$(ARGS[1])" #github_ref::String
+)
 
 deploydocs(
     target = "_site",
     repo = repo,
     branch = "gh-pages",
     devbranch = "master",
-    devurl = devurl,
-    versions = ["stable" => "v^", "v#.#", devurl => devurl]
+    devurl = "dev",
+    versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
+    deploy_config = deploy_config
 )

@@ -1,0 +1,47 @@
+name: Documentation
+
+on:
+  push:
+    branches:
+      - 'master'
+    tags: '*'
+  workflow_dispatch:
+  schedule:
+    # Run on the 23rd hour every day
+    - cron:  '0 23 * * *'
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: '1'
+      - name: Set up Ruby 2.6
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6.x'
+      - name: Install dependencies
+        run: |
+          julia --project=docs -e '
+            using Pkg
+            Pkg.activate(".")
+            Pkg.develop("Turing")
+            Pkg.instantiate()
+            Pkg.update()'
+      - name: Build and deploy (master)
+        run: |
+          julia --project=docs --color=yes make.jl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
+          TURING_VERSION: dev
+      - name: Build and deploy (stable)
+        run: |
+          git -C ~/.julia/dev/Turing checkout $(git -C ~/.julia/dev/Turing tag --sort version:refname | tail -n 1)
+          julia --project=docs --color=yes make.jl $(git -C ~/.julia/dev/Turing tag --sort version:refname | tail -n 1)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
