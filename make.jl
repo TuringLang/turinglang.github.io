@@ -11,6 +11,11 @@ include("make-utils.jl")
 # Get the version number
 trim_version(x) = x[1:findlast('.', x) - 1]
 
+# Set this ENV to "master" to trigger deploydocs.
+# Without this line, Documenter.jl and GH Actions
+# won't deploy the docs.
+ENV["GITHUB_REF"] = "master"
+
 version, is_dev = if haskey(ENV, "TURING_VERSION")
     ENV["TURING_VERSION"], true
 else
