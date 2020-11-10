@@ -100,7 +100,7 @@ deploy_config = GitHubActions(
 # Without this line, Documenter.jl and GH Actions
 # won't deploy the docs.
 if is_dev
-    ENV["GITHUB_REF"] = "refs/branch/master"
+    ENV["GITHUB_REF"] = "refs/heads/master"
 end
 
 deploydocs(
