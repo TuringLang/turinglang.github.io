@@ -99,7 +99,9 @@ deploy_config = GitHubActions(
 # Set this ENV to "master" to trigger deploydocs.
 # Without this line, Documenter.jl and GH Actions
 # won't deploy the docs.
-ENV["GITHUB_REF"] = "master"
+if is_dev
+    ENV["GITHUB_REF"] = "refs/branch/master"
+end
 
 deploydocs(
     target = "_site",
