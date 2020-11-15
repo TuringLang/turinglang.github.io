@@ -22,7 +22,7 @@ else
 end
 
 # Make a temporary folder to build from
-tmp_path = mktempdir()
+tmp_path = mktempdir(cleanup=false)
 
 # Paths
 ## The location of the package to build (Turing())
