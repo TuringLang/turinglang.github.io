@@ -93,8 +93,15 @@ repo = "github.com:TuringLang/turing.ml.git"
 deploy_config = GitHubActions(
     "TuringLang/turing.ml", #github_repository::String
     "push", #github_event_name::String
-    is_dev ? "refs/branch/master" : "refs/tags/$(ARGS[1])" #github_ref::String
+    is_dev ? "refs/heads/master" : "refs/tags/$(ARGS[1])" #github_ref::String
 )
+
+# Set this ENV to "master" to trigger deploydocs.
+# Without this line, Documenter.jl and GH Actions
+# won't deploy the docs.
+# if is_dev
+#     ENV["GITHUB_REF"] = "refs/heads/master"
+# end
 
 deploydocs(
     target = "_site",
@@ -105,3 +112,5 @@ deploydocs(
     versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
     deploy_config = deploy_config
 )
+
+@info "" ENV["GITHUB_REF"]
