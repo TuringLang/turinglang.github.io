@@ -47,7 +47,7 @@ for (root, dirs, files) in walkdir(docs_path)
         if !isdir(dirname(new_file))
             mkpath(dirname(new_file))
         end
-        cp(old_file, new_file, force=true)
+        cp(old_file, new_file)
     end
 end
 
