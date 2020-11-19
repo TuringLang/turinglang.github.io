@@ -104,7 +104,7 @@ deploy_config = GitHubActions(
 # end
 
 deploydocs(
-    target = "_site",
+    target = joinpath(tmp_path, "_site"),
     repo = repo,
     branch = "gh-pages",
     devbranch = "master",
