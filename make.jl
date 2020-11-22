@@ -113,4 +113,4 @@ deploydocs(
     deploy_config = deploy_config
 )
 
-@info "" ENV["GITHUB_REF"]
+@info "" get(ENV, "GITHUB_REF", missing)
