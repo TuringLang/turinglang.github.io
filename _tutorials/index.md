@@ -2,7 +2,7 @@
 title: Tutorials
 permalink: /tutorials/
 layout: page
-sidebar: false
+sidebar: true
 ---
 
 # Tutorials
