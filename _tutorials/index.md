@@ -1,3 +1,9 @@
+---
+title: Tutorials
+permalink: /tutorials/
+layout: page
+sidebar: false
+---
 
 # Tutorials
 
