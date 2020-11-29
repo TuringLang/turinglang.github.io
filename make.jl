@@ -57,7 +57,11 @@ filter!(x -> !(basename(x) in ["make.jl", "make-utils.jl"]), paths)
 for path in paths
     new_path = replace(path, local_path => tmp_path)
     @debug "" path new_path
+
     cp(path, new_path, force=true)
+    # if path != new_path
+    #     cp(path, new_path, force=true)
+    # end
 end
 
 # Build docs
