@@ -22,7 +22,7 @@ else
 end
 
 # Make a temporary folder to build from
-tmp_path = mktempdir(cleanup=false)
+tmp_path = mktempdir(cleanup=true)
 
 # Paths
 ## The location of the package to build (Turing())
@@ -81,7 +81,7 @@ tutorial_path = joinpath(tmp_path, "_tutorials")
 in("no-tutorials", ARGS) || copy_tutorial(tutorial_path)
 
 # set default baseurl for the master branch
-baseurl = "/turing.ml/" * version
+baseurl = "/" * version
 
 @info "" baseurl
 
