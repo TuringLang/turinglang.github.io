@@ -81,7 +81,7 @@ tutorial_path = joinpath(tmp_path, "_tutorials")
 in("no-tutorials", ARGS) || copy_tutorial(tutorial_path)
 
 # set default baseurl for the master branch
-baseurl = "/" * version
+baseurl = "/turing.ml/" * version
 
 @info "" baseurl
 
