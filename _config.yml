@@ -21,7 +21,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Turing: A robust, efficient and modular library for general-purpose probabilistic programming.
 
 # the subpath of your site, e.g. /blog
-baseurl: "/dev"
+baseurl: "/turing.ml/dev"
 
 # This is mostly for testing
 url: "" # the base hostname & protocol for your site

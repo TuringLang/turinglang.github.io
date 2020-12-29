@@ -21,6 +21,11 @@ else
     end
 end
 
+# set default baseurl for the master branch
+baseurl = "/turing.ml/" * version
+
+@info "" baseurl
+
 # Make a temporary folder to build from
 tmp_path = mktempdir(cleanup=true)
 
@@ -65,14 +70,16 @@ for path in paths
 end
 
 # Build docs
-with_clean_docs(source_path, build_path) do source, build
-    makedocs(
-        sitename = "Turing.jl",
-        source = source,
-        build = build,
-        format = Markdown(),
-        checkdocs = :all,
-    )
+with_baseurl(baseurl, joinpath(local_path, "_config.yml")) do 
+    with_clean_docs(source_path, build_path) do source, build
+        makedocs(
+            sitename = "Turing.jl",
+            source = source,
+            build = build,
+            format = Markdown(),
+            checkdocs = :all,
+        )
+    end
 end
 
 # You can skip this part if you are on a metered
@@ -80,18 +87,13 @@ end
 tutorial_path = joinpath(tmp_path, "_tutorials")
 in("no-tutorials", ARGS) || copy_tutorial(tutorial_path)
 
-# set default baseurl for the master branch
-baseurl = "/turing.ml/" * version
-
-@info "" baseurl
-
 # deploy
 old_jekyll_build = joinpath(local_path, "jekyll-build")
 new_jekyll_build = joinpath(tmp_path, "jekyll-build")
 
 # Move jekyll-build to the temporary path
 cp(old_jekyll_build, new_jekyll_build, force=true)
-with_baseurl(() -> run(`$new_jekyll_build`), baseurl, joinpath(local_path, "_config.yml"))
+with_baseurl(() -> run(`bundle exec $new_jekyll_build`), baseurl, joinpath(local_path, "_config.yml"))
 
 # Copy assets to folder
 cp(joinpath(tmp_path, "assets"), joinpath(tmp_path, "_site", "assets"), force=true)
