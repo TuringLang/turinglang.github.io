@@ -11,6 +11,7 @@ if [[ $? != 0 ]]; then
     rm -fr $OUTPUT
     gem install bundler
     bundle install
+    bundle update --bundler
 else
     cat $OUTPUT
     rm $OUTPUT
