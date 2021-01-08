@@ -22,8 +22,7 @@ else
 end
 
 # set default baseurl for the master branch
-baseurl = "/turing.ml/" * version
-
+baseurl = "/" * version
 @info "" baseurl
 
 # Make a temporary folder to build from
