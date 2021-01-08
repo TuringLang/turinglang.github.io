@@ -27,7 +27,7 @@ baseurl = "/turing.ml/" * version
 @info "" baseurl
 
 # Make a temporary folder to build from
-tmp_path = mktempdir(cleanup=true)
+tmp_path = mktempdir(cleanup=false)
 
 # Paths
 ## The location of the package to build (Turing())
@@ -61,7 +61,7 @@ paths = readdir(local_path, join=true)
 filter!(x -> !(basename(x) in ["make.jl", "make-utils.jl"]), paths)
 for path in paths
     new_path = replace(path, local_path => tmp_path)
-    @debug "" path new_path
+    @info "" path new_path
 
     cp(path, new_path, force=true)
     # if path != new_path
@@ -93,7 +93,7 @@ new_jekyll_build = joinpath(tmp_path, "jekyll-build")
 
 # Move jekyll-build to the temporary path
 cp(old_jekyll_build, new_jekyll_build, force=true)
-with_baseurl(() -> run(`bundle exec $new_jekyll_build`), baseurl, joinpath(local_path, "_config.yml"))
+with_baseurl(() -> run(`$new_jekyll_build`), baseurl, joinpath(local_path, "_config.yml"))
 
 # Copy assets to folder
 cp(joinpath(tmp_path, "assets"), joinpath(tmp_path, "_site", "assets"), force=true)
