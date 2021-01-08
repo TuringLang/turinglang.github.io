@@ -12,7 +12,11 @@ include("make-utils.jl")
 trim_version(x) = x[1:findlast('.', x) - 1]
 
 version, is_dev = if haskey(ENV, "TURING_VERSION")
-    ENV["TURING_VERSION"], true
+    if ENV["TURING_VERSION"] == "dev"
+        ENV["TURING_VERSION"], true
+    else
+        ENV["TURING_VERSION"], false
+    end
 else
     if length(ARGS) > 0
         trim_version(ARGS[1]), false
