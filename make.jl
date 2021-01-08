@@ -73,16 +73,14 @@ for path in paths
 end
 
 # Build docs
-with_baseurl(baseurl, joinpath(local_path, "_config.yml")) do 
-    with_clean_docs(source_path, build_path) do source, build
-        makedocs(
-            sitename = "Turing.jl",
-            source = source,
-            build = build,
-            format = Markdown(),
-            checkdocs = :all,
-        )
-    end
+with_clean_docs(source_path, build_path) do source, build
+    makedocs(
+        sitename = "Turing.jl",
+        source = source,
+        build = build,
+        format = Markdown(),
+        checkdocs = :all,
+    )
 end
 
 # You can skip this part if you are on a metered
@@ -108,13 +106,6 @@ deploy_config = GitHubActions(
     "push", #github_event_name::String
     is_dev ? "refs/heads/master" : "refs/tags/$(ARGS[1])" #github_ref::String
 )
-
-# Set this ENV to "master" to trigger deploydocs.
-# Without this line, Documenter.jl and GH Actions
-# won't deploy the docs.
-# if is_dev
-#     ENV["GITHUB_REF"] = "refs/heads/master"
-# end
 
 deploydocs(
     target = joinpath(tmp_path, "_site"),
