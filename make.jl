@@ -99,22 +99,17 @@ with_baseurl(() -> run(`$new_jekyll_build`), baseurl, joinpath(local_path, "_con
 # Copy assets to folder
 cp(joinpath(tmp_path, "assets"), joinpath(tmp_path, "_site", "assets"), force=true)
 
-repo = "github.com:TuringLang/turing.ml.git"
-
 deploy_config = GitHubActions(
     "TuringLang/turing.ml", #github_repository::String
     "push", #github_event_name::String
     is_dev ? "refs/heads/master" : "refs/tags/$(ARGS[1])" #github_ref::String
 )
 
-deploydocs(
+deploydocs(;
+    repo = "github.com:TuringLang/turing.ml.git",
     target = joinpath(tmp_path, "_site"),
-    repo = repo,
-    branch = "gh-pages",
-    devbranch = "master",
-    devurl = "dev",
-    versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
-    deploy_config = deploy_config
+    deploy_config = deploy_config,
+    push_preview = true, 
 )
 
 @info "" get(ENV, "GITHUB_REF", missing)
