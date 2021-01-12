@@ -3,8 +3,9 @@ name: Documentation
 on:
   push:
     branches:
-      - 'master'
+      - master
     tags: '*'
+  pull_request:
   workflow_dispatch:
   schedule:
     # Run on the 23rd hour every day
