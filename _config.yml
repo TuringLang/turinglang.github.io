@@ -44,7 +44,6 @@ color: "#d2e6f5" # primary color for header, buttons
 navbarcolor: "#073c44"
 
 # Build settings
-markdown: kramdown
 
 # If you add tags to pages, you can link them to some external search
 # If you want to disable this, comment the URL.
@@ -56,7 +55,7 @@ themeColor: red # purple, green, blue, orange, purple, grey
 fixedNav: 'true' # true or false
 
 permalink: /:year/:title/
-markdown: kramdown
+markdown: CommonMarkGhPages
 exclude:
   - .gems
   - _site
