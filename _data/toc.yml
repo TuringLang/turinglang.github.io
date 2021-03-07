@@ -47,37 +47,37 @@
     url: "tutorials"
 
   - title: "Introduction to Turing"
-    url: "tutorials/0-introduction"
+    url: "tutorials/00-introduction"
 
   - title: "Gaussian Mixture Models"
-    url: "tutorials/1-gaussianmixturemodel"
+    url: "tutorials/01-gaussian-mixture-model"
 
   - title: "Bayesian Logistic Regression"
-    url: "tutorials/2-logisticregression"
+    url: "tutorials/02-logistic-regression"
 
   - title: "Bayesian Neural Networks"
-    url: "tutorials/3-bayesnn"
+    url: "tutorials/03-bayesian-neural-network"
 
   - title: "Hidden Markov Models"
-    url: "tutorials/4-bayeshmm"
+    url: "tutorials/04-hidden-markov-model"
 
   - title: "Linear Regression"
-    url: "tutorials/5-linearregression"
+    url: "tutorials/05-linear-regression"
 
   - title: "Infinite Mixture Models"
-    url: "tutorials/6-infinitemixturemodel"
+    url: "tutorials/06-infinite-mixture-model"
 
   - title: "Bayesian Poisson Regression"
-    url: "tutorials/7-poissonregression"
+    url: "tutorials/07-poisson-regression"
 
   - title: "Multinomial Logistic Regression"
-    url: "tutorials/8-multinomiallogisticregression"
+    url: "tutorials/08-multinomial-logistic-regression"
 
   - title: "Variational Inference"
-    url: "tutorials/9-variationalinference"
+    url: "tutorials/09-variational-inference"
     
   - title: "Bayesian Differential Equation"
-    url: "tutorials/10-bayesiandiffeq"
+    url: "tutorials/10-bayesian-differential-equations"
 
 - title: "API"
   url: "docs/library"
