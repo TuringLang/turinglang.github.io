@@ -128,6 +128,7 @@ end
 ## Building Utilities
 
 function preprocess_markdown(folder)
+    @debug "preprocess_markdown" folder
     yaml_dict = Dict()
 
     try
@@ -205,67 +206,114 @@ function postprocess_markdown(folder, yaml_dict; original = "")
     return yaml_dict
 end
 
+function cp_by_write(src, dest; force::Bool=false)
+
+    if isdir(src)
+        for (root, dirs, files) in walkdir(src)
+            new_root = replace(root, src => dest)
+            mkpath(new_root)
+
+            for file in files
+                src_file = joinpath(root, file)
+                dest_file = joinpath(new_root, file)
+
+                if !ispath(dest_file) || force
+                    @debug "Making $dest_file from $src_file"
+                    open(src_file, "r") do f_in
+                        open(dest_file, "w+") do f_out
+                            write(f_out, read(f_in))
+                        end
+                    end
+                end
+            end
+        end
+    else
+        # Assume it's a file
+        if !ispath(dest) || force
+            @debug "Making $dest from $src"
+            open(src, "r") do f_in
+                open(dest, "w+") do f_out
+                    write(f_out, read(f_in))
+                end
+            end
+        end
+    end
+
+    return dest
+end
+
 function with_clean_docs(func, source, target)
     src_temp = mktempdir()
-    cp(source, src_temp, force=true)
-    yaml_dict = preprocess_markdown(source)
+    cp_by_write(source, src_temp, force=true)
+    yaml_dict = preprocess_markdown(src_temp)
 
     try
-        func(source, target)
+        func(src_temp, target)
+        yaml_dict = postprocess_markdown(target, yaml_dict, original=src_temp)
     catch e
         rethrow(e)
     finally
         # Put back the original files in the event of an error.
-        cp(src_temp, source_path, force=true)
+        # cp(src_temp, source_path, force=true)
         rm(src_temp, recursive=true)
     end
-    postprocess_markdown(build_path, yaml_dict, original=source_path)
+    return yaml_dict
 end
 
 
-function copy_tutorial(tutorial_path)
-    isdir(tutorial_path) || mkpath(tutorial_path)
-    # Clone TuringTurorials
+function copy_tutorial(tutorial_dest_path)
+    @info "Tutorial destination path $tutorial_dest_path"
+    ispath(tutorial_dest_path) || mkpath(tutorial_dest_path)
+
+    # Make a workspace
     tmp_path = tempname()
     mkdir(tmp_path)
 
-    # Move to markdown folder.
+    # Get the path of `TuringTutorials`
     md_path = joinpath(dirname(pathof(TuringTutorials)), "..", "markdown")
 
     # Copy the .md versions of all examples.
     try
         @debug(md_path)
-        for tutorialdir in readdir(md_path)
-            tutorial_path_src = joinpath(md_path, tutorialdir)
-            for (dir, subdirs, files) in walkdir(tutorial_path_src)
+        for tutorial_src in readdir(md_path)
+            # Construct the full path
+            tutorial_src_path = joinpath(md_path, tutorial_src)
+            for (dir, subdirs, files) in walkdir(tutorial_src_path)
+                # Change base directory of source path
+                dir_new = replace(dir, tutorial_src_path => tmp_path)
+                # Make the path if it does not exist
+                mkpath(dir_new)
+                # Copy over the files ensuring that we have write access
+                println("Copying $dir to $dir_new")
+                cp_by_write(dir, dir_new, force=true)
+
                 for file in files
-                    full_path = joinpath(dir, file)
-                    target_path = replace(full_path, tutorial_path_src => tutorial_path)
-                    mkpath(dirname(target_path))
+                    dest_path = joinpath(dir_new, file)
 
-                    println("Copying $full_path to $target_path")
-                    cp(full_path, target_path, force=true)
-
-                    if endswith(target_path, ".md")
+                    if endswith(dest_path, ".md")
                         # remove_yaml(target_path, "permalink")
-                        fix_header_1(target_path)
+                        fix_header_1(dest_path)
                         print("fixing image path")
-                        fix_image_path(target_path)
+                        fix_image_path(dest_path)
                     end
                 end
             end
         end
-        index = joinpath(@__DIR__, "src/tutorials/index.md")
-        cp(index, tutorial_path * "/index.md", force=true)
+
+        # Copy from temporary workspace to destination
+        cp(tmp_path, tutorial_dest_path, force=true)
+        index = joinpath(@__DIR__, "_tutorials/index.md")
+        cp(index, tutorial_dest_path * "/index.md", force=true)
     catch e
         rethrow(e)
     finally
+        # Clean up temporary workspace
         rm(tmp_path, recursive=true)
     end
 end
 
-function with_baseurl(func, baseurl)
-    jekyll_config = joinpath(@__DIR__, "_config.yml")
+function with_baseurl(func, baseurl, config_path)
+    jekyll_config = config_path
     lines = readlines(jekyll_config, keep=true)
     open(jekyll_config, "w+") do f
         for line in lines
