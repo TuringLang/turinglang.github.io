@@ -118,8 +118,7 @@ function fix_image_path(file)
     lines = readlines(file, keep=true)
     open(file, "w+") do f
         for line in lines
-            # line = replace(line, "](/tutorials/" => "](../")
-            line = replace(line, "](" => "](../")
+            line = replace(line, "](figures/" => "](../figures/")
             write(f, line)
         end
     end
