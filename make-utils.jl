@@ -1,4 +1,6 @@
-using Base64, Pkg, TuringTutorials
+using Base64, Pkg
+Pkg.dev("TuringTutorials")
+using TuringTutorials
 
 ## Text Utilities
 
