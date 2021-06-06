@@ -1,5 +1,5 @@
 using Base64, Pkg
-Pkg.dev("TuringTutorials")
+Pkg.develop("TuringTutorials")
 using TuringTutorials
 
 ## Text Utilities
