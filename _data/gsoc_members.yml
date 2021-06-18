@@ -1,21 +1,3 @@
-- name: Arthur Lui
-  photo: https://avatars.githubusercontent.com/u/5297817?v=3
-  github: luiarthur
-  institution: University of California, Santa Cruz
-  website: https://luiarthur.github.io
-  email: alui2@ucsc.edu
-  linkedin: lui-arthur
-  twitter: luiarthur89
-
-- name: Saranjeet Kaur
-  photo: https://user-images.githubusercontent.com/28556616/81147692-76d9af00-8f98-11ea-9905-39c7cbe50a7a.jpg
-  github: SaranjeetKaur
-  institution: University of Pune, Pune
-  # website: https://example.com/
-  email: kaur.saranjeet3@gmail.com
-  linkedin: saranjeet-kaur-48ab769b
-  # twitter: twitter_handle
-
 - name: Michael P Schneider
   photo: https://avatars.githubusercontent.com/u/2598597?v=4
   github: leachim
@@ -24,3 +6,12 @@
   email: contact@mi-schneider.de
   linkedin: michaelschneider11
   twitter: mschndr11
+
+- name: Paulina Martin
+  photo: https://avatars.githubusercontent.com/u/31251575
+  github: PaulinaMartin96
+  institution: Universidad Nacional Autónoma de México (UNAM), Ciudad de México
+  website: https://paulinamartin96.github.io/
+  email: paulinamartin96@ciencias.unam.mx
+  linkedin: paulina-martin-747445a8
+  # twitter: twitter_handle
