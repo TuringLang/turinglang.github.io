@@ -1,5 +1,5 @@
 using Base64, Pkg
-Pkg.develop(url="https://github.com/TuringLang/TuringTutorials")
+Pkg.add(url="https://github.com/TuringLang/TuringTutorials", rev="artifacts")
 using TuringTutorials
 
 ## Text Utilities
