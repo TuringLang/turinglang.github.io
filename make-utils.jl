@@ -309,6 +309,8 @@ function copy_tutorial(tutorial_dest_path)
     finally
         # Clean up temporary workspace
         rm(tmp_path, recursive=true)
+
+        rm(OUTPUT_DIR, recursive=true)
     end
 end
 
