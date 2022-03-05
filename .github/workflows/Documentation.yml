@@ -33,8 +33,6 @@ jobs:
             Pkg.develop("Turing")
             Pkg.instantiate()
             Pkg.update()'
-      - echo ${{ env.GITHUB_EVENT_NAME }}
-      - exit 1
       - name: Build and deploy (master)
         run: |
           julia --project=docs --color=yes make.jl

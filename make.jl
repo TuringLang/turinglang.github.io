@@ -113,8 +113,7 @@ deploydocs(
     branch = "gh-pages",
     devbranch = "master",
     devurl = "dev",
-    versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
-    deploy_config = deploy_config
+    versions = ["stable" => "v^", "v#.#", "dev" => "dev"]
 )
 
 @info "" get(ENV, "GITHUB_REF", missing)
