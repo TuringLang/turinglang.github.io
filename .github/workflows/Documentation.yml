@@ -6,6 +6,7 @@ on:
       - 'master'
     tags: '*'
   workflow_dispatch:
+  pull_request:
   schedule:
     # Run on the 23rd hour every day
     - cron:  '0 23 * * *'
