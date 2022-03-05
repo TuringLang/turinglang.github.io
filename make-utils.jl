@@ -1,6 +1,6 @@
 using Base64, Pkg
-Pkg.add(url="https://github.com/TuringLang/TuringTutorials", rev="artifacts")
-using TuringTutorials
+const OUTPUT_DIR = "TuringTutorialsOutput"
+run(`git clone --depth=1 https://github.com/TuringLang/TuringTutorialsOutput $OUTPUT_DIR`)
 
 ## Text Utilities
 
@@ -270,8 +270,7 @@ function copy_tutorial(tutorial_dest_path)
     tmp_path = tempname()
     mkdir(tmp_path)
 
-    # Get the path of `TuringTutorials`
-    md_path = joinpath(dirname(pathof(TuringTutorials)), "..", "markdown")
+    md_path = joinpath(OUTPUT_DIR, "markdown")
 
     # Copy the .md versions of all examples.
     try
