@@ -1,6 +1,9 @@
-using Base64, Pkg
+using Base64
+using LibGit2
+using Pkg
+
 const OUTPUT_DIR = "TuringTutorialsOutput"
-run(`git clone --depth=1 https://github.com/TuringLang/TuringTutorialsOutput $OUTPUT_DIR`)
+clone("https://github.com/TuringLang/TuringTutorialsOutput", OUTPUT_DIR)
 
 ## Text Utilities
 
