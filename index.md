@@ -9,7 +9,7 @@
 | Turing models are easy to read and write — models work the way you write them. | Turing supports models with discrete parameters and stochastic control flow. Specify complex models quickly and easily. | Turing is modular, written fully in Julia, and can be modified to suit your needs. | Turing is [fast](https://arxiv.org/abs/2002.02702). |
 @@
 
-## Hello World in Turing — Linear Gaussian Model
+## Hello World in Turing: Linear Gaussian Model
 
 @@row-flex
 @@col-flex-large
@@ -32,6 +32,8 @@ end
 @@
 
 ## News
+
+[All news](/news/)
 
 ## Advanced Markov chain Monte Carlo samplers
 
