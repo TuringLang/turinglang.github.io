@@ -1,75 +1,21 @@
-/* On wide screens, fix content width to a max value. */
-@media (min-width: 940px) {
-  .franklin-content, header {
-    width: 75%;
-  }
+.franklin-content {
+  padding-left: 0;
+  padding-right: 0;
 }
 
-/* On narrow device, reduce margins. */
-@media (max-width: 480px) {
-  .franklin-content, header {
-    width: 88%;
+/* On wide screens, fix content width to a max value. */
+@media (min-width: 1024px) {
+  .franklin-content {
+    width: 80%;
   }
 }
 
 /* / */
 
-.table-gallery table {
-  table-layout: fixed;
-  width: 100% ;
-}
-.table-gallery th {
-  text-align: left;
-  border: none;
-  padding: 1em;
-}
-.table-gallery td {
-  text-align: left;
-  padding: 1em;
-}
-
-.franklin-content .row-flex {
-  display: flex;
-  padding: 0em 1em;
-}
-.franklin-content .col-flex {
-  flex: 1;
-}
-.franklin-content .col-flex-small {
-  flex: 2;
-}
-.franklin-content .col-flex-large {
-  flex: 3;
-}
-
-.table-blocks table {
-  table-layout: fixed;
-  width: 90% ;
-  border-collapse: separate;
-  border-spacing: 1em 0;
-}
-.table-blocks th, .table-blocks td {
-  text-align: left;
-  padding: 1em 3em;
-  border-top: none;
-  border-bottom: none;
-  border-left: 1px solid;
-  border-right: 1px solid;
-}
-.table-blocks th {
-  border-top: 1px solid;
-}
-.table-blocks tr:last-child td {
-  border-bottom: 1px solid;
-  text-align: right;
-}
-
-.table-no-border table,
-.table-no-border th,
-.table-no-border td,
-.table-no-border tr:last-child td { 
-  border: none; 
-  padding: 0.33em 1em;
+.franklin-content h1, 
+.franklin-content h2, 
+.franklin-content h3 { 
+  font-weight: bold; 
 }
 
 /* /team */
