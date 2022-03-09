@@ -4,9 +4,9 @@
 }
 
 /* On wide screens, fix content width to a max value. */
-@media (min-width: 1024px) {
+@media (min-width: 940px) {
   .franklin-content {
-    width: 80%;
+    width: 800px;
   }
 }
 
