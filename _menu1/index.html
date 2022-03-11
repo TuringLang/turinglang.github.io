@@ -11,7 +11,7 @@ end</code></pre> <p>which gives the &#40;utterly useless&#41;:</p> <pre><code cl
  ****    **     ****    **     ****    **     ****    **     ****    **
  *****    *     *****    *     *****    *     *****    *     *****    *
 </code></pre> <p>note the absence of <code>.jl</code>, it&#39;s inferred.</p> <p>You can also hide lines &#40;that will be executed nonetheless&#41;:</p> <pre><code class=language-julia >using Random
-@show randn&#40;2&#41;</code></pre> <pre><code class="plaintext code-output">randn(2) = [0.2972879845354616, 0.3823959677906078]
+@show randn&#40;2&#41;</code></pre> <pre><code class="plaintext code-output">randn(2) = [-0.07058313895389791, 0.5314767537831963]
 </code></pre> <h2 id=including_scripts ><a href="#including_scripts" class=header-anchor >Including scripts</a></h2> <p>Another approach is to include the content of a script that has already been executed. This can be an alternative to the description above if you&#39;d like to only run the code once because it&#39;s particularly slow or because it&#39;s not Julia code. For this you can use the <code>\input</code> command specifying which language it should be tagged as:</p> <p><pre><code class=language-julia >x &#61; randn&#40;5&#41;
 y &#61; randn&#40;5&#41;
 
