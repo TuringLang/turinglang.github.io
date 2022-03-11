@@ -1,15 +1,27 @@
-import Documenter.Writers.HTMLWriter: render_page
+import Documenter.Writers.HTMLWriter: render_page, render_search
 using Documenter.Utilities.DOM: @tags, Node, Attributes
-using Documenter.Writers.HTMLWriter: getpage, render_head, render_sidebar, render_navbar, render_article, render_footer, render_html, open_output
+using Documenter.Writers.HTMLWriter: getpage, get_url, relhref, 
+    render_head, render_sidebar, render_navbar, render_article, render_footer, render_html, open_output
+
+"Add the Tailwind CSS to head"
+function addtailwind!(node)
+    tailwind = Node(:script, [:src => "https://cdn.tailwindcss.com"], Node[])
+    push!(node.nodes, tailwind)
+end
+
+"Add the header navbar to first thing in body"
+function addnavbar!(node)
+    header_str = read(joinpath(@__DIR__, "../_layout/header.html"), String)
+    header = Node(Symbol("#RAW#"), Attributes(), [Node(header_str)])
+    insert!(node.nodes, 2, header) # head is at index 1 so we insert at index 2
+end
 
 function render_page(ctx, navnode)
     @tags html div body
     page = getpage(ctx, navnode)
     head = render_head(ctx, navnode)
 
-    # Add the Tailwind CSS to head
-    tailwind = Node(:script, [:src => "https://cdn.tailwindcss.com"], Node[])
-    push!(head.nodes, tailwind)
+    addtailwind!(head)
     
     sidebar = render_sidebar(ctx, navnode)
     navbar = render_navbar(ctx, navnode, true)
@@ -17,12 +29,38 @@ function render_page(ctx, navnode)
     footer = render_footer(ctx, navnode)
     htmldoc = render_html(ctx, navnode, head, sidebar, navbar, article, footer)
 
-    # Add the header navbar to first thing in body
-    header_str = read(joinpath(@__DIR__, "../_layout/header.html"), String)
-    header = Node(Symbol("#RAW#"), Attributes(), [Node(header_str)])
-    insert!(htmldoc.root.nodes, 2, header) # head is at index 1 so we insert at index 2
+    addnavbar!(htmldoc.root)
 
     open_output(ctx, navnode) do io
+        print(io, htmldoc)
+    end
+end
+
+function render_search(ctx)
+    @tags article body h1 header hr html li nav p span ul script
+
+    src = get_url(ctx, ctx.search_navnode)
+
+    head = render_head(ctx, ctx.search_navnode)
+    
+    addtailwind!(head)
+
+    sidebar = render_sidebar(ctx, ctx.search_navnode)
+    navbar = render_navbar(ctx, ctx.search_navnode, false)
+    article = article(
+        p["#documenter-search-info"]("Loading search..."),
+        ul["#documenter-search-results"]
+    )
+    footer = render_footer(ctx, ctx.search_navnode)
+    scripts = [
+        script[:src => relhref(src, ctx.search_index_js)],
+        script[:src => relhref(src, ctx.search_js)],
+    ]
+    htmldoc = render_html(ctx, ctx.search_navnode, head, sidebar, navbar, article, footer, scripts)
+    
+    addnavbar!(htmldoc.root)
+
+    open_output(ctx, ctx.search_navnode) do io
         print(io, htmldoc)
     end
 end
