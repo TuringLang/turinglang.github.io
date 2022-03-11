@@ -6,15 +6,15 @@
 @@grid,grid-cols-4,p-2
 @@px-2
 ### Intuitive
-Turing models are easy to read and write — models work the way you write them.
+Turing models are easy to read and write--models work the way you write them.
 @@
 @@px-2
 ### General-purpose
-Turing supports models with discrete parameters and stochastic control flow. Specify complex models quickly and easily.
+Specify complex models with discrete parameters and stochastic control flow easily.
 @@
 @@px-2
 ### Modular
-Turing is modular, written fully in Julia, and can be modified to suit your needs.
+Turing is modular, written fully in Julia and can be modified to suit your needs.
 @@
 @@px-2
 ### High-performance
@@ -24,17 +24,28 @@ Turing is [fast](https://arxiv.org/abs/2002.02702).
 
 ## Hello World in Turing: Linear Gaussian Model
 
-@@grid,grid-cols-5
-@@col-span-3
-Turing's modelling syntax allows you to specify a model quickly and easily. Straightforward models can be expressed in the same way as complex, hierarchical models with stochastic control flow.
+@@grid,grid-cols-3
+@@col-span-1
+Turing's modelling syntax allows you to specify a model easily. 
+Simple models can be expressed in the same way as complex, hierarchical models with stochastic control flow.
 
 [Get Started]()
 @@
-@@col-span-2
+@@col-span-1
+### As math
+\begin{align*}
+  \sigma &\sim \mathcal{I}\text{nverse}\mathcal{G}\text{amma}(2, 3) \\
+     \mu &\sim \mathcal{N}\text{ormal}(0, \sigma) \\
+       x &\sim \mathcal{N}\text{ormal}(0, \sigma) \\
+       y &\sim \mathcal{N}\text{ormal}(0, \sigma) \\
+\end{align*}
+@@
+@@col-span-1
+### As Turing program
 ```julia
 @model function gdemo(x, y)
   # Assumptions
-  σ ~ InverseGamma(2,3)
+  σ ~ InverseGamma(2, 3)
   μ ~ Normal(0, sqrt(σ))
   # Observations
   x ~ Normal(μ, sqrt(σ))
