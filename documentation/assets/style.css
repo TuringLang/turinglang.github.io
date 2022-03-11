@@ -1,4 +1,5 @@
 @media screen and (min-width: 1056px) {
+    html #documenter .docs-sidebar,
     html.theme--documenter-dark #documenter .docs-sidebar {
         top: 3rem;
     }
