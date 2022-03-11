@@ -1,4 +1,4 @@
-image: julia:1.6
+image: julia:1.7
 
 before_script:
   - apt-get -qq update; apt-get -y install git python3-dev python3-pip
