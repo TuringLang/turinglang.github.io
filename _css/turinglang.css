@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+}
+
 .franklin-content {
   /* 3rem is the height of header and 1.5em is the default margin-top of h1 */
   margin-top: calc(3rem + 1.5em);
