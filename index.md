@@ -34,10 +34,10 @@ Simple models can be expressed in the same way as complex, hierarchical models w
 @@col-span-1
 ### As math
 \begin{align*}
-  \sigma &\sim \mathcal{I}\text{nverse}\mathcal{G}\text{amma}(2, 3) \\
-     \mu &\sim \mathcal{N}\text{ormal}(0, \sigma) \\
-       x &\sim \mathcal{N}\text{ormal}(0, \sigma) \\
-       y &\sim \mathcal{N}\text{ormal}(0, \sigma) \\
+  \sigma^2 &\sim \mathcal{I}\text{nverse}\mathcal{G}\text{amma}(2, 3) \\
+     \mu &\sim \mathcal{N}\text{ormal}(0, \sigma^2) \\
+       x &\sim \mathcal{N}\text{ormal}(0, \sigma^2) \\
+       y &\sim \mathcal{N}\text{ormal}(0, \sigma^2) \\
 \end{align*}
 @@
 @@col-span-1
@@ -45,11 +45,11 @@ Simple models can be expressed in the same way as complex, hierarchical models w
 ```julia
 @model function gdemo(x, y)
   # Assumptions
-  σ ~ InverseGamma(2, 3)
-  μ ~ Normal(0, sqrt(σ))
+  σ² ~ InverseGamma(2, 3)
+  μ ~ Normal(0, sqrt(σ²))
   # Observations
-  x ~ Normal(μ, sqrt(σ))
-  y ~ Normal(μ, sqrt(σ))
+  x ~ Normal(μ, sqrt(σ²))
+  y ~ Normal(μ, sqrt(σ²))
 end
 ```
 @@
