@@ -1,15 +1,15 @@
 ```@meta
-CurrentModule = Turing
+CurrentModule = AdvancedHMC
 ```
 
-# Turing.jl
+# AdvancedHMC.jl
 
 ```@contents
 ```
 
 ## Structs
 ```@docs
-NUTS
+ClassicNoUTurn
 ```
 
 ## Functions
