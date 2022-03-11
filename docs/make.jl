@@ -4,12 +4,12 @@ Pkg.instantiate()
 using Documenter
 include("page.jl")
 
-using AdvancedHMC
+using Turing, AdvancedHMC
 
 makedocs(
-    sitename="Turing.jl",
+    sitename="The Turing Language",
     build=joinpath(@__DIR__, "../__site/documentation"),
-    modules=[AdvancedHMC],
+    modules=[Turing, AdvancedHMC],
     format = Documenter.HTML(
         assets = ["assets/style.css"],
     ),
