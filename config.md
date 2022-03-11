@@ -1,7 +1,4 @@
-<!--
-HOLD Change it to "" (empty string) once we hook up the domain to the repo
--->
-@def prepath = "beta.turing.ml"
+@def prepath = ""
 
 <!--
 Add here global page variables to use throughout your website.
