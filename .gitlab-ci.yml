@@ -11,6 +11,7 @@ pages:
       using NodeJS; run(`$(npm_cmd()) install highlight.js`);
       using Franklin;
       optimize()'
+    - julia --project=docs docs/make.jl
     - mv __site public
   artifacts:
     paths:
