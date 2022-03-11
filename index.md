@@ -31,25 +31,26 @@ Simple models can be expressed in the same way as complex, hierarchical models w
 
 [Get Started]()
 @@
-@@col-span-1
-### As math
+@@col-span-1,px-2
+### In math
+$p(\sigma^2, \mu \mid x, y)$:
 \begin{align*}
-  \sigma^2 &\sim \mathcal{I}\text{nverse}\mathcal{G}\text{amma}(2, 3) \\
-     \mu &\sim \mathcal{N}\text{ormal}(0, \sigma^2) \\
-       x &\sim \mathcal{N}\text{ormal}(0, \sigma^2) \\
-       y &\sim \mathcal{N}\text{ormal}(0, \sigma^2) \\
+&\sigma^2 & &\sim & &\mathcal{I}\text{nverse}\mathcal{G}\text{amma}(2, 3) \\
+&\mu      & &\sim & &\mathcal{N}\text{ormal}(0, \sigma^2) \\
+&x        & &\sim & &\mathcal{N}\text{ormal}(0, \sigma^2) \\
+&y        & &\sim & &\mathcal{N}\text{ormal}(0, \sigma^2) \\
 \end{align*}
 @@
 @@col-span-1
 ### As Turing program
 ```julia
-@model function gdemo(x, y)
+@model function lingauss(x, y)
   # Assumptions
   σ² ~ InverseGamma(2, 3)
-  μ ~ Normal(0, sqrt(σ²))
+  μ  ~ Normal(0, sqrt(σ²))
   # Observations
-  x ~ Normal(μ, sqrt(σ²))
-  y ~ Normal(μ, sqrt(σ²))
+  x  ~ Normal(μ, sqrt(σ²))
+  y  ~ Normal(μ, sqrt(σ²))
 end
 ```
 @@
