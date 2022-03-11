@@ -1,12 +1,18 @@
+module TuringWeb
+
 import Documenter.Writers.HTMLWriter: render_page, render_search
 using Documenter.Utilities.DOM: @tags, Node, Attributes
 using Documenter.Writers.HTMLWriter: getpage, get_url, relhref, 
     render_head, render_sidebar, render_navbar, render_article, render_footer, render_html, open_output
 
-"Add the Tailwind CSS to head"
-function addtailwind!(node)
-    tailwind = Node(:script, [:src => "https://cdn.tailwindcss.com"], Node[])
-    push!(node.nodes, tailwind)
+function updatehead!(node)
+    # Add the Tailwind CSS
+    tailwindjs = Node(:script, [:src => "https://cdn.tailwindcss.com"], Node[])
+    push!(node.nodes, tailwindjs)
+    css_str = read(joinpath(@__DIR__, "../_css/documenter.css"), String)
+    # Add top navbar adjustment
+    navbarcss = Node(Symbol("#RAW#"), Attributes(), [Node("<style>$css_str</style>")])
+    push!(node.nodes, navbarcss)
 end
 
 "Add the header navbar to first thing in body"
@@ -21,7 +27,7 @@ function render_page(ctx, navnode)
     page = getpage(ctx, navnode)
     head = render_head(ctx, navnode)
 
-    addtailwind!(head)
+    updatehead!(head)
     
     sidebar = render_sidebar(ctx, navnode)
     navbar = render_navbar(ctx, navnode, true)
@@ -43,7 +49,7 @@ function render_search(ctx)
 
     head = render_head(ctx, ctx.search_navnode)
     
-    addtailwind!(head)
+    updatehead!(head)
 
     sidebar = render_sidebar(ctx, ctx.search_navnode)
     navbar = render_navbar(ctx, ctx.search_navnode, false)
@@ -64,3 +70,5 @@ function render_search(ctx)
         print(io, htmldoc)
     end
 end
+
+end # module

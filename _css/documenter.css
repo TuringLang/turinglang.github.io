@@ -1,10 +1,10 @@
 @media screen and (min-width: 1056px) {
     html #documenter .docs-sidebar,
     html.theme--documenter-dark #documenter .docs-sidebar {
-        top: 3rem;
+        padding-top: 3rem;
     }
 }
 
 #documenter {
-    margin-top: 3rem;
+    padding-top: 3rem;
 }
