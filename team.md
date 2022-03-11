@@ -49,7 +49,7 @@
              "email" "mailto:cpfiffer@uoregon.edu"
              "Linkedin" "https://www.linkedin.com/in/cameron-pfiffer"}}
 
-{{teammember "/assets/team/will.jpeg" "David Widmann" "Uppsala University" 
+{{teammember "/assets/team/widmann.jpeg" "David Widmann" "Uppsala University" 
              "personal page" "https://widmann.dev/"
              "GitHub" "https://github.com/devmotion"
              "email" "mailto:david.widmann@it.uu.se"}}
