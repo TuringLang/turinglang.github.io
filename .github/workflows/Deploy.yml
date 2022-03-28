@@ -32,13 +32,23 @@ jobs:
     #   Julia packages which may be required to successfully build your site.
     #   The last line should be `optimize()` though you may want to give it
     #   specific arguments, see the documentation or ?optimize in the REPL.
-    - run: julia -e '
+    - run: |
+        julia --color=yes -e '
             using Pkg; Pkg.activate("."); Pkg.instantiate();
             using NodeJS; run(`$(npm_cmd()) install highlight.js`);
             using Franklin;
-            optimize()'
+            optimize(; minify=false, prerender=false)' > build.log
+        cat build.log
+    - name: Fail on error
+      run: |
+        if grep -1 "Franklin Warning" build.log; then
+            echo "Franklin reported a warning; exiting"
+            exit 1
+        else
+            echo "Franklin did not report a warning"
+        fi
     - run: julia --project=docs/ docs/make.jl
-    - name: Build and Deploy
+    - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
