@@ -1,30 +1,37 @@
 name: Build and Deploy
+
 on:
   push:
     branches:
       - main
-      - master
+  pull_request:
+  workflow_dispatch:
+
 jobs:
-  build-and-deploy:
+  BuildAndDeploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
     - name: Checkout
       uses: actions/checkout@v2
       with:
+        # Necessary for the deploy action.
         persist-credentials: false
-    # NOTE: Python is necessary for the pre-rendering (minification) step
+
+    # Python is necessary for the pre-rendering (minification) step
     - name: Install python
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
-    # NOTE: Here you can install dependencies such as matplotlib if you use
+
+    # Here you can install dependencies such as matplotlib if you use
     # packages such as PyPlot.
     # - run: pip install matplotlib
     - name: Install Julia
       uses: julia-actions/setup-julia@v1
       with:
         version: 1.7
-    # NOTE
+
     #   The steps below ensure that NodeJS and Franklin are loaded then it
     #   installs highlight.js which is needed for the prerendering step
     #   (code highlighting + katex prerendering).
@@ -32,13 +39,27 @@ jobs:
     #   Julia packages which may be required to successfully build your site.
     #   The last line should be `optimize()` though you may want to give it
     #   specific arguments, see the documentation or ?optimize in the REPL.
-    - run: julia -e '
+    - run: |
+        julia --color=yes -e '
             using Pkg; Pkg.activate("."); Pkg.instantiate();
             using NodeJS; run(`$(npm_cmd()) install highlight.js`);
             using Franklin;
-            optimize()'
+            optimize(; minify=false)' > build.log
+        cat build.log
+
+    - name: Fail on error
+      run: |
+        if grep -1 "Franklin Warning" build.log; then
+            echo "Franklin reported a warning; exiting"
+            exit 1
+        else
+            echo "Franklin did not report a warning"
+        fi
+  
     - run: julia --project=docs/ docs/make.jl
-    - name: Build and Deploy
+
+    - name: Deploy to secondary branch
+      if: ${{ ( github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
