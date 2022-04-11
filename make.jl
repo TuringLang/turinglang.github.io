@@ -101,13 +101,20 @@ cp(joinpath(tmp_path, "assets"), joinpath(tmp_path, "_site", "assets"), force=tr
 
 repo = "github.com:TuringLang/turing.ml.git"
 
+deploy_config = GitHubActions(
+    "TuringLang/turing.ml", #github_repository::String
+    "push", #github_event_name::String
+    is_dev ? "refs/heads/master" : "refs/tags/$(ARGS[1])" #github_ref::String
+)
+
 deploydocs(
     target = joinpath(tmp_path, "_site"),
     repo = repo,
     branch = "gh-pages",
     devbranch = "master",
     devurl = "dev",
-    versions = ["stable" => "v^", "v#.#", "dev" => "dev"]
+    versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
+    deploy_config = deploy_config
 )
 
 @info "" get(ENV, "GITHUB_REF", missing)
