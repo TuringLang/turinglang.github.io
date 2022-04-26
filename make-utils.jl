@@ -2,9 +2,6 @@ using Base64
 using LibGit2
 using Pkg
 
-const OUTPUT_DIR = "TuringTutorialsOutput"
-clone("https://github.com/TuringLang/TuringTutorialsOutput", OUTPUT_DIR)
-
 ## Text Utilities
 
 function find_yaml_header(lines)
@@ -266,55 +263,52 @@ end
 
 
 function copy_tutorial(tutorial_dest_path)
-    @info "Tutorial destination path $tutorial_dest_path"
-    ispath(tutorial_dest_path) || mkpath(tutorial_dest_path)
+    @debug "destination of tutorials" tutorial_dest_path
+    mkpath(tutorial_dest_path)
 
-    # Make a workspace
-    tmp_path = tempname()
-    mkdir(tmp_path)
+    # Use temporary workspace directory.
+    mktempdir() do workspace
+        # Use temporary directory for prebuilt output of tutorials.
+        mktempdir() do tutorialsoutput
+            # Fetch tutorials.
+            clone("https://github.com/TuringLang/TuringTutorialsOutput", tutorialsoutput)
 
-    md_path = joinpath(OUTPUT_DIR, "markdown")
+            # Copy the .md versions of all tutorials.
+            md_path = joinpath(tutorialsoutput, "markdown")
+            @debug "folder with Markdown version of tutorials" md_path
+            for tutorial_src in readdir(md_path)
+                # Construct the full path
+                tutorial_src_path = joinpath(md_path, tutorial_src)
+                for (dir, subdirs, files) in walkdir(tutorial_src_path)
+                    # Change base directory of source path
+                    dir_new = replace(dir, tutorial_src_path => workspace)
+                    # Make the path if it does not exist
+                    mkpath(dir_new)
+                    # Copy over the files ensuring that we have write access
+                    println("Copying $dir to $dir_new")
+                    cp_by_write(dir, dir_new, force=true)
 
-    # Copy the .md versions of all examples.
-    try
-        @debug(md_path)
-        for tutorial_src in readdir(md_path)
-            # Construct the full path
-            tutorial_src_path = joinpath(md_path, tutorial_src)
-            for (dir, subdirs, files) in walkdir(tutorial_src_path)
-                # Change base directory of source path
-                dir_new = replace(dir, tutorial_src_path => tmp_path)
-                # Make the path if it does not exist
-                mkpath(dir_new)
-                # Copy over the files ensuring that we have write access
-                println("Copying $dir to $dir_new")
-                cp_by_write(dir, dir_new, force=true)
+                    for file in files
+                        dest_path = joinpath(dir_new, file)
 
-                for file in files
-                    dest_path = joinpath(dir_new, file)
-
-                    if endswith(dest_path, ".md")
-                        # remove_yaml(target_path, "permalink")
-                        fix_header_1(dest_path)
-                        print("fixing image path")
-                        fix_image_path(dest_path)
+                        if endswith(dest_path, ".md")
+                            # remove_yaml(target_path, "permalink")
+                            fix_header_1(dest_path)
+                            print("fixing image path")
+                            fix_image_path(dest_path)
+                        end
                     end
                 end
             end
+
+            # Copy from temporary workspace to destination
+            cp(workspace, tutorial_dest_path, force=true)
+            index = joinpath(@__DIR__, "_tutorials/index.md")
+            cp(index, tutorial_dest_path * "/index.md", force=true)
         end
-
-        # Copy from temporary workspace to destination
-        cp(tmp_path, tutorial_dest_path, force=true)
-        index = joinpath(@__DIR__, "_tutorials/index.md")
-        cp(index, tutorial_dest_path * "/index.md", force=true)
-    catch e
-        rethrow(e)
-    finally
-        # Clean up temporary workspace
-        rm(tmp_path, recursive=true)
-
-        rm(OUTPUT_DIR, recursive=true)
     end
+
+    return nothing
 end
 
 function with_baseurl(func, baseurl, config_path)
