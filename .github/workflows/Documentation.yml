@@ -6,6 +6,9 @@ on:
       - 'master'
     tags: '*'
   workflow_dispatch:
+  # With the current deploy config in make.jl, PRs will trigger a deploy!
+  # So, don't enable this without fixing that first.
+  # pull_request:
   schedule:
     # Run on the 23rd hour every day
     - cron:  '0 23 * * *'

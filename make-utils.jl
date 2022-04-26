@@ -1,6 +1,9 @@
-using Base64, Pkg
-Pkg.add(url="https://github.com/TuringLang/TuringTutorials", rev="artifacts")
-using TuringTutorials
+using Base64
+using LibGit2
+using Pkg
+
+const OUTPUT_DIR = "TuringTutorialsOutput"
+clone("https://github.com/TuringLang/TuringTutorialsOutput", OUTPUT_DIR)
 
 ## Text Utilities
 
@@ -270,8 +273,7 @@ function copy_tutorial(tutorial_dest_path)
     tmp_path = tempname()
     mkdir(tmp_path)
 
-    # Get the path of `TuringTutorials`
-    md_path = joinpath(dirname(pathof(TuringTutorials)), "..", "markdown")
+    md_path = joinpath(OUTPUT_DIR, "markdown")
 
     # Copy the .md versions of all examples.
     try
@@ -310,6 +312,8 @@ function copy_tutorial(tutorial_dest_path)
     finally
         # Clean up temporary workspace
         rm(tmp_path, recursive=true)
+
+        rm(OUTPUT_DIR, recursive=true)
     end
 end
 
