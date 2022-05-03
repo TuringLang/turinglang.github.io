@@ -76,8 +76,14 @@
   - title: "Variational Inference"
     url: "tutorials/09-variational-inference"
     
-  - title: "Bayesian Differential Equation"
+  - title: "Bayesian Differential Equations"
     url: "tutorials/10-bayesian-differential-equations"
+
+  - title: "Probabilistic PCA"
+    url: "tutorials/11-probabilistic-pca"
+
+  - title: "Gaussian Processes"
+    url: "tutorials/12-gaussian-process"
 
 - title: "API"
   url: "docs/library"
