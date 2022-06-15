@@ -87,6 +87,9 @@ collections:
   team:
     output: true
     permalink: /:collection/:path
+  partner:
+    output: true
+    permalink: /:collection/:path
 
 # Defaults
 defaults:
@@ -120,6 +123,12 @@ defaults:
     values:
       layout: "post"
       sidebar: false
+  - scope:
+      path: "_partner"
+      type: "partner"
+    values:
+      layout: "page"
+      sidebar: true
 
 plugins:
   - jekyll-paginate
