@@ -21,4 +21,4 @@ By helping to raise awareness of the importance and advantages of good statistic
 
 ## Sneak Peek and Media Sponsors
 
-If you're interested in learning more, we have information for potential media sponsors, along with a preview, which you can find [here](https://turing.ml/partner). You can also find a sneak preview [here](https://turing.ml/dev/posts/).
+If you're interested in learning more, we have information for potential media sponsors, along with a preview, which you can find [here](https://turing.ml/partner). You can also find a sneak preview [here](https://turing.ml/dev/posts/2022-06-18-elect-preview).
