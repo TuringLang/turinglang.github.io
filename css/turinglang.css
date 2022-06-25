@@ -1,29 +1,3 @@
-html {
-  font-size: 16px;
-}
-
-.franklin-content {
-  /* 3rem is the height of header */
-  padding-top: 3rem;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-/* On wide screens, fix content width to a max value. */
-@media (min-width: 940px) {
-  .franklin-content {
-    width: 800px;
-  }
-}
-
-/* / */
-
-.franklin-content h1, 
-.franklin-content h2, 
-.franklin-content h3 { 
-  font-weight: bold; 
-}
-
 /* /team */
 
 .franklin-content .team-member {

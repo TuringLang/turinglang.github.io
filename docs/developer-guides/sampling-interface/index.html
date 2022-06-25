@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Sampling interface · Turing Documentations</title><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script><script src="https://cdn.tailwindcss.com"></script><style>#turing-navbar {
+    display: inline-block;
+    width: calc(100% - 18rem);
+    margin-left: 18rem;
+    margin-bottom: 0;
+}</style></head><header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
+  <nav class="float-left block mt-1">
+    <a class="text-base pr-2" href="/">Home</a>
+    <a class="text-base px-2" href="/guides/get-started/">Get Started</a>
+    <a class="text-base px-2" href="/guides/">Guides</a>
+    <a class="text-base px-2" href="/tutorials/">Tutorials</a>
+    <a class="text-base px-2" href="/docs/">Docs</a>
+    <a class="text-base px-2" href="/news/">News</a>
+    <a class="text-base pl-2" href="/team/">Team</a>
+  </nav>
+
+  <div class="float-right"><a style="background-image: url('/assets/turing-logo-wide.svg');" class="text-2xl px-1 pl-48" href="https://github.com/TuringLang">The Turing Language</a> <a href="https://github.com/TuringLang/Turing.jl"><img class="inline px-1" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/turinglang/Turing.jl?style=social"></a> <a href="https://twitter.com/TuringLang"><img class="inline px-1" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/TuringLang?style=social"></a></div>
+</header>
+<body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">Turing Documentations</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><span class="tocitem">Developer Guides</span><ul><li><a class="tocitem" href="../compiler-design/">Compiler Design</a></li><li class="is-active"><a class="tocitem" href>Sampling interface</a><ul class="internal"><li><a class="tocitem" href="#Overview"><span>Overview</span></a></li><li><a class="tocitem" href="#Why-do-you-have-an-interface?"><span>Why do you have an interface?</span></a></li><li><a class="tocitem" href="#Implementing-Metropolis-Hastings-without-Turing"><span>Implementing Metropolis-Hastings without Turing</span></a></li><li><a class="tocitem" href="#Conclusion"><span>Conclusion</span></a></li></ul></li><li><a class="tocitem" href="../turing-abstractmcmc/">Turing x AbstractMCMC</a></li><li><a class="tocitem" href="../how-to-contribute/">How to Contribute</a></li><li><a class="tocitem" href="../style-guide/">Style Guide</a></li></ul></li><li><a class="tocitem" href="../../turing/">Turing.jl</a></li><li><a class="tocitem" href="../../advancedhmc/">AdvancedHMC.jl</a></li><li><a class="tocitem" href="../../bijectors/">Bijectors.jl</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Developer Guides</a></li><li class="is-active"><a href>Sampling interface</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Sampling interface</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/TuringLang/turinglang.github.io/blob/master/docs/src/developer-guides/sampling-interface.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Sampling-interface"><a class="docs-heading-anchor" href="#Sampling-interface">Sampling interface</a><a id="Sampling-interface-1"></a><a class="docs-heading-anchor-permalink" href="#Sampling-interface" title="Permalink"></a></h1><p>Turing implements a sampling interface (hosted at <a href="https://github.com/TuringLang/AbstractMCMC.jl">AbstractMCMC</a>) that is intended to provide a common framework for Markov chain Monte Carlo samplers. The interface presents several structures and functions that one needs to overload in order to implement an interface-compatible sampler.</p><p>This guide will demonstrate how to implement the interface without Turing.</p><h2 id="Overview"><a class="docs-heading-anchor" href="#Overview">Overview</a><a id="Overview-1"></a><a class="docs-heading-anchor-permalink" href="#Overview" title="Permalink"></a></h2><p>Any implementation of an inference method that uses the AbstractMCMC interface should implement a subset of the following types and functions:</p><ol><li>A subtype of <code>AbstractSampler</code>, defined as a mutable struct containing state information or sampler parameters.</li><li>A function <code>sample_init!</code> which performs any necessary set-up (default: do not perform any set-up). </li><li>A function <code>step!</code> which returns a transition that represents a single draw from the sampler.</li><li>A function <code>transitions_init</code> which returns a container for the transitions obtained from the sampler (default: return a <code>Vector{T}</code> of length <code>N</code> where <code>T</code> is the type of the transition obtained in the first step and <code>N</code> is the number of requested samples).</li><li>A function <code>transitions_save!</code> which saves transitions to the container (default: save the transition of iteration <code>i</code> at position <code>i</code> in the vector of transitions).</li><li>A function <code>sample_end!</code> which handles any sampler wrap-up (default: do not perform any wrap-up).</li><li>A function <code>bundle_samples</code> which accepts the container of transitions and returns a collection of samples (default: return the vector of transitions).</li></ol><p>The interface methods with exclamation points are those that are intended to allow for state mutation. Any mutating function is meant to allow mutation where needed – you might use:</p><ul><li><code>sample_init!</code> to run some kind of sampler preparation, before sampling begins. This could mutate a sampler&#39;s state.</li><li><code>step!</code> might mutate a sampler flag after each sample. </li><li><code>sample_end!</code> contains any wrap-up you might need to do. If you were sampling in a transformed space, this might be where you convert everything back to a constrained space.</li></ul><h2 id="Why-do-you-have-an-interface?"><a class="docs-heading-anchor" href="#Why-do-you-have-an-interface?">Why do you have an interface?</a><a id="Why-do-you-have-an-interface?-1"></a><a class="docs-heading-anchor-permalink" href="#Why-do-you-have-an-interface?" title="Permalink"></a></h2><p>The motivation for the interface is to allow Julia&#39;s fantastic probabilistic programming language community to have a set of standards and common implementations so we can all thrive together. Markov chain Monte Carlo methods tend to have a very similar framework to one another, and so a common interface should help more great inference methods built in single-purpose packages to experience more use among the community. </p><h2 id="Implementing-Metropolis-Hastings-without-Turing"><a class="docs-heading-anchor" href="#Implementing-Metropolis-Hastings-without-Turing">Implementing Metropolis-Hastings without Turing</a><a id="Implementing-Metropolis-Hastings-without-Turing-1"></a><a class="docs-heading-anchor-permalink" href="#Implementing-Metropolis-Hastings-without-Turing" title="Permalink"></a></h2><p><a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Metropolis-Hastings</a> is often the first sampling method that people are exposed to. It is a very straightforward algorithm and is accordingly the easiest to implement, so it makes for a good example. In this section, you will learn how to use the types and functions listed above to implement the Metropolis-Hastings sampler using the MCMC interface.</p><p>The full code for this implementation is housed in <a href="https://github.com/TuringLang/AdvancedMH.jl">AdvancedMH.jl</a>.</p><h3 id="Imports"><a class="docs-heading-anchor" href="#Imports">Imports</a><a id="Imports-1"></a><a class="docs-heading-anchor-permalink" href="#Imports" title="Permalink"></a></h3><p>Let&#39;s begin by importing the relevant libraries. We&#39;ll import <code>AbstracMCMC</code>, which contains the interface framework we&#39;ll fill out. We also need <code>Distributions</code> and <code>Random</code>.</p><pre><code class="language-julia hljs"># Import the relevant libraries.
+import AbstractMCMC
+using Distributions
+using Random</code></pre><p>An interface extension (like the one we&#39;re writing right now) typically requires that you overload or implement several functions. Specifically, you should <code>import</code> the functions you intend to overload. This next code block accomplishes that. </p><p>From <code>Distributions</code>, we need <code>Sampleable</code>, <code>VariateForm</code>, and <code>ValueSupport</code>, three abstract types that define a distribution. Models in the interface are assumed to be subtypes of <code>Sampleable{VariateForm, ValueSupport}</code>. In this section our model is going be be extremely simple, so we will not end up using these except to make sure that the inference functions are dispatching correctly.</p><h3 id="Sampler"><a class="docs-heading-anchor" href="#Sampler">Sampler</a><a id="Sampler-1"></a><a class="docs-heading-anchor-permalink" href="#Sampler" title="Permalink"></a></h3><p>Let&#39;s begin our sampler definition by defining a sampler called <code>MetropolisHastings</code> which is a subtype of <code>AbstractSampler</code>. Correct typing is very important for proper interface implementation – if you are missing a subtype, your method may not be dispatched to when you call <code>sample</code>.</p><pre><code class="language-julia hljs"># Define a sampler type.
+struct MetropolisHastings{T, D} &lt;: AbstractMCMC.AbstractSampler 
+    init_θ::T
+    proposal::D
+end
+# Default constructors.
+MetropolisHastings(init_θ::Real) = MetropolisHastings(init_θ, Normal(0,1))
+MetropolisHastings(init_θ::Vector{&lt;:Real}) = MetropolisHastings(init_θ, MvNormal(zero(init_θ), I))</code></pre><p>Above, we have defined a sampler that stores the initial parameterization of the prior, and a distribution object from which proposals are drawn. You can have a struct that has no fields, and simply use it for dispatching onto the relevant functions, or you can store a large amount of state information in your sampler. </p><p>The general intuition for what to store in your sampler struct is that anything you may need to perform inference between samples but you don&#39;t want to store in a transition should go into the sampler struct. It&#39;s the only way you can carry non-sample related state information between <code>step!</code> calls.</p><h3 id="Model"><a class="docs-heading-anchor" href="#Model">Model</a><a id="Model-1"></a><a class="docs-heading-anchor-permalink" href="#Model" title="Permalink"></a></h3><p>Next, we need to have a model of some kind. A model is a struct that&#39;s a subtype of <code>AbstractModel</code> that contains whatever information is necessary to perform inference on your problem. In our case we want to know the mean and variance parameters for a standard Normal distribution, so we can keep our model to the log density of a Normal. </p><p>Note that we only have to do this because we are not yet integrating the sampler with Turing – Turing has a very sophisticated modelling engine that removes the need to define custom model structs. </p><pre><code class="language-julia hljs"># Define a model type. Stores the log density function.
+struct DensityModel{F&lt;:Function} &lt;: AbstractMCMC.AbstractModel
+    ℓπ::F
+end</code></pre><h3 id="Transition"><a class="docs-heading-anchor" href="#Transition">Transition</a><a id="Transition-1"></a><a class="docs-heading-anchor-permalink" href="#Transition" title="Permalink"></a></h3><p>The next step is to define some transition which we will return from each <code>step!</code> call. We&#39;ll keep it simple by just defining a wrapper struct that contains the parameter draws and the log density of that draw:</p><pre><code class="language-julia hljs"># Create a very basic Transition type, only stores the 
+# parameter draws and the log probability of the draw.
+struct Transition{T, L}
+    θ::T
+    lp::L
+end
+# Store the new draw and its log density.
+Transition(model::DensityModel, θ) = Transition(θ, ℓπ(model, θ))</code></pre><p><code>Transition</code> can now store any type of parameter, whether it&#39;s a vector of draws from multiple parameters or a single univariate draw.</p><h3 id="Metropolis-Hastings"><a class="docs-heading-anchor" href="#Metropolis-Hastings">Metropolis-Hastings</a><a id="Metropolis-Hastings-1"></a><a class="docs-heading-anchor-permalink" href="#Metropolis-Hastings" title="Permalink"></a></h3><p>Now it&#39;s time to get into the actual inference. We&#39;ve defined all of the core pieces we need, but we need to implement the <code>step!</code> function which actually performs inference.</p><p>As a refresher, Metropolis-Hastings implements a very basic algorithm:</p><ol><li>Pick some initial state, <span>$\theta_0.$</span></li><li>For <span>$t$</span> in <span>$[1,N],$</span> do<ul><li>Generate a proposal parameterization <span>$\theta^\prime\_t \sim q(\theta^\prime\_t \mid \theta\_{t-1}).$</span></li><li>Calculate the acceptance probability, <span>$\alpha = \text{min}\left[1,\frac{\pi(\theta&#39;\_t)}{\pi(\theta\_{t-1})} \frac{q(\theta\_{t-1} \mid \theta&#39;\_t)}{q(\theta&#39;\_t \mid \theta\_{t-1})}) \right].$</span></li><li>If <span>$U \le \alpha$</span> where <span>$U \sim [0,1],$</span> then <span>$\theta\_t = \theta&#39;\_t.$</span> Otherwise, <span>$\theta\_t = \theta\_{t-1}.$</span></li></ul></li></ol><p>Of course, it&#39;s much easier to do this in the log space, so the acceptance probability is more commonly written as </p>$<p>\log \alpha = \min\left[0, \log \pi(\theta&#39;<em>t) - \log \pi(\theta</em>{t-1}) + \log q(\theta<em>{t-1} \mid \theta^\prime</em>t) - \log q(\theta\prime<em>t \mid \theta</em>{t-1}) \right]. $</p><p>In interface terms, we should do the following:</p><ol><li>Make a new transition containing a proposed sample.</li><li>Calculate the acceptance probability.</li><li>If we accept, return the new transition, otherwise, return the old one.</li></ol><h3 id="Steps"><a class="docs-heading-anchor" href="#Steps">Steps</a><a id="Steps-1"></a><a class="docs-heading-anchor-permalink" href="#Steps" title="Permalink"></a></h3><p>The <code>step!</code> function is the function that performs the bulk of your inference. In our case, we will implement two <code>step!</code> functions – one for the very first iteration, and one for every subsequent iteration.</p><pre><code class="language-julia hljs"># Define the first step! function, which is called at the 
+# beginning of sampling. Return the initial parameter used
+# to define the sampler.
+function AbstractMCMC.step!(
+    rng::AbstractRNG,
+    model::DensityModel,
+    spl::MetropolisHastings,
+    N::Integer,
+    ::Nothing;
+    kwargs...
+)
+    return Transition(model, spl.init_θ)
+end</code></pre><p>The first <code>step!</code> function just packages up the initial parameterization inside the sampler, and returns it. We implicity accept the very first parameterization.</p><p>The other <code>step!</code> function performs the usual steps from Metropolis-Hastings. Included are several helper functions, <code>proposal</code> and <code>q</code>, which are designed to replicate the functions in the pseudocode above.</p><ul><li><code>proposal</code> generates a new proposal in the form of a <code>Transition</code>, which can be univariate if the value passed in is univariate, or it can be multivariate if the <code>Transition</code> given is multivariate. Proposals use a basic <code>Normal</code> or <code>MvNormal</code> proposal distribution.</li><li><code>q</code> returns the log density of one parameterization conditional on another, according to the proposal distribution.</li><li><code>step!</code> generates a new proposal, checks the acceptance probability, and then returns either the previous transition or the proposed transition.</li></ul><pre><code class="language-julia hljs"># Define a function that makes a basic proposal depending on a univariate
+# parameterization or a multivariate parameterization.
+propose(spl::MetropolisHastings, model::DensityModel, θ::Real) = 
+    Transition(model, θ + rand(spl.proposal))
+propose(spl::MetropolisHastings, model::DensityModel, θ::Vector{&lt;:Real}) = 
+    Transition(model, θ + rand(spl.proposal))
+propose(spl::MetropolisHastings, model::DensityModel, t::Transition) =
+    propose(spl, model, t.θ)
+# Calculates the probability `q(θ|θcond)`, using the proposal distribution `spl.proposal`.
+q(spl::MetropolisHastings, θ::Real, θcond::Real) = logpdf(spl.proposal, θ - θcond)
+q(spl::MetropolisHastings, θ::Vector{&lt;:Real}, θcond::Vector{&lt;:Real}) =
+    logpdf(spl.proposal, θ - θcond)
+q(spl::MetropolisHastings, t1::Transition, t2::Transition) = q(spl, t1.θ, t2.θ)
+# Calculate the density of the model given some parameterization.
+ℓπ(model::DensityModel, θ) = model.ℓπ(θ)
+ℓπ(model::DensityModel, t::Transition) = t.lp
+# Define the other step function. Returns a Transition containing
+# either a new proposal (if accepted) or the previous proposal 
+# (if not accepted).
+function AbstractMCMC.step!(
+    rng::AbstractRNG,
+    model::DensityModel,
+    spl::MetropolisHastings,
+    ::Integer,
+    θ_prev::Transition;
+    kwargs...
+)
+    # Generate a new proposal.
+    θ = propose(spl, model, θ_prev)
+    # Calculate the log acceptance probability.
+    α = ℓπ(model, θ) - ℓπ(model, θ_prev) + q(spl, θ_prev, θ) - q(spl, θ, θ_prev)
+    # Decide whether to return the previous θ or the new one.
+    if log(rand(rng)) &lt; min(α, 0.0)
+        return θ
+    else
+        return θ_prev
+    end
+end</code></pre><h3 id="Chains"><a class="docs-heading-anchor" href="#Chains">Chains</a><a id="Chains-1"></a><a class="docs-heading-anchor-permalink" href="#Chains" title="Permalink"></a></h3><p>In the default implementation, <code>sample</code> just returns a vector of all transitions. If instead you would like to obtain a <code>Chains</code> object (e.g., to simplify downstream analysis), you have to implement the <code>bundle_samples</code> function as well. It accepts the vector of transitions and returns a collection of samples. Fortunately, our <code>Transition</code> is incredibly simple, and we only need to build a little bit of functionality to accept custom parameter names passed in by the user.</p><pre><code class="language-julia hljs"># A basic chains constructor that works with the Transition struct we defined.
+function AbstractMCMC.bundle_samples(
+    rng::AbstractRNG, 
+    ℓ::DensityModel, 
+    s::MetropolisHastings, 
+    N::Integer, 
+    ts::Vector{&lt;:Transition},
+    chain_type::Type{Any};
+    param_names=missing,
+    kwargs...
+)
+    # Turn all the transitions into a vector-of-vectors.
+    vals = copy(reduce(hcat,[vcat(t.θ, t.lp) for t in ts])&#39;)
+    # Check if we received any parameter names.
+    if ismissing(param_names)
+        param_names = [&quot;Parameter $i&quot; for i in 1:(length(first(vals))-1)]
+    end
+    # Add the log density field to the parameter names.
+    push!(param_names, &quot;lp&quot;)
+    # Bundle everything up and return a Chains struct.
+    return Chains(vals, param_names, (internals=[&quot;lp&quot;],))
+end</code></pre><p>All done!</p><p>You can even implement different output formats by implementing <code>bundle_samples</code> for different <code>chain_type</code>s, which can be provided as keyword argument to <code>sample</code>. As default <code>sample</code> uses <code>chain_type = Any</code>.</p><h3 id="Testing-the-implementation"><a class="docs-heading-anchor" href="#Testing-the-implementation">Testing the implementation</a><a id="Testing-the-implementation-1"></a><a class="docs-heading-anchor-permalink" href="#Testing-the-implementation" title="Permalink"></a></h3><p>Now that we have all the pieces, we should test the implementation by defining a model to calculate the mean and variance parameters of a Normal distribution. We can do this by constructing a target density function, providing a sample of data, and then running the sampler with <code>sample</code>.</p><pre><code class="language-julia hljs"># Generate a set of data from the posterior we want to estimate.
+data = rand(Normal(5, 3), 30)
+# Define the components of a basic model.
+insupport(θ) = θ[2] &gt;= 0
+dist(θ) = Normal(θ[1], θ[2])
+density(θ) = insupport(θ) ? sum(logpdf.(dist(θ), data)) : -Inf
+# Construct a DensityModel.
+model = DensityModel(density)
+# Set up our sampler with initial parameters.
+spl = MetropolisHastings([0.0, 0.0])
+# Sample from the posterior.
+chain = sample(model, spl, 100000; param_names=[&quot;μ&quot;, &quot;σ&quot;])</code></pre><p>If all the interface functions have been extended properly, you should get an output from <code>display(chain)</code> that looks something like this:</p><pre><code class="nohighlight hljs">Object of type Chains, with data of type 100000×3×1 Array{Float64,3}
+Iterations        = 1:100000
+Thinning interval = 1
+Chains            = 1
+Samples per chain = 100000
+internals         = lp
+parameters        = μ, σ
+2-element Array{ChainDataFrame,1}
+Summary Statistics
+│ Row │ parameters │ mean    │ std      │ naive_se   │ mcse       │ ess     │ r_hat   │
+│     │ Symbol     │ Float64 │ Float64  │ Float64    │ Float64    │ Any     │ Any     │
+├─────┼────────────┼─────────┼──────────┼────────────┼────────────┼─────────┼─────────┤
+│ 1   │ μ          │ 5.33157 │ 0.854193 │ 0.0027012  │ 0.00893069 │ 8344.75 │ 1.00009 │
+│ 2   │ σ          │ 4.54992 │ 0.632916 │ 0.00200146 │ 0.00534942 │ 14260.8 │ 1.00005 │
+Quantiles
+│ Row │ parameters │ 2.5%    │ 25.0%   │ 50.0%   │ 75.0%   │ 97.5%   │
+│     │ Symbol     │ Float64 │ Float64 │ Float64 │ Float64 │ Float64 │
+├─────┼────────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
+│ 1   │ μ          │ 3.6595  │ 4.77754 │ 5.33182 │ 5.89509 │ 6.99651 │
+│ 2   │ σ          │ 3.5097  │ 4.09732 │ 4.47805 │ 4.93094 │ 5.96821 │</code></pre><p>It looks like we&#39;re extremely close to our true parameters of <code>Normal(5,3)</code>, though with a fairly high variance due to the low sample size.</p><h2 id="Conclusion"><a class="docs-heading-anchor" href="#Conclusion">Conclusion</a><a id="Conclusion-1"></a><a class="docs-heading-anchor-permalink" href="#Conclusion" title="Permalink"></a></h2><p>We&#39;ve seen how to implement the sampling interface for general projects. Turing&#39;s interface methods are ever-evolving, so please open an issue at <a href="https://github.com/TuringLang/AbstractMCMC.jl">AbstractMCMC</a> with feature requests or problems.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../compiler-design/">« Compiler Design</a><a class="docs-footer-nextpage" href="../turing-abstractmcmc/">Turing x AbstractMCMC »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.14 on <span class="colophon-date" title="Saturday 25 June 2022 11:12">Saturday 25 June 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

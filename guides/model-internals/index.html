@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+   
+  <link rel="stylesheet" href="/css/franklin.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/turinglang.css">
+<link rel="icon" href="/assets/favicon.ico">
+   <title>Model Internals</title>  
+</head>
+<body>
+<header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
+  <nav class="float-left block mt-1">
+    <a class="text-base pr-2" href="/">Home</a>
+    <a class="text-base px-2" href="/guides/get-started/">Get Started</a>
+    <a class="text-base px-2" href="/guides/">Guides</a>
+    <a class="text-base px-2" href="/tutorials/">Tutorials</a>
+    <a class="text-base px-2" href="/docs/">Docs</a>
+    <a class="text-base px-2" href="/news/">News</a>
+    <a class="text-base pl-2" href="/team/">Team</a>
+  </nav>
+
+  <div class="float-right"><a style="background-image: url('/assets/turing-logo-wide.svg');" class="text-2xl px-1 pl-48" href="https://github.com/TuringLang">The Turing Language</a> <a href="https://github.com/TuringLang/Turing.jl"><img class="inline px-1" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/turinglang/Turing.jl?style=social"></a> <a href="https://twitter.com/TuringLang"><img class="inline px-1" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/TuringLang?style=social"></a></div>
+</header>
+
+
+<!-- Content appended here -->
+<div class="franklin-content"><h1 id="understanding_model_internals"><a href="#understanding_model_internals" class="header-anchor">Understanding Model Internals</a></h1>
+<p>The <code>@model</code> macro accepts a function definition and rewrites it such that call of the function generates a <code>Model</code> struct for use by the sampler. Models can be constructed by hand without the use of a macro. Taking the <code>gdemo</code> model as an example, the macro-based definition</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Turing
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gdemo(x)
+  <span class="hljs-comment"># Set priors.</span>
+  s² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+  m ~ Normal(<span class="hljs-number">0</span>, sqrt(s²))
+  <span class="hljs-comment"># Observe each value of x.</span>
+  @. x ~ Normal(m, sqrt(s²))
+<span class="hljs-keyword">end</span>
+model = gdemo([<span class="hljs-number">1.5</span>, <span class="hljs-number">2.0</span>])</code></pre>
+<p>can be implemented also &#40;a bit less generally&#41; with the macro-free version</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Turing
+<span class="hljs-comment"># Create the model function.</span>
+<span class="hljs-keyword">function</span> gdemo(model, varinfo, context, x)
+    <span class="hljs-comment"># Assume s² has an InverseGamma distribution.</span>
+    s², varinfo = DynamicPPL.tilde_assume!!(
+        context,
+        InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>),
+        Turing.<span class="hljs-meta">@varname</span>(s²),
+        varinfo,
+    )
+    <span class="hljs-comment"># Assume m has a Normal distribution.</span>
+    m, varinfo = DynamicPPL.tilde_assume!!(
+        context,
+        Normal(<span class="hljs-number">0</span>, sqrt(s²)),
+        Turing.<span class="hljs-meta">@varname</span>(m),
+        varinfo,
+    )
+    <span class="hljs-comment"># Observe each value of x[i] according to a Normal distribution.</span>
+    DynamicPPL.dot_tilde_observe!!(context, Normal(m, sqrt(s²)), x, Turing.<span class="hljs-meta">@varname</span>(x), varinfo)
+<span class="hljs-keyword">end</span>
+gdemo(x) = Turing.Model(gdemo, (; x))
+<span class="hljs-comment"># Instantiate a Model object with our data variables.</span>
+model = gdemo([<span class="hljs-number">1.5</span>, <span class="hljs-number">2.0</span>])</code></pre>
+<div class="page-foot">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> <a href="/team/">The TuringLang Team</a>. Last modified: June 25, 2022.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    
+    
+        
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+   
+  <link rel="stylesheet" href="/css/franklin.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/turinglang.css">
+<link rel="icon" href="/assets/favicon.ico">
+   <title>Turing Basics</title>  
+</head>
+<body>
+<header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
+  <nav class="float-left block mt-1">
+    <a class="text-base pr-2" href="/">Home</a>
+    <a class="text-base px-2" href="/guides/get-started/">Get Started</a>
+    <a class="text-base px-2" href="/guides/">Guides</a>
+    <a class="text-base px-2" href="/tutorials/">Tutorials</a>
+    <a class="text-base px-2" href="/docs/">Docs</a>
+    <a class="text-base px-2" href="/news/">News</a>
+    <a class="text-base pl-2" href="/team/">Team</a>
+  </nav>
+
+  <div class="float-right"><a style="background-image: url('/assets/turing-logo-wide.svg');" class="text-2xl px-1 pl-48" href="https://github.com/TuringLang">The Turing Language</a> <a href="https://github.com/TuringLang/Turing.jl"><img class="inline px-1" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/turinglang/Turing.jl?style=social"></a> <a href="https://twitter.com/TuringLang"><img class="inline px-1" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/TuringLang?style=social"></a></div>
+</header>
+
+
+<!-- Content appended here -->
+<div class="franklin-content"><h1 id="turing_basics"><a href="#turing_basics" class="header-anchor">Turing Basics</a></h1>
+<h2 id="introduction"><a href="#introduction" class="header-anchor">Introduction</a></h2>
+<p>A probabilistic program is Julia code wrapped in a <code>@model</code> macro. It can use arbitrary Julia code, but to ensure correctness of inference it should not have external effects or modify global state. Stack-allocated variables are safe, but mutable heap-allocated objects may lead to subtle bugs when using task copying. To help avoid those we provide a Turing-safe datatype <code>TArray</code> that can be used to create mutable arrays in Turing programs.</p>
+<p>To specify distributions of random variables, Turing programs should use the <code>~</code> notation:</p>
+<p><code>x ~ distr</code> where <code>x</code> is a symbol and <code>distr</code> is a distribution. If <code>x</code> is undefined in the model function, inside the probabilistic program, this puts a random variable named <code>x</code>, distributed according to <code>distr</code>, in the current scope. <code>distr</code> can be a value of any type that implements <code>rand&#40;distr&#41;</code>, which samples a value from the distribution <code>distr</code>. If <code>x</code> is defined, this is used for conditioning in a style similar to <a href="https://probprog.github.io/anglican/index.html">Anglican</a> &#40;another PPL&#41;. In this case, <code>x</code> is an observed value, assumed to have been drawn from the distribution <code>distr</code>. The likelihood is computed using <code>logpdf&#40;distr,y&#41;</code>. The observe statements should be arranged so that every possible run traverses all of them in exactly the same order. This is equivalent to demanding that they are not placed inside stochastic control flow.</p>
+<p>Available inference methods include Importance Sampling &#40;IS&#41;, Sequential Monte Carlo &#40;SMC&#41;, Particle Gibbs &#40;PG&#41;, Hamiltonian Monte Carlo &#40;HMC&#41;, Hamiltonian Monte Carlo with Dual Averaging &#40;HMCDA&#41; and The No-U-Turn Sampler &#40;NUTS&#41;.</p>
+<h2 id="simple_gaussian_demo"><a href="#simple_gaussian_demo" class="header-anchor">Simple Gaussian Demo</a></h2>
+<p>Below is a simple Gaussian demo illustrate the basic usage of Turing.jl.</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Import packages.</span>
+<span class="hljs-keyword">using</span> Turing
+<span class="hljs-keyword">using</span> StatsPlots
+<span class="hljs-comment"># Define a simple Normal model with unknown mean and variance.</span>
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gdemo(x, y)
+    s² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    m ~ Normal(<span class="hljs-number">0</span>, sqrt(s²))
+    x ~ Normal(m, sqrt(s²))
+    y ~ Normal(m, sqrt(s²))
+<span class="hljs-keyword">end</span></code></pre>
+<p>Note: As a sanity check, the expectation of <code>s</code> is 49/24 &#40;2.04166666...&#41; and the expectation of <code>m</code> is 7/6 &#40;1.16666666...&#41;.</p>
+<p>We can perform inference by using the <code>sample</code> function, the first argument of which is our probabilistic program and the second of which is a sampler. More information on each sampler is located in the <a href="/docs/library">API</a>.</p>
+<pre><code class="julia hljs"><span class="hljs-comment">#  Run sampler, collect results.</span>
+c1 = sample(gdemo(<span class="hljs-number">1.5</span>, <span class="hljs-number">2</span>), SMC(), <span class="hljs-number">1000</span>)
+c2 = sample(gdemo(<span class="hljs-number">1.5</span>, <span class="hljs-number">2</span>), PG(<span class="hljs-number">10</span>), <span class="hljs-number">1000</span>)
+c3 = sample(gdemo(<span class="hljs-number">1.5</span>, <span class="hljs-number">2</span>), HMC(<span class="hljs-number">0.1</span>, <span class="hljs-number">5</span>), <span class="hljs-number">1000</span>)
+c4 = sample(gdemo(<span class="hljs-number">1.5</span>, <span class="hljs-number">2</span>), Gibbs(PG(<span class="hljs-number">10</span>, :m), HMC(<span class="hljs-number">0.1</span>, <span class="hljs-number">5</span>, :s²)), <span class="hljs-number">1000</span>)
+c5 = sample(gdemo(<span class="hljs-number">1.5</span>, <span class="hljs-number">2</span>), HMCDA(<span class="hljs-number">0.15</span>, <span class="hljs-number">0.65</span>), <span class="hljs-number">1000</span>)
+c6 = sample(gdemo(<span class="hljs-number">1.5</span>, <span class="hljs-number">2</span>), NUTS(<span class="hljs-number">0.65</span>), <span class="hljs-number">1000</span>)</code></pre>
+<p>The <code>MCMCChains</code> module &#40;which is re-exported by Turing&#41; provides plotting tools for the <code>Chain</code> objects returned by a <code>sample</code> function. See the <a href="https://github.com/TuringLang/MCMCChains.jl">MCMCChains</a> repository for more information on the suite of tools available for diagnosing MCMC chains.</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Summarise results</span>
+describe(c3)
+<span class="hljs-comment"># Plot results</span>
+plot(c3)
+savefig(<span class="hljs-string">&quot;gdemo-plot.png&quot;</span>)</code></pre>
+<p>The arguments for each sampler are:</p>
+<ul>
+<li><p>SMC: number of particles.</p>
+</li>
+<li><p>PG: number of particles, number of iterations.</p>
+</li>
+<li><p>HMC: leapfrog step size, leapfrog step numbers.</p>
+</li>
+<li><p>Gibbs: component sampler 1, component sampler 2, ...</p>
+</li>
+<li><p>HMCDA: total leapfrog length, target accept ratio.</p>
+</li>
+<li><p>NUTS: number of adaptation steps &#40;optional&#41;, target accept ratio.</p>
+</li>
+</ul>
+<p>For detailed information on the samplers, please review Turing.jl&#39;s <a href="/docs/library">API</a> documentation.</p>
+<h2 id="modelling_syntax_explained"><a href="#modelling_syntax_explained" class="header-anchor">Modelling Syntax Explained</a></h2>
+<p>Using this syntax, a probabilistic model is defined in Turing. The model function generated by Turing can then be used to condition the model onto data. Subsequently, the sample function can be used to generate samples from the posterior distribution.</p>
+<p>In the following example, the defined model is conditioned to the data &#40;arg<em>1 &#61; 1, arg</em>2 &#61; 2&#41; by passing &#40;1, 2&#41; to the model function.</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> model_name(arg_1, arg_2)
+  ...
+<span class="hljs-keyword">end</span></code></pre>
+<p>The conditioned model can then be passed onto the sample function to run posterior inference.</p>
+<pre><code class="julia hljs">model_func = model_name(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+chn = sample(model_func, HMC(..)) <span class="hljs-comment"># Perform inference by sampling using HMC.</span></code></pre>
+<p>The returned chain contains samples of the variables in the model.</p>
+<pre><code class="julia hljs">var_1 = mean(chn[:var_1]) <span class="hljs-comment"># Taking the mean of a variable named var_1.</span></code></pre>
+<p>The key &#40;<code>:var_1</code>&#41; can be a <code>Symbol</code> or a <code>String</code>. For example, to fetch <code>x&#91;1&#93;</code>, one can use <code>chn&#91;Symbol&#40;&quot;x&#91;1&#93;&quot;&#41;&#93;</code> or <code>chn&#91;&quot;x&#91;1&#93;&quot;&#93;</code>. If you want to retrieve all parameters associated with a specific symbol, you can use <code>group</code>. As an example, if you have the parameters <code>&quot;x&#91;1&#93;&quot;</code>, <code>&quot;x&#91;2&#93;&quot;</code>, and <code>&quot;x&#91;3&#93;&quot;</code>, calling <code>group&#40;chn, :x&#41;</code> or <code>group&#40;chn, &quot;x&quot;&#41;</code> will return a new chain with only <code>&quot;x&#91;1&#93;&quot;</code>, <code>&quot;x&#91;2&#93;&quot;</code>, and <code>&quot;x&#91;3&#93;&quot;</code>.</p>
+<p>Turing does not have a declarative form. More generally, the order in which you place the lines of a <code>@model</code> macro matters. For example, the following example works:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Define a simple Normal model with unknown mean and variance.</span>
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> model_function(y)
+    s ~ Poisson(<span class="hljs-number">1</span>)
+    y ~ Normal(s, <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> y
+<span class="hljs-keyword">end</span>
+sample(model_function(<span class="hljs-number">10</span>), SMC(), <span class="hljs-number">100</span>)</code></pre>
+<p>But if we switch the <code>s ~ Poisson&#40;1&#41;</code> and <code>y ~ Normal&#40;s, 1&#41;</code> lines, the model will no longer sample correctly:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Define a simple Normal model with unknown mean and variance.</span>
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> model_function(y)
+    y ~ Normal(s, <span class="hljs-number">1</span>)
+    s ~ Poisson(<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> y
+<span class="hljs-keyword">end</span>
+sample(model_function(<span class="hljs-number">10</span>), SMC(), <span class="hljs-number">100</span>)</code></pre>
+<h2 id="sampling_multiple_chains"><a href="#sampling_multiple_chains" class="header-anchor">Sampling Multiple Chains</a></h2>
+<p>Turing supports distributed and threaded parallel sampling. To do so, call <code>sample&#40;model, sampler, parallel_type, n, n_chains&#41;</code>, where <code>parallel_type</code> can be either <code>MCMCThreads&#40;&#41;</code> or <code>MCMCDistributed&#40;&#41;</code> for thread and parallel sampling, respectively.</p>
+<p>Having multiple chains in the same object is valuable for evaluating convergence. Some diagnostic functions like <code>gelmandiag</code> require multiple chains.</p>
+<p>If you do not want parallelism or are on an older version Julia, you can sample multiple chains with the <code>mapreduce</code> function:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Replace num_chains below with however many chains you wish to sample.</span>
+chains = mapreduce(c -&gt; sample(model_fun, sampler, <span class="hljs-number">1000</span>), chainscat, <span class="hljs-number">1</span>:num_chains)</code></pre>
+<p>The <code>chains</code> variable now contains a <code>Chains</code> object which can be indexed by chain. To pull out the first chain from the <code>chains</code> object, use <code>chains&#91;:,:,1&#93;</code>. The method is the same if you use either of the below parallel sampling methods.</p>
+<h3 id="multithreaded_sampling"><a href="#multithreaded_sampling" class="header-anchor">Multithreaded sampling</a></h3>
+<p>If you wish to perform multithreaded sampling and are running Julia 1.3 or greater, you can call <code>sample</code> with the following signature:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Turing
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gdemo(x)
+    s² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    m ~ Normal(<span class="hljs-number">0</span>, sqrt(s²))
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> eachindex(x)
+        x[i] ~ Normal(m, sqrt(s²))
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+model = gdemo([<span class="hljs-number">1.5</span>, <span class="hljs-number">2.0</span>])
+<span class="hljs-comment"># Sample four chains using multiple threads, each with 1000 samples.</span>
+sample(model, NUTS(), MCMCThreads(), <span class="hljs-number">1000</span>, <span class="hljs-number">4</span>)</code></pre>
+<p>Be aware that Turing cannot add threads for you – you must have started your Julia instance with multiple threads to experience any kind of parallelism. See the <a href="https://docs.julialang.org/en/v1/manual/parallel-computing/#man-multithreading-1">Julia documentation</a> for details on how to achieve this.</p>
+<h3 id="distributed_sampling"><a href="#distributed_sampling" class="header-anchor">Distributed sampling</a></h3>
+<p>To perform distributed sampling &#40;using multiple processes&#41;, you must first import <code>Distributed</code>.</p>
+<p>Process parallel sampling can be done like so:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Load Distributed to add processes and the @everywhere macro.</span>
+<span class="hljs-keyword">using</span> Distributed
+<span class="hljs-comment"># Load Turing.</span>
+<span class="hljs-keyword">using</span> Turing
+<span class="hljs-comment"># Add four processes to use for sampling.</span>
+addprocs(<span class="hljs-number">4</span>)
+<span class="hljs-comment"># Initialize everything on all the processes.</span>
+<span class="hljs-comment"># Note: Make sure to do this after you&#x27;ve already loaded Turing,</span>
+<span class="hljs-comment">#       so each process does not have to precompile.</span>
+<span class="hljs-comment">#       Parallel sampling may fail silently if you do not do this.</span>
+<span class="hljs-meta">@everywhere</span> <span class="hljs-keyword">using</span> Turing
+<span class="hljs-comment"># Define a model on all processes.</span>
+<span class="hljs-meta">@everywhere</span> <span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gdemo(x)
+    s² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    m ~ Normal(<span class="hljs-number">0</span>, sqrt(s²))
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> eachindex(x)
+        x[i] ~ Normal(m, sqrt(s²))
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># Declare the model instance everywhere.</span>
+<span class="hljs-meta">@everywhere</span> model = gdemo([<span class="hljs-number">1.5</span>, <span class="hljs-number">2.0</span>])
+<span class="hljs-comment"># Sample four chains using multiple processes, each with 1000 samples.</span>
+sample(model, NUTS(), MCMCDistributed(), <span class="hljs-number">1000</span>, <span class="hljs-number">4</span>)</code></pre>
+<h2 id="sampling_from_an_unconditional_distribution_the_prior"><a href="#sampling_from_an_unconditional_distribution_the_prior" class="header-anchor">Sampling from an Unconditional Distribution &#40;The Prior&#41;</a></h2>
+<p>Turing allows you to sample from a declared model&#39;s prior. If you wish to draw a chain from the prior to inspect your prior distributions, you can simply run</p>
+<pre><code class="julia hljs">chain = sample(model, Prior(), n_samples)</code></pre>
+<p>You can also run your model &#40;as if it were a function&#41; from the prior distribution, by calling the model without specifying inputs or a sampler. In the below example, we specify a <code>gdemo</code> model which returns two variables, <code>x</code> and <code>y</code>. The model includes <code>x</code> and <code>y</code> as arguments, but calling the function without passing in <code>x</code> or <code>y</code> means that Turing&#39;s compiler will assume they are missing values to draw from the relevant distribution. The <code>return</code> statement is necessary to retrieve the sampled <code>x</code> and <code>y</code> values.</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gdemo(x, y)
+    s² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    m ~ Normal(<span class="hljs-number">0</span>, sqrt(s²))
+    x ~ Normal(m, sqrt(s²))
+    y ~ Normal(m, sqrt(s²))
+    <span class="hljs-keyword">return</span> x, y
+<span class="hljs-keyword">end</span></code></pre>
+<p>Assign the function with <code>missing</code> inputs to a variable, and Turing will produce a sample from the prior distribution.</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Samples from p(x,y)</span>
+g_prior_sample = gdemo(<span class="hljs-literal">missing</span>, <span class="hljs-literal">missing</span>)
+g_prior_sample()</code></pre>
+<p>Output:</p>
+<pre><code class="julia hljs">(<span class="hljs-number">0.685690547873451</span>, -<span class="hljs-number">1.1972706455914328</span>)</code></pre>
+<h2 id="sampling_from_a_conditional_distribution_the_posterior"><a href="#sampling_from_a_conditional_distribution_the_posterior" class="header-anchor">Sampling from a Conditional Distribution &#40;The Posterior&#41;</a></h2>
+<h3 id="treating_observations_as_random_variables"><a href="#treating_observations_as_random_variables" class="header-anchor">Treating observations as random variables</a></h3>
+<p>Inputs to the model that have a value <code>missing</code> are treated as parameters, aka random variables, to be estimated/sampled. This can be useful if you want to simulate draws for that parameter, or if you are sampling from a conditional distribution. Turing supports the following syntax:</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gdemo(x, ::<span class="hljs-built_in">Type</span>{T} = <span class="hljs-built_in">Float64</span>) <span class="hljs-keyword">where</span> {T}
+    <span class="hljs-keyword">if</span> x === <span class="hljs-literal">missing</span>
+        <span class="hljs-comment"># Initialize `x` if missing</span>
+        x = <span class="hljs-built_in">Vector</span>{T}(<span class="hljs-literal">undef</span>, <span class="hljs-number">2</span>)
+    <span class="hljs-keyword">end</span>
+    s² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    m ~ Normal(<span class="hljs-number">0</span>, sqrt(s²))
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> eachindex(x)
+        x[i] ~ Normal(m, sqrt(s²))
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># Construct a model with x = missing</span>
+model = gdemo(<span class="hljs-literal">missing</span>)
+c = sample(model, HMC(<span class="hljs-number">0.01</span>, <span class="hljs-number">5</span>), <span class="hljs-number">500</span>)</code></pre>
+<p>Note the need to initialize <code>x</code> when missing since we are iterating over its elements later in the model. The generated values for <code>x</code> can be extracted from the <code>Chains</code> object using <code>c&#91;:x&#93;</code>.</p>
+<p>Turing also supports mixed <code>missing</code> and non-<code>missing</code> values in <code>x</code>, where the missing ones will be treated as random variables to be sampled while the others get treated as observations. For example:</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gdemo(x)
+    s² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    m ~ Normal(<span class="hljs-number">0</span>, sqrt(s²))
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> eachindex(x)
+        x[i] ~ Normal(m, sqrt(s²))
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># x[1] is a parameter, but x[2] is an observation</span>
+model = gdemo([<span class="hljs-literal">missing</span>, <span class="hljs-number">2.4</span>])
+c = sample(model, HMC(<span class="hljs-number">0.01</span>, <span class="hljs-number">5</span>), <span class="hljs-number">500</span>)</code></pre>
+<h3 id="default_values"><a href="#default_values" class="header-anchor">Default Values</a></h3>
+<p>Arguments to Turing models can have default values much like how default values work in normal Julia functions. For instance, the following will assign <code>missing</code> to <code>x</code> and treat it as a random variable. If the default value is not <code>missing</code>, <code>x</code> will be assigned that value and will be treated as an observation instead.</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Turing
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> generative(x = <span class="hljs-literal">missing</span>, ::<span class="hljs-built_in">Type</span>{T} = <span class="hljs-built_in">Float64</span>) <span class="hljs-keyword">where</span> {T &lt;: <span class="hljs-built_in">Real</span>}
+    <span class="hljs-keyword">if</span> x === <span class="hljs-literal">missing</span>
+        <span class="hljs-comment"># Initialize x when missing</span>
+        x = <span class="hljs-built_in">Vector</span>{T}(<span class="hljs-literal">undef</span>, <span class="hljs-number">10</span>)
+    <span class="hljs-keyword">end</span>
+    s² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    m ~ Normal(<span class="hljs-number">0</span>, sqrt(s²))
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:length(x)
+        x[i] ~ Normal(m, sqrt(s²))
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> s², m
+<span class="hljs-keyword">end</span>
+m = generative()
+chain = sample(m, HMC(<span class="hljs-number">0.01</span>, <span class="hljs-number">5</span>), <span class="hljs-number">1000</span>)</code></pre>
+<h3 id="access_values_inside_chain"><a href="#access_values_inside_chain" class="header-anchor">Access Values inside Chain</a></h3>
+<p>You can access the values inside a chain several ways:</p>
+<ol>
+<li><p>Turn them into a <code>DataFrame</code> object</p>
+</li>
+<li><p>Use their raw <code>AxisArray</code> form</p>
+</li>
+<li><p>Create a three-dimensional <code>Array</code> object</p>
+</li>
+</ol>
+<p>For example, let <code>c</code> be a <code>Chain</code>:</p>
+<ol>
+<li><p><code>DataFrame&#40;c&#41;</code> converts <code>c</code> to a <code>DataFrame</code>,</p>
+</li>
+<li><p><code>c.value</code> retrieves the values inside <code>c</code> as an <code>AxisArray</code>, and</p>
+</li>
+<li><p><code>c.value.data</code> retrieves the values inside <code>c</code> as a 3D <code>Array</code>.</p>
+</li>
+</ol>
+<h3 id="variable_types_and_type_parameters"><a href="#variable_types_and_type_parameters" class="header-anchor">Variable Types and Type Parameters</a></h3>
+<p>The element type of a vector &#40;or matrix&#41; of random variables should match the <code>eltype</code> of the its prior distribution, <code>&lt;: Integer</code> for discrete distributions and <code>&lt;: AbstractFloat</code> for continuous distributions. Moreover, if the continuous random variable is to be sampled using a Hamiltonian sampler, the vector&#39;s element type needs to either be:     1. <code>Real</code> to enable auto-differentiation through the model which uses special number types that are sub-types of <code>Real</code>, or     2. Some type parameter <code>T</code> defined in the model header using the type parameter syntax, e.g. <code>function gdemo&#40;x, ::Type&#123;T&#125; &#61; Float64&#41; where &#123;T&#125;</code>. Similarly, when using a particle sampler, the Julia variable used should either be:     1. A <code>TArray</code>, or     2. An instance of some type parameter <code>T</code> defined in the model header using the type parameter syntax, e.g. <code>function gdemo&#40;x, ::Type&#123;T&#125; &#61; Vector&#123;Float64&#125;&#41; where &#123;T&#125;</code>.</p>
+<h2 id="querying_probabilities_from_model_or_chain"><a href="#querying_probabilities_from_model_or_chain" class="header-anchor">Querying Probabilities from Model or Chain</a></h2>
+<p>Consider the following <code>gdemo</code> model:</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gdemo(x, y)
+    s² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    m ~ Normal(<span class="hljs-number">0</span>, sqrt(s²))
+    x ~ Normal(m, sqrt(s²))
+    y ~ Normal(m, sqrt(s²))
+<span class="hljs-keyword">end</span></code></pre>
+<p>The following are examples of valid queries of the <code>Turing</code> model or chain:</p>
+<ul>
+<li><p><code>prob&quot;x &#61; 1.0, y &#61; 1.0 | model &#61; gdemo, s &#61; 1.0, m &#61; 1.0&quot;</code> calculates the likelihood of <code>x &#61; 1</code> and <code>y &#61; 1</code> given <code>s &#61; 1</code> and <code>m &#61; 1</code>.</p>
+</li>
+<li><p><code>prob&quot;s &#61; 1.0, m &#61; 1.0 | model &#61; gdemo, x &#61; nothing, y &#61; nothing&quot;</code> calculates the joint probability of <code>s &#61; 1</code> and <code>m &#61; 1</code> ignoring <code>x</code> and <code>y</code>. <code>x</code> and <code>y</code> are ignored so they can be optionally dropped from the RHS of <code>|</code>, but it is recommended to define them.</p>
+</li>
+<li><p><code>prob&quot;s &#61; 1.0, m &#61; 1.0, x &#61; 1.0 | model &#61; gdemo, y &#61; nothing&quot;</code> calculates the joint probability of <code>s &#61; 1</code>, <code>m &#61; 1</code> and <code>x &#61; 1</code> ignoring <code>y</code>.</p>
+</li>
+<li><p><code>prob&quot;s &#61; 1.0, m &#61; 1.0, x &#61; 1.0, y &#61; 1.0 | model &#61; gdemo&quot;</code> calculates the joint probability of all the variables.</p>
+</li>
+<li><p>After the MCMC sampling, given a <code>chain</code>, <code>prob&quot;x &#61; 1.0, y &#61; 1.0 | chain &#61; chain, model &#61; gdemo&quot;</code> calculates the element-wise likelihood of <code>x &#61; 1.0</code> and <code>y &#61; 1.0</code> for each sample in <code>chain</code>.</p>
+</li>
+<li><p>If <code>save_state&#61;true</code> was used during sampling &#40;i.e., <code>sample&#40;model, sampler, N; save_state&#61;true&#41;</code>&#41;, you can simply do <code>prob&quot;x &#61; 1.0, y &#61; 1.0 | chain &#61; chain&quot;</code>.</p>
+</li>
+</ul>
+<p>In all the above cases, <code>logprob</code> can be used instead of <code>prob</code> to calculate the log probabilities instead.</p>
+<h2 id="maximum_likelihood_and_maximum_a_posterior_estimates"><a href="#maximum_likelihood_and_maximum_a_posterior_estimates" class="header-anchor">Maximum likelihood and maximum a posterior estimates</a></h2>
+<p>Turing provides support for two mode estimation techniques, <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">maximum likelihood estimation</a> &#40;MLE&#41; and <a href="https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation">maximum a posterior</a> &#40;MAP&#41; estimation. Optimization is performed by the <a href="https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a> package. Mode estimation is currently a optional tool, and will not be available to you unless you have manually installed Optim and loaded the package with a <code>using</code> statement. To install Optim, run <code>import Pkg; Pkg.add&#40;&quot;Optim&quot;&#41;</code>.</p>
+<p>Mode estimation only works when all model parameters are continuous – discrete parameters cannot be estimated with MLE/MAP as of yet.</p>
+<p>To understand how mode estimation works, let us first load Turing and Optim to enable mode estimation, and then declare a model:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Note that loading Optim explicitly is required for mode estimation to function,</span>
+<span class="hljs-comment"># as Turing does not load the opimization suite unless Optim is loaded as well.</span>
+<span class="hljs-keyword">using</span> Turing
+<span class="hljs-keyword">using</span> Optim
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gdemo(x)
+    s² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    m ~ Normal(<span class="hljs-number">0</span>, sqrt(s²))
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> eachindex(x)
+        x[i] ~ Normal(m, sqrt(s²))
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+<p>Once the model is defined, we can construct a model instance as we normally would:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Create some data to pass to the model.</span>
+data = [<span class="hljs-number">1.5</span>, <span class="hljs-number">2.0</span>]
+<span class="hljs-comment"># Instantiate the gdemo model with our data.</span>
+model = gdemo(data)</code></pre>
+<p>Mode estimation is typically quick and easy at this point. Turing extends the function <code>Optim.optimize</code> and accepts the structs <code>MLE&#40;&#41;</code> or <code>MAP&#40;&#41;</code>, which inform Turing whether to provide an MLE or MAP estimate, respectively. By default, the <a href="https://julianlsolvers.github.io/Optim.jl/stable/#algo/lbfgs/">LBFGS optimizer</a> is used, though this can be changed. Basic usage is:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Generate a MLE estimate.</span>
+mle_estimate = optimize(model, MLE())
+<span class="hljs-comment"># Generate a MAP estimate.</span>
+map_estimate = optimize(model, MAP())</code></pre>
+<p>If you wish to change to a different optimizer, such as <code>NelderMead</code>, simply place your optimizer in the third argument slot:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Use NelderMead</span>
+mle_estimate = optimize(model, MLE(), NelderMead())
+<span class="hljs-comment"># Use SimulatedAnnealing</span>
+mle_estimate = optimize(model, MLE(), SimulatedAnnealing())
+<span class="hljs-comment"># Use ParticleSwarm</span>
+mle_estimate = optimize(model, MLE(), ParticleSwarm())
+<span class="hljs-comment"># Use Newton</span>
+mle_estimate = optimize(model, MLE(), Newton())
+<span class="hljs-comment"># Use AcceleratedGradientDescent</span>
+mle_estimate = optimize(model, MLE(), AcceleratedGradientDescent())</code></pre>
+<p>Some methods may have trouble calculating the mode because not enough iterations were allowed, or the target function moved upwards between function calls. Turing will warn you if Optim fails to converge by running <code>Optim.converge</code>. A typical solution to this might be to add more iterations, or allow the optimizer to increase between function iterations:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Increase the iterations and allow function eval to increase between calls.</span>
+mle_estimate = optimize(model, MLE(), Newton(), Optim.Options(iterations=<span class="hljs-number">10_000</span>, allow_f_increases=<span class="hljs-literal">true</span>))</code></pre>
+<p>More options for Optim are available <a href="https://julianlsolvers.github.io/Optim.jl/stable/#user/config/">here</a>.</p>
+<h3 id="analyzing_your_mode_estimate"><a href="#analyzing_your_mode_estimate" class="header-anchor">Analyzing your mode estimate</a></h3>
+<p>Turing extends several methods from <code>StatsBase</code> that can be used to analyze your mode estimation results. Methods implemented include <code>vcov</code>, <code>informationmatrix</code>, <code>coeftable</code>, <code>params</code>, and <code>coef</code>, among others.</p>
+<p>For example, let&#39;s examine our ML estimate from above using <code>coeftable</code>:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Import StatsBase to use it&#x27;s statistical methods.</span>
+<span class="hljs-keyword">using</span> StatsBase
+<span class="hljs-comment"># Print out the coefficient table.</span>
+coeftable(mle_estimate)</code></pre>
+<pre><code class="julia hljs">─────────────────────────────
+   estimate  stderror   tstat
+─────────────────────────────
+s    <span class="hljs-number">0.0625</span>  <span class="hljs-number">0.0625</span>    <span class="hljs-number">1.0</span>
+m    <span class="hljs-number">1.75</span>    <span class="hljs-number">0.176777</span>  <span class="hljs-number">9.8995</span>
+─────────────────────────────</code></pre>
+<p>Standard errors are calculated from the Fisher information matrix &#40;inverse Hessian of the log likelihood or log joint&#41;. t-statistics will be familiar to frequentist statisticians. Warning – standard errors calculated in this way may not always be appropriate for MAP estimates, so please be cautious in interpreting them.</p>
+<h3 id="sampling_with_the_mapmle_as_initial_states"><a href="#sampling_with_the_mapmle_as_initial_states" class="header-anchor">Sampling with the MAP/MLE as initial states</a></h3>
+<p>You can begin sampling your chain from an MLE/MAP estimate by extracting the vector of parameter values and providing it to the <code>sample</code> function with the keyword <code>init_params</code>. For example, here is how to sample from the full posterior using the MAP estimate as the starting point:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Generate an MAP estimate.</span>
+map_estimate = optimize(model, MAP())
+<span class="hljs-comment"># Sample with the MAP estimate as the starting point.</span>
+chain = sample(model, NUTS(), <span class="hljs-number">1_000</span>, init_params = map_estimate.values.array)</code></pre>
+<h2 id="beyond_the_basics"><a href="#beyond_the_basics" class="header-anchor">Beyond the Basics</a></h2>
+<h2 id="compositional_sampling_using_gibbs"><a href="#compositional_sampling_using_gibbs" class="header-anchor">Compositional Sampling Using Gibbs</a></h2>
+<p>Turing.jl provides a Gibbs interface to combine different samplers. For example, one can combine an <code>HMC</code> sampler with a <code>PG</code> sampler to run inference for different parameters in a single model as below.</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> simple_choice(xs)
+    p ~ Beta(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)
+    z ~ Bernoulli(p)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:length(xs)
+        <span class="hljs-keyword">if</span> z == <span class="hljs-number">1</span>
+            xs[i] ~ Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+        <span class="hljs-keyword">else</span>
+            xs[i] ~ Normal(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
+        <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+simple_choice_f = simple_choice([<span class="hljs-number">1.5</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">0.3</span>])
+chn = sample(simple_choice_f, Gibbs(HMC(<span class="hljs-number">0.2</span>, <span class="hljs-number">3</span>, :p), PG(<span class="hljs-number">20</span>, :z)), <span class="hljs-number">1000</span>)</code></pre>
+<p>The <code>Gibbs</code> sampler can be used to specify unique automatic differentation backends for different variable spaces. Please see the <a href="/docs/using-turing/autodiff">Automatic Differentiation</a> article for more.</p>
+<p>For more details of compositional sampling in Turing.jl, please check the corresponding <a href="http://proceedings.mlr.press/v84/ge18b.html">paper</a>.</p>
+<h2 id="working_with_filldist_and_arraydist"><a href="#working_with_filldist_and_arraydist" class="header-anchor">Working with filldist and arraydist</a></h2>
+<p>Turing provides <code>filldist&#40;dist::Distribution, n::Int&#41;</code> and <code>arraydist&#40;dists::AbstractVector&#123;&lt;:Distribution&#125;&#41;</code> as a simplified interface to construct product distributions, e.g., to model a set of variables that share the same structure but vary by group.</p>
+<h3 id="constructing_product_distributions_with_filldist"><a href="#constructing_product_distributions_with_filldist" class="header-anchor">Constructing product distributions with filldist</a></h3>
+<p>The function <code>filldist</code> provides a general interface to construct product distributions over distributions of the same type and parameterisation. Note that, in contrast to the product distribution interface provided by Distributions.jl &#40;<code>Product</code>&#41;, <code>filldist</code> supports product distributions over univariate or multivariate distributions.</p>
+<p>Example usage:</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> demo(x, g)
+  k = length(unique(g))
+  a ~ filldist(Exponential(), k) <span class="hljs-comment"># = Product(fill(Exponential(), k))</span>
+  mu = a[g]
+  x .~ Normal.(mu)
+<span class="hljs-keyword">end</span></code></pre>
+<h3 id="constructing_product_distributions_with_arraydist"><a href="#constructing_product_distributions_with_arraydist" class="header-anchor">Constructing product distributions with arraydist</a></h3>
+<p>The function <code>arraydist</code> provides a general interface to construct product distributions over distributions of varying type and parameterisation. Note that in contrast to the product distribution interface provided by Distributions.jl &#40;<code>Product</code>&#41;, <code>arraydist</code> supports product distributions over univariate or multivariate distributions.</p>
+<p>Example usage:</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> demo(x, g)
+  k = length(unique(g))
+  a ~ arraydist([Exponential(i) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:k])
+  mu = a[g]
+  x .~ Normal.(mu)
+<span class="hljs-keyword">end</span></code></pre>
+<h2 id="working_with_mcmcchainsjl"><a href="#working_with_mcmcchainsjl" class="header-anchor">Working with MCMCChains.jl</a></h2>
+<p>Turing.jl wraps its samples using <code>MCMCChains.Chain</code> so that all the functions working for <code>MCMCChains.Chain</code> can be re-used in Turing.jl. Two typical functions are <code>MCMCChains.describe</code> and <code>MCMCChains.plot</code>, which can be used as follows for an obtained chain <code>chn</code>. For more information on <code>MCMCChains</code>, please see the <a href="https://github.com/TuringLang/MCMCChains.jl">GitHub repository</a>.</p>
+<pre><code class="julia hljs">describe(chn) <span class="hljs-comment"># Lists statistics of the samples.</span>
+plot(chn) <span class="hljs-comment"># Plots statistics of the samples.</span></code></pre>
+<p>There are numerous functions in addition to <code>describe</code> and <code>plot</code> in the <code>MCMCChains</code> package, such as those used in convergence diagnostics. For more information on the package, please see the <a href="https://github.com/TuringLang/MCMCChains.jl">GitHub repository</a>.</p>
+<h2 id="working_with_libtaskjl"><a href="#working_with_libtaskjl" class="header-anchor">Working with Libtask.jl</a></h2>
+<p>The <a href="https://github.com/TuringLang/Libtask.jl">Libtask.jl</a> library provides write-on-copy data structures that are safe for use in Turing&#39;s particle-based samplers. One data structure in particular is often required for use – the <a href="http://turing.ml/docs/library/#Libtask.TArray"><code>TArray</code></a>. The following sampler types require the use of a <code>TArray</code> to store distributions:</p>
+<ul>
+<li><p><code>IPMCMC</code></p>
+</li>
+<li><p><code>IS</code></p>
+</li>
+<li><p><code>PG</code></p>
+</li>
+<li><p><code>PMMH</code></p>
+</li>
+<li><p><code>SMC</code></p>
+</li>
+</ul>
+<p>If you do not use a <code>TArray</code> to store arrays of distributions when using a particle-based sampler, you may experience errors.</p>
+<p>Here is an example of how the <code>TArray</code> &#40;using a <code>TArray</code> constructor function called <code>tzeros</code>&#41; can be applied in this way:</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Turing model definition.</span>
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> BayesHmm(y)
+    <span class="hljs-comment"># Declare a TArray with a length of N.</span>
+    s = tzeros(<span class="hljs-built_in">Int</span>, N)
+    m = <span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Real</span>}(<span class="hljs-literal">undef</span>, K)
+    T = <span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Real</span>}}(<span class="hljs-literal">undef</span>, K)
+    <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>:K
+        T[i] ~ Dirichlet(ones(K)/K)
+        m[i] ~ Normal(i, <span class="hljs-number">0.01</span>)
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-comment"># Draw from a distribution for each element in s.</span>
+    s[<span class="hljs-number">1</span>] ~ Categorical(K)
+    <span class="hljs-keyword">for</span> i = <span class="hljs-number">2</span>:N
+        s[i] ~ Categorical(vec(T[s[i-<span class="hljs-number">1</span>]]))
+        y[i] ~ Normal(m[s[i]], <span class="hljs-number">0.1</span>)
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">return</span> (s, m)
+<span class="hljs-keyword">end</span>;</code></pre>
+<h2 id="changing_default_settings"><a href="#changing_default_settings" class="header-anchor">Changing Default Settings</a></h2>
+<p>Some of Turing.jl&#39;s default settings can be changed for better usage.</p>
+<h3 id="ad_chunk_size"><a href="#ad_chunk_size" class="header-anchor">AD Chunk Size</a></h3>
+<p>ForwardDiff &#40;Turing&#39;s default AD backend&#41; uses forward-mode chunk-wise AD. The chunk size can be set manually by <code>setchunksize&#40;new_chunk_size&#41;</code>.</p>
+<h3 id="ad_backend"><a href="#ad_backend" class="header-anchor">AD Backend</a></h3>
+<p>Turing supports four packages of automatic differentiation &#40;AD&#41; in the back end during sampling. The default AD backend is <a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff</a> for forward-mode AD. Three reverse-mode AD backends are also supported, namely <a href="https://github.com/FluxML/Tracker.jl">Tracker</a>, <a href="https://github.com/FluxML/Zygote.jl">Zygote</a> and <a href="https://github.com/JuliaDiff/ReverseDiff.jl">ReverseDiff</a>. <code>Zygote</code> and <code>ReverseDiff</code> are supported optionally if explicitly loaded by the user with <code>using Zygote</code> or <code>using ReverseDiff</code> next to <code>using Turing</code>.</p>
+<p>For more information on Turing&#39;s automatic differentiation backend, please see the <a href="/docs/using-turing/autodiff">Automatic Differentiation</a> article.</p>
+<h3 id="progress_logging"><a href="#progress_logging" class="header-anchor">Progress Logging</a></h3>
+<p>Turing.jl uses ProgressLogging.jl to log the progress of sampling. Progress logging is enabled as default but might slow down inference. It can be turned on or off by setting the keyword argument <code>progress</code> of <code>sample</code> to <code>true</code> or <code>false</code>, respectively. Moreover, you can enable or disable progress logging globally by calling <code>setprogress&#33;&#40;true&#41;</code> or <code>setprogress&#33;&#40;false&#41;</code>, respectively.</p>
+<p>Turing uses heuristics to select an appropriate visualization backend. If you use <a href="https://junolab.org/">Juno</a>, the progress is displayed with a <a href="http://docs.junolab.org/latest/man/juno_frontend/#Progress-Meters-1">progress bar in the Atom window</a>. For Jupyter notebooks the default backend is <a href="https://github.com/tkf/ConsoleProgressMonitor.jl">ConsoleProgressMonitor.jl</a>. In all other cases progress logs are displayed with <a href="https://github.com/c42f/TerminalLoggers.jl">TerminalLoggers.jl</a>. Alternatively, if you provide a custom visualization backend, Turing uses it instead of the default backend.</p>
+<div class="page-foot">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> <a href="/team/">The TuringLang Team</a>. Last modified: June 25, 2022.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    
+    
+        
+
+
+    
+  </body>
+</html>

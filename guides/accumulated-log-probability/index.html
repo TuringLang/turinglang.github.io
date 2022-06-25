@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+   
+  <link rel="stylesheet" href="/css/franklin.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/turinglang.css">
+<link rel="icon" href="/assets/favicon.ico">
+   <title>Accumulated Log Probability</title>  
+</head>
+<body>
+<header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
+  <nav class="float-left block mt-1">
+    <a class="text-base pr-2" href="/">Home</a>
+    <a class="text-base px-2" href="/guides/get-started/">Get Started</a>
+    <a class="text-base px-2" href="/guides/">Guides</a>
+    <a class="text-base px-2" href="/tutorials/">Tutorials</a>
+    <a class="text-base px-2" href="/docs/">Docs</a>
+    <a class="text-base px-2" href="/news/">News</a>
+    <a class="text-base pl-2" href="/team/">Team</a>
+  </nav>
+
+  <div class="float-right"><a style="background-image: url('/assets/turing-logo-wide.svg');" class="text-2xl px-1 pl-48" href="https://github.com/TuringLang">The Turing Language</a> <a href="https://github.com/TuringLang/Turing.jl"><img class="inline px-1" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/turinglang/Turing.jl?style=social"></a> <a href="https://twitter.com/TuringLang"><img class="inline px-1" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/TuringLang?style=social"></a></div>
+</header>
+
+
+<!-- Content appended here -->
+<div class="franklin-content"><h1 id="how_to_update_the_accumulated_log_probability_directly"><a href="#how_to_update_the_accumulated_log_probability_directly" class="header-anchor">How to Update the Accumulated Log Probability Directly</a></h1>
+<p>Turing accumulates log probabilities internally in an internal data structure that is accessible through the internal variable <code>__varinfo__</code> inside of the model definition &#40;see below for more details about model internals&#41;. However, since users should not have to deal with internal data structures, a macro <code>Turing.@addlogprob&#33;</code> is provided that increases the accumulated log probability. For instance, this allows you to <a href="https://github.com/TuringLang/Turing.jl/issues/1332">include arbitrary terms in the likelihood</a></p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Turing
+myloglikelihood(x, μ) = loglikelihood(Normal(μ, <span class="hljs-number">1</span>), x)
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> demo(x)
+    μ ~ Normal()
+    Turing.<span class="hljs-meta">@addlogprob</span>! myloglikelihood(x, μ)
+<span class="hljs-keyword">end</span></code></pre>
+<p>and to <a href="https://github.com/TuringLang/Turing.jl/issues/1328">reject samples</a>:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Turing
+<span class="hljs-keyword">using</span> LinearAlgebra
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> demo(x)
+    m ~ MvNormal(zero(x), I)
+    <span class="hljs-keyword">if</span> dot(m, x) &lt; <span class="hljs-number">0</span>
+        Turing.<span class="hljs-meta">@addlogprob</span>! -<span class="hljs-literal">Inf</span>
+        <span class="hljs-comment"># Exit the model evaluation early</span>
+        <span class="hljs-keyword">return</span>
+    <span class="hljs-keyword">end</span>
+    x ~ MvNormal(m, I)
+    <span class="hljs-keyword">return</span>
+<span class="hljs-keyword">end</span></code></pre>
+<p>Note that <code>@addlogprob&#33;</code> always increases the accumulated log probability, regardless of the provided sampling context. For instance, if you do not want to apply <code>Turing.@addlogprob&#33;</code> when evaluating the prior of your model but only when computing the log likelihood and the log joint probability, then you should <a href="https://github.com/TuringLang/DynamicPPL.jl/issues/154">check the type of the internal variable <code>__context_</code></a> such as</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">if</span> DynamicPPL.leafcontext(__context__) !== Turing.PriorContext()
+    Turing.<span class="hljs-meta">@addlogprob</span>! myloglikelihood(x, μ)
+<span class="hljs-keyword">end</span></code></pre>
+<div class="page-foot">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> <a href="/team/">The TuringLang Team</a>. Last modified: June 25, 2022.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    
+    
+        
+
+
+    
+  </body>
+</html>

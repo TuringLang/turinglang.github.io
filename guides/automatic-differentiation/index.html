@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+   
+  <link rel="stylesheet" href="/css/franklin.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/turinglang.css">
+<link rel="icon" href="/assets/favicon.ico">
+   <title>Automatic Differentiation</title>  
+</head>
+<body>
+<header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
+  <nav class="float-left block mt-1">
+    <a class="text-base pr-2" href="/">Home</a>
+    <a class="text-base px-2" href="/guides/get-started/">Get Started</a>
+    <a class="text-base px-2" href="/guides/">Guides</a>
+    <a class="text-base px-2" href="/tutorials/">Tutorials</a>
+    <a class="text-base px-2" href="/docs/">Docs</a>
+    <a class="text-base px-2" href="/news/">News</a>
+    <a class="text-base pl-2" href="/team/">Team</a>
+  </nav>
+
+  <div class="float-right"><a style="background-image: url('/assets/turing-logo-wide.svg');" class="text-2xl px-1 pl-48" href="https://github.com/TuringLang">The Turing Language</a> <a href="https://github.com/TuringLang/Turing.jl"><img class="inline px-1" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/turinglang/Turing.jl?style=social"></a> <a href="https://twitter.com/TuringLang"><img class="inline px-1" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/TuringLang?style=social"></a></div>
+</header>
+
+
+<!-- Content appended here -->
+<div class="franklin-content"><h1 id="how_to_configure_automatic_differentiation"><a href="#how_to_configure_automatic_differentiation" class="header-anchor">How to Configure Automatic Differentiation</a></h1>
+<h2 id="switching_ad_modes"><a href="#switching_ad_modes" class="header-anchor">Switching AD Modes</a></h2>
+<p>Turing supports four packages of automatic differentiation &#40;AD&#41; in the back end during sampling. The default AD backend is <a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff</a> for forward-mode AD. Three reverse-mode AD backends are also supported, namely <a href="https://github.com/FluxML/Tracker.jl">Tracker</a>, <a href="https://github.com/FluxML/Zygote.jl">Zygote</a> and <a href="https://github.com/JuliaDiff/ReverseDiff.jl">ReverseDiff</a>. <code>Zygote</code> and <code>ReverseDiff</code> are supported optionally if explicitly loaded by the user with <code>using Zygote</code> or <code>using ReverseDiff</code> next to <code>using Turing</code>.</p>
+<p>To switch between the different AD backends, one can call function <code>Turing.setadbackend&#40;backend_sym&#41;</code>, where <code>backend_sym</code> can be <code>:forwarddiff</code> &#40;<code>ForwardDiff</code>&#41;, <code>:tracker</code> &#40;<code>Tracker</code>&#41;, <code>:zygote</code> &#40;<code>Zygote</code>&#41; or <code>:reversediff</code> &#40;<code>ReverseDiff.jl</code>&#41;. When using <code>ReverseDiff</code>, to compile the tape only once and cache it for later use, the user needs to load <a href="https://github.com/marius311/Memoization.jl">Memoization.jl</a> first with <code>using Memoization</code> then call <code>Turing.setrdcache&#40;true&#41;</code>. However, note that the use of caching in certain types of models can lead to incorrect results and/or errors. Models for which the compiled tape can be safely cached are models with fixed size loops and no run-time if statements. Compile-time if statements are fine. To empty the cache, you can call <code>Turing.emptyrdcache&#40;&#41;</code>.</p>
+<h2 id="compositional_sampling_with_differing_ad_modes"><a href="#compositional_sampling_with_differing_ad_modes" class="header-anchor">Compositional Sampling with Differing AD Modes</a></h2>
+<p>Turing supports intermixed automatic differentiation methods for different variable spaces. The snippet below shows using <code>ForwardDiff</code> to sample the mean &#40;<code>m</code>&#41; parameter, and using the Tracker-based <code>TrackerAD</code> autodiff for the variance &#40;<code>s</code>&#41; parameter:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Turing
+<span class="hljs-comment"># Define a simple Normal model with unknown mean and variance.</span>
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gdemo(x, y)
+    s² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    m ~ Normal(<span class="hljs-number">0</span>, sqrt(s²))
+    x ~ Normal(m, sqrt(s²))
+    y ~ Normal(m, sqrt(s²))
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># Sample using Gibbs and varying autodiff backends.</span>
+c = sample(
+	gdemo(<span class="hljs-number">1.5</span>, <span class="hljs-number">2</span>),
+  	Gibbs(
+    	HMC{Turing.ForwardDiffAD{<span class="hljs-number">1</span>}}(<span class="hljs-number">0.1</span>, <span class="hljs-number">5</span>, :m),
+        HMC{Turing.TrackerAD}(<span class="hljs-number">0.1</span>, <span class="hljs-number">5</span>, :s)
+    ),
+    <span class="hljs-number">1000</span>,
+)</code></pre>
+<p>Generally, <code>TrackerAD</code> is faster when sampling from variables of high dimensionality &#40;greater than 20&#41; and <code>ForwardDiffAD</code> is more efficient for lower-dimension variables. This functionality allows those who are performance sensistive to fine tune their automatic differentiation for their specific models.</p>
+<p>If the differentation method is not specified in this way, Turing will default to using whatever the global AD backend is. Currently, this defaults to <code>ForwardDiff</code>.</p>
+<div class="page-foot">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> <a href="/team/">The TuringLang Team</a>. Last modified: June 25, 2022.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    
+    
+        
+
+
+    
+  </body>
+</html>

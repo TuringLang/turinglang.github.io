@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Bijectors.jl · Turing Documentations</title><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><script src="https://cdn.tailwindcss.com"></script><style>#turing-navbar {
+    display: inline-block;
+    width: calc(100% - 18rem);
+    margin-left: 18rem;
+    margin-bottom: 0;
+}</style></head><header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
+  <nav class="float-left block mt-1">
+    <a class="text-base pr-2" href="/">Home</a>
+    <a class="text-base px-2" href="/guides/get-started/">Get Started</a>
+    <a class="text-base px-2" href="/guides/">Guides</a>
+    <a class="text-base px-2" href="/tutorials/">Tutorials</a>
+    <a class="text-base px-2" href="/docs/">Docs</a>
+    <a class="text-base px-2" href="/news/">News</a>
+    <a class="text-base pl-2" href="/team/">Team</a>
+  </nav>
+
+  <div class="float-right"><a style="background-image: url('/assets/turing-logo-wide.svg');" class="text-2xl px-1 pl-48" href="https://github.com/TuringLang">The Turing Language</a> <a href="https://github.com/TuringLang/Turing.jl"><img class="inline px-1" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/turinglang/Turing.jl?style=social"></a> <a href="https://twitter.com/TuringLang"><img class="inline px-1" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/TuringLang?style=social"></a></div>
+</header>
+<body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">Turing Documentations</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Developer Guides</span><ul><li><a class="tocitem" href="../developer-guides/compiler-design/">Compiler Design</a></li><li><a class="tocitem" href="../developer-guides/sampling-interface/">Sampling interface</a></li><li><a class="tocitem" href="../developer-guides/turing-abstractmcmc/">Turing x AbstractMCMC</a></li><li><a class="tocitem" href="../developer-guides/how-to-contribute/">How to Contribute</a></li><li><a class="tocitem" href="../developer-guides/style-guide/">Style Guide</a></li></ul></li><li><a class="tocitem" href="../turing/">Turing.jl</a></li><li><a class="tocitem" href="../advancedhmc/">AdvancedHMC.jl</a></li><li class="is-active"><a class="tocitem" href>Bijectors.jl</a><ul class="internal"><li><a class="tocitem" href="#Index"><span>Index</span></a></li><li><a class="tocitem" href="#Functions"><span>Functions</span></a></li><li><a class="tocitem" href="#Types"><span>Types</span></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Bijectors.jl</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Bijectors.jl</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/TuringLang/turinglang.github.io/blob/master/docs/src/bijectors.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Bijectors.jl"><a class="docs-heading-anchor" href="#Bijectors.jl">Bijectors.jl</a><a id="Bijectors.jl-1"></a><a class="docs-heading-anchor-permalink" href="#Bijectors.jl" title="Permalink"></a></h1><h2 id="Index"><a class="docs-heading-anchor" href="#Index">Index</a><a id="Index-1"></a><a class="docs-heading-anchor-permalink" href="#Index" title="Permalink"></a></h2><ul><li><a href="#Bijectors.ADBijector"><code>Bijectors.ADBijector</code></a></li><li><a href="#Bijectors.AbstractBijector"><code>Bijectors.AbstractBijector</code></a></li><li><a href="#Bijectors.Bijector"><code>Bijectors.Bijector</code></a></li><li><a href="#Bijectors.Composed"><code>Bijectors.Composed</code></a></li><li><a href="#Bijectors.CorrBijector"><code>Bijectors.CorrBijector</code></a></li><li><a href="#Bijectors.Coupling"><code>Bijectors.Coupling</code></a></li><li><a href="#Bijectors.Inverse"><code>Bijectors.Inverse</code></a></li><li><a href="#Bijectors.LeakyReLU"><code>Bijectors.LeakyReLU</code></a></li><li><a href="#Bijectors.NamedBijector"><code>Bijectors.NamedBijector</code></a></li><li><a href="#Bijectors.NamedComposition"><code>Bijectors.NamedComposition</code></a></li><li><a href="#Bijectors.NamedCoupling"><code>Bijectors.NamedCoupling</code></a></li><li><a href="#Bijectors.NamedInverse"><code>Bijectors.NamedInverse</code></a></li><li><a href="#Bijectors.OrderedBijector"><code>Bijectors.OrderedBijector</code></a></li><li><a href="#Bijectors.PartitionMask-Union{Tuple{T}, Tuple{Int64, Any}} where T"><code>Bijectors.PartitionMask</code></a></li><li><a href="#Bijectors.PartitionMask"><code>Bijectors.PartitionMask</code></a></li><li><a href="#Bijectors.Permute"><code>Bijectors.Permute</code></a></li><li><a href="#Bijectors.RationalQuadraticSpline"><code>Bijectors.RationalQuadraticSpline</code></a></li><li><a href="#Bijectors.Stacked"><code>Bijectors.Stacked</code></a></li><li><a href="#Bijectors._link_chol_lkj-Tuple{Any}"><code>Bijectors._link_chol_lkj</code></a></li><li><a href="#Bijectors.bijector-Tuple{Bijectors.TransformedDistribution}"><code>Bijectors.bijector</code></a></li><li><a href="#Bijectors.combine-Tuple{Bijectors.PartitionMask, Any, Any, Any}"><code>Bijectors.combine</code></a></li><li><a href="#Bijectors.composel-Union{Tuple{Vararg{Bijectors.Bijector{N}}}, Tuple{N}} where N"><code>Bijectors.composel</code></a></li><li><a href="#Bijectors.composer-Union{Tuple{Vararg{Bijectors.Bijector{N}}}, Tuple{N}} where N"><code>Bijectors.composer</code></a></li><li><a href="#Bijectors.compute_r-Tuple{AbstractVector{&lt;:Real}, Any, Any}"><code>Bijectors.compute_r</code></a></li><li><a href="#Bijectors.couple-Tuple{Bijectors.Coupling, AbstractVector}"><code>Bijectors.couple</code></a></li><li><a href="#Bijectors.coupling-Tuple{Bijectors.Coupling}"><code>Bijectors.coupling</code></a></li><li><a href="#Bijectors.find_alpha-Tuple{Real, Real, Real}"><code>Bijectors.find_alpha</code></a></li><li><a href="#Bijectors.forward-Tuple{Distributions.Distribution}"><code>Bijectors.forward</code></a></li><li><a href="#Bijectors.get_u_hat-Tuple{AbstractVector{&lt;:Real}, AbstractVector{&lt;:Real}}"><code>Bijectors.get_u_hat</code></a></li><li><a href="#Bijectors.isclosedform-Tuple{Bijectors.Bijector}"><code>Bijectors.isclosedform</code></a></li><li><a href="#Bijectors.logabsdetjac-Tuple{Bijectors.ADBijector, Real}"><code>Bijectors.logabsdetjac</code></a></li><li><a href="#Bijectors.logabsdetjac-Tuple{Bijectors.Inverse, Any}"><code>Bijectors.logabsdetjac</code></a></li><li><a href="#Bijectors.logabsdetjacinv-Tuple{Bijectors.Bijector, Any}"><code>Bijectors.logabsdetjacinv</code></a></li><li><a href="#Bijectors.logabsdetjacinv-Tuple{Bijectors.UnivariateTransformed, Real}"><code>Bijectors.logabsdetjacinv</code></a></li><li><a href="#Bijectors.logpdf_with_jac-Tuple{Bijectors.UnivariateTransformed, Real}"><code>Bijectors.logpdf_with_jac</code></a></li><li><a href="#Bijectors.ordered-Tuple{Distributions.Distribution{Distributions.Multivariate, Distributions.Continuous}}"><code>Bijectors.ordered</code></a></li><li><a href="#Bijectors.partition-Tuple{Bijectors.PartitionMask, Any}"><code>Bijectors.partition</code></a></li><li><a href="#Bijectors.transformed-Tuple{Distributions.Distribution, Bijectors.Bijector}"><code>Bijectors.transformed</code></a></li></ul><h2 id="Functions"><a class="docs-heading-anchor" href="#Functions">Functions</a><a id="Functions-1"></a><a class="docs-heading-anchor-permalink" href="#Functions" title="Permalink"></a></h2><article class="docstring"><header><a class="docstring-binding" id="Bijectors._link_chol_lkj-Tuple{Any}" href="#Bijectors._link_chol_lkj-Tuple{Any}"><code>Bijectors._link_chol_lkj</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">function _link_chol_lkj(w)</code></pre><p>Link function for cholesky factor.</p><p>An alternative and maybe more efficient implementation was considered:</p><pre><code class="nohighlight hljs">for i=2:K, j=(i+1):K
+    z[i, j] = (w[i, j] / w[i-1, j]) * (z[i-1, j] / sqrt(1 - z[i-1, j]^2))
+end</code></pre><p>But this implementation will not work when w[i-1, j] = 0. Though it is a zero measure set, unit matrix initialization will not work.</p><p>For equivelence, following explanations is given by @torfjelde:</p><p>For <code>(i, j)</code> in the loop below, we define</p><pre><code class="nohighlight hljs">z₍ᵢ₋₁, ⱼ₎ = w₍ᵢ₋₁,ⱼ₎ * ∏ₖ₌₁ⁱ⁻² (1 / √(1 - z₍ₖ,ⱼ₎²))</code></pre><p>and so</p><pre><code class="nohighlight hljs">z₍ᵢ,ⱼ₎ = w₍ᵢ,ⱼ₎ * ∏ₖ₌₁ⁱ⁻¹ (1 / √(1 - z₍ₖ,ⱼ₎²))
+        = (w₍ᵢ,ⱼ₎ * / √(1 - z₍ᵢ₋₁,ⱼ₎²)) * (∏ₖ₌₁ⁱ⁻² 1 / √(1 - z₍ₖ,ⱼ₎²))
+        = (w₍ᵢ,ⱼ₎ * / √(1 - z₍ᵢ₋₁,ⱼ₎²)) * (w₍ᵢ₋₁,ⱼ₎ * ∏ₖ₌₁ⁱ⁻² 1 / √(1 - z₍ₖ,ⱼ₎²)) / w₍ᵢ₋₁,ⱼ₎
+        = (w₍ᵢ,ⱼ₎ * / √(1 - z₍ᵢ₋₁,ⱼ₎²)) * (z₍ᵢ₋₁,ⱼ₎ / w₍ᵢ₋₁,ⱼ₎)
+        = (w₍ᵢ,ⱼ₎ / w₍ᵢ₋₁,ⱼ₎) * (z₍ᵢ₋₁,ⱼ₎ / √(1 - z₍ᵢ₋₁,ⱼ₎²))</code></pre><p>which is the above implementation.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.bijector-Tuple{Bijectors.TransformedDistribution}" href="#Bijectors.bijector-Tuple{Bijectors.TransformedDistribution}"><code>Bijectors.bijector</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">bijector(d::Distribution)</code></pre><p>Returns the constrained-to-unconstrained bijector for distribution <code>d</code>.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.combine-Tuple{Bijectors.PartitionMask, Any, Any, Any}" href="#Bijectors.combine-Tuple{Bijectors.PartitionMask, Any, Any, Any}"><code>Bijectors.combine</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">combine(m::PartitionMask, x_1, x_2, x_3)</code></pre><p>Combines <code>x_1</code>, <code>x_2</code>, and <code>x_3</code> into a single vector.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.composel-Union{Tuple{Vararg{Bijectors.Bijector{N}}}, Tuple{N}} where N" href="#Bijectors.composel-Union{Tuple{Vararg{Bijectors.Bijector{N}}}, Tuple{N}} where N"><code>Bijectors.composel</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">composel(ts::Bijector...)::Composed{&lt;:Tuple}</code></pre><p>Constructs <code>Composed</code> such that <code>ts</code> are applied left-to-right.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.composer-Union{Tuple{Vararg{Bijectors.Bijector{N}}}, Tuple{N}} where N" href="#Bijectors.composer-Union{Tuple{Vararg{Bijectors.Bijector{N}}}, Tuple{N}} where N"><code>Bijectors.composer</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">composer(ts::Bijector...)::Composed{&lt;:Tuple}</code></pre><p>Constructs <code>Composed</code> such that <code>ts</code> are applied right-to-left.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.compute_r-Tuple{AbstractVector{&lt;:Real}, Any, Any}" href="#Bijectors.compute_r-Tuple{AbstractVector{&lt;:Real}, Any, Any}"><code>Bijectors.compute_r</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">compute_r(y_minus_z0::AbstractVector{&lt;:Real}, α, α_plus_β_hat)</code></pre><p>Compute the unique solution <span>$r$</span> to the equation</p><p class="math-container">\[\|y_minus_z0\|_2 = r \left(1 + \frac{α_plus_β_hat - α}{α + r}\right)\]</p><p>subject to <span>$r ≥ 0$</span> and <span>$r ≠ α$</span>.</p><p>Since <span>$α &gt; 0$</span> and <span>$α_plus_β_hat &gt; 0$</span>, the solution is unique and given by</p><p class="math-container">\[r = (\sqrt{(α_plus_β_hat - γ)^2 + 4 α γ} - (α_plus_β_hat - γ)) / 2,\]</p><p>where <span>$γ = \|y_minus_z0\|_2$</span>. For details see appendix A.2 of the reference.</p><p><strong>References</strong></p><p>D. Rezende, S. Mohamed (2015): Variational Inference with Normalizing Flows. arXiv:1505.05770</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.couple-Tuple{Bijectors.Coupling, AbstractVector}" href="#Bijectors.couple-Tuple{Bijectors.Coupling, AbstractVector}"><code>Bijectors.couple</code></a> — <span class="docstring-category">Method</span></header><section><div><p>Returns the coupling law constructed from <code>x</code>.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.coupling-Tuple{Bijectors.Coupling}" href="#Bijectors.coupling-Tuple{Bijectors.Coupling}"><code>Bijectors.coupling</code></a> — <span class="docstring-category">Method</span></header><section><div><p>Returns the constructor of the coupling law.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.find_alpha-Tuple{Real, Real, Real}" href="#Bijectors.find_alpha-Tuple{Real, Real, Real}"><code>Bijectors.find_alpha</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">find_alpha(wt_y, wt_u_hat, b)</code></pre><p>Compute an (approximate) real-valued solution <span>$α̂$</span> to the equation</p><p class="math-container">\[wt_y = α + wt_u_hat tanh(α + b)\]</p><p>The uniqueness of the solution is guaranteed since <span>$wt_u_hat ≥ -1$</span>. For details see appendix A.1 of the reference.</p><p><strong>Initial bracket</strong></p><p>For all <span>$α$</span>, we have</p><p class="math-container">\[α - |wt_u_hat| - wt_y \leq α + wt_u_hat tanh(α + b) - wt_y \leq α + |wt_u_hat| - wt_y.\]</p><p>Thus</p><p class="math-container">\[α̂ - |wt_u_hat| - wt_y \leq 0 \leq α̂ + |wt_u_hat| - wt_y,\]</p><p>which implies <span>$α̂ ∈ [wt_y - |wt_u_hat|, wt_y + |wt_u_hat|]$</span>. To avoid floating point issues if <span>$α̂  = wt_y ± |wt_u_hat|$</span>, we use the more conservative interval <span>$[wt_y - 2 |wt_u_hat|, wt_y + 2|wt_u_hat|]$</span> as initial bracket, at the cost of one additional iteration step.</p><p><strong>References</strong></p><p>D. Rezende, S. Mohamed (2015): Variational Inference with Normalizing Flows. arXiv:1505.05770</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.forward-Tuple{Distributions.Distribution}" href="#Bijectors.forward-Tuple{Distributions.Distribution}"><code>Bijectors.forward</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">forward(d::Distribution)
+forward(d::Distribution, num_samples::Int)</code></pre><p>Returns a <code>NamedTuple</code> with fields <code>x</code>, <code>y</code>, <code>logabsdetjac</code> and <code>logpdf</code>.</p><p>In the case where <code>d isa TransformedDistribution</code>, this means</p><ul><li><code>x = rand(d.dist)</code></li><li><code>y = d.transform(x)</code></li><li><code>logabsdetjac</code> is the logabsdetjac of the &quot;forward&quot; transform.</li><li><code>logpdf</code> is the logpdf of <code>y</code>, not <code>x</code></li></ul><p>In the case where <code>d isa Distribution</code>, this means</p><ul><li><code>x = rand(d)</code></li><li><code>y = x</code></li><li><code>logabsdetjac = 0.0</code></li><li><code>logpdf</code> is logpdf of <code>x</code></li></ul></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.get_u_hat-Tuple{AbstractVector{&lt;:Real}, AbstractVector{&lt;:Real}}" href="#Bijectors.get_u_hat-Tuple{AbstractVector{&lt;:Real}, AbstractVector{&lt;:Real}}"><code>Bijectors.get_u_hat</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">get_u_hat(u::AbstractVector{&lt;:Real}, w::AbstractVector{&lt;:Real})</code></pre><p>Return a tuple of vector <span>$û$</span> that guarantees invertibility of the planar layer, and scalar <span>$wᵀ û$</span>.</p><p><strong>Mathematical background</strong></p><p>According to appendix A.1, vector <span>$û$</span> defined by</p><p class="math-container">\[û(w, u) = u + (\log(1 + \exp{(wᵀu)}) - 1 - wᵀu) \frac{w}{\|w\|²}\]</p><p>guarantees that the planar layer <span>$f(z) = z + û tanh(wᵀz + b)$</span> is invertible for all <span>$w, u ∈ ℝᵈ$</span> and <span>$b ∈ ℝ$</span>. We can rewrite <span>$û$</span> as</p><p class="math-container">\[û = u + (\log(1 + \exp{(-wᵀu)}) - 1) \frac{w}{\|w\|²}.\]</p><p>Additionally, we obtain</p><p class="math-container">\[wᵀû = wᵀu + \log(1 + \exp{(-wᵀu)}) - 1 = \log(1 + \exp{(wᵀu)}) - 1.\]</p><p><strong>References</strong></p><p>D. Rezende, S. Mohamed (2015): Variational Inference with Normalizing Flows. arXiv:1505.05770</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.isclosedform-Tuple{Bijectors.Bijector}" href="#Bijectors.isclosedform-Tuple{Bijectors.Bijector}"><code>Bijectors.isclosedform</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">isclosedform(b::Bijector)::bool
+isclosedform(b⁻¹::Inverse{&lt;:Bijector})::bool</code></pre><p>Returns <code>true</code> or <code>false</code> depending on whether or not evaluation of <code>b</code> has a closed-form implementation.</p><p>Most bijectors have closed-form evaluations, but there are cases where this is not the case. For example the <em>inverse</em> evaluation of <code>PlanarLayer</code> requires an iterative procedure to evaluate.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.logabsdetjac-Tuple{Bijectors.ADBijector, Real}" href="#Bijectors.logabsdetjac-Tuple{Bijectors.ADBijector, Real}"><code>Bijectors.logabsdetjac</code></a> — <span class="docstring-category">Method</span></header><section><div><p>Computes the absolute determinant of the Jacobian of the inverse-transformation.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.logabsdetjac-Tuple{Bijectors.Inverse, Any}" href="#Bijectors.logabsdetjac-Tuple{Bijectors.Inverse, Any}"><code>Bijectors.logabsdetjac</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">logabsdetjac(b::Bijector, x)
+logabsdetjac(ib::Inverse{&lt;:Bijector}, y)</code></pre><p>Computes the log(abs(det(J(b(x))))) where J is the jacobian of the transform. Similarily for the inverse-transform.</p><p>Default implementation for <code>Inverse{&lt;:Bijector}</code> is implemented as <code>- logabsdetjac</code> of original <code>Bijector</code>.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.logabsdetjacinv-Tuple{Bijectors.Bijector, Any}" href="#Bijectors.logabsdetjacinv-Tuple{Bijectors.Bijector, Any}"><code>Bijectors.logabsdetjacinv</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">logabsdetjacinv(b::Bijector, y)</code></pre><p>Just an alias for <code>logabsdetjac(inverse(b), y)</code>.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.logabsdetjacinv-Tuple{Bijectors.UnivariateTransformed, Real}" href="#Bijectors.logabsdetjacinv-Tuple{Bijectors.UnivariateTransformed, Real}"><code>Bijectors.logabsdetjacinv</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">logabsdetjacinv(td::UnivariateTransformed, y::Real)
+logabsdetjacinv(td::MultivariateTransformed, y::AbstractVector{&lt;:Real})</code></pre><p>Computes the <code>logabsdetjac</code> of the <em>inverse</em> transformation, since <code>rand(td)</code> returns the <em>transformed</em> random variable.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.logpdf_with_jac-Tuple{Bijectors.UnivariateTransformed, Real}" href="#Bijectors.logpdf_with_jac-Tuple{Bijectors.UnivariateTransformed, Real}"><code>Bijectors.logpdf_with_jac</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">logpdf_with_jac(td::UnivariateTransformed, y::Real)
+logpdf_with_jac(td::MvTransformed, y::AbstractVector{&lt;:Real})
+logpdf_with_jac(td::MatrixTransformed, y::AbstractMatrix{&lt;:Real})</code></pre><p>Makes use of the <code>forward</code> method to potentially re-use computation and returns a tuple <code>(logpdf, logabsdetjac)</code>.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.ordered-Tuple{Distributions.Distribution{Distributions.Multivariate, Distributions.Continuous}}" href="#Bijectors.ordered-Tuple{Distributions.Distribution{Distributions.Multivariate, Distributions.Continuous}}"><code>Bijectors.ordered</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">ordered(d::Distribution)</code></pre><p>Return a <code>Distribution</code> whose support are ordered vectors, i.e., vectors with increasingly ordered elements.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.partition-Tuple{Bijectors.PartitionMask, Any}" href="#Bijectors.partition-Tuple{Bijectors.PartitionMask, Any}"><code>Bijectors.partition</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">partition(m::PartitionMask, x)</code></pre><p>Partitions <code>x</code> into 3 disjoint subvectors.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.transformed-Tuple{Distributions.Distribution, Bijectors.Bijector}" href="#Bijectors.transformed-Tuple{Distributions.Distribution, Bijectors.Bijector}"><code>Bijectors.transformed</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">transformed(d::Distribution)
+transformed(d::Distribution, b::Bijector)</code></pre><p>Couples distribution <code>d</code> with the bijector <code>b</code> by returning a <code>TransformedDistribution</code>.</p><p>If no bijector is provided, i.e. <code>transformed(d)</code> is called, then  <code>transformed(d, bijector(d))</code> is returned.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="ChangesOfVariables.with_logabsdet_jacobian-Tuple{Bijectors.Bijector, Any}" href="#ChangesOfVariables.with_logabsdet_jacobian-Tuple{Bijectors.Bijector, Any}"><code>ChangesOfVariables.with_logabsdet_jacobian</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">with_logabsdet_jacobian(b::Bijector, x)</code></pre><p>Computes both <code>transform</code> and <code>logabsdetjac</code> in one forward pass, and returns a named tuple <code>(b(x), logabsdetjac(b, x))</code>.</p><p>This defaults to the call above, but often one can re-use computation in the computation of the forward pass and the computation of the <code>logabsdetjac</code>. <code>forward</code> allows the user to take advantange of such efficiencies, if they exist.</p></div></section></article><h2 id="Types"><a class="docs-heading-anchor" href="#Types">Types</a><a id="Types-1"></a><a class="docs-heading-anchor-permalink" href="#Types" title="Permalink"></a></h2><article class="docstring"><header><a class="docstring-binding" id="Bijectors.ADBijector" href="#Bijectors.ADBijector"><code>Bijectors.ADBijector</code></a> — <span class="docstring-category">Type</span></header><section><div><p>Abstract type for a <code>Bijector{N}</code> making use of auto-differentation (AD) to implement <code>jacobian</code> and, by impliciation, <code>logabsdetjac</code>.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.AbstractBijector" href="#Bijectors.AbstractBijector"><code>Bijectors.AbstractBijector</code></a> — <span class="docstring-category">Type</span></header><section><div><p>Abstract type for a bijector.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.Bijector" href="#Bijectors.Bijector"><code>Bijectors.Bijector</code></a> — <span class="docstring-category">Type</span></header><section><div><p>Abstract type of bijectors with fixed dimensionality.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.Composed" href="#Bijectors.Composed"><code>Bijectors.Composed</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">Composed(ts::A)
+
+∘(b1::Bijector{N}, b2::Bijector{N})::Composed{&lt;:Tuple}
+composel(ts::Bijector{N}...)::Composed{&lt;:Tuple}
+composer(ts::Bijector{N}...)::Composed{&lt;:Tuple}</code></pre><p>where <code>A</code> refers to either</p><ul><li><code>Tuple{Vararg{&lt;:Bijector{N}}}</code>: a tuple of bijectors of dimensionality <code>N</code></li><li><code>AbstractArray{&lt;:Bijector{N}}</code>: an array of bijectors of dimensionality <code>N</code></li></ul><p>A <code>Bijector</code> representing composition of bijectors. <code>composel</code> and <code>composer</code> results in a <code>Composed</code> for which application occurs from left-to-right and right-to-left, respectively.</p><p>Note that all the alternative ways of constructing a <code>Composed</code> returns a <code>Tuple</code> of bijectors. This ensures type-stability of implementations of all relating methdos, e.g. <code>inverse</code>.</p><p>If you want to use an <code>Array</code> as the container instead you can do</p><pre><code class="nohighlight hljs">Composed([b1, b2, ...])</code></pre><p>In general this is not advised since you lose type-stability, but there might be cases where this is desired, e.g. if you have a insanely large number of bijectors to compose.</p><p><strong>Examples</strong></p><p><strong>Simple example</strong></p><p>Let&#39;s consider a simple example of <code>Exp</code>:</p><pre><code class="language-julia-repl hljs">julia&gt; using Bijectors: Exp
+
+julia&gt; b = Exp()
+Exp{0}()
+
+julia&gt; b ∘ b
+Composed{Tuple{Exp{0},Exp{0}},0}((Exp{0}(), Exp{0}()))
+
+julia&gt; (b ∘ b)(1.0) == exp(exp(1.0))    # evaluation
+true
+
+julia&gt; inverse(b ∘ b)(exp(exp(1.0))) == 1.0 # inversion
+true
+
+julia&gt; logabsdetjac(b ∘ b, 1.0)         # determinant of jacobian
+3.718281828459045</code></pre><p><strong>Notes</strong></p><p><strong>Order</strong></p><p>It&#39;s important to note that <code>∘</code> does what is expected mathematically, which means that the bijectors are applied to the input right-to-left, e.g. first applying <code>b2</code> and then <code>b1</code>:</p><pre><code class="language-julia hljs">(b1 ∘ b2)(x) == b1(b2(x))     # =&gt; true</code></pre><p>But in the <code>Composed</code> struct itself, we store the bijectors left-to-right, so that</p><pre><code class="language-julia hljs">cb1 = b1 ∘ b2                  # =&gt; Composed.ts == (b2, b1)
+cb2 = composel(b2, b1)         # =&gt; Composed.ts == (b2, b1)
+cb1(x) == cb2(x) == b1(b2(x))  # =&gt; true</code></pre><p><strong>Structure</strong></p><p><code>∘</code> will result in &quot;flatten&quot; the composition structure while <code>composel</code> and <code>composer</code> preserve the compositional structure. This is most easily seen by an example:</p><pre><code class="language-julia-repl hljs">julia&gt; b = Exp()
+Exp{0}()
+
+julia&gt; cb1 = b ∘ b; cb2 = b ∘ b;
+
+julia&gt; (cb1 ∘ cb2).ts # &lt;= different
+(Exp{0}(), Exp{0}(), Exp{0}(), Exp{0}())
+
+julia&gt; (cb1 ∘ cb2).ts isa NTuple{4, Exp{0}}
+true
+
+julia&gt; Bijectors.composer(cb1, cb2).ts
+(Composed{Tuple{Exp{0},Exp{0}},0}((Exp{0}(), Exp{0}())), Composed{Tuple{Exp{0},Exp{0}},0}((Exp{0}(), Exp{0}())))
+
+julia&gt; Bijectors.composer(cb1, cb2).ts isa Tuple{Composed, Composed}
+true</code></pre></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.CorrBijector" href="#Bijectors.CorrBijector"><code>Bijectors.CorrBijector</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">CorrBijector &lt;: Bijector{2}</code></pre><p>A bijector implementation of Stan&#39;s parametrization method for Correlation matrix: https://mc-stan.org/docs/2_23/reference-manual/correlation-matrix-transform-section.html</p><p>Basically, a unconstrained strictly upper triangular matrix <code>y</code> is transformed to  a correlation matrix by following readable but not that efficient form:</p><pre><code class="nohighlight hljs">K = size(y, 1)
+z = tanh.(y)
+
+for j=1:K, i=1:K
+    if i&gt;j
+        w[i,j] = 0
+    elseif 1==i==j
+        w[i,j] = 1
+    elseif 1&lt;i==j
+        w[i,j] = prod(sqrt(1 .- z[1:i-1, j].^2))
+    elseif 1==i&lt;j
+        w[i,j] = z[i,j]
+    elseif 1&lt;i&lt;j
+        w[i,j] = z[i,j] * prod(sqrt(1 .- z[1:i-1, j].^2))
+    end
+end</code></pre><p>It is easy to see that every column is a unit vector, for example:</p><pre><code class="nohighlight hljs">w3&#39; w3 ==
+w[1,3]^2 + w[2,3]^2 + w[3,3]^2 ==
+z[1,3]^2 + (z[2,3] * sqrt(1 - z[1,3]^2))^2 + (sqrt(1-z[1,3]^2) * sqrt(1-z[2,3]^2))^2 ==
+z[1,3]^2 + z[2,3]^2 * (1-z[1,3]^2) + (1-z[1,3]^2) * (1-z[2,3]^2) ==
+z[1,3]^2 + z[2,3]^2 - z[2,3]^2 * z[1,3]^2 + 1 -z[1,3]^2 - z[2,3]^2 + z[1,3]^2 * z[2,3]^2 ==
+1</code></pre><p>And diagonal elements are positive, so <code>w</code> is a cholesky factor for a positive matrix.</p><pre><code class="nohighlight hljs">x = w&#39; * w</code></pre><p>Consider block matrix representation for <code>x</code></p><pre><code class="nohighlight hljs">x = [w1&#39;; w2&#39;; ... wn&#39;] * [w1 w2 ... wn] == 
+[w1&#39;w1 w1&#39;w2 ... w1&#39;wn;
+ w2&#39;w1 w2&#39;w2 ... w2&#39;wn;
+ ...
+]</code></pre><p>The diagonal elements are given by <code>wk&#39;wk = 1</code>, thus <code>x</code> is a correlation matrix.</p><p>Every step is invertible, so this is a bijection(bijector).</p><p>Note: The implementation doesn&#39;t follow their &quot;manageable expression&quot; directly, because their equation seems wrong (7/30/2020). Insteadly it follows definition  above the &quot;manageable expression&quot; directly, which is also described in above doc.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.Coupling" href="#Bijectors.Coupling"><code>Bijectors.Coupling</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">Coupling{F, M}(θ::F, mask::M)</code></pre><p>Implements a coupling-layer as defined in [1].</p><p><strong>Examples</strong></p><pre><code class="language-julia-repl hljs">julia&gt; m = PartitionMask(3, [1], [2]) # &lt;= going to use x[2] to parameterize transform of x[1]
+PartitionMask{SparseArrays.SparseMatrixCSC{Float64,Int64}}(
+  [1, 1]  =  1.0, 
+  [2, 1]  =  1.0, 
+  [3, 1]  =  1.0)
+
+julia&gt; cl = Coupling(θ -&gt; Shift(θ[1]), m) # &lt;= will do `y[1:1] = x[1:1] + x[2:2]`;
+
+julia&gt; x = [1., 2., 3.];
+
+julia&gt; cl(x)
+3-element Array{Float64,1}:
+ 3.0
+ 2.0
+ 3.0
+
+julia&gt; inverse(cl)(cl(x))
+3-element Array{Float64,1}:
+ 1.0
+ 2.0
+ 3.0
+
+julia&gt; coupling(cl) # get the `Bijector` map `θ -&gt; b(⋅, θ)`
+Shift
+
+julia&gt; couple(cl, x) # get the `Bijector` resulting from `x`
+Shift{Array{Float64,1},1}([2.0])</code></pre><p><strong>References</strong></p><p>[1] Kobyzev, I., Prince, S., &amp; Brubaker, M. A., Normalizing flows: introduction and ideas, CoRR, (),  (2019). </p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.Inverse" href="#Bijectors.Inverse"><code>Bijectors.Inverse</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">inverse(b::Bijector)
+Inverse(b::Bijector)</code></pre><p>A <code>Bijector</code> representing the inverse transform of <code>b</code>.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.LeakyReLU" href="#Bijectors.LeakyReLU"><code>Bijectors.LeakyReLU</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">LeakyReLU{T, N}(α::T) &lt;: Bijector{N}</code></pre><p>Defines the invertible mapping</p><pre><code class="nohighlight hljs">x ↦ x if x ≥ 0 else αx</code></pre><p>where α &gt; 0.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.NamedBijector" href="#Bijectors.NamedBijector"><code>Bijectors.NamedBijector</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">NamedBijector &lt;: AbstractNamedBijector</code></pre><p>Wraps a <code>NamedTuple</code> of key -&gt; <code>Bijector</code> pairs, implementing evaluation, inversion, etc.</p><p><strong>Examples</strong></p><pre><code class="language-julia-repl hljs">julia&gt; using Bijectors: NamedBijector, Scale, Exp
+
+julia&gt; b = NamedBijector((a = Scale(2.0), b = Exp()));
+
+julia&gt; x = (a = 1., b = 0., c = 42.);
+
+julia&gt; b(x)
+(a = 2.0, b = 1.0, c = 42.0)
+
+julia&gt; (a = 2 * x.a, b = exp(x.b), c = x.c)
+(a = 2.0, b = 1.0, c = 42.0)</code></pre></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.NamedComposition" href="#Bijectors.NamedComposition"><code>Bijectors.NamedComposition</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">NamedComposition &lt;: AbstractNamedBijector</code></pre><p>Wraps a tuple of array of <code>AbstractNamedBijector</code> and implements their composition.</p><p>This is very similar to <code>Composed</code> for <code>Bijector</code>, with the exception that we do not require the inputs to have the same &quot;dimension&quot;, which in this case refers to the <em>symbols</em> for the <code>NamedTuple</code> that this takes as input.</p><p>See also: <a href="#Bijectors.Composed"><code>Composed</code></a></p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.NamedCoupling" href="#Bijectors.NamedCoupling"><code>Bijectors.NamedCoupling</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">NamedCoupling{target, deps, F} &lt;: AbstractNamedBijector</code></pre><p>Implements a coupling layer for named bijectors.</p><p><strong>Examples</strong></p><pre><code class="language-julia-repl hljs">julia&gt; using Bijectors: NamedCoupling, Scale
+
+julia&gt; b = NamedCoupling(:b, (:a, :c), (a, c) -&gt; Scale(a + c))
+NamedCoupling{:b,(:a, :c),var&quot;#3#4&quot;}(var&quot;#3#4&quot;())
+
+julia&gt; x = (a = 1., b = 2., c = 3.);
+
+julia&gt; b(x)
+(a = 1.0, b = 8.0, c = 3.0)
+
+julia&gt; (a = x.a, b = (x.a + x.c) * x.b, c = x.c)
+(a = 1.0, b = 8.0, c = 3.0)</code></pre></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.NamedInverse" href="#Bijectors.NamedInverse"><code>Bijectors.NamedInverse</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">NamedInverse &lt;: AbstractNamedBijector</code></pre><p>Represents the inverse of a <code>AbstractNamedBijector</code>, similarily to <code>Inverse</code> for <code>Bijector</code>.</p><p>See also: <a href="#Bijectors.Inverse"><code>Inverse</code></a></p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.OrderedBijector" href="#Bijectors.OrderedBijector"><code>Bijectors.OrderedBijector</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">OrderedBijector()</code></pre><p>A bijector mapping ordered vectors in ℝᵈ to unordered vectors in ℝᵈ.</p><p><strong>See also</strong></p><ul><li><a href="https://mc-stan.org/docs/2_27/reference-manual/ordered-vector.html">Stan&#39;s documentation</a><ul><li>Note that this transformation and its inverse are the <em>opposite</em> of in this reference.</li></ul></li></ul></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.PartitionMask" href="#Bijectors.PartitionMask"><code>Bijectors.PartitionMask</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">PartitionMask{A}(A_1::A, A_2::A, A_3::A) where {A}</code></pre><p>This is used to partition and recombine a vector into 3 disjoint &quot;subvectors&quot;.</p><p>Implements</p><ul><li><code>partition(m::PartitionMask, x)</code>: partitions <code>x</code> into 3 disjoint &quot;subvectors&quot;</li><li><code>combine(m::PartitionMask, x_1, x_2, x_3)</code>: combines 3 disjoint vectors into a single one</li></ul><p>Note that <code>PartitionMask</code> is <em>not</em> a <code>Bijector</code>. It is indeed a bijection, but does not follow the <code>Bijector</code> interface.</p><p>Its main use is in <code>Coupling</code> where we want to partition the input into 3 parts, one part to transform, one part to map into the parameter-space of the transform applied to the first part, and the last part of the vector is not used for anything.</p><p><strong>Examples</strong></p><pre><code class="language-julia-repl hljs">julia&gt; using Bijectors: PartitionMask, partition, combine
+
+julia&gt; m = PartitionMask(3, [1], [2]) # &lt;= assumes input-length 3
+PartitionMask{Bool,SparseArrays.SparseMatrixCSC{Bool,Int64}}(
+  [1, 1]  =  true, 
+  [2, 1]  =  true, 
+  [3, 1]  =  true)
+
+julia&gt; # Partition into 3 parts; the last part is inferred to be indices `[3, ]` from
+       # the fact that `[1]` and `[2]` does not make up all indices in `1:3`.
+       x1, x2, x3 = partition(m, [1., 2., 3.])
+([1.0], [2.0], [3.0])
+
+julia&gt; # Recombines the partitions into a vector
+       combine(m, x1, x2, x3)
+3-element Array{Float64,1}:
+ 1.0
+ 2.0
+ 3.0</code></pre><p>Note that the underlying <code>SparseMatrix</code> is using <code>Bool</code> as the element type. We can also specify this to be some other type using the <code>sp_type</code> keyword:</p><pre><code class="language-julia-repl hljs">julia&gt; m = PartitionMask{Float32}(3, [1], [2])
+PartitionMask{Float32,SparseArrays.SparseMatrixCSC{Float32,Int64}}(
+  [1, 1]  =  1.0, 
+  [2, 1]  =  1.0, 
+  [3, 1]  =  1.0)</code></pre></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.PartitionMask-Union{Tuple{T}, Tuple{Int64, Any}} where T" href="#Bijectors.PartitionMask-Union{Tuple{T}, Tuple{Int64, Any}} where T"><code>Bijectors.PartitionMask</code></a> — <span class="docstring-category">Method</span></header><section><div><pre><code class="language-julia hljs">PartitionMask(n::Int, indices)</code></pre><p>Assumes you want to <em>split</em> the vector, where <code>indices</code> refer to the  parts of the vector you want to apply the bijector to.</p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.Permute" href="#Bijectors.Permute"><code>Bijectors.Permute</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">Permute{A} &lt;: Bijector{1}</code></pre><p>A bijector implementation of a permutation. The permutation is performed using a matrix of type <code>A</code>. There are a couple of different ways to construct <code>Permute</code>:</p><pre><code class="nohighlight hljs">Permute([0 1; 1 0])          # will map [1, 2] =&gt; [2, 1]
+Permute([2, 1])              # will map [1, 2] =&gt; [2, 1]
+Permute(2, 2 =&gt; 1, 1 =&gt; 2)   # will map [1, 2] =&gt; [2, 1]
+Permute(2, [1, 2] =&gt; [2, 1]) # will map [1, 2] =&gt; [2, 1]</code></pre><p>If this is not clear, the examples might be of help.</p><p><strong>Examples</strong></p><p>A simple example is permuting a vector of size 3.</p><pre><code class="language-julia-repl hljs">julia&gt; b1 = Permute([
+           0 1 0;
+           1 0 0;
+           0 0 1
+       ])
+Permute{Array{Int64,2}}([0 1 0; 1 0 0; 0 0 1])
+
+julia&gt; b2 = Permute([2, 1, 3])           # specify all elements at once
+Permute{SparseArrays.SparseMatrixCSC{Float64,Int64}}(
+
+  [2, 1]  =  1.0
+  [1, 2]  =  1.0
+  [3, 3]  =  1.0)
+
+julia&gt; b3 = Permute(3, 2 =&gt; 1, 1 =&gt; 2)    # element-wise
+Permute{SparseArrays.SparseMatrixCSC{Float64,Int64}}(
+  [2, 1]  =  1.0
+  [1, 2]  =  1.0
+  [3, 3]  =  1.0)
+
+julia&gt; b4 = Permute(3, [1, 2] =&gt; [2, 1])  # block-wise
+Permute{SparseArrays.SparseMatrixCSC{Float64,Int64}}(
+  [2, 1]  =  1.0
+  [1, 2]  =  1.0
+  [3, 3]  =  1.0)
+
+julia&gt; b1.A == b2.A == b3.A == b4.A
+true
+
+julia&gt; b1([1., 2., 3.])
+3-element Array{Float64,1}:
+ 2.0
+ 1.0
+ 3.0
+
+julia&gt; b2([1., 2., 3.])
+3-element Array{Float64,1}:
+ 2.0
+ 1.0
+ 3.0
+
+julia&gt; b3([1., 2., 3.])
+3-element Array{Float64,1}:
+ 2.0
+ 1.0
+ 3.0
+
+julia&gt; b4([1., 2., 3.])
+3-element Array{Float64,1}:
+ 2.0
+ 1.0
+ 3.0
+
+julia&gt; inverse(b1)
+Permute{LinearAlgebra.Transpose{Int64,Array{Int64,2}}}([0 1 0; 1 0 0; 0 0 1])
+
+julia&gt; inverse(b1)(b1([1., 2., 3.]))
+3-element Array{Float64,1}:
+ 1.0
+ 2.0
+ 3.0</code></pre></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.RationalQuadraticSpline" href="#Bijectors.RationalQuadraticSpline"><code>Bijectors.RationalQuadraticSpline</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">RationalQuadraticSpline{T, 0} &lt;: Bijector{0}
+RationalQuadraticSpline{T, 1} &lt;: Bijector{1}</code></pre><p>Implementation of the Rational Quadratic Spline flow [1].</p><ul><li>Outside of the interval <code>[minimum(widths), maximum(widths)]</code>, this mapping is given  by the identity map. </li><li>Inside the interval it&#39;s given by a monotonic spline (i.e. monotonic polynomials  connected at intermediate points) with endpoints fixed so as to continuously transform into the identity map.</li></ul><p>For the sake of efficiency, there are separate implementations for 0-dimensional and 1-dimensional inputs.</p><p><strong>Notes</strong></p><p>There are two constructors for <code>RationalQuadraticSpline</code>:</p><ul><li><code>RationalQuadraticSpline(widths, heights, derivatives)</code>: it is assumed that <code>widths</code>, </li></ul><p><code>heights</code>, and <code>derivatives</code> satisfy the constraints that makes this a valid bijector, i.e.</p><ul><li><code>widths</code>: monotonically increasing and <code>length(widths) == K</code>,</li><li><code>heights</code>: monotonically increasing and <code>length(heights) == K</code>,</li><li><code>derivatives</code>: non-negative and <code>derivatives[1] == derivatives[end] == 1</code>.</li><li><code>RationalQuadraticSpline(widths, heights, derivatives, B)</code>: other than than the lengths,  no assumptions are made on parameters. Therefore we will transform the parameters s.t.:</li><li><code>widths_new</code> ∈ [-B, B]ᴷ⁺¹, where <code>K == length(widths)</code>,</li><li><code>heights_new</code> ∈ [-B, B]ᴷ⁺¹, where <code>K == length(heights)</code>,</li><li><code>derivatives_new</code> ∈ (0, ∞)ᴷ⁺¹ with <code>derivatives_new[1] == derivates_new[end] == 1</code>,  where <code>(K - 1) == length(derivatives)</code>.</li></ul><p><strong>Examples</strong></p><p><strong>Univariate</strong></p><pre><code class="language-julia-repl hljs">julia&gt; using Bijectors: RationalQuadraticSpline
+
+julia&gt; K = 3; B = 2;
+
+julia&gt; # Monotonic spline on &#39;[-B, B]&#39; with `K` intermediate knots/&quot;connection points&quot;.
+       b = RationalQuadraticSpline(randn(K), randn(K), randn(K - 1), B);
+
+julia&gt; b(0.5) # inside of `[-B, B]` → transformed
+1.412300607463467
+
+julia&gt; b(5.) # outside of `[-B, B]` → not transformed
+5.0</code></pre><p>Or we can use the constructor with the parameters correctly constrained:</p><pre><code class="language-julia-repl hljs">julia&gt; b = RationalQuadraticSpline(b.widths, b.heights, b.derivatives);
+
+julia&gt; b(0.5) # inside of `[-B, B]` → transformed
+1.412300607463467</code></pre><p><strong>Multivariate</strong></p><pre><code class="language-julia-repl hljs">julia&gt; d = 2; K = 3; B = 2;
+
+julia&gt; b = RationalQuadraticSpline(randn(d, K), randn(d, K), randn(d, K - 1), B);
+
+julia&gt; b([-1., 1.])
+2-element Array{Float64,1}:
+ -1.2568224171342797
+  0.5537259740554675
+
+julia&gt; b([-5., 5.])
+2-element Array{Float64,1}:
+ -5.0
+  5.0
+
+julia&gt; b([-1., 5.])
+2-element Array{Float64,1}:
+ -1.2568224171342797
+  5.0</code></pre><p><strong>References</strong></p><p>[1] Durkan, C., Bekasov, A., Murray, I., &amp; Papamakarios, G., Neural Spline Flows, CoRR, arXiv:1906.04032 [stat.ML],  (2019). </p></div></section></article><article class="docstring"><header><a class="docstring-binding" id="Bijectors.Stacked" href="#Bijectors.Stacked"><code>Bijectors.Stacked</code></a> — <span class="docstring-category">Type</span></header><section><div><pre><code class="language-julia hljs">Stacked(bs)
+Stacked(bs, ranges)
+stack(bs::Bijector{0}...) # where `0` means 0-dim `Bijector`</code></pre><p>A <code>Bijector</code> which stacks bijectors together which can then be applied to a vector where <code>bs[i]::Bijector</code> is applied to <code>x[ranges[i]]::UnitRange{Int}</code>.</p><p><strong>Arguments</strong></p><ul><li><code>bs</code> can be either a <code>Tuple</code> or an <code>AbstractArray</code> of 0- and/or 1-dimensional bijectors<ul><li>If <code>bs</code> is a <code>Tuple</code>, implementations are type-stable using generated functions</li><li>If <code>bs</code> is an <code>AbstractArray</code>, implementations are <em>not</em> type-stable and use iterative methods</li></ul></li><li><code>ranges</code> needs to be an iterable consisting of <code>UnitRange{Int}</code><ul><li><code>length(bs) == length(ranges)</code> needs to be true.</li></ul></li></ul><p><strong>Examples</strong></p><pre><code class="nohighlight hljs">b1 = Logit(0.0, 1.0)
+b2 = Identity{0}()
+b = stack(b1, b2)
+b([0.0, 1.0]) == [b1(0.0), 1.0]  # =&gt; true</code></pre></div></section></article></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../advancedhmc/">« AdvancedHMC.jl</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.14 on <span class="colophon-date" title="Saturday 25 June 2022 11:12">Saturday 25 June 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

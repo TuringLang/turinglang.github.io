@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+   
+  <link rel="stylesheet" href="/css/franklin.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/turinglang.css">
+<link rel="icon" href="/assets/favicon.ico">
+   <title>Customized Distributions</title>  
+</head>
+<body>
+<header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
+  <nav class="float-left block mt-1">
+    <a class="text-base pr-2" href="/">Home</a>
+    <a class="text-base px-2" href="/guides/get-started/">Get Started</a>
+    <a class="text-base px-2" href="/guides/">Guides</a>
+    <a class="text-base px-2" href="/tutorials/">Tutorials</a>
+    <a class="text-base px-2" href="/docs/">Docs</a>
+    <a class="text-base px-2" href="/news/">News</a>
+    <a class="text-base pl-2" href="/team/">Team</a>
+  </nav>
+
+  <div class="float-right"><a style="background-image: url('/assets/turing-logo-wide.svg');" class="text-2xl px-1 pl-48" href="https://github.com/TuringLang">The Turing Language</a> <a href="https://github.com/TuringLang/Turing.jl"><img class="inline px-1" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/turinglang/Turing.jl?style=social"></a> <a href="https://twitter.com/TuringLang"><img class="inline px-1" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/TuringLang?style=social"></a></div>
+</header>
+
+
+<!-- Content appended here -->
+<div class="franklin-content"><h1 id="how_to_define_customized_distributions"><a href="#how_to_define_customized_distributions" class="header-anchor">How to Define Customized Distributions</a></h1>
+<p>Turing.jl supports the use of distributions from the Distributions.jl package. By extension it also supports the use of customized distributions, by defining them as subtypes of <code>Distribution</code> type of the Distributions.jl package, as well as corresponding functions.</p>
+<p>Below shows a workflow of how to define a customized distribution, using our own implementation of a simple <code>Uniform</code> distribution as a simple example.</p>
+<h2 id="define_the_distribution_type"><a href="#define_the_distribution_type" class="header-anchor"><ol>
+<li><p>Define the Distribution Type</p>
+</li>
+</ol>
+</a></h2>
+<p>First, define a type of the distribution, as a subtype of a corresponding distribution type in the Distributions.jl package.</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">struct</span> CustomUniform &lt;: ContinuousUnivariateDistribution <span class="hljs-keyword">end</span></code></pre>
+<h2 id="ol_start2_implement_sampling_and_evaluation_of_the_log-pdf"><a href="#ol_start2_implement_sampling_and_evaluation_of_the_log-pdf" class="header-anchor"><ol start="2">
+<li><p>Implement Sampling and Evaluation of the log-pdf</p>
+</li>
+</ol>
+</a></h2>
+<p>Second, define <code>rand</code> and <code>logpdf</code>, which will be used to run the model.</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># sample in [0, 1]</span>
+Distributions.rand(rng::AbstractRNG, d::CustomUniform) = rand(rng)
+<span class="hljs-comment"># p(x) = 1 → logp(x) = 0</span>
+Distributions.logpdf(d::CustomUniform, x::<span class="hljs-built_in">Real</span>) = zero(x)</code></pre>
+<h2 id="ol_start3_define_helper_functions"><a href="#ol_start3_define_helper_functions" class="header-anchor"><ol start="3">
+<li><p>Define Helper Functions</p>
+</li>
+</ol>
+</a></h2>
+<p>In most cases, it may be required to define some helper functions.</p>
+<h2 id="31_domain_transformation"><a href="#31_domain_transformation" class="header-anchor">3.1 Domain Transformation</a></h2>
+<p>Certain samplers, such as <code>HMC</code>, require the domain of the priors to be unbounded. Therefore, to use our <code>CustomUniform</code> as a prior in a model we also need to define how to transform samples from <code>&#91;0, 1&#93;</code> to <code>ℝ</code>. To do this, we simply need to define the corresponding <code>Bijector</code> from <code>Bijectors.jl</code>, which is what <code>Turing.jl</code> uses internally to deal with constrained distributions.</p>
+<p>To transform from <code>&#91;0, 1&#93;</code> to <code>ℝ</code> we can use the <code>Logit</code> bijector:</p>
+<pre><code class="julia hljs">Bijectors.bijector(d::CustomUniform) = Logit(<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>)</code></pre>
+<p>You&#39;d do the exact same thing for <code>ContinuousMultivariateDistribution</code> and <code>ContinuousMatrixDistribution</code>. For example, <code>Wishart</code> defines a distribution over positive-definite matrices and so <code>bijector</code> returns a <code>PDBijector</code> when called with a <code>Wishart</code> distribution as an argument. For discrete distributions, there is no need to define a bijector; the <code>Identity</code> bijector is used by default.</p>
+<p>Alternatively, for <code>UnivariateDistribution</code> we can define the <code>minimum</code> and <code>maximum</code> of the distribution</p>
+<pre><code class="julia hljs">Distributions.minimum(d::CustomUniform) = <span class="hljs-number">0.</span>
+Distributions.maximum(d::CustomUniform) = <span class="hljs-number">1.</span></code></pre>
+<p>and <code>Bijectors.jl</code> will return a default <code>Bijector</code> called <code>TruncatedBijector</code> which makes use of <code>minimum</code> and <code>maximum</code> derive the correct transformation.</p>
+<p>Internally, Turing basically does the following when it needs to convert a constrained distribution to an unconstrained distribution, e.g. when sampling using <code>HMC</code>:</p>
+<pre><code class="julia hljs">b = bijector(dist)
+transformed_dist = transformed(dist, b) <span class="hljs-comment"># results in distribution with transformed support + correction for logpdf</span></code></pre>
+<p>and then we can call <code>rand</code> and <code>logpdf</code> as usual, where</p>
+<ul>
+<li><p><code>rand&#40;transformed_dist&#41;</code> returns a sample in the unconstrained space, and</p>
+</li>
+<li><p><code>logpdf&#40;transformed_dist, y&#41;</code> returns the log density of the original distribution, but with <code>y</code> living in the unconstrained space.</p>
+</li>
+</ul>
+<p>To read more about Bijectors.jl, check out <a href="https://github.com/TuringLang/Bijectors.jl">the project README</a>.</p>
+<div class="page-foot">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> <a href="/team/">The TuringLang Team</a>. Last modified: June 25, 2022.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    
+    
+        
+
+
+    
+  </body>
+</html>

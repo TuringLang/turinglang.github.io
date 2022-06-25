@@ -5,9 +5,11 @@
 :root {
   --block-background: hsl(0, 0%, 94%);
   --output-background: hsl(0, 0%, 98%);
-  --small: 14px;
-  --normal: 19px;
+  --small: 13px;
+  --normal: 16px;
   --text-color: hsv(0, 0%, 20%);
+  --navbar-height: 3.5rem;
+  --turing-green-dark: #073c44;
 }
 
 /* ==================================================================
@@ -81,15 +83,16 @@ html {
 
 .franklin-content {
   position: relative;
-  padding-left: 12.5%;
-  padding-right: 12.5%;
+  /* margin-top: calc(var(--navbar-height) + 1rem); */
+  padding-left: 0;
+  padding-right: 0;
   line-height: 1.35em;
 }
 
 /* On wide screens, fix content width to a max value. */
 @media (min-width: 940px) {
   .franklin-content {
-    width: 705px;
+    width: 800px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -107,9 +110,9 @@ html {
     TITLES
 ================================================================== */
 
-.franklin-content h1 { font-size: 24px; }
-.franklin-content h2 { font-size: 22px; }
-.franklin-content h3 { font-size: 20px; }
+.franklin-content h1 { font-size: 22px; }
+.franklin-content h2 { font-size: 20px; }
+.franklin-content h3 { font-size: 18px; }
 
 .franklin-content h1,
 h2,
@@ -121,17 +124,24 @@ h6 {
 }
 
 .franklin-content h1 {
-  padding-bottom: 0.5em;
-  border-bottom: 3px double lightgrey;
-  margin-top: 1.5em;
-  margin-bottom: 1em;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .franklin-content h2 {
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid lightgrey;
-  margin-top: 2em;
-  margin-bottom: 1em;
+  font-weight: bold;
+  padding-left: calc(0.5rem - 2px);
+  border-left: 2px solid green;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.franklin-content h3 {
+  padding-left: calc(0.5rem - 2px);
+  border-left: 2px solid green;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .franklin-content h1 a { color: inherit; }
@@ -147,11 +157,23 @@ h6 {
 .franklin-content h6 a { color: inherit; }
 .franklin-content h6 a:hover { text-decoration: none; }
 
+.franklin-content p {
+  margin-bottom: 0.5rem;
+}
+
+.franklin-content pre {
+  margin: 1rem 0.5rem;
+}
+
 .franklin-content table {
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
   text-align: center;
+}
+
+.franklin-content ul {
+  list-style: disc;
 }
 
 .franklin-toc ol ol {
@@ -175,6 +197,7 @@ td {
 
 .franklin-content blockquote p {
   display: inline;
+  
 }
 
 /* ==================================================================
@@ -187,7 +210,7 @@ td {
 }
 
 .franklin-content a {
-  color: #004de6;
+  color: var(--turing-green-dark);
   text-decoration: none;
 }
 
@@ -285,7 +308,7 @@ body { counter-reset: eqnum; }
     CODE & HIGHLIGHT.JS
 ================================================================== */
 
-code {
+.franklin-content code {
   background-color: var(--block-background);
   padding: 0.1em 0.2em;
   border-radius: 2px;

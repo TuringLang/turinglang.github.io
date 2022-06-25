@@ -9,7 +9,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="/css/turinglang.css">
 <link rel="icon" href="/assets/favicon.ico">
-   <title>News</title>  
+   <title>Task Copying</title>  
 </head>
 <body>
 <header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
@@ -28,7 +28,9 @@
 
 
 <!-- Content appended here -->
-<div class="franklin-content"><div class="page-foot">
+<div class="franklin-content"><h1 id="task_copying_in_turing"><a href="#task_copying_in_turing" class="header-anchor">Task Copying in Turing</a></h1>
+<p>Turing <a href="https://github.com/JuliaLang/julia/issues/4085">copies</a> Julia tasks to deliver efficient inference algorithms, but it also provides alternative slower implementation as a fallback. Task copying is enabled by default. Task copying requires us to use the <code>TapedTask</code> facility which is provided by <a href="https://github.com/TuringLang/Libtask.jl">Libtask</a> to create tasks.</p>
+<div class="page-foot">
     <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> <a href="/team/">The TuringLang Team</a>. Last modified: June 25, 2022.
     Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
 </div>

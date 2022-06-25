@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+   
+  <link rel="stylesheet" href="/css/franklin.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/turinglang.css">
+<link rel="icon" href="/assets/favicon.ico">
+   <title>Probabilistic Programming in Thirty Seconds</title>  
+</head>
+<body>
+<header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
+  <nav class="float-left block mt-1">
+    <a class="text-base pr-2" href="/">Home</a>
+    <a class="text-base px-2" href="/guides/get-started/">Get Started</a>
+    <a class="text-base px-2" href="/guides/">Guides</a>
+    <a class="text-base px-2" href="/tutorials/">Tutorials</a>
+    <a class="text-base px-2" href="/docs/">Docs</a>
+    <a class="text-base px-2" href="/news/">News</a>
+    <a class="text-base pl-2" href="/team/">Team</a>
+  </nav>
+
+  <div class="float-right"><a style="background-image: url('/assets/turing-logo-wide.svg');" class="text-2xl px-1 pl-48" href="https://github.com/TuringLang">The Turing Language</a> <a href="https://github.com/TuringLang/Turing.jl"><img class="inline px-1" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/turinglang/Turing.jl?style=social"></a> <a href="https://twitter.com/TuringLang"><img class="inline px-1" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/TuringLang?style=social"></a></div>
+</header>
+
+
+<!-- Content appended here -->
+<div class="franklin-content"><h1 id="probabilistic_programming_in_thirty_seconds"><a href="#probabilistic_programming_in_thirty_seconds" class="header-anchor">Probabilistic Programming in Thirty Seconds</a></h1>
+<p>If you are already well-versed in probabilistic programming and just want to take a quick look at how Turing&#39;s syntax works or otherwise just want a model to start with, we have provided a Bayesian coin-flipping model to play with.</p>
+<p>This example can be run on however you have Julia installed &#40;see <a href="/docs/using-turing/get-started">Getting Started</a>&#41;, but you will need to install the packages <code>Turing</code> and <code>StatsPlots</code> if you have not done so already.</p>
+<p>This is an excerpt from a more formal example introducing probabilistic programming which can be found in Jupyter notebook form <a href="https://nbviewer.jupyter.org/github/TuringLang/TuringTutorials/blob/master/notebook/00-introduction/00_introduction.ipynb">here</a> or as part of the documentation website <a href="/tutorials">here</a>.</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Import libraries.</span>
+<span class="hljs-keyword">using</span> Turing, StatsPlots, Random
+<span class="hljs-comment"># Set the true probability of heads in a coin.</span>
+p_true = <span class="hljs-number">0.5</span>
+<span class="hljs-comment"># Iterate from having seen 0 observations to 100 observations.</span>
+Ns = <span class="hljs-number">0</span>:<span class="hljs-number">100</span>
+<span class="hljs-comment"># Draw data from a Bernoulli distribution, i.e. draw heads or tails.</span>
+Random.seed!(<span class="hljs-number">12</span>)
+data = rand(Bernoulli(p_true), last(Ns))
+<span class="hljs-comment"># Declare our Turing model.</span>
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> coinflip(y)
+    <span class="hljs-comment"># Our prior belief about the probability of heads in a coin.</span>
+    p ~ Beta(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+    <span class="hljs-comment"># The number of observations.</span>
+    N = length(y)
+    <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:N
+        <span class="hljs-comment"># Heads or tails of a coin are drawn from a Bernoulli distribution.</span>
+        y[n] ~ Bernoulli(p)
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># Settings of the Hamiltonian Monte Carlo (HMC) sampler.</span>
+iterations = <span class="hljs-number">1000</span>
+ϵ = <span class="hljs-number">0.05</span>
+τ = <span class="hljs-number">10</span>
+<span class="hljs-comment"># Start sampling.</span>
+chain = sample(coinflip(data), HMC(ϵ, τ), iterations)
+<span class="hljs-comment"># Plot a summary of the sampling process for the parameter p, i.e. the probability of heads in a coin.</span>
+histogram(chain[:p])</code></pre>
+<div class="page-foot">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> <a href="/team/">The TuringLang Team</a>. Last modified: June 25, 2022.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    
+    
+        
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+   
+  <link rel="stylesheet" href="/css/franklin.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/turinglang.css">
+<link rel="icon" href="/assets/favicon.ico">
+   <title>Performance Tips</title>  
+</head>
+<body>
+<header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
+  <nav class="float-left block mt-1">
+    <a class="text-base pr-2" href="/">Home</a>
+    <a class="text-base px-2" href="/guides/get-started/">Get Started</a>
+    <a class="text-base px-2" href="/guides/">Guides</a>
+    <a class="text-base px-2" href="/tutorials/">Tutorials</a>
+    <a class="text-base px-2" href="/docs/">Docs</a>
+    <a class="text-base px-2" href="/news/">News</a>
+    <a class="text-base pl-2" href="/team/">Team</a>
+  </nav>
+
+  <div class="float-right"><a style="background-image: url('/assets/turing-logo-wide.svg');" class="text-2xl px-1 pl-48" href="https://github.com/TuringLang">The Turing Language</a> <a href="https://github.com/TuringLang/Turing.jl"><img class="inline px-1" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/turinglang/Turing.jl?style=social"></a> <a href="https://twitter.com/TuringLang"><img class="inline px-1" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/TuringLang?style=social"></a></div>
+</header>
+
+
+<!-- Content appended here -->
+<div class="franklin-content"><h1 id="performance_tips"><a href="#performance_tips" class="header-anchor">Performance Tips</a></h1>
+<p>This section briefly summarises a few common techniques to ensure good performance when using Turing. We refer to <a href="https://docs.julialang.org/en/v1/manual/performance-tips/index.html">the Julia documentation</a> for general techniques to ensure good performance of Julia programs.</p>
+<h2 id="use_multivariate_distributions"><a href="#use_multivariate_distributions" class="header-anchor">Use multivariate distributions</a></h2>
+<p>It is generally preferable to use multivariate distributions if possible.</p>
+<p>The following example:</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gmodel(x)
+    m ~ Normal()
+    <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>:length(x)
+        x[i] ~ Normal(m, <span class="hljs-number">0.2</span>)
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+<p>can be directly expressed more efficiently using a simple transformation:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> FillArrays
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gmodel(x)
+    m ~ Normal()
+    x ~ MvNormal(Fill(m, length(x)), <span class="hljs-number">0.04</span> * I)
+<span class="hljs-keyword">end</span></code></pre>
+<h2 id="choose_your_ad_backend"><a href="#choose_your_ad_backend" class="header-anchor">Choose your AD backend</a></h2>
+<p>Turing currently provides support for two different automatic differentiation &#40;AD&#41; backends.  Generally, try to use <code>:forwarddiff</code> for models with few parameters and <code>:reversediff</code>, <code>:tracker</code> or <code>:zygote</code> for models with large parameter vectors or linear algebra operations. See <a href="autodiff">Automatic Differentiation</a> for details.</p>
+<h2 id="special_care_for_tracker_and_zygote"><a href="#special_care_for_tracker_and_zygote" class="header-anchor">Special care for <code>:tracker</code> and <code>:zygote</code></a></h2>
+<p>In case of <code>:tracker</code> and <code>:zygote</code>, it is necessary to avoid loops for now. This is mainly due to the reverse-mode AD backends <code>Tracker</code> and <code>Zygote</code> which are inefficient for such cases. <code>ReverseDiff</code> does better but vectorized operations will still perform better.</p>
+<p>Avoiding loops can be done using <code>filldist&#40;dist, N&#41;</code> and <code>arraydist&#40;dists&#41;</code>. <code>filldist&#40;dist, N&#41;</code> creates a multivariate distribution that is composed of <code>N</code> identical and independent copies of the univariate distribution <code>dist</code> if <code>dist</code> is univariate, or it creates a matrix-variate distribution composed of <code>N</code> identical and idependent copies of the multivariate distribution <code>dist</code> if <code>dist</code> is multivariate. <code>filldist&#40;dist, N, M&#41;</code> can also be used to create a matrix-variate distribution from a univariate distribution <code>dist</code>. <code>arraydist&#40;dists&#41;</code> is similar to <code>filldist</code> but it takes an array of distributions <code>dists</code> as input. Writing a <a href="advanced">custom distribution</a> with a custom adjoint is another option to avoid loops.</p>
+<h2 id="ensure_that_types_in_your_model_can_be_inferred"><a href="#ensure_that_types_in_your_model_can_be_inferred" class="header-anchor">Ensure that types in your model can be inferred</a></h2>
+<p>For efficient gradient-based inference, e.g. using HMC, NUTS or ADVI, it is important to ensure the types in your model can be inferred.</p>
+<p>The following example with abstract types</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> tmodel(x, y)
+    p,n = size(x)
+    params = <span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Real</span>}(<span class="hljs-literal">undef</span>, n)
+    <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>:n
+        params[i] ~ truncated(Normal(), <span class="hljs-number">0</span>, <span class="hljs-literal">Inf</span>)
+    <span class="hljs-keyword">end</span>
+    a = x * params
+    y ~ MvNormal(a, I)
+<span class="hljs-keyword">end</span></code></pre>
+<p>can be transformed into the following representation with concrete types:</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> tmodel(x, y, ::<span class="hljs-built_in">Type</span>{T} = <span class="hljs-built_in">Float64</span>) <span class="hljs-keyword">where</span> {T}
+    p,n = size(x)
+    params = <span class="hljs-built_in">Vector</span>{T}(<span class="hljs-literal">undef</span>, n)
+    <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span>:n
+        params[i] ~ truncated(Normal(), <span class="hljs-number">0</span>, <span class="hljs-literal">Inf</span>)
+    <span class="hljs-keyword">end</span>
+    a = x * params
+    y ~ MvNormal(a, I)
+<span class="hljs-keyword">end</span></code></pre>
+<p>Alternatively, you could use <code>filldist</code> in this example:</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> tmodel(x, y)
+    params ~ filldist(truncated(Normal(), <span class="hljs-number">0</span>, <span class="hljs-literal">Inf</span>), size(x, <span class="hljs-number">2</span>))
+    a = x * params
+    y ~ MvNormal(a, I)
+<span class="hljs-keyword">end</span></code></pre>
+<p>Note that you can use <code>@code_warntype</code> to find types in your model definition that the compiler cannot infer. They are marked in red in the Julia REPL.</p>
+<p>For example, consider the following simple program:</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> tmodel(x)
+    p = <span class="hljs-built_in">Vector</span>{<span class="hljs-built_in">Real</span>}(<span class="hljs-literal">undef</span>, <span class="hljs-number">1</span>)
+    p[<span class="hljs-number">1</span>] ~ Normal()
+    p = p .+ <span class="hljs-number">1</span>
+    x ~ Normal(p[<span class="hljs-number">1</span>])
+<span class="hljs-keyword">end</span></code></pre>
+<p>We can use</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Random
+model = tmodel(<span class="hljs-number">1.0</span>)
+<span class="hljs-meta">@code_warntype</span> model.f(
+    model,
+    Turing.VarInfo(model),
+    Turing.SamplingContext(
+        Random.GLOBAL_RNG, Turing.SampleFromPrior(), Turing.DefaultContext(),
+    ),
+    model.args...,
+)</code></pre>
+<p>to inspect type inference in the model.</p>
+<h2 id="reuse_computations_in_gibbs_sampling"><a href="#reuse_computations_in_gibbs_sampling" class="header-anchor">Reuse Computations in Gibbs Sampling</a></h2>
+<p>Often when performing Gibbs sampling, one can save computational time by caching the output of expensive functions. The cached values can then be reused in future Gibbs sub-iterations which do not change the inputs to this expensive function. For example in the following model</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> demo(x)
+    a ~ Gamma()
+    b ~ Normal()
+    c = function1(a)
+    d = function2(b)
+    x .~ Normal(c, d)
+<span class="hljs-keyword">end</span>
+alg = Gibbs(MH(:a), MH(:b))
+sample(demo(zeros(<span class="hljs-number">10</span>)), alg, <span class="hljs-number">1000</span>)</code></pre>
+<p>when only updating <code>a</code> in a Gibbs sub-iteration, keeping <code>b</code> the same, the value of <code>d</code> doesn&#39;t change. And when only updating <code>b</code>, the value of <code>c</code> doesn&#39;t change. However, if <code>function1</code> and <code>function2</code> are expensive and are both run in every Gibbs sub-iteration, a lot of time would be spent computing values that we already computed before. Such a problem can be overcome using <code>Memoization.jl</code>. Memoizing a function lets us store and reuse the output of the function for every input it is called with. This has a slight time overhead but for expensive functions, the savings will be far greater. </p>
+<p>To use <code>Memoization.jl</code>, simply define memoized versions of <code>function1</code> and <code>function2</code> as such:</p>
+<pre><code class="julia hljs"><span class="hljs-keyword">using</span> Memoization
+<span class="hljs-meta">@memoize</span> memoized_function1(args...) = function1(args...)
+<span class="hljs-meta">@memoize</span> memoized_function2(args...) = function2(args...)</code></pre>
+<p>Then define the <code>Turing</code> model using the new functions as such:</p>
+<pre><code class="julia hljs"><span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> demo(x)
+    a ~ Gamma()
+    b ~ Normal()
+    c = memoized_function1(a)
+    d = memoized_function2(b)
+    x .~ Normal(c, d)
+<span class="hljs-keyword">end</span></code></pre>
+<div class="page-foot">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> <a href="/team/">The TuringLang Team</a>. Last modified: June 25, 2022.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    
+    
+        
+
+
+    
+  </body>
+</html>

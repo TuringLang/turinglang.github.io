@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Turing x AbstractMCMC · Turing Documentations</title><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script><script src="https://cdn.tailwindcss.com"></script><style>#turing-navbar {
+    display: inline-block;
+    width: calc(100% - 18rem);
+    margin-left: 18rem;
+    margin-bottom: 0;
+}</style></head><header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
+  <nav class="float-left block mt-1">
+    <a class="text-base pr-2" href="/">Home</a>
+    <a class="text-base px-2" href="/guides/get-started/">Get Started</a>
+    <a class="text-base px-2" href="/guides/">Guides</a>
+    <a class="text-base px-2" href="/tutorials/">Tutorials</a>
+    <a class="text-base px-2" href="/docs/">Docs</a>
+    <a class="text-base px-2" href="/news/">News</a>
+    <a class="text-base pl-2" href="/team/">Team</a>
+  </nav>
+
+  <div class="float-right"><a style="background-image: url('/assets/turing-logo-wide.svg');" class="text-2xl px-1 pl-48" href="https://github.com/TuringLang">The Turing Language</a> <a href="https://github.com/TuringLang/Turing.jl"><img class="inline px-1" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/turinglang/Turing.jl?style=social"></a> <a href="https://twitter.com/TuringLang"><img class="inline px-1" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/TuringLang?style=social"></a></div>
+</header>
+<body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">Turing Documentations</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><span class="tocitem">Developer Guides</span><ul><li><a class="tocitem" href="../compiler-design/">Compiler Design</a></li><li><a class="tocitem" href="../sampling-interface/">Sampling interface</a></li><li class="is-active"><a class="tocitem" href>Turing x AbstractMCMC</a><ul class="internal"><li><a class="tocitem" href="#Introduction"><span>Introduction</span></a></li></ul></li><li><a class="tocitem" href="../how-to-contribute/">How to Contribute</a></li><li><a class="tocitem" href="../style-guide/">Style Guide</a></li></ul></li><li><a class="tocitem" href="../../turing/">Turing.jl</a></li><li><a class="tocitem" href="../../advancedhmc/">AdvancedHMC.jl</a></li><li><a class="tocitem" href="../../bijectors/">Bijectors.jl</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Developer Guides</a></li><li class="is-active"><a href>Turing x AbstractMCMC</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Turing x AbstractMCMC</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/TuringLang/turinglang.github.io/blob/master/docs/src/developer-guides/turing-abstractmcmc.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Turing-x-AbstractMCMC"><a class="docs-heading-anchor" href="#Turing-x-AbstractMCMC">Turing x AbstractMCMC</a><a id="Turing-x-AbstractMCMC-1"></a><a class="docs-heading-anchor-permalink" href="#Turing-x-AbstractMCMC" title="Permalink"></a></h1><p>This document describes how Turing implements AbstractMCMC.</p><p>Prerequisite: <a href="/docs/developer-guides/sampling-interface/">Sampling Interface</a>.</p><h2 id="Introduction"><a class="docs-heading-anchor" href="#Introduction">Introduction</a><a id="Introduction-1"></a><a class="docs-heading-anchor-permalink" href="#Introduction" title="Permalink"></a></h2><p>Consider the following Turing, code block:</p><pre><code class="language-julia hljs">@model function gdemo(x, y)
+    s² ~ InverseGamma(2, 3)
+    m ~ Normal(0, sqrt(s²))
+    x ~ Normal(m, sqrt(s²))
+    y ~ Normal(m, sqrt(s²))
+end
+mod = gdemo(1.5, 2)
+alg = IS()
+n_samples = 1000
+chn = sample(mod, alg, n_samples)</code></pre><p>The function <code>sample</code> is part of the AbstractMCMC interface. As explained in the <a href="https://turing.ml/dev/docs/for-developers/interface">interface guide</a>, building a a sampling method that can be used by <code>sample</code> consists in overloading the structs and functions in <code>AbstractMCMC</code>. The interface guide also gives a standalone example of their implementation, <a href="developer-guides/"><code>AdvancedMH.jl</code></a>.</p><p>Turing sampling methods (most of which are written <a href="https://github.com/TuringLang/Turing.jl/tree/master/src/inference">here</a>) also implement <code>AbstractMCMC</code>. Turing defines a particular architecture for <code>AbstractMCMC</code> implementations, that enables working with models defined by the <code>@model</code> macro, and uses DynamicPPL as a backend. The goal of this page is to describe this architecture, and how you would go about implementing your own sampling method in Turing, using Importance Sampling as an example. I don&#39;t go into all the details: for instance, I don&#39;t address selectors or parallelism.</p><p>First, we explain how Importance Sampling works in the abstract. Consider the model defined in the first code block. Mathematically, it can be written:</p><p class="math-container">\[
+\begin{align}
+s &amp;\sim \text{InverseGamma}(2, 3), \\
+m &amp;\sim \text{Normal}(0, \sqrt{s}), \\
+x &amp;\sim \text{Normal}(m, \sqrt{s}), \\
+y &amp;\sim \text{Normal}(m, \sqrt{s}),
+\end{align}
+$$
+
+The **latent** variables are $s$ and $m$, the **observed** variables are $x$ and $y$. The model **joint** distribution $p(s,m,x,y)$ decomposes into the **prior** $p(s,m)$ and the **likelihood** $p(x,y \mid s,m).$ Since $x = 1.5$ and $y = 2$ are observed, the goal is to infer the **posterior** distribution $p(s,m \mid x,y).$
+
+Importance Sampling produces independent samples $(s\_i, m\_i)$ from the prior distribution. It also outputs unnormalized weights
+
+$$
+w_i = \frac {p(x,y,s_i,m_i)} {p(s_i, m_i)} = p(x,y \mid s_i, m_i)
+$$
+
+such that the empirical distribution
+
+$$
+\frac{1}{N} \sum_{i =1}^N \frac {w_i} {\sum_{j=1}^N w_j} \delta_{(s_i, m_i)}
+$$ 
+
+is a good approximation of the posterior.
+
+## 1. Define a `Sampler`
+
+Recall the last line of the above code block:
+
+```julia
+chn = sample(mod, alg, n_samples)
+```
+
+Here `sample` takes as arguments a **model** `mod`, an **algorithm** `alg`, and a **number of samples** `n_samples`, and returns an instance `chn` of `Chains` which can be analysed using the functions in `MCMCChains`.
+
+### Models
+
+To define a **model**, you declare a joint distribution on variables in the `@model` macro, and specify which variables are observed and which should be inferred, as well as the value of the observed variables. Thus, when implementing Importance Sampling,
+
+```julia
+mod = gdemo(1.5, 2)
+```
+
+creates an instance `mod` of the struct `Model`, which corresponds to the observations of a value of `1.5` for `x`, and a value of `2` for `y`.
+
+This is all handled by DynamicPPL, more specifically [here](https://github.com/TuringLang/DynamicPPL.jl/blob/master/src/model.jl). I will return to how models are used to inform sampling algorithms [below](#assumeobserve).
+
+### Algorithms
+
+An **algorithm** is just a sampling method: in Turing, it is a subtype of the abstract type `InferenceAlgorithm`. Defining an algorithm may require specifying a few high-level parameters. For example, &quot;Hamiltonian Monte-Carlo&quot; may be too vague, but &quot;Hamiltonian Monte Carlo with  10 leapfrog steps per proposal and a stepsize of 0.01&quot; is an algorithm. &quot;Metropolis-Hastings&quot; may be too vague, but &quot;Metropolis-Hastings with proposal distribution `p`&quot; is an algorithm.
+Thus
+
+```julia
+stepsize = 0.01
+L = 10
+alg = HMC(stepsize, L)
+```
+
+defines a Hamiltonian Monte-Carlo algorithm, an instance of `HMC`, which is a subtype of `InferenceAlgorithm`.
+
+In the case of Importance Sampling, there is no need to specify additional parameters:
+
+```julia
+alg = IS()
+```
+
+defines an Importance Sampling algorithm, an instance of `IS` which is a subtype of `InferenceAlgorithm`.
+
+When creating your own Turing sampling method, you must therefore build a subtype of `InferenceAlgorithm` corresponding to your method.
+
+### Samplers
+
+Samplers are **not** the same as algorithms. An algorithm is a generic sampling method, a sampler is an object that stores information about how algorithm and model interact during sampling, and is modified as sampling progresses. The `Sampler` struct is defined in DynamicPPL.
+
+Turing implements `AbstractMCMC`&#39;s `AbstractSampler` with the `Sampler` struct defined in `DynamicPPL`. The most important attributes of an instance `spl` of `Sampler` are:
+
+* `spl.alg`: the sampling method used, an instance of a subtype of `InferenceAlgorithm`
+* `spl.state`: information about the sampling process, see [below](#States)
+
+When you call `sample(mod, alg, n_samples)`, Turing first uses `model` and `alg` to build an instance `spl` of `Sampler` , then calls the native `AbstractMCMC` function `sample(mod, spl, n_samples)`.
+
+When you define your own Turing sampling method, you must therefore build:
+
+* a **sampler constructor** that uses a model and an algorithm to initialize an instance of `Sampler`. For Importance Sampling:
+
+```julia
+function Sampler(alg::IS, model::Model, s::Selector)
+    info = Dict{Symbol, Any}()
+    state = ISState(model)
+    return Sampler(alg, info, s, state)
+end
+```
+
+* a **state** struct implementing `AbstractSamplerState` corresponding to your method: we cover this in the following paragraph.
+
+### &lt;a style=&quot;text-decoration:none&quot; name=&quot;States&quot;&gt;States&lt;/a&gt;
+
+The `vi` field contains all the important information about sampling: first and foremost, the values of all the samples, but also the distributions from which they are sampled, the names of model parameters, and other metadata. As we will see below, many important steps during sampling correspond to queries or updates to `spl.state.vi`.
+
+By default, you can use `SamplerState`, a concrete type defined in `inference/Inference.jl`, which extends `AbstractSamplerState` and has no field except for `vi`:
+
+```julia
+mutable struct SamplerState{VIType&lt;:VarInfo} &lt;: AbstractSamplerState
+    vi :: VIType
+end
+```
+
+When doing Importance Sampling, we care not only about the values of the samples but also their weights. We will see below that the weight of each sample is also added to `spl.state.vi`. Moreover, the average 
+
+$$
+\frac 1 N \sum_{j=1}^N w_i = \frac 1 N \sum_{j=1}^N p(x,y \mid s_i, m_i)
+$$ 
+
+of the sample weights is a particularly important quantity:
+
+* it is used to **normalize** the **empirical approximation** of the posterior distribution
+* its logarithm is the importance sampling **estimate** of the **log evidence** $\log p(x, y)$
+
+To avoid having to compute it over and over again, `is.jl`defines an IS-specific concrete type `ISState` for sampler states, with an additional field `final_logevidence` containing 
+
+$$
+\log \left( \frac 1 N \sum_{j=1}^N w_i \right).
+$$
+
+```julia
+mutable struct ISState{V&lt;:VarInfo, F&lt;:AbstractFloat} &lt;: AbstractSamplerState
+    vi                 ::  V
+    final_logevidence  ::  F
+end
+# additional constructor
+ISState(model::Model) = ISState(VarInfo(model), 0.0)
+```
+
+The following diagram summarizes the hierarchy presented above.
+
+![hierarchy](how_turing_implements_abstractmcmc_files/hierarchy.png)
+
+## 2. Overload the functions used inside `mcmcsample`
+
+A lot of the things here are method-specific. However Turing also has some functions that make it easier for you to implement these functions, for examples .
+
+### Transitions
+
+`AbstractMCMC` stores information corresponding to each individual sample in objects called `transition`, but does not specify what the structure of these objects could be. You could decide to implement a type `MyTransition` for transitions corresponding to the specifics of your methods. However, there are many situations in which the only information you need for each sample is:
+
+* its value: $\theta$
+* log of the joint probability of the observed data and this sample: `lp`
+
+`Inference.jl` [defines](https://github.com/TuringLang/Turing.jl/blob/master/src/inference/Inference.jl#L103) a struct `Transition`, which corresponds to this default situation
+
+```julia
+struct Transition{T, F&lt;:AbstractFloat}
+    θ  :: T
+    lp :: F
+end
+```
+
+It also [contains](https://github.com/TuringLang/Turing.jl/blob/master/src/inference/Inference.jl#L108) a constructor that builds an instance of `Transition` from an instance `spl` of `Sampler`: $\theta$ is `spl.state.vi` converted to a `namedtuple`, and `lp` is `getlogp(spl.state.vi)`. `is.jl` uses this default constructor at the end of the `step!` function [here](https://github.com/TuringLang/Turing.jl/blob/master/src/inference/is.jl#L58).
+
+### How `sample` works
+
+A crude summary, which ignores things like parallelism, is the following:
+
+ `sample` calls `mcmcsample`, which calls
+
+* `sample_init!` to set things up
+* `step!` repeatedly to produce multiple new transitions
+* `sample_end!` to perform operations once all samples have been obtained
+* `bundle_samples` to convert a vector of transitions into a more palatable type, for instance a `Chain`.
+
+You can of course implement all of these functions, but `AbstractMCMC` as well as Turing also provide default implementations for simple cases. For instance, importance sampling uses the default implementations of `sample_init!` and `bundle_samples`, which is why you don&#39;t see code for them inside `is.jl`.
+
+## &lt;a style=&quot;text-decoration:none&quot; name=&quot;assumeobserve&quot;&gt;3. Overload `assume` and `observe`&lt;/a&gt;
+
+The functions mentioned above, such as `sample_init!`, `step!`, etc.,  must of course use information about the model in order to generate samples! In particular, these functions may need **samples from distributions** defined in the model, or to **evaluate the density of these distributions** at some values of the corresponding parameters or observations.
+
+For an example of the former, consider **Importance Sampling** as defined in `is.jl`. This implementation of Importance Sampling uses the model prior distribution as a proposal distribution, and therefore requires **samples from the prior distribution** of the model. Another example is **Approximate Bayesian Computation**, which requires multiple **samples from the model prior and likelihood distributions** in order to generate a single sample.
+
+An example of the latter is the **Metropolis-Hastings** algorithm. At every step of sampling from a target posterior 
+
+$$
+p(\theta \mid x_{\text{obs}}),
+$$ 
+
+in order to compute the acceptance ratio, you need to **evaluate the model joint density** 
+
+$$
+p\left(\theta_{\text{prop}}, x_{\text{obs}}\right)
+$$ 
+
+with $\theta\_{\text{prop}}$ a sample from the proposal and $x\_{\text{obs}}$ the observed data.
+
+This begs the question: how can these functions access model information during sampling? Recall that the model is stored as an instance `m` of `Model`. One of the attributes of `m` is the model evaluation function `m.f`, which is built by compiling the `@model` macro. Executing `f` runs the tilde statements of the model in order, and adds model information to the sampler (the instance of `Sampler` that stores information about the ongoing sampling process) at each step (see [here](https://turing.ml/dev/docs/for-developers/compiler) for more information about how the `@model` macro is compiled). The DynamicPPL functions `assume` and `observe` determine what kind of information to add to the sampler for every tilde statement.
+
+Consider an instance `m` of `Model` and a sampler `spl`, with associated `VarInfo` `vi = spl.state.vi`. At some point during the sampling process, an AbstractMCMC function such as `step!` calls  `m(vi, ...)`, which calls the model evaluation function `m.f(vi, ...)`.
+
+* for every tilde statement in the `@model` macro, `m.f(vi, ...)` returns model-related information (samples, value of the model density, etc.), and adds it to `vi`. How does it do that?
+  * recall that the code for `m.f(vi, ...)` is automatically generated by compilation of the `@model` macro
+  * for every tilde statement in the `@model` declaration, this code contains a call to `assume(vi, ...)` if the variable on the LHS of the tilde is a **model parameter to infer**, and `observe(vi, ...)` if the variable on the LHS of the tilde is an **observation**
+  * in the file corresponding to your sampling method (ie in `Turing.jl/src/inference/&lt;your_method&gt;.jl`), you have **overloaded** `assume` and `observe`, so that they can modify `vi` to include the information and samples that you care about!
+  * at a minimum, `assume` and `observe` return the log density `lp` of the sample or observation. the model evaluation function then immediately calls `acclogp!!(vi, lp)`, which adds `lp` to the value of the log joint density stored in `vi`.
+
+Here&#39;s what `assume` looks like for Importance Sampling:
+
+```julia
+function DynamicPPL.assume(rng, spl::Sampler{&lt;:IS}, dist::Distribution, vn::VarName, vi)
+    r = rand(rng, dist)
+    push!(vi, vn, r, dist, spl)
+    return r, 0
+end
+```
+
+The function first generates a sample `r` from the distribution `dist` (the right hand side of the tilde statement). It then adds `r` to `vi`, and returns `r` and 0.
+
+The `observe` function is even simpler:
+
+```julia
+function DynamicPPL.observe(spl::Sampler{&lt;:IS}, dist::Distribution, value, vi)
+    return logpdf(dist, value)
+end
+```
+
+It simply returns the density (in the discrete case, the probability) of the observed value under the distribution `dist`.
+
+## 4. Summary: Importance Sampling step by step
+
+We focus on the AbstractMCMC functions that are overriden in `is.jl` and executed inside `mcmcsample`: `step!`, which is called `n_samples` times, and `sample_end!`, which is executed once after those `n_samples` iterations.
+
+* During the $i$-th iteration, `step!` does 3 things:
+  * `empty!!(spl.state.vi)`: remove information about the previous sample from the sampler&#39;s `VarInfo`
+  * `model(rng, spl.state.vi, spl)`: call the model evaluation function
+    * calls to `assume` add the samples from the prior $s_i$ and $m_i$ to `spl.state.vi`
+    * calls to both `assume` or `observe` are followed by the line `acclogp!!(vi, lp)`, where `lp` is an output of `assume` and `observe`
+    * `lp` is set to 0 after `assume`, and to the value of the density at the observation after `observe`
+    * when all the tilde statements have been covered, `spl.state.vi.logp[]` is the sum of the `lp`, i.e., the likelihood $\log p(x, y \mid s_i, m_i) = \log p(x \mid s_i, m_i) + \log p(y \mid s_i, m_i)\]</p><p>of the observations given the latent variable samples <span>$s_i$</span> and <span>$m\_i$</span>.</p><ul><li><code>return Transition(spl)</code>: build a transition from the sampler, and return that transition<ul><li>the transition&#39;s <code>vi</code> field is simply <code>spl.state.vi</code></li><li>the <code>lp</code> field contains the likelihood <code>spl.state.vi.logp[]</code></li></ul></li><li>When the, <code>n_samples</code> iterations are completed, <code>sample_end!</code> fills the <code>final_logevidence</code> field of <code>spl.state</code></li><li>it simply takes the logarithm of the average of the sample weights, using the log weights for numerical stability</li></ul></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../sampling-interface/">« Sampling interface</a><a class="docs-footer-nextpage" href="../how-to-contribute/">How to Contribute »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.14 on <span class="colophon-date" title="Saturday 25 June 2022 11:12">Saturday 25 June 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

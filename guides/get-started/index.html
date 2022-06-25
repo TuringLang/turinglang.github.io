@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="stylesheet" href="/libs/highlight/github.min.css">
+   
+  <link rel="stylesheet" href="/css/franklin.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/turinglang.css">
+<link rel="icon" href="/assets/favicon.ico">
+   <title>Get Started</title>  
+</head>
+<body>
+<header id="turing-navbar" class="h-14 w-full px-6 py-3 z-50 text-slate-200 font-sans font-normal bg-[#073c44] shadow shadow-[#073c44]">
+  <nav class="float-left block mt-1">
+    <a class="text-base pr-2" href="/">Home</a>
+    <a class="text-base px-2" href="/guides/get-started/">Get Started</a>
+    <a class="text-base px-2" href="/guides/">Guides</a>
+    <a class="text-base px-2" href="/tutorials/">Tutorials</a>
+    <a class="text-base px-2" href="/docs/">Docs</a>
+    <a class="text-base px-2" href="/news/">News</a>
+    <a class="text-base pl-2" href="/team/">Team</a>
+  </nav>
+
+  <div class="float-right"><a style="background-image: url('/assets/turing-logo-wide.svg');" class="text-2xl px-1 pl-48" href="https://github.com/TuringLang">The Turing Language</a> <a href="https://github.com/TuringLang/Turing.jl"><img class="inline px-1" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/turinglang/Turing.jl?style=social"></a> <a href="https://twitter.com/TuringLang"><img class="inline px-1" alt="Twitter Follow" src="https://img.shields.io/twitter/follow/TuringLang?style=social"></a></div>
+</header>
+
+
+<!-- Content appended here -->
+<div class="franklin-content"><h1 id="get_started"><a href="#get_started" class="header-anchor">Get Started</a></h1>
+<h2 id="installation"><a href="#installation" class="header-anchor">Installation</a></h2>
+<p>To use Turing, you need to install Julia first and then install Turing via Julia.</p>
+<h3 id="install_julia"><a href="#install_julia" class="header-anchor">Install Julia</a></h3>
+<p>You will need Julia 1.3 or greater, which you can get from <a href="http://julialang.org/downloads/">the downloads page</a> of Julia&#39;s official website.</p>
+<h3 id="install_turingjl"><a href="#install_turingjl" class="header-anchor">Install Turing.jl</a></h3>
+<p>Turing is available from the Julia package <code>Turing.jl</code>.  As it is officially registered, you can install it using Julia&#39;s built-in package manager <code>Pkg</code>.</p>
+<pre><code class="julia hljs">julia&gt; <span class="hljs-keyword">using</span> Pkg; Pkg.add(<span class="hljs-string">&quot;Turing&quot;</span>)</code></pre>
+<p>Note above installs the stable version of Turing. To install the version on the <code>master</code> branch, do <code>Pkg.add&#40;&quot;Turing#master&quot;&#41;</code> instead.</p>
+<h2 id="simple_example"><a href="#simple_example" class="header-anchor">Simple example</a></h2>
+<p>Below is a simple example showing the package in action.</p>
+<pre><code class="julia hljs"><span class="hljs-comment"># Load Turing and a plotting package</span>
+<span class="hljs-keyword">using</span> Turing, StatsPlots
+<span class="hljs-comment"># Define a simple Gaussian model with unknown mean and variance.</span>
+<span class="hljs-meta">@model</span> <span class="hljs-keyword">function</span> gauss_unknown(x, y)
+    <span class="hljs-comment"># Assumptions</span>
+    σ² ~ InverseGamma(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    μ  ~ Normal(<span class="hljs-number">0</span>, sqrt(σ²))
+    <span class="hljs-comment"># Observations</span>
+    x  ~ Normal(μ, sqrt(σ²))
+    y  ~ Normal(μ, sqrt(σ²))
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># Collect 1,000 samples using the HMC sampler</span>
+chain = sample(gauss_unknown(<span class="hljs-number">1.5</span>, <span class="hljs-number">2</span>), HMC(<span class="hljs-number">0.1</span>, <span class="hljs-number">5</span>), <span class="hljs-number">1_000</span>)
+<span class="hljs-comment"># Summarise inference results</span>
+describe(chain)
+<span class="hljs-comment"># Plot and save results</span>
+plot(chain)
+savefig(<span class="hljs-string">&quot;gauss_unknown.png&quot;</span>)</code></pre>
+<div class="page-foot">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> <a href="/team/">The TuringLang Team</a>. Last modified: June 25, 2022.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    
+    
+        
+
+
+    
+  </body>
+</html>
