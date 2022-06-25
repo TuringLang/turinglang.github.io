@@ -37,3 +37,39 @@ function hfun_teammember(vname)
   </div>
   """
 end
+
+function _nice_title(title)
+  words = split(title, '-')
+  Words = uppercasefirst.(words)
+  return join(Words, ' ')
+end
+
+# Ref: https://franklinjl.org/syntax/utils/#without_parameters
+function hfun_navbar(vname)
+  directory = vname[1]
+  current = length(vname) > 1 ? vname[2] : nothing
+  if directory[end] != '/'
+    directory *= '/'
+  end
+  list = readdir(directory)
+  filter!(fn -> endswith(fn, ".md"), list)
+  L = length(list)
+  io = IOBuffer()
+  write(io, """<ul class="pb-2">\n""")
+  for (i, fn) in enumerate(list)
+    pn = splitext(fn)[1]
+    isindex = (pn == "index")
+    iscurrent = (pn == current)
+    if isindex
+      pn = split(directory, '/')[end-1]
+    end
+    wp = isindex ? "/" * directory : "/" * directory * pn * "/"
+    padding = i == 1 ? "pr-0" : 
+              i == L ? "pl-0" : "px-0"
+    text = iscurrent ? "<u>$(_nice_title(pn))</u>" : _nice_title(pn)
+    suffix = i < L ? " &#62;" : ""
+    write(io, """<li class="inline-block $padding"><a href="$wp">$text</a>$suffix</li>\n""")
+  end
+  write(io, "</ul>")
+  return String(take!(io))
+end
