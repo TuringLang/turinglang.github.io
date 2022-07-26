@@ -48,11 +48,12 @@ locally and review your changes, you will need to do the following:
 
 The files in `_docs/` may be out of date with the website. If this is
 the case, execute the `make_local.jl` script, which will run all the documents in the
-`docs/src` folder through a markdown processor and place them into the
-`docs/_docs/` folder. Any files located in the `docs/_docs/` or
-`docs/_tutorials/` directories should **not** be edited directly, as
-they will be overwritten by the versions in the `docs/src/`
-directory. Edits must be made to the `docs/src/` versions.
+`Turing.jl/docs/src` folder through a markdown processor and place them into the
+`turing.ml/_docs/` folder. Any files located in the `_docs/` or
+`turing.ml/_tutorials/` directories should **not** be edited directly, as
+they will be overwritten by the versions in the `Turing.jl/docs/src/`
+directory. Edits must be made to the `Turing.jl/docs/src/` versions.
+
 
 ## MacOS Notes
 Under MacOS one might need to install the following additional gems's
