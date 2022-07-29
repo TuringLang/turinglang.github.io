@@ -30,7 +30,7 @@ locally and review your changes, you will need to do the following:
 2. Install Julia by following [the relevant
    guide](https://julialang.org/downloads/).
 
-3. Navigate in a terminal to `turing.ml/`. Run `julia make_local.jl`,
+3. Navigate in a terminal to `turing.ml/`. Run `julia make.jl`,
    then you'll get a `_docs` folder full of documents. A `_tutorials`
    folder is also copied from the Turing Tutorial Repo. You might need
    to install `Documenter` and `DocumenterMarkdown` first. You can
@@ -47,7 +47,7 @@ locally and review your changes, you will need to do the following:
    static site, you can use `bundle exec jekyll build`.
 
 The files in `_docs/` may be out of date with the website. If this is
-the case, execute the `make_local.jl` script, which will run all the documents in the
+the case, execute the `make.jl` script, which will run all the documents in the
 `Turing.jl/docs/src` folder through a markdown processor and place them into the
 `turing.ml/_docs/` folder. Any files located in the `_docs/` or
 `turing.ml/_tutorials/` directories should **not** be edited directly, as
