@@ -85,6 +85,12 @@
   - title: "Gaussian Processes"
     url: "tutorials/12-gaussian-process"
 
+  - title: "Bayesian Time Series Analysis"
+    url: "tutorials/13-seasonal-time-series"
+ 
+   - title: "Mini Turing: an conceptual introduction of Turing's DSL"
+    url: "tutorials/14-minituring"
+
 - title: "API"
   url: "docs/library"
   children:
