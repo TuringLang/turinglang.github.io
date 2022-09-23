@@ -18,13 +18,15 @@ code-sample:
   excerpt: "Turing's modelling syntax allows you to specify a model quickly and easily. Straightforward models can be expressed in the same way as complex, hierarchical models with stochastic control flow."
   url: "/docs/using-turing/quick-start"
   snippet: |
-    @model gdemo(x, y) = begin
+    @model function demo(x, y)
       # Assumptions
-      σ ~ InverseGamma(2,3)
-      μ ~ Normal(0,sqrt(σ))
+      σ2 ~ InverseGamma(2, 3)
+      σ = sqrt(σ2)
+      μ ~ Normal(0, σ)
+
       # Observations
-      x ~ Normal(μ, sqrt(σ))
-      y ~ Normal(μ, sqrt(σ))
+      x ~ Normal(μ, σ)
+      y ~ Normal(μ, σ)
     end
 
 samplers:
