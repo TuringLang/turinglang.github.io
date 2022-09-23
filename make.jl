@@ -44,27 +44,18 @@ local_path = @__DIR__
 ## The place to put the files from source_path after they go through Documenter.jl
 build_path = joinpath(tmp_path, "_docs")
 
-## The place to put the files for the local build
-build_path_local = joinpath(local_path, "_docs")
+# Get any files from Turing's directory
+for (root, dirs, files) in walkdir(docs_path)
+    new_root = replace(root, docs_path => tmp_path)
 
-# Get any files from Turing's directory for both live and local build
-for target_path in [tmp_path, build_path_local]
-    for (root, dirs, files) in walkdir(docs_path)
-        new_root = replace(root, docs_path => target_path)
-
-        for file in files
-            old_file = joinpath(root, file)
-            new_file = joinpath(new_root, file)
-            @debug "" old_file new_file
-            if !isdir(dirname(new_file))
-                mkpath(dirname(new_file))
-            end
-            cp(old_file, new_file, force=true)
-        end
+    for file in files
+        old_file = joinpath(root, file)
+        new_file = joinpath(new_root, file)
+        @debug "" old_file new_file
+        mkpath(dirname(new_file))
+        cp(old_file, new_file, force=true)
     end
 end
-
-
 
 # Copy all the local files to the temporary path
 paths = readdir(local_path, join=true)
@@ -78,18 +69,9 @@ for path in paths
     #     cp(path, new_path, force=true)
     # end
 end
+
 # Build docs
 with_clean_docs(source_path, build_path) do source, build
-    makedocs(
-        sitename = "Turing.jl",
-        source = source,
-        build = build,
-        format = Markdown(),
-        checkdocs = :all,
-    )
-end
-
-with_clean_docs(source_path, build_path_local) do source, build
     makedocs(
         sitename = "Turing.jl",
         source = source,
@@ -112,28 +94,34 @@ new_jekyll_build = joinpath(tmp_path, "jekyll-build")
 cp(old_jekyll_build, new_jekyll_build, force=true)
 with_baseurl(() -> run(`$new_jekyll_build`), baseurl, joinpath(tmp_path, "_config.yml"))
 
-# Deploy locally
-with_baseurl(() -> run(`$old_jekyll_build`), baseurl, joinpath(local_path, "_config.yml"))
-
 # Copy assets to folder
 cp(joinpath(tmp_path, "assets"), joinpath(tmp_path, "_site", "assets"), force=true)
 
-repo = "github.com:TuringLang/turing.ml.git"
+# Deploy to Github with running as a Github action
+if haskey(ENV, "GITHUB_ACTIONS")
+    ## The path of turing.ml that we are running this code from.
+    repo = "github.com:TuringLang/turing.ml.git"
 
-deploy_config = GitHubActions(
-    "TuringLang/turing.ml", #github_repository::String
-    "push", #github_event_name::String
-    is_dev ? "refs/heads/master" : "refs/tags/$(ARGS[1])" #github_ref::String
-)
+    deploy_config = GitHubActions(
+        "TuringLang/turing.ml", #github_repository::String
+        "push", #github_event_name::String
+        is_dev ? "refs/heads/master" : "refs/tags/$(ARGS[1])" #github_ref::String
+    )
 
-deploydocs(
-    target = joinpath(tmp_path, "_site"),
-    repo = repo,
-    branch = "gh-pages",
-    devbranch = "master",
-    devurl = "dev",
-    versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
-    deploy_config = deploy_config
-)
+    deploydocs(
+        target = joinpath(tmp_path, "_site"),
+        repo = repo,
+        branch = "gh-pages",
+        devbranch = "master",
+        devurl = "dev",
+        versions = ["stable" => "v^", "v#.#", "dev" => "dev"],
+        deploy_config = deploy_config
+    )
+else
+    # Otherwise deploy locally in a subfolder
+    ## The place to put the files for the local build
+    build_path_local = joinpath(local_path, "_docs")
 
-@info "" get(ENV, "GITHUB_REF", missing)
+    rm(build_path_local; recursive=true)
+    cp(joinpath(tmp_path, "_site"), build_path_local)
+end
