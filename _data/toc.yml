@@ -1,8 +1,8 @@
 - title: "USING TURING"
-  url: "docs/using-turing/get-started"
+    url: "tutorials/docs-00-getting-started"
   children:
   - title: "Getting Started"
-    url: "docs/using-turing/get-started"
+    url: "tutorials/docs-00-getting-started"
 
   - title: "Quick Start"
     url: "docs/using-turing/quick-start"
