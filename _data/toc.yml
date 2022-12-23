@@ -1,5 +1,5 @@
 - title: "USING TURING"
-    url: "tutorials/docs-00-getting-started"
+  url: "tutorials/docs-00-getting-started"
   children:
   - title: "Getting Started"
     url: "tutorials/docs-00-getting-started"
