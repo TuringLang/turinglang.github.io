@@ -92,14 +92,7 @@
     url: "tutorials/14-minituring"
 
 - title: "API"
-  url: "docs/library"
-  children:
-    - title: "Turing"
-      url: "docs/library"
-    - title: "AdvancedHMC"
-      url: "docs/library/advancedhmc/"
-    - title: "Bijectors"
-      url: "docs/library/bijectors/"
+  url: "https://turing.ml/multidoc-preview/"
 
 - title: "CONTRIBUTING"
   url: "docs/contributing/guide"
