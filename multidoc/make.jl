@@ -4,6 +4,12 @@ clonedir = mktempdir()
 
 docs = [
         MultiDocumenter.MultiDocRef(
+            upstream = joinpath(clonedir, "DynamicPPL"),
+            path = "DynamicPPL",
+            name = "DynamicPPL",
+            giturl = "https://github.com/TuringLang/DynamicPPL.jl.git",
+        ),
+        MultiDocumenter.MultiDocRef(
             upstream = joinpath(clonedir, "Bijectors"),
             path = "Bijectors",
             name = "Bijectors",
