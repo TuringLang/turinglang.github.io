@@ -41,6 +41,12 @@ docs = [
             name = "AdvancedPS",
             giturl = "https://github.com/TuringLang/AdvancedPS.jl.git",
         ),
+        MultiDocumenter.MultiDocRef(
+            upstream = joinpath(clonedir, "TuringGLM"),
+            path = "TuringGLM",
+            name = "TuringGLM",
+            giturl = "https://github.com/TuringLang/TuringGLM.jl.git",
+        ),
 ]
 
 outpath = joinpath(@__DIR__, "html")
