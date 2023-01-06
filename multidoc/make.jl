@@ -56,7 +56,8 @@ MultiDocumenter.make(
 
 # Deploy to Github with running as a Github action
 if haskey(ENV, "GITHUB_ACTIONS")
-    multidoc-root = normpath(joinpath(@__DIR__, "../multidoc-preview/"))
+    isdir("multidoc-preview") || mkdir("multidoc-preview")
+    multidocroot = normpath(joinpath(@__DIR__, "../multidoc-preview/"))
     run(`git pull`)
     outbranch = "gh-pages"
     has_outbranch = true
@@ -67,14 +68,14 @@ if haskey(ENV, "GITHUB_ACTIONS")
             exit(1)
         end
     end
-    for file in readdir(multidoc-root; join = true)
+    for file in readdir(multidocroot; join = true)
         endswith(file, ".git") && continue
         rm(file; force = true, recursive = true)
     end
     for file in readdir(outpath)
-        cp(joinpath(outpath, file), joinpath(multidoc-root, file))
+        cp(joinpath(outpath, file), joinpath(multidocroot, file))
     end
-    run(`git add .`)
+    run(`git add multidoc-preview`)
     if success(`git commit -m 'Aggregate documentation'`)
         @info "Pushing updated documentation."
         if has_outbranch
@@ -82,7 +83,7 @@ if haskey(ENV, "GITHUB_ACTIONS")
         else
             run(`git push -u origin $outbranch`)
         end
-        run(`git checkout main`)
+        run(`git checkout master`)
     else
         @info "No changes to aggregated documentation."
     end
