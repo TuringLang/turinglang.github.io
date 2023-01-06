@@ -120,7 +120,7 @@ function fix_image_path(file)
     lines = readlines(file, keep=true)
     open(file, "w+") do f
         for line in lines
-            line = replace(line, "](figures/" => "](../figures/")
+            line = replace(line, "](figures/" => "]({{site.baseurl}}/tutorials/figures/")
             write(f, line)
         end
     end
@@ -185,7 +185,8 @@ function postprocess_markdown(folder, yaml_dict; original = "")
 			if original_path == full_path
 			    write(f, txt)
 			else
-			    write(f, replace(txt, "![](figures" => "![](/{{site.baseurl}}/tutorials/figures"))
+                # If function `fix_image_path` rums first, this line will probably never run. 
+			    write(f, replace(txt, "![](figures" => "![]({{site.baseurl}}/tutorials/figures"))
 			end
                     end
                 elseif endswith(file, ".md")
