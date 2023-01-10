@@ -81,8 +81,8 @@ MultiDocumenter.make(
 # Deploy to Github with running as a Github action
 if haskey(ENV, "GITHUB_ACTIONS")
     output_dir = "library"
-    isdir(output_dir) || mkdir(output_dir)
-    multidocroot = normpath(joinpath(@__DIR__, "../", output_dir))
+    mkpath(output_dir)
+    multidocroot = normpath(joinpath(@__DIR__, "..", output_dir))
     run(`git pull`)
     outbranch = "gh-pages"
     has_outbranch = true
