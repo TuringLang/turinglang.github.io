@@ -91,8 +91,8 @@
   - title: "A Mini Turing Compiler"
     url: "tutorials/14-minituring"
 
-- title: "API"
-  url: "https://turing.ml/multidoc-preview/"
+- title: "Library API"
+  url: "https://turing.ml/library"
 
 - title: "CONTRIBUTING"
   url: "docs/contributing/guide"
