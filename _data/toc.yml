@@ -91,15 +91,8 @@
   - title: "A Mini Turing Compiler"
     url: "tutorials/14-minituring"
 
-- title: "API"
-  url: "docs/library"
-  children:
-    - title: "Turing"
-      url: "docs/library"
-    - title: "AdvancedHMC"
-      url: "docs/library/advancedhmc/"
-    - title: "Bijectors"
-      url: "docs/library/bijectors/"
+- title: "Library API"
+  url: "https://turing.ml/library"
 
 - title: "CONTRIBUTING"
   url: "docs/contributing/guide"

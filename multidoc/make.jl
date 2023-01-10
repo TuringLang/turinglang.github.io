@@ -4,6 +4,18 @@ clonedir = mktempdir()
 
 docs = [
         MultiDocumenter.MultiDocRef(
+            upstream = joinpath(clonedir, "DynamicPPL"),
+            path = "DynamicPPL",
+            name = "DynamicPPL",
+            giturl = "https://github.com/TuringLang/DynamicPPL.jl.git",
+        ),
+        MultiDocumenter.MultiDocRef(
+            upstream = joinpath(clonedir, "SymbolicPPL"),
+            path = "SymbolicPPL",
+            name = "SymbolicPPL",
+            giturl = "https://github.com/TuringLang/SymbolicPPL.jl.git",
+        ),
+        MultiDocumenter.MultiDocRef(
             upstream = joinpath(clonedir, "Bijectors"),
             path = "Bijectors",
             name = "Bijectors",
@@ -41,6 +53,18 @@ docs = [
             name = "AdvancedPS",
             giturl = "https://github.com/TuringLang/AdvancedPS.jl.git",
         ),
+        MultiDocumenter.MultiDocRef(
+            upstream = joinpath(clonedir, "TuringGLM"),
+            path = "TuringGLM",
+            name = "TuringGLM",
+            giturl = "https://github.com/TuringLang/TuringGLM.jl.git",
+        ),
+        MultiDocumenter.MultiDocRef(
+            upstream = joinpath(clonedir, "MCMCDiagnosticTools"),
+            path = "MCMCDiagnosticTools",
+            name = "MCMCDiagnosticTools",
+            giturl = "https://github.com/TuringLang/MCMCDiagnosticTools.jl.git",
+        ),
 ]
 
 outpath = joinpath(@__DIR__, "html")
@@ -56,8 +80,9 @@ MultiDocumenter.make(
 
 # Deploy to Github with running as a Github action
 if haskey(ENV, "GITHUB_ACTIONS")
-    isdir("multidoc-preview") || mkdir("multidoc-preview")
-    multidocroot = normpath(joinpath(@__DIR__, "../multidoc-preview/"))
+    output_dir = "library"
+    isdir(output_dir) || mkdir(output_dir)
+    multidocroot = normpath(joinpath(@__DIR__, "../", output_dir))
     run(`git pull`)
     outbranch = "gh-pages"
     has_outbranch = true
@@ -75,7 +100,7 @@ if haskey(ENV, "GITHUB_ACTIONS")
     for file in readdir(outpath)
         cp(joinpath(outpath, file), joinpath(multidocroot, file))
     end
-    run(`git add multidoc-preview`)
+    run(`git add $(output_dir)`)
     if success(`git commit -m 'Aggregate documentation'`)
         @info "Pushing updated documentation."
         if has_outbranch
