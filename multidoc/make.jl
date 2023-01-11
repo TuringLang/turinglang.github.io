@@ -3,24 +3,26 @@ using MultiDocumenter
 clonedir = mktempdir()
 
 docs = [
-        MultiDocumenter.MultiDocRef(
-            upstream = joinpath(clonedir, "DynamicPPL"),
-            path = "DynamicPPL",
-            name = "DynamicPPL",
-            giturl = "https://github.com/TuringLang/DynamicPPL.jl.git",
-        ),
-        MultiDocumenter.MultiDocRef(
-            upstream = joinpath(clonedir, "SymbolicPPL"),
-            path = "SymbolicPPL",
-            name = "SymbolicPPL",
-            giturl = "https://github.com/TuringLang/SymbolicPPL.jl.git",
-        ),
-        MultiDocumenter.MultiDocRef(
-            upstream = joinpath(clonedir, "Bijectors"),
-            path = "Bijectors",
-            name = "Bijectors",
-            giturl = "https://github.com/TuringLang/Bijectors.jl.git",
-        ),
+        MultiDocumenter.DropdownNav("Modelling", [
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "DynamicPPL"),
+                    path = "DynamicPPL",
+                    name = "DynamicPPL",
+                    giturl = "https://github.com/TuringLang/DynamicPPL.jl.git",
+                ),
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "SymbolicPPL"),
+                    path = "SymbolicPPL",
+                    name = "SymbolicPPL",
+                    giturl = "https://github.com/TuringLang/SymbolicPPL.jl.git",
+                ),
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "TuringGLM"),
+                    path = "TuringGLM",
+                    name = "TuringGLM",
+                    giturl = "https://github.com/TuringLang/TuringGLM.jl.git",
+                ),
+        ]),
         #= 
         MultiDocumenter.MultiDocRef(
             upstream = joinpath(clonedir, "Turing"),
@@ -29,7 +31,7 @@ docs = [
             giturl = "https://github.com/TuringLang/Turing.jl.git",
         ),
         =#
-        MultiDocumenter.DropdownNav("MCMC Inference", [
+        MultiDocumenter.DropdownNav("MCMC", [
                 MultiDocumenter.MultiDocRef(
                     upstream = joinpath(clonedir, "AdvancedHMC"),
                     path = "AdvancedHMC",
@@ -61,7 +63,7 @@ docs = [
                     giturl = "https://github.com/TuringLang/NestedSamplers.jl.git",
                 ),
         ]),
-        MultiDocumenter.DropdownNav("MCMC Plotting and Diagnostics", [
+        MultiDocumenter.DropdownNav("Diagnostics", [
                 MultiDocumenter.MultiDocRef(
                     upstream = joinpath(clonedir, "MCMCChains"),
                     path = "MCMCChains",
@@ -76,11 +78,31 @@ docs = [
                 ),
         ]),
         MultiDocumenter.MultiDocRef(
-            upstream = joinpath(clonedir, "TuringGLM"),
-            path = "TuringGLM",
-            name = "TuringGLM",
-            giturl = "https://github.com/TuringLang/TuringGLM.jl.git",
+            upstream = joinpath(clonedir, "Bijectors"),
+            path = "Bijectors",
+            name = "Bijectors",
+            giturl = "https://github.com/TuringLang/Bijectors.jl.git",
         ),
+        MultiDocumenter.DropdownNav("GPs", [
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "AbstractGPs"),
+                    path = "AbstractGPs",
+                    name = "AbstractGPs",
+                    giturl = "https://github.com/JuliaGaussianProcesses/AbstractGPs.jl.git",
+                ),
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "KernelFunctions"),
+                    path = "KernelFunctions",
+                    name = "KernelFunctions",
+                    giturl = "https://github.com/JuliaGaussianProcesses/KernelFunctions.jl.git",
+                ),
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "ApproximateGPs"),
+                    path = "ApproximateGPs",
+                    name = "ApproximateGPs",
+                    giturl = "https://github.com/JuliaGaussianProcesses/ApproximateGPs.jl.git",
+                ),
+        ]),
 ]
 
 outpath = joinpath(@__DIR__, "html")
