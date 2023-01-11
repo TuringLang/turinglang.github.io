@@ -53,6 +53,13 @@ docs = [
                 ),
                 =#
                 MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "ThermodynamicIntegration"),
+                    path = "ThermodynamicIntegration",
+                    name = "ThermodynamicIntegration",
+                    giturl = "https://github.com/theogf/ThermodynamicIntegration.jl.git",
+                ),
+                # See also: https://github.com/treigerm/AnnealedIS.jl and MCMCTempering.jl
+                MultiDocumenter.MultiDocRef(
                     upstream = joinpath(clonedir, "AdvancedPS"),
                     path = "AdvancedPS",
                     name = "AdvancedPS",
