@@ -49,3 +49,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
+      - name: Install MultiDocumenter dependencies
+        run: julia --project=multidoc -e 'using Pkg; Pkg.instantiate()'
+      - name: Run MultiDocumenter and deploy
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          julia --project=multidoc multidoc/make.jl
