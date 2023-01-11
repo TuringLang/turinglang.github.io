@@ -29,41 +29,57 @@ docs = [
             giturl = "https://github.com/TuringLang/Turing.jl.git",
         ),
         =#
-        MultiDocumenter.MultiDocRef(
-            upstream = joinpath(clonedir, "AdvancedHMC"),
-            path = "AdvancedHMC",
-            name = "AdvancedHMC",
-            giturl = "https://github.com/TuringLang/AdvancedHMC.jl.git",
-        ),
-        MultiDocumenter.MultiDocRef(
-            upstream = joinpath(clonedir, "AbstractMCMC"),
-            path = "AbstractMCMC",
-            name = "AbstractMCMC",
-            giturl = "https://github.com/TuringLang/AbstractMCMC.jl.git",
-        ),
-        MultiDocumenter.MultiDocRef(
-            upstream = joinpath(clonedir, "MCMCChains"),
-            path = "MCMCChains",
-            name = "MCMCChains",
-            giturl = "https://github.com/TuringLang/MCMCChains.jl.git",
-        ),
-        MultiDocumenter.MultiDocRef(
-            upstream = joinpath(clonedir, "AdvancedPS"),
-            path = "AdvancedPS",
-            name = "AdvancedPS",
-            giturl = "https://github.com/TuringLang/AdvancedPS.jl.git",
-        ),
+        MultiDocumenter.DropdownNav("MCMC Inference", [
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "AdvancedHMC"),
+                    path = "AdvancedHMC",
+                    name = "AdvancedHMC",
+                    giturl = "https://github.com/TuringLang/AdvancedHMC.jl.git",
+                ),
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "AbstractMCMC"),
+                    path = "AbstractMCMC",
+                    name = "AbstractMCMC",
+                    giturl = "https://github.com/TuringLang/AbstractMCMC.jl.git",
+                ),
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "AdvancedPS"),
+                    path = "AdvancedPS",
+                    name = "AdvancedPS",
+                    giturl = "https://github.com/TuringLang/AdvancedPS.jl.git",
+                ),
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "EllipticalSliceSampling"),
+                    path = "EllipticalSliceSampling",
+                    name = "EllipticalSliceSampling",
+                    giturl = "https://github.com/TuringLang/EllipticalSliceSampling.jl.git",
+                ),
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "NestedSamplers"),
+                    path = "NestedSamplers",
+                    name = "NestedSamplers",
+                    giturl = "https://github.com/TuringLang/NestedSamplers.jl.git",
+                ),
+        ]),
+        MultiDocumenter.DropdownNav("MCMC Plotting and Diagnostics", [
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "MCMCChains"),
+                    path = "MCMCChains",
+                    name = "MCMCChains",
+                    giturl = "https://github.com/TuringLang/MCMCChains.jl.git",
+                ),
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "MCMCDiagnosticTools"),
+                    path = "MCMCDiagnosticTools",
+                    name = "MCMCDiagnosticTools",
+                    giturl = "https://github.com/TuringLang/MCMCDiagnosticTools.jl.git",
+                ),
+        ]),
         MultiDocumenter.MultiDocRef(
             upstream = joinpath(clonedir, "TuringGLM"),
             path = "TuringGLM",
             name = "TuringGLM",
             giturl = "https://github.com/TuringLang/TuringGLM.jl.git",
-        ),
-        MultiDocumenter.MultiDocRef(
-            upstream = joinpath(clonedir, "MCMCDiagnosticTools"),
-            path = "MCMCDiagnosticTools",
-            name = "MCMCDiagnosticTools",
-            giturl = "https://github.com/TuringLang/MCMCDiagnosticTools.jl.git",
         ),
 ]
 
