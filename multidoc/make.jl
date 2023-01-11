@@ -3,7 +3,7 @@ using MultiDocumenter
 clonedir = mktempdir()
 
 docs = [
-        MultiDocumenter.DropdownNav("Modelling", [
+        MultiDocumenter.DropdownNav("Modelling languages", [
                 MultiDocumenter.MultiDocRef(
                     upstream = joinpath(clonedir, "DynamicPPL"),
                     path = "DynamicPPL",
@@ -44,6 +44,14 @@ docs = [
                     name = "AbstractMCMC",
                     giturl = "https://github.com/TuringLang/AbstractMCMC.jl.git",
                 ),
+                #= 
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "AdvancedMH"),
+                    path = "AdvancedMH",
+                    name = "AdvancedMH",
+                    giturl = "https://github.com/TuringLang/AdvancedMH.jl.git",
+                ),
+                =#
                 MultiDocumenter.MultiDocRef(
                     upstream = joinpath(clonedir, "AdvancedPS"),
                     path = "AdvancedPS",
@@ -76,6 +84,12 @@ docs = [
                     name = "MCMCDiagnosticTools",
                     giturl = "https://github.com/TuringLang/MCMCDiagnosticTools.jl.git",
                 ),
+                MultiDocumenter.MultiDocRef(
+                    upstream = joinpath(clonedir, "ParetoSmooth"),
+                    path = "ParetoSmooth",
+                    name = "ParetoSmooth",
+                    giturl = "https://github.com/TuringLang/ParetoSmooth.jl.git",
+                ),
         ]),
         MultiDocumenter.MultiDocRef(
             upstream = joinpath(clonedir, "Bijectors"),
@@ -83,7 +97,13 @@ docs = [
             name = "Bijectors",
             giturl = "https://github.com/TuringLang/Bijectors.jl.git",
         ),
-        MultiDocumenter.DropdownNav("GPs", [
+        MultiDocumenter.MultiDocRef(
+            upstream = joinpath(clonedir, "TuringCallbacks"),
+            path = "TuringCallbacks",
+            name = "TuringCallbacks",
+            giturl = "https://github.com/TuringLang/TuringCallbacks.jl.git",
+        ),
+        MultiDocumenter.DropdownNav("Gaussian Processes", [
                 MultiDocumenter.MultiDocRef(
                     upstream = joinpath(clonedir, "AbstractGPs"),
                     path = "AbstractGPs",
