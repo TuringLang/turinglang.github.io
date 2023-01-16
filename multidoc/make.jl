@@ -110,6 +110,12 @@ docs = [
             name = "TuringCallbacks",
             giturl = "https://github.com/TuringLang/TuringCallbacks.jl.git",
         ),
+        MultiDocumenter.MultiDocRef(
+            upstream = joinpath(clonedir, "Benchmarking"),
+            path = "TuringBenchmarking",
+            name = "TuringBenchmarking",
+            giturl = "https://github.com/torfjelde/TuringBenchmarking.jl.git",
+        ),
         MultiDocumenter.DropdownNav("Gaussian Processes", [
                 MultiDocumenter.MultiDocRef(
                     upstream = joinpath(clonedir, "AbstractGPs"),
