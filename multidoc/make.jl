@@ -146,8 +146,13 @@ MultiDocumenter.make(
     search_engine = MultiDocumenter.SearchConfig(
         index_versions = ["stable"],
         engine = MultiDocumenter.FlexSearch
-    )
+    ),
+    custom_stylesheets = [joinpath("assets", "multidoc-custom.css")],
 )
+
+# Copy over the custom assets.
+mkpath(joinpath(outpath, "assets"))
+cp(joinpath(@__DIR__, "assets", "multidoc-custom.css"), joinpath(outpath, "assets", "multidoc-custom.css"))
 
 # Deploy to Github with running as a Github action
 if haskey(ENV, "GITHUB_ACTIONS")
