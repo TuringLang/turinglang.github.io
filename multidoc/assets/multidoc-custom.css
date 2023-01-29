@@ -2,7 +2,7 @@ nav#multi-page-nav {
   background-color: #073c44
 }
 
-button#multi-page-nav .dropdown-label {
+#multi-page-nav button.dropdown-label {
   color: #ccc;
   text-transform: inherit;
 }
