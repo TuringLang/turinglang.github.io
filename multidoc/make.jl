@@ -140,6 +140,21 @@ docs = [
 
 outpath = joinpath(@__DIR__, "html")
 
+# TODO: Remove if MultiDocumenter.jl ever ends up supporting non-root hosting.
+# Related issue: https://github.com/JuliaComputing/MultiDocumenter.jl/issues/36
+# HACK: Make search work properly.
+multidoc_path = "library"
+
+function MultiDocumenter.FlexSearch.generate_index(root, docs, config)
+    search_index = MultiDocumenter.FlexSearch.SearchIndex()
+    MultiDocumenter.FlexSearch.walk_outputs(root, docs, config.index_versions) do path, file
+        @info path "/$(multidoc_path)" * path
+        MultiDocumenter.FlexSearch.add_to_index!(search_index, "/$(multidoc_path)" * path, file)
+    end
+
+    return search_index
+end
+
 MultiDocumenter.make(
     outpath,
     docs;
@@ -149,9 +164,14 @@ MultiDocumenter.make(
     )
 )
 
+# HACK: Make search work properly.
+let path = joinpath(outpath, "assets", "default", "flexsearch_integration.js")
+    write(path, replace(read(path, String), "/search-data/" => "/$(multidoc_path)/search-data/"))
+end
+
 # Deploy to Github with running as a Github action
 if haskey(ENV, "GITHUB_ACTIONS")
-    output_dir = "library"
+    output_dir = multidoc_path
     mkpath(output_dir)
     multidocroot = normpath(joinpath(@__DIR__, "..", output_dir))
     run(`git pull`)
