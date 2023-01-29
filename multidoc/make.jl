@@ -148,7 +148,6 @@ multidoc_path = "library"
 function MultiDocumenter.FlexSearch.generate_index(root, docs, config)
     search_index = MultiDocumenter.FlexSearch.SearchIndex()
     MultiDocumenter.FlexSearch.walk_outputs(root, docs, config.index_versions) do path, file
-        @info path "/$(multidoc_path)" * path
         MultiDocumenter.FlexSearch.add_to_index!(search_index, "/$(multidoc_path)" * path, file)
     end
 
