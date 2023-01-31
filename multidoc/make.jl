@@ -160,8 +160,13 @@ MultiDocumenter.make(
     search_engine = MultiDocumenter.SearchConfig(
         index_versions = ["stable"],
         engine = MultiDocumenter.FlexSearch
-    )
+    ),
+    custom_stylesheets = [joinpath("assets", "multidoc-custom.css")],
 )
+
+# Copy over the custom assets.
+mkpath(joinpath(outpath, "assets"))
+cp(joinpath(@__DIR__, "assets", "multidoc-custom.css"), joinpath(outpath, "assets", "multidoc-custom.css"))
 
 # HACK: Make search work properly.
 let path = joinpath(outpath, "assets", "default", "flexsearch_integration.js")
