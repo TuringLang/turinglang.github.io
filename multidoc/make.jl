@@ -170,6 +170,7 @@ cp(joinpath(@__DIR__, "assets", "multidoc-custom.css"), joinpath(outpath, "asset
 
 # HACK: Make search work properly.
 let path = joinpath(outpath, "assets", "default", "flexsearch_integration.js")
+    run(`chmod a+rw $(path)`)
     write(path, replace(read(path, String), "/search-data/" => "/$(multidoc_path)/search-data/"))
 end
 
