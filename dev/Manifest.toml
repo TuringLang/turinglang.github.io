@@ -824,9 +824,9 @@ version = "0.2.0"
 
 [[SciMLBase]]
 deps = ["ArrayInterfaceCore", "CommonSolve", "ConstructionBase", "Distributed", "DocStringExtensions", "EnumX", "FunctionWrappersWrappers", "IteratorInterfaceExtensions", "LinearAlgebra", "Logging", "Markdown", "Preferences", "RecipesBase", "RecursiveArrayTools", "Reexport", "RuntimeGeneratedFunctions", "SciMLOperators", "StaticArraysCore", "Statistics", "SymbolicIndexingInterface", "Tables"]
-git-tree-sha1 = "9a81b4a706217684f5dbffc22662d93659db96fa"
+git-tree-sha1 = "6ed5ee9542b0af60f58b37f7082af13b1950256b"
 uuid = "0bca4576-84f4-4d90-8ffe-ffa030f20462"
-version = "1.82.0"
+version = "1.83.0"
 
 [[SciMLOperators]]
 deps = ["ArrayInterfaceCore", "DocStringExtensions", "Lazy", "LinearAlgebra", "Setfield", "SparseArrays", "StaticArraysCore", "Tricks"]
