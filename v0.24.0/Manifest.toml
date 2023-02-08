@@ -687,9 +687,9 @@ version = "0.11.16"
 
 [[Parsers]]
 deps = ["Dates", "SnoopPrecompile"]
-git-tree-sha1 = "151d91d63d8d6c1a5789ecb7de51547e00480f1b"
+git-tree-sha1 = "18f84637e00b72ba6769034a4b50d79ee40c84a9"
 uuid = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
-version = "2.5.4"
+version = "2.5.5"
 
 [[Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
@@ -725,9 +725,9 @@ version = "1.7.2"
 
 [[QuadGK]]
 deps = ["DataStructures", "LinearAlgebra"]
-git-tree-sha1 = "de191bc385072cc6c7ed3ffdc1caeed3f22c74d4"
+git-tree-sha1 = "786efa36b7eff813723c4849c90456609cf06661"
 uuid = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
-version = "2.7.0"
+version = "2.8.1"
 
 [[REPL]]
 deps = ["InteractiveUtils", "Markdown", "Sockets", "Unicode"]
@@ -824,15 +824,15 @@ version = "0.2.0"
 
 [[SciMLBase]]
 deps = ["ArrayInterfaceCore", "CommonSolve", "ConstructionBase", "Distributed", "DocStringExtensions", "EnumX", "FunctionWrappersWrappers", "IteratorInterfaceExtensions", "LinearAlgebra", "Logging", "Markdown", "Preferences", "RecipesBase", "RecursiveArrayTools", "Reexport", "RuntimeGeneratedFunctions", "SciMLOperators", "StaticArraysCore", "Statistics", "SymbolicIndexingInterface", "Tables"]
-git-tree-sha1 = "6ed5ee9542b0af60f58b37f7082af13b1950256b"
+git-tree-sha1 = "c204bd2e918467bd6cbeea961850ae260e7a5050"
 uuid = "0bca4576-84f4-4d90-8ffe-ffa030f20462"
-version = "1.83.0"
+version = "1.84.0"
 
 [[SciMLOperators]]
 deps = ["ArrayInterfaceCore", "DocStringExtensions", "Lazy", "LinearAlgebra", "Setfield", "SparseArrays", "StaticArraysCore", "Tricks"]
-git-tree-sha1 = "60dc07c77bc831f97945ab1545a5e83252a85342"
+git-tree-sha1 = "a85aa3274f775cd9a93996e7d3b0138ea841de52"
 uuid = "c0aeaf25-5076-4817-a8d5-81caf7dfa961"
-version = "0.1.19"
+version = "0.1.20"
 
 [[ScientificTypesBase]]
 git-tree-sha1 = "a8e18eb383b5ecf1b5e6fc237eb39255044fd92b"
