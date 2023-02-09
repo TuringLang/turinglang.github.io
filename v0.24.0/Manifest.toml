@@ -658,9 +658,9 @@ version = "8.9.0+1"
 
 [[OpenSSL_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
-git-tree-sha1 = "f6e9dba33f9f2c44e08a020b0caf6903be540004"
+git-tree-sha1 = "9ff31d101d987eb9d66bd8b176ac7c277beccd09"
 uuid = "458c3c95-2e84-50aa-8efc-19380b2a3a95"
-version = "1.1.19+0"
+version = "1.1.20+0"
 
 [[OpenSpecFun_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "Pkg"]
@@ -830,9 +830,9 @@ version = "1.84.0"
 
 [[SciMLOperators]]
 deps = ["ArrayInterfaceCore", "DocStringExtensions", "Lazy", "LinearAlgebra", "Setfield", "SparseArrays", "StaticArraysCore", "Tricks"]
-git-tree-sha1 = "a85aa3274f775cd9a93996e7d3b0138ea841de52"
+git-tree-sha1 = "c737d575c18bdf9aba0a3c7071d5249d09f45dd8"
 uuid = "c0aeaf25-5076-4817-a8d5-81caf7dfa961"
-version = "0.1.20"
+version = "0.1.21"
 
 [[ScientificTypesBase]]
 git-tree-sha1 = "a8e18eb383b5ecf1b5e6fc237eb39255044fd92b"
