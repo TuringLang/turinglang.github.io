@@ -875,8 +875,8 @@ Therefore, we write the Lotka-Volterra parameter estimation problem using the Tu
 Iterations        = 501:1:1500
 Number of chains  = 3
 Samples per chain = 1000
-Wall duration     = 65.15 seconds
-Compute duration  = 64.67 seconds
+Wall duration     = 65.7 seconds
+Compute duration  = 65.22 seconds
 parameters        = σ, α, β, γ, δ
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -888,15 +888,15 @@ Summary Statistics
       Symbol   Float64   Float64    Float64   Float64     Float64   Float64
     ⋯
 
-           σ    0.8119    0.0399     0.0007    0.0008   1836.3444    1.0001
+           σ    0.8139    0.0409     0.0007    0.0010   1531.6070    1.0030
     ⋯
-           α    1.5549    0.0530     0.0010    0.0020    778.5469    1.0014
+           α    1.5564    0.0532     0.0010    0.0020    724.5393    1.0036
     ⋯
-           β    1.0914    0.0529     0.0010    0.0019    928.9854    1.0022
+           β    1.0926    0.0537     0.0010    0.0017    950.9440    1.0030
     ⋯
-           γ    2.8832    0.1415     0.0026    0.0053    816.5251    1.0008
+           γ    2.8787    0.1422     0.0026    0.0052    747.1159    1.0035
     ⋯
-           δ    0.9395    0.0500     0.0009    0.0019    801.1950    1.0014
+           δ    0.9383    0.0510     0.0009    0.0018    741.3328    1.0034
     ⋯
                                                                 1 column om
 itted
@@ -905,11 +905,11 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           σ    0.7407    0.7834    0.8099    0.8385    0.8969
-           α    1.4589    1.5169    1.5537    1.5911    1.6599
-           β    0.9950    1.0539    1.0884    1.1256    1.2050
-           γ    2.6179    2.7829    2.8804    2.9799    3.1561
-           δ    0.8459    0.9051    0.9371    0.9741    1.0384
+           σ    0.7381    0.7854    0.8119    0.8388    0.9013
+           α    1.4486    1.5205    1.5557    1.5902    1.6613
+           β    0.9908    1.0552    1.0910    1.1284    1.2025
+           γ    2.6180    2.7814    2.8733    2.9678    3.1894
+           δ    0.8448    0.9040    0.9362    0.9695    1.0511
 </code></pre>
 <p>The estimated parameters are close to the parameter values the observations were generated with.
 We can also check visually that the chains have converged.</p>
@@ -966,8 +966,8 @@ I.e., we fit the model only to the $y$ variable of the system without providing 
 Iterations        = 1001:1:6000
 Number of chains  = 3
 Samples per chain = 5000
-Wall duration     = 61.63 seconds
-Compute duration  = 61.02 seconds
+Wall duration     = 60.23 seconds
+Compute duration  = 59.67 seconds
 parameters        = σ, α, β, γ, δ
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -979,15 +979,15 @@ Summary Statistics
       Symbol   Float64   Float64    Float64   Float64    Float64   Float64 
     ⋯
 
-           σ    0.8061    0.0546     0.0004    0.0036   104.8103    1.0446 
+           σ    0.8202    0.0539     0.0004    0.0031   160.1133    1.0131 
     ⋯
-           α    1.5659    0.1732     0.0014    0.0115   109.6744    1.0143 
+           α    1.5266    0.1897     0.0015    0.0114   131.1592    1.0256 
     ⋯
-           β    1.1279    0.1421     0.0012    0.0095   108.6439    1.0158 
+           β    1.0981    0.1519     0.0012    0.0087   144.0433    1.0244 
     ⋯
-           γ    2.9587    0.2684     0.0022    0.0170   133.6164    1.0080 
+           γ    3.0293    0.3264     0.0027    0.0208   109.4581    1.0392 
     ⋯
-           δ    0.9372    0.2247     0.0018    0.0149   111.6417    1.0108 
+           δ    1.0001    0.2638     0.0022    0.0164   118.5307    1.0351 
     ⋯
                                                                 1 column om
 itted
@@ -996,11 +996,11 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           σ    0.7200    0.7669    0.7996    0.8353    0.9334
-           α    1.2682    1.4481    1.5358    1.6610    1.9502
-           β    0.8860    1.0324    1.1095    1.2055    1.4556
-           γ    2.4434    2.7795    2.9648    3.1379    3.5000
-           δ    0.5184    0.7853    0.9411    1.0792    1.4290
+           σ    0.7204    0.7839    0.8170    0.8514    0.9347
+           α    1.2042    1.3929    1.5057    1.6555    1.9473
+           β    0.8485    0.9861    1.0795    1.1995    1.4335
+           γ    2.4252    2.7922    3.0244    3.2429    3.7367
+           δ    0.5379    0.7960    0.9946    1.1666    1.5486
 </code></pre>
 <p>Again we inspect the trajectories of 300 randomly selected posterior samples.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="x">(;</span> <span class="n">legend</span><span class="o">=</span><span class="nb">false</span><span class="x">)</span>
@@ -1091,8 +1091,8 @@ Moreover, we assume $x(t) = 1$ for $t &lt; 0$.</p>
 Iterations        = 151:1:450
 Number of chains  = 3
 Samples per chain = 300
-Wall duration     = 24.78 seconds
-Compute duration  = 24.31 seconds
+Wall duration     = 23.44 seconds
+Compute duration  = 22.96 seconds
 parameters        = σ, α, β, γ, δ
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -1104,15 +1104,15 @@ Summary Statistics
       Symbol   Float64   Float64    Float64   Float64    Float64   Float64 
     ⋯
 
-           σ    0.5174    0.0260     0.0009    0.0010   621.0925    0.9992 
+           σ    0.4938    0.0250     0.0008    0.0011   661.7853    1.0010 
     ⋯
-           α    1.4883    0.0662     0.0022    0.0035   323.4620    1.0103 
+           α    1.4664    0.0571     0.0019    0.0032   238.8615    1.0057 
     ⋯
-           β    1.0044    0.0494     0.0016    0.0022   458.8757    1.0069 
+           β    1.0175    0.0475     0.0016    0.0023   306.8505    1.0032 
     ⋯
-           γ    3.0052    0.1608     0.0054    0.0093   323.8611    1.0087 
+           γ    3.1686    0.1514     0.0050    0.0089   252.9382    1.0051 
     ⋯
-           δ    1.0089    0.0564     0.0019    0.0034   310.8306    1.0085 
+           δ    1.0606    0.0532     0.0018    0.0032   236.0327    1.0053 
     ⋯
                                                                 1 column om
 itted
@@ -1121,11 +1121,11 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           σ    0.4720    0.4996    0.5153    0.5347    0.5731
-           α    1.3686    1.4416    1.4863    1.5332    1.6224
-           β    0.9152    0.9693    1.0022    1.0368    1.1056
-           γ    2.7290    2.8951    2.9963    3.1113    3.3356
-           δ    0.9053    0.9699    1.0049    1.0456    1.1246
+           σ    0.4490    0.4754    0.4930    0.5113    0.5435
+           α    1.3566    1.4260    1.4686    1.5024    1.5791
+           β    0.9275    0.9866    1.0156    1.0447    1.1284
+           γ    2.8645    3.0726    3.1658    3.2677    3.4820
+           δ    0.9588    1.0264    1.0572    1.0969    1.1755
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="x">(</span><span class="n">chain_dde</span><span class="x">)</span>
 </code></pre></div></div>
@@ -1172,8 +1172,8 @@ For more details, see https://arxiv.org/abs/1812.01892.</p>
 Iterations        = 501:1:1500
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 955.71 seconds
-Compute duration  = 955.71 seconds
+Wall duration     = 1093.27 seconds
+Compute duration  = 1093.27 seconds
 parameters        = σ, α, β, γ, δ
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -1185,15 +1185,15 @@ Summary Statistics
       Symbol   Float64   Float64    Float64   Float64    Float64   Float64 
     ⋯
 
-           σ    0.8121    0.0397     0.0013    0.0015   563.2553    1.0003 
+           σ    0.8141    0.0403     0.0013    0.0017   423.6202    0.9992 
     ⋯
-           α    1.5592    0.0531     0.0017    0.0041   139.7578    1.0020 
+           α    1.5517    0.0492     0.0016    0.0031   292.3916    0.9991 
     ⋯
-           β    1.0928    0.0533     0.0017    0.0034   277.5483    1.0003 
+           β    1.0865    0.0511     0.0016    0.0029   354.2696    0.9994 
     ⋯
-           γ    2.8701    0.1415     0.0045    0.0109   126.3609    1.0025 
+           γ    2.8893    0.1329     0.0042    0.0083   292.5866    0.9991 
     ⋯
-           δ    0.9354    0.0501     0.0016    0.0038   125.7076    1.0014 
+           δ    0.9423    0.0477     0.0015    0.0029   299.3363    0.9991 
     ⋯
                                                                 1 column om
 itted
@@ -1202,11 +1202,11 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           σ    0.7412    0.7843    0.8108    0.8348    0.8947
-           α    1.4563    1.5226    1.5583    1.5961    1.6710
-           β    0.9968    1.0550    1.0895    1.1278    1.2085
-           γ    2.6021    2.7743    2.8695    2.9635    3.1607
-           δ    0.8395    0.9012    0.9332    0.9671    1.0415
+           σ    0.7398    0.7881    0.8133    0.8380    0.8978
+           α    1.4554    1.5211    1.5509    1.5831    1.6550
+           β    0.9895    1.0519    1.0851    1.1183    1.1874
+           γ    2.6296    2.8011    2.8846    2.9691    3.1824
+           δ    0.8502    0.9117    0.9403    0.9705    1.0426
 </code></pre>
 <p>If desired, we can control the sensitivity analysis method that is used by providing the <code>sensealg</code> keyword argument to <code>solve</code>.
 Here we will not choose a <code>sensealg</code> and let it use the default choice:</p>
@@ -1241,8 +1241,8 @@ Here we will not choose a <code>sensealg</code> and let it use the default choic
 Iterations        = 501:1:1500
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 550.87 seconds
-Compute duration  = 550.87 seconds
+Wall duration     = 546.59 seconds
+Compute duration  = 546.59 seconds
 parameters        = σ, α, β, γ, δ
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -1254,15 +1254,15 @@ Summary Statistics
       Symbol   Float64   Float64    Float64   Float64    Float64   Float64 
     ⋯
 
-           σ    2.0615    0.1065     0.0034    0.0054   502.4238    1.0015 
+           σ    2.0561    0.1068     0.0034    0.0061   244.8492    1.0062 
     ⋯
-           α    1.2245    0.1116     0.0035    0.0114   110.7464    1.0145 
+           α    1.2481    0.0828     0.0026    0.0074   107.5673    0.9991 
     ⋯
-           β    0.8641    0.1158     0.0037    0.0075   295.5736    0.9992 
+           β    0.8686    0.1114     0.0035    0.0073   174.4474    1.0028 
     ⋯
-           γ    1.1335    0.1491     0.0047    0.0165    82.4062    1.0279 
+           γ    1.0958    0.0893     0.0028    0.0081   112.9034    1.0001 
     ⋯
-           δ    0.5621    0.0936     0.0030    0.0110    79.5056    1.0279 
+           δ    0.5424    0.0550     0.0017    0.0051   110.3026    0.9992 
     ⋯
                                                                 1 column om
 itted
@@ -1271,11 +1271,11 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           σ    1.8764    1.9857    2.0540    2.1247    2.2900
-           α    0.9352    1.1769    1.2457    1.3028    1.3843
-           β    0.6716    0.7813    0.8589    0.9346    1.1142
-           γ    1.0032    1.0343    1.0819    1.1773    1.5629
-           δ    0.4551    0.5043    0.5395    0.5882    0.8304
+           σ    1.8729    1.9819    2.0464    2.1254    2.2959
+           α    1.0742    1.1949    1.2614    1.3050    1.3868
+           β    0.6855    0.7916    0.8575    0.9303    1.1161
+           γ    1.0021    1.0284    1.0705    1.1359    1.3260
+           δ    0.4550    0.5012    0.5338    0.5761    0.6600
 </code></pre>
 <p>For more examples of adjoint usage on large parameter models, consult the <a href="https://diffeqflux.sciml.ai/dev/">DiffEqFlux documentation</a>.</p>
 <h2 id="inference-of-a-stochastic-differential-equation">Inference of a Stochastic Differential Equation</h2>
@@ -1366,15 +1366,15 @@ Platform Info:
   LIBM: libopenlibm
   LLVM: libLLVM-11.0.1 (ORCJIT, znver2)
 Environment:
-  JULIA_CPU_THREADS = 16
+  JULIA_CPU_THREADS = 128
   BUILDKITE_PLUGIN_JULIA_CACHE_DIR = /cache/julia-buildkite-plugin
   JULIA_DEPOT_PATH = /cache/julia-buildkite-plugin/depots/7aa0085e-79a4-45f3-a5bd-9743c91cf3da
 
 </code></pre>
 <p>Package Information:</p>
-<pre><code>      Status `/cache/build/default-amdci4-0/julialang/turingtutorials/tutorials/10-bayesian-differential-equations/Project.toml`
+<pre><code>      Status `/cache/build/exclusive-amdci3-0/julialang/turingtutorials/tutorials/10-bayesian-differential-equations/Project.toml`
   [0c46a032] DifferentialEquations v7.6.0
-  [1ed8b502] SciMLSensitivity v7.19.0
+  [1ed8b502] SciMLSensitivity v7.20.0
   [f3b207a7] StatsPlots v0.15.4
   [fce5fe82] Turing v0.22.0
   [e88e6eb3] Zygote v0.6.55
@@ -1382,7 +1382,7 @@ Environment:
   [9a3f8284] Random
 </code></pre>
 <p>And the full manifest:</p>
-<pre><code>      Status `/cache/build/default-amdci4-0/julialang/turingtutorials/tutorials/10-bayesian-differential-equations/Manifest.toml`
+<pre><code>      Status `/cache/build/exclusive-amdci3-0/julialang/turingtutorials/tutorials/10-bayesian-differential-equations/Manifest.toml`
   [621f4979] AbstractFFTs v1.2.1
   [80f14c24] AbstractMCMC v4.2.0
   [7a57a42e] AbstractPPL v0.5.3
@@ -1405,7 +1405,7 @@ Environment:
   [4c555306] ArrayLayouts v0.8.18
   [13072b0f] AxisAlgorithms v1.0.1
   [39de3d68] AxisArrays v0.4.6
-  [aae01518] BandedMatrices v0.17.10
+  [aae01518] BandedMatrices v0.17.11
   [198e06fe] BangBang v0.3.37
   [9718e550] Baselet v0.1.1
   [76274a88] Bijectors v0.10.6
@@ -1416,7 +1416,7 @@ Environment:
   [2a0fbf3d] CPUSummary v0.2.2
   [49dc2e85] Calculus v0.5.1
   [7057c7e9] Cassette v0.3.11
-  [082447d4] ChainRules v1.46.1
+  [082447d4] ChainRules v1.47.0
   [d360d2e6] ChainRulesCore v1.15.7
   [9e997f8a] ChangesOfVariables v0.1.5
   [fb6a15b2] CloseOpenIntervals v0.1.11
@@ -1443,9 +1443,9 @@ Environment:
   [244e2a9f] DefineSingletons v0.1.2
   [bcd4f6db] DelayDiffEq v5.40.6
   [b429d917] DensityInterface v0.4.0
-  [2b5f629d] DiffEqBase v6.114.2
-  [459566f4] DiffEqCallbacks v2.24.3
-  [77a26b50] DiffEqNoiseProcess v5.15.2
+  [2b5f629d] DiffEqBase v6.115.4
+  [459566f4] DiffEqCallbacks v2.25.0
+  [77a26b50] DiffEqNoiseProcess v5.16.0
   [163ba53b] DiffResults v1.1.0
   [b552c78f] DiffRules v1.12.2
   [0c46a032] DifferentialEquations v7.6.0
@@ -1458,9 +1458,9 @@ Environment:
   [da5c29d0] EllipsisNotation v1.6.0
   [cad2338a] EllipticalSliceSampling v1.0.0
   [4e289a0a] EnumX v1.0.4
-  [7da242da] Enzyme v0.10.16
+  [7da242da] Enzyme v0.10.18
   [f151be2c] EnzymeCore v0.1.0
-  [d4d017d3] ExponentialUtilities v1.22.0
+  [d4d017d3] ExponentialUtilities v1.22.1
   [e2ba6199] ExprTools v0.1.8
   [c87230d0] FFMPEG v0.4.1
   [7a1cc6ca] FFTW v1.5.0
@@ -1477,10 +1477,10 @@ Environment:
   [d9f16b24] Functors v0.3.0
   [0c68f7d7] GPUArrays v8.6.2
   [46192b85] GPUArraysCore v0.1.3
-  [61eb1bfa] GPUCompiler v0.17.1
-  [28b8d3ca] GR v0.71.5
+  [61eb1bfa] GPUCompiler v0.17.2
+  [28b8d3ca] GR v0.71.6
   [c145ed77] GenericSchur v0.5.3
-  [86223c79] Graphs v1.7.4
+  [86223c79] Graphs v1.8.0
   [42e2da0e] Grisu v1.0.2
   [cd3eb016] HTTP v1.7.4
   [3e5b6fbb] HostCPUFeatures v0.1.14
@@ -1507,20 +1507,21 @@ Environment:
   [5ab0869b] KernelDensity v0.6.5
   [ba0b0d4f] Krylov v0.9.0
   [0b1a1467] KrylovKit v0.6.0
-  [929cbde3] LLVM v4.15.0
+  [929cbde3] LLVM v4.16.0
   [8ac3fa9e] LRUCache v1.4.0
   [b964fa9f] LaTeXStrings v1.3.0
   [23fbe1c1] Latexify v0.15.18
   [10f19ff3] LayoutPointers v0.1.13
+  [50d2b5c4] Lazy v0.15.1
   [1d6d02ad] LeftChildRightSiblingTrees v0.2.0
   [2d8b4e74] LevyArea v1.0.0
   [6f1fad26] Libtask v0.7.0
   [d3d80556] LineSearches v7.2.0
-  [7ed4a6bd] LinearSolve v1.34.1
+  [7ed4a6bd] LinearSolve v1.35.0
   [6fdf6af0] LogDensityProblems v1.0.3
-  [2ab3a3ac] LogExpFunctions v0.3.20
+  [2ab3a3ac] LogExpFunctions v0.3.21
   [e6f89c97] LoggingExtras v0.4.9
-  [bdcacae8] LoopVectorization v0.12.149
+  [bdcacae8] LoopVectorization v0.12.150
   [c7f686f2] MCMCChains v5.7.1
   [be115224] MCMCDiagnosticTools v0.2.6
   [e80e1ace] MLJModelInterface v1.8.0
@@ -1535,7 +1536,7 @@ Environment:
   [6f286f6a] MultivariateStats v0.10.0
   [d41bc354] NLSolversBase v7.8.3
   [2774e3e8] NLsolve v4.5.1
-  [872c559c] NNlib v0.8.16
+  [872c559c] NNlib v0.8.17
   [77ba4419] NaNMath v1.0.1
   [86f7a689] NamedArrays v0.9.6
   [c020b1a1] NaturalSort v1.0.0
@@ -1548,24 +1549,24 @@ Environment:
   [429524aa] Optim v1.7.4
   [3bd65402] Optimisers v0.2.14
   [bac558e1] OrderedCollections v1.4.1
-  [1dea7af3] OrdinaryDiffEq v6.41.0
+  [1dea7af3] OrdinaryDiffEq v6.44.0
   [90014a1f] PDMats v0.11.16
   [d96e819e] Parameters v0.12.3
-  [69de0a69] Parsers v2.5.4
+  [69de0a69] Parsers v2.5.6
   [b98c9c47] Pipe v1.3.0
   [ccf2f8ad] PlotThemes v3.1.0
   [995b91a9] PlotUtils v1.3.4
-  [91a5bcdd] Plots v1.38.4
+  [91a5bcdd] Plots v1.38.5
   [e409e4f3] PoissonRandom v0.4.3
   [f517fe37] Polyester v0.7.2
   [1d0040c9] PolyesterWeave v0.2.1
   [85a6dd25] PositiveFactorizations v0.2.4
-  [d236fae5] PreallocationTools v0.4.8
+  [d236fae5] PreallocationTools v0.4.11
   [21216c6a] Preferences v1.3.0
   [08abe8d2] PrettyTables v2.2.2
   [33c8b6b6] ProgressLogging v0.1.4
   [92933f4c] ProgressMeter v1.7.2
-  [1fd47b50] QuadGK v2.7.0
+  [1fd47b50] QuadGK v2.8.1
   [74087812] Random123 v1.6.0
   [e6cf234a] RandomNumbers v1.5.3
   [b3c3ace0] RangeArrays v0.3.2
@@ -1573,7 +1574,7 @@ Environment:
   [c1ae055f] RealDot v0.1.0
   [3cdcf5f2] RecipesBase v1.3.3
   [01d81517] RecipesPipeline v0.6.11
-  [731186ca] RecursiveArrayTools v2.36.0
+  [731186ca] RecursiveArrayTools v2.37.0
   [f2c3362d] RecursiveFactorization v0.2.17
   [189a3867] Reexport v1.2.2
   [05181044] RelocatableFolders v1.0.0
@@ -1583,28 +1584,28 @@ Environment:
   [79098fc4] Rmath v0.7.1
   [f2b01f46] Roots v2.0.8
   [7e49a35a] RuntimeGeneratedFunctions v0.5.5
-  [3cdde19b] SIMDDualNumbers v0.1.1
   [94e857df] SIMDTypes v0.1.0
   [476501e8] SLEEFPirates v0.6.38
-  [0bca4576] SciMLBase v1.81.1
+  [0bca4576] SciMLBase v1.84.0
   [e9a6253c] SciMLNLSolve v0.1.3
-  [1ed8b502] SciMLSensitivity v7.19.0
+  [c0aeaf25] SciMLOperators v0.1.21
+  [1ed8b502] SciMLSensitivity v7.20.0
   [30f210dd] ScientificTypesBase v3.0.0
   [6c6a2e73] Scratch v1.1.1
   [91c51154] SentinelArrays v1.3.17
   [efcf1570] Setfield v1.1.1
   [992d4aef] Showoff v1.0.3
   [777ac1f9] SimpleBufferStream v1.1.0
-  [727e6d20] SimpleNonlinearSolve v0.1.9
+  [727e6d20] SimpleNonlinearSolve v0.1.10
   [699a6c99] SimpleTraits v0.9.4
   [66db9d55] SnoopPrecompile v1.0.3
   [a2af1166] SortingAlgorithms v1.1.0
   [47a9eef4] SparseDiffTools v1.30.0
-  [e56a9233] Sparspak v0.3.7
+  [e56a9233] Sparspak v0.3.9
   [276daf66] SpecialFunctions v2.1.7
   [171d559e] SplittablesBase v0.1.15
   [aedffcd0] Static v0.8.3
-  [90137ffa] StaticArrays v1.5.12
+  [90137ffa] StaticArrays v1.5.14
   [1e83bf80] StaticArraysCore v1.4.0
   [64bff920] StatisticalTraits v3.2.0
   [82ae8749] StatsAPI v1.5.0
@@ -1612,12 +1613,12 @@ Environment:
   [4c63d2b9] StatsFuns v1.1.1
   [f3b207a7] StatsPlots v0.15.4
   [9672c7b4] SteadyStateDiffEq v1.11.0
-  [789caeaf] StochasticDiffEq v6.57.4
-  [7792a7ef] StrideArraysCore v0.4.6
+  [789caeaf] StochasticDiffEq v6.57.5
+  [7792a7ef] StrideArraysCore v0.4.7
   [892a3eda] StringManipulation v0.3.0
   [09ab397b] StructArrays v0.6.14
   [53d494c1] StructIO v0.3.0
-  [c3572dad] Sundials v4.13.0
+  [c3572dad] Sundials v4.15.0
   [2efcf032] SymbolicIndexingInterface v0.2.1
   [ab02a1b2] TableOperations v1.2.0
   [3783bdb8] TableTraits v1.0.1
@@ -1646,7 +1647,7 @@ Environment:
   [68821587] Arpack_jll v3.5.0+3
   [6e34b625] Bzip2_jll v1.0.8+0
   [83423d85] Cairo_jll v1.16.1+1
-  [7cc45869] Enzyme_jll v0.0.47+0
+  [7cc45869] Enzyme_jll v0.0.48+0
   [2e619515] Expat_jll v2.4.8+0
   [b22a6f82] FFMPEG_jll v4.4.2+2
   [f5851436] FFTW_jll v3.3.10+0
@@ -1654,7 +1655,7 @@ Environment:
   [d7e528f0] FreeType2_jll v2.10.4+0
   [559328eb] FriBidi_jll v1.0.10+0
   [0656b61e] GLFW_jll v3.3.8+0
-  [d2c73de3] GR_jll v0.71.5+0
+  [d2c73de3] GR_jll v0.71.6+0
   [78b55507] Gettext_jll v0.21.0+0
   [7746bdde] Glib_jll v2.74.0+2
   [3b182d85] Graphite2_jll v1.3.14+0
@@ -1675,7 +1676,7 @@ Environment:
   [38a345b3] Libuuid_jll v2.36.0+0
   [856f044c] MKL_jll v2022.2.0+0
   [e7412a2a] Ogg_jll v1.3.5+1
-  [458c3c95] OpenSSL_jll v1.1.19+0
+  [458c3c95] OpenSSL_jll v1.1.20+0
   [efe28fd5] OpenSpecFun_jll v0.5.5+0
   [91d4177d] Opus_jll v1.3.2+0
   [30392449] Pixman_jll v0.40.1+0
