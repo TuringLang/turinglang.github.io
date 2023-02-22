@@ -222,9 +222,9 @@ version = "1.1.0"
 
 [[DiffRules]]
 deps = ["IrrationalConstants", "LogExpFunctions", "NaNMath", "Random", "SpecialFunctions"]
-git-tree-sha1 = "c5b6685d53f933c11404a3ae9822afe30d522494"
+git-tree-sha1 = "a4ad7ef19d2cdc2eff57abbbe68032b1cd0bd8f8"
 uuid = "b552c78f-8df3-52c6-915a-8e097449b14b"
-version = "1.12.2"
+version = "1.13.0"
 
 [[Distributed]]
 deps = ["Random", "Serialization", "Sockets"]
@@ -818,9 +818,9 @@ version = "0.2.0"
 
 [[SciMLBase]]
 deps = ["ArrayInterface", "CommonSolve", "ConstructionBase", "Distributed", "DocStringExtensions", "EnumX", "FunctionWrappersWrappers", "IteratorInterfaceExtensions", "LinearAlgebra", "Logging", "Markdown", "Preferences", "RecipesBase", "RecursiveArrayTools", "Reexport", "RuntimeGeneratedFunctions", "SciMLOperators", "StaticArraysCore", "Statistics", "SymbolicIndexingInterface", "Tables"]
-git-tree-sha1 = "33f031423eedc1f9e43f6112da6f13d5b49ea7da"
+git-tree-sha1 = "f0fa74c1460b9db3afa749e87e4180a09059f4b0"
 uuid = "0bca4576-84f4-4d90-8ffe-ffa030f20462"
-version = "1.86.2"
+version = "1.86.3"
 
 [[SciMLOperators]]
 deps = ["ArrayInterface", "DocStringExtensions", "Lazy", "LinearAlgebra", "Setfield", "SparseArrays", "StaticArraysCore", "Tricks"]
@@ -867,9 +867,9 @@ uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 
 [[SpecialFunctions]]
 deps = ["ChainRulesCore", "IrrationalConstants", "LogExpFunctions", "OpenLibm_jll", "OpenSpecFun_jll"]
-git-tree-sha1 = "d75bda01f8c31ebb72df80a46c88b25d1c79c56d"
+git-tree-sha1 = "ef28127915f4229c971eb43f3fc075dd3fe91880"
 uuid = "276daf66-3868-5448-9aa4-cd146d93841b"
-version = "2.1.7"
+version = "2.2.0"
 
 [[SplittablesBase]]
 deps = ["Setfield", "Test"]
@@ -912,9 +912,9 @@ version = "0.33.21"
 
 [[StatsFuns]]
 deps = ["ChainRulesCore", "HypergeometricFunctions", "InverseFunctions", "IrrationalConstants", "LogExpFunctions", "Reexport", "Rmath", "SpecialFunctions"]
-git-tree-sha1 = "ab6083f09b3e617e34a956b43e9d51b824206932"
+git-tree-sha1 = "53cd758b96903d556e96f11b8cd2169c7e9f08af"
 uuid = "4c63d2b9-4356-54db-8cca-17b64c39e42c"
-version = "1.1.1"
+version = "1.2.0"
 
 [[StringManipulation]]
 git-tree-sha1 = "46da2434b41f41ac3594ee9816ce5541c6096123"
