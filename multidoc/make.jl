@@ -11,10 +11,10 @@ docs = [
                     giturl = "https://github.com/TuringLang/DynamicPPL.jl.git",
                 ),
                 MultiDocumenter.MultiDocRef(
-                    upstream = joinpath(clonedir, "SymbolicPPL"),
-                    path = "SymbolicPPL",
-                    name = "SymbolicPPL",
-                    giturl = "https://github.com/TuringLang/SymbolicPPL.jl.git",
+                    upstream = joinpath(clonedir, "JuliaBUGS"),
+                    path = "JuliaBUGS",
+                    name = "JuliaBUGS",
+                    giturl = "https://github.com/TuringLang/JuliaBUGS.jl.git",
                 ),
                 MultiDocumenter.MultiDocRef(
                     upstream = joinpath(clonedir, "TuringGLM"),
