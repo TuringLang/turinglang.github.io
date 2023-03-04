@@ -971,8 +971,8 @@ This example describes a method to implement the Bayesian version of this techni
 Iterations        = 1:1:2500
 Number of chains  = 4
 Samples per chain = 2500
-Wall duration     = 10.1 seconds
-Compute duration  = 9.71 seconds
+Wall duration     = 9.67 seconds
+Compute duration  = 9.26 seconds
 parameters        = b0, b1, b2, b3
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -984,13 +984,13 @@ Summary Statistics
       Symbol   Float64   Float64    Float64   Float64    Float64   Float64 
     ⋯
 
-          b0    1.6302    0.1518     0.0015    0.0088   236.9365    1.0122 
+          b0    1.6309    0.1517     0.0015    0.0089   233.1287    1.0127 
     ⋯
-          b1    0.5527    0.0935     0.0009    0.0052   248.2575    1.0171 
+          b1    0.5517    0.0931     0.0009    0.0052   247.0095    1.0164 
     ⋯
-          b2    0.8871    0.1106     0.0011    0.0075   163.3037    1.0241 
+          b2    0.8864    0.1101     0.0011    0.0075   173.2922    1.0217 
     ⋯
-          b3    0.2941    0.1042     0.0010    0.0051   398.8701    1.0124 
+          b3    0.2950    0.1039     0.0010    0.0050   398.9148    1.0101 
     ⋯
                                                                 1 column om
 itted
@@ -999,10 +999,10 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          b0    1.5721    1.6208    1.6422    1.6632    1.7018
-          b1    0.4333    0.5120    0.5525    0.5921    0.6785
-          b2    0.7688    0.8449    0.8806    0.9188    0.9982
-          b3    0.1781    0.2538    0.2911    0.3281    0.4007
+          b0    1.5763    1.6223    1.6427    1.6632    1.6999
+          b1    0.4359    0.5114    0.5510    0.5899    0.6759
+          b2    0.7743    0.8440    0.8801    0.9176    0.9970
+          b3    0.1770    0.2564    0.2923    0.3290    0.4021
 </code></pre>
 <h1 id="viewing-the-diagnostics">Viewing the Diagnostics</h1>
 <p>We use the Gelman, Rubin, and Brooks Diagnostic to check whether our chains have converged. Note that we require multiple chains to use this diagnostic which analyses the difference between these multiple chains.</p>
@@ -1013,10 +1013,10 @@ Quantiles
   parameters      psrf    psrfci
       Symbol   Float64   Float64
 
-          b0    1.1783    1.2337
-          b1    1.0362    1.0684
-          b2    1.1916    1.3356
-          b3    1.0816    1.1166
+          b0    1.1788    1.2325
+          b1    1.0337    1.0556
+          b2    1.1912    1.3020
+          b3    1.0793    1.0997
 </code></pre>
 <p>From the above diagnostic, we can conclude that the chains have converged because the PSRF values of the coefficients are close to 1.</p>
 <p>So, we have obtained the posterior distributions of the parameters. We transform the coefficients and recover theta values by taking the exponent of the meaned values of the coefficients <code>b0</code>, <code>b1</code>, <code>b2</code> and <code>b3</code>. We take the exponent of the means to get a better comparison of the relative values of the coefficients. We then compare this with the intuitive meaning that was described earlier.</p>
@@ -1037,10 +1037,10 @@ Quantiles
 <span class="n">print</span><span class="x">(</span><span class="s">"The posterior distributions obtained after sampling can be visualised as :</span><span class="se">\n</span><span class="s">"</span><span class="x">)</span>
 </code></pre></div></div>
 <pre><code>The exponent of the meaned values of the weights (or coefficients are): 
-b0: 5.159083470728208
-b1: 1.7317855622786964
-b2: 2.4077636136917384
-b3: 1.343669221541723
+b0: 5.14930308858998
+b1: 1.733569117191754
+b2: 2.4146446340975065
+b3: 1.3430785554075173
 The posterior distributions obtained after sampling can be visualised as :
 </code></pre>
 <p>Visualising the posterior by plotting it:</p>
@@ -1062,8 +1062,8 @@ This is because we set the second parameter of the NUTS sampler (which is the nu
 Iterations        = 201:1:2500
 Number of chains  = 4
 Samples per chain = 2300
-Wall duration     = 10.1 seconds
-Compute duration  = 9.71 seconds
+Wall duration     = 9.67 seconds
+Compute duration  = 9.26 seconds
 parameters        = b0, b1, b2, b3
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -1075,13 +1075,13 @@ Summary Statistics
       Symbol   Float64   Float64    Float64   Float64     Float64   Float64
     ⋯
 
-          b0    1.6422    0.0310     0.0003    0.0005   2871.2600    1.0000
+          b0    1.6425    0.0298     0.0003    0.0006   2697.9057    1.0035
     ⋯
-          b1    0.5522    0.0577     0.0006    0.0012   2170.3879    1.0013
+          b1    0.5524    0.0572     0.0006    0.0012   2238.1249    1.0027
     ⋯
-          b2    0.8814    0.0543     0.0006    0.0012   2046.4667    1.0009
+          b2    0.8820    0.0531     0.0006    0.0011   2125.8687    1.0028
     ⋯
-          b3    0.2907    0.0535     0.0006    0.0012   2105.8687    1.0014
+          b3    0.2905    0.0530     0.0006    0.0011   2255.0722    1.0022
     ⋯
                                                                 1 column om
 itted
@@ -1090,10 +1090,10 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          b0    1.5800    1.6216    1.6426    1.6632    1.7012
-          b1    0.4411    0.5121    0.5521    0.5910    0.6676
-          b2    0.7760    0.8450    0.8802    0.9179    0.9904
-          b3    0.1845    0.2546    0.2913    0.3277    0.3926
+          b0    1.5820    1.6229    1.6430    1.6630    1.6988
+          b1    0.4446    0.5127    0.5522    0.5903    0.6690
+          b2    0.7812    0.8448    0.8809    0.9177    0.9903
+          b3    0.1828    0.2559    0.2910    0.3277    0.3919
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="x">(</span><span class="n">chains_new</span><span class="x">)</span>
 </code></pre></div></div>
@@ -1121,48 +1121,48 @@ Environment:
 
 </code></pre>
 <p>Package Information:</p>
-<pre><code>      Status `/cache/build/default-amdci4-4/julialang/turingtutorials/tutorials/07-poisson-regression/Project.toml`
+<pre><code>      Status `/cache/build/default-amdci4-2/julialang/turingtutorials/tutorials/07-poisson-regression/Project.toml`
   [a93c6f00] DataFrames v1.5.0
   [b4f34e82] Distances v0.10.7
-  [31c24e10] Distributions v0.25.80
+  [31c24e10] Distributions v0.25.86
   [38e38edf] GLM v1.8.1
   [c7f686f2] MCMCChains v5.7.1
   [cc2ba9b6] MLDataUtils v0.5.4
-  [872c559c] NNlib v0.8.18
-  [91a5bcdd] Plots v1.38.5
+  [872c559c] NNlib v0.8.19
+  [91a5bcdd] Plots v1.38.6
   [ce6b1742] RDatasets v0.7.7
-  [4c63d2b9] StatsFuns v1.1.1
+  [4c63d2b9] StatsFuns v1.3.0
   [f3b207a7] StatsPlots v0.15.4
   [fce5fe82] Turing v0.22.0
   [9a3f8284] Random
 </code></pre>
 <p>And the full manifest:</p>
-<pre><code>      Status `/cache/build/default-amdci4-4/julialang/turingtutorials/tutorials/07-poisson-regression/Manifest.toml`
+<pre><code>      Status `/cache/build/default-amdci4-2/julialang/turingtutorials/tutorials/07-poisson-regression/Manifest.toml`
   [621f4979] AbstractFFTs v1.2.1
   [80f14c24] AbstractMCMC v4.2.0
-  [7a57a42e] AbstractPPL v0.5.3
+  [7a57a42e] AbstractPPL v0.5.4
   [1520ce14] AbstractTrees v0.4.4
-  [79e6a3ab] Adapt v3.5.0
+  [79e6a3ab] Adapt v3.6.1
   [0bf59076] AdvancedHMC v0.3.6
   [5b7e9947] AdvancedMH v0.6.8
   [576499cb] AdvancedPS v0.3.8
   [b5ca4192] AdvancedVI v0.1.6
   [dce04be8] ArgCheck v2.3.0
   [7d9fca2a] Arpack v0.5.4
+  [4fba245c] ArrayInterface v7.2.0
   [30b0a656] ArrayInterfaceCore v0.1.29
   [dd5226c6] ArrayInterfaceStaticArraysCore v0.1.3
   [13072b0f] AxisAlgorithms v1.0.1
   [39de3d68] AxisArrays v0.4.6
   [198e06fe] BangBang v0.3.37
   [9718e550] Baselet v0.1.1
-  [76274a88] Bijectors v0.10.6
-  [d1d4a3ce] BitFlags v0.1.7
+  [76274a88] Bijectors v0.10.7
   [336ed68f] CSV v0.10.9
   [49dc2e85] Calculus v0.5.1
   [324d7699] CategoricalArrays v0.10.7
-  [082447d4] ChainRules v1.47.0
+  [082447d4] ChainRules v1.48.0
   [d360d2e6] ChainRulesCore v1.15.7
-  [9e997f8a] ChangesOfVariables v0.1.5
+  [9e997f8a] ChangesOfVariables v0.1.6
   [aaaa29a8] Clustering v0.14.3
   [944b1d66] CodecZlib v0.7.1
   [35d6a980] ColorSchemes v3.20.0
@@ -1175,7 +1175,7 @@ Environment:
   [34da2185] Compat v4.6.0
   [a33af91c] CompositionsBase v0.1.1
   [88cd18e8] ConsoleProgressMonitor v0.1.2
-  [187b0558] ConstructionBase v1.4.1
+  [187b0558] ConstructionBase v1.5.1
   [d38c429a] Contour v0.6.2
   [a8cc5b0e] Crayons v4.1.1
   [9a962f9c] DataAPI v1.14.0
@@ -1186,24 +1186,24 @@ Environment:
   [244e2a9f] DefineSingletons v0.1.2
   [b429d917] DensityInterface v0.4.0
   [163ba53b] DiffResults v1.1.0
-  [b552c78f] DiffRules v1.12.2
+  [b552c78f] DiffRules v1.13.0
   [b4f34e82] Distances v0.10.7
-  [31c24e10] Distributions v0.25.80
+  [31c24e10] Distributions v0.25.86
   [ced4e74d] DistributionsAD v0.6.43
-  [ffbed154] DocStringExtensions v0.9.3
+  [ffbed154] DocStringExtensions v0.8.6
   [fa6b7ba4] DualNumbers v0.6.8
   [366bfd00] DynamicPPL v0.21.4
-  [cad2338a] EllipticalSliceSampling v1.0.0
+  [cad2338a] EllipticalSliceSampling v1.1.0
   [4e289a0a] EnumX v1.0.4
   [e2ba6199] ExprTools v0.1.8
   [c87230d0] FFMPEG v0.4.1
   [7a1cc6ca] FFTW v1.5.0
   [5789e2e9] FileIO v1.16.0
   [48062228] FilePathsBase v0.9.20
-  [1a297f60] FillArrays v0.13.7
+  [1a297f60] FillArrays v0.12.8
   [53c48c17] FixedPointNumbers v0.8.4
   [59287772] Formatting v0.4.2
-  [f6369f11] ForwardDiff v0.10.34
+  [f6369f11] ForwardDiff v0.10.35
   [069b7b12] FunctionWrappers v1.1.3
   [77dc65aa] FunctionWrappersWrappers v0.1.3
   [d9f16b24] Functors v0.3.0
@@ -1211,7 +1211,7 @@ Environment:
   [46192b85] GPUArraysCore v0.1.4
   [28b8d3ca] GR v0.71.7
   [42e2da0e] Grisu v1.0.2
-  [cd3eb016] HTTP v1.7.4
+  [cd3eb016] HTTP v0.8.19
   [34004b35] HypergeometricFunctions v0.3.11
   [7869d1d1] IRTools v0.4.8
   [83e8ac13] IniFile v0.5.1
@@ -1232,12 +1232,11 @@ Environment:
   [8ac3fa9e] LRUCache v1.4.0
   [b964fa9f] LaTeXStrings v1.3.0
   [23fbe1c1] Latexify v0.15.18
-  [50d2b5c4] Lazy v0.15.1
   [7f8f8fb0] LearnBase v0.3.0
   [1d6d02ad] LeftChildRightSiblingTrees v0.2.0
   [6f1fad26] Libtask v0.7.0
   [6fdf6af0] LogDensityProblems v1.0.3
-  [2ab3a3ac] LogExpFunctions v0.3.21
+  [2ab3a3ac] LogExpFunctions v0.3.23
   [e6f89c97] LoggingExtras v0.4.9
   [c7f686f2] MCMCChains v5.7.1
   [be115224] MCMCDiagnosticTools v0.2.6
@@ -1253,22 +1252,21 @@ Environment:
   [e1d29d7a] Missings v1.1.0
   [78c3b35d] Mocking v0.7.5
   [6f286f6a] MultivariateStats v0.10.1
-  [872c559c] NNlib v0.8.18
+  [872c559c] NNlib v0.8.19
   [77ba4419] NaNMath v1.0.2
   [86f7a689] NamedArrays v0.9.6
   [c020b1a1] NaturalSort v1.0.0
   [b8a86587] NearestNeighbors v0.4.13
   [510215fc] Observables v0.5.4
   [6fe1bfb0] OffsetArrays v1.12.9
-  [4d8831e6] OpenSSL v1.3.3
-  [3bd65402] Optimisers v0.2.14
+  [3bd65402] Optimisers v0.2.15
   [bac558e1] OrderedCollections v1.4.1
-  [90014a1f] PDMats v0.11.16
+  [90014a1f] PDMats v0.11.17
   [69de0a69] Parsers v2.5.7
   [b98c9c47] Pipe v1.3.0
   [ccf2f8ad] PlotThemes v3.1.0
   [995b91a9] PlotUtils v1.3.4
-  [91a5bcdd] Plots v1.38.5
+  [91a5bcdd] Plots v1.38.6
   [2dfb63ee] PooledArrays v1.4.2
   [21216c6a] Preferences v1.3.0
   [08abe8d2] PrettyTables v2.2.2
@@ -1282,37 +1280,34 @@ Environment:
   [c1ae055f] RealDot v0.1.0
   [3cdcf5f2] RecipesBase v1.3.3
   [01d81517] RecipesPipeline v0.6.11
-  [731186ca] RecursiveArrayTools v2.37.0
+  [731186ca] RecursiveArrayTools v2.32.3
   [189a3867] Reexport v1.2.2
   [05181044] RelocatableFolders v1.0.0
   [ae029012] Requires v1.3.0
   [79098fc4] Rmath v0.7.1
-  [f2b01f46] Roots v2.0.8
+  [f2b01f46] Roots v2.0.9
   [7e49a35a] RuntimeGeneratedFunctions v0.5.5
-  [0bca4576] SciMLBase v1.84.1
-  [c0aeaf25] SciMLOperators v0.1.21
+  [0bca4576] SciMLBase v1.81.0
   [30f210dd] ScientificTypesBase v3.0.0
   [6c6a2e73] Scratch v1.1.1
-  [91c51154] SentinelArrays v1.3.17
+  [91c51154] SentinelArrays v1.3.18
   [efcf1570] Setfield v1.1.1
   [1277b4bf] ShiftedArrays v2.0.0
   [992d4aef] Showoff v1.0.3
-  [777ac1f9] SimpleBufferStream v1.1.0
   [66db9d55] SnoopPrecompile v1.0.3
   [a2af1166] SortingAlgorithms v1.1.0
-  [276daf66] SpecialFunctions v2.1.7
+  [276daf66] SpecialFunctions v2.2.0
   [171d559e] SplittablesBase v0.1.15
-  [90137ffa] StaticArrays v1.5.15
+  [90137ffa] StaticArrays v1.5.16
   [1e83bf80] StaticArraysCore v1.4.0
   [64bff920] StatisticalTraits v3.2.0
   [82ae8749] StatsAPI v1.5.0
   [2913bbd2] StatsBase v0.33.21
-  [4c63d2b9] StatsFuns v1.1.1
+  [4c63d2b9] StatsFuns v1.3.0
   [3eaba693] StatsModels v0.6.33
   [f3b207a7] StatsPlots v0.15.4
   [892a3eda] StringManipulation v0.3.0
   [09ab397b] StructArrays v0.6.14
-  [2efcf032] SymbolicIndexingInterface v0.2.1
   [ab02a1b2] TableOperations v1.2.0
   [3783bdb8] TableTraits v1.0.1
   [bd369af6] Tables v1.10.0
@@ -1322,9 +1317,7 @@ Environment:
   [9f7883ad] Tracker v0.2.23
   [3bb67fe8] TranscodingStreams v0.9.11
   [28d57a85] Transducers v0.4.75
-  [410a4b4d] Tricks v0.1.6
   [fce5fe82] Turing v0.22.0
-  [5c2747f8] URIs v1.4.2
   [3a884ed6] UnPack v1.0.2
   [1cfade01] UnicodeFun v0.4.1
   [41fe7b60] Unzip v0.1.2
@@ -1349,7 +1342,7 @@ Environment:
   [3b182d85] Graphite2_jll v1.3.14+0
   [2e76f6c2] HarfBuzz_jll v2.8.1+1
   [1d5cc7b8] IntelOpenMP_jll v2018.0.3+2
-  [aacddb02] JpegTurbo_jll v2.1.2+0
+  [aacddb02] JpegTurbo_jll v2.1.91+0
   [c1c5ebd0] LAME_jll v3.100.1+0
   [88015f11] LERC_jll v3.0.0+1
   [dd4b983a] LZO_jll v2.10.1+0
