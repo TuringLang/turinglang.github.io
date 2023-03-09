@@ -847,9 +847,9 @@ deps = ["Distributed", "Mmap", "Random", "Serialization"]
 uuid = "1a1011a3-84de-559e-8e89-a11a2f7dc383"
 
 [[SimpleUnPack]]
-git-tree-sha1 = "20c6c731b71ad02ae3dbda01b1cfed4cb9131cdf"
+git-tree-sha1 = "46dc21a1bf27b751453f7dea36786c006707f0d4"
 uuid = "ce78b400-467f-4804-87d8-8f486da07d0a"
-version = "1.0.0"
+version = "1.0.1"
 
 [[SnoopPrecompile]]
 deps = ["Preferences"]
@@ -999,7 +999,7 @@ version = "1.1.0"
 deps = ["AbstractMCMC", "AdvancedHMC", "AdvancedMH", "AdvancedPS", "AdvancedVI", "BangBang", "Bijectors", "DataStructures", "Distributions", "DistributionsAD", "DocStringExtensions", "DynamicPPL", "EllipticalSliceSampling", "ForwardDiff", "Libtask", "LinearAlgebra", "LogDensityProblems", "LogDensityProblemsAD", "MCMCChains", "NamedArrays", "Printf", "Random", "Reexport", "Requires", "SciMLBase", "Setfield", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "Tracker"]
 path = "/home/runner/.julia/dev/Turing"
 uuid = "fce5fe82-541a-59a6-adf8-730c64b5f9a0"
-version = "0.24.1"
+version = "0.24.2"
 
 [[UUIDs]]
 deps = ["Random", "SHA"]
