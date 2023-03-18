@@ -1024,17 +1024,17 @@ at
       Symbol   Float64   Float64    Float64   Float64       Float64   Float
 64
 
-           a    0.9787    0.8974     0.0009    0.0031    81214.1731    1.00
+           a    0.9736    0.9018     0.0009    0.0032    81629.4513    1.00
 00
-           b    2.8831    0.4886     0.0005    0.0012   172959.1152    1.00
+           b    2.8806    0.4877     0.0005    0.0012   169672.3703    1.00
 00
 
 Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           a   -0.7766    0.3726    0.9773    1.5858    2.7342
-           b    1.9292    2.5524    2.8823    3.2126    3.8441
+           a   -0.7988    0.3666    0.9755    1.5831    2.7312
+           b    1.9242    2.5515    2.8807    3.2088    3.8337
 </code></pre>
 <p>We compare these results with Turing.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
@@ -1054,8 +1054,8 @@ Quantiles
 Iterations        = 1:1:1000000
 Number of chains  = 1
 Samples per chain = 1000000
-Wall duration     = 6.66 seconds
-Compute duration  = 6.66 seconds
+Wall duration     = 6.65 seconds
+Compute duration  = 6.65 seconds
 parameters        = a, b
 internals         = lp
 
@@ -1065,9 +1065,9 @@ at  ⋯
       Symbol   Float64   Float64    Float64   Float64       Float64   Float
 64  ⋯
 
-           a    0.9743    0.8992     0.0009    0.0031    80475.4660    1.00
+           a    0.9747    0.8998     0.0009    0.0032    81253.8459    1.00
 00  ⋯
-           b    2.8804    0.4881     0.0005    0.0012   171116.9656    1.00
+           b    2.8819    0.4883     0.0005    0.0011   174330.3579    1.00
 00  ⋯
                                                                 1 column om
 itted
@@ -1076,8 +1076,8 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           a   -0.7849    0.3689    0.9746    1.5808    2.7344
-           b    1.9242    2.5514    2.8808    3.2092    3.8354
+           a   -0.7783    0.3658    0.9717    1.5834    2.7389
+           b    1.9222    2.5524    2.8824    3.2110    3.8369
 </code></pre>
 <p>As you can see, with our simple probabilistic programming language and custom samplers we get similar results as Turing.</p>
 
