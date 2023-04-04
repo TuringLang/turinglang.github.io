@@ -622,9 +622,9 @@ version = "1.0.2"
 
 [[NamedArrays]]
 deps = ["Combinatorics", "DataStructures", "DelimitedFiles", "InvertedIndices", "LinearAlgebra", "Random", "Requires", "SparseArrays", "Statistics"]
-git-tree-sha1 = "2b3bcadd0fc35debfd67972e1af45a3a761f2d4b"
+git-tree-sha1 = "b84e17976a40cb2bfe3ae7edb3673a8c630d4f95"
 uuid = "86f7a689-2022-50b4-a561-43c23ac3c673"
-version = "0.9.7"
+version = "0.9.8"
 
 [[NaturalSort]]
 git-tree-sha1 = "eda490d06b9f7c00752ee81cfa451efe55521e21"
