@@ -528,9 +528,9 @@ version = "2.1.1"
 
 [[LogDensityProblemsAD]]
 deps = ["DocStringExtensions", "LogDensityProblems", "Requires", "SimpleUnPack"]
-git-tree-sha1 = "79b13f322a23844bb026a0586ae7a649bba7c826"
+git-tree-sha1 = "5f219f583a399381dc147b984648429bf8c3fc6a"
 uuid = "996a588d-648d-4e1f-a8f0-a84b347e47b1"
-version = "1.4.1"
+version = "1.4.2"
 
 [[LogExpFunctions]]
 deps = ["ChainRulesCore", "ChangesOfVariables", "DocStringExtensions", "InverseFunctions", "IrrationalConstants", "LinearAlgebra"]
@@ -884,9 +884,9 @@ version = "0.1.15"
 
 [[StaticArrays]]
 deps = ["LinearAlgebra", "Random", "StaticArraysCore", "Statistics"]
-git-tree-sha1 = "b8d897fe7fa688e93aef573711cb207c08c9e11e"
+git-tree-sha1 = "70e0cc0c0f9ef7ea76b3d7a50ada18c8c52e69a2"
 uuid = "90137ffa-7385-5640-81b9-e52037218182"
-version = "1.5.19"
+version = "1.5.20"
 
 [[StaticArraysCore]]
 git-tree-sha1 = "6b7ba252635a5eff6a0b0664a41ee140a1c9e72a"
