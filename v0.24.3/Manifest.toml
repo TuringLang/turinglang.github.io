@@ -578,9 +578,9 @@ version = "1.0.0"
 
 [[MCMCChains]]
 deps = ["AbstractMCMC", "AxisArrays", "Dates", "Distributions", "Formatting", "IteratorInterfaceExtensions", "KernelDensity", "LinearAlgebra", "MCMCDiagnosticTools", "MLJModelInterface", "NaturalSort", "OrderedCollections", "PrettyTables", "Random", "RecipesBase", "Statistics", "StatsBase", "StatsFuns", "TableTraits", "Tables"]
-git-tree-sha1 = "3d70a6e7f57cd0ba1af5284f5c15d8f6331983a2"
+git-tree-sha1 = "5eec3d97404f1df009560e5e17d0d64ea713dc91"
 uuid = "c7f686f2-ff18-58e9-bc7b-31028e88f75d"
-version = "6.0.0"
+version = "6.0.1"
 
 [[MCMCDiagnosticTools]]
 deps = ["AbstractFFTs", "DataAPI", "DataStructures", "Distributions", "LinearAlgebra", "MLJModelInterface", "Random", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "Tables"]
@@ -826,9 +826,9 @@ version = "0.4.0+0"
 
 [[Roots]]
 deps = ["ChainRulesCore", "CommonSolve", "Printf", "Setfield"]
-git-tree-sha1 = "b45deea4566988994ebb8fb80aa438a295995a6e"
+git-tree-sha1 = "44b5f41a467a418f2cd94429f271d1b06f857bce"
 uuid = "f2b01f46-fcfa-551c-844a-d8ac1e96c665"
-version = "2.0.10"
+version = "2.0.11"
 
 [[RuntimeGeneratedFunctions]]
 deps = ["ExprTools", "SHA", "Serialization"]
