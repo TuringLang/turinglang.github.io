@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-language" content="en">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Guide</title>
+    <meta name="description" content="">
+    <meta name="author" content="The Turing Team">
+    <meta name="theme-color" content="red">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+    <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="canonical" href="/v0.24/docs/using-turing/guide">
+    <link rel="alternate" type="application/rss+xml" title="Turing.jl" href="/v0.24/feed.xml">
+    <meta name="lang:clipboard.copy" content="Copy to clipboard">
+    <meta name="lang:clipboard.copied" content="Copied to clipboard">
+    <meta name="lang:search.language" content="en">
+    <meta name="lang:search.pipeline.stopwords" content="True">
+    <meta name="lang:search.pipeline.trimmer" content="True">
+    <meta name="lang:search.result.none" content="No matching documents">
+    <meta name="lang:search.result.one" content="1 matching document">
+    <meta name="lang:search.result.other" content="# matching documents">
+    <meta name="lang:search.tokenizer" content="[\s\-]+">
+    <script src="/versions.js"></script>
+    <script src="/v0.24/assets/js/modernizr.74668098.js"></script>
+    <link rel="shortcut icon" href="/v0.24/assets/img/favicon.ico">
+    <link rel="stylesheet" href="/v0.24/assets/css/main.css">
+    <link rel="stylesheet" href="/v0.24/assets/css/palette.css">
+    <link rel="stylesheet" href="/v0.24/assets/css/header.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+
+    
+
+  </head>
+
+  <body dir="ltr" data-md-color-primary="red" data-md-color-accent="red">
+    
+
+<svg class="md-svg">
+<defs>
+  <svg>
+  <path d="M160 304q0 10-3.125 20.5t-10.75 19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75 19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360 304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25 2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75 1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75 0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5 46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z" fill="currentColor"></path></svg>
+</defs></svg>
+
+    <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off>
+    <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off>
+    <label class=md-overlay data-md-component=overlay for=__drawer></label> <a href="#guide" tabindex=1 class=md-skip> Skip to content </a>
+    <header class=md-header data-md-component=header data-md-state=none>
+        <nav class="md-header-nav md-grid">
+            <div class=md-flex>
+                <div class="md-flex__cell md-flex__cell--shrink">
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <label class="md-icon md-icon--menu md-header-nav__button" for=__drawer></label>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <a class="md-header-nav__button md-logo" href="/v0.24/" title="Turing.jl">
+                    <div class="md-flex__ellipsis md-header-nav__title" data-md-component=title>
+                        <span class=md-header-nav__topic>Turing.jl</span>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <div class="dropdown version-switch">
+                      <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      </a>
+                      <div class="dropdown-menu">
+                        <!-- a class="dropdown-item" href="#">Stable</a -->
+                        <!-- div class="dropdown-divider"></div -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <a class="md-source" href="/v0.24/docs/using-turing/get-started" title="Get started">
+                      Get Started
+                    </a>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <div class="md-header-nav__source">
+                      <a class="md-source" href="/library/" title="View Library API">
+                        Library API
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="md-flex__cell md-flex__cell--shrink">
+                      <div class="md-header-nav__source">
+                        <a class="md-source" href="/v0.24/tutorials/" title="View tutorials">
+                          Tutorials
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="md-flex__cell md-flex__cell--shrink">
+                      <div class="md-header-nav__source">
+                        <a class="md-source" href="/v0.24/news/" title="News">
+                          News
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="md-flex__cell md-flex__cell--shrink">
+                      <div class="md-header-nav__source">
+                        <a class="md-source" href="/v0.24/team/" title="Team">
+                          Team
+                        </a>
+                      </div>
+                    </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <a class="md-source" data-md-source="github" href="https://github.com/TuringLang/Turing.jl" title="Go to repository">
+                    <div class="md-source__icon" style="padding-top:5px">
+                      <i class="fa fa-github fa-3x"></i>
+                    </div>
+                    <div class="md-source__repository">
+                      TuringLang/Turing.jl
+                    </div></a>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <a href="https://twitter.com/TuringLang?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                       data-size="large" data-show-screen-name="false" data-show-count="false">Follow @TuringLang</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <label class="md-icon md-icon--search md-header-nav__button" for=__search></label>
+                    <div class=md-search data-md-component=search role=dialog>
+                        <label class=md-search__overlay for=__search></label>
+                        <div class=md-search__inner role=search>
+                            <form class=md-search__form name=search>
+                                <input type=text class=md-search__input name=query placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=query data-md-state=active>
+                                <label class="md-icon md-search__icon" for=__search></label>
+                                <button type=reset class="md-icon md-search__icon" data-md-component=reset tabindex=-1> &#xE5CD; </button>
+                            </form>
+                            <div class=md-search__output>
+                                <div class=md-search__scrollwrap data-md-scrollfix>
+                                    <div class=md-search-result data-md-component=result>
+                                        <div class=md-search-result__meta> Type to start searching </div>
+                                        <ol class=md-search-result__list></ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="md-container">
+        <main class="md-main">
+            <div class="md-main__inner md-grid full-width" data-md-component="container">
+            
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+  <div class="md-sidebar__scrollwrap">
+    <div class="md-sidebar__inner">
+      <nav class="md-nav md-nav--primary" data-md-level="0">
+
+        <label class="md-nav__title md-nav__title--site">
+            <a class="" href="/v0.24/" title="Turing.jl">
+              <span class="md-nav__button md-logo">
+                Turing.jl
+              </span>
+            </a>
+        </label>
+
+        <ul class="md-nav__list" data-md-scrollfix="">
+          <li class="md-nav__item md-nav__item--active">
+            <input class="md-toggle md-nav__toggle" data-md-toggle="toc" id="__toc" type="checkbox" />
+
+            <nav class="md-nav md-nav--secondary">
+
+                <a class="" href="/v0.24/" title="Turing.jl">
+                  <label class="md-nav__title md-nav__title--site">
+                    <span class="md-nav__button md-logo">
+                      Turing.jl
+                    </span>
+                  </label>
+                </a>
+
+                <div class="md-nav__source">
+                    <a class="md-source" data-md-source="github" href="https://github.com/TuringLang/Turing.jl" title="Go to repository">
+                    <span class="md-source__icon">
+                        <i class="fa fa-github fa-3x"></i>
+                    </span>
+                    <span class="md-source__repository">
+                      TuringLang/Turing.jl
+                    </span></a>
+                </div>
+
+                <div class="md-nav__dropdown">
+                  <select id="version-selector">
+                    <!-- option value="#" selected="selected">v 0.5.1</option -->
+                  </select>
+                </div>
+
+              <label class="md-nav__title" for="__drawer"></label>
+
+              
+
+                <ul class="md-nav__list" data-md-scrollfix="">
+                  
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-using-turing" title="USING TURING">USING TURING</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/using-turing/get-started"
+                              id="pancakes-getting-started"
+                              title="Getting Started">Getting Started</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/using-turing/quick-start"
+                              id="pancakes-quick-start"
+                              title="Quick Start">Quick Start</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/using-turing/guide"
+                              id="pancakes-guide"
+                              title="Guide">Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/using-turing/advanced"
+                              id="pancakes-advanced-usage"
+                              title="Advanced Usage">Advanced Usage</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/using-turing/autodiff"
+                              id="pancakes-automatic-differentiation"
+                              title="Automatic Differentiation">Automatic Differentiation</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/using-turing/performancetips"
+                              id="pancakes-performance-tips"
+                              title="Performance Tips">Performance Tips</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/using-turing/dynamichmc"
+                              id="pancakes-using-dynamichmc"
+                              title="Using DynamicHMC">Using DynamicHMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/using-turing/sampler-viz"
+                              id="pancakes-sampler-visualization"
+                              title="Sampler Visualization">Sampler Visualization</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/library/"
+                              id="pancakes-turing-api"
+                              title="Turing API">Turing API</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-for-developers" title="FOR DEVELOPERS">FOR DEVELOPERS</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/for-developers/compiler"
+                              id="pancakes-turing-compiler-design"
+                              title="Turing Compiler Design">Turing Compiler Design</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/for-developers/interface"
+                              id="pancakes-interface-guide"
+                              title="Interface Guide">Interface Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/for-developers/how_turing_implements_abstractmcmc"
+                              id="pancakes-how-turing-implements-abstractmcmc"
+                              title="How Turing implements AbstractMCMC">How Turing implements AbstractMCMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/for-developers/variational_inference"
+                              id="pancakes-variational-inference"
+                              title="Variational Inference">Variational Inference</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-tutorials" title="TUTORIALS">TUTORIALS</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials"
+                              id="pancakes-home"
+                              title="Home">Home</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/00-introduction"
+                              id="pancakes-introduction-to-turing"
+                              title="Introduction to Turing">Introduction to Turing</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/01-gaussian-mixture-model"
+                              id="pancakes-gaussian-mixture-models"
+                              title="Gaussian Mixture Models">Gaussian Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/02-logistic-regression"
+                              id="pancakes-bayesian-logistic-regression"
+                              title="Bayesian Logistic Regression">Bayesian Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/03-bayesian-neural-network"
+                              id="pancakes-bayesian-neural-networks"
+                              title="Bayesian Neural Networks">Bayesian Neural Networks</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/04-hidden-markov-model"
+                              id="pancakes-hidden-markov-models"
+                              title="Hidden Markov Models">Hidden Markov Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/05-linear-regression"
+                              id="pancakes-linear-regression"
+                              title="Linear Regression">Linear Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/06-infinite-mixture-model"
+                              id="pancakes-infinite-mixture-models"
+                              title="Infinite Mixture Models">Infinite Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/07-poisson-regression"
+                              id="pancakes-bayesian-poisson-regression"
+                              title="Bayesian Poisson Regression">Bayesian Poisson Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/08-multinomial-logistic-regression"
+                              id="pancakes-multinomial-logistic-regression"
+                              title="Multinomial Logistic Regression">Multinomial Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/09-variational-inference"
+                              id="pancakes-variational-inference"
+                              title="Variational Inference">Variational Inference</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/10-bayesian-differential-equations"
+                              id="pancakes-bayesian-differential-equations"
+                              title="Bayesian Differential Equations">Bayesian Differential Equations</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/11-probabilistic-pca"
+                              id="pancakes-probabilistic-pca"
+                              title="Probabilistic PCA">Probabilistic PCA</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/12-gaussian-process"
+                              id="pancakes-gaussian-processes"
+                              title="Gaussian Processes">Gaussian Processes</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/13-seasonal-time-series"
+                              id="pancakes-bayesian-time-series-analysis"
+                              title="Bayesian Time Series Analysis">Bayesian Time Series Analysis</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/tutorials/14-minituring"
+                              id="pancakes-a-mini-turing-compiler"
+                              title="A Mini Turing Compiler">A Mini Turing Compiler</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-contributing" title="CONTRIBUTING">CONTRIBUTING</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/contributing/guide"
+                              id="pancakes-how-to-contribute"
+                              title="How to Contribute">How to Contribute</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.24/docs/contributing/style-guide"
+                              id="pancakes-style-guide"
+                              title="Style Guide">Style Guide</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                </ul>
+            </nav>
+          </li>
+
+          <!-- This navigation is completely for mobile -->
+          <li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="USING TURING">USING TURING</a>
+          </li><li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="FOR DEVELOPERS">FOR DEVELOPERS</a>
+          </li><li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="TUTORIALS">TUTORIALS</a>
+          </li><li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="CONTRIBUTING">CONTRIBUTING</a>
+          </li>
+
+          <!-- This navigation is completely for non mobile -->
+          
+
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent open-parent"
+                id="pancakes-using-turing"
+                title="USING TURING">USING TURING</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/using-turing/get-started"
+                           title="Getting Started" 
+                           
+                           class="md-nav__link pancakes-child">Getting Started</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/using-turing/quick-start"
+                           title="Quick Start" 
+                           
+                           class="md-nav__link pancakes-child">Quick Start</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/using-turing/guide"
+                           title="Guide" 
+                            style="color: red;"
+                           class="md-nav__link pancakes-child">Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/using-turing/advanced"
+                           title="Advanced Usage" 
+                           
+                           class="md-nav__link pancakes-child">Advanced Usage</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/using-turing/autodiff"
+                           title="Automatic Differentiation" 
+                           
+                           class="md-nav__link pancakes-child">Automatic Differentiation</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/using-turing/performancetips"
+                           title="Performance Tips" 
+                           
+                           class="md-nav__link pancakes-child">Performance Tips</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/using-turing/dynamichmc"
+                           title="Using DynamicHMC" 
+                           
+                           class="md-nav__link pancakes-child">Using DynamicHMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/using-turing/sampler-viz"
+                           title="Sampler Visualization" 
+                           
+                           class="md-nav__link pancakes-child">Sampler Visualization</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/library/"
+                           title="Turing API" 
+                           
+                           class="md-nav__link pancakes-child">Turing API</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent "
+                id="pancakes-for-developers"
+                title="FOR DEVELOPERS">FOR DEVELOPERS</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/for-developers/compiler"
+                           title="Turing Compiler Design" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Turing Compiler Design</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/for-developers/interface"
+                           title="Interface Guide" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Interface Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/for-developers/how_turing_implements_abstractmcmc"
+                           title="How Turing implements AbstractMCMC" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">How Turing implements AbstractMCMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/for-developers/variational_inference"
+                           title="Variational Inference" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Variational Inference</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent "
+                id="pancakes-tutorials"
+                title="TUTORIALS">TUTORIALS</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials"
+                           title="Home" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Home</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/00-introduction"
+                           title="Introduction to Turing" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Introduction to Turing</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/01-gaussian-mixture-model"
+                           title="Gaussian Mixture Models" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Gaussian Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/02-logistic-regression"
+                           title="Bayesian Logistic Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/03-bayesian-neural-network"
+                           title="Bayesian Neural Networks" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Neural Networks</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/04-hidden-markov-model"
+                           title="Hidden Markov Models" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Hidden Markov Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/05-linear-regression"
+                           title="Linear Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Linear Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/06-infinite-mixture-model"
+                           title="Infinite Mixture Models" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Infinite Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/07-poisson-regression"
+                           title="Bayesian Poisson Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Poisson Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/08-multinomial-logistic-regression"
+                           title="Multinomial Logistic Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Multinomial Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/09-variational-inference"
+                           title="Variational Inference" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Variational Inference</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/10-bayesian-differential-equations"
+                           title="Bayesian Differential Equations" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Differential Equations</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/11-probabilistic-pca"
+                           title="Probabilistic PCA" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Probabilistic PCA</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/12-gaussian-process"
+                           title="Gaussian Processes" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Gaussian Processes</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/13-seasonal-time-series"
+                           title="Bayesian Time Series Analysis" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Time Series Analysis</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/tutorials/14-minituring"
+                           title="A Mini Turing Compiler" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">A Mini Turing Compiler</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent "
+                id="pancakes-contributing"
+                title="CONTRIBUTING">CONTRIBUTING</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/contributing/guide"
+                           title="How to Contribute" style="display:none;"
+                            style="color: red;"
+                           class="md-nav__link pancakes-child">How to Contribute</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.24/docs/contributing/style-guide"
+                           title="Style Guide" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Style Guide</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+<div class="md-sidebar md-sidebar--secondary invisible" data-md-component="toc">
+  <div class="md-sidebar__scrollwrap">
+    <div class="md-sidebar__inner">
+      <nav class="md-nav md-nav--secondary">
+        <label class="md-nav__title" for="__toc">Table of contents</label>
+        <ul id="nav-toc" class="md-nav__list" data-md-scrollfix="">
+        <!-- toc will be appended here!-->
+        </ul>
+        <a href="https://twitter.com/intent/tweet?original_referer=https://github.com/TuringLang/Turing.jl/edit/master/docs/src/using-turing/guide.md" title="Tweet this page" class="social-link"><i class="fa fa-twitter fa-1x"></i>Tweet this page</a>
+        <a href="https://discourse.julialang.org/c/domain/probprog" title="Ask questions" class="social-link"><i class="fa fa-stack-overflow fa-1x"></i>Ask questions</a>
+        <a href="https://github.com/TuringLang/Turing.jl//issues/new?label=question&title=Question:&body=Question%20on:%20https://github.com/TuringLang/Turing.jl/edit/master/docs/_docs/using-turing/guide.md" title="Report issues" class="social-link"><i class="fa fa-comments fa-1x"></i>Report issues</a>
+        <a href="https://github.com/TuringLang/Turing.jl/edit/master/docs/src/using-turing/guide.md" title="Edit this page on github"  class="social-link"><i class="fa fa-github fa-1x"></i> Edit me</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+                <div id="md-container-pancakes">
+                <div class="md-content full-width"> 
+    <article class="md-content__inner md-typeset  full-width">
+    <p><a id='Guide'></a></p>
+<p><a id='Guide-1'></a></p>
+<h1 id="guide">Guide</h1>
+<p><a id='Basics'></a></p>
+<p><a id='Basics-1'></a></p>
+<h2 id="basics">Basics</h2>
+<p><a id='Introduction'></a></p>
+<p><a id='Introduction-1'></a></p>
+<h3 id="introduction">Introduction</h3>
+<p>A probabilistic program is Julia code wrapped in a <code>@model</code> macro. It can use arbitrary Julia code, but to ensure correctness of inference it should not have external effects or modify global state. Stack-allocated variables are safe, but mutable heap-allocated objects may lead to subtle bugs when using task copying. By default Libtask deepcopies <code>Array</code> and <code>Dict</code> objects when copying task to avoid bugs with data stored in mutable structure in Turing models.</p>
+<p>To specify distributions of random variables, Turing programs should use the <code>~</code> notation:</p>
+<p><code>x ~ distr</code> where <code>x</code> is a symbol and <code>distr</code> is a distribution. If <code>x</code> is undefined in the model function, inside the probabilistic program, this puts a random variable named <code>x</code>, distributed according to <code>distr</code>, in the current scope. <code>distr</code> can be a value of any type that implements <code>rand(distr)</code>, which samples a value from the distribution <code>distr</code>. If <code>x</code> is defined, this is used for conditioning in a style similar to <a href="https://probprog.github.io/anglican/index.html">Anglican</a> (another PPL). In this case, <code>x</code> is an observed value, assumed to have been drawn from the distribution <code>distr</code>. The likelihood is computed using <code>logpdf(distr,y)</code>. The observe statements should be arranged so that every possible run traverses all of them in exactly the same order. This is equivalent to demanding that they are not placed inside stochastic control flow.</p>
+<p>Available inference methods include Importance Sampling (IS), Sequential Monte Carlo (SMC), Particle Gibbs (PG), Hamiltonian Monte Carlo (HMC), Hamiltonian Monte Carlo with Dual Averaging (HMCDA) and The No-U-Turn Sampler (NUTS).</p>
+<p><a id='Simple-Gaussian-Demo'></a></p>
+<p><a id='Simple-Gaussian-Demo-1'></a></p>
+<h3 id="simple-gaussian-demo">Simple Gaussian Demo</h3>
+<p>Below is a simple Gaussian demo illustrate the basic usage of Turing.jl.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Import packages.</span>
+<span class="k">using</span> <span class="n">Turing</span>
+<span class="k">using</span> <span class="n">StatsPlots</span>
+
+<span class="c"># Define a simple Normal model with unknown mean and variance.</span>
+<span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+    <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="n">x</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="n">y</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>Note: As a sanity check, the prior expectation of <code>s²</code> is <code>mean(InverseGamma(2, 3)) = 3/(2 - 1) = 3</code> and the prior expectation of <code>m</code> is 0. This can be easily checked using <code>Prior</code>:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">p1</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">gdemo</span><span class="x">(</span><span class="nb">missing</span><span class="x">,</span> <span class="nb">missing</span><span class="x">),</span> <span class="n">Prior</span><span class="x">(),</span> <span class="mi">100000</span><span class="x">)</span>
+</code></pre></div></div>
+<p>We can perform inference by using the <code>sample</code> function, the first argument of which is our probabilistic program and the second of which is a sampler. More information on each sampler is located in the <a href="/v0.24/docs/library">API</a>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#  Run sampler, collect results.</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">gdemo</span><span class="x">(</span><span class="mf">1.5</span><span class="x">,</span> <span class="mi">2</span><span class="x">),</span> <span class="n">SMC</span><span class="x">(),</span> <span class="mi">1000</span><span class="x">)</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">gdemo</span><span class="x">(</span><span class="mf">1.5</span><span class="x">,</span> <span class="mi">2</span><span class="x">),</span> <span class="n">PG</span><span class="x">(</span><span class="mi">10</span><span class="x">),</span> <span class="mi">1000</span><span class="x">)</span>
+<span class="n">c3</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">gdemo</span><span class="x">(</span><span class="mf">1.5</span><span class="x">,</span> <span class="mi">2</span><span class="x">),</span> <span class="n">HMC</span><span class="x">(</span><span class="mf">0.1</span><span class="x">,</span> <span class="mi">5</span><span class="x">),</span> <span class="mi">1000</span><span class="x">)</span>
+<span class="n">c4</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">gdemo</span><span class="x">(</span><span class="mf">1.5</span><span class="x">,</span> <span class="mi">2</span><span class="x">),</span> <span class="n">Gibbs</span><span class="x">(</span><span class="n">PG</span><span class="x">(</span><span class="mi">10</span><span class="x">,</span> <span class="o">:</span><span class="n">m</span><span class="x">),</span> <span class="n">HMC</span><span class="x">(</span><span class="mf">0.1</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="o">:</span><span class="n">s²</span><span class="x">)),</span> <span class="mi">1000</span><span class="x">)</span>
+<span class="n">c5</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">gdemo</span><span class="x">(</span><span class="mf">1.5</span><span class="x">,</span> <span class="mi">2</span><span class="x">),</span> <span class="n">HMCDA</span><span class="x">(</span><span class="mf">0.15</span><span class="x">,</span> <span class="mf">0.65</span><span class="x">),</span> <span class="mi">1000</span><span class="x">)</span>
+<span class="n">c6</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">gdemo</span><span class="x">(</span><span class="mf">1.5</span><span class="x">,</span> <span class="mi">2</span><span class="x">),</span> <span class="n">NUTS</span><span class="x">(</span><span class="mf">0.65</span><span class="x">),</span> <span class="mi">1000</span><span class="x">)</span>
+</code></pre></div></div>
+<p>The <code>MCMCChains</code> module (which is re-exported by Turing) provides plotting tools for the <code>Chain</code> objects returned by a <code>sample</code> function. See the <a href="https://github.com/TuringLang/MCMCChains.jl">MCMCChains</a> repository for more information on the suite of tools available for diagnosing MCMC chains.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Summarise results</span>
+<span class="n">describe</span><span class="x">(</span><span class="n">c3</span><span class="x">)</span>
+
+<span class="c"># Plot results</span>
+<span class="n">plot</span><span class="x">(</span><span class="n">c3</span><span class="x">)</span>
+<span class="n">savefig</span><span class="x">(</span><span class="s">"gdemo-plot.png"</span><span class="x">)</span>
+</code></pre></div></div>
+<p>The arguments for each sampler are:</p>
+<ul>
+<li>SMC: number of particles.</li>
+<li>PG: number of particles, number of iterations.</li>
+<li>HMC: leapfrog step size, leapfrog step numbers.</li>
+<li>Gibbs: component sampler 1, component sampler 2, ...</li>
+<li>HMCDA: total leapfrog length, target accept ratio.</li>
+<li>NUTS: number of adaptation steps (optional), target accept ratio.</li>
+</ul>
+<p>For detailed information on the samplers, please review Turing.jl's <a href="/v0.24/docs/library">API</a> documentation.</p>
+<p><a id='Modelling-Syntax-Explained'></a></p>
+<p><a id='Modelling-Syntax-Explained-1'></a></p>
+<h3 id="modelling-syntax-explained">Modelling Syntax Explained</h3>
+<p>Using this syntax, a probabilistic model is defined in Turing. The model function generated by Turing can then be used to condition the model onto data. Subsequently, the sample function can be used to generate samples from the posterior distribution.</p>
+<p>In the following example, the defined model is conditioned to the data (arg<em>1 = 1, arg</em>2 = 2) by passing (1, 2) to the model function.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> model_name</span><span class="x">(</span><span class="n">arg_1</span><span class="x">,</span> <span class="n">arg_2</span><span class="x">)</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>The conditioned model can then be passed onto the sample function to run posterior inference.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model_func</span> <span class="o">=</span> <span class="n">model_name</span><span class="x">(</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">)</span>
+<span class="n">chn</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">model_func</span><span class="x">,</span> <span class="n">HMC</span><span class="x">(</span><span class="o">..</span><span class="x">))</span> <span class="c"># Perform inference by sampling using HMC.</span>
+</code></pre></div></div>
+<p>The returned chain contains samples of the variables in the model.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">var_1</span> <span class="o">=</span> <span class="n">mean</span><span class="x">(</span><span class="n">chn</span><span class="x">[</span><span class="o">:</span><span class="n">var_1</span><span class="x">])</span> <span class="c"># Taking the mean of a variable named var_1.</span>
+</code></pre></div></div>
+<p>The key (<code>:var_1</code>) can be a <code>Symbol</code> or a <code>String</code>. For example, to fetch <code>x[1]</code>, one can use <code>chn[Symbol(&quot;x[1]&quot;)]</code> or <code>chn[&quot;x[1]&quot;]</code>. If you want to retrieve all parameters associated with a specific symbol, you can use <code>group</code>. As an example, if you have the parameters <code>&quot;x[1]&quot;</code>, <code>&quot;x[2]&quot;</code>, and <code>&quot;x[3]&quot;</code>, calling <code>group(chn, :x)</code> or <code>group(chn, &quot;x&quot;)</code> will return a new chain with only <code>&quot;x[1]&quot;</code>, <code>&quot;x[2]&quot;</code>, and <code>&quot;x[3]&quot;</code>.</p>
+<p>Turing does not have a declarative form. More generally, the order in which you place the lines of a <code>@model</code> macro matters. For example, the following example works:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Define a simple Normal model with unknown mean and variance.</span>
+<span class="nd">@model</span> <span class="k">function</span><span class="nf"> model_function</span><span class="x">(</span><span class="n">y</span><span class="x">)</span>
+    <span class="n">s</span> <span class="o">~</span> <span class="n">Poisson</span><span class="x">(</span><span class="mi">1</span><span class="x">)</span>
+    <span class="n">y</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">s</span><span class="x">,</span> <span class="mi">1</span><span class="x">)</span>
+    <span class="k">return</span> <span class="n">y</span>
+<span class="k">end</span>
+
+<span class="n">sample</span><span class="x">(</span><span class="n">model_function</span><span class="x">(</span><span class="mi">10</span><span class="x">),</span> <span class="n">SMC</span><span class="x">(),</span> <span class="mi">100</span><span class="x">)</span>
+</code></pre></div></div>
+<p>But if we switch the <code>s ~ Poisson(1)</code> and <code>y ~ Normal(s, 1)</code> lines, the model will no longer sample correctly:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Define a simple Normal model with unknown mean and variance.</span>
+<span class="nd">@model</span> <span class="k">function</span><span class="nf"> model_function</span><span class="x">(</span><span class="n">y</span><span class="x">)</span>
+    <span class="n">y</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">s</span><span class="x">,</span> <span class="mi">1</span><span class="x">)</span>
+    <span class="n">s</span> <span class="o">~</span> <span class="n">Poisson</span><span class="x">(</span><span class="mi">1</span><span class="x">)</span>
+    <span class="k">return</span> <span class="n">y</span>
+<span class="k">end</span>
+
+<span class="n">sample</span><span class="x">(</span><span class="n">model_function</span><span class="x">(</span><span class="mi">10</span><span class="x">),</span> <span class="n">SMC</span><span class="x">(),</span> <span class="mi">100</span><span class="x">)</span>
+</code></pre></div></div>
+<p><a id='Sampling-Multiple-Chains'></a></p>
+<p><a id='Sampling-Multiple-Chains-1'></a></p>
+<h3 id="sampling-multiple-chains">Sampling Multiple Chains</h3>
+<p>Turing supports distributed and threaded parallel sampling. To do so, call <code>sample(model, sampler, parallel_type, n, n_chains)</code>, where <code>parallel_type</code> can be either <code>MCMCThreads()</code> or <code>MCMCDistributed()</code> for thread and parallel sampling, respectively.</p>
+<p>Having multiple chains in the same object is valuable for evaluating convergence. Some diagnostic functions like <code>gelmandiag</code> require multiple chains.</p>
+<p>If you do not want parallelism or are on an older version Julia, you can sample multiple chains with the <code>mapreduce</code> function:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Replace num_chains below with however many chains you wish to sample.</span>
+<span class="n">chains</span> <span class="o">=</span> <span class="n">mapreduce</span><span class="x">(</span><span class="n">c</span> <span class="o">-&gt;</span> <span class="n">sample</span><span class="x">(</span><span class="n">model_fun</span><span class="x">,</span> <span class="n">sampler</span><span class="x">,</span> <span class="mi">1000</span><span class="x">),</span> <span class="n">chainscat</span><span class="x">,</span> <span class="mi">1</span><span class="o">:</span><span class="n">num_chains</span><span class="x">)</span>
+</code></pre></div></div>
+<p>The <code>chains</code> variable now contains a <code>Chains</code> object which can be indexed by chain. To pull out the first chain from the <code>chains</code> object, use <code>chains[:,:,1]</code>. The method is the same if you use either of the below parallel sampling methods.</p>
+<p><a id='Multithreaded-sampling'></a></p>
+<p><a id='Multithreaded-sampling-1'></a></p>
+<h4 id="multithreaded-sampling">Multithreaded sampling</h4>
+<p>If you wish to perform multithreaded sampling and are running Julia 1.3 or greater, you can call <code>sample</code> with the following signature:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
+
+<span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">eachindex</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+        <span class="n">x</span><span class="x">[</span><span class="n">i</span><span class="x">]</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">([</span><span class="mf">1.5</span><span class="x">,</span> <span class="mf">2.0</span><span class="x">])</span>
+
+<span class="c"># Sample four chains using multiple threads, each with 1000 samples.</span>
+<span class="n">sample</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">NUTS</span><span class="x">(),</span> <span class="n">MCMCThreads</span><span class="x">(),</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">4</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Be aware that Turing cannot add threads for you – you must have started your Julia instance with multiple threads to experience any kind of parallelism. See the <a href="https://docs.julialang.org/en/v1/manual/parallel-computing/#man-multithreading-1">Julia documentation</a> for details on how to achieve this.</p>
+<p><a id='Distributed-sampling'></a></p>
+<p><a id='Distributed-sampling-1'></a></p>
+<h4 id="distributed-sampling">Distributed sampling</h4>
+<p>To perform distributed sampling (using multiple processes), you must first import <code>Distributed</code>.</p>
+<p>Process parallel sampling can be done like so:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Load Distributed to add processes and the @everywhere macro.</span>
+<span class="k">using</span> <span class="n">Distributed</span>
+
+<span class="c"># Load Turing.</span>
+<span class="k">using</span> <span class="n">Turing</span>
+
+<span class="c"># Add four processes to use for sampling.</span>
+<span class="n">addprocs</span><span class="x">(</span><span class="mi">4</span><span class="x">)</span>
+
+<span class="c"># Initialize everything on all the processes.</span>
+<span class="c"># Note: Make sure to do this after you've already loaded Turing,</span>
+<span class="c">#       so each process does not have to precompile.</span>
+<span class="c">#       Parallel sampling may fail silently if you do not do this.</span>
+<span class="nd">@everywhere</span> <span class="k">using</span> <span class="n">Turing</span>
+
+<span class="c"># Define a model on all processes.</span>
+<span class="nd">@everywhere</span> <span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">eachindex</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+        <span class="n">x</span><span class="x">[</span><span class="n">i</span><span class="x">]</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Declare the model instance everywhere.</span>
+<span class="nd">@everywhere</span> <span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">([</span><span class="mf">1.5</span><span class="x">,</span> <span class="mf">2.0</span><span class="x">])</span>
+
+<span class="c"># Sample four chains using multiple processes, each with 1000 samples.</span>
+<span class="n">sample</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">NUTS</span><span class="x">(),</span> <span class="n">MCMCDistributed</span><span class="x">(),</span> <span class="mi">1000</span><span class="x">,</span> <span class="mi">4</span><span class="x">)</span>
+</code></pre></div></div>
+<p><a id='Sampling-from-an-Unconditional-Distribution-(The-Prior)'></a></p>
+<p><a id='Sampling-from-an-Unconditional-Distribution-(The-Prior)-1'></a></p>
+<h3 id="sampling-from-an-unconditional-distribution-the-prior">Sampling from an Unconditional Distribution (The Prior)</h3>
+<p>Turing allows you to sample from a declared model's prior. If you wish to draw a chain from the prior to inspect your prior distributions, you can simply run</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">chain</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">Prior</span><span class="x">(),</span> <span class="n">n_samples</span><span class="x">)</span>
+</code></pre></div></div>
+<p>You can also run your model (as if it were a function) from the prior distribution, by calling the model without specifying inputs or a sampler. In the below example, we specify a <code>gdemo</code> model which returns two variables, <code>x</code> and <code>y</code>. The model includes <code>x</code> and <code>y</code> as arguments, but calling the function without passing in <code>x</code> or <code>y</code> means that Turing's compiler will assume they are missing values to draw from the relevant distribution. The <code>return</code> statement is necessary to retrieve the sampled <code>x</code> and <code>y</code> values.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+    <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="n">x</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="n">y</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="k">return</span> <span class="n">x</span><span class="x">,</span> <span class="n">y</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>Assign the function with <code>missing</code> inputs to a variable, and Turing will produce a sample from the prior distribution.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Samples from p(x,y)</span>
+<span class="n">g_prior_sample</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">(</span><span class="nb">missing</span><span class="x">,</span> <span class="nb">missing</span><span class="x">)</span>
+<span class="n">g_prior_sample</span><span class="x">()</span>
+</code></pre></div></div>
+<p>Output:</p>
+<pre><code>(0.685690547873451, -1.1972706455914328)
+</code></pre>
+<p><a id='Sampling-from-a-Conditional-Distribution-(The-Posterior)'></a></p>
+<p><a id='Sampling-from-a-Conditional-Distribution-(The-Posterior)-1'></a></p>
+<h3 id="sampling-from-a-conditional-distribution-the-posterior">Sampling from a Conditional Distribution (The Posterior)</h3>
+<p><a id='Treating-observations-as-random-variables'></a></p>
+<p><a id='Treating-observations-as-random-variables-1'></a></p>
+<h4 id="treating-observations-as-random-variables">Treating observations as random variables</h4>
+<p>Inputs to the model that have a value <code>missing</code> are treated as parameters, aka random variables, to be estimated/sampled. This can be useful if you want to simulate draws for that parameter, or if you are sampling from a conditional distribution. Turing supports the following syntax:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="o">::</span><span class="kt">Type</span><span class="x">{</span><span class="n">T</span><span class="x">}</span> <span class="o">=</span> <span class="kt">Float64</span><span class="x">)</span> <span class="k">where</span> <span class="x">{</span><span class="n">T</span><span class="x">}</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">===</span> <span class="nb">missing</span>
+        <span class="c"># Initialize `x` if missing</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="kt">Vector</span><span class="x">{</span><span class="n">T</span><span class="x">}(</span><span class="nb">undef</span><span class="x">,</span> <span class="mi">2</span><span class="x">)</span>
+    <span class="k">end</span>
+    <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">eachindex</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+        <span class="n">x</span><span class="x">[</span><span class="n">i</span><span class="x">]</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Construct a model with x = missing</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">(</span><span class="nb">missing</span><span class="x">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">HMC</span><span class="x">(</span><span class="mf">0.01</span><span class="x">,</span> <span class="mi">5</span><span class="x">),</span> <span class="mi">500</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Note the need to initialize <code>x</code> when missing since we are iterating over its elements later in the model. The generated values for <code>x</code> can be extracted from the <code>Chains</code> object using <code>c[:x]</code>.</p>
+<p>Turing also supports mixed <code>missing</code> and non-<code>missing</code> values in <code>x</code>, where the missing ones will be treated as random variables to be sampled while the others get treated as observations. For example:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">eachindex</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+        <span class="n">x</span><span class="x">[</span><span class="n">i</span><span class="x">]</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># x[1] is a parameter, but x[2] is an observation</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">([</span><span class="nb">missing</span><span class="x">,</span> <span class="mf">2.4</span><span class="x">])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">HMC</span><span class="x">(</span><span class="mf">0.01</span><span class="x">,</span> <span class="mi">5</span><span class="x">),</span> <span class="mi">500</span><span class="x">)</span>
+</code></pre></div></div>
+<p><a id='Default-Values'></a></p>
+<p><a id='Default-Values-1'></a></p>
+<h4 id="default-values">Default Values</h4>
+<p>Arguments to Turing models can have default values much like how default values work in normal Julia functions. For instance, the following will assign <code>missing</code> to <code>x</code> and treat it as a random variable. If the default value is not <code>missing</code>, <code>x</code> will be assigned that value and will be treated as an observation instead.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
+
+<span class="nd">@model</span> <span class="k">function</span><span class="nf"> generative</span><span class="x">(</span><span class="n">x</span> <span class="o">=</span> <span class="nb">missing</span><span class="x">,</span> <span class="o">::</span><span class="kt">Type</span><span class="x">{</span><span class="n">T</span><span class="x">}</span> <span class="o">=</span> <span class="kt">Float64</span><span class="x">)</span> <span class="k">where</span> <span class="x">{</span><span class="n">T</span> <span class="o">&lt;:</span> <span class="kt">Real</span><span class="x">}</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">===</span> <span class="nb">missing</span>
+        <span class="c"># Initialize x when missing</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="kt">Vector</span><span class="x">{</span><span class="n">T</span><span class="x">}(</span><span class="nb">undef</span><span class="x">,</span> <span class="mi">10</span><span class="x">)</span>
+    <span class="k">end</span>
+    <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+        <span class="n">x</span><span class="x">[</span><span class="n">i</span><span class="x">]</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="k">end</span>
+    <span class="k">return</span> <span class="n">s²</span><span class="x">,</span> <span class="n">m</span>
+<span class="k">end</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">generative</span><span class="x">()</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">HMC</span><span class="x">(</span><span class="mf">0.01</span><span class="x">,</span> <span class="mi">5</span><span class="x">),</span> <span class="mi">1000</span><span class="x">)</span>
+</code></pre></div></div>
+<p><a id='Access-Values-inside-Chain'></a></p>
+<p><a id='Access-Values-inside-Chain-1'></a></p>
+<h4 id="access-values-inside-chain">Access Values inside Chain</h4>
+<p>You can access the values inside a chain several ways:</p>
+<ol>
+<li>Turn them into a <code>DataFrame</code> object</li>
+<li>Use their raw <code>AxisArray</code> form</li>
+<li>Create a three-dimensional <code>Array</code> object</li>
+</ol>
+<p>For example, let <code>c</code> be a <code>Chain</code>:</p>
+<ol>
+<li><code>DataFrame(c)</code> converts <code>c</code> to a <code>DataFrame</code>,</li>
+<li><code>c.value</code> retrieves the values inside <code>c</code> as an <code>AxisArray</code>, and</li>
+<li><code>c.value.data</code> retrieves the values inside <code>c</code> as a 3D <code>Array</code>.</li>
+</ol>
+<p><a id='Variable-Types-and-Type-Parameters'></a></p>
+<p><a id='Variable-Types-and-Type-Parameters-1'></a></p>
+<h4 id="variable-types-and-type-parameters">Variable Types and Type Parameters</h4>
+<p>The element type of a vector (or matrix) of random variables should match the <code>eltype</code> of the its prior distribution, <code>&lt;: Integer</code> for discrete distributions and <code>&lt;: AbstractFloat</code> for continuous distributions. Moreover, if the continuous random variable is to be sampled using a Hamiltonian sampler, the vector's element type needs to either be:     1. <code>Real</code> to enable auto-differentiation through the model which uses special number types that are sub-types of <code>Real</code>, or     2. Some type parameter <code>T</code> defined in the model header using the type parameter syntax, e.g. <code>function gdemo(x, ::Type{T} = Float64) where {T}</code>. Similarly, when using a particle sampler, the Julia variable used should either be:     1. An <code>Array</code>, or     2. An instance of some type parameter <code>T</code> defined in the model header using the type parameter syntax, e.g. <code>function gdemo(x, ::Type{T} = Vector{Float64}) where {T}</code>.</p>
+<p><a id='Querying-Probabilities-from-Model-or-Chain'></a></p>
+<p><a id='Querying-Probabilities-from-Model-or-Chain-1'></a></p>
+<h3 id="querying-probabilities-from-model-or-chain">Querying Probabilities from Model or Chain</h3>
+<p>Consider first the following simplified <code>gdemo</code> model:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo0</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">s</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s</span><span class="x">))</span>
+    <span class="n">x</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s</span><span class="x">))</span>
+<span class="k">end</span>
+
+<span class="c"># Instantiate three models, with different value of x</span>
+<span class="n">model1</span> <span class="o">=</span> <span class="n">gdemo0</span><span class="x">(</span><span class="mi">1</span><span class="x">)</span>
+<span class="n">model4</span> <span class="o">=</span> <span class="n">gdemo0</span><span class="x">(</span><span class="mi">4</span><span class="x">)</span>
+<span class="n">model10</span> <span class="o">=</span> <span class="n">gdemo0</span><span class="x">(</span><span class="mi">10</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Now, query the instantiated models: compute the likelihood of <code>x = 1.0</code> given the values of <code>s = 1.0</code> and <code>m = 1.0</code> for the parameters:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prob</span><span class="s">"x = 1.0 | model = model1, s = 1.0, m = 1.0"</span>
+<span class="n">prob</span><span class="s">"x = 1.0 | model = model4, s = 1.0, m = 1.0"</span>
+<span class="n">prob</span><span class="s">"x = 1.0 | model = model10, s = 1.0, m = 1.0"</span>
+</code></pre></div></div>
+<p>Notice that even if we use three models, instantiated with three different values of <code>x</code>, we should obtain the same likelihood. We can easily verify that value in this case:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pdf</span><span class="x">(</span><span class="n">Normal</span><span class="x">(</span><span class="mf">1.0</span><span class="x">,</span> <span class="mf">1.0</span><span class="x">),</span> <span class="mf">1.0</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Let us now consider the following <code>gdemo</code> model:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
+    <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="n">x</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="n">y</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+<span class="k">end</span>
+
+<span class="c"># Instantiate the model.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">(</span><span class="mf">2.0</span><span class="x">,</span> <span class="mf">4.0</span><span class="x">)</span>
+</code></pre></div></div>
+<p>The following are examples of valid queries of the <code>Turing</code> model or chain:</p>
+<ul>
+<li><code>prob&quot;x = 1.0, y = 1.0 | model = model, s = 1.0, m = 1.0&quot;</code> calculates the likelihood of <code>x = 1</code> and <code>y = 1</code> given <code>s = 1</code> and <code>m = 1</code>.</li>
+<li><code>prob&quot;s² = 1.0, m = 1.0 | model = model, x = nothing, y = nothing&quot;</code> calculates the joint probability of <code>s = 1</code> and <code>m = 1</code> ignoring <code>x</code> and <code>y</code>. <code>x</code> and <code>y</code> are ignored so they can be optionally dropped from the RHS of <code>|</code>, but it is recommended to define them.</li>
+<li><code>prob&quot;s² = 1.0, m = 1.0, x = 1.0 | model = model, y = nothing&quot;</code> calculates the joint probability of <code>s = 1</code>, <code>m = 1</code> and <code>x = 1</code> ignoring <code>y</code>.</li>
+<li><code>prob&quot;s² = 1.0, m = 1.0, x = 1.0, y = 1.0 | model = model&quot;</code> calculates the joint probability of all the variables.</li>
+<li>After the MCMC sampling, given a <code>chain</code>, <code>prob&quot;x = 1.0, y = 1.0 | chain = chain, model = model&quot;</code> calculates the element-wise likelihood of <code>x = 1.0</code> and <code>y = 1.0</code> for each sample in <code>chain</code>.</li>
+<li>If <code>save_state=true</code> was used during sampling (i.e., <code>sample(model, sampler, N; save_state=true)</code>), you can simply do <code>prob&quot;x = 1.0, y = 1.0 | chain = chain&quot;</code>.</li>
+</ul>
+<p>In all the above cases, <code>logprob</code> can be used instead of <code>prob</code> to calculate the log probabilities instead.</p>
+<p><a id='Maximum-likelihood-and-maximum-a-posterior-estimates'></a></p>
+<p><a id='Maximum-likelihood-and-maximum-a-posterior-estimates-1'></a></p>
+<h3 id="maximum-likelihood-and-maximum-a-posterior-estimates">Maximum likelihood and maximum a posterior estimates</h3>
+<p>Turing provides support for two mode estimation techniques, <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">maximum likelihood estimation</a> (MLE) and <a href="https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation">maximum a posterior</a> (MAP) estimation. Optimization is performed by the <a href="https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a> package. Mode estimation is currently a optional tool, and will not be available to you unless you have manually installed Optim and loaded the package with a <code>using</code> statement. To install Optim, run <code>import Pkg; Pkg.add(&quot;Optim&quot;)</code>.</p>
+<p>Mode estimation only works when all model parameters are continuous – discrete parameters cannot be estimated with MLE/MAP as of yet.</p>
+<p>To understand how mode estimation works, let us first load Turing and Optim to enable mode estimation, and then declare a model:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Note that loading Optim explicitly is required for mode estimation to function,</span>
+<span class="c"># as Turing does not load the opimization suite unless Optim is loaded as well.</span>
+<span class="k">using</span> <span class="n">Turing</span>
+<span class="k">using</span> <span class="n">Optim</span>
+
+<span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+    <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">eachindex</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+        <span class="n">x</span><span class="x">[</span><span class="n">i</span><span class="x">]</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p>Once the model is defined, we can construct a model instance as we normally would:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create some data to pass to the model.</span>
+<span class="n">data</span> <span class="o">=</span> <span class="x">[</span><span class="mf">1.5</span><span class="x">,</span> <span class="mf">2.0</span><span class="x">]</span>
+
+<span class="c"># Instantiate the gdemo model with our data.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">(</span><span class="n">data</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Mode estimation is typically quick and easy at this point. Turing extends the function <code>Optim.optimize</code> and accepts the structs <code>MLE()</code> or <code>MAP()</code>, which inform Turing whether to provide an MLE or MAP estimate, respectively. By default, the <a href="https://julianlsolvers.github.io/Optim.jl/stable/#algo/lbfgs/">LBFGS optimizer</a> is used, though this can be changed. Basic usage is:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Generate a MLE estimate.</span>
+<span class="n">mle_estimate</span> <span class="o">=</span> <span class="n">optimize</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">MLE</span><span class="x">())</span>
+
+<span class="c"># Generate a MAP estimate.</span>
+<span class="n">map_estimate</span> <span class="o">=</span> <span class="n">optimize</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">MAP</span><span class="x">())</span>
+</code></pre></div></div>
+<p>If you wish to change to a different optimizer, such as <code>NelderMead</code>, simply place your optimizer in the third argument slot:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Use NelderMead</span>
+<span class="n">mle_estimate</span> <span class="o">=</span> <span class="n">optimize</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">MLE</span><span class="x">(),</span> <span class="n">NelderMead</span><span class="x">())</span>
+
+<span class="c"># Use SimulatedAnnealing</span>
+<span class="n">mle_estimate</span> <span class="o">=</span> <span class="n">optimize</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">MLE</span><span class="x">(),</span> <span class="n">SimulatedAnnealing</span><span class="x">())</span>
+
+<span class="c"># Use ParticleSwarm</span>
+<span class="n">mle_estimate</span> <span class="o">=</span> <span class="n">optimize</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">MLE</span><span class="x">(),</span> <span class="n">ParticleSwarm</span><span class="x">())</span>
+
+<span class="c"># Use Newton</span>
+<span class="n">mle_estimate</span> <span class="o">=</span> <span class="n">optimize</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">MLE</span><span class="x">(),</span> <span class="n">Newton</span><span class="x">())</span>
+
+<span class="c"># Use AcceleratedGradientDescent</span>
+<span class="n">mle_estimate</span> <span class="o">=</span> <span class="n">optimize</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">MLE</span><span class="x">(),</span> <span class="n">AcceleratedGradientDescent</span><span class="x">())</span>
+</code></pre></div></div>
+<p>Some methods may have trouble calculating the mode because not enough iterations were allowed, or the target function moved upwards between function calls. Turing will warn you if Optim fails to converge by running <code>Optim.converge</code>. A typical solution to this might be to add more iterations, or allow the optimizer to increase between function iterations:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Increase the iterations and allow function eval to increase between calls.</span>
+<span class="n">mle_estimate</span> <span class="o">=</span> <span class="n">optimize</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">MLE</span><span class="x">(),</span> <span class="n">Newton</span><span class="x">(),</span> <span class="n">Optim</span><span class="o">.</span><span class="n">Options</span><span class="x">(</span><span class="n">iterations</span><span class="o">=</span><span class="mi">10_000</span><span class="x">,</span> <span class="n">allow_f_increases</span><span class="o">=</span><span class="nb">true</span><span class="x">))</span>
+</code></pre></div></div>
+<p>More options for Optim are available <a href="https://julianlsolvers.github.io/Optim.jl/stable/#user/config/">here</a>.</p>
+<p><a id='Analyzing-your-mode-estimate'></a></p>
+<p><a id='Analyzing-your-mode-estimate-1'></a></p>
+<h4 id="analyzing-your-mode-estimate">Analyzing your mode estimate</h4>
+<p>Turing extends several methods from <code>StatsBase</code> that can be used to analyze your mode estimation results. Methods implemented include <code>vcov</code>, <code>informationmatrix</code>, <code>coeftable</code>, <code>params</code>, and <code>coef</code>, among others.</p>
+<p>For example, let's examine our ML estimate from above using <code>coeftable</code>:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Import StatsBase to use it's statistical methods.</span>
+<span class="k">using</span> <span class="n">StatsBase</span>
+
+<span class="c"># Print out the coefficient table.</span>
+<span class="n">coeftable</span><span class="x">(</span><span class="n">mle_estimate</span><span class="x">)</span>
+</code></pre></div></div>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">─────────────────────────────</span>
+   <span class="n">estimate</span>  <span class="n">stderror</span>   <span class="n">tstat</span>
+<span class="n">─────────────────────────────</span>
+<span class="n">s</span>    <span class="mf">0.0625</span>  <span class="mf">0.0625</span>    <span class="mf">1.0</span>
+<span class="n">m</span>    <span class="mf">1.75</span>    <span class="mf">0.176777</span>  <span class="mf">9.8995</span>
+<span class="n">─────────────────────────────</span>
+</code></pre></div></div>
+<p>Standard errors are calculated from the Fisher information matrix (inverse Hessian of the log likelihood or log joint). t-statistics will be familiar to frequentist statisticians. Warning – standard errors calculated in this way may not always be appropriate for MAP estimates, so please be cautious in interpreting them.</p>
+<p><a id='Sampling-with-the-MAP/MLE-as-initial-states'></a></p>
+<p><a id='Sampling-with-the-MAP/MLE-as-initial-states-1'></a></p>
+<h4 id="sampling-with-the-mapmle-as-initial-states">Sampling with the MAP/MLE as initial states</h4>
+<p>You can begin sampling your chain from an MLE/MAP estimate by extracting the vector of parameter values and providing it to the <code>sample</code> function with the keyword <code>init_params</code>. For example, here is how to sample from the full posterior using the MAP estimate as the starting point:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Generate an MAP estimate.</span>
+<span class="n">map_estimate</span> <span class="o">=</span> <span class="n">optimize</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">MAP</span><span class="x">())</span>
+
+<span class="c"># Sample with the MAP estimate as the starting point.</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">NUTS</span><span class="x">(),</span> <span class="mi">1_000</span><span class="x">,</span> <span class="n">init_params</span> <span class="o">=</span> <span class="n">map_estimate</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">array</span><span class="x">)</span>
+</code></pre></div></div>
+<p><a id='Beyond-the-Basics'></a></p>
+<p><a id='Beyond-the-Basics-1'></a></p>
+<h2 id="beyond-the-basics">Beyond the Basics</h2>
+<p><a id='Compositional-Sampling-Using-Gibbs'></a></p>
+<p><a id='Compositional-Sampling-Using-Gibbs-1'></a></p>
+<h3 id="compositional-sampling-using-gibbs">Compositional Sampling Using Gibbs</h3>
+<p>Turing.jl provides a Gibbs interface to combine different samplers. For example, one can combine an <code>HMC</code> sampler with a <code>PG</code> sampler to run inference for different parameters in a single model as below.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> simple_choice</span><span class="x">(</span><span class="n">xs</span><span class="x">)</span>
+    <span class="n">p</span> <span class="o">~</span> <span class="n">Beta</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">2</span><span class="x">)</span>
+    <span class="n">z</span> <span class="o">~</span> <span class="n">Bernoulli</span><span class="x">(</span><span class="n">p</span><span class="x">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="x">(</span><span class="n">xs</span><span class="x">)</span>
+        <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="n">xs</span><span class="x">[</span><span class="n">i</span><span class="x">]</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="mi">1</span><span class="x">)</span>
+        <span class="k">else</span>
+            <span class="n">xs</span><span class="x">[</span><span class="n">i</span><span class="x">]</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">1</span><span class="x">)</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">simple_choice_f</span> <span class="o">=</span> <span class="n">simple_choice</span><span class="x">([</span><span class="mf">1.5</span><span class="x">,</span> <span class="mf">2.0</span><span class="x">,</span> <span class="mf">0.3</span><span class="x">])</span>
+
+<span class="n">chn</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">simple_choice_f</span><span class="x">,</span> <span class="n">Gibbs</span><span class="x">(</span><span class="n">HMC</span><span class="x">(</span><span class="mf">0.2</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="o">:</span><span class="n">p</span><span class="x">),</span> <span class="n">PG</span><span class="x">(</span><span class="mi">20</span><span class="x">,</span> <span class="o">:</span><span class="n">z</span><span class="x">)),</span> <span class="mi">1000</span><span class="x">)</span>
+</code></pre></div></div>
+<p>The <code>Gibbs</code> sampler can be used to specify unique automatic differentiation backends for different variable spaces. Please see the <a href="/v0.24/docs/using-turing/autodiff">Automatic Differentiation</a> article for more.</p>
+<p>For more details of compositional sampling in Turing.jl, please check the corresponding <a href="http://proceedings.mlr.press/v84/ge18b.html">paper</a>.</p>
+<p><a id='Working-with-filldist-and-arraydist'></a></p>
+<p><a id='Working-with-filldist-and-arraydist-1'></a></p>
+<h3 id="working-with-filldist-and-arraydist">Working with filldist and arraydist</h3>
+<p>Turing provides <code>filldist(dist::Distribution, n::Int)</code> and <code>arraydist(dists::AbstractVector{&lt;:Distribution})</code> as a simplified interface to construct product distributions, e.g., to model a set of variables that share the same structure but vary by group.</p>
+<p><a id='Constructing-product-distributions-with-filldist'></a></p>
+<p><a id='Constructing-product-distributions-with-filldist-1'></a></p>
+<h4 id="constructing-product-distributions-with-filldist">Constructing product distributions with filldist</h4>
+<p>The function <code>filldist</code> provides a general interface to construct product distributions over distributions of the same type and parameterisation. Note that, in contrast to the product distribution interface provided by Distributions.jl (<code>Product</code>), <code>filldist</code> supports product distributions over univariate or multivariate distributions.</p>
+<p>Example usage:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> demo</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">g</span><span class="x">)</span>
+  <span class="n">k</span> <span class="o">=</span> <span class="n">length</span><span class="x">(</span><span class="n">unique</span><span class="x">(</span><span class="n">g</span><span class="x">))</span>
+  <span class="n">a</span> <span class="o">~</span> <span class="n">filldist</span><span class="x">(</span><span class="n">Exponential</span><span class="x">(),</span> <span class="n">k</span><span class="x">)</span> <span class="c"># = Product(fill(Exponential(), k))</span>
+  <span class="n">mu</span> <span class="o">=</span> <span class="n">a</span><span class="x">[</span><span class="n">g</span><span class="x">]</span>
+  <span class="n">x</span> <span class="o">.~</span> <span class="n">Normal</span><span class="o">.</span><span class="x">(</span><span class="n">mu</span><span class="x">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p><a id='Constructing-product-distributions-with-arraydist'></a></p>
+<p><a id='Constructing-product-distributions-with-arraydist-1'></a></p>
+<h4 id="constructing-product-distributions-with-arraydist">Constructing product distributions with arraydist</h4>
+<p>The function <code>arraydist</code> provides a general interface to construct product distributions over distributions of varying type and parameterisation. Note that in contrast to the product distribution interface provided by Distributions.jl (<code>Product</code>), <code>arraydist</code> supports product distributions over univariate or multivariate distributions.</p>
+<p>Example usage:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> demo</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">g</span><span class="x">)</span>
+  <span class="n">k</span> <span class="o">=</span> <span class="n">length</span><span class="x">(</span><span class="n">unique</span><span class="x">(</span><span class="n">g</span><span class="x">))</span>
+  <span class="n">a</span> <span class="o">~</span> <span class="n">arraydist</span><span class="x">([</span><span class="n">Exponential</span><span class="x">(</span><span class="n">i</span><span class="x">)</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="n">k</span><span class="x">])</span>
+  <span class="n">mu</span> <span class="o">=</span> <span class="n">a</span><span class="x">[</span><span class="n">g</span><span class="x">]</span>
+  <span class="n">x</span> <span class="o">.~</span> <span class="n">Normal</span><span class="o">.</span><span class="x">(</span><span class="n">mu</span><span class="x">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<p><a id='Working-with-MCMCChains.jl'></a></p>
+<p><a id='Working-with-MCMCChains.jl-1'></a></p>
+<h3 id="working-with-mcmcchainsjl">Working with MCMCChains.jl</h3>
+<p>Turing.jl wraps its samples using <code>MCMCChains.Chain</code> so that all the functions working for <code>MCMCChains.Chain</code> can be re-used in Turing.jl. Two typical functions are <code>MCMCChains.describe</code> and <code>MCMCChains.plot</code>, which can be used as follows for an obtained chain <code>chn</code>. For more information on <code>MCMCChains</code>, please see the <a href="https://github.com/TuringLang/MCMCChains.jl">GitHub repository</a>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">describe</span><span class="x">(</span><span class="n">chn</span><span class="x">)</span> <span class="c"># Lists statistics of the samples.</span>
+<span class="n">plot</span><span class="x">(</span><span class="n">chn</span><span class="x">)</span> <span class="c"># Plots statistics of the samples.</span>
+</code></pre></div></div>
+<p>There are numerous functions in addition to <code>describe</code> and <code>plot</code> in the <code>MCMCChains</code> package, such as those used in convergence diagnostics. For more information on the package, please see the <a href="https://github.com/TuringLang/MCMCChains.jl">GitHub repository</a>.</p>
+<p><a id='Changing-Default-Settings'></a></p>
+<p><a id='Changing-Default-Settings-1'></a></p>
+<h3 id="changing-default-settings">Changing Default Settings</h3>
+<p>Some of Turing.jl's default settings can be changed for better usage.</p>
+<p><a id='AD-Chunk-Size'></a></p>
+<p><a id='AD-Chunk-Size-1'></a></p>
+<h4 id="ad-chunk-size">AD Chunk Size</h4>
+<p>ForwardDiff (Turing's default AD backend) uses forward-mode chunk-wise AD. The chunk size can be set manually by <code>setchunksize(new_chunk_size)</code>.</p>
+<p><a id='AD-Backend'></a></p>
+<p><a id='AD-Backend-1'></a></p>
+<h4 id="ad-backend">AD Backend</h4>
+<p>Turing supports four packages of automatic differentiation (AD) in the back end during sampling. The default AD backend is <a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff</a> for forward-mode AD. Three reverse-mode AD backends are also supported, namely <a href="https://github.com/FluxML/Tracker.jl">Tracker</a>, <a href="https://github.com/FluxML/Zygote.jl">Zygote</a> and <a href="https://github.com/JuliaDiff/ReverseDiff.jl">ReverseDiff</a>. <code>Zygote</code> and <code>ReverseDiff</code> are supported optionally if explicitly loaded by the user with <code>using Zygote</code> or <code>using ReverseDiff</code> next to <code>using Turing</code>.</p>
+<p>For more information on Turing's automatic differentiation backend, please see the <a href="/v0.24/docs/using-turing/autodiff">Automatic Differentiation</a> article.</p>
+<p><a id='Progress-Logging'></a></p>
+<p><a id='Progress-Logging-1'></a></p>
+<h4 id="progress-logging">Progress Logging</h4>
+<p>Turing.jl uses ProgressLogging.jl to log the progress of sampling. Progress logging is enabled as default but might slow down inference. It can be turned on or off by setting the keyword argument <code>progress</code> of <code>sample</code> to <code>true</code> or <code>false</code>, respectively. Moreover, you can enable or disable progress logging globally by calling <code>setprogress!(true)</code> or <code>setprogress!(false)</code>, respectively.</p>
+<p>Turing uses heuristics to select an appropriate visualization backend. If you use <a href="https://junolab.org/">Juno</a>, the progress is displayed with a <a href="http://docs.junolab.org/latest/man/juno_frontend/#Progress-Meters-1">progress bar in the Atom window</a>. For Jupyter notebooks the default backend is <a href="https://github.com/tkf/ConsoleProgressMonitor.jl">ConsoleProgressMonitor.jl</a>. In all other cases progress logs are displayed with <a href="https://github.com/c42f/TerminalLoggers.jl">TerminalLoggers.jl</a>. Alternatively, if you provide a custom visualization backend, Turing uses it instead of the default backend.</p>
+
+    
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function() {
+
+    var toc = $('#nav-toc');
+
+    // Select each header
+    sections = $('#md-container-pancakes h1');
+        $.each(sections, function(idx, v) {
+            section = $(v);
+            var div_id = $(section).attr('id');
+            var div_text = section.text().split('¶')[0];
+            var parent = $("#" + div_id)
+            var content = '<li id="link_' + div_id + '" class="md-nav__item"><a class="md-nav__link toc-side-bar" href="#' + div_id + '" title="' + div_text +'">' + div_text +'</a></li>';
+            $(toc).append(content);
+
+            // Add section code to subnavigation
+            var children = $('<nav class="md-nav"><ul class="md-nav__list"></nav></ul>')
+            var contenders = $("#" + div_id).nextUntil( "h1" );
+            $.each(contenders, function(idx, contender){
+            if($(contender).is('h2')) {
+                var contender_id = $(contender).attr('id');
+                var contender_text = $(contender).text().split('¶')[0];
+                var content = '<li class="md-nav__item"><a class="md-nav__link toc-side-bar" href="#' + contender_id + '" title="' + contender_text +'">' + contender_text +'</a></li>';
+                children.append(content);
+                }
+            })
+            $("#link_" + div_id).append(children);
+        });
+    });
+</script>
+    <!-- this will parse through the header fields and add a button to open
+     an issue / ask a question on Github. The editable field should be in
+     the post frontend matter, and refer to the label to open the issue for -->
+
+<style>
+.more {
+    float:right;
+    font-size: 1.0rem !important;
+}
+.more:hover {
+    color: cornflowerblue !important;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    font-weight: 200;
+    box-shadow: 0px 8px 6px 0px rgba(0,0,0,0.2);
+    padding: 0px 10px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+
+
+    </article>
+</div>      
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="c-footer md-footer-nav">
+  <div class="md-footer-copyright__highlight">
+    
+    Turing is created by <a style="color:inherit; text-decoration: underline;" href="http://mlg.eng.cam.ac.uk/hong/">Hong Ge</a>, 
+    and lovingly maintained by the <a style="color:inherit; text-decoration: underline;" href="https://github.com/TuringLang/Turing.jl/graphs/contributors">core team</a> of volunteers.
+
+    <br><br>
+    
+    The contents of this website are
+© 2023 under the terms of the <a style="color:inherit; text-decoration: underline;" href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE">MIT License</a>.
+    
+  </div>  
+</footer>
+
+
+    <script src="/v0.24/assets/js/application.js"></script>
+    
+    <script>console.log('4')</script>
+    <script>app.initialize({version:"0.17.4", url:{base:'/v0.24'}})</script>
+
+    
+    <script src="/v0.24/assets/js/version-switch.js"></script>
+
+    <script>
+ var headers = ["h1", "h2", "h3", "h4"]
+ var colors = ["red", "orange", "green", "blue"]
+
+ $.each(headers, function(i, header){
+   var color = colors[i];
+   $(header).each(function () {
+     var href=$(this).attr("id");
+     $(this).append('<a class="headerlink" style="color:' + color + '" href="#' + href + '" title="Permanent link">¶</a>')
+   });
+ })
+
+ // Ensure that sidebar on left has arrows
+ $(".pancakes-parent").on('click', function(){
+   console.log($(this).next());
+   $(this).next().find('.pancakes-child').toggle();
+   if ($(this).hasClass('open-parent')){
+     $(this).removeClass('open-parent');
+   } else {
+     $(this).addClass('open-parent');
+   }
+ })
+
+ $(".pancakes-parent-mobile").on('click', function(){
+   var nav = $(this).next();
+   nav.addClass('mobile-sub-navbar-display');
+ })
+
+ $(".mobile-navbar-back").on('click', function(){
+   var nav = $(this).parent();
+   nav.removeClass('mobile-sub-navbar-display');
+ })
+
+</script>
+
+<script>
+ MathJax = {
+   tex: {
+     inlineMath: [['$', '$'], ['$$', '$$']]
+   }
+ };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+    <script>
+$('h1').first().append('<div></div>')</script>
+
+    <style>
+#scrolltop {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #d2e6f5; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 10px 15px; /* Some padding */
+  border-radius: 100px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+  font-weight: 600;
+}
+
+#scrolltop:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+</style>
+<button onclick="topFunction()" id="scrolltop" title="Go to top">🔝</button>
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("scrolltop").style.display = "block";
+  } else {
+    document.getElementById("scrolltop").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+
+    
+
+
+  </body>
+</html>
