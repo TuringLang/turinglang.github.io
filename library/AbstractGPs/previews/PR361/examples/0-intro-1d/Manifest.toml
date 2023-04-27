@@ -6,8 +6,8 @@ project_hash = "dc381b9276ed606da8290fa742310ec891856c94"
 
 [[deps.AbstractGPs]]
 deps = ["ChainRulesCore", "Distributions", "FillArrays", "IrrationalConstants", "KernelFunctions", "LinearAlgebra", "PDMats", "Random", "RecipesBase", "Reexport", "Statistics", "StatsBase", "Test"]
-git-tree-sha1 = "fc7a6eba2c8592d113008e11120b3d256fa24281"
-repo-rev = "61843641a220ba13402feda8c563319aacbced62"
+git-tree-sha1 = "0da95066d27fc651020212f653fc8ca8d941e867"
+repo-rev = "77195f401ea55cea1bf912606594bb3861266723"
 repo-url = "/home/runner/work/AbstractGPs.jl/AbstractGPs.jl"
 uuid = "99985d1d-32ba-4be9-9821-2ec096f28918"
 version = "0.5.16"
