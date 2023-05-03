@@ -561,8 +561,8 @@ version = "0.9.4"
 
 [[deps.KernelFunctions]]
 deps = ["ChainRulesCore", "Compat", "CompositionsBase", "Distances", "FillArrays", "Functors", "IrrationalConstants", "LinearAlgebra", "LogExpFunctions", "Random", "Requires", "SpecialFunctions", "Statistics", "StatsBase", "TensorCore", "Test", "ZygoteRules"]
-git-tree-sha1 = "b0b99b5278dabc41d12ba2a27aae6b70640b403b"
-repo-rev = "6b35fd4f84b1a36ac01cdafa8b584cf6c4be7292"
+git-tree-sha1 = "e1a321a295ce837530c125d790ab6132dcebbe83"
+repo-rev = "6294f27e0c6e1d7d776ec69ef0313d76f757779b"
 repo-url = "/home/runner/work/KernelFunctions.jl/KernelFunctions.jl"
 uuid = "ec8451be-7e33-11e9-00cf-bbf324bd1392"
 version = "0.10.55"
