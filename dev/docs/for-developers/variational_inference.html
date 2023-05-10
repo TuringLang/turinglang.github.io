@@ -806,7 +806,7 @@
 $$</p>
 <p>where $\overset{\text{i.i.d.}}{\sim}$ denotes that the samples are identically independently distributed. Our goal in Bayesian inference is then to find the <em>posterior</em></p>
 <p>$$
-p(z \mid \{ x_i \}_{i = 1}^n) = \prod_{i=1}^{n} p(z \mid x_i).
+p(z \mid \{ x_i \}_{i = 1}^n) \propto p(z) \prod_{i=1}^{n} p(x_i \mid z).
 $$</p>
 <p>In general one cannot obtain a closed form expression for $p(z \mid \{ x_i \}_{i = 1}^n)$, but one might still be able to <em>sample</em> from $p(z \mid \{ x_i \}_{i = 1}^n)$ with guarantees of converging to the target posterior $p(z \mid \{ x_i \}_{i = 1}^n)$ as the number of samples go to $\infty$, e.g. MCMC.</p>
 <p>As you are hopefully already aware, Turing.jl provides a lot of different methods with asymptotic exactness guarantees that we can apply to such a problem!</p>
