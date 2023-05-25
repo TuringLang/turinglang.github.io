@@ -801,21 +801,22 @@
 <li><a href="/dev/docs/library/bijectors/#Bijectors.NamedCoupling"><code>Bijectors.NamedCoupling</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.NamedTransform"><code>Bijectors.NamedTransform</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.OrderedBijector"><code>Bijectors.OrderedBijector</code></a></li>
-<li><a href="/dev/docs/library/bijectors/#Bijectors.PartitionMask"><code>Bijectors.PartitionMask</code></a></li>
 <li>[<code>Bijectors.PartitionMask</code>](/dev/docs/library/bijectors/#Bijectors.PartitionMask-Union{Tuple{T}, Tuple{Int64, Any}} where T)</li>
+<li><a href="/dev/docs/library/bijectors/#Bijectors.PartitionMask"><code>Bijectors.PartitionMask</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.Permute"><code>Bijectors.Permute</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.RationalQuadraticSpline"><code>Bijectors.RationalQuadraticSpline</code></a></li>
+<li><a href="/dev/docs/library/bijectors/#Bijectors.Reshape"><code>Bijectors.Reshape</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.Stacked"><code>Bijectors.Stacked</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.Transform"><code>Bijectors.Transform</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors._link_chol_lkj-Tuple%7BAny%7D"><code>Bijectors._link_chol_lkj</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.bijector-Tuple%7BBijectors.TransformedDistribution%7D"><code>Bijectors.bijector</code></a></li>
 <li>[<code>Bijectors.combine</code>](/dev/docs/library/bijectors/#Bijectors.combine-Tuple{Bijectors.PartitionMask, Any, Any, Any})</li>
-<li>[<code>Bijectors.compute_r</code>](/dev/docs/library/bijectors/#Bijectors.compute_r-Tuple{AbstractVector{var&quot;#s102&quot;} where var&quot;#s102&quot;&lt;:Real, Any, Any})</li>
+<li>[<code>Bijectors.compute_r</code>](/dev/docs/library/bijectors/#Bijectors.compute_r-Tuple{AbstractVector{var&quot;#s103&quot;} where var&quot;#s103&quot;&lt;:Real, Any, Any})</li>
 <li>[<code>Bijectors.couple</code>](/dev/docs/library/bijectors/#Bijectors.couple-Tuple{Coupling, AbstractVector{T} where T})</li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.coupling-Tuple%7BCoupling%7D"><code>Bijectors.coupling</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.elementwise-Tuple%7BAny%7D"><code>Bijectors.elementwise</code></a></li>
 <li>[<code>Bijectors.find_alpha</code>](/dev/docs/library/bijectors/#Bijectors.find_alpha-Tuple{Real, Real, Real})</li>
-<li>[<code>Bijectors.get_u_hat</code>](/dev/docs/library/bijectors/#Bijectors.get_u_hat-Tuple{AbstractVector{var&quot;#s101&quot;} where var&quot;#s101&quot;&lt;:Real, AbstractVector{var&quot;#s100&quot;} where var&quot;#s100&quot;&lt;:Real})</li>
+<li>[<code>Bijectors.get_u_hat</code>](/dev/docs/library/bijectors/#Bijectors.get_u_hat-Tuple{AbstractVector{var&quot;#s102&quot;} where var&quot;#s102&quot;&lt;:Real, AbstractVector{var&quot;#s101&quot;} where var&quot;#s101&quot;&lt;:Real})</li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.isclosedform-Tuple%7BBijectors.Transform%7D"><code>Bijectors.isclosedform</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.isinvertible-Tuple%7BAny%7D"><code>Bijectors.isinvertible</code></a></li>
 <li>[<code>Bijectors.logabsdetjac</code>](/dev/docs/library/bijectors/#Bijectors.logabsdetjac-Tuple{Any, Any})</li>
@@ -864,7 +865,7 @@ end
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">combine</span><span class="x">(</span><span class="n">m</span><span class="o">::</span><span class="n">PartitionMask</span><span class="x">,</span> <span class="n">x_1</span><span class="x">,</span> <span class="n">x_2</span><span class="x">,</span> <span class="n">x_3</span><span class="x">)</span>
 </code></pre></div></div>
 <p>Combines <code>x_1</code>, <code>x_2</code>, and <code>x_3</code> into a single vector.</p>
-<p><a id='Bijectors.compute_r-Tuple{AbstractVector{var"#s102"} where var"#s102"<:Real, Any, Any}' href='#Bijectors.compute_r-Tuple{AbstractVector{var"#s102"} where var"#s102"<:Real, Any, Any}'>#</a>
+<p><a id='Bijectors.compute_r-Tuple{AbstractVector{var"#s103"} where var"#s103"<:Real, Any, Any}' href='#Bijectors.compute_r-Tuple{AbstractVector{var"#s103"} where var"#s103"<:Real, Any, Any}'>#</a>
 <strong><code>Bijectors.compute_r</code></strong> — <em>Method</em>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">compute_r</span><span class="x">(</span><span class="n">y_minus_z0</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">},</span> <span class="n">α</span><span class="x">,</span> <span class="n">α_plus_β_hat</span><span class="x">)</span>
 </code></pre></div></div>
@@ -913,7 +914,7 @@ $$</p>
 <p>which implies $α̂ ∈ [wt_y - |wt_u_hat|, wt_y + |wt_u_hat|]$. To avoid floating point issues if $α̂  = wt_y ± |wt_u_hat|$, we use the more conservative interval $[wt_y - 2 |wt_u_hat|, wt_y + 2|wt_u_hat|]$ as initial bracket, at the cost of one additional iteration step.</p>
 <p><strong>References</strong></p>
 <p>D. Rezende, S. Mohamed (2015): Variational Inference with Normalizing Flows. arXiv:1505.05770</p>
-<p><a id='Bijectors.get_u_hat-Tuple{AbstractVector{var"#s101"} where var"#s101"<:Real, AbstractVector{var"#s100"} where var"#s100"<:Real}' href='#Bijectors.get_u_hat-Tuple{AbstractVector{var"#s101"} where var"#s101"<:Real, AbstractVector{var"#s100"} where var"#s100"<:Real}'>#</a>
+<p><a id='Bijectors.get_u_hat-Tuple{AbstractVector{var"#s102"} where var"#s102"<:Real, AbstractVector{var"#s101"} where var"#s101"<:Real}' href='#Bijectors.get_u_hat-Tuple{AbstractVector{var"#s102"} where var"#s102"<:Real, AbstractVector{var"#s101"} where var"#s101"<:Real}'>#</a>
 <strong><code>Bijectors.get_u_hat</code></strong> — <em>Method</em>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_u_hat</span><span class="x">(</span><span class="n">u</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">},</span> <span class="n">w</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">})</span>
 </code></pre></div></div>
@@ -1341,12 +1342,27 @@ julia&gt; b([-1., 5.])
 </code></pre>
 <p><strong>References</strong></p>
 <p>[1] Durkan, C., Bekasov, A., Murray, I., &amp; Papamakarios, G., Neural Spline Flows, CoRR, arXiv:1906.04032 [stat.ML],  (2019).</p>
-<p><a id='Bijectors.Stacked' href='#Bijectors.Stacked'>#</a>
-<strong><code>Bijectors.Stacked</code></strong> — <em>Type</em>.</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Stacked</span><span class="x">(</span><span class="n">bs</span><span class="x">)</span>
-<span class="n">Stacked</span><span class="x">(</span><span class="n">bs</span><span class="x">,</span> <span class="n">ranges</span><span class="x">)</span>
-<span class="n">stack</span><span class="x">(</span><span class="n">bs</span><span class="o">::</span><span class="n">Bijector</span><span class="o">...</span><span class="x">)</span>
+<p><a id='Bijectors.Reshape' href='#Bijectors.Reshape'>#</a>
+<strong><code>Bijectors.Reshape</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Reshape</span><span class="x">(</span><span class="n">in_shape</span><span class="x">,</span> <span class="n">out_shape</span><span class="x">)</span>
 </code></pre></div></div>
+<p>A <a href="/dev/docs/library/bijectors/#Bijectors.Bijector"><code>Bijector</code></a> that reshapes the input to the output shape.</p>
+<p><strong>Example</strong></p>
+<pre><code class="language-jldoctest">>
+julia&gt; b = Reshape((2, 3), (3, 2)) Reshape{Tuple{Int64, Int64}, Tuple{Int64, Int64}}((2, 3), (3, 2))
+
+julia&gt; Array(transform(b, reshape(1:6, 2, 3))) 3×2 Matrix{Int64}:  1  4  2  5  3  6
+
+&lt;a id='Bijectors.Stacked' href='#Bijectors.Stacked'&gt;#&lt;/a&gt;
+**`Bijectors.Stacked`** &amp;mdash; *Type*.
+
+
+
+```julia
+Stacked(bs)
+Stacked(bs, ranges)
+stack(bs::Bijector...)
+</code></pre>
 <p>A <code>Bijector</code> which stacks bijectors together which can then be applied to a vector where <code>bs[i]::Bijector</code> is applied to <code>x[ranges[i]]::UnitRange{Int}</code>.</p>
 <p><strong>Arguments</strong></p>
 <ul>
