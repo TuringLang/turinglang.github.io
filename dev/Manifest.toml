@@ -153,9 +153,9 @@ uuid = "861a8166-3701-5b0c-9a16-15d98fcdc6aa"
 version = "1.0.2"
 
 [[CommonSolve]]
-git-tree-sha1 = "9441451ee712d1aec22edad62db1a9af3dc8d852"
+git-tree-sha1 = "0eee5eb66b1cf62cd6ad1b460238e60e4b09400c"
 uuid = "38540f10-b2f7-11e9-35d8-d573e4eb0ff2"
-version = "0.2.3"
+version = "0.2.4"
 
 [[CommonSubexpressions]]
 deps = ["MacroTools", "Test"]
@@ -489,15 +489,15 @@ version = "0.6.7"
 
 [[LLVM]]
 deps = ["CEnum", "LLVMExtra_jll", "Libdl", "Printf", "Unicode"]
-git-tree-sha1 = "26a31cdd9f1f4ea74f649a7bf249703c687a953d"
+git-tree-sha1 = "5007c1421563108110bbd57f63d8ad4565808818"
 uuid = "929cbde3-209d-540e-8aea-75f648917ca0"
-version = "5.1.0"
+version = "5.2.0"
 
 [[LLVMExtra_jll]]
 deps = ["Artifacts", "JLLWrappers", "LazyArtifacts", "Libdl", "TOML"]
-git-tree-sha1 = "09b7505cc0b1cee87e5d4a26eea61d2e1b0dcd35"
+git-tree-sha1 = "1222116d7313cdefecf3d45a2bc1a89c4e7c9217"
 uuid = "dad2f222-ce93-54a1-a47d-0025e8a3acab"
-version = "0.0.21+0"
+version = "0.0.22+0"
 
 [[LRUCache]]
 git-tree-sha1 = "48c10e3cc27e30de82463c27bef0b8bdbd1dc634"
@@ -790,9 +790,9 @@ version = "0.3.2"
 
 [[Ratios]]
 deps = ["Requires"]
-git-tree-sha1 = "6d7bb727e76147ba18eed998700998e17b8e4911"
+git-tree-sha1 = "1342a47bf3260ee108163042310d26f2be5ec90b"
 uuid = "c84ed2f1-dad5-54f0-aa8e-dbefe2724439"
-version = "0.4.4"
+version = "0.4.5"
 
 [[RealDot]]
 deps = ["LinearAlgebra"]
@@ -858,15 +858,15 @@ version = "0.2.0"
 
 [[SciMLBase]]
 deps = ["ADTypes", "ArrayInterface", "CommonSolve", "ConstructionBase", "Distributed", "DocStringExtensions", "EnumX", "FunctionWrappersWrappers", "IteratorInterfaceExtensions", "LinearAlgebra", "Logging", "Markdown", "PrecompileTools", "Preferences", "RecipesBase", "RecursiveArrayTools", "Reexport", "RuntimeGeneratedFunctions", "SciMLOperators", "StaticArraysCore", "Statistics", "SymbolicIndexingInterface", "Tables", "TruncatedStacktraces"]
-git-tree-sha1 = "afaf97ee668461d836dd00e69528c7759eddc163"
+git-tree-sha1 = "ddf57a23d610d30d0c4bd01132f4646a2a77d171"
 uuid = "0bca4576-84f4-4d90-8ffe-ffa030f20462"
-version = "1.92.4"
+version = "1.92.5"
 
 [[SciMLOperators]]
 deps = ["ArrayInterface", "DocStringExtensions", "Lazy", "LinearAlgebra", "Setfield", "SparseArrays", "StaticArraysCore", "Tricks"]
-git-tree-sha1 = "8b3d4f7f3d80b58b0a87b56d22cf1138e0a99aa4"
+git-tree-sha1 = "6a657a73322170eec86fb427661dbee079b85bff"
 uuid = "c0aeaf25-5076-4817-a8d5-81caf7dfa961"
-version = "0.2.11"
+version = "0.2.12"
 
 [[ScientificTypesBase]]
 git-tree-sha1 = "a8e18eb383b5ecf1b5e6fc237eb39255044fd92b"
