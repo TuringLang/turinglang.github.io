@@ -19,20 +19,20 @@ transform: Bijectors.Logit{Float64}(0.0, 1.0)
        num_params = ranges[end][end]</code><code class="nohighlight hljs ansi" style="display:block;">4</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; d = MvNormal(zeros(num_params), ones(num_params));</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Construct the transform
        bs = bijector.(dists);     # constrained-to-unconstrained bijectors for dists</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ibs = inverse.(bs);            # invert, so we get unconstrained-to-constrained</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sb = Stacked(ibs, ranges) # =&gt; Stacked &lt;: Bijector</code><code class="nohighlight hljs ansi" style="display:block;">Stacked(Any[Inverse{Bijectors.Logit{Float64}}(Bijectors.Logit{Float64}(0.0, 1.0)), Base.Fix1{typeof(broadcast), typeof(exp)}(broadcast, exp), Inverse{Bijectors.SimplexBijector{true}}(Bijectors.SimplexBijector{true}())], Any[1:1, 2:2, 3:4])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Mean-field normal with unconstrained-to-constrained stacked bijector
        td = transformed(d, sb);</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y = rand(td)</code><code class="nohighlight hljs ansi" style="display:block;">4-element Vector{Float64}:
- 0.8803464838814425
- 0.6602362074508641
- 0.7009493223116963
- 0.29905067768830373</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; 0.0 ≤ y[1] ≤ 1.0</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; 0.0 &lt; y[2]</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sum(y[3:4]) ≈ 1.0</code><code class="nohighlight hljs ansi" style="display:block;">true</code></pre><h2 id="Normalizing-flows"><a class="docs-heading-anchor" href="#Normalizing-flows">Normalizing flows</a><a id="Normalizing-flows-1"></a><a class="docs-heading-anchor-permalink" href="#Normalizing-flows" title="Permalink"></a></h2><p>A very interesting application is that of <em>normalizing flows</em>.[1] Usually this is done by sampling from a multivariate normal distribution, and then transforming this to a target distribution using invertible neural networks. Currently there are two such transforms available in Bijectors.jl: <code>PlanarLayer</code> and <code>RadialLayer</code>. Let's create a flow with a single <code>PlanarLayer</code>:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; d = MvNormal(zeros(2), ones(2));</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = PlanarLayer(2)</code><code class="nohighlight hljs ansi" style="display:block;">PlanarLayer(w = [0.9585249448967393, 0.2066714333148193], u = [0.2800961714669212, -0.29559203690740227], b = [0.778138080138235])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; flow = transformed(d, b)</code><code class="nohighlight hljs ansi" style="display:block;">MultivariateTransformed{DiagNormal, PlanarLayer{Vector{Float64}, Vector{Float64}}}(
+ 0.637298028798909
+ 0.2778384469372642
+ 0.7132070344940573
+ 0.2867929655059427</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; 0.0 ≤ y[1] ≤ 1.0</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; 0.0 &lt; y[2]</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sum(y[3:4]) ≈ 1.0</code><code class="nohighlight hljs ansi" style="display:block;">true</code></pre><h2 id="Normalizing-flows"><a class="docs-heading-anchor" href="#Normalizing-flows">Normalizing flows</a><a id="Normalizing-flows-1"></a><a class="docs-heading-anchor-permalink" href="#Normalizing-flows" title="Permalink"></a></h2><p>A very interesting application is that of <em>normalizing flows</em>.[1] Usually this is done by sampling from a multivariate normal distribution, and then transforming this to a target distribution using invertible neural networks. Currently there are two such transforms available in Bijectors.jl: <code>PlanarLayer</code> and <code>RadialLayer</code>. Let's create a flow with a single <code>PlanarLayer</code>:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; d = MvNormal(zeros(2), ones(2));</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = PlanarLayer(2)</code><code class="nohighlight hljs ansi" style="display:block;">PlanarLayer(w = [0.35046415515777124, 0.584174452982504], u = [0.9242918019373372, 0.840455309774568], b = [-0.8531656609320516])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; flow = transformed(d, b)</code><code class="nohighlight hljs ansi" style="display:block;">MultivariateTransformed{DiagNormal, PlanarLayer{Vector{Float64}, Vector{Float64}}}(
 dist: DiagNormal(
 dim: 2
 μ: [0.0, 0.0]
 Σ: [1.0 0.0; 0.0 1.0]
 )
 
-transform: PlanarLayer(w = [0.9585249448967393, 0.2066714333148193], u = [0.2800961714669212, -0.29559203690740227], b = [0.778138080138235])
+transform: PlanarLayer(w = [0.35046415515777124, 0.584174452982504], u = [0.9242918019373372, 0.840455309774568], b = [-0.8531656609320516])
 )</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; flow isa MultivariateDistribution</code><code class="nohighlight hljs ansi" style="display:block;">true</code></pre><p>That's it. Now we can sample from it using <code>rand</code> and compute the <code>logpdf</code>, like any other <code>Distribution</code>.</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; y = rand(rng, flow)</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Float64}:
- -0.698018274852437
-  0.36131699315056376</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; logpdf(flow, y)         # uses inverse of `b`</code><code class="nohighlight hljs ansi" style="display:block;">-1.9543867939470378</code></pre><p>Similarily to the multivariate ADVI example, we could use <code>Stacked</code> to get a <em>bounded</em> flow:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; d = MvNormal(zeros(2), ones(2));</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ibs = inverse.(bijector.((InverseGamma(2, 3), Beta())));</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sb = stack(ibs...) # == Stacked(ibs) == Stacked(ibs, [i:i for i = 1:length(ibs)]</code><code class="nohighlight hljs ansi" style="display:block;">ERROR: MethodError: no method matching length(::Inverse{Bijectors.Logit{Float64}})
+ -0.9729196023084354
+  0.4179123206298563</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; logpdf(flow, y)         # uses inverse of `b`</code><code class="nohighlight hljs ansi" style="display:block;">-2.2557836639358673</code></pre><p>Similarily to the multivariate ADVI example, we could use <code>Stacked</code> to get a <em>bounded</em> flow:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; d = MvNormal(zeros(2), ones(2));</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; ibs = inverse.(bijector.((InverseGamma(2, 3), Beta())));</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; sb = stack(ibs...) # == Stacked(ibs) == Stacked(ibs, [i:i for i = 1:length(ibs)]</code><code class="nohighlight hljs ansi" style="display:block;">ERROR: MethodError: no method matching length(::Inverse{Bijectors.Logit{Float64}})
 
 Closest candidates are:
   length(!Matched::Union{Base.KeySet, Base.ValueIterator})
@@ -42,92 +42,9 @@ Closest candidates are:
   length(!Matched::Union{SparseArrays.FixedSparseVector{Tv, Ti}, SparseArrays.SparseVector{Tv, Ti}} where {Tv, Ti})
    @ SparseArrays /opt/hostedtoolcache/julia/1.9.1/x64/share/julia/stdlib/v1.9/SparseArrays/src/sparsevector.jl:95
   ...</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; b = sb ∘ PlanarLayer(2)</code><code class="nohighlight hljs ansi" style="display:block;">ERROR: UndefVarError: `sb` not defined</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; td = transformed(d, b);</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; y = rand(rng, td)</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Float64}:
- 1.2519580355171624
- 0.9335442006114624</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; 0 &lt; y[1]</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; 0 ≤ y[2] ≤ 1</code><code class="nohighlight hljs ansi" style="display:block;">true</code></pre><p>Want to fit the flow?</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Zygote</code><code class="nohighlight hljs ansi" style="display:block;">ERROR: LoadError: UndefVarError: `Compat` not defined
-Stacktrace:
- [1] top-level scope
-   @ ~/work/Bijectors.jl/Bijectors.jl/ext/BijectorsZygoteExt.jl:36
- [2] include
-   @ ./Base.jl:457 [inlined]
- [3] include_package_for_output(pkg::Base.PkgId, input::String, depot_path::Vector{String}, dl_load_path::Vector{String}, load_path::Vector{String}, concrete_deps::Vector{Pair{Base.PkgId, UInt128}}, source::String)
-   @ Base ./loading.jl:2045
- [4] top-level scope
-   @ stdin:3
-in expression starting at /home/runner/work/Bijectors.jl/Bijectors.jl/ext/BijectorsZygoteExt.jl:1
-in expression starting at stdin:3
-┌ Error: Error during loading of extension BijectorsZygoteExt of Bijectors, use `Base.retry_load_extensions()` to retry.
-│   exception =
-│    1-element ExceptionStack:
-│    Failed to precompile BijectorsZygoteExt [91b77daa-8402-5dd2-b8ee-b16f8be7bd86] to "/home/runner/.julia/compiled/v1.9/BijectorsZygoteExt/jl_6cwjGd".
-│    Stacktrace:
-│      [1] error(s::String)
-│        @ Base ./error.jl:35
-│      [2] compilecache(pkg::Base.PkgId, path::String, internal_stderr::IO, internal_stdout::IO, keep_loaded_modules::Bool)
-│        @ Base ./loading.jl:2296
-│      [3] compilecache
-│        @ ./loading.jl:2163 [inlined]
-│      [4] _require(pkg::Base.PkgId, env::Nothing)
-│        @ Base ./loading.jl:1805
-│      [5] _require_prelocked(uuidkey::Base.PkgId, env::Nothing)
-│        @ Base ./loading.jl:1660
-│      [6] _require_prelocked(uuidkey::Base.PkgId)
-│        @ Base ./loading.jl:1658
-│      [7] run_extension_callbacks(extid::Base.ExtensionId)
-│        @ Base ./loading.jl:1255
-│      [8] run_extension_callbacks(pkgid::Base.PkgId)
-│        @ Base ./loading.jl:1290
-│      [9] run_package_callbacks(modkey::Base.PkgId)
-│        @ Base ./loading.jl:1124
-│     [10] _require_prelocked(uuidkey::Base.PkgId, env::String)
-│        @ Base ./loading.jl:1667
-│     [11] macro expansion
-│        @ ./loading.jl:1648 [inlined]
-│     [12] macro expansion
-│        @ ./lock.jl:267 [inlined]
-│     [13] require(into::Module, mod::Symbol)
-│        @ Base ./loading.jl:1611
-│     [14] eval
-│        @ ./boot.jl:370 [inlined]
-│     [15] #21
-│        @ ~/.julia/packages/Documenter/H5y27/src/Expanders.jl:721 [inlined]
-│     [16] cd(f::Documenter.Expanders.var"#21#23"{Module}, dir::String)
-│        @ Base.Filesystem ./file.jl:112
-│     [17] (::Documenter.Expanders.var"#20#22"{Documenter.Documents.Page, Module})()
-│        @ Documenter.Expanders ~/.julia/packages/Documenter/H5y27/src/Expanders.jl:720
-│     [18] (::IOCapture.var"#3#5"{DataType, Documenter.Expanders.var"#20#22"{Documenter.Documents.Page, Module}, Task, IOContext{Base.PipeEndpoint}, IOContext{Base.PipeEndpoint}, Base.PipeEndpoint, Base.PipeEndpoint})()
-│        @ IOCapture ~/.julia/packages/IOCapture/8Uj7o/src/IOCapture.jl:119
-│     [19] with_logstate(f::Function, logstate::Any)
-│        @ Base.CoreLogging ./logging.jl:514
-│     [20] with_logger
-│        @ ./logging.jl:626 [inlined]
-│     [21] capture(f::Documenter.Expanders.var"#20#22"{Documenter.Documents.Page, Module}; rethrow::Type, color::Bool)
-│        @ IOCapture ~/.julia/packages/IOCapture/8Uj7o/src/IOCapture.jl:116
-│     [22] runner(#unused#::Type{Documenter.Expanders.REPLBlocks}, x::Markdown.Code, page::Documenter.Documents.Page, doc::Documenter.Documents.Document)
-│        @ Documenter.Expanders ~/.julia/packages/Documenter/H5y27/src/Expanders.jl:719
-│     [23] dispatch(::Type{Documenter.Expanders.ExpanderPipeline}, ::Markdown.Code, ::Vararg{Any})
-│        @ Documenter.Utilities.Selectors ~/.julia/packages/Documenter/H5y27/src/Utilities/Selectors.jl:170
-│     [24] expand(doc::Documenter.Documents.Document)
-│        @ Documenter.Expanders ~/.julia/packages/Documenter/H5y27/src/Expanders.jl:42
-│     [25] runner(#unused#::Type{Documenter.Builder.ExpandTemplates}, doc::Documenter.Documents.Document)
-│        @ Documenter.Builder ~/.julia/packages/Documenter/H5y27/src/Builder.jl:226
-│     [26] dispatch(#unused#::Type{Documenter.Builder.DocumentPipeline}, x::Documenter.Documents.Document)
-│        @ Documenter.Utilities.Selectors ~/.julia/packages/Documenter/H5y27/src/Utilities/Selectors.jl:170
-│     [27] #2
-│        @ ~/.julia/packages/Documenter/H5y27/src/Documenter.jl:273 [inlined]
-│     [28] cd(f::Documenter.var"#2#3"{Documenter.Documents.Document}, dir::String)
-│        @ Base.Filesystem ./file.jl:112
-│     [29] makedocs(; debug::Bool, format::Documenter.Writers.HTMLWriter.HTML, kwargs::Base.Pairs{Symbol, Any, NTuple{5, Symbol}, NamedTuple{(:sitename, :modules, :pages, :strict, :checkdocs), Tuple{String, Vector{Module}, Vector{Pair{String, String}}, Bool, Symbol}}})
-│        @ Documenter ~/.julia/packages/Documenter/H5y27/src/Documenter.jl:272
-│     [30] top-level scope
-│        @ ~/work/Bijectors.jl/Bijectors.jl/docs/make.jl:7
-│     [31] include(mod::Module, _path::String)
-│        @ Base ./Base.jl:457
-│     [32] exec_options(opts::Base.JLOptions)
-│        @ Base ./client.jl:307
-│     [33] _start()
-│        @ Base ./client.jl:522
-└ @ Base loading.jl:1261</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Construct the flow.
-       b = PlanarLayer(2)</code><code class="nohighlight hljs ansi" style="display:block;">PlanarLayer(w = [1.8892513302025065, 1.1923216348379344], u = [1.6387169315443806, 0.37166898841486107], b = [-1.2504658297840854])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Convenient for extracting parameters and reconstructing the flow.
+ 1.5404623993511246
+ 1.3256398949850454</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; 0 &lt; y[1]</code><code class="nohighlight hljs ansi" style="display:block;">true</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; 0 ≤ y[2] ≤ 1</code><code class="nohighlight hljs ansi" style="display:block;">false</code></pre><p>Want to fit the flow?</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Zygote</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Construct the flow.
+       b = PlanarLayer(2)</code><code class="nohighlight hljs ansi" style="display:block;">PlanarLayer(w = [-0.41990826124100694, 0.35174239723788486], u = [-0.40778704918603137, -0.18614504221608782], b = [0.6355494440791721])</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Convenient for extracting parameters and reconstructing the flow.
        using Functors</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; θs, reconstruct = Functors.functor(b);</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Make the objective a `struct` to avoid capturing global variables.
        struct NLLObjective{R,D,T}
            reconstruct::R
@@ -139,16 +56,16 @@ in expression starting at stdin:3
        end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Some random data to estimate the density of.
        xs = randn(2, 1000);</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Construct the objective.
        f = NLLObjective(reconstruct, MvNormal(2, 1), xs);</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Initial loss.
-       @info "Initial loss: $(f(θs...))"</code><code class="nohighlight hljs ansi" style="display:block;">[ Info: Initial loss: 3517.4613862389456</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Train using gradient descent.
+       @info "Initial loss: $(f(θs...))"</code><code class="nohighlight hljs ansi" style="display:block;">[ Info: Initial loss: 2907.622047853629</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Train using gradient descent.
        ε = 1e-3;</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; for i in 1:100
            ∇s = Zygote.gradient(f, θs...)
            θs = map(θs, ∇s) do θ, ∇
                θ - ε .* ∇
            end
        end</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Final loss
-       @info "Finall loss: $(f(θs...))"</code><code class="nohighlight hljs ansi" style="display:block;">[ Info: Finall loss: 2844.1795941500563</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Very simple check to see if we learned something useful.
+       @info "Finall loss: $(f(θs...))"</code><code class="nohighlight hljs ansi" style="display:block;">[ Info: Finall loss: 2818.2275741816647</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; # Very simple check to see if we learned something useful.
        samples = rand(transformed(f.basedist, f.reconstruct(θs)), 1000);</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; mean(eachcol(samples)) # ≈ [0, 0]</code><code class="nohighlight hljs ansi" style="display:block;">2-element Vector{Float64}:
-  0.06816516825267369
- -0.003549870622542034</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; cov(samples; dims=2)   # ≈ I</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Float64}:
-  0.897296   -0.0546095
- -0.0546095   0.966959</code></pre><p>We can easily create more complex flows by simply doing <code>PlanarLayer(10) ∘ PlanarLayer(10) ∘ RadialLayer(10)</code> and so on.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../distributions/">« Distributions.jl integration</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label></p><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div><p></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.24 on <span class="colophon-date" title="Saturday 10 June 2023 13:00">Saturday 10 June 2023</span>. Using Julia version 1.9.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></HTML>
+ -0.024067233696839982
+ -0.04201361844146848</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; cov(samples; dims=2)   # ≈ I</code><code class="nohighlight hljs ansi" style="display:block;">2×2 Matrix{Float64}:
+ 1.04762    0.0627934
+ 0.0627934  0.985324</code></pre><p>We can easily create more complex flows by simply doing <code>PlanarLayer(10) ∘ PlanarLayer(10) ∘ RadialLayer(10)</code> and so on.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../distributions/">« Distributions.jl integration</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label></p><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div><p></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.24 on <span class="colophon-date" title="Sunday 11 June 2023 18:53">Sunday 11 June 2023</span>. Using Julia version 1.9.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></HTML>
