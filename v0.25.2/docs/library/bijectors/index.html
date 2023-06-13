@@ -801,14 +801,17 @@
 <li><a href="/v0.25/docs/library/bijectors/#Bijectors.NamedCoupling"><code>Bijectors.NamedCoupling</code></a></li>
 <li><a href="/v0.25/docs/library/bijectors/#Bijectors.NamedTransform"><code>Bijectors.NamedTransform</code></a></li>
 <li><a href="/v0.25/docs/library/bijectors/#Bijectors.OrderedBijector"><code>Bijectors.OrderedBijector</code></a></li>
-<li><a href="/v0.25/docs/library/bijectors/#Bijectors.PartitionMask"><code>Bijectors.PartitionMask</code></a></li>
 <li>[<code>Bijectors.PartitionMask</code>](/v0.25/docs/library/bijectors/#Bijectors.PartitionMask-Union{Tuple{T}, Tuple{Int64, Any}} where T)</li>
+<li><a href="/v0.25/docs/library/bijectors/#Bijectors.PartitionMask"><code>Bijectors.PartitionMask</code></a></li>
 <li><a href="/v0.25/docs/library/bijectors/#Bijectors.Permute"><code>Bijectors.Permute</code></a></li>
 <li><a href="/v0.25/docs/library/bijectors/#Bijectors.RationalQuadraticSpline"><code>Bijectors.RationalQuadraticSpline</code></a></li>
 <li><a href="/v0.25/docs/library/bijectors/#Bijectors.Reshape"><code>Bijectors.Reshape</code></a></li>
 <li><a href="/v0.25/docs/library/bijectors/#Bijectors.Stacked"><code>Bijectors.Stacked</code></a></li>
 <li><a href="/v0.25/docs/library/bijectors/#Bijectors.Transform"><code>Bijectors.Transform</code></a></li>
-<li><a href="/v0.25/docs/library/bijectors/#Bijectors._link_chol_lkj-Tuple%7BAny%7D"><code>Bijectors._link_chol_lkj</code></a></li>
+<li><a href="/v0.25/docs/library/bijectors/#Bijectors.VecCholeskyBijector"><code>Bijectors.VecCholeskyBijector</code></a></li>
+<li><a href="/v0.25/docs/library/bijectors/#Bijectors.VecCorrBijector"><code>Bijectors.VecCorrBijector</code></a></li>
+<li>[<code>Bijectors._inv_link_chol_lkj</code>](/v0.25/docs/library/bijectors/#Bijectors._inv_link_chol_lkj-Tuple{AbstractMatrix{T} where T})</li>
+<li>[<code>Bijectors._link_chol_lkj</code>](/v0.25/docs/library/bijectors/#Bijectors._link_chol_lkj-Tuple{AbstractMatrix{T} where T})</li>
 <li><a href="/v0.25/docs/library/bijectors/#Bijectors.bijector-Tuple%7BBijectors.TransformedDistribution%7D"><code>Bijectors.bijector</code></a></li>
 <li><a href="/v0.25/docs/library/bijectors/#Bijectors.columnwise-Tuple%7BAny%7D"><code>Bijectors.columnwise</code></a></li>
 <li>[<code>Bijectors.combine</code>](/v0.25/docs/library/bijectors/#Bijectors.combine-Tuple{Bijectors.PartitionMask, Any, Any, Any})</li>
@@ -828,12 +831,20 @@
 <li>[<code>Bijectors.transform</code>](/v0.25/docs/library/bijectors/#Bijectors.transform-Union{Tuple{F}, Tuple{F, Any}} where F&lt;:Function)</li>
 <li>[<code>Bijectors.transform!</code>](/v0.25/docs/library/bijectors/#Bijectors.transform!-Tuple{Any, Any})</li>
 <li>[<code>Bijectors.transformed</code>](/v0.25/docs/library/bijectors/#Bijectors.transformed-Tuple{Distribution, Any})</li>
+<li>[<code>Bijectors.triu1_to_vec</code>](/v0.25/docs/library/bijectors/#Bijectors.triu1_to_vec-Tuple{AbstractMatrix{T} where T})</li>
+<li>[<code>Bijectors.triu_mask</code>](/v0.25/docs/library/bijectors/#Bijectors.triu_mask-Tuple{AbstractMatrix{T} where T, Int64})</li>
+<li>[<code>Bijectors.vec_to_triu1</code>](/v0.25/docs/library/bijectors/#Bijectors.vec_to_triu1-Tuple{AbstractVector{T} where T})</li>
 <li>[<code>Bijectors.with_logabsdet_jacobian!</code>](/v0.25/docs/library/bijectors/#Bijectors.with_logabsdet_jacobian!-Tuple{Any, Any})</li>
 </ul>
 <p><a id='Functions'></a></p>
 <p><a id='Functions-1'></a></p>
 <h2 id="functions">Functions</h2>
-<p><a id='Bijectors._link_chol_lkj-Tuple{Any}' href='#Bijectors._link_chol_lkj-Tuple{Any}'>#</a>
+<p><a id='Bijectors._inv_link_chol_lkj-Tuple{AbstractMatrix{T} where T}' href='#Bijectors._inv_link_chol_lkj-Tuple{AbstractMatrix{T} where T}'>#</a>
+<strong><code>Bijectors._inv_link_chol_lkj</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">_inv_link_chol_lkj</span><span class="x">(</span><span class="n">y</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Inverse link function for cholesky factor.</p>
+<p><a id='Bijectors._link_chol_lkj-Tuple{AbstractMatrix{T} where T}' href='#Bijectors._link_chol_lkj-Tuple{AbstractMatrix{T} where T}'>#</a>
 <strong><code>Bijectors._link_chol_lkj</code></strong> — <em>Method</em>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span><span class="nf"> _link_chol_lkj</span><span class="x">(</span><span class="n">w</span><span class="x">)</span>
 </code></pre></div></div>
@@ -844,7 +855,7 @@
 end
 </code></pre>
 <p>But this implementation will not work when w[i-1, j] = 0. Though it is a zero measure set, unit matrix initialization will not work.</p>
-<p>For equivelence, following explanations is given by @torfjelde:</p>
+<p>For equivalence, following explanations is given by @torfjelde:</p>
 <p>For <code>(i, j)</code> in the loop below, we define</p>
 <pre><code>z₍ᵢ₋₁, ⱼ₎ = w₍ᵢ₋₁,ⱼ₎ * ∏ₖ₌₁ⁱ⁻² (1 / √(1 - z₍ₖ,ⱼ₎²))
 </code></pre>
@@ -995,6 +1006,21 @@ $$</p>
 </code></pre></div></div>
 <p>Couples distribution <code>d</code> with the bijector <code>b</code> by returning a <code>TransformedDistribution</code>.</p>
 <p>If no bijector is provided, i.e. <code>transformed(d)</code> is called, then  <code>transformed(d, bijector(d))</code> is returned.</p>
+<p><a id='Bijectors.triu1_to_vec-Tuple{AbstractMatrix{T} where T}' href='#Bijectors.triu1_to_vec-Tuple{AbstractMatrix{T} where T}'>#</a>
+<strong><code>Bijectors.triu1_to_vec</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">triu1_to_vec</span><span class="x">(</span><span class="n">X</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">})</span>
+</code></pre></div></div>
+<p>Extracts elements from upper triangle of <code>X</code> with offset <code>1</code> and returns them as a vector.</p>
+<p><a id='Bijectors.triu_mask-Tuple{AbstractMatrix{T} where T, Int64}' href='#Bijectors.triu_mask-Tuple{AbstractMatrix{T} where T, Int64}'>#</a>
+<strong><code>Bijectors.triu_mask</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">triu_mask</span><span class="x">(</span><span class="n">X</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="x">,</span> <span class="n">k</span><span class="o">::</span><span class="kt">Int</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Return a mask for elements of <code>X</code> above the <code>k</code>th diagonal.</p>
+<p><a id='Bijectors.vec_to_triu1-Tuple{AbstractVector{T} where T}' href='#Bijectors.vec_to_triu1-Tuple{AbstractVector{T} where T}'>#</a>
+<strong><code>Bijectors.vec_to_triu1</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vec_to_triu1</span><span class="x">(</span><span class="n">x</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">})</span>
+</code></pre></div></div>
+<p>Constructs a matrix from a vector <code>x</code> by filling the upper triangle with offset <code>1</code>.</p>
 <p><a id='Bijectors.with_logabsdet_jacobian!-Tuple{Any, Any}' href='#Bijectors.with_logabsdet_jacobian!-Tuple{Any, Any}'>#</a>
 <strong><code>Bijectors.with_logabsdet_jacobian!</code></strong> — <em>Method</em>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">with_logabsdet_jacobian!</span><span class="x">(</span><span class="n">b</span><span class="x">,</span> <span class="n">x</span><span class="x">[,</span> <span class="n">y</span><span class="x">,</span> <span class="n">logjac</span><span class="x">])</span>
@@ -1426,7 +1452,61 @@ b([0.0, 1.0]) == [b1(0.0), 1.0]  # =&gt; true
 <li>[<code>logabsdetjac!</code>](/v0.25/docs/library/bijectors/#Bijectors.logabsdetjac!-Tuple{Any, Any})</li>
 <li>[<code>with_logabsdet_jacobian!</code>](/v0.25/docs/library/bijectors/#Bijectors.with_logabsdet_jacobian!-Tuple{Any, Any})</li>
 </ul>
+<p><a id='Bijectors.VecCholeskyBijector' href='#Bijectors.VecCholeskyBijector'>#</a>
+<strong><code>Bijectors.VecCholeskyBijector</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">VecCholeskyBijector</span> <span class="o">&lt;:</span> <span class="n">Bijector</span>
+</code></pre></div></div>
+<p>A bijector to transform a Cholesky factor of a correlation matrix to an unconstrained vector.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li>
+<p>mode :<code>Symbol</code>. Controls the inverse tranformation :</p>
+<ul>
+<li>if <code>mode === :U</code> returns a <code>LinearAlgebra.Cholesky</code> holding the <code>UpperTriangular</code> factor</li>
+<li>if <code>mode === :L</code> returns a <code>LinearAlgebra.Cholesky</code> holding the <code>LowerTriangular</code> factor</li>
+</ul>
+</li>
+</ul>
+<p><strong>Reference</strong></p>
+<p>https://mc-stan.org/docs/reference-manual/cholesky-factors-of-correlation-matrices-1</p>
+<p>See also: <a href="/v0.25/docs/library/bijectors/#Bijectors.VecCorrBijector"><code>VecCorrBijector</code></a></p>
+<p><strong>Example</strong></p>
+<pre><code class="language-jldoctest">>
+julia&gt; using StableRNGs; rng = StableRNG(42);
 
+julia&gt; b = Bijectors.VecCholeskyBijector(:U);
+
+julia&gt; X = rand(rng, LKJCholesky(3, 1, :U))  # Sample a correlation matrix. Cholesky{Float64, Matrix{Float64}} U factor: 3×3 UpperTriangular{Float64, Matrix{Float64}}:  1.0  0.937494   0.865891   ⋅   0.348002  -0.320442   ⋅    ⋅         0.384122
+
+julia&gt; y = b(X)  # Transform to unconstrained vector representation. 3-element Vector{Float64}:  -0.8777149781928181  -0.3638927608636788  -0.29813769428942216
+
+julia&gt; X*inv = inverse(b)(y);  julia&gt; X*inv.U ≈ X.U  # (✓) Round-trip through `b` and its inverse. true julia&gt; X_inv.L ≈ X.L  # (✓) Also works for the lower triangular factor. true
+
+&lt;a id='Bijectors.VecCorrBijector' href='#Bijectors.VecCorrBijector'&gt;#&lt;/a&gt;
+**`Bijectors.VecCorrBijector`** &amp;mdash; *Type*.
+
+
+
+```julia
+VecCorrBijector &lt;: Bijector
+</code></pre>
+<p>A bijector to transform a correlation matrix to an unconstrained vector.</p>
+<p><strong>Reference</strong></p>
+<p>https://mc-stan.org/docs/reference-manual/correlation-matrix-transform.html</p>
+<p>See also: <a href="/v0.25/docs/library/bijectors/#Bijectors.CorrBijector"><code>CorrBijector</code></a> and <a href="@ref">'VecCholeskyBijector'</a></p>
+<p><strong>Example</strong></p>
+<pre><code class="language-jldoctest">>
+julia&gt; using StableRNGs; rng = StableRNG(42);
+
+julia&gt; b = Bijectors.VecCorrBijector();
+
+julia&gt; X = rand(rng, LKJ(3, 1))  # Sample a correlation matrix. 3×3 Matrix{Float64}:   1.0       -0.705273   -0.348638  -0.705273   1.0         0.0534538  -0.348638   0.0534538   1.0
+
+julia&gt; y = b(X)  # Transform to unconstrained vector representation. 3-element Vector{Float64}:  -0.8777149781928181  -0.3638927608636788  -0.29813769428942216
+
+julia&gt; inverse(b)(y) ≈ X  # (✓) Round-trip through `b` and its inverse. true
+
+</code></pre>
     
 <script
 src="https://code.jquery.com/jquery-3.3.1.min.js"
