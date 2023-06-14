@@ -114,9 +114,9 @@ version = "0.1.1"
 
 [[Bijectors]]
 deps = ["ArgCheck", "ChainRulesCore", "ChangesOfVariables", "Compat", "Distributions", "Functors", "InverseFunctions", "IrrationalConstants", "LinearAlgebra", "LogExpFunctions", "MappedArrays", "Random", "Reexport", "Requires", "Roots", "SparseArrays", "Statistics"]
-git-tree-sha1 = "56857caa73bb8fb351bcc41f25775816b911b514"
+git-tree-sha1 = "ff192d037dee3c05fe842a207f8c6b840b04cca2"
 uuid = "76274a88-744f-5084-9051-94815aaf08c4"
-version = "0.12.7"
+version = "0.12.8"
 
 [[CEnum]]
 git-tree-sha1 = "eb4cb44a499229b3b8426dcfb5dd85333951ff90"
@@ -331,9 +331,9 @@ uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
 [[FillArrays]]
 deps = ["LinearAlgebra", "Random", "SparseArrays", "Statistics"]
-git-tree-sha1 = "589d3d3bff204bdd80ecc53293896b4f39175723"
+git-tree-sha1 = "e17cc4dc2d0b0b568e80d937de8ed8341822de67"
 uuid = "1a297f60-69ca-5386-bcde-b61e274b549b"
-version = "1.1.1"
+version = "1.2.0"
 
 [[Formatting]]
 deps = ["Printf"]
