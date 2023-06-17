@@ -824,8 +824,8 @@
 Iterations        = 501:1:1500
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 1.87 seconds
-Compute duration  = 1.87 seconds
+Wall duration     = 1.86 seconds
+Compute duration  = 1.86 seconds
 parameters        = s², m
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -837,9 +837,9 @@ Summary Statistics
       Symbol   Float64   Float64    Float64   Float64    Float64   Float64 
     ⋯
 
-          s²    1.9966    2.2307     0.0705    0.0867   613.4783    1.0031 
+          s²    2.1225    2.1477     0.0679    0.0915   476.0377    1.0165 
     ⋯
-           m    1.1842    0.7824     0.0247    0.0340   626.6634    0.9991 
+           m    1.1667    0.7759     0.0245    0.0331   400.9902    0.9992 
     ⋯
                                                                 1 column om
 itted
@@ -848,8 +848,8 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.5371    1.0372    1.5214    2.3849    5.8213
-           m   -0.3537    0.6997    1.1962    1.6764    2.7737
+          s²    0.6090    1.0727    1.5305    2.4240    6.8186
+           m   -0.3486    0.7032    1.1547    1.5818    2.8447
 </code></pre>
 <p>We can plot the results</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="x">(</span><span class="n">chn</span><span class="x">)</span>
