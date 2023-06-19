@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-language" content="en">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Variational Inference</title>
+    <meta name="description" content="">
+    <meta name="author" content="The Turing Team">
+    <meta name="theme-color" content="red">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+    <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="canonical" href="/v0.26/docs/for-developers/variational_inference">
+    <link rel="alternate" type="application/rss+xml" title="Turing.jl" href="/v0.26/feed.xml">
+    <meta name="lang:clipboard.copy" content="Copy to clipboard">
+    <meta name="lang:clipboard.copied" content="Copied to clipboard">
+    <meta name="lang:search.language" content="en">
+    <meta name="lang:search.pipeline.stopwords" content="True">
+    <meta name="lang:search.pipeline.trimmer" content="True">
+    <meta name="lang:search.result.none" content="No matching documents">
+    <meta name="lang:search.result.one" content="1 matching document">
+    <meta name="lang:search.result.other" content="# matching documents">
+    <meta name="lang:search.tokenizer" content="[\s\-]+">
+    <script src="/versions.js"></script>
+    <script src="/v0.26/assets/js/modernizr.74668098.js"></script>
+    <link rel="shortcut icon" href="/v0.26/assets/img/favicon.ico">
+    <link rel="stylesheet" href="/v0.26/assets/css/main.css">
+    <link rel="stylesheet" href="/v0.26/assets/css/palette.css">
+    <link rel="stylesheet" href="/v0.26/assets/css/header.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+
+    
+
+  </head>
+
+  <body dir="ltr" data-md-color-primary="red" data-md-color-accent="red">
+    
+
+<svg class="md-svg">
+<defs>
+  <svg>
+  <path d="M160 304q0 10-3.125 20.5t-10.75 19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75 19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360 304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25 2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75 1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75 0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5 46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z" fill="currentColor"></path></svg>
+</defs></svg>
+
+    <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off>
+    <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off>
+    <label class=md-overlay data-md-component=overlay for=__drawer></label> <a href="#variational-inference" tabindex=1 class=md-skip> Skip to content </a>
+    <header class=md-header data-md-component=header data-md-state=none>
+        <nav class="md-header-nav md-grid">
+            <div class=md-flex>
+                <div class="md-flex__cell md-flex__cell--shrink">
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <label class="md-icon md-icon--menu md-header-nav__button" for=__drawer></label>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <a class="md-header-nav__button md-logo" href="/v0.26/" title="Turing.jl">
+                    <div class="md-flex__ellipsis md-header-nav__title" data-md-component=title>
+                        <span class=md-header-nav__topic>Turing.jl</span>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <div class="dropdown version-switch">
+                      <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      </a>
+                      <div class="dropdown-menu">
+                        <!-- a class="dropdown-item" href="#">Stable</a -->
+                        <!-- div class="dropdown-divider"></div -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <a class="md-source" href="/v0.26/docs/using-turing/get-started" title="Get started">
+                      Get Started
+                    </a>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <div class="md-header-nav__source">
+                      <a class="md-source" href="/library/" title="View Library API">
+                        Library API
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="md-flex__cell md-flex__cell--shrink">
+                      <div class="md-header-nav__source">
+                        <a class="md-source" href="/v0.26/tutorials/" title="View tutorials">
+                          Tutorials
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="md-flex__cell md-flex__cell--shrink">
+                      <div class="md-header-nav__source">
+                        <a class="md-source" href="/v0.26/news/" title="News">
+                          News
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="md-flex__cell md-flex__cell--shrink">
+                      <div class="md-header-nav__source">
+                        <a class="md-source" href="/v0.26/team/" title="Team">
+                          Team
+                        </a>
+                      </div>
+                    </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <a class="md-source" data-md-source="github" href="https://github.com/TuringLang/Turing.jl" title="Go to repository">
+                    <div class="md-source__icon" style="padding-top:5px">
+                      <i class="fa fa-github fa-3x"></i>
+                    </div>
+                    <div class="md-source__repository">
+                      TuringLang/Turing.jl
+                    </div></a>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <a href="https://twitter.com/TuringLang?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                       data-size="large" data-show-screen-name="false" data-show-count="false">Follow @TuringLang</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <label class="md-icon md-icon--search md-header-nav__button" for=__search></label>
+                    <div class=md-search data-md-component=search role=dialog>
+                        <label class=md-search__overlay for=__search></label>
+                        <div class=md-search__inner role=search>
+                            <form class=md-search__form name=search>
+                                <input type=text class=md-search__input name=query placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=query data-md-state=active>
+                                <label class="md-icon md-search__icon" for=__search></label>
+                                <button type=reset class="md-icon md-search__icon" data-md-component=reset tabindex=-1> &#xE5CD; </button>
+                            </form>
+                            <div class=md-search__output>
+                                <div class=md-search__scrollwrap data-md-scrollfix>
+                                    <div class=md-search-result data-md-component=result>
+                                        <div class=md-search-result__meta> Type to start searching </div>
+                                        <ol class=md-search-result__list></ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="md-container">
+        <main class="md-main">
+            <div class="md-main__inner md-grid full-width" data-md-component="container">
+            
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+  <div class="md-sidebar__scrollwrap">
+    <div class="md-sidebar__inner">
+      <nav class="md-nav md-nav--primary" data-md-level="0">
+
+        <label class="md-nav__title md-nav__title--site">
+            <a class="" href="/v0.26/" title="Turing.jl">
+              <span class="md-nav__button md-logo">
+                Turing.jl
+              </span>
+            </a>
+        </label>
+
+        <ul class="md-nav__list" data-md-scrollfix="">
+          <li class="md-nav__item md-nav__item--active">
+            <input class="md-toggle md-nav__toggle" data-md-toggle="toc" id="__toc" type="checkbox" />
+
+            <nav class="md-nav md-nav--secondary">
+
+                <a class="" href="/v0.26/" title="Turing.jl">
+                  <label class="md-nav__title md-nav__title--site">
+                    <span class="md-nav__button md-logo">
+                      Turing.jl
+                    </span>
+                  </label>
+                </a>
+
+                <div class="md-nav__source">
+                    <a class="md-source" data-md-source="github" href="https://github.com/TuringLang/Turing.jl" title="Go to repository">
+                    <span class="md-source__icon">
+                        <i class="fa fa-github fa-3x"></i>
+                    </span>
+                    <span class="md-source__repository">
+                      TuringLang/Turing.jl
+                    </span></a>
+                </div>
+
+                <div class="md-nav__dropdown">
+                  <select id="version-selector">
+                    <!-- option value="#" selected="selected">v 0.5.1</option -->
+                  </select>
+                </div>
+
+              <label class="md-nav__title" for="__drawer"></label>
+
+              
+
+                <ul class="md-nav__list" data-md-scrollfix="">
+                  
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-using-turing" title="USING TURING">USING TURING</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/get-started"
+                              id="pancakes-getting-started"
+                              title="Getting Started">Getting Started</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/quick-start"
+                              id="pancakes-quick-start"
+                              title="Quick Start">Quick Start</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/guide"
+                              id="pancakes-guide"
+                              title="Guide">Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/advanced"
+                              id="pancakes-advanced-usage"
+                              title="Advanced Usage">Advanced Usage</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/autodiff"
+                              id="pancakes-automatic-differentiation"
+                              title="Automatic Differentiation">Automatic Differentiation</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/performancetips"
+                              id="pancakes-performance-tips"
+                              title="Performance Tips">Performance Tips</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/dynamichmc"
+                              id="pancakes-using-dynamichmc"
+                              title="Using DynamicHMC">Using DynamicHMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/sampler-viz"
+                              id="pancakes-sampler-visualization"
+                              title="Sampler Visualization">Sampler Visualization</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/library/"
+                              id="pancakes-turing-api"
+                              title="Turing API">Turing API</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-for-developers" title="FOR DEVELOPERS">FOR DEVELOPERS</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/for-developers/compiler"
+                              id="pancakes-turing-compiler-design"
+                              title="Turing Compiler Design">Turing Compiler Design</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/for-developers/interface"
+                              id="pancakes-interface-guide"
+                              title="Interface Guide">Interface Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/for-developers/how_turing_implements_abstractmcmc"
+                              id="pancakes-how-turing-implements-abstractmcmc"
+                              title="How Turing implements AbstractMCMC">How Turing implements AbstractMCMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/for-developers/variational_inference"
+                              id="pancakes-variational-inference"
+                              title="Variational Inference">Variational Inference</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-tutorials" title="TUTORIALS">TUTORIALS</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials"
+                              id="pancakes-home"
+                              title="Home">Home</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/00-introduction"
+                              id="pancakes-introduction-to-turing"
+                              title="Introduction to Turing">Introduction to Turing</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/01-gaussian-mixture-model"
+                              id="pancakes-gaussian-mixture-models"
+                              title="Gaussian Mixture Models">Gaussian Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/02-logistic-regression"
+                              id="pancakes-bayesian-logistic-regression"
+                              title="Bayesian Logistic Regression">Bayesian Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/03-bayesian-neural-network"
+                              id="pancakes-bayesian-neural-networks"
+                              title="Bayesian Neural Networks">Bayesian Neural Networks</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/04-hidden-markov-model"
+                              id="pancakes-hidden-markov-models"
+                              title="Hidden Markov Models">Hidden Markov Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/05-linear-regression"
+                              id="pancakes-linear-regression"
+                              title="Linear Regression">Linear Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/06-infinite-mixture-model"
+                              id="pancakes-infinite-mixture-models"
+                              title="Infinite Mixture Models">Infinite Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/07-poisson-regression"
+                              id="pancakes-bayesian-poisson-regression"
+                              title="Bayesian Poisson Regression">Bayesian Poisson Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/08-multinomial-logistic-regression"
+                              id="pancakes-multinomial-logistic-regression"
+                              title="Multinomial Logistic Regression">Multinomial Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/09-variational-inference"
+                              id="pancakes-variational-inference"
+                              title="Variational Inference">Variational Inference</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/10-bayesian-differential-equations"
+                              id="pancakes-bayesian-differential-equations"
+                              title="Bayesian Differential Equations">Bayesian Differential Equations</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/11-probabilistic-pca"
+                              id="pancakes-probabilistic-pca"
+                              title="Probabilistic PCA">Probabilistic PCA</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/12-gaussian-process"
+                              id="pancakes-gaussian-processes"
+                              title="Gaussian Processes">Gaussian Processes</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/13-seasonal-time-series"
+                              id="pancakes-bayesian-time-series-analysis"
+                              title="Bayesian Time Series Analysis">Bayesian Time Series Analysis</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/14-minituring"
+                              id="pancakes-a-mini-turing-compiler"
+                              title="A Mini Turing Compiler">A Mini Turing Compiler</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-contributing" title="CONTRIBUTING">CONTRIBUTING</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/contributing/guide"
+                              id="pancakes-how-to-contribute"
+                              title="How to Contribute">How to Contribute</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/contributing/style-guide"
+                              id="pancakes-style-guide"
+                              title="Style Guide">Style Guide</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                </ul>
+            </nav>
+          </li>
+
+          <!-- This navigation is completely for mobile -->
+          <li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="USING TURING">USING TURING</a>
+          </li><li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="FOR DEVELOPERS">FOR DEVELOPERS</a>
+          </li><li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="TUTORIALS">TUTORIALS</a>
+          </li><li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="CONTRIBUTING">CONTRIBUTING</a>
+          </li>
+
+          <!-- This navigation is completely for non mobile -->
+          
+
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent "
+                id="pancakes-using-turing"
+                title="USING TURING">USING TURING</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/get-started"
+                           title="Getting Started" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Getting Started</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/quick-start"
+                           title="Quick Start" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Quick Start</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/guide"
+                           title="Guide" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/advanced"
+                           title="Advanced Usage" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Advanced Usage</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/autodiff"
+                           title="Automatic Differentiation" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Automatic Differentiation</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/performancetips"
+                           title="Performance Tips" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Performance Tips</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/dynamichmc"
+                           title="Using DynamicHMC" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Using DynamicHMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/sampler-viz"
+                           title="Sampler Visualization" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Sampler Visualization</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/library/"
+                           title="Turing API" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Turing API</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent open-parent"
+                id="pancakes-for-developers"
+                title="FOR DEVELOPERS">FOR DEVELOPERS</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/for-developers/compiler"
+                           title="Turing Compiler Design" 
+                           
+                           class="md-nav__link pancakes-child">Turing Compiler Design</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/for-developers/interface"
+                           title="Interface Guide" 
+                           
+                           class="md-nav__link pancakes-child">Interface Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/for-developers/how_turing_implements_abstractmcmc"
+                           title="How Turing implements AbstractMCMC" 
+                           
+                           class="md-nav__link pancakes-child">How Turing implements AbstractMCMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/for-developers/variational_inference"
+                           title="Variational Inference" 
+                            style="color: red;"
+                           class="md-nav__link pancakes-child">Variational Inference</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent "
+                id="pancakes-tutorials"
+                title="TUTORIALS">TUTORIALS</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials"
+                           title="Home" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Home</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/00-introduction"
+                           title="Introduction to Turing" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Introduction to Turing</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/01-gaussian-mixture-model"
+                           title="Gaussian Mixture Models" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Gaussian Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/02-logistic-regression"
+                           title="Bayesian Logistic Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/03-bayesian-neural-network"
+                           title="Bayesian Neural Networks" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Neural Networks</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/04-hidden-markov-model"
+                           title="Hidden Markov Models" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Hidden Markov Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/05-linear-regression"
+                           title="Linear Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Linear Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/06-infinite-mixture-model"
+                           title="Infinite Mixture Models" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Infinite Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/07-poisson-regression"
+                           title="Bayesian Poisson Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Poisson Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/08-multinomial-logistic-regression"
+                           title="Multinomial Logistic Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Multinomial Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/09-variational-inference"
+                           title="Variational Inference" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Variational Inference</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/10-bayesian-differential-equations"
+                           title="Bayesian Differential Equations" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Differential Equations</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/11-probabilistic-pca"
+                           title="Probabilistic PCA" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Probabilistic PCA</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/12-gaussian-process"
+                           title="Gaussian Processes" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Gaussian Processes</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/13-seasonal-time-series"
+                           title="Bayesian Time Series Analysis" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Time Series Analysis</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/14-minituring"
+                           title="A Mini Turing Compiler" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">A Mini Turing Compiler</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent "
+                id="pancakes-contributing"
+                title="CONTRIBUTING">CONTRIBUTING</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/contributing/guide"
+                           title="How to Contribute" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">How to Contribute</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/contributing/style-guide"
+                           title="Style Guide" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Style Guide</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+<div class="md-sidebar md-sidebar--secondary invisible" data-md-component="toc">
+  <div class="md-sidebar__scrollwrap">
+    <div class="md-sidebar__inner">
+      <nav class="md-nav md-nav--secondary">
+        <label class="md-nav__title" for="__toc">Table of contents</label>
+        <ul id="nav-toc" class="md-nav__list" data-md-scrollfix="">
+        <!-- toc will be appended here!-->
+        </ul>
+        <a href="https://twitter.com/intent/tweet?original_referer=https://github.com/TuringLang/Turing.jl/edit/master/docs/src/for-developers/variational_inference.md" title="Tweet this page" class="social-link"><i class="fa fa-twitter fa-1x"></i>Tweet this page</a>
+        <a href="https://discourse.julialang.org/c/domain/probprog" title="Ask questions" class="social-link"><i class="fa fa-stack-overflow fa-1x"></i>Ask questions</a>
+        <a href="https://github.com/TuringLang/Turing.jl//issues/new?label=question&title=Question:&body=Question%20on:%20https://github.com/TuringLang/Turing.jl/edit/master/docs/_docs/for-developers/variational_inference.md" title="Report issues" class="social-link"><i class="fa fa-comments fa-1x"></i>Report issues</a>
+        <a href="https://github.com/TuringLang/Turing.jl/edit/master/docs/src/for-developers/variational_inference.md" title="Edit this page on github"  class="social-link"><i class="fa fa-github fa-1x"></i> Edit me</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+                <div id="md-container-pancakes">
+                <div class="md-content full-width"> 
+    <article class="md-content__inner md-typeset  full-width">
+    <p><a id='Overview'></a></p>
+<p><a id='Overview-1'></a></p>
+<h1 id="overview">Overview</h1>
+<p>In this post we'll have a look at what's known as <strong>variational inference (VI)</strong>, a family of <em>approximate</em> Bayesian inference methods. In particular, we will focus on one of the more standard VI methods called <strong>Automatic Differentiation Variational Inference (ADVI)</strong>.</p>
+<p>Here we'll have a look at the theory behind VI, but if you're interested in how to use ADVI in Turing.jl, <a href="../../tutorials/09-variational-inference">check out this tutorial</a>.</p>
+<p><a id='Motivation'></a></p>
+<p><a id='Motivation-1'></a></p>
+<h1 id="motivation">Motivation</h1>
+<p>In Bayesian inference one usually specifies a model as follows: given data $\{x_i\}_{i = 1}^n$,</p>
+<p>$$
+\begin{align*}
+\text{prior:} \quad z &amp;\sim p(z)   \\
+\text{likelihood:} \quad x_i &amp;\overset{\text{i.i.d.}}{\sim} p(x \mid z) \quad  \text{where} \quad i = 1, \dots, n
+\end{align*}
+$$</p>
+<p>where $\overset{\text{i.i.d.}}{\sim}$ denotes that the samples are identically independently distributed. Our goal in Bayesian inference is then to find the <em>posterior</em></p>
+<p>$$
+p(z \mid \{ x_i \}_{i = 1}^n) \propto p(z) \prod_{i=1}^{n} p(x_i \mid z).
+$$</p>
+<p>In general one cannot obtain a closed form expression for $p(z \mid \{ x_i \}_{i = 1}^n)$, but one might still be able to <em>sample</em> from $p(z \mid \{ x_i \}_{i = 1}^n)$ with guarantees of converging to the target posterior $p(z \mid \{ x_i \}_{i = 1}^n)$ as the number of samples go to $\infty$, e.g. MCMC.</p>
+<p>As you are hopefully already aware, Turing.jl provides a lot of different methods with asymptotic exactness guarantees that we can apply to such a problem!</p>
+<p>Unfortunately, these unbiased samplers can be prohibitively expensive to run. As the model $p$ increases in complexity, the convergence of these unbiased samplers can slow down dramatically. Still, in the <em>infinite</em> limit, these methods should converge to the true posterior! But infinity is fairly large, like, <em>at least</em> more than 12, so this might take a while.</p>
+<p>In such a case it might be desirable to sacrifice some of these asymptotic guarantees, and instead <em>approximate</em> the posterior $p(z \mid \{ x_i \}_{i = 1}^n)$ using some other model which we'll denote $q(z)$.</p>
+<p>There are multiple approaches to take in this case, one of which is <strong>variational inference (VI)</strong>.</p>
+<p><a id='Variational-Inference-(VI)'></a></p>
+<p><a id='Variational-Inference-(VI)-1'></a></p>
+<h1 id="variational-inference-vi">Variational Inference (VI)</h1>
+<p>In VI, we're looking to approximate $p(z \mid \{ x_i \}_{i = 1}^n )$ using some <em>approximate</em> or <em>variational</em> posterior $q(z)$.</p>
+<p>To approximate something you need a notion of what &quot;close&quot; means. In the context of probability densities a standard such &quot;measure&quot; of closeness is the <em>Kullback-Leibler (KL) divergence</em> , though this is far from the only one. The KL-divergence is defined between two densities $q(z)$ and $p(z \mid \{ x_i \}_{i = 1}^n)$ as</p>
+<p>$$
+\begin{align*}
+\mathrm{D_{KL}} \left( q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) &amp;= \int \log \left( \frac{q(z)}{\prod_{i = 1}^n p(z \mid x_i)} \right) q(z) \mathrm{d}{z} \\
+&amp;= \mathbb{E}_{z \sim q(z)} \left[ \log q(z) - \sum_{i = 1}^n \log p(z \mid x_i) \right] \\
+&amp;= \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right] - \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(z \mid x_i) \right].
+\end{align*}
+$$</p>
+<p>It's worth noting that unfortunately the KL-divergence is <em>not</em> a metric/distance in the analysis-sense due to its lack of symmetry. On the other hand, it turns out that minimizing the KL-divergence that it's actually equivalent to maximizing the log-likelihood! Also, under reasonable restrictions on the densities at hand,</p>
+<p>$$
+\mathrm{D_{KL}}\left(q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) = 0 \quad \iff \quad q(z) = p(z \mid \{ x_i \}_{i = 1}^n), \quad \forall z.
+$$</p>
+<p>Therefore one could (and we will) attempt to approximate $p(z \mid \{ x_i \}_{i = 1}^n)$ using a density $q(z)$ by minimizing the KL-divergence between these two!</p>
+<p>One can also show that $\mathrm{D_{KL}} \ge 0$, which we'll need later. Finally notice that the KL-divergence is only well-defined when in fact $q(z)$ is zero everywhere $p(z \mid \{ x_i \}_{i = 1}^n)$ is zero, i.e.</p>
+<p>$$
+\mathrm{supp}\left(q(z)\right) \subseteq \mathrm{supp}\left(p(z \mid x)\right).
+$$</p>
+<p>Otherwise, there might be a point $z_0 \sim q(z)$ such that $p(z_0 \mid \{ x_i \}_{i = 1}^n) = 0$, resulting in $\log\left(\frac{q(z)}{0}\right)$ which doesn't make sense!</p>
+<p>One major problem: as we can see in the definition of the KL-divergence, we need $p(z \mid \{ x_i \}_{i = 1}^n)$ for any $z$ if we want to compute the KL-divergence between this and $q(z)$. We don't have that. The entire reason we even do Bayesian inference is that we don't know the posterior! Cleary this isn't going to work. <em>Or is it?!</em></p>
+<p><a id='Computing-KL-divergence-without-knowing-the-posterior'></a></p>
+<p><a id='Computing-KL-divergence-without-knowing-the-posterior-1'></a></p>
+<h2 id="computing-kl-divergence-without-knowing-the-posterior">Computing KL-divergence without knowing the posterior</h2>
+<p>First off, recall that</p>
+<p>$$
+p(z \mid x_i) = \frac{p(x_i, z)}{p(x_i)}
+$$</p>
+<p>so we can write</p>
+<p>$$
+\begin{align*}
+\mathrm{D_{KL}} \left( q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) &amp;= \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right] - \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) - \log p(x_i) \right] \\
+&amp;= \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right] - \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) \right] + \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i) \right] \\
+&amp;= \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right] - \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) \right] + \sum_{i = 1}^n \log p(x_i),
+\end{align*}
+$$</p>
+<p>where in the last equality we used the fact that $p(x_i)$ is independent of $z$.</p>
+<p>Now you're probably thinking &quot;Oh great! Now you've introduced $p(x_i)$ which we <em>also</em> can't compute (in general)!&quot;. Woah. Calm down human. Let's do some more algebra. The above expression can be rearranged to</p>
+<p>$$
+\mathrm{D_{KL}} \left( q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) + \underbrace{\sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) \right] - \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right]}_{=: \mathrm{ELBO}(q)} = \underbrace{\sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i) \right]}_{\text{constant}}.
+$$</p>
+<p>See? The left-hand side is <em>constant</em> and, as we mentioned before, $\mathrm{D_{KL}} \ge 0$. What happens if we try to <em>maximize</em> the term we just gave the completely arbitrary name $\mathrm{ELBO}$? Well, if $\mathrm{ELBO}$ goes up while $p(x_i)$ stays constant then $\mathrm{D_{KL}}$ <em>has to</em> go down! That is, the $q(z)$ which <em>minimizes</em> the KL-divergence is the same $q(z)$ which <em>maximizes</em> $\mathrm{ELBO}(q)$:</p>
+<p>$$
+\underset{q}{\mathrm{argmin}} \  \mathrm{D_{KL}} \left( q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) = \underset{q}{\mathrm{argmax}} \ \mathrm{ELBO}(q)
+$$</p>
+<p>where</p>
+<p>$$
+\begin{align*}
+\mathrm{ELBO}(q) &amp;:= \left( \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) \right]  \right) - \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right] \\
+&amp;= \left( \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) \right] \right) + \mathbb{H}\left( q(z) \right)
+\end{align*}
+$$</p>
+<p>and $\mathbb{H} \left(q(z) \right)$ denotes the <a href="https://www.wikiwand.com/en/Differential_entropy">(differential) entropy</a> of $q(z)$.</p>
+<p>Assuming joint $p(x_i, z)$ and the entropy $\mathbb{H}\left(q(z)\right)$ are both tractable, we can use a Monte-Carlo for the remaining expectation. This leaves us with the following tractable expression</p>
+<p>$$
+\underset{q}{\mathrm{argmin}} \ \mathrm{D_{KL}} \left( q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) \approx \underset{q}{\mathrm{argmax}} \ \widehat{\mathrm{ELBO}}(q)
+$$</p>
+<p>where</p>
+<p>$$
+\widehat{\mathrm{ELBO}}(q) = \frac{1}{m} \left( \sum_{k = 1}^m \sum_{i = 1}^n \log p(x_i, z_k) \right) + \mathbb{H} \left(q(z)\right) \quad \text{where} \quad z_k \sim q(z) \quad \forall k = 1, \dots, m.
+$$</p>
+<p>Hence, as long as we can sample from $q(z)$ somewhat efficiently, we can indeed minimize the KL-divergence! Neat, eh?</p>
+<p>Sidenote: in the case where $q(z)$ is tractable but $\mathbb{H} \left(q(z) \right)$ is <em>not</em> , we can use an Monte-Carlo estimate for this term too but this generally results in a higher-variance estimate.</p>
+<p>Also, I fooled you real good: the ELBO <em>isn't</em> an arbitrary name, hah! In fact it's an abbreviation for the <strong>expected lower bound (ELBO)</strong> because it, uhmm, well, it's the <em>expected</em> lower bound (remember $\mathrm{D_{KL}} \ge 0$). Yup.</p>
+<p><a id='Maximizing-the-ELBO'></a></p>
+<p><a id='Maximizing-the-ELBO-1'></a></p>
+<h2 id="maximizing-the-elbo">Maximizing the ELBO</h2>
+<p>Finding the optimal $q$ over <em>all</em> possible densities of course isn't feasible. Instead we consider a family of <em>parameterized</em> densities $\mathscr{D}_{\Theta}$ where $\Theta$ denotes the space of possible parameters. Each density in this family $q_{\theta} \in \mathscr{D}_{\Theta}$ is parameterized by a unique $\theta \in \Theta$. Moreover, we'll assume</p>
+<ol>
+<li>$q_{\theta}(z)$, i.e. evaluating the probability density $q$ at any point $z$, is differentiable</li>
+<li>$z \sim q_{\theta}(z)$, i.e. the process of sampling from $q_{\theta}(z)$, is differentiable</li>
+</ol>
+<p>(1) is fairly straight-forward, but (2) is a bit tricky. What does it even mean for a <em>sampling process</em> to be differentiable? This is quite an interesting problem in its own right and would require something like a <a href="https://arxiv.org/abs/1906.10652">50-page paper to properly review the different approaches (highly recommended read)</a>.</p>
+<p>We're going to make use of a particular such approach which goes under a bunch of different names: <em>reparametrization trick</em>, <em>path derivative</em>, etc. This refers to making the assumption that all elements $q_{\theta} \in \mathscr{Q}_{\Theta}$ can be considered as reparameterizations of some base density, say $\bar{q}(z)$. That is, if $q_{\theta} \in \mathscr{Q}_{\Theta}$ then</p>
+<p>$$
+z \sim q_{\theta}(z) \quad \iff \quad z := g_{\theta}(\tilde{z}) \quad \text{where} \quad \bar{z} \sim \bar{q}(z)
+$$</p>
+<p>for some function $g_{\theta}$ differentiable wrt. $\theta$. So all $q_{\theta} \in \mathscr{Q}_{\Theta}$ are using the <em>same</em> reparameterization-function $g$ but each $q_{\theta}$ correspond to different choices of $\theta$ for $f_{\theta}$.</p>
+<p>Under this assumption we can differentiate the sampling process by taking the derivative of $g_{\theta}$ wrt. $\theta$, and thus we can differentiate the entire $\widehat{\mathrm{ELBO}}(q_{\theta})$ wrt. $\theta$! With the gradient available we can either try to solve for optimality either by setting the gradient equal to zero or maximize $\widehat{\mathrm{ELBO}}(q_{\theta})$ stepwise by traversing $\mathscr{Q}_{\Theta}$ in the direction of steepest ascent. For the sake of generality, we're going to go with the stepwise approach.</p>
+<p>With all this nailed down, we eventually reach the section on <strong>Automatic Differentiation Variational Inference (ADVI)</strong>.</p>
+<p><a id='Automatic-Differentiation-Variational-Inference-(ADVI)'></a></p>
+<p><a id='Automatic-Differentiation-Variational-Inference-(ADVI)-1'></a></p>
+<h2 id="automatic-differentiation-variational-inference-advi">Automatic Differentiation Variational Inference (ADVI)</h2>
+<p>So let's revisit the assumptions we've made at this point:</p>
+<ol>
+<li>The variational posterior $q_{\theta}$ is in a parameterized family of densities denoted $\mathscr{Q}_{\Theta}$, with $\theta \in \Theta$.</li>
+<li>$\mathscr{Q}_{\Theta}$ is a space of <em>reparameterizable</em> densities with $\bar{q}(z)$ as the base-density.</li>
+<li>The parameterization function $g_{\theta}$ is differentiable wrt. $\theta$.</li>
+<li>Evaluation of the probability density $q_{\theta}(z)$ is differentiable wrt. $\theta$.</li>
+<li>$\mathbb{H}\left(q_{\theta}(z)\right)$ is tractable.</li>
+<li>Evaluation of the joint density $p(x, z)$ is tractable and differentiable wrt. $z$</li>
+<li>The support of $q(z)$ is a subspace of the support of $p(z \mid x)$ : $\mathrm{supp}\left(q(z)\right) \subseteq \mathrm{supp}\left(p(z \mid x)\right)$.</li>
+</ol>
+<p>All of these are not <em>necessary</em> to do VI, but they are very convenient and results in a fairly flexible approach. One distribution which has a density satisfying all of the above assumptions <em>except</em> (7) (we'll get back to this in second) for any tractable and differentiable $p(z \mid \{ x_i \}_{i = 1}^n)$ is the good ole' Gaussian/normal distribution:</p>
+<p>$$
+z \sim \mathcal{N}(\mu, \Sigma) \quad \iff \quad z = g_{\mu, L}(\bar{z}) := \mu + L^T \tilde{z} \quad \text{where} \quad \bar{z} \sim \bar{q}(z) := \mathcal{N}(1_d, I_{d \times d})
+$$</p>
+<p>where $\Sigma = L L^T,$ with $L$ obtained from the Cholesky-decomposition. Abusing notation a bit, we're going to write</p>
+<p>$$
+\theta = (\mu, \Sigma) := (\mu_1, \dots, \mu_d, L_{11}, \dots, L_{1, d}, L_{2, 1}, \dots, L_{2, d}, \dots, L_{d, 1}, \dots, L_{d, d}).
+$$</p>
+<p>With this assumption we finally have a tractable expression for $\widehat{\mathrm{ELBO}}(q_{\mu, \Sigma})$! Well, assuming (7) is holds. Since a Gaussian has non-zero probability on the entirety of $\mathbb{R}^d$, we also require $p(z \mid \{ x_i \}_{i = 1}^n)$ to have non-zero probability on all of $\mathbb{R}^d$.</p>
+<p>Though not necessary, we'll often make a <em>mean-field</em> assumption for the variational posterior $q(z)$, i.e. assume independence between the latent variables. In this case, we'll write</p>
+<p>$$
+\theta = (\mu, \sigma^2) := (\mu_1, \dots, \mu_d, \sigma_1^2, \dots, \sigma_d^2).
+$$</p>
+<p><a id='Examples'></a></p>
+<p><a id='Examples-1'></a></p>
+<h3 id="examples">Examples</h3>
+<p>As a (trivial) example we could apply the approach described above to is the following generative model for $p(z \mid \{ x_i \}_{i = 1}^n)$:</p>
+<p>$$
+\begin{align*}
+m &amp;\sim \mathcal{N}(0, 1) \\
+x_i &amp;\overset{\text{i.i.d.}}{=} \mathcal{N}(m, 1), \quad i = 1, \dots, n.
+\end{align*}
+$$</p>
+<p>In this case $z = m$ and we have the posterior defined $p(m \mid \{ x_i \}_{i = 1}^n) = p(m) \prod_{i = 1}^n p(x_i \mid m)$. Then the variational posterior would be</p>
+<p>$$
+q_{\mu, \sigma} = \mathcal{N}(\mu, \sigma^2), \quad \text{where} \quad \mu \in \mathbb{R}, \ \sigma^2 \in \mathbb{R}^{ + }.
+$$</p>
+<p>And since prior of $m$, $\mathcal{N}(0, 1)$, has non-zero probability on the entirety of $\mathbb{R}$, same as $q(m)$, i.e. assumption (7) above holds, everything is fine and life is good.</p>
+<p>But what about this generative model for $p(z \mid \{ x_i \}_{i = 1}^n)$:</p>
+<p>$$
+\begin{align*}
+s &amp;\sim \mathrm{InverseGamma}(2, 3), \\
+m &amp;\sim \mathcal{N}(0, s), \\
+x_i &amp;\overset{\text{i.i.d.}}{=} \mathcal{N}(m, s), \quad i = 1, \dots, n,
+\end{align*}
+$$</p>
+<p>with posterior $p(s, m \mid \{ x_i \}_{i = 1}^n) = p(s) p(m \mid s) \prod_{i = 1}^n p(x_i \mid s, m)$ and the mean-field variational posterior $q(s, m)$ will be</p>
+<p>$$
+q_{\mu_1, \mu_2, \sigma_1^2, \sigma_2^2}(s, m) = p_{\mathcal{N}(\mu_1, \sigma_1^2)}(s)\ p_{\mathcal{N}(\mu_2, \sigma_2^2)}(m),
+$$</p>
+<p>where we've denoted the evaluation of the probability density of a Gaussian as $p_{\mathcal{N}(\mu, \sigma^2)}(x)$.</p>
+<p>Observe that $\mathrm{InverseGamma}(2, 3)$ has non-zero probability only on $\mathbb{R}^{ + } := (0, \infty)$ which is clearly not all of $\mathbb{R}$ like $q(s, m)$ has, i.e.</p>
+<p>$$
+\mathrm{supp} \left( q(s, m) \right) \not\subseteq \mathrm{supp} \left( p(z \mid \{ x_i \}_{i = 1}^n) \right).
+$$</p>
+<p>Recall from the definition of the KL-divergence that when this is the case, the KL-divergence isn't well defined. This gets us to the <em>automatic</em> part of ADVI.</p>
+<p><a id='"Automatic"?-How?'></a></p>
+<p><a id='"Automatic"?-How?-1'></a></p>
+<h3 id="quotautomaticquot-how">&quot;Automatic&quot;? How?</h3>
+<p>For a lot of the standard (continuous) densities $p$ we can actually construct a probability density $\tilde{p}$ with non-zero probability on all of $\mathbb{R}$ by <em>transforming</em> the &quot;constrained&quot; probability density $p$ to $\tilde{p}$. In fact, in these cases this is a one-to-one relationship. As we'll see, this helps solve the support-issue we've been going on and on about.</p>
+<p><a id='Transforming-densities-using-change-of-variables'></a></p>
+<p><a id='Transforming-densities-using-change-of-variables-1'></a></p>
+<h4 id="transforming-densities-using-change-of-variables">Transforming densities using change of variables</h4>
+<p>If we want to compute the probability of $x$ taking a value in some set $A \subseteq \mathrm{supp} \left( p(x) \right)$, we have to integrate $p(x)$ over $A$, i.e.</p>
+<p>$$
+\mathbb{P}_p(x \in A) = \int_A p(x) \mathrm{d}x.
+$$</p>
+<p>This means that if we have a differentiable bijection $f: \mathrm{supp} \left( q(x) \right) \to \mathbb{R}^d$ with differentiable inverse $f^{-1}: \mathbb{R}^d \to \mathrm{supp} \left( p(x) \right)$, we can perform a change of variables</p>
+<p>$$
+\mathbb{P}_p(x \in A) = \int_{f^{-1}(A)} p \left(f^{-1}(y) \right) \ \left| \det \mathcal{J}_{f^{-1}}(y) \right| \mathrm{d}y,
+$$</p>
+<p>where $\mathcal{J}_{f^{-1}}(x)$ denotes the jacobian of $f^{-1}$ evaluated at $x$. Observe that this defines a probability distribution</p>
+<p>$$
+\mathbb{P}_{\tilde{p}}\left(y \in f^{-1}(A) \right) = \int_{f^{-1}(A)} \tilde{p}(y) \mathrm{d}y,
+$$</p>
+<p>since $f^{-1}\left(\mathrm{supp} (p(x)) \right) = \mathbb{R}^d$ which has probability 1. This probability distribution has <em>density</em> $\tilde{p}(y)$ with $\mathrm{supp} \left( \tilde{p}(y) \right) = \mathbb{R}^d$, defined</p>
+<p>$$
+\tilde{p}(y) = p \left( f^{-1}(y) \right) \ \left| \det \mathcal{J}_{f^{-1}}(y) \right|
+$$</p>
+<p>or equivalently</p>
+<p>$$
+\tilde{p} \left( f(x) \right) = \frac{p(x)}{\big| \det \mathcal{J}_{f}(x) \big|}
+$$</p>
+<p>due to the fact that</p>
+<p>$$
+\big| \det \mathcal{J}_{f^{-1}}(y) \big| = \big| \det \mathcal{J}_{f}(x) \big|^{-1}
+$$</p>
+<p><em>Note: it's also necessary that the log-abs-det-jacobian term is non-vanishing. This can for example be accomplished by assuming $f$ to also be elementwise monotonic.</em></p>
+<p><a id='Back-to-VI'></a></p>
+<p><a id='Back-to-VI-1'></a></p>
+<h4 id="back-to-vi">Back to VI</h4>
+<p>So why is this is useful? Well, we're looking to generalize our approach using a normal distribution to cases where the supports don't match up. How about defining $q(z)$ by</p>
+<p>$$
+\begin{align*}
+\eta &amp;\sim \mathcal{N}(\mu, \Sigma), \\
+z &amp;= f^{-1}(\eta),
+\end{align*}
+$$</p>
+<p>where $f^{-1}: \mathbb{R}^d \to \mathrm{supp} \left( p(z \mid x) \right)$ is a differentiable bijection with differentiable inverse. Then $z \sim q_{\mu, \Sigma}(z) \implies z \in \mathrm{supp} \left( p(z \mid x) \right)$ as we wanted. The resulting variational density is</p>
+<p>$$
+q_{\mu, \Sigma}(z) = p_{\mathcal{N}(\mu, \Sigma)}\left( f(z) \right) \ \big| \det \mathcal{J}_{f}(z) \big|.
+$$</p>
+<p>Note that the way we've constructed $q(z)$ here is basically a reverse of the approach we described above. Here we sample from a distribution with support on $\mathbb{R}$ and transform <em>to</em> $\mathrm{supp} \left( p(z \mid x) \right)$.</p>
+<p>If we want to write the ELBO explicitly in terms of $\eta$ rather than $z$, the first term in the ELBO becomes</p>
+<p>$$
+\begin{align*}
+\mathbb{E}_{z \sim q_{\mu, \Sigma}(z)} \left[ \log p(x_i, z) \right] &amp;= \mathbb{E}_{\eta \sim \mathcal{N}(\mu, \Sigma)} \Bigg[ \log \frac{p\left(x_i, f^{-1}(\eta) \right)}{\big| \det \mathcal{J}_{f^{-1}}(\eta) \big|} \Bigg] \\
+&amp;= \mathbb{E}_{\eta \sim \mathcal{N}(\mu, \Sigma)} \left[ \log p\left(x_i, f^{-1}(\eta) \right) \right] - \mathbb{E}_{\eta \sim \mathcal{N}(\mu, \Sigma)} \left[ \left| \det \mathcal{J}_{f^{-1}}(\eta) \right| \right].
+\end{align*}
+$$</p>
+<p>The entropy is invariant under change of variables, thus $\mathbb{H} \left(q_{\mu, \Sigma}(z)\right)$ is simply the entropy of the normal distribution which is known analytically.</p>
+<p>Hence, the resulting empirical estimate of the ELBO is</p>
+<p>$$
+\begin{align*}
+\widehat{\mathrm{ELBO}}(q_{\mu, \Sigma}) &amp;= \frac{1}{m} \left( \sum_{k = 1}^m \sum_{i = 1}^n \left(\log p\left(x_i, f^{-1}(\eta_k)\right) - \log \big| \det \mathcal{J}_{f^{-1}}(\eta_k) \big| \right) \right) + \mathbb{H} \left(p_{\mathcal{N}(\mu, \Sigma)}(z)\right) \\
+&amp; \text{where} \quad z_k  \sim \mathcal{N}(\mu, \Sigma) \quad \forall k = 1, \dots, m
+\end{align*}.
+$$</p>
+<p>And maximizing this wrt. $\mu$ and $\Sigma$ is what's referred to as <strong>Automatic Differentiation Variational Inference (ADVI)</strong>!</p>
+<p>Now if you want to try it out, <a href="../../tutorials/09-variational-inference">check out the tutorial on how to use ADVI in Turing.jl</a>!</p>
+
+    
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function() {
+
+    var toc = $('#nav-toc');
+
+    // Select each header
+    sections = $('#md-container-pancakes h1');
+        $.each(sections, function(idx, v) {
+            section = $(v);
+            var div_id = $(section).attr('id');
+            var div_text = section.text().split('¶')[0];
+            var parent = $("#" + div_id)
+            var content = '<li id="link_' + div_id + '" class="md-nav__item"><a class="md-nav__link toc-side-bar" href="#' + div_id + '" title="' + div_text +'">' + div_text +'</a></li>';
+            $(toc).append(content);
+
+            // Add section code to subnavigation
+            var children = $('<nav class="md-nav"><ul class="md-nav__list"></nav></ul>')
+            var contenders = $("#" + div_id).nextUntil( "h1" );
+            $.each(contenders, function(idx, contender){
+            if($(contender).is('h2')) {
+                var contender_id = $(contender).attr('id');
+                var contender_text = $(contender).text().split('¶')[0];
+                var content = '<li class="md-nav__item"><a class="md-nav__link toc-side-bar" href="#' + contender_id + '" title="' + contender_text +'">' + contender_text +'</a></li>';
+                children.append(content);
+                }
+            })
+            $("#link_" + div_id).append(children);
+        });
+    });
+</script>
+    <!-- this will parse through the header fields and add a button to open
+     an issue / ask a question on Github. The editable field should be in
+     the post frontend matter, and refer to the label to open the issue for -->
+
+<style>
+.more {
+    float:right;
+    font-size: 1.0rem !important;
+}
+.more:hover {
+    color: cornflowerblue !important;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    font-weight: 200;
+    box-shadow: 0px 8px 6px 0px rgba(0,0,0,0.2);
+    padding: 0px 10px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+
+
+    </article>
+</div>      
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="c-footer md-footer-nav">
+  <div class="md-footer-copyright__highlight">
+    
+    Turing is created by <a style="color:inherit; text-decoration: underline;" href="http://mlg.eng.cam.ac.uk/hong/">Hong Ge</a>, 
+    and lovingly maintained by the <a style="color:inherit; text-decoration: underline;" href="https://github.com/TuringLang/Turing.jl/graphs/contributors">core team</a> of volunteers.
+
+    <br><br>
+    
+    The contents of this website are
+© 2023 under the terms of the <a style="color:inherit; text-decoration: underline;" href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE">MIT License</a>.
+    
+  </div>  
+</footer>
+
+
+    <script src="/v0.26/assets/js/application.js"></script>
+    
+    <script>console.log('4')</script>
+    <script>app.initialize({version:"0.17.4", url:{base:'/v0.26'}})</script>
+
+    
+    <script src="/v0.26/assets/js/version-switch.js"></script>
+
+    <script>
+ var headers = ["h1", "h2", "h3", "h4"]
+ var colors = ["red", "orange", "green", "blue"]
+
+ $.each(headers, function(i, header){
+   var color = colors[i];
+   $(header).each(function () {
+     var href=$(this).attr("id");
+     $(this).append('<a class="headerlink" style="color:' + color + '" href="#' + href + '" title="Permanent link">¶</a>')
+   });
+ })
+
+ // Ensure that sidebar on left has arrows
+ $(".pancakes-parent").on('click', function(){
+   console.log($(this).next());
+   $(this).next().find('.pancakes-child').toggle();
+   if ($(this).hasClass('open-parent')){
+     $(this).removeClass('open-parent');
+   } else {
+     $(this).addClass('open-parent');
+   }
+ })
+
+ $(".pancakes-parent-mobile").on('click', function(){
+   var nav = $(this).next();
+   nav.addClass('mobile-sub-navbar-display');
+ })
+
+ $(".mobile-navbar-back").on('click', function(){
+   var nav = $(this).parent();
+   nav.removeClass('mobile-sub-navbar-display');
+ })
+
+</script>
+
+<script>
+ MathJax = {
+   tex: {
+     inlineMath: [['$', '$'], ['$$', '$$']]
+   }
+ };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+    <script>
+$('h1').first().append('<div></div>')</script>
+
+    <style>
+#scrolltop {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #d2e6f5; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 10px 15px; /* Some padding */
+  border-radius: 100px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+  font-weight: 600;
+}
+
+#scrolltop:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+</style>
+<button onclick="topFunction()" id="scrolltop" title="Go to top">🔝</button>
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("scrolltop").style.display = "block";
+  } else {
+    document.getElementById("scrolltop").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+
+    
+
+
+  </body>
+</html>
