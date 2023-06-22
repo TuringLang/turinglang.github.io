@@ -477,9 +477,9 @@ version = "0.21.4"
 
 [[KernelAbstractions]]
 deps = ["Adapt", "Atomix", "InteractiveUtils", "LinearAlgebra", "MacroTools", "PrecompileTools", "SparseArrays", "StaticArrays", "UUIDs", "UnsafeAtomics", "UnsafeAtomicsLLVM"]
-git-tree-sha1 = "bd2a7271f9884dc0ffc057974c374aaaa531b36a"
+git-tree-sha1 = "b48617c5d764908b5fac493cd907cf33cc11eec1"
 uuid = "63c18a36-062a-441e-b654-da1e3ab1ce7c"
-version = "0.9.5"
+version = "0.9.6"
 
 [[KernelDensity]]
 deps = ["Distributions", "DocStringExtensions", "FFTW", "Interpolations", "StatsBase"]
