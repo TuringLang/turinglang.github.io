@@ -202,9 +202,9 @@ version = "1.15.0"
 
 [[DataStructures]]
 deps = ["Compat", "InteractiveUtils", "OrderedCollections"]
-git-tree-sha1 = "d1fff3a548102f48987a52a2e0d114fa97d730f0"
+git-tree-sha1 = "cf25ccb972fec4e4817764d01c82386ae94f77b4"
 uuid = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
-version = "0.18.13"
+version = "0.18.14"
 
 [[DataValueInterfaces]]
 git-tree-sha1 = "bfc1187b79289637fa0ef6d4436ebdfe6905cbd6"
@@ -278,9 +278,9 @@ version = "0.2.2"
 
 [[DocumenterTools]]
 deps = ["AbstractTrees", "Base64", "DocStringExtensions", "Documenter", "FileWatching", "Gumbo", "LibGit2", "OpenSSH_jll", "Sass"]
-git-tree-sha1 = "d80421b418f6cc6321acd131011ea68e890f46f3"
+git-tree-sha1 = "05ca46b0df7d3404921352a0032a2c37d25ce013"
 uuid = "35a29f4d-8980-5a13-9543-d66fff28ecb8"
-version = "0.1.16"
+version = "0.1.17"
 
 [[Downloads]]
 deps = ["ArgTools", "LibCURL", "NetworkOptions"]
