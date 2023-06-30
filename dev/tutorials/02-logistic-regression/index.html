@@ -904,7 +904,7 @@ An example might be predicting whether someone is sick or ill given their sympto
 <span class="k">end</span><span class="x">;</span>
 </code></pre></div></div>
 <h2 id="sampling">Sampling</h2>
-<p>Now we can run our sampler. This time we'll use <a href="http://turing.ml/docs/library/#Turing.HMC"><code>HMC</code></a> to sample from our posterior.</p>
+<p>Now we can run our sampler. This time we'll use <a href="https://turinglang.org/stable/docs/library/#Turing.Inference.NUTS"><code>NUTS</code></a> to sample from our posterior.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Retrieve the number of observations.</span>
 <span class="n">n</span><span class="x">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">size</span><span class="x">(</span><span class="n">train</span><span class="x">)</span>
 
@@ -917,8 +917,8 @@ An example might be predicting whether someone is sick or ill given their sympto
 Iterations        = 751:1:2250
 Number of chains  = 3
 Samples per chain = 1500
-Wall duration     = 4.37 seconds
-Compute duration  = 3.92 seconds
+Wall duration     = 4.27 seconds
+Compute duration  = 3.81 seconds
 parameters        = intercept, student, balance, income
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -1052,7 +1052,7 @@ Environment:
 
 </code></pre>
 <p>Package Information:</p>
-<pre><code>      Status `/cache/build/default-amdci4-6/julialang/turingtutorials/tutorials/02-logistic-regression/Project.toml`
+<pre><code>      Status `/cache/build/default-amdci4-1/julialang/turingtutorials/tutorials/02-logistic-regression/Project.toml`
   [a93c6f00] DataFrames v1.5.0
   [b4f34e82] Distances v0.10.8
   [31c24e10] Distributions v0.25.95
@@ -1069,7 +1069,7 @@ Environment:
   [9a3f8284] Random
 </code></pre>
 <p>And the full manifest:</p>
-<pre><code>      Status `/cache/build/default-amdci4-6/julialang/turingtutorials/tutorials/02-logistic-regression/Manifest.toml`
+<pre><code>      Status `/cache/build/default-amdci4-1/julialang/turingtutorials/tutorials/02-logistic-regression/Manifest.toml`
   [621f4979] AbstractFFTs v1.3.1
   [80f14c24] AbstractMCMC v4.2.0
   [7a57a42e] AbstractPPL v0.5.4

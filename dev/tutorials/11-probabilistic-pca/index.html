@@ -941,7 +941,7 @@ As per the p-PCA formula, we think of each row (i.e. each gene feature) followin
 <h4 id="step-4-sampling-based-inference-of-the-ppca-model">Step 4: Sampling-based inference of the pPCA model</h4>
 <p>Here we aim to perform MCMC sampling to infer the projection matrix $\mathbf{W}<em>{D \times k}$, the latent variable matrix $\mathbf{Z}</em>{k \times N}$, and the offsets $\boldsymbol{\mu}_{N \times 1}$.</p>
 <p>We run the inference using the NUTS sampler, of which the chain length is set to be 500, target accept ratio 0.65 and initial stepsize 0.1. By default, the NUTS sampler samples 1 chain.
-You are free to try <a href="https://turing.ml/stable/docs/library/#samplers">different samplers</a>.</p>
+You are free to try <a href="https://turinglang.org/stable/docs/library/#samplers">different samplers</a>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">k</span> <span class="o">=</span> <span class="mi">2</span> <span class="c"># k is the dimension of the projected space, i.e. the number of principal components/axes of choice</span>
 <span class="n">ppca</span> <span class="o">=</span> <span class="n">pPCA</span><span class="x">(</span><span class="n">mat_exp</span><span class="err">'</span><span class="x">,</span> <span class="n">k</span><span class="x">)</span> <span class="c"># instantiate the probabilistic model</span>
 <span class="n">chain_ppca</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">ppca</span><span class="x">,</span> <span class="n">NUTS</span><span class="x">(),</span> <span class="mi">500</span><span class="x">);</span>

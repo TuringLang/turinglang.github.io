@@ -911,7 +911,7 @@ Lastly, each observation $y_i$ is distributed according to the calculated <code>
 </code></pre></div></div>
 <pre><code>linear_regression (generic function with 2 methods)
 </code></pre>
-<p>With our model specified, we can call the sampler. We will use the No U-Turn Sampler (<a href="http://turing.ml/docs/library/#-turingnuts--type">NUTS</a>) here.</p>
+<p>With our model specified, we can call the sampler. We will use the No U-Turn Sampler (<a href="https://turinglang.org/stable/docs/library/#Turing.Inference.NUTS">NUTS</a>) here.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">linear_regression</span><span class="x">(</span><span class="n">train</span><span class="x">,</span> <span class="n">train_target</span><span class="x">)</span>
 <span class="n">chain</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">NUTS</span><span class="x">(),</span> <span class="mi">3_000</span><span class="x">)</span>
 </code></pre></div></div>
@@ -920,8 +920,8 @@ Lastly, each observation $y_i$ is distributed according to the calculated <code>
 Iterations        = 1001:1:4000
 Number of chains  = 1
 Samples per chain = 3000
-Wall duration     = 6.26 seconds
-Compute duration  = 6.26 seconds
+Wall duration     = 6.09 seconds
+Compute duration  = 6.09 seconds
 parameters        = σ², intercept, coefficients[1], coefficients[2], coeffi
 cients[3], coefficients[4], coefficients[5], coefficients[6], coefficients[
 7], coefficients[8], coefficients[9], coefficients[10]
@@ -1088,7 +1088,7 @@ Environment:
 
 </code></pre>
 <p>Package Information:</p>
-<pre><code>      Status `/cache/build/default-amdci4-3/julialang/turingtutorials/tutorials/05-linear-regression/Project.toml`
+<pre><code>      Status `/cache/build/default-amdci4-0/julialang/turingtutorials/tutorials/05-linear-regression/Project.toml`
   [1a297f60] FillArrays v1.2.0
   [38e38edf] GLM v1.8.3
   [f1d291b0] MLUtils v0.4.3
@@ -1100,7 +1100,7 @@ Environment:
   [9a3f8284] Random
 </code></pre>
 <p>And the full manifest:</p>
-<pre><code>      Status `/cache/build/default-amdci4-3/julialang/turingtutorials/tutorials/05-linear-regression/Manifest.toml`
+<pre><code>      Status `/cache/build/default-amdci4-0/julialang/turingtutorials/tutorials/05-linear-regression/Manifest.toml`
   [47edcb42] ADTypes v0.1.3
   [621f4979] AbstractFFTs v1.3.1
   [80f14c24] AbstractMCMC v4.2.0
