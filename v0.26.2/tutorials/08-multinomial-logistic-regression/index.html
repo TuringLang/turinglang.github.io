@@ -927,7 +927,7 @@
 <span class="k">end</span><span class="x">;</span>
 </code></pre></div></div>
 <h2 id="sampling">Sampling</h2>
-<p>Now we can run our sampler. This time we'll use <a href="http://turing.ml/docs/library/#Turing.HMC"><code>HMC</code></a> to sample from our posterior.</p>
+<p>Now we can run our sampler. This time we'll use <a href="https://turinglang.org/stable/docs/library/#Turing.Inference.NUTS"><code>NUTS</code></a> to sample from our posterior.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m</span> <span class="o">=</span> <span class="n">logistic_regression</span><span class="x">(</span><span class="n">train_features</span><span class="x">,</span> <span class="n">train_target</span><span class="x">,</span> <span class="mi">1</span><span class="x">)</span>
 <span class="n">chain</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">NUTS</span><span class="x">(),</span> <span class="n">MCMCThreads</span><span class="x">(),</span> <span class="mi">1_500</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
 </code></pre></div></div>
@@ -936,8 +936,8 @@
 Iterations        = 751:1:2250
 Number of chains  = 3
 Samples per chain = 1500
-Wall duration     = 17.49 seconds
-Compute duration  = 16.72 seconds
+Wall duration     = 15.58 seconds
+Compute duration  = 14.8 seconds
 parameters        = intercept_versicolor, intercept_virginica, coefficients
 _versicolor[1], coefficients_versicolor[2], coefficients_versicolor[3], coe
 fficients_versicolor[4], coefficients_virginica[1], coefficients_virginica[
@@ -1098,7 +1098,7 @@ Environment:
 
 </code></pre>
 <p>Package Information:</p>
-<pre><code>      Status `/cache/build/default-amdci4-3/julialang/turingtutorials/tutorials/08-multinomial-logistic-regression/Project.toml`
+<pre><code>      Status `/cache/build/default-amdci4-2/julialang/turingtutorials/tutorials/08-multinomial-logistic-regression/Project.toml`
   [1a297f60] FillArrays v1.2.0
   [cc2ba9b6] MLDataUtils v0.5.4
   [872c559c] NNlib v0.8.21
@@ -1109,7 +1109,7 @@ Environment:
   [9a3f8284] Random
 </code></pre>
 <p>And the full manifest:</p>
-<pre><code>      Status `/cache/build/default-amdci4-3/julialang/turingtutorials/tutorials/08-multinomial-logistic-regression/Manifest.toml`
+<pre><code>      Status `/cache/build/default-amdci4-2/julialang/turingtutorials/tutorials/08-multinomial-logistic-regression/Manifest.toml`
   [47edcb42] ADTypes v0.1.3
   [621f4979] AbstractFFTs v1.3.1
   [80f14c24] AbstractMCMC v4.2.0
