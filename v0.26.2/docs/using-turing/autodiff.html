@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Automatic Differentiation</title>
-    <meta name="description" content="">
+    <meta name="description" content="Automatic Differentiation">
     <meta name="author" content="The Turing Team">
     <meta name="theme-color" content="red">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -777,10 +777,10 @@
         <ul id="nav-toc" class="md-nav__list" data-md-scrollfix="">
         <!-- toc will be appended here!-->
         </ul>
-        <a href="https://twitter.com/intent/tweet?original_referer=https://github.com/TuringLang/Turing.jl/edit/master/docs/src/using-turing/autodiff.md" title="Tweet this page" class="social-link"><i class="fa fa-twitter fa-1x"></i>Tweet this page</a>
+        <a href="https://twitter.com/intent/tweet?original_referer=https://github.com/TuringLang/Turing.jl/edit/master/docs/src_tutorials/autodiff.md" title="Tweet this page" class="social-link"><i class="fa fa-twitter fa-1x"></i>Tweet this page</a>
         <a href="https://discourse.julialang.org/c/domain/probprog" title="Ask questions" class="social-link"><i class="fa fa-stack-overflow fa-1x"></i>Ask questions</a>
-        <a href="https://github.com/TuringLang/Turing.jl//issues/new?label=question&title=Question:&body=Question%20on:%20https://github.com/TuringLang/Turing.jl/edit/master/docs/_docs/using-turing/autodiff.md" title="Report issues" class="social-link"><i class="fa fa-comments fa-1x"></i>Report issues</a>
-        <a href="https://github.com/TuringLang/Turing.jl/edit/master/docs/src/using-turing/autodiff.md" title="Edit this page on github"  class="social-link"><i class="fa fa-github fa-1x"></i> Edit me</a>
+        <a href="https://github.com/TuringLang/Turing.jl//issues/new?label=question&title=Question:&body=Question%20on:%20https://github.com/TuringLang/Turing.jl/edit/master/docs/_tutorials/autodiff.md" title="Report issues" class="social-link"><i class="fa fa-comments fa-1x"></i>Report issues</a>
+        <a href="https://github.com/TuringLang/Turing.jl/edit/master/docs/src_tutorials/autodiff.md" title="Edit this page on github"  class="social-link"><i class="fa fa-github fa-1x"></i> Edit me</a>
       </nav>
     </div>
   </div>
@@ -789,16 +789,10 @@
                 <div id="md-container-pancakes">
                 <div class="md-content full-width"> 
     <article class="md-content__inner md-typeset  full-width">
-    <p><a id='Automatic-Differentiation'></a></p>
-<p><a id='Automatic-Differentiation-1'></a></p>
-<h1 id="automatic-differentiation">Automatic Differentiation</h1>
-<p><a id='Switching-AD-Modes'></a></p>
-<p><a id='Switching-AD-Modes-1'></a></p>
+    <h1 id="automatic-differentiation">Automatic Differentiation</h1>
 <h2 id="switching-ad-modes">Switching AD Modes</h2>
 <p>Turing supports four packages of automatic differentiation (AD) in the back end during sampling. The default AD backend is <a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff</a> for forward-mode AD. Three reverse-mode AD backends are also supported, namely <a href="https://github.com/FluxML/Tracker.jl">Tracker</a>, <a href="https://github.com/FluxML/Zygote.jl">Zygote</a> and <a href="https://github.com/JuliaDiff/ReverseDiff.jl">ReverseDiff</a>. <code>Zygote</code> and <code>ReverseDiff</code> are supported optionally if explicitly loaded by the user with <code>using Zygote</code> or <code>using ReverseDiff</code> next to <code>using Turing</code>.</p>
 <p>To switch between the different AD backends, one can call function <code>Turing.setadbackend(backend_sym)</code>, where <code>backend_sym</code> can be <code>:forwarddiff</code> (<code>ForwardDiff</code>), <code>:tracker</code> (<code>Tracker</code>), <code>:zygote</code> (<code>Zygote</code>) or <code>:reversediff</code> (<code>ReverseDiff.jl</code>). When using <code>ReverseDiff</code>, to compile the tape only once and cache it for later use, the user has to call <code>Turing.setrdcache(true)</code>. However, note that the use of caching in certain types of models can lead to incorrect results and/or errors. Models for which the compiled tape can be safely cached are models with fixed size loops and no run-time if statements. Compile-time if statements are fine.</p>
-<p><a id='Compositional-Sampling-with-Differing-AD-Modes'></a></p>
-<p><a id='Compositional-Sampling-with-Differing-AD-Modes-1'></a></p>
 <h2 id="compositional-sampling-with-differing-ad-modes">Compositional Sampling with Differing AD Modes</h2>
 <p>Turing supports intermixed automatic differentiation methods for different variable spaces. The snippet below shows using <code>ForwardDiff</code> to sample the mean (<code>m</code>) parameter, and using the Tracker-based <code>TrackerAD</code> autodiff for the variance (<code>s</code>) parameter:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
@@ -808,19 +802,46 @@
     <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
     <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
     <span class="n">x</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
-    <span class="n">y</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="k">return</span> <span class="n">y</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
 <span class="k">end</span>
 
 <span class="c"># Sample using Gibbs and varying autodiff backends.</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span>
-	<span class="n">gdemo</span><span class="x">(</span><span class="mf">1.5</span><span class="x">,</span> <span class="mi">2</span><span class="x">),</span>
-  	<span class="n">Gibbs</span><span class="x">(</span>
-    	<span class="n">HMC</span><span class="x">{</span><span class="n">Turing</span><span class="o">.</span><span class="n">ForwardDiffAD</span><span class="x">{</span><span class="mi">1</span><span class="x">}}(</span><span class="mf">0.1</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="o">:</span><span class="n">m</span><span class="x">),</span>
-        <span class="n">HMC</span><span class="x">{</span><span class="n">Turing</span><span class="o">.</span><span class="n">TrackerAD</span><span class="x">}(</span><span class="mf">0.1</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="o">:</span><span class="n">s</span><span class="x">)</span>
-    <span class="x">),</span>
+    <span class="n">gdemo</span><span class="x">(</span><span class="mf">1.5</span><span class="x">,</span> <span class="mi">2</span><span class="x">),</span>
+    <span class="n">Gibbs</span><span class="x">(</span><span class="n">HMC</span><span class="x">{</span><span class="n">Turing</span><span class="o">.</span><span class="n">ForwardDiffAD</span><span class="x">{</span><span class="mi">1</span><span class="x">}}(</span><span class="mf">0.1</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="o">:</span><span class="n">m</span><span class="x">),</span> <span class="n">HMC</span><span class="x">{</span><span class="n">Turing</span><span class="o">.</span><span class="n">TrackerAD</span><span class="x">}(</span><span class="mf">0.1</span><span class="x">,</span> <span class="mi">5</span><span class="x">,</span> <span class="o">:</span><span class="n">s²</span><span class="x">)),</span>
     <span class="mi">1000</span><span class="x">,</span>
 <span class="x">)</span>
 </code></pre></div></div>
+<pre><code>Chains MCMC chain (1000×3×1 Array{Float64, 3}):
+
+Iterations        = 1:1:1000
+Number of chains  = 1
+Samples per chain = 1000
+Wall duration     = 4.12 seconds
+Compute duration  = 4.12 seconds
+parameters        = s², m
+internals         = lp
+
+Summary Statistics
+  parameters      mean       std   naive_se      mcse        ess      rhat 
+  e ⋯
+      Symbol   Float64   Float64    Float64   Float64    Float64   Float64 
+    ⋯
+
+          s²    2.0397    1.8600     0.0588    0.1568   130.1844    1.0017 
+    ⋯
+           m    1.0841    0.7823     0.0247    0.0761    59.2630    1.0005 
+    ⋯
+                                                                1 column om
+itted
+
+Quantiles
+  parameters      2.5%     25.0%     50.0%     75.0%     97.5%
+      Symbol   Float64   Float64   Float64   Float64   Float64
+
+          s²    0.5807    0.9830    1.4813    2.3697    6.6809
+           m   -0.7629    0.6414    1.1108    1.5872    2.5070
+</code></pre>
 <p>Generally, <code>TrackerAD</code> is faster when sampling from variables of high dimensionality (greater than 20) and <code>ForwardDiffAD</code> is more efficient for lower-dimension variables. This functionality allows those who are performance sensitive to fine tune their automatic differentiation for their specific models.</p>
 <p>If the differentiation method is not specified in this way, Turing will default to using whatever the global AD backend is. Currently, this defaults to <code>ForwardDiff</code>.</p>
 
