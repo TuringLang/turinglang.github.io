@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Variational Inference</title>
-    <meta name="description" content="">
+    <meta name="description" content="Overview">
     <meta name="author" content="The Turing Team">
     <meta name="theme-color" content="red">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -777,10 +777,10 @@
         <ul id="nav-toc" class="md-nav__list" data-md-scrollfix="">
         <!-- toc will be appended here!-->
         </ul>
-        <a href="https://twitter.com/intent/tweet?original_referer=https://github.com/TuringLang/Turing.jl/edit/master/docs/src/for-developers/variational_inference.md" title="Tweet this page" class="social-link"><i class="fa fa-twitter fa-1x"></i>Tweet this page</a>
+        <a href="https://twitter.com/intent/tweet?original_referer=https://github.com/TuringLang/Turing.jl/edit/master/docs/src_tutorials/variational_inference.md" title="Tweet this page" class="social-link"><i class="fa fa-twitter fa-1x"></i>Tweet this page</a>
         <a href="https://discourse.julialang.org/c/domain/probprog" title="Ask questions" class="social-link"><i class="fa fa-stack-overflow fa-1x"></i>Ask questions</a>
-        <a href="https://github.com/TuringLang/Turing.jl//issues/new?label=question&title=Question:&body=Question%20on:%20https://github.com/TuringLang/Turing.jl/edit/master/docs/_docs/for-developers/variational_inference.md" title="Report issues" class="social-link"><i class="fa fa-comments fa-1x"></i>Report issues</a>
-        <a href="https://github.com/TuringLang/Turing.jl/edit/master/docs/src/for-developers/variational_inference.md" title="Edit this page on github"  class="social-link"><i class="fa fa-github fa-1x"></i> Edit me</a>
+        <a href="https://github.com/TuringLang/Turing.jl//issues/new?label=question&title=Question:&body=Question%20on:%20https://github.com/TuringLang/Turing.jl/edit/master/docs/_tutorials/variational_inference.md" title="Report issues" class="social-link"><i class="fa fa-comments fa-1x"></i>Report issues</a>
+        <a href="https://github.com/TuringLang/Turing.jl/edit/master/docs/src_tutorials/variational_inference.md" title="Edit this page on github"  class="social-link"><i class="fa fa-github fa-1x"></i> Edit me</a>
       </nav>
     </div>
   </div>
@@ -789,234 +789,183 @@
                 <div id="md-container-pancakes">
                 <div class="md-content full-width"> 
     <article class="md-content__inner md-typeset  full-width">
-    <p><a id='Overview'></a></p>
-<p><a id='Overview-1'></a></p>
-<h1 id="overview">Overview</h1>
+    <h1 id="overview">Overview</h1>
 <p>In this post we'll have a look at what's known as <strong>variational inference (VI)</strong>, a family of <em>approximate</em> Bayesian inference methods. In particular, we will focus on one of the more standard VI methods called <strong>Automatic Differentiation Variational Inference (ADVI)</strong>.</p>
 <p>Here we'll have a look at the theory behind VI, but if you're interested in how to use ADVI in Turing.jl, <a href="../../tutorials/09-variational-inference">check out this tutorial</a>.</p>
-<p><a id='Motivation'></a></p>
-<p><a id='Motivation-1'></a></p>
 <h1 id="motivation">Motivation</h1>
-<p>In Bayesian inference one usually specifies a model as follows: given data $\{x_i\}_{i = 1}^n$,</p>
-<p>$$
-\begin{align*}
-\text{prior:} \quad z &amp;\sim p(z)   \\
-\text{likelihood:} \quad x_i &amp;\overset{\text{i.i.d.}}{\sim} p(x \mid z) \quad  \text{where} \quad i = 1, \dots, n
+<p>In Bayesian inference one usually specifies a model as follows: given data <code>\\{x_i\\}_{i = 1}^n</code>,</p>
+<pre><code class="language-math">>\begin{align*}
+  \text{prior:} \quad z &amp;\sim p(z)   \\\\
+  \text{likelihood:} \quad x_i &amp;\overset{\text{i.i.d.}}{\sim} p(x \mid z) \quad  \text{where} \quad i = 1, \dots, n
 \end{align*}
-$$</p>
-<p>where $\overset{\text{i.i.d.}}{\sim}$ denotes that the samples are identically independently distributed. Our goal in Bayesian inference is then to find the <em>posterior</em></p>
-<p>$$
-p(z \mid \{ x_i \}_{i = 1}^n) \propto p(z) \prod_{i=1}^{n} p(x_i \mid z).
-$$</p>
-<p>In general one cannot obtain a closed form expression for $p(z \mid \{ x_i \}_{i = 1}^n)$, but one might still be able to <em>sample</em> from $p(z \mid \{ x_i \}_{i = 1}^n)$ with guarantees of converging to the target posterior $p(z \mid \{ x_i \}_{i = 1}^n)$ as the number of samples go to $\infty$, e.g. MCMC.</p>
+</code></pre>
+<p>where <code>\overset{\text{i.i.d.}}{\sim}</code> denotes that the samples are identically independently distributed. Our goal in Bayesian inference is then to find the <em>posterior</em></p>
+<pre><code class="language-math">>p(z \mid \\{ x\_i \\}\_{i = 1}^n) = \prod\_{i=1}^{n} p(z \mid x\_i).
+</code></pre>
+<p>In general one cannot obtain a closed form expression for <code>p(z \mid \\{ x\_i \\}\_{i = 1}^n)</code>, but one might still be able to <em>sample</em> from <code>p(z \mid \\{ x\_i \\}\_{i = 1}^n)</code> with guarantees of converging to the target posterior <code>p(z \mid \\{ x\_i \\}\_{i = 1}^n)</code> as the number of samples go to <code>\infty</code>, e.g. MCMC.</p>
 <p>As you are hopefully already aware, Turing.jl provides a lot of different methods with asymptotic exactness guarantees that we can apply to such a problem!</p>
-<p>Unfortunately, these unbiased samplers can be prohibitively expensive to run. As the model $p$ increases in complexity, the convergence of these unbiased samplers can slow down dramatically. Still, in the <em>infinite</em> limit, these methods should converge to the true posterior! But infinity is fairly large, like, <em>at least</em> more than 12, so this might take a while.</p>
-<p>In such a case it might be desirable to sacrifice some of these asymptotic guarantees, and instead <em>approximate</em> the posterior $p(z \mid \{ x_i \}_{i = 1}^n)$ using some other model which we'll denote $q(z)$.</p>
+<p>Unfortunately, these unbiased samplers can be prohibitively expensive to run. As the model <code>p</code> increases in complexity, the convergence of these unbiased samplers can slow down dramatically. Still, in the <em>infinite</em> limit, these methods should converge to the true posterior! But infinity is fairly large, like, <em>at least</em> more than 12, so this might take a while.</p>
+<p>In such a case it might be desirable to sacrifice some of these asymptotic guarantees, and instead <em>approximate</em> the posterior <code>p(z \mid \\{ x_i \\}_{i = 1}^n)</code> using some other model which we'll denote <code>q(z)</code>.</p>
 <p>There are multiple approaches to take in this case, one of which is <strong>variational inference (VI)</strong>.</p>
-<p><a id='Variational-Inference-(VI)'></a></p>
-<p><a id='Variational-Inference-(VI)-1'></a></p>
 <h1 id="variational-inference-vi">Variational Inference (VI)</h1>
-<p>In VI, we're looking to approximate $p(z \mid \{ x_i \}_{i = 1}^n )$ using some <em>approximate</em> or <em>variational</em> posterior $q(z)$.</p>
-<p>To approximate something you need a notion of what &quot;close&quot; means. In the context of probability densities a standard such &quot;measure&quot; of closeness is the <em>Kullback-Leibler (KL) divergence</em> , though this is far from the only one. The KL-divergence is defined between two densities $q(z)$ and $p(z \mid \{ x_i \}_{i = 1}^n)$ as</p>
-<p>$$
-\begin{align*}
-\mathrm{D_{KL}} \left( q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) &amp;= \int \log \left( \frac{q(z)}{\prod_{i = 1}^n p(z \mid x_i)} \right) q(z) \mathrm{d}{z} \\
-&amp;= \mathbb{E}_{z \sim q(z)} \left[ \log q(z) - \sum_{i = 1}^n \log p(z \mid x_i) \right] \\
-&amp;= \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right] - \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(z \mid x_i) \right].
+<p>In VI, we're looking to approximate <code>p(z \mid \\{ x_i \\}_{i = 1}^n )</code> using some <em>approximate</em> or <em>variational</em> posterior <code>q(z)</code>.</p>
+<p>To approximate something you need a notion of what &quot;close&quot; means. In the context of probability densities a standard such &quot;measure&quot; of closeness is the <em>Kullback-Leibler (KL) divergence</em> , though this is far from the only one. The KL-divergence is defined between two densities <code>q(z)</code> and <code>p(z \mid \\{ x_i \\}_{i = 1}^n)</code> as</p>
+<pre><code class="language-math">>\begin{align*}
+  \mathrm{D\_{KL}} \left( q(z), p(z \mid \\{ x\_i \\}\_{i = 1}^n) \right) &amp;= \int \log \left( \frac{q(z)}{\prod\_{i = 1}^n p(z \mid x\_i)} \right) q(z) \mathrm{d}{z} \\\\
+  &amp;= \mathbb{E}\_{z \sim q(z)} \left[ \log q(z) - \sum\_{i = 1}^n \log p(z \mid x\_i) \right] \\\\
+  &amp;= \mathbb{E}\_{z \sim q(z)} \left[ \log q(z) \right] - \sum\_{i = 1}^n \mathbb{E}\_{z \sim q(z)} \left[ \log p(z \mid x\_i) \right].
 \end{align*}
-$$</p>
+</code></pre>
 <p>It's worth noting that unfortunately the KL-divergence is <em>not</em> a metric/distance in the analysis-sense due to its lack of symmetry. On the other hand, it turns out that minimizing the KL-divergence that it's actually equivalent to maximizing the log-likelihood! Also, under reasonable restrictions on the densities at hand,</p>
-<p>$$
-\mathrm{D_{KL}}\left(q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) = 0 \quad \iff \quad q(z) = p(z \mid \{ x_i \}_{i = 1}^n), \quad \forall z.
-$$</p>
-<p>Therefore one could (and we will) attempt to approximate $p(z \mid \{ x_i \}_{i = 1}^n)$ using a density $q(z)$ by minimizing the KL-divergence between these two!</p>
-<p>One can also show that $\mathrm{D_{KL}} \ge 0$, which we'll need later. Finally notice that the KL-divergence is only well-defined when in fact $q(z)$ is zero everywhere $p(z \mid \{ x_i \}_{i = 1}^n)$ is zero, i.e.</p>
-<p>$$
-\mathrm{supp}\left(q(z)\right) \subseteq \mathrm{supp}\left(p(z \mid x)\right).
-$$</p>
-<p>Otherwise, there might be a point $z_0 \sim q(z)$ such that $p(z_0 \mid \{ x_i \}_{i = 1}^n) = 0$, resulting in $\log\left(\frac{q(z)}{0}\right)$ which doesn't make sense!</p>
-<p>One major problem: as we can see in the definition of the KL-divergence, we need $p(z \mid \{ x_i \}_{i = 1}^n)$ for any $z$ if we want to compute the KL-divergence between this and $q(z)$. We don't have that. The entire reason we even do Bayesian inference is that we don't know the posterior! Cleary this isn't going to work. <em>Or is it?!</em></p>
-<p><a id='Computing-KL-divergence-without-knowing-the-posterior'></a></p>
-<p><a id='Computing-KL-divergence-without-knowing-the-posterior-1'></a></p>
+<pre><code class="language-math">>\mathrm{D\_{KL}}\left(q(z), p(z \mid \\{ x\_i \\}\_{i = 1}^n) \right) = 0 \quad \iff \quad q(z) = p(z \mid \\{ x\_i \\}\_{i = 1}^n), \quad \forall z.
+</code></pre>
+<p>Therefore one could (and we will) attempt to approximate <code>p(z \mid \\{ x_i \\}_{i = 1}^n)</code> using a density <code>q(z)</code> by minimizing the KL-divergence between these two!</p>
+<p>One can also show that <code>\mathrm{D_{KL}} \ge 0</code>, which we'll need later. Finally notice that the KL-divergence is only well-defined when in fact <code>q(z)</code> is zero everywhere <code>p(z \mid \\{ x_i \\}_{i = 1}^n)</code> is zero, i.e.</p>
+<pre><code class="language-math">>\mathrm{supp}\left(q(z)\right) \subseteq \mathrm{supp}\left(p(z \mid x)\right).
+</code></pre>
+<p>Otherwise, there might be a point <code>z_0 \sim q(z)</code> such that <code>p(z_0 \mid \\{ x_i \\}_{i = 1}^n) = 0</code>, resulting in <code>\log\left(\frac{q(z)}{0}\right)</code> which doesn't make sense!</p>
+<p>One major problem: as we can see in the definition of the KL-divergence, we need <code>p(z \mid \\{ x_i \\}_{i = 1}^n)</code> for any <code>z</code> if we want to compute the KL-divergence between this and <code>q(z)</code>. We don't have that. The entire reason we even do Bayesian inference is that we don't know the posterior! Cleary this isn't going to work. <em>Or is it?!</em></p>
 <h2 id="computing-kl-divergence-without-knowing-the-posterior">Computing KL-divergence without knowing the posterior</h2>
 <p>First off, recall that</p>
-<p>$$
-p(z \mid x_i) = \frac{p(x_i, z)}{p(x_i)}
-$$</p>
+<pre><code class="language-math">>p(z \mid x\_i) = \frac{p(x\_i, z)}{p(x\_i)}
+</code></pre>
 <p>so we can write</p>
-<p>$$
-\begin{align*}
-\mathrm{D_{KL}} \left( q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) &amp;= \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right] - \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) - \log p(x_i) \right] \\
-&amp;= \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right] - \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) \right] + \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i) \right] \\
-&amp;= \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right] - \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) \right] + \sum_{i = 1}^n \log p(x_i),
+<pre><code class="language-math">>\begin{align*}
+\mathrm{D\_{KL}} \left( q(z), p(z \mid \\{ x\_i \\}\_{i = 1}^n) \right) &amp;= \mathbb{E}\_{z \sim q(z)} \left[ \log q(z) \right] - \sum\_{i = 1}^n \mathbb{E}\_{z \sim q(z)} \left[ \log p(x\_i, z) - \log p(x\_i) \right] \\\\
+    &amp;= \mathbb{E}\_{z \sim q(z)} \left[ \log q(z) \right] - \sum\_{i = 1}^n \mathbb{E}\_{z \sim q(z)} \left[ \log p(x\_i, z) \right] + \sum\_{i = 1}^n \mathbb{E}\_{z \sim q(z)} \left[ \log p(x_i) \right] \\\\
+    &amp;= \mathbb{E}\_{z \sim q(z)} \left[ \log q(z) \right] - \sum\_{i = 1}^n \mathbb{E}\_{z \sim q(z)} \left[ \log p(x\_i, z) \right] + \sum\_{i = 1}^n \log p(x\_i),
 \end{align*}
-$$</p>
-<p>where in the last equality we used the fact that $p(x_i)$ is independent of $z$.</p>
-<p>Now you're probably thinking &quot;Oh great! Now you've introduced $p(x_i)$ which we <em>also</em> can't compute (in general)!&quot;. Woah. Calm down human. Let's do some more algebra. The above expression can be rearranged to</p>
-<p>$$
-\mathrm{D_{KL}} \left( q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) + \underbrace{\sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) \right] - \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right]}_{=: \mathrm{ELBO}(q)} = \underbrace{\sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i) \right]}_{\text{constant}}.
-$$</p>
-<p>See? The left-hand side is <em>constant</em> and, as we mentioned before, $\mathrm{D_{KL}} \ge 0$. What happens if we try to <em>maximize</em> the term we just gave the completely arbitrary name $\mathrm{ELBO}$? Well, if $\mathrm{ELBO}$ goes up while $p(x_i)$ stays constant then $\mathrm{D_{KL}}$ <em>has to</em> go down! That is, the $q(z)$ which <em>minimizes</em> the KL-divergence is the same $q(z)$ which <em>maximizes</em> $\mathrm{ELBO}(q)$:</p>
-<p>$$
-\underset{q}{\mathrm{argmin}} \  \mathrm{D_{KL}} \left( q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) = \underset{q}{\mathrm{argmax}} \ \mathrm{ELBO}(q)
-$$</p>
+</code></pre>
+<p>where in the last equality we used the fact that <code>p(x_i)</code> is independent of <code>z</code>.</p>
+<p>Now you're probably thinking &quot;Oh great! Now you've introduced <code>p(x_i)</code> which we <em>also</em> can't compute (in general)!&quot;. Woah. Calm down human. Let's do some more algebra. The above expression can be rearranged to</p>
+<pre><code class="language-math">>\mathrm{D\_{KL}} \left( q(z), p(z \mid \\{ x\_i \\}\_{i = 1}^n) \right) + \underbrace{\sum\_{i = 1}^n \mathbb{E}\_{z \sim q(z)} \left[ \log p(x\_i, z) \right] - \mathbb{E}\_{z \sim q(z)} \left[ \log q(z) \right]}\_{=: \mathrm{ELBO}(q)} = \underbrace{\sum\_{i = 1}^n \mathbb{E}\_{z \sim q(z)} \left[ \log p(x\_i) \right]}\_{\text{constant}}.
+</code></pre>
+<p>See? The left-hand side is <em>constant</em> and, as we mentioned before, <code>\mathrm{D_{KL}} \ge 0</code>. What happens if we try to <em>maximize</em> the term we just gave the completely arbitrary name <code>\mathrm{ELBO}</code>? Well, if <code>\mathrm{ELBO}</code> goes up while <code>p(x_i)</code> stays constant then <code>\mathrm{D_{KL}}</code> <em>has to</em> go down! That is, the <code>q(z)</code> which <em>minimizes</em> the KL-divergence is the same <code>q(z)</code> which <em>maximizes</em> <code>\mathrm{ELBO}(q)</code>:</p>
+<pre><code class="language-math">>\underset{q}{\mathrm{argmin}} \  \mathrm{D\_{KL}} \left( q(z), p(z \mid \\{ x\_i \\}\_{i = 1}^n) \right) = \underset{q}{\mathrm{argmax}} \ \mathrm{ELBO}(q)
+</code></pre>
 <p>where</p>
-<p>$$
-\begin{align*}
-\mathrm{ELBO}(q) &amp;:= \left( \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) \right]  \right) - \mathbb{E}_{z \sim q(z)} \left[ \log q(z) \right] \\
-&amp;= \left( \sum_{i = 1}^n \mathbb{E}_{z \sim q(z)} \left[ \log p(x_i, z) \right] \right) + \mathbb{H}\left( q(z) \right)
+<pre><code class="language-math">>\begin{align*}
+\mathrm{ELBO}(q) &amp;:= \left( \sum\_{i = 1}^n \mathbb{E}\_{z \sim q(z)} \left[ \log p(x\_i, z) \right]  \right) - \mathbb{E}\_{z \sim q(z)} \left[ \log q(z) \right] \\\\
+    &amp;= \left( \sum\_{i = 1}^n \mathbb{E}\_{z \sim q(z)} \left[ \log p(x\_i, z) \right] \right) + \mathbb{H}\left( q(z) \right)
 \end{align*}
-$$</p>
-<p>and $\mathbb{H} \left(q(z) \right)$ denotes the <a href="https://www.wikiwand.com/en/Differential_entropy">(differential) entropy</a> of $q(z)$.</p>
-<p>Assuming joint $p(x_i, z)$ and the entropy $\mathbb{H}\left(q(z)\right)$ are both tractable, we can use a Monte-Carlo for the remaining expectation. This leaves us with the following tractable expression</p>
-<p>$$
-\underset{q}{\mathrm{argmin}} \ \mathrm{D_{KL}} \left( q(z), p(z \mid \{ x_i \}_{i = 1}^n) \right) \approx \underset{q}{\mathrm{argmax}} \ \widehat{\mathrm{ELBO}}(q)
-$$</p>
+</code></pre>
+<p>and <code>\mathbb{H} \left(q(z) \right)</code> denotes the <a href="https://www.wikiwand.com/en/Differential_entropy">(differential) entropy</a> of <code>q(z)</code>.</p>
+<p>Assuming joint <code>p(x_i, z)</code> and the entropy <code>\mathbb{H}\left(q(z)\right)</code> are both tractable, we can use a Monte-Carlo for the remaining expectation. This leaves us with the following tractable expression</p>
+<pre><code class="language-math">>\underset{q}{\mathrm{argmin}} \ \mathrm{D\_{KL}} \left( q(z), p(z \mid \\{ x\_i \\}\_{i = 1}^n) \right) \approx \underset{q}{\mathrm{argmax}} \ \widehat{\mathrm{ELBO}}(q)
+</code></pre>
 <p>where</p>
-<p>$$
-\widehat{\mathrm{ELBO}}(q) = \frac{1}{m} \left( \sum_{k = 1}^m \sum_{i = 1}^n \log p(x_i, z_k) \right) + \mathbb{H} \left(q(z)\right) \quad \text{where} \quad z_k \sim q(z) \quad \forall k = 1, \dots, m.
-$$</p>
-<p>Hence, as long as we can sample from $q(z)$ somewhat efficiently, we can indeed minimize the KL-divergence! Neat, eh?</p>
-<p>Sidenote: in the case where $q(z)$ is tractable but $\mathbb{H} \left(q(z) \right)$ is <em>not</em> , we can use an Monte-Carlo estimate for this term too but this generally results in a higher-variance estimate.</p>
-<p>Also, I fooled you real good: the ELBO <em>isn't</em> an arbitrary name, hah! In fact it's an abbreviation for the <strong>expected lower bound (ELBO)</strong> because it, uhmm, well, it's the <em>expected</em> lower bound (remember $\mathrm{D_{KL}} \ge 0$). Yup.</p>
-<p><a id='Maximizing-the-ELBO'></a></p>
-<p><a id='Maximizing-the-ELBO-1'></a></p>
+<pre><code class="language-math">>\widehat{\mathrm{ELBO}}(q) = \frac{1}{m} \left( \sum\_{k = 1}^m \sum\_{i = 1}^n \log p(x\_i, z\_k) \right) + \mathbb{H} \left(q(z)\right) \quad \text{where} \quad z\_k \sim q(z) \quad \forall k = 1, \dots, m.
+</code></pre>
+<p>Hence, as long as we can sample from <code>q(z)</code> somewhat efficiently, we can indeed minimize the KL-divergence! Neat, eh?</p>
+<p>Sidenote: in the case where <code>q(z)</code> is tractable but <code>\mathbb{H} \left(q(z) \right)</code> is <em>not</em> , we can use an Monte-Carlo estimate for this term too but this generally results in a higher-variance estimate.</p>
+<p>Also, I fooled you real good: the ELBO <em>isn't</em> an arbitrary name, hah! In fact it's an abbreviation for the <strong>expected lower bound (ELBO)</strong> because it, uhmm, well, it's the <em>expected</em> lower bound (remember <code>\mathrm{D_{KL}} \ge 0</code>). Yup.</p>
 <h2 id="maximizing-the-elbo">Maximizing the ELBO</h2>
-<p>Finding the optimal $q$ over <em>all</em> possible densities of course isn't feasible. Instead we consider a family of <em>parameterized</em> densities $\mathscr{D}_{\Theta}$ where $\Theta$ denotes the space of possible parameters. Each density in this family $q_{\theta} \in \mathscr{D}_{\Theta}$ is parameterized by a unique $\theta \in \Theta$. Moreover, we'll assume</p>
+<p>Finding the optimal <code>q</code> over <em>all</em> possible densities of course isn't feasible. Instead we consider a family of <em>parameterized</em> densities <code>\mathscr{D}\_{\Theta}</code> where <code>\Theta</code> denotes the space of possible parameters. Each density in this family <code>q\_{\theta} \in \mathscr{D}\_{\Theta}</code> is parameterized by a unique <code>\theta \in \Theta</code>. Moreover, we'll assume</p>
 <ol>
-<li>$q_{\theta}(z)$, i.e. evaluating the probability density $q$ at any point $z$, is differentiable</li>
-<li>$z \sim q_{\theta}(z)$, i.e. the process of sampling from $q_{\theta}(z)$, is differentiable</li>
+<li><code>q\_{\theta}(z)</code>, i.e. evaluating the probability density <code>q</code> at any point <code>z</code>, is differentiable</li>
+<li><code>z \sim q\_{\theta}(z)</code>, i.e. the process of sampling from <code>q\_{\theta}(z)</code>, is differentiable</li>
 </ol>
 <p>(1) is fairly straight-forward, but (2) is a bit tricky. What does it even mean for a <em>sampling process</em> to be differentiable? This is quite an interesting problem in its own right and would require something like a <a href="https://arxiv.org/abs/1906.10652">50-page paper to properly review the different approaches (highly recommended read)</a>.</p>
-<p>We're going to make use of a particular such approach which goes under a bunch of different names: <em>reparametrization trick</em>, <em>path derivative</em>, etc. This refers to making the assumption that all elements $q_{\theta} \in \mathscr{Q}_{\Theta}$ can be considered as reparameterizations of some base density, say $\bar{q}(z)$. That is, if $q_{\theta} \in \mathscr{Q}_{\Theta}$ then</p>
-<p>$$
-z \sim q_{\theta}(z) \quad \iff \quad z := g_{\theta}(\tilde{z}) \quad \text{where} \quad \bar{z} \sim \bar{q}(z)
-$$</p>
-<p>for some function $g_{\theta}$ differentiable wrt. $\theta$. So all $q_{\theta} \in \mathscr{Q}_{\Theta}$ are using the <em>same</em> reparameterization-function $g$ but each $q_{\theta}$ correspond to different choices of $\theta$ for $f_{\theta}$.</p>
-<p>Under this assumption we can differentiate the sampling process by taking the derivative of $g_{\theta}$ wrt. $\theta$, and thus we can differentiate the entire $\widehat{\mathrm{ELBO}}(q_{\theta})$ wrt. $\theta$! With the gradient available we can either try to solve for optimality either by setting the gradient equal to zero or maximize $\widehat{\mathrm{ELBO}}(q_{\theta})$ stepwise by traversing $\mathscr{Q}_{\Theta}$ in the direction of steepest ascent. For the sake of generality, we're going to go with the stepwise approach.</p>
+<p>We're going to make use of a particular such approach which goes under a bunch of different names: <em>reparametrization trick</em>, <em>path derivative</em>, etc. This refers to making the assumption that all elements <code>q\_{\theta} \in \mathscr{Q}\_{\Theta}</code> can be considered as reparameterizations of some base density, say <code>\bar{q}(z)</code>. That is, if <code>q\_{\theta} \in \mathscr{Q}\_{\Theta}</code> then</p>
+<pre><code class="language-math">>z \sim q\_{\theta}(z) \quad \iff \quad z := g\_{\theta}(\tilde{z}) \quad \text{where} \quad \bar{z} \sim \bar{q}(z)
+</code></pre>
+<p>for some function <code>g\_{\theta}</code> differentiable wrt. <code>\theta</code>. So all <code>q_{\theta} \in \mathscr{Q}\_{\Theta}</code> are using the <em>same</em> reparameterization-function <code>g</code> but each <code>q\_{\theta}</code> correspond to different choices of <code>\theta</code> for <code>f\_{\theta}</code>.</p>
+<p>Under this assumption we can differentiate the sampling process by taking the derivative of <code>g\_{\theta}</code> wrt. <code>\theta</code>, and thus we can differentiate the entire <code>\widehat{\mathrm{ELBO}}(q\_{\theta})</code> wrt. <code>\theta</code>! With the gradient available we can either try to solve for optimality either by setting the gradient equal to zero or maximize <code>\widehat{\mathrm{ELBO}}(q\_{\theta})</code> stepwise by traversing <code>\mathscr{Q}\_{\Theta}</code> in the direction of steepest ascent. For the sake of generality, we're going to go with the stepwise approach.</p>
 <p>With all this nailed down, we eventually reach the section on <strong>Automatic Differentiation Variational Inference (ADVI)</strong>.</p>
-<p><a id='Automatic-Differentiation-Variational-Inference-(ADVI)'></a></p>
-<p><a id='Automatic-Differentiation-Variational-Inference-(ADVI)-1'></a></p>
 <h2 id="automatic-differentiation-variational-inference-advi">Automatic Differentiation Variational Inference (ADVI)</h2>
 <p>So let's revisit the assumptions we've made at this point:</p>
 <ol>
-<li>The variational posterior $q_{\theta}$ is in a parameterized family of densities denoted $\mathscr{Q}_{\Theta}$, with $\theta \in \Theta$.</li>
-<li>$\mathscr{Q}_{\Theta}$ is a space of <em>reparameterizable</em> densities with $\bar{q}(z)$ as the base-density.</li>
-<li>The parameterization function $g_{\theta}$ is differentiable wrt. $\theta$.</li>
-<li>Evaluation of the probability density $q_{\theta}(z)$ is differentiable wrt. $\theta$.</li>
-<li>$\mathbb{H}\left(q_{\theta}(z)\right)$ is tractable.</li>
-<li>Evaluation of the joint density $p(x, z)$ is tractable and differentiable wrt. $z$</li>
-<li>The support of $q(z)$ is a subspace of the support of $p(z \mid x)$ : $\mathrm{supp}\left(q(z)\right) \subseteq \mathrm{supp}\left(p(z \mid x)\right)$.</li>
+<li>The variational posterior <code>q\_{\theta}</code> is in a parameterized family of densities denoted <code>\mathscr{Q}\_{\Theta}</code>, with <code>\theta \in \Theta</code>.</li>
+<li><code>\mathscr{Q}\_{\Theta}</code> is a space of <em>reparameterizable</em> densities with <code>\bar{q}(z)</code> as the base-density.</li>
+<li>The parameterization function <code>g\_{\theta}</code> is differentiable wrt. <code>\theta</code>.</li>
+<li>Evaluation of the probability density <code>q\_{\theta}(z)</code> is differentiable wrt. <code>\theta</code>.</li>
+<li><code>\mathbb{H}\left(q\_{\theta}(z)\right)</code> is tractable.</li>
+<li>Evaluation of the joint density <code>p(x, z)</code> is tractable and differentiable wrt. <code>z</code></li>
+<li>The support of <code>q(z)</code> is a subspace of the support of <code>p(z \mid x)</code> : <code>\mathrm{supp}\left(q(z)\right) \subseteq \mathrm{supp}\left(p(z \mid x)\right)</code>.</li>
 </ol>
-<p>All of these are not <em>necessary</em> to do VI, but they are very convenient and results in a fairly flexible approach. One distribution which has a density satisfying all of the above assumptions <em>except</em> (7) (we'll get back to this in second) for any tractable and differentiable $p(z \mid \{ x_i \}_{i = 1}^n)$ is the good ole' Gaussian/normal distribution:</p>
-<p>$$
-z \sim \mathcal{N}(\mu, \Sigma) \quad \iff \quad z = g_{\mu, L}(\bar{z}) := \mu + L^T \tilde{z} \quad \text{where} \quad \bar{z} \sim \bar{q}(z) := \mathcal{N}(1_d, I_{d \times d})
-$$</p>
-<p>where $\Sigma = L L^T,$ with $L$ obtained from the Cholesky-decomposition. Abusing notation a bit, we're going to write</p>
-<p>$$
-\theta = (\mu, \Sigma) := (\mu_1, \dots, \mu_d, L_{11}, \dots, L_{1, d}, L_{2, 1}, \dots, L_{2, d}, \dots, L_{d, 1}, \dots, L_{d, d}).
-$$</p>
-<p>With this assumption we finally have a tractable expression for $\widehat{\mathrm{ELBO}}(q_{\mu, \Sigma})$! Well, assuming (7) is holds. Since a Gaussian has non-zero probability on the entirety of $\mathbb{R}^d$, we also require $p(z \mid \{ x_i \}_{i = 1}^n)$ to have non-zero probability on all of $\mathbb{R}^d$.</p>
-<p>Though not necessary, we'll often make a <em>mean-field</em> assumption for the variational posterior $q(z)$, i.e. assume independence between the latent variables. In this case, we'll write</p>
-<p>$$
-\theta = (\mu, \sigma^2) := (\mu_1, \dots, \mu_d, \sigma_1^2, \dots, \sigma_d^2).
-$$</p>
-<p><a id='Examples'></a></p>
-<p><a id='Examples-1'></a></p>
+<p>All of these are not <em>necessary</em> to do VI, but they are very convenient and results in a fairly flexible approach. One distribution which has a density satisfying all of the above assumptions <em>except</em> (7) (we'll get back to this in second) for any tractable and differentiable <code>p(z \mid \\{ x\_i \\}\_{i = 1}^n)</code> is the good ole' Gaussian/normal distribution:</p>
+<pre><code class="language-math">>z \sim \mathcal{N}(\mu, \Sigma) \quad \iff \quad z = g\_{\mu, L}(\bar{z}) := \mu + L^T \tilde{z} \quad \text{where} \quad \bar{z} \sim \bar{q}(z) := \mathcal{N}(1\_d, I\_{d \times d})
+</code></pre>
+<p>where <code>\Sigma = L L^T,</code> with <code>L</code> obtained from the Cholesky-decomposition. Abusing notation a bit, we're going to write</p>
+<pre><code class="language-math">>\theta = (\mu, \Sigma) := (\mu\_1, \dots, \mu\_d, L\_{11}, \dots, L\_{1, d}, L\_{2, 1}, \dots, L\_{2, d}, \dots, L\_{d, 1}, \dots, L\_{d, d}).
+</code></pre>
+<p>With this assumption we finally have a tractable expression for <code>\widehat{\mathrm{ELBO}}(q_{\mu, \Sigma})</code>! Well, assuming (7) is holds. Since a Gaussian has non-zero probability on the entirety of <code>\mathbb{R}^d</code>, we also require <code>p(z \mid \\{ x_i \\}_{i = 1}^n)</code> to have non-zero probability on all of <code>\mathbb{R}^d</code>.</p>
+<p>Though not necessary, we'll often make a <em>mean-field</em> assumption for the variational posterior <code>q(z)</code>, i.e. assume independence between the latent variables. In this case, we'll write</p>
+<pre><code class="language-math">>\theta = (\mu, \sigma^2) := (\mu\_1, \dots, \mu\_d, \sigma\_1^2, \dots, \sigma\_d^2).
+</code></pre>
 <h3 id="examples">Examples</h3>
-<p>As a (trivial) example we could apply the approach described above to is the following generative model for $p(z \mid \{ x_i \}_{i = 1}^n)$:</p>
-<p>$$
-\begin{align*}
-m &amp;\sim \mathcal{N}(0, 1) \\
-x_i &amp;\overset{\text{i.i.d.}}{=} \mathcal{N}(m, 1), \quad i = 1, \dots, n.
+<p>As a (trivial) example we could apply the approach described above to is the following generative model for <code>p(z \mid \\{ x_i \\}\_{i = 1}^n)</code>:</p>
+<pre><code class="language-math">>\begin{align*}
+    m &amp;\sim \mathcal{N}(0, 1) \\\\
+    x\_i &amp;\overset{\text{i.i.d.}}{=} \mathcal{N}(m, 1), \quad i = 1, \dots, n.
 \end{align*}
-$$</p>
-<p>In this case $z = m$ and we have the posterior defined $p(m \mid \{ x_i \}_{i = 1}^n) = p(m) \prod_{i = 1}^n p(x_i \mid m)$. Then the variational posterior would be</p>
-<p>$$
-q_{\mu, \sigma} = \mathcal{N}(\mu, \sigma^2), \quad \text{where} \quad \mu \in \mathbb{R}, \ \sigma^2 \in \mathbb{R}^{ + }.
-$$</p>
-<p>And since prior of $m$, $\mathcal{N}(0, 1)$, has non-zero probability on the entirety of $\mathbb{R}$, same as $q(m)$, i.e. assumption (7) above holds, everything is fine and life is good.</p>
-<p>But what about this generative model for $p(z \mid \{ x_i \}_{i = 1}^n)$:</p>
-<p>$$
-\begin{align*}
-s &amp;\sim \mathrm{InverseGamma}(2, 3), \\
-m &amp;\sim \mathcal{N}(0, s), \\
-x_i &amp;\overset{\text{i.i.d.}}{=} \mathcal{N}(m, s), \quad i = 1, \dots, n,
+</code></pre>
+<p>In this case <code>z = m</code> and we have the posterior defined <code>p(m \mid \\{ x\_i \\}\_{i = 1}^n) = p(m) \prod\_{i = 1}^n p(x\_i \mid m)</code>. Then the variational posterior would be</p>
+<pre><code class="language-math">>q\_{\mu, \sigma} = \mathcal{N}(\mu, \sigma^2), \quad \text{where} \quad \mu \in \mathbb{R}, \ \sigma^2 \in \mathbb{R}^{ + }.
+</code></pre>
+<p>And since prior of <code>m</code>, <code>\mathcal{N}(0, 1)</code>, has non-zero probability on the entirety of <code>\mathbb{R}</code>, same as <code>q(m)</code>, i.e. assumption (7) above holds, everything is fine and life is good.</p>
+<p>But what about this generative model for <code>p(z \mid \\{ x_i \\}_{i = 1}^n)</code>:</p>
+<pre><code class="language-math">>\begin{align*}
+    s &amp;\sim \mathrm{InverseGamma}(2, 3), \\\\
+    m &amp;\sim \mathcal{N}(0, s), \\\\
+    x\_i &amp;\overset{\text{i.i.d.}}{=} \mathcal{N}(m, s), \quad i = 1, \dots, n,
 \end{align*}
-$$</p>
-<p>with posterior $p(s, m \mid \{ x_i \}_{i = 1}^n) = p(s) p(m \mid s) \prod_{i = 1}^n p(x_i \mid s, m)$ and the mean-field variational posterior $q(s, m)$ will be</p>
-<p>$$
-q_{\mu_1, \mu_2, \sigma_1^2, \sigma_2^2}(s, m) = p_{\mathcal{N}(\mu_1, \sigma_1^2)}(s)\ p_{\mathcal{N}(\mu_2, \sigma_2^2)}(m),
-$$</p>
-<p>where we've denoted the evaluation of the probability density of a Gaussian as $p_{\mathcal{N}(\mu, \sigma^2)}(x)$.</p>
-<p>Observe that $\mathrm{InverseGamma}(2, 3)$ has non-zero probability only on $\mathbb{R}^{ + } := (0, \infty)$ which is clearly not all of $\mathbb{R}$ like $q(s, m)$ has, i.e.</p>
-<p>$$
-\mathrm{supp} \left( q(s, m) \right) \not\subseteq \mathrm{supp} \left( p(z \mid \{ x_i \}_{i = 1}^n) \right).
-$$</p>
+</code></pre>
+<p>with posterior <code>p(s, m \mid \\{ x\_i \\}\_{i = 1}^n) = p(s) p(m \mid s) \prod\_{i = 1}^n p(x\_i \mid s, m)</code> and the mean-field variational posterior <code>q(s, m)</code> will be</p>
+<pre><code class="language-math">>q\_{\mu\_1, \mu\_2, \sigma\_1^2, \sigma\_2^2}(s, m) = p\_{\mathcal{N}(\mu\_1, \sigma\_1^2)}(s)\ p\_{\mathcal{N}(\mu\_2, \sigma\_2^2)}(m),
+</code></pre>
+<p>where we've denoted the evaluation of the probability density of a Gaussian as <code>p_{\mathcal{N}(\mu, \sigma^2)}(x)</code>.</p>
+<p>Observe that <code>\mathrm{InverseGamma}(2, 3)</code> has non-zero probability only on <code>\mathbb{R}^{ + } := (0, \infty)</code> which is clearly not all of <code>\mathbb{R}</code> like <code>q(s, m)</code> has, i.e.</p>
+<pre><code class="language-math">>\mathrm{supp} \left( q(s, m) \right) \not\subseteq \mathrm{supp} \left( p(z \mid \\{ x\_i \\}\_{i = 1}^n) \right).
+</code></pre>
 <p>Recall from the definition of the KL-divergence that when this is the case, the KL-divergence isn't well defined. This gets us to the <em>automatic</em> part of ADVI.</p>
-<p><a id='"Automatic"?-How?'></a></p>
-<p><a id='"Automatic"?-How?-1'></a></p>
 <h3 id="quotautomaticquot-how">&quot;Automatic&quot;? How?</h3>
-<p>For a lot of the standard (continuous) densities $p$ we can actually construct a probability density $\tilde{p}$ with non-zero probability on all of $\mathbb{R}$ by <em>transforming</em> the &quot;constrained&quot; probability density $p$ to $\tilde{p}$. In fact, in these cases this is a one-to-one relationship. As we'll see, this helps solve the support-issue we've been going on and on about.</p>
-<p><a id='Transforming-densities-using-change-of-variables'></a></p>
-<p><a id='Transforming-densities-using-change-of-variables-1'></a></p>
+<p>For a lot of the standard (continuous) densities <code>p</code> we can actually construct a probability density <code>\tilde{p}</code> with non-zero probability on all of <code>\mathbb{R}</code> by <em>transforming</em> the &quot;constrained&quot; probability density <code>p</code> to <code>\tilde{p}</code>. In fact, in these cases this is a one-to-one relationship. As we'll see, this helps solve the support-issue we've been going on and on about.</p>
 <h4 id="transforming-densities-using-change-of-variables">Transforming densities using change of variables</h4>
-<p>If we want to compute the probability of $x$ taking a value in some set $A \subseteq \mathrm{supp} \left( p(x) \right)$, we have to integrate $p(x)$ over $A$, i.e.</p>
-<p>$$
-\mathbb{P}_p(x \in A) = \int_A p(x) \mathrm{d}x.
-$$</p>
-<p>This means that if we have a differentiable bijection $f: \mathrm{supp} \left( q(x) \right) \to \mathbb{R}^d$ with differentiable inverse $f^{-1}: \mathbb{R}^d \to \mathrm{supp} \left( p(x) \right)$, we can perform a change of variables</p>
-<p>$$
-\mathbb{P}_p(x \in A) = \int_{f^{-1}(A)} p \left(f^{-1}(y) \right) \ \left| \det \mathcal{J}_{f^{-1}}(y) \right| \mathrm{d}y,
-$$</p>
-<p>where $\mathcal{J}_{f^{-1}}(x)$ denotes the jacobian of $f^{-1}$ evaluated at $x$. Observe that this defines a probability distribution</p>
-<p>$$
-\mathbb{P}_{\tilde{p}}\left(y \in f^{-1}(A) \right) = \int_{f^{-1}(A)} \tilde{p}(y) \mathrm{d}y,
-$$</p>
-<p>since $f^{-1}\left(\mathrm{supp} (p(x)) \right) = \mathbb{R}^d$ which has probability 1. This probability distribution has <em>density</em> $\tilde{p}(y)$ with $\mathrm{supp} \left( \tilde{p}(y) \right) = \mathbb{R}^d$, defined</p>
-<p>$$
-\tilde{p}(y) = p \left( f^{-1}(y) \right) \ \left| \det \mathcal{J}_{f^{-1}}(y) \right|
-$$</p>
+<p>If we want to compute the probability of <code>x</code> taking a value in some set <code>A \subseteq \mathrm{supp} \left( p(x) \right)</code>, we have to integrate <code>p(x)</code> over <code>A</code>, i.e.</p>
+<pre><code class="language-math">>\mathbb{P}_p(x \in A) = \int_A p(x) \mathrm{d}x.
+</code></pre>
+<p>This means that if we have a differentiable bijection <code>f: \mathrm{supp} \left( q(x) \right) \to \mathbb{R}^d</code> with differentiable inverse <code>f^{-1}: \mathbb{R}^d \to \mathrm{supp} \left( p(x) \right)</code>, we can perform a change of variables</p>
+<pre><code class="language-math">>\mathbb{P}\_p(x \in A) = \int\_{f^{-1}(A)} p \left(f^{-1}(y) \right) \ \left| \det \mathcal{J}\_{f^{-1}}(y) \right| \mathrm{d}y,
+</code></pre>
+<p>where <code>\mathcal{J}_{f^{-1}}(x)</code> denotes the jacobian of <code>f^{-1}</code> evaluted at <code>x</code>. Observe that this defines a probability distribution</p>
+<pre><code class="language-math">>\mathbb{P}\_{\tilde{p}}\left(y \in f^{-1}(A) \right) = \int\_{f^{-1}(A)} \tilde{p}(y) \mathrm{d}y,
+</code></pre>
+<p>since <code>f^{-1}\left(\mathrm{supp} (p(x)) \right) = \mathbb{R}^d</code> which has probability 1. This probability distribution has <em>density</em> <code>\tilde{p}(y)</code> with <code>\mathrm{supp} \left( \tilde{p}(y) \right) = \mathbb{R}^d</code>, defined</p>
+<pre><code class="language-math">>\tilde{p}(y) = p \left( f^{-1}(y) \right) \ \left| \det \mathcal{J}\_{f^{-1}}(y) \right|
+</code></pre>
 <p>or equivalently</p>
-<p>$$
-\tilde{p} \left( f(x) \right) = \frac{p(x)}{\big| \det \mathcal{J}_{f}(x) \big|}
-$$</p>
+<pre><code class="language-math">>\tilde{p} \left( f(x) \right) = \frac{p(x)}{\big| \det \mathcal{J}\_{f}(x) \big|}
+</code></pre>
 <p>due to the fact that</p>
-<p>$$
-\big| \det \mathcal{J}_{f^{-1}}(y) \big| = \big| \det \mathcal{J}_{f}(x) \big|^{-1}
-$$</p>
-<p><em>Note: it's also necessary that the log-abs-det-jacobian term is non-vanishing. This can for example be accomplished by assuming $f$ to also be elementwise monotonic.</em></p>
-<p><a id='Back-to-VI'></a></p>
-<p><a id='Back-to-VI-1'></a></p>
+<pre><code class="language-math">>\big| \det \mathcal{J}\_{f^{-1}}(y) \big| = \big| \det \mathcal{J}\_{f}(x) \big|^{-1}
+</code></pre>
+<p><em>Note: it's also necessary that the log-abs-det-jacobian term is non-vanishing. This can for example be accomplished by assuming <code>f</code> to also be elementwise monotonic.</em></p>
 <h4 id="back-to-vi">Back to VI</h4>
-<p>So why is this is useful? Well, we're looking to generalize our approach using a normal distribution to cases where the supports don't match up. How about defining $q(z)$ by</p>
-<p>$$
-\begin{align*}
-\eta &amp;\sim \mathcal{N}(\mu, \Sigma), \\
-z &amp;= f^{-1}(\eta),
+<p>So why is this is useful? Well, we're looking to generalize our approach using a normal distribution to cases where the supports don't match up. How about defining <code>q(z)</code> by</p>
+<pre><code class="language-math">>\begin{align*}
+  \eta &amp;\sim \mathcal{N}(\mu, \Sigma), \\\\
+  z &amp;= f^{-1}(\eta),
 \end{align*}
-$$</p>
-<p>where $f^{-1}: \mathbb{R}^d \to \mathrm{supp} \left( p(z \mid x) \right)$ is a differentiable bijection with differentiable inverse. Then $z \sim q_{\mu, \Sigma}(z) \implies z \in \mathrm{supp} \left( p(z \mid x) \right)$ as we wanted. The resulting variational density is</p>
-<p>$$
-q_{\mu, \Sigma}(z) = p_{\mathcal{N}(\mu, \Sigma)}\left( f(z) \right) \ \big| \det \mathcal{J}_{f}(z) \big|.
-$$</p>
-<p>Note that the way we've constructed $q(z)$ here is basically a reverse of the approach we described above. Here we sample from a distribution with support on $\mathbb{R}$ and transform <em>to</em> $\mathrm{supp} \left( p(z \mid x) \right)$.</p>
-<p>If we want to write the ELBO explicitly in terms of $\eta$ rather than $z$, the first term in the ELBO becomes</p>
-<p>$$
-\begin{align*}
-\mathbb{E}_{z \sim q_{\mu, \Sigma}(z)} \left[ \log p(x_i, z) \right] &amp;= \mathbb{E}_{\eta \sim \mathcal{N}(\mu, \Sigma)} \Bigg[ \log \frac{p\left(x_i, f^{-1}(\eta) \right)}{\big| \det \mathcal{J}_{f^{-1}}(\eta) \big|} \Bigg] \\
-&amp;= \mathbb{E}_{\eta \sim \mathcal{N}(\mu, \Sigma)} \left[ \log p\left(x_i, f^{-1}(\eta) \right) \right] - \mathbb{E}_{\eta \sim \mathcal{N}(\mu, \Sigma)} \left[ \left| \det \mathcal{J}_{f^{-1}}(\eta) \right| \right].
+</code></pre>
+<p>where <code>f^{-1}: \mathbb{R}^d \to \mathrm{supp} \left( p(z \mid x) \right)</code> is a differentiable bijection with differentiable inverse. Then <code>z \sim q_{\mu, \Sigma}(z) \implies z \in \mathrm{supp} \left( p(z \mid x) \right)</code> as we wanted. The resulting variational density is</p>
+<pre><code class="language-math">>q\_{\mu, \Sigma}(z) = p\_{\mathcal{N}(\mu, \Sigma)}\left( f(z) \right) \ \big| \det \mathcal{J}\_{f}(z) \big|.
+</code></pre>
+<p>Note that the way we've constructed <code>q(z)</code> here is basically a reverse of the approach we described above. Here we sample from a distribution with support on <code>\mathbb{R}</code> and transform <em>to</em> <code>\mathrm{supp} \left( p(z \mid x) \right)</code>.</p>
+<p>If we want to write the ELBO explicitly in terms of <code>\eta</code> rather than <code>z</code>, the first term in the ELBO becomes</p>
+<pre><code class="language-math">>\begin{align*}
+  \mathbb{E}\_{z \sim q_{\mu, \Sigma}(z)} \left[ \log p(x\_i, z) \right] &amp;= \mathbb{E}\_{\eta \sim \mathcal{N}(\mu, \Sigma)} \Bigg[ \log \frac{p\left(x\_i, f^{-1}(\eta) \right)}{\big| \det \mathcal{J}_{f^{-1}}(\eta) \big|} \Bigg] \\\\
+  &amp;= \mathbb{E}\_{\eta \sim \mathcal{N}(\mu, \Sigma)} \left[ \log p\left(x\_i, f^{-1}(\eta) \right) \right] - \mathbb{E}\_{\eta \sim \mathcal{N}(\mu, \Sigma)} \left[ \left| \det \mathcal{J}\_{f^{-1}}(\eta) \right| \right].
 \end{align*}
-$$</p>
-<p>The entropy is invariant under change of variables, thus $\mathbb{H} \left(q_{\mu, \Sigma}(z)\right)$ is simply the entropy of the normal distribution which is known analytically.</p>
+</code></pre>
+<p>The entropy is invariant under change of variables, thus <code>\mathbb{H} \left(q\_{\mu, \Sigma}(z)\right)</code> is simply the entropy of the normal distribution which is known analytically.</p>
 <p>Hence, the resulting empirical estimate of the ELBO is</p>
-<p>$$
-\begin{align*}
-\widehat{\mathrm{ELBO}}(q_{\mu, \Sigma}) &amp;= \frac{1}{m} \left( \sum_{k = 1}^m \sum_{i = 1}^n \left(\log p\left(x_i, f^{-1}(\eta_k)\right) - \log \big| \det \mathcal{J}_{f^{-1}}(\eta_k) \big| \right) \right) + \mathbb{H} \left(p_{\mathcal{N}(\mu, \Sigma)}(z)\right) \\
-&amp; \text{where} \quad z_k  \sim \mathcal{N}(\mu, \Sigma) \quad \forall k = 1, \dots, m
+<pre><code class="language-math">>\begin{align*}
+\widehat{\mathrm{ELBO}}(q\_{\mu, \Sigma}) &amp;= \frac{1}{m} \left( \sum\_{k = 1}^m \sum\_{i = 1}^n \left(\log p\left(x\_i, f^{-1}(\eta_k)\right) - \log \big| \det \mathcal{J}\_{f^{-1}}(\eta\_k) \big| \right) \right) + \mathbb{H} \left(p\_{\mathcal{N}(\mu, \Sigma)}(z)\right) \\\\
+&amp; \text{where} \quad z\_k  \sim \mathcal{N}(\mu, \Sigma) \quad \forall k = 1, \dots, m
 \end{align*}.
-$$</p>
-<p>And maximizing this wrt. $\mu$ and $\Sigma$ is what's referred to as <strong>Automatic Differentiation Variational Inference (ADVI)</strong>!</p>
+</code></pre>
+<p>And maximizing this wrt. <code>\mu</code> and <code>\Sigma</code> is what's referred to as <strong>Automatic Differentiation Variational Inference (ADVI)</strong>!</p>
 <p>Now if you want to try it out, <a href="../../tutorials/09-variational-inference">check out the tutorial on how to use ADVI in Turing.jl</a>!</p>
 
     

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Advanced Usage</title>
-    <meta name="description" content="">
+    <meta name="description" content="Advanced Usage">
     <meta name="author" content="The Turing Team">
     <meta name="theme-color" content="red">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -777,10 +777,10 @@
         <ul id="nav-toc" class="md-nav__list" data-md-scrollfix="">
         <!-- toc will be appended here!-->
         </ul>
-        <a href="https://twitter.com/intent/tweet?original_referer=https://github.com/TuringLang/Turing.jl/edit/master/docs/src/using-turing/advanced.md" title="Tweet this page" class="social-link"><i class="fa fa-twitter fa-1x"></i>Tweet this page</a>
+        <a href="https://twitter.com/intent/tweet?original_referer=https://github.com/TuringLang/Turing.jl/edit/master/docs/src_tutorials/advanced.md" title="Tweet this page" class="social-link"><i class="fa fa-twitter fa-1x"></i>Tweet this page</a>
         <a href="https://discourse.julialang.org/c/domain/probprog" title="Ask questions" class="social-link"><i class="fa fa-stack-overflow fa-1x"></i>Ask questions</a>
-        <a href="https://github.com/TuringLang/Turing.jl//issues/new?label=question&title=Question:&body=Question%20on:%20https://github.com/TuringLang/Turing.jl/edit/master/docs/_docs/using-turing/advanced.md" title="Report issues" class="social-link"><i class="fa fa-comments fa-1x"></i>Report issues</a>
-        <a href="https://github.com/TuringLang/Turing.jl/edit/master/docs/src/using-turing/advanced.md" title="Edit this page on github"  class="social-link"><i class="fa fa-github fa-1x"></i> Edit me</a>
+        <a href="https://github.com/TuringLang/Turing.jl//issues/new?label=question&title=Question:&body=Question%20on:%20https://github.com/TuringLang/Turing.jl/edit/master/docs/_tutorials/advanced.md" title="Report issues" class="social-link"><i class="fa fa-comments fa-1x"></i>Report issues</a>
+        <a href="https://github.com/TuringLang/Turing.jl/edit/master/docs/src_tutorials/advanced.md" title="Edit this page on github"  class="social-link"><i class="fa fa-github fa-1x"></i> Edit me</a>
       </nav>
     </div>
   </div>
@@ -789,22 +789,14 @@
                 <div id="md-container-pancakes">
                 <div class="md-content full-width"> 
     <article class="md-content__inner md-typeset  full-width">
-    <p><a id='Advanced-Usage'></a></p>
-<p><a id='Advanced-Usage-1'></a></p>
-<h1 id="advanced-usage">Advanced Usage</h1>
-<p><a id='How-to-Define-a-Customized-Distribution'></a></p>
-<p><a id='How-to-Define-a-Customized-Distribution-1'></a></p>
+    <h1 id="advanced-usage">Advanced Usage</h1>
 <h2 id="how-to-define-a-customized-distribution">How to Define a Customized Distribution</h2>
-<p>Turing.jl supports the use of distributions from the Distributions.jl package. By extension it also supports the use of customized distributions, by defining them as subtypes of <code>Distribution</code> type of the Distributions.jl package, as well as corresponding functions.</p>
+<p><code>Turing.jl</code> supports the use of distributions from the Distributions.jl package. By extension, it also supports the use of customized distributions by defining them as subtypes of <code>Distribution</code> type of the Distributions.jl package, as well as corresponding functions.</p>
 <p>Below shows a workflow of how to define a customized distribution, using our own implementation of a simple <code>Uniform</code> distribution as a simple example.</p>
-<p><a id='.-Define-the-Distribution-Type'></a></p>
-<p><a id='.-Define-the-Distribution-Type-1'></a></p>
 <h3 id="define-the-distribution-type">1. Define the Distribution Type</h3>
 <p>First, define a type of the distribution, as a subtype of a corresponding distribution type in the Distributions.jl package.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> CustomUniform</span> <span class="o">&lt;:</span> <span class="n">ContinuousUnivariateDistribution</span> <span class="k">end</span>
 </code></pre></div></div>
-<p><a id='.-Implement-Sampling-and-Evaluation-of-the-log-pdf'></a></p>
-<p><a id='.-Implement-Sampling-and-Evaluation-of-the-log-pdf-1'></a></p>
 <h3 id="implement-sampling-and-evaluation-of-the-log-pdf">2. Implement Sampling and Evaluation of the log-pdf</h3>
 <p>Second, define <code>rand</code> and <code>logpdf</code>, which will be used to run the model.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># sample in [0, 1]</span>
@@ -813,37 +805,42 @@
 <span class="c"># p(x) = 1 → logp(x) = 0</span>
 <span class="n">Distributions</span><span class="o">.</span><span class="n">logpdf</span><span class="x">(</span><span class="n">d</span><span class="o">::</span><span class="n">CustomUniform</span><span class="x">,</span> <span class="n">x</span><span class="o">::</span><span class="kt">Real</span><span class="x">)</span> <span class="o">=</span> <span class="n">zero</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
 </code></pre></div></div>
-<p><a id='.-Define-Helper-Functions'></a></p>
-<p><a id='.-Define-Helper-Functions-1'></a></p>
 <h3 id="define-helper-functions">3. Define Helper Functions</h3>
 <p>In most cases, it may be required to define some helper functions.</p>
-<p><a id='.1-Domain-Transformation'></a></p>
-<p><a id='.1-Domain-Transformation-1'></a></p>
 <h4 id="domain-transformation">3.1 Domain Transformation</h4>
 <p>Certain samplers, such as <code>HMC</code>, require the domain of the priors to be unbounded. Therefore, to use our <code>CustomUniform</code> as a prior in a model we also need to define how to transform samples from <code>[0, 1]</code> to <code>ℝ</code>. To do this, we simply need to define the corresponding <code>Bijector</code> from <code>Bijectors.jl</code>, which is what <code>Turing.jl</code> uses internally to deal with constrained distributions.</p>
 <p>To transform from <code>[0, 1]</code> to <code>ℝ</code> we can use the <code>Logit</code> bijector:</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Bijectors</span><span class="o">.</span><span class="n">bijector</span><span class="x">(</span><span class="n">d</span><span class="o">::</span><span class="n">CustomUniform</span><span class="x">)</span> <span class="o">=</span> <span class="n">Logit</span><span class="x">(</span><span class="mf">0.</span><span class="x">,</span> <span class="mf">1.</span><span class="x">)</span>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Bijectors</span><span class="o">.</span><span class="n">bijector</span><span class="x">(</span><span class="n">d</span><span class="o">::</span><span class="n">CustomUniform</span><span class="x">)</span> <span class="o">=</span> <span class="n">Logit</span><span class="x">(</span><span class="mf">0.0</span><span class="x">,</span> <span class="mf">1.0</span><span class="x">)</span>
 </code></pre></div></div>
 <p>You'd do the exact same thing for <code>ContinuousMultivariateDistribution</code> and <code>ContinuousMatrixDistribution</code>. For example, <code>Wishart</code> defines a distribution over positive-definite matrices and so <code>bijector</code> returns a <code>PDBijector</code> when called with a <code>Wishart</code> distribution as an argument. For discrete distributions, there is no need to define a bijector; the <code>Identity</code> bijector is used by default.</p>
 <p>Alternatively, for <code>UnivariateDistribution</code> we can define the <code>minimum</code> and <code>maximum</code> of the distribution</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Distributions</span><span class="o">.</span><span class="n">minimum</span><span class="x">(</span><span class="n">d</span><span class="o">::</span><span class="n">CustomUniform</span><span class="x">)</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="n">Distributions</span><span class="o">.</span><span class="n">maximum</span><span class="x">(</span><span class="n">d</span><span class="o">::</span><span class="n">CustomUniform</span><span class="x">)</span> <span class="o">=</span> <span class="mf">1.</span>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Distributions</span><span class="o">.</span><span class="n">minimum</span><span class="x">(</span><span class="n">d</span><span class="o">::</span><span class="n">CustomUniform</span><span class="x">)</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">Distributions</span><span class="o">.</span><span class="n">maximum</span><span class="x">(</span><span class="n">d</span><span class="o">::</span><span class="n">CustomUniform</span><span class="x">)</span> <span class="o">=</span> <span class="mf">1.0</span>
 </code></pre></div></div>
 <p>and <code>Bijectors.jl</code> will return a default <code>Bijector</code> called <code>TruncatedBijector</code> which makes use of <code>minimum</code> and <code>maximum</code> derive the correct transformation.</p>
 <p>Internally, Turing basically does the following when it needs to convert a constrained distribution to an unconstrained distribution, e.g. when sampling using <code>HMC</code>:</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">b</span> <span class="o">=</span> <span class="n">bijector</span><span class="x">(</span><span class="n">dist</span><span class="x">)</span>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dist</span> <span class="o">=</span> <span class="n">Gamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span><span class="mi">3</span><span class="x">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">bijector</span><span class="x">(</span><span class="n">dist</span><span class="x">)</span>
 <span class="n">transformed_dist</span> <span class="o">=</span> <span class="n">transformed</span><span class="x">(</span><span class="n">dist</span><span class="x">,</span> <span class="n">b</span><span class="x">)</span> <span class="c"># results in distribution with transformed support + correction for logpdf</span>
 </code></pre></div></div>
+<pre><code>Bijectors.UnivariateTransformed{Distributions.Gamma{Float64}, Bijectors.Log
+{0}}(
+dist: Distributions.Gamma{Float64}(α=2.0, θ=3.0)
+transform: Bijectors.Log{0}()
+)
+</code></pre>
 <p>and then we can call <code>rand</code> and <code>logpdf</code> as usual, where</p>
 <ul>
 <li><code>rand(transformed_dist)</code> returns a sample in the unconstrained space, and</li>
 <li><code>logpdf(transformed_dist, y)</code> returns the log density of the original distribution, but with <code>y</code> living in the unconstrained space.</li>
 </ul>
 <p>To read more about Bijectors.jl, check out <a href="https://github.com/TuringLang/Bijectors.jl">the project README</a>.</p>
-<p><a id='Update-the-accumulated-log-probability-in-the-model-definition'></a></p>
-<p><a id='Update-the-accumulated-log-probability-in-the-model-definition-1'></a></p>
 <h2 id="update-the-accumulated-log-probability-in-the-model-definition">Update the accumulated log probability in the model definition</h2>
-<p>Turing accumulates log probabilities internally in an internal data structure that is accessible through the internal variable <code>__varinfo__</code> inside of the model definition (see below for more details about model internals). However, since users should not have to deal with internal data structures, a macro <code>Turing.@addlogprob!</code> is provided that increases the accumulated log probability. For instance, this allows you to <a href="https://github.com/TuringLang/Turing.jl/issues/1332">include arbitrary terms in the likelihood</a></p>
+<p>Turing accumulates log probabilities internally in an internal data structure that is accessible through
+the internal variable <code>__varinfo__</code> inside of the model definition (see below for more details about model internals).
+However, since users should not have to deal with internal data structures, a macro <code>Turing.@addlogprob!</code> is provided
+that increases the accumulated log probability. For instance, this allows you to
+<a href="https://github.com/TuringLang/Turing.jl/issues/1332">include arbitrary terms in the likelihood</a></p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
 
 <span class="n">myloglikelihood</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">μ</span><span class="x">)</span> <span class="o">=</span> <span class="n">loglikelihood</span><span class="x">(</span><span class="n">Normal</span><span class="x">(</span><span class="n">μ</span><span class="x">,</span> <span class="mi">1</span><span class="x">),</span> <span class="n">x</span><span class="x">)</span>
@@ -853,6 +850,8 @@
     <span class="n">Turing</span><span class="o">.</span><span class="nd">@addlogprob</span><span class="o">!</span> <span class="n">myloglikelihood</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">μ</span><span class="x">)</span>
 <span class="k">end</span>
 </code></pre></div></div>
+<pre><code>demo (generic function with 2 methods)
+</code></pre>
 <p>and to <a href="https://github.com/TuringLang/Turing.jl/issues/1328">reject samples</a>:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
 <span class="k">using</span> <span class="n">LinearAlgebra</span>
@@ -862,35 +861,45 @@
     <span class="k">if</span> <span class="n">dot</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">x</span><span class="x">)</span> <span class="o">&lt;</span> <span class="mi">0</span>
         <span class="n">Turing</span><span class="o">.</span><span class="nd">@addlogprob</span><span class="o">!</span> <span class="o">-</span><span class="nb">Inf</span>
         <span class="c"># Exit the model evaluation early</span>
-        <span class="k">return</span>
+        <span class="k">return</span> <span class="nb">nothing</span>
     <span class="k">end</span>
 
     <span class="n">x</span> <span class="o">~</span> <span class="n">MvNormal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">I</span><span class="x">)</span>
-    <span class="k">return</span>
+    <span class="k">return</span> <span class="nb">nothing</span>
 <span class="k">end</span>
 </code></pre></div></div>
-<p>Note that <code>@addlogprob!</code> always increases the accumulated log probability, regardless of the provided sampling context. For instance, if you do not want to apply <code>Turing.@addlogprob!</code> when evaluating the prior of your model but only when computing the log likelihood and the log joint probability, then you should <a href="https://github.com/TuringLang/DynamicPPL.jl/issues/154">check the type of the internal variable <code>__context_</code></a> such as</p>
+<pre><code>demo (generic function with 2 methods)
+</code></pre>
+<p>Note that <code>@addlogprob!</code> always increases the accumulated log probability, regardless of the provided
+sampling context. For instance, if you do not want to apply <code>Turing.@addlogprob!</code> when evaluating the
+prior of your model but only when computing the log likelihood and the log joint probability, then you
+should <a href="https://github.com/TuringLang/DynamicPPL.jl/issues/154">check the type of the internal variable <code>__context_</code></a>
+such as</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">DynamicPPL</span><span class="o">.</span><span class="n">leafcontext</span><span class="x">(</span><span class="n">__context__</span><span class="x">)</span> <span class="o">!==</span> <span class="n">Turing</span><span class="o">.</span><span class="n">PriorContext</span><span class="x">()</span>
     <span class="n">Turing</span><span class="o">.</span><span class="nd">@addlogprob</span><span class="o">!</span> <span class="n">myloglikelihood</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">μ</span><span class="x">)</span>
 <span class="k">end</span>
 </code></pre></div></div>
-<p><a id='Model-Internals'></a></p>
-<p><a id='Model-Internals-1'></a></p>
 <h2 id="model-internals">Model Internals</h2>
-<p>The <code>@model</code> macro accepts a function definition and rewrites it such that call of the function generates a <code>Model</code> struct for use by the sampler. Models can be constructed by hand without the use of a macro. Taking the <code>gdemo</code> model as an example, the macro-based definition</p>
+<p>The <code>@model</code> macro accepts a function definition and rewrites it such that call of the function generates a <code>Model</code> struct for use by the sampler.
+Models can be constructed by hand without the use of a macro.
+Taking the <code>gdemo</code> model as an example, the macro-based definition</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
 
 <span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
-  <span class="c"># Set priors.</span>
-  <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
-  <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="c"># Set priors.</span>
+    <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
+    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
 
-  <span class="c"># Observe each value of x.</span>
-  <span class="nd">@.</span> <span class="n">x</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
+    <span class="c"># Observe each value of x.</span>
+    <span class="nd">@.</span> <span class="n">x</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
 <span class="k">end</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">([</span><span class="mf">1.5</span><span class="x">,</span> <span class="mf">2.0</span><span class="x">])</span>
 </code></pre></div></div>
+<pre><code>DynamicPPL.Model{typeof(Main.##WeaveSandBox#321.gdemo), (:x,), (), (), Tupl
+e{Vector{Float64}}, Tuple{}, DynamicPPL.DefaultContext}(Main.##WeaveSandBox
+#321.gdemo, (x = [1.5, 2.0],), NamedTuple(), DynamicPPL.DefaultContext())
+</code></pre>
 <p>can be implemented also (a bit less generally) with the macro-free version</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
 
@@ -898,32 +907,34 @@
 <span class="k">function</span><span class="nf"> gdemo</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">varinfo</span><span class="x">,</span> <span class="n">context</span><span class="x">,</span> <span class="n">x</span><span class="x">)</span>
     <span class="c"># Assume s² has an InverseGamma distribution.</span>
     <span class="n">s²</span><span class="x">,</span> <span class="n">varinfo</span> <span class="o">=</span> <span class="n">DynamicPPL</span><span class="o">.</span><span class="n">tilde_assume!!</span><span class="x">(</span>
-        <span class="n">context</span><span class="x">,</span>
-        <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">),</span>
-        <span class="n">Turing</span><span class="o">.</span><span class="nd">@varname</span><span class="x">(</span><span class="n">s²</span><span class="x">),</span>
-        <span class="n">varinfo</span><span class="x">,</span>
+        <span class="n">context</span><span class="x">,</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">),</span> <span class="n">Turing</span><span class="o">.</span><span class="nd">@varname</span><span class="x">(</span><span class="n">s²</span><span class="x">),</span> <span class="n">varinfo</span>
     <span class="x">)</span>
 
     <span class="c"># Assume m has a Normal distribution.</span>
     <span class="n">m</span><span class="x">,</span> <span class="n">varinfo</span> <span class="o">=</span> <span class="n">DynamicPPL</span><span class="o">.</span><span class="n">tilde_assume!!</span><span class="x">(</span>
-        <span class="n">context</span><span class="x">,</span>
-        <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">)),</span>
-        <span class="n">Turing</span><span class="o">.</span><span class="nd">@varname</span><span class="x">(</span><span class="n">m</span><span class="x">),</span>
-        <span class="n">varinfo</span><span class="x">,</span>
+        <span class="n">context</span><span class="x">,</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">)),</span> <span class="n">Turing</span><span class="o">.</span><span class="nd">@varname</span><span class="x">(</span><span class="n">m</span><span class="x">),</span> <span class="n">varinfo</span>
     <span class="x">)</span>
 
     <span class="c"># Observe each value of x[i] according to a Normal distribution.</span>
-    <span class="n">DynamicPPL</span><span class="o">.</span><span class="n">dot_tilde_observe!!</span><span class="x">(</span><span class="n">context</span><span class="x">,</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">)),</span> <span class="n">x</span><span class="x">,</span> <span class="n">Turing</span><span class="o">.</span><span class="nd">@varname</span><span class="x">(</span><span class="n">x</span><span class="x">),</span> <span class="n">varinfo</span><span class="x">)</span>
+    <span class="k">return</span> <span class="n">DynamicPPL</span><span class="o">.</span><span class="n">dot_tilde_observe!!</span><span class="x">(</span>
+        <span class="n">context</span><span class="x">,</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">)),</span> <span class="n">x</span><span class="x">,</span> <span class="n">Turing</span><span class="o">.</span><span class="nd">@varname</span><span class="x">(</span><span class="n">x</span><span class="x">),</span> <span class="n">varinfo</span>
+    <span class="x">)</span>
 <span class="k">end</span>
 <span class="n">gdemo</span><span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">=</span> <span class="n">Turing</span><span class="o">.</span><span class="n">Model</span><span class="x">(</span><span class="n">gdemo</span><span class="x">,</span> <span class="x">(;</span> <span class="n">x</span><span class="x">))</span>
 
 <span class="c"># Instantiate a Model object with our data variables.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">([</span><span class="mf">1.5</span><span class="x">,</span> <span class="mf">2.0</span><span class="x">])</span>
 </code></pre></div></div>
-<p><a id='Task-Copying'></a></p>
-<p><a id='Task-Copying-1'></a></p>
+<pre><code>DynamicPPL.Model{typeof(Main.##WeaveSandBox#321.gdemo), (:x,), (), (), Tupl
+e{Vector{Float64}}, Tuple{}, DynamicPPL.DefaultContext}(Main.##WeaveSandBox
+#321.gdemo, (x = [1.5, 2.0],), NamedTuple(), DynamicPPL.DefaultContext())
+</code></pre>
 <h2 id="task-copying">Task Copying</h2>
-<p>Turing <a href="https://github.com/JuliaLang/julia/issues/4085">copies</a> Julia tasks to deliver efficient inference algorithms, but it also provides alternative slower implementation as a fallback. Task copying is enabled by default. Task copying requires us to use the <code>TapedTask</code> facility which is provided by <a href="https://github.com/TuringLang/Libtask.jl">Libtask</a> to create tasks.</p>
+<p>Turing <a href="https://github.com/JuliaLang/julia/issues/4085">copies</a> Julia tasks to
+deliver efficient inference algorithms, but it also provides alternative slower
+implementation as a fallback. Task copying is enabled by default. Task copying
+requires us to use the <code>TapedTask</code> facility which is provided by
+<a href="https://github.com/TuringLang/Libtask.jl">Libtask</a> to create tasks.</p>
 
     
 <script
