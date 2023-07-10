@@ -824,22 +824,22 @@
 Iterations        = 501:1:1500
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 1.86 seconds
-Compute duration  = 1.86 seconds
+Wall duration     = 1.57 seconds
+Compute duration  = 1.57 seconds
 parameters        = s², m
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
 tree_depth, numerical_error, step_size, nom_step_size
 
 Summary Statistics
-  parameters      mean       std   naive_se      mcse        ess      rhat 
+  parameters      mean       std      mcse   ess_bulk   ess_tail      rhat 
   e ⋯
-      Symbol   Float64   Float64    Float64   Float64    Float64   Float64 
+      Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    2.1225    2.1477     0.0679    0.0915   476.0377    1.0165 
+          s²    2.0161    1.6713    0.0769   490.9285   424.0947    1.0014 
     ⋯
-           m    1.1667    0.7759     0.0245    0.0331   400.9902    0.9992 
+           m    1.1566    0.7959    0.0389   489.6484   378.8993    1.0041 
     ⋯
                                                                 1 column om
 itted
@@ -848,8 +848,8 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.6090    1.0727    1.5305    2.4240    6.8186
-           m   -0.3486    0.7032    1.1547    1.5818    2.8447
+          s²    0.5901    1.0469    1.5374    2.4092    6.0840
+           m   -0.4485    0.6888    1.1356    1.5882    2.9454
 </code></pre>
 <p>We can plot the results</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="x">(</span><span class="n">chn</span><span class="x">)</span>

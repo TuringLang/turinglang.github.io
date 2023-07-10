@@ -830,22 +830,22 @@
  Row │ SepalLength  SepalWidth  PetalLength  PetalWidth  Species
      │ Float64      Float64     Float64      Float64     Cat…
 ─────┼──────────────────────────────────────────────────────────────
-   1 │         5.9         3.2          4.8         1.8  versicolor
-   2 │         7.7         3.8          6.7         2.2  virginica
-   3 │         5.9         3.0          4.2         1.5  versicolor
-   4 │         6.3         2.9          5.6         1.8  virginica
-   5 │         6.3         2.7          4.9         1.8  virginica
-   6 │         4.8         3.4          1.6         0.2  setosa
-   7 │         6.5         3.0          5.5         1.8  virginica
-   8 │         5.0         3.4          1.5         0.2  setosa
+   1 │         5.7         2.8          4.1         1.3  versicolor
+   2 │         5.1         3.5          1.4         0.3  setosa
+   3 │         5.4         3.9          1.3         0.4  setosa
+   4 │         7.6         3.0          6.6         2.1  virginica
+   5 │         5.0         3.5          1.6         0.6  setosa
+   6 │         5.0         3.6          1.4         0.2  setosa
+   7 │         5.5         2.4          3.8         1.1  versicolor
+   8 │         6.1         2.6          5.6         1.4  virginica
   ⋮  │      ⋮           ⋮            ⋮           ⋮           ⋮
-  14 │         5.6         2.8          4.9         2.0  virginica
-  15 │         6.4         2.8          5.6         2.1  virginica
-  16 │         7.2         3.6          6.1         2.5  virginica
-  17 │         5.6         2.5          3.9         1.1  versicolor
-  18 │         5.8         2.8          5.1         2.4  virginica
-  19 │         5.8         2.7          4.1         1.0  versicolor
-  20 │         5.0         3.4          1.5         0.2  setosa
+  14 │         5.1         3.3          1.7         0.5  setosa
+  15 │         6.7         3.1          4.7         1.5  versicolor
+  16 │         6.2         2.2          4.5         1.5  versicolor
+  17 │         4.7         3.2          1.3         0.2  setosa
+  18 │         6.4         2.9          4.3         1.3  versicolor
+  19 │         5.7         3.0          4.2         1.2  versicolor
+  20 │         4.3         3.0          1.1         0.1  setosa
                                                       5 rows omitted
 </code></pre>
 <p>In this data set, the outcome <code>Species</code> is currently coded as a string. We convert it to a numerical value by using indices <code>1</code>, <code>2</code>, and <code>3</code> to indicate species <code>setosa</code>, <code>versicolor</code>, and <code>virginica</code>, respectively.</p>
@@ -860,22 +860,22 @@
  Row │ Species     Species_index
      │ Cat…        Union…
 ─────┼───────────────────────────
-   1 │ setosa      1
-   2 │ virginica   3
-   3 │ setosa      1
-   4 │ versicolor  2
+   1 │ virginica   3
+   2 │ versicolor  2
+   3 │ virginica   3
+   4 │ setosa      1
    5 │ setosa      1
    6 │ versicolor  2
-   7 │ versicolor  2
+   7 │ setosa      1
    8 │ setosa      1
   ⋮  │     ⋮             ⋮
-  14 │ setosa      1
+  14 │ virginica   3
   15 │ virginica   3
-  16 │ virginica   3
+  16 │ versicolor  2
   17 │ setosa      1
   18 │ versicolor  2
-  19 │ virginica   3
-  20 │ versicolor  2
+  19 │ setosa      1
+  20 │ setosa      1
                    5 rows omitted
 </code></pre>
 <p>After we've done that tidying, it's time to split our dataset into training and testing sets, and separate the features and target from the data. Additionally, we must rescale our feature variables so that they are centered around zero by subtracting each column by the mean and dividing it by the standard deviation. Without this step, Turing's sampler will have a hard time finding a place to start searching for parameter estimates.</p>
@@ -936,8 +936,8 @@
 Iterations        = 751:1:2250
 Number of chains  = 3
 Samples per chain = 1500
-Wall duration     = 17.18 seconds
-Compute duration  = 16.39 seconds
+Wall duration     = 9.79 seconds
+Compute duration  = 9.34 seconds
 parameters        = intercept_versicolor, intercept_virginica, coefficients
 _versicolor[1], coefficients_versicolor[2], coefficients_versicolor[3], coe
 fficients_versicolor[4], coefficients_virginica[1], coefficients_virginica[
@@ -947,31 +947,31 @@ amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error,
 tree_depth, numerical_error, step_size, nom_step_size
 
 Summary Statistics
-                  parameters      mean       std   naive_se      mcse      
-    ⋯
-                      Symbol   Float64   Float64    Float64   Float64     F
-loa ⋯
+                  parameters      mean       std      mcse    ess_bulk    e
+ss_ ⋯
+                      Symbol   Float64   Float64   Float64     Float64     
+Flo ⋯
 
-        intercept_versicolor    0.9494    0.5083     0.0076    0.0071   483
-6.9 ⋯
-         intercept_virginica   -0.6518    0.6739     0.0100    0.0108   495
-0.5 ⋯
-  coefficients_versicolor[1]    1.0556    0.6479     0.0097    0.0081   463
-2.4 ⋯
-  coefficients_versicolor[2]   -1.4733    0.5602     0.0084    0.0073   480
-0.5 ⋯
-  coefficients_versicolor[3]    1.0303    0.7435     0.0111    0.0108   469
-7.8 ⋯
-  coefficients_versicolor[4]    0.3132    0.7089     0.0106    0.0114   401
-8.2 ⋯
-   coefficients_virginica[1]    0.9615    0.6790     0.0101    0.0100   443
-5.7 ⋯
-   coefficients_virginica[2]   -0.7004    0.6586     0.0098    0.0076   486
-2.8 ⋯
-   coefficients_virginica[3]    2.1020    0.8220     0.0123    0.0109   563
-6.6 ⋯
-   coefficients_virginica[4]    2.6179    0.7548     0.0113    0.0126   501
-1.5 ⋯
+        intercept_versicolor    1.0477    0.4932    0.0074   4514.4152   33
+51. ⋯
+         intercept_virginica   -0.5690    0.6661    0.0108   3775.0247   28
+32. ⋯
+  coefficients_versicolor[1]    1.3133    0.6225    0.0099   4013.1478   33
+04. ⋯
+  coefficients_versicolor[2]   -1.2898    0.4954    0.0075   4420.5076   34
+14. ⋯
+  coefficients_versicolor[3]    0.9844    0.7445    0.0110   4565.8354   32
+07. ⋯
+  coefficients_versicolor[4]    0.2024    0.7071    0.0111   4055.9663   32
+80. ⋯
+   coefficients_virginica[1]    0.7299    0.6524    0.0100   4255.7240   35
+61. ⋯
+   coefficients_virginica[2]   -0.8287    0.6181    0.0091   4614.0632   32
+11. ⋯
+   coefficients_virginica[3]    2.3222    0.8301    0.0114   5344.1340   31
+07. ⋯
+   coefficients_virginica[4]    2.7702    0.7677    0.0113   4682.8793   34
+92. ⋯
                                                                3 columns om
 itted
 
@@ -981,26 +981,26 @@ Quantiles
                       Symbol   Float64   Float64   Float64   Float64   Floa
 t64 ⋯
 
-        intercept_versicolor   -0.0378    0.6028    0.9550    1.2954    1.9
-344 ⋯
-         intercept_virginica   -1.9762   -1.1062   -0.6404   -0.1784    0.6
-174 ⋯
-  coefficients_versicolor[1]   -0.1816    0.6108    1.0546    1.4951    2.3
-514 ⋯
-  coefficients_versicolor[2]   -2.6360   -1.8418   -1.4428   -1.0772   -0.4
-581 ⋯
-  coefficients_versicolor[3]   -0.4193    0.5419    1.0388    1.5370    2.4
-867 ⋯
-  coefficients_versicolor[4]   -1.0839   -0.1781    0.3063    0.7932    1.7
-102 ⋯
-   coefficients_virginica[1]   -0.3369    0.4910    0.9540    1.4167    2.3
-063 ⋯
-   coefficients_virginica[2]   -2.0041   -1.1445   -0.6911   -0.2484    0.5
-600 ⋯
-   coefficients_virginica[3]    0.5236    1.5549    2.0865    2.6542    3.7
-392 ⋯
-   coefficients_virginica[4]    1.1253    2.1225    2.6243    3.1309    4.0
-841 ⋯
+        intercept_versicolor    0.1163    0.7173    1.0222    1.3795    2.0
+550 ⋯
+         intercept_virginica   -1.8845   -1.0128   -0.5703   -0.1242    0.7
+471 ⋯
+  coefficients_versicolor[1]    0.0794    0.9045    1.3010    1.7287    2.5
+682 ⋯
+  coefficients_versicolor[2]   -2.3140   -1.6143   -1.2700   -0.9443   -0.3
+886 ⋯
+  coefficients_versicolor[3]   -0.4464    0.4730    0.9898    1.4901    2.4
+603 ⋯
+  coefficients_versicolor[4]   -1.1916   -0.2672    0.2075    0.6672    1.6
+070 ⋯
+   coefficients_virginica[1]   -0.5460    0.2818    0.7215    1.1701    1.9
+876 ⋯
+   coefficients_virginica[2]   -2.0143   -1.2505   -0.8245   -0.4056    0.3
+818 ⋯
+   coefficients_virginica[3]    0.7478    1.7608    2.3190    2.8594    3.9
+546 ⋯
+   coefficients_virginica[4]    1.2624    2.2629    2.7537    3.2938    4.3
+052 ⋯
 </code></pre>
 <p>Since we ran multiple chains, we may as well do a spot check to make sure each chain converges around similar points.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="x">(</span><span class="n">chain</span><span class="x">)</span>
@@ -1068,12 +1068,12 @@ t64 ⋯
     <span class="x">)</span>
 <span class="k">end</span>
 </code></pre></div></div>
-<pre><code>Number of `setosa`: 24
-Percentage of `setosa` predicted correctly: 0.9583333333333334
+<pre><code>Number of `setosa`: 26
+Percentage of `setosa` predicted correctly: 1.0
 Number of `versicolor`: 25
-Percentage of `versicolor` predicted correctly: 0.88
-Number of `virginica`: 26
-Percentage of `virginica` predicted correctly: 0.9230769230769231
+Percentage of `versicolor` predicted correctly: 0.8
+Number of `virginica`: 24
+Percentage of `virginica` predicted correctly: 0.9583333333333334
 </code></pre>
 <p>This tutorial has demonstrated how to use Turing to perform Bayesian multinomial logistic regression.</p>
 <h2 id="appendix">Appendix</h2>
@@ -1083,62 +1083,63 @@ Percentage of `virginica` predicted correctly: 0.9230769230769231
 TuringTutorials.weave(&quot;08-multinomial-logistic-regression&quot;, &quot;08_multinomial-logistic-regression.jmd&quot;)
 </code></pre>
 <p>Computer Information:</p>
-<pre><code>Julia Version 1.6.7
-Commit 3b76b25b64 (2022-07-19 15:11 UTC)
+<pre><code>Julia Version 1.9.2
+Commit e4ee485e909 (2023-07-05 09:39 UTC)
 Platform Info:
-  OS: Linux (x86_64-pc-linux-gnu)
-  CPU: AMD EPYC 7502 32-Core Processor
+  OS: Linux (x86_64-linux-gnu)
+  CPU: 128 × AMD EPYC 7502 32-Core Processor
   WORD_SIZE: 64
   LIBM: libopenlibm
-  LLVM: libLLVM-11.0.1 (ORCJIT, znver2)
+  LLVM: libLLVM-14.0.6 (ORCJIT, znver2)
+  Threads: 1 on 16 virtual cores
 Environment:
   JULIA_CPU_THREADS = 16
-  BUILDKITE_PLUGIN_JULIA_CACHE_DIR = /cache/julia-buildkite-plugin
   JULIA_DEPOT_PATH = /cache/julia-buildkite-plugin/depots/7aa0085e-79a4-45f3-a5bd-9743c91cf3da
+  JULIA_IMAGE_THREADS = 1
 
 </code></pre>
 <p>Package Information:</p>
-<pre><code>      Status `/cache/build/default-amdci4-2/julialang/turingtutorials/tutorials/08-multinomial-logistic-regression/Project.toml`
-  [1a297f60] FillArrays v1.2.0
+<pre><code>Status `/cache/build/default-amdci4-7/julialang/turingtutorials/tutorials/08-multinomial-logistic-regression/Project.toml`
+⌅ [1a297f60] FillArrays v1.0.0
   [cc2ba9b6] MLDataUtils v0.5.4
-  [872c559c] NNlib v0.8.21
+⌃ [872c559c] NNlib v0.9.1
   [ce6b1742] RDatasets v0.7.7
   [f3b207a7] StatsPlots v0.15.5
-  [fce5fe82] Turing v0.22.0
-  [44d3d7a6] Weave v0.10.12
+  [fce5fe82] Turing v0.26.2
   [37e2e46d] LinearAlgebra
   [9a3f8284] Random
+Info Packages marked with ⌃ and ⌅ have new versions available, but those with ⌅ are restricted by compatibility constraints from upgrading. To see why use `status --outdated`
 </code></pre>
 <p>And the full manifest:</p>
-<pre><code>      Status `/cache/build/default-amdci4-2/julialang/turingtutorials/tutorials/08-multinomial-logistic-regression/Manifest.toml`
-  [47edcb42] ADTypes v0.1.3
-  [621f4979] AbstractFFTs v1.3.1
-  [80f14c24] AbstractMCMC v4.2.0
-  [7a57a42e] AbstractPPL v0.5.4
+<pre><code>Status `/cache/build/default-amdci4-7/julialang/turingtutorials/tutorials/08-multinomial-logistic-regression/Manifest.toml`
+  [47edcb42] ADTypes v0.1.5
+  [621f4979] AbstractFFTs v1.4.0
+  [80f14c24] AbstractMCMC v4.4.2
+⌅ [7a57a42e] AbstractPPL v0.5.4
   [1520ce14] AbstractTrees v0.4.4
   [79e6a3ab] Adapt v3.6.2
-  [0bf59076] AdvancedHMC v0.3.6
-  [5b7e9947] AdvancedMH v0.6.8
-  [576499cb] AdvancedPS v0.3.8
-  [b5ca4192] AdvancedVI v0.1.6
+  [0bf59076] AdvancedHMC v0.4.6
+  [5b7e9947] AdvancedMH v0.7.4
+  [576499cb] AdvancedPS v0.4.3
+  [b5ca4192] AdvancedVI v0.2.4
   [dce04be8] ArgCheck v2.3.0
   [7d9fca2a] Arpack v0.5.4
-  [4fba245c] ArrayInterface v7.4.8
+  [4fba245c] ArrayInterface v7.4.11
   [a9b6321e] Atomix v0.1.0
   [13072b0f] AxisAlgorithms v1.0.1
   [39de3d68] AxisArrays v0.4.6
   [198e06fe] BangBang v0.3.39
   [9718e550] Baselet v0.1.1
-  [76274a88] Bijectors v0.10.8
+⌅ [76274a88] Bijectors v0.12.8
   [d1d4a3ce] BitFlags v0.1.7
   [fa961155] CEnum v0.4.2
   [336ed68f] CSV v0.10.11
   [49dc2e85] Calculus v0.5.1
   [324d7699] CategoricalArrays v0.10.8
-  [082447d4] ChainRules v1.51.0
+  [082447d4] ChainRules v1.52.0
   [d360d2e6] ChainRulesCore v1.16.0
-  [9e997f8a] ChangesOfVariables v0.1.7
-  [aaaa29a8] Clustering v0.15.2
+  [9e997f8a] ChangesOfVariables v0.1.8
+  [aaaa29a8] Clustering v0.15.3
   [944b1d66] CodecZlib v0.7.1
   [35d6a980] ColorSchemes v3.21.0
   [3da002f7] ColorTypes v0.11.4
@@ -1147,7 +1148,7 @@ Environment:
   [861a8166] Combinatorics v1.0.2
   [38540f10] CommonSolve v0.2.4
   [bbf7d656] CommonSubexpressions v0.3.0
-  [34da2185] Compat v4.6.1
+  [34da2185] Compat v4.7.0
   [a33af91c] CompositionsBase v0.1.2
   [f0e56b4a] ConcurrentUtilities v2.2.0
   [88cd18e8] ConsoleProgressMonitor v0.1.2
@@ -1155,69 +1156,70 @@ Environment:
   [d38c429a] Contour v0.6.2
   [a8cc5b0e] Crayons v4.1.1
   [9a962f9c] DataAPI v1.15.0
-  [a93c6f00] DataFrames v1.5.0
-  [864edb3b] DataStructures v0.18.13
+⌃ [a93c6f00] DataFrames v1.5.0
+  [864edb3b] DataStructures v0.18.14
   [e2d170a0] DataValueInterfaces v1.0.0
   [244e2a9f] DefineSingletons v0.1.2
+  [8bb1440f] DelimitedFiles v1.9.1
   [b429d917] DensityInterface v0.4.0
   [163ba53b] DiffResults v1.1.0
   [b552c78f] DiffRules v1.15.1
   [b4f34e82] Distances v0.10.8
-  [31c24e10] Distributions v0.25.95
+  [31c24e10] Distributions v0.25.98
   [ced4e74d] DistributionsAD v0.6.49
   [ffbed154] DocStringExtensions v0.9.3
   [fa6b7ba4] DualNumbers v0.6.8
-  [366bfd00] DynamicPPL v0.21.4
+⌃ [366bfd00] DynamicPPL v0.23.0
   [cad2338a] EllipticalSliceSampling v1.1.0
   [4e289a0a] EnumX v1.0.4
+  [460bff9d] ExceptionUnwrapping v0.1.9
   [e2ba6199] ExprTools v0.1.9
   [c87230d0] FFMPEG v0.4.1
-  [7a1cc6ca] FFTW v1.7.0
+  [7a1cc6ca] FFTW v1.7.1
   [5789e2e9] FileIO v1.16.1
   [48062228] FilePathsBase v0.9.20
-  [1a297f60] FillArrays v1.2.0
+⌅ [1a297f60] FillArrays v1.0.0
   [53c48c17] FixedPointNumbers v0.8.4
   [59287772] Formatting v0.4.2
   [f6369f11] ForwardDiff v0.10.35
   [069b7b12] FunctionWrappers v1.1.3
   [77dc65aa] FunctionWrappersWrappers v0.1.3
-  [d9f16b24] Functors v0.3.0
+⌃ [d9f16b24] Functors v0.4.4
   [46192b85] GPUArraysCore v0.1.5
   [28b8d3ca] GR v0.72.7
   [42e2da0e] Grisu v1.0.2
-  [cd3eb016] HTTP v1.9.6
-  [eafb193a] Highlights v0.5.2
-  [34004b35] HypergeometricFunctions v0.3.17
-  [7869d1d1] IRTools v0.4.10
+⌃ [cd3eb016] HTTP v1.9.8
+  [34004b35] HypergeometricFunctions v0.3.18
   [22cec73e] InitialValues v0.3.1
   [842dd82b] InlineStrings v1.4.0
   [505f98c9] InplaceOps v0.3.0
   [a98d9a8b] Interpolations v0.14.7
   [8197267c] IntervalSets v0.7.4
-  [3587e190] InverseFunctions v0.1.9
+  [3587e190] InverseFunctions v0.1.10
   [41ab1584] InvertedIndices v1.3.0
   [92d709cd] IrrationalConstants v0.2.2
-  [c8e1da08] IterTools v1.4.0
+  [c8e1da08] IterTools v1.8.0
   [82899510] IteratorInterfaceExtensions v1.0.0
   [1019f520] JLFzf v0.1.5
   [692b3bcd] JLLWrappers v1.4.1
   [682c06a0] JSON v0.21.4
-  [63c18a36] KernelAbstractions v0.9.4
+  [63c18a36] KernelAbstractions v0.9.6
   [5ab0869b] KernelDensity v0.6.7
-  [929cbde3] LLVM v5.2.0
+  [929cbde3] LLVM v6.1.0
   [8ac3fa9e] LRUCache v1.4.1
   [b964fa9f] LaTeXStrings v1.3.0
   [23fbe1c1] Latexify v0.16.1
   [50d2b5c4] Lazy v0.15.1
-  [7f8f8fb0] LearnBase v0.3.0
+⌅ [7f8f8fb0] LearnBase v0.3.0
   [1d6d02ad] LeftChildRightSiblingTrees v0.2.0
-  [6f1fad26] Libtask v0.7.0
-  [6fdf6af0] LogDensityProblems v1.0.3
+  [6f1fad26] Libtask v0.8.6
+  [6fdf6af0] LogDensityProblems v2.1.1
+  [996a588d] LogDensityProblemsAD v1.5.0
   [2ab3a3ac] LogExpFunctions v0.3.24
-  [e6f89c97] LoggingExtras v0.4.9
-  [c7f686f2] MCMCChains v5.7.1
-  [be115224] MCMCDiagnosticTools v0.2.6
-  [9920b226] MLDataPattern v0.5.4
+  [e6f89c97] LoggingExtras v1.0.0
+  [c7f686f2] MCMCChains v6.0.3
+  [be115224] MCMCDiagnosticTools v0.3.4
+⌃ [9920b226] MLDataPattern v0.5.4
   [cc2ba9b6] MLDataUtils v0.5.4
   [e80e1ace] MLJModelInterface v1.8.0
   [66a33bbf] MLLabelUtils v0.5.7
@@ -1229,19 +1231,18 @@ Environment:
   [e1d29d7a] Missings v1.1.0
   [78c3b35d] Mocking v0.7.7
   [6f286f6a] MultivariateStats v0.10.2
-  [ffc61752] Mustache v1.0.17
-  [872c559c] NNlib v0.8.21
+⌃ [872c559c] NNlib v0.9.1
   [77ba4419] NaNMath v1.0.2
   [86f7a689] NamedArrays v0.9.8
   [c020b1a1] NaturalSort v1.0.0
   [b8a86587] NearestNeighbors v0.4.13
   [510215fc] Observables v0.5.4
-  [6fe1bfb0] OffsetArrays v1.12.9
+  [6fe1bfb0] OffsetArrays v1.12.10
   [4d8831e6] OpenSSL v1.4.1
-  [3bd65402] Optimisers v0.2.15
+  [3bd65402] Optimisers v0.2.18
   [bac558e1] OrderedCollections v1.6.0
   [90014a1f] PDMats v0.11.17
-  [69de0a69] Parsers v2.7.0
+  [69de0a69] Parsers v2.7.1
   [b98c9c47] Pipe v1.3.0
   [ccf2f8ad] PlotThemes v3.1.0
   [995b91a9] PlotUtils v1.3.5
@@ -1253,8 +1254,10 @@ Environment:
   [33c8b6b6] ProgressLogging v0.1.4
   [92933f4c] ProgressMeter v1.7.2
   [1fd47b50] QuadGK v2.8.2
-  [df47a6cb] RData v0.8.3
+⌅ [df47a6cb] RData v0.8.3
   [ce6b1742] RDatasets v0.7.7
+  [74087812] Random123 v1.6.1
+  [e6cf234a] RandomNumbers v1.5.3
   [b3c3ace0] RangeArrays v0.3.2
   [c84ed2f1] Ratios v0.4.5
   [c1ae055f] RealDot v0.1.0
@@ -1268,25 +1271,25 @@ Environment:
   [f2b01f46] Roots v2.0.17
   [7e49a35a] RuntimeGeneratedFunctions v0.5.11
   [0bca4576] SciMLBase v1.93.0
-  [c0aeaf25] SciMLOperators v0.3.1
+  [c0aeaf25] SciMLOperators v0.3.3
   [30f210dd] ScientificTypesBase v3.0.0
   [6c6a2e73] Scratch v1.2.0
   [91c51154] SentinelArrays v1.4.0
   [efcf1570] Setfield v1.1.1
   [992d4aef] Showoff v1.0.3
   [777ac1f9] SimpleBufferStream v1.1.0
+  [ce78b400] SimpleUnPack v1.1.0
   [66db9d55] SnoopPrecompile v1.0.3
   [a2af1166] SortingAlgorithms v1.1.1
-  [276daf66] SpecialFunctions v2.2.0
+  [276daf66] SpecialFunctions v2.3.0
   [171d559e] SplittablesBase v0.1.15
-  [90137ffa] StaticArrays v1.5.26
+  [90137ffa] StaticArrays v1.6.0
   [1e83bf80] StaticArraysCore v1.4.0
   [64bff920] StatisticalTraits v3.2.0
   [82ae8749] StatsAPI v1.6.0
-  [2913bbd2] StatsBase v0.33.21
+⌅ [2913bbd2] StatsBase v0.33.21
   [4c63d2b9] StatsFuns v1.3.0
   [f3b207a7] StatsPlots v0.15.5
-  [69024149] StringEncodings v0.3.6
   [892a3eda] StringManipulation v0.3.0
   [09ab397b] StructArrays v0.6.15
   [2efcf032] SymbolicIndexingInterface v0.2.2
@@ -1296,35 +1299,32 @@ Environment:
   [62fd8b95] TensorCore v0.1.1
   [5d786b92] TerminalLoggers v0.1.7
   [f269a46b] TimeZones v1.10.0
-  [9f7883ad] Tracker v0.2.25
+  [9f7883ad] Tracker v0.2.26
   [3bb67fe8] TranscodingStreams v0.9.13
-  [28d57a85] Transducers v0.4.76
+  [28d57a85] Transducers v0.4.77
   [410a4b4d] Tricks v0.1.7
-  [781d530d] TruncatedStacktraces v1.3.0
-  [fce5fe82] Turing v0.22.0
+  [781d530d] TruncatedStacktraces v1.4.0
+  [fce5fe82] Turing v0.26.2
   [5c2747f8] URIs v1.4.2
-  [3a884ed6] UnPack v1.0.2
   [1cfade01] UnicodeFun v0.4.1
-  [1986cc42] Unitful v1.14.0
+  [1986cc42] Unitful v1.15.0
   [45397f5d] UnitfulLatexify v1.6.3
   [013be700] UnsafeAtomics v0.2.1
-  [d80eeb9a] UnsafeAtomicsLLVM v0.1.2
-  [41fe7b60] Unzip v0.1.2
+  [d80eeb9a] UnsafeAtomicsLLVM v0.1.3
+  [41fe7b60] Unzip v0.2.0
   [ea10d353] WeakRefStrings v1.4.2
-  [44d3d7a6] Weave v0.10.12
   [cc8bc4a8] Widgets v0.6.6
   [efce3f68] WoodburyMatrices v0.5.5
   [76eceee3] WorkerUtilities v1.6.1
-  [ddb6d928] YAML v0.4.9
   [700de1a5] ZygoteRules v0.2.3
-  [68821587] Arpack_jll v3.5.0+3
+⌅ [68821587] Arpack_jll v3.5.1+1
   [6e34b625] Bzip2_jll v1.0.8+0
   [83423d85] Cairo_jll v1.16.1+1
-  [2e619515] Expat_jll v2.4.8+0
+  [2e619515] Expat_jll v2.5.0+0
   [b22a6f82] FFMPEG_jll v4.4.2+2
   [f5851436] FFTW_jll v3.3.10+0
   [a3f928ae] Fontconfig_jll v2.13.93+0
-  [d7e528f0] FreeType2_jll v2.10.4+0
+  [d7e528f0] FreeType2_jll v2.13.1+0
   [559328eb] FriBidi_jll v1.0.10+0
   [0656b61e] GLFW_jll v3.3.8+0
   [d2c73de3] GR_jll v0.72.7+0
@@ -1336,20 +1336,20 @@ Environment:
   [aacddb02] JpegTurbo_jll v2.1.91+0
   [c1c5ebd0] LAME_jll v3.100.1+0
   [88015f11] LERC_jll v3.0.0+1
-  [dad2f222] LLVMExtra_jll v0.0.22+0
+  [dad2f222] LLVMExtra_jll v0.0.23+0
   [1d63c593] LLVMOpenMP_jll v15.0.4+0
   [dd4b983a] LZO_jll v2.10.1+0
-  [e9f186c6] Libffi_jll v3.2.2+1
+⌅ [e9f186c6] Libffi_jll v3.2.2+1
   [d4300ac3] Libgcrypt_jll v1.8.7+0
   [7e76a0d4] Libglvnd_jll v1.6.0+0
   [7add5ba3] Libgpg_error_jll v1.42.0+0
   [94ce4f54] Libiconv_jll v1.16.1+2
   [4b2f31a3] Libmount_jll v2.35.0+0
-  [89763e89] Libtiff_jll v4.4.0+0
+⌅ [89763e89] Libtiff_jll v4.4.0+0
   [38a345b3] Libuuid_jll v2.36.0+0
-  [856f044c] MKL_jll v2022.2.0+0
+  [856f044c] MKL_jll v2023.1.0+0
   [e7412a2a] Ogg_jll v1.3.5+1
-  [458c3c95] OpenSSL_jll v1.1.21+0
+⌅ [458c3c95] OpenSSL_jll v1.1.21+0
   [efe28fd5] OpenSpecFun_jll v0.5.5+0
   [91d4177d] Opus_jll v1.3.2+0
   [30392449] Pixman_jll v0.42.2+0
@@ -1359,29 +1359,29 @@ Environment:
   [2381bf8a] Wayland_protocols_jll v1.25.0+0
   [02c8fc9c] XML2_jll v2.10.3+0
   [aed1982a] XSLT_jll v1.1.34+0
-  [4f6342f7] Xorg_libX11_jll v1.6.9+4
-  [0c0b7dd1] Xorg_libXau_jll v1.0.9+4
+  [4f6342f7] Xorg_libX11_jll v1.8.6+0
+  [0c0b7dd1] Xorg_libXau_jll v1.0.11+0
   [935fb764] Xorg_libXcursor_jll v1.2.0+4
-  [a3789734] Xorg_libXdmcp_jll v1.1.3+4
+  [a3789734] Xorg_libXdmcp_jll v1.1.4+0
   [1082639a] Xorg_libXext_jll v1.3.4+4
   [d091e8ba] Xorg_libXfixes_jll v5.0.3+4
   [a51aa0fd] Xorg_libXi_jll v1.7.10+4
   [d1454406] Xorg_libXinerama_jll v1.1.4+4
   [ec84b674] Xorg_libXrandr_jll v1.5.2+4
   [ea2f1a96] Xorg_libXrender_jll v0.9.10+4
-  [14d82f49] Xorg_libpthread_stubs_jll v0.1.0+3
-  [c7cfdc94] Xorg_libxcb_jll v1.13.0+3
-  [cc61e674] Xorg_libxkbfile_jll v1.1.0+4
+  [14d82f49] Xorg_libpthread_stubs_jll v0.1.1+0
+  [c7cfdc94] Xorg_libxcb_jll v1.15.0+0
+  [cc61e674] Xorg_libxkbfile_jll v1.1.2+0
   [12413925] Xorg_xcb_util_image_jll v0.4.0+1
   [2def613f] Xorg_xcb_util_jll v0.4.0+1
   [975044d2] Xorg_xcb_util_keysyms_jll v0.4.0+1
   [0d47668e] Xorg_xcb_util_renderutil_jll v0.3.9+1
   [c22f9ab0] Xorg_xcb_util_wm_jll v0.4.1+1
-  [35661453] Xorg_xkbcomp_jll v1.4.2+4
-  [33bec58e] Xorg_xkeyboard_config_jll v2.27.0+4
-  [c5fb5394] Xorg_xtrans_jll v1.4.0+3
+  [35661453] Xorg_xkbcomp_jll v1.4.6+0
+  [33bec58e] Xorg_xkeyboard_config_jll v2.39.0+0
+  [c5fb5394] Xorg_xtrans_jll v1.5.0+0
   [3161d3a3] Zstd_jll v1.5.5+0
-  [214eeab7] fzf_jll v0.29.0+0
+⌅ [214eeab7] fzf_jll v0.29.0+0
   [a4ae2306] libaom_jll v3.4.0+0
   [0ac62f75] libass_jll v0.15.1+0
   [f638f0a6] libfdk_aac_jll v2.0.2+0
@@ -1390,51 +1390,54 @@ Environment:
   [1270edf5] x264_jll v2021.5.5+0
   [dfaa095f] x265_jll v3.5.0+0
   [d8fb68d0] xkbcommon_jll v1.4.1+0
-  [0dad84c5] ArgTools
+  [0dad84c5] ArgTools v1.1.1
   [56f22d72] Artifacts
   [2a0f44e3] Base64
   [ade2ca70] Dates
-  [8bb1440f] DelimitedFiles
   [8ba89e20] Distributed
-  [f43a241f] Downloads
+  [f43a241f] Downloads v1.6.0
+  [7b1f6079] FileWatching
   [9fa8497b] Future
   [b77e0a4c] InteractiveUtils
   [4af54fe1] LazyArtifacts
-  [b27032c2] LibCURL
+  [b27032c2] LibCURL v0.6.3
   [76f85450] LibGit2
   [8f399da3] Libdl
   [37e2e46d] LinearAlgebra
   [56ddb016] Logging
   [d6f4376e] Markdown
   [a63ad114] Mmap
-  [ca575930] NetworkOptions
-  [44cfe95a] Pkg
+  [ca575930] NetworkOptions v1.2.0
+  [44cfe95a] Pkg v1.9.2
   [de0858da] Printf
   [3fa0cd96] REPL
   [9a3f8284] Random
-  [ea8e919c] SHA
+  [ea8e919c] SHA v0.7.0
   [9e88b42a] Serialization
   [1a1011a3] SharedArrays
   [6462fe0b] Sockets
   [2f01184e] SparseArrays
-  [10745b16] Statistics
+  [10745b16] Statistics v1.9.0
   [4607b0f0] SuiteSparse
-  [fa267f1f] TOML
-  [a4e569a6] Tar
+  [fa267f1f] TOML v1.0.3
+  [a4e569a6] Tar v1.10.0
   [8dfed614] Test
   [cf7118a7] UUIDs
   [4ec0a83e] Unicode
-  [e66e0078] CompilerSupportLibraries_jll
-  [deac9b47] LibCURL_jll
-  [29816b5a] LibSSH2_jll
-  [c8ffd9c3] MbedTLS_jll
-  [14a3606d] MozillaCACerts_jll
-  [4536629a] OpenBLAS_jll
-  [05823500] OpenLibm_jll
-  [efcefdf7] PCRE2_jll
-  [83775a58] Zlib_jll
-  [8e850ede] nghttp2_jll
-  [3f19e933] p7zip_jll
+  [e66e0078] CompilerSupportLibraries_jll v1.0.5+0
+  [deac9b47] LibCURL_jll v7.84.0+0
+  [29816b5a] LibSSH2_jll v1.10.2+0
+  [c8ffd9c3] MbedTLS_jll v2.28.2+0
+  [14a3606d] MozillaCACerts_jll v2022.10.11
+  [4536629a] OpenBLAS_jll v0.3.21+4
+  [05823500] OpenLibm_jll v0.8.1+0
+  [efcefdf7] PCRE2_jll v10.42.0+0
+  [bea87d4a] SuiteSparse_jll v5.10.1+6
+  [83775a58] Zlib_jll v1.2.13+0
+  [8e850b90] libblastrampoline_jll v5.8.0+0
+  [8e850ede] nghttp2_jll v1.48.0+0
+  [3f19e933] p7zip_jll v17.4.0+0
+Info Packages marked with ⌃ and ⌅ have new versions available, but those with ⌅ are restricted by compatibility constraints from upgrading. To see why use `status --outdated -m`
 </code></pre>
     
 <script

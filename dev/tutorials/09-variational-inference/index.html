@@ -893,16 +893,16 @@ vi(model, alg::VariationalInference, getq::Function, θ::AbstractArray)
 <p>and <code>logpdf</code> to compute the log-probability</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logpdf</span><span class="x">(</span><span class="n">q</span><span class="x">,</span> <span class="n">rand</span><span class="x">(</span><span class="n">q</span><span class="x">))</span>
 </code></pre></div></div>
-<pre><code>5.175607551862831
+<pre><code>5.091037132198697
 </code></pre>
 <p>Let's check the first and second moments of the data to see how our approximation compares to the point-estimates form the data:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">var</span><span class="x">(</span><span class="n">x</span><span class="x">),</span> <span class="n">mean</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
 </code></pre></div></div>
-<pre><code>(1.0225001600719719, -0.027900450605557185)
+<pre><code>(0.9785278394680044, -0.006560528402431126)
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="x">(</span><span class="n">mean</span><span class="x">(</span><span class="n">rand</span><span class="x">(</span><span class="n">q</span><span class="x">,</span> <span class="mi">1000</span><span class="x">);</span> <span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="x">)</span><span class="o">...</span><span class="x">,)</span>
 </code></pre></div></div>
-<pre><code>(1.0166331695234854, -0.02063562045151621)
+<pre><code>(0.9894666965134843, 0.0015528525885355482)
 </code></pre>
 <p>That's pretty close! But we're Bayesian so we're not interested in <em>just</em> matching the mean.
 Let's instead look the actual density <code>q</code>.</p>
@@ -1097,14 +1097,11 @@ itted
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">q0</span> <span class="o">=</span> <span class="n">Variational</span><span class="o">.</span><span class="n">meanfield</span><span class="x">(</span><span class="n">m</span><span class="x">)</span>
 <span class="n">typeof</span><span class="x">(</span><span class="n">q0</span><span class="x">)</span>
 </code></pre></div></div>
-<pre><code>Bijectors.MultivariateTransformed{DistributionsAD.TuringDiagMvNormal{Vector
-{Float64}, Vector{Float64}}, Bijectors.Stacked{Tuple{Bijectors.Inverse{Bije
-ctors.TruncatedBijector{0, Float64, Float64}, 0}, Bijectors.Identity{0}, Bi
-jectors.Identity{1}}, Vector{UnitRange{Int64}}}} (alias for Bijectors.Trans
-formedDistribution{DistributionsAD.TuringDiagMvNormal{Array{Float64, 1}, Ar
-ray{Float64, 1}}, Bijectors.Stacked{Tuple{Bijectors.Inverse{Bijectors.Trunc
-atedBijector{0, Float64, Float64}, 0}, Bijectors.Identity{0}, Bijectors.Ide
-ntity{1}}, Array{UnitRange{Int64}, 1}}, Distributions.ArrayLikeVariate{1}})
+<pre><code>MultivariateTransformed{TuringDiagMvNormal{Vector{Float64}, Vector{Float64}
+}, Stacked{Vector{Any}, Vector{UnitRange{Int64}}}} (alias for Bijectors.Tra
+nsformedDistribution{DistributionsAD.TuringDiagMvNormal{Array{Float64, 1}, 
+Array{Float64, 1}}, Bijectors.Stacked{Array{Any, 1}, Array{UnitRange{Int64}
+, 1}}, Distributions.ArrayLikeVariate{1}})
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">advi</span> <span class="o">=</span> <span class="n">ADVI</span><span class="x">(</span><span class="mi">10</span><span class="x">,</span> <span class="mi">10_000</span><span class="x">)</span>
 </code></pre></div></div>
@@ -1131,14 +1128,11 @@ as these are well-suited for problems with high-variance stochastic objectives, 
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">q</span> <span class="o">=</span> <span class="n">vi</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">advi</span><span class="x">,</span> <span class="n">q0</span><span class="x">;</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">opt</span><span class="x">)</span>
 <span class="n">typeof</span><span class="x">(</span><span class="n">q</span><span class="x">)</span>
 </code></pre></div></div>
-<pre><code>Bijectors.MultivariateTransformed{DistributionsAD.TuringDiagMvNormal{Vector
-{Float64}, Vector{Float64}}, Bijectors.Stacked{Tuple{Bijectors.Inverse{Bije
-ctors.TruncatedBijector{0, Float64, Float64}, 0}, Bijectors.Identity{0}, Bi
-jectors.Identity{1}}, Vector{UnitRange{Int64}}}} (alias for Bijectors.Trans
-formedDistribution{DistributionsAD.TuringDiagMvNormal{Array{Float64, 1}, Ar
-ray{Float64, 1}}, Bijectors.Stacked{Tuple{Bijectors.Inverse{Bijectors.Trunc
-atedBijector{0, Float64, Float64}, 0}, Bijectors.Identity{0}, Bijectors.Ide
-ntity{1}}, Array{UnitRange{Int64}, 1}}, Distributions.ArrayLikeVariate{1}})
+<pre><code>MultivariateTransformed{TuringDiagMvNormal{Vector{Float64}, Vector{Float64}
+}, Stacked{Vector{Any}, Vector{UnitRange{Int64}}}} (alias for Bijectors.Tra
+nsformedDistribution{DistributionsAD.TuringDiagMvNormal{Array{Float64, 1}, 
+Array{Float64, 1}}, Bijectors.Stacked{Array{Any, 1}, Array{UnitRange{Int64}
+, 1}}, Distributions.ArrayLikeVariate{1}})
 </code></pre>
 <p><em>Note: as mentioned before, we internally define a <code>update(q::TransformedDistribution{&lt;:TuringDiagMvNormal}, θ::AbstractVector)</code> method which takes in the current variational approximation <code>q</code> together with new parameters <code>z</code> and returns the new variational approximation. This is required so that we can actually update the <code>Distribution</code> object after each optimization step.</em></p>
 <p><em>Alternatively, we can instead provide the mapping $\theta \mapsto q_{\theta}$ directly together with initial parameters using the signature <code>vi(m, advi, getq, θ_init)</code> as mentioned earlier. We'll see an explicit example of this later on!</em></p>
@@ -1149,19 +1143,19 @@ ntity{1}}, Array{UnitRange{Int64}, 1}}, Distributions.ArrayLikeVariate{1}})
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">avg</span> <span class="o">=</span> <span class="n">vec</span><span class="x">(</span><span class="n">mean</span><span class="x">(</span><span class="n">z</span><span class="x">;</span> <span class="n">dims</span><span class="o">=</span><span class="mi">2</span><span class="x">))</span>
 </code></pre></div></div>
 <pre><code>13-element Vector{Float64}:
-  0.0005350545238934559
- -0.0008135365069472977
-  1.0015523412905114
- -0.0009126978807879137
-  0.0021597630352901014
-  0.0009049826709099784
- -0.0031479280243483588
- -0.0020332393740695974
- -0.001276358603668492
-  0.0003629987092139663
- -0.0002843656451937193
- -0.000525550043077333
-  0.002739324522866989
+  0.0005733072131103716
+  0.0039810294562006845
+  1.0005741750536699
+ -1.3972955668198678e-5
+ -0.0019714477109195523
+ -0.0011259605434684032
+  0.003869551279756123
+  0.00021219560679366594
+ -0.000935865845681252
+ -0.0012422460281743964
+ -0.002001693774264235
+ -0.00071811873852161
+ -0.0013369820613660516
 </code></pre>
 <p>The vector has the same ordering as the model, e.g. in this case <code>σ²</code> has index <code>1</code>, <code>intercept</code> has index <code>2</code> and <code>coefficients</code> has indices <code>3:12</code>. If  you forget or you might want to do something programmatically with the result, you can obtain the <code>sym → indices</code> mapping as follows:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">_</span><span class="x">,</span> <span class="n">sym2range</span> <span class="o">=</span> <span class="n">bijector</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="kt">Val</span><span class="x">(</span><span class="nb">true</span><span class="x">));</span>
@@ -1175,27 +1169,27 @@ s = UnitRange{Int64}[3:13])
 <span class="n">avg</span><span class="x">[</span><span class="n">union</span><span class="x">(</span><span class="n">sym2range</span><span class="x">[</span><span class="o">:</span><span class="n">σ²</span><span class="x">]</span><span class="o">...</span><span class="x">)]</span>
 </code></pre></div></div>
 <pre><code>1-element Vector{Float64}:
- 0.0005350545238934559
+ 0.0005733072131103716
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">avg</span><span class="x">[</span><span class="n">union</span><span class="x">(</span><span class="n">sym2range</span><span class="x">[</span><span class="o">:</span><span class="n">intercept</span><span class="x">]</span><span class="o">...</span><span class="x">)]</span>
 </code></pre></div></div>
 <pre><code>1-element Vector{Float64}:
- -0.0008135365069472977
+ 0.0039810294562006845
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">avg</span><span class="x">[</span><span class="n">union</span><span class="x">(</span><span class="n">sym2range</span><span class="x">[</span><span class="o">:</span><span class="n">coefficients</span><span class="x">]</span><span class="o">...</span><span class="x">)]</span>
 </code></pre></div></div>
 <pre><code>11-element Vector{Float64}:
-  1.0015523412905114
- -0.0009126978807879137
-  0.0021597630352901014
-  0.0009049826709099784
- -0.0031479280243483588
- -0.0020332393740695974
- -0.001276358603668492
-  0.0003629987092139663
- -0.0002843656451937193
- -0.000525550043077333
-  0.002739324522866989
+  1.0005741750536699
+ -1.3972955668198678e-5
+ -0.0019714477109195523
+ -0.0011259605434684032
+  0.003869551279756123
+  0.00021219560679366594
+ -0.000935865845681252
+ -0.0012422460281743964
+ -0.002001693774264235
+ -0.00071811873852161
+ -0.0013369820613660516
 </code></pre>
 <p><em>Note: as you can see, this is slightly awkward to work with at the moment. We'll soon add a better way of dealing with this.</em></p>
 <p>With a bit of work (this will be much easier in the future), we can also visualize the approximate marginals of the different variables, similar to <code>plot(chain)</code>:</p>
@@ -1252,36 +1246,36 @@ s = UnitRange{Int64}[3:13])
 <span class="x">]]</span>
 </code></pre></div></div>
 <pre><code>13-element Vector{Float64}:
-  1.0015523412905114
- -0.0009126978807879137
-  0.0021597630352901014
-  0.0009049826709099784
- -0.0031479280243483588
- -0.0020332393740695974
- -0.001276358603668492
-  0.0003629987092139663
- -0.0002843656451937193
- -0.000525550043077333
-  0.002739324522866989
- -0.0008135365069472977
-  0.0005350545238934559
+  1.0005741750536699
+ -1.3972955668198678e-5
+ -0.0019714477109195523
+ -0.0011259605434684032
+  0.003869551279756123
+  0.00021219560679366594
+ -0.000935865845681252
+ -0.0012422460281743964
+ -0.002001693774264235
+ -0.00071811873852161
+ -0.0013369820613660516
+  0.0039810294562006845
+  0.0005733072131103716
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mcmc_mean</span> <span class="o">=</span> <span class="n">mean</span><span class="x">(</span><span class="n">chain</span><span class="x">,</span> <span class="n">names</span><span class="x">(</span><span class="n">chain</span><span class="x">,</span> <span class="o">:</span><span class="n">parameters</span><span class="x">))[</span><span class="o">:</span><span class="x">,</span> <span class="mi">2</span><span class="x">]</span>
 </code></pre></div></div>
 <pre><code>13-element Vector{Float64}:
-  5.732706037579716e-12
- -2.556022081637006e-9
-  0.9999999814980293
-  3.0802377071399787e-8
- -5.1838020679090385e-8
-  2.3696412508411026e-9
-  6.130915423856005e-8
-  8.232734157670126e-8
- -2.399389898268805e-8
- -2.4730963638189145e-8
- -1.0031499850652666e-8
-  2.1293919013467664e-8
- -7.342046410350066e-8
+  2.2859004223396092e-11
+ -4.365634719043165e-9
+  1.0000000096322366
+  5.032160834778636e-8
+  1.678694705786366e-7
+  7.995072585215324e-9
+ -3.050894541177501e-8
+ -1.526192356929311e-7
+  4.1906715229134646e-8
+  2.639198917215915e-8
+  3.979264843596925e-9
+  8.211502841093717e-8
+  1.7877535016488787e-8
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="x">(</span><span class="n">mcmc_mean</span><span class="x">;</span> <span class="n">xticks</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="x">(</span><span class="n">mcmc_mean</span><span class="x">),</span> <span class="n">linestyle</span><span class="o">=:</span><span class="n">dot</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"NUTS"</span><span class="x">)</span>
 <span class="n">plot!</span><span class="x">(</span><span class="n">vi_mean</span><span class="x">;</span> <span class="n">linestyle</span><span class="o">=:</span><span class="n">dot</span><span class="x">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"VI"</span><span class="x">)</span>
@@ -1290,7 +1284,7 @@ s = UnitRange{Int64}[3:13])
 <p>One thing we can look at is simply the squared error between the means:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sum</span><span class="x">(</span><span class="n">abs2</span><span class="x">,</span> <span class="n">mcmc_mean</span> <span class="o">.-</span> <span class="n">vi_mean</span><span class="x">)</span>
 </code></pre></div></div>
-<pre><code>1.998818459237037
+<pre><code>2.005136671712151
 </code></pre>
 <p>That looks pretty good! But let's see how the predictive distributions looks for the two.</p>
 <h2 id="prediction">Prediction</h2>
@@ -1396,13 +1390,13 @@ Test set:
     OLS loss: </span><span class="si">$</span><span class="s">ols_loss2"</span><span class="x">)</span>
 </code></pre></div></div>
 <pre><code>Training set:
-    VI loss: 0.000781547968746938
-    Bayes loss: 2.0859665717821778e-14
+    VI loss: 0.0013757680639403039
+    Bayes loss: 9.181568032817367e-14
     OLS loss: 3.0709261248930093
 Test set: 
-    VI loss: 0.0014552351708031945
-    Bayes loss: 2.414747877429496e-13
-    OLS loss: 27.094813070760562
+    VI loss: 0.0014199510514292773
+    Bayes loss: 1.3432106952596584e-12
+    OLS loss: 27.09481307076057
 </code></pre>
 <p>Interestingly the squared difference between true- and mean-prediction on the test-set is actually <em>better</em> for the mean-field variational posterior than for the &quot;true&quot; posterior obtained by MCMC sampling using <code>NUTS</code>. But, as Bayesians, we know that the mean doesn't tell the entire story. One quick check is to look at the mean predictions ± standard deviation of the two different approaches:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">z</span> <span class="o">=</span> <span class="n">rand</span><span class="x">(</span><span class="n">q</span><span class="x">,</span> <span class="mi">1000</span><span class="x">);</span>
@@ -1459,14 +1453,14 @@ m: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 )
 </code></pre>
 <p><code>bijector(model::Turing.Model)</code> is defined by Turing, and will return a <code>bijector</code> which takes you from the space of the latent variables to the real space. In this particular case, this is a mapping <code>((0, ∞) × ℝ × ℝ¹⁰) → ℝ¹²</code>. We're interested in using a normal distribution as a base-distribution and transform samples to the latent space, thus we need the inverse mapping from the reals to the latent space:</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">to_constrained</span> <span class="o">=</span> <span class="n">inv</span><span class="x">(</span><span class="n">bijector</span><span class="x">(</span><span class="n">m</span><span class="x">));</span>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">to_constrained</span> <span class="o">=</span> <span class="n">inverse</span><span class="x">(</span><span class="n">bijector</span><span class="x">(</span><span class="n">m</span><span class="x">));</span>
 </code></pre></div></div>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span><span class="nf"> getq</span><span class="x">(</span><span class="n">θ</span><span class="x">)</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">length</span><span class="x">(</span><span class="n">θ</span><span class="x">)</span> <span class="o">÷</span> <span class="mi">2</span>
     <span class="n">A</span> <span class="o">=</span> <span class="nd">@inbounds</span> <span class="n">θ</span><span class="x">[</span><span class="mi">1</span><span class="o">:</span><span class="n">d</span><span class="x">]</span>
     <span class="n">b</span> <span class="o">=</span> <span class="nd">@inbounds</span> <span class="n">θ</span><span class="x">[(</span><span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="x">)</span><span class="o">:</span><span class="x">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">d</span><span class="x">)]</span>
 
-    <span class="n">b</span> <span class="o">=</span> <span class="n">to_constrained</span> <span class="n">∘</span> <span class="n">Shift</span><span class="x">(</span><span class="n">b</span><span class="x">;</span> <span class="n">dim</span><span class="o">=</span><span class="kt">Val</span><span class="x">(</span><span class="mi">1</span><span class="x">))</span> <span class="n">∘</span> <span class="n">Scale</span><span class="x">(</span><span class="n">exp</span><span class="o">.</span><span class="x">(</span><span class="n">A</span><span class="x">);</span> <span class="n">dim</span><span class="o">=</span><span class="kt">Val</span><span class="x">(</span><span class="mi">1</span><span class="x">))</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">to_constrained</span> <span class="n">∘</span> <span class="n">Shift</span><span class="x">(</span><span class="n">b</span><span class="x">)</span> <span class="n">∘</span> <span class="n">Scale</span><span class="x">(</span><span class="n">exp</span><span class="o">.</span><span class="x">(</span><span class="n">A</span><span class="x">))</span>
 
     <span class="k">return</span> <span class="n">transformed</span><span class="x">(</span><span class="n">base_dist</span><span class="x">,</span> <span class="n">b</span><span class="x">)</span>
 <span class="k">end</span>
@@ -1502,7 +1496,7 @@ m: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     <span class="n">D</span> <span class="o">=</span> <span class="kt">Diagonal</span><span class="x">(</span><span class="n">diag</span><span class="x">(</span><span class="n">L</span><span class="x">))</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">L</span> <span class="o">-</span> <span class="n">D</span> <span class="o">+</span> <span class="n">exp</span><span class="x">(</span><span class="n">D</span><span class="x">)</span> <span class="c"># exp for Diagonal is the same as exponentiating only the diagonal entries</span>
 
-    <span class="n">b</span> <span class="o">=</span> <span class="n">to_constrained</span> <span class="n">∘</span> <span class="n">Shift</span><span class="x">(</span><span class="n">b</span><span class="x">;</span> <span class="n">dim</span><span class="o">=</span><span class="kt">Val</span><span class="x">(</span><span class="mi">1</span><span class="x">))</span> <span class="n">∘</span> <span class="n">Scale</span><span class="x">(</span><span class="n">A</span><span class="x">;</span> <span class="n">dim</span><span class="o">=</span><span class="kt">Val</span><span class="x">(</span><span class="mi">1</span><span class="x">))</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">to_constrained</span> <span class="n">∘</span> <span class="n">Shift</span><span class="x">(</span><span class="n">b</span><span class="x">)</span> <span class="n">∘</span> <span class="n">Scale</span><span class="x">(</span><span class="n">A</span><span class="x">)</span>
 
     <span class="k">return</span> <span class="n">transformed</span><span class="x">(</span><span class="n">base_dist</span><span class="x">,</span> <span class="n">b</span><span class="x">)</span>
 <span class="k">end</span>
@@ -1518,22 +1512,22 @@ m: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 <span class="x">);</span>
 </code></pre></div></div>
 <p>Let's have a look at the learned covariance matrix:</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">=</span> <span class="n">q_full_normal</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">ts</span><span class="x">[</span><span class="mi">1</span><span class="x">]</span><span class="o">.</span><span class="n">a</span>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">=</span> <span class="n">q_full_normal</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">a</span>
 </code></pre></div></div>
 <pre><code>13×13 LinearAlgebra.LowerTriangular{Float64, Matrix{Float64}}:
-  0.315351       ⋅          …    ⋅            ⋅           ⋅ 
-  0.000804197   0.0161241        ⋅            ⋅           ⋅ 
- -0.00904934    0.00770531       ⋅            ⋅           ⋅ 
-  0.00103201   -0.00716426       ⋅            ⋅           ⋅ 
-  0.00293685   -0.00564296       ⋅            ⋅           ⋅ 
-  0.00587384   -0.0104423   …    ⋅            ⋅           ⋅ 
-  0.00793358    0.00389553       ⋅            ⋅           ⋅ 
-  0.00144795   -0.0043923        ⋅            ⋅           ⋅ 
- -0.00244058    0.00571685       ⋅            ⋅           ⋅ 
- -0.0056704     0.00614071       ⋅            ⋅           ⋅ 
- -0.00322689    0.00837616  …   0.0225989     ⋅           ⋅ 
-  0.0155249    -0.0321327      -0.0180487    0.0160955    ⋅ 
- -0.0173572     0.0265413       0.00392911  -0.00621344  0.0158986
+  0.317743      ⋅           …    ⋅           ⋅           ⋅ 
+ -0.0029663    0.0165384         ⋅           ⋅           ⋅ 
+ -0.0051169   -0.00180893        ⋅           ⋅           ⋅ 
+  0.00343124   0.000239442       ⋅           ⋅           ⋅ 
+  0.00517496  -0.00571897        ⋅           ⋅           ⋅ 
+  0.00191448  -0.00123951   …    ⋅           ⋅           ⋅ 
+  0.00288242   0.00798558        ⋅           ⋅           ⋅ 
+  0.00240556   0.00653815        ⋅           ⋅           ⋅ 
+ -0.00728202  -0.000471385       ⋅           ⋅           ⋅ 
+ -0.00426615   0.000968262       ⋅           ⋅           ⋅ 
+ -0.00221938   0.00148355   …   0.0235466    ⋅           ⋅ 
+  0.0142979   -0.013414        -0.0198216   0.0173049    ⋅ 
+ -0.0192627   -0.000503378      0.00284103  0.00188512  0.0164432
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">heatmap</span><span class="x">(</span><span class="n">cov</span><span class="x">(</span><span class="n">A</span> <span class="o">*</span> <span class="n">A</span><span class="err">'</span><span class="x">))</span>
 </code></pre></div></div>
@@ -1579,13 +1573,13 @@ Test set:
     OLS loss: </span><span class="si">$</span><span class="s">ols_loss2"</span><span class="x">)</span>
 </code></pre></div></div>
 <pre><code>Training set:
-    VI loss: 0.000781547968746938
-    Bayes loss: 2.0859665717821778e-14
+    VI loss: 0.0013757680639403039
+    Bayes loss: 9.181568032817367e-14
     OLS loss: 3.0709261248930093
 Test set: 
-    VI loss: 0.0014552351708031945
-    Bayes loss: 2.414747877429496e-13
-    OLS loss: 27.094813070760562
+    VI loss: 0.0014199510514292773
+    Bayes loss: 1.3432106952596584e-12
+    OLS loss: 27.09481307076057
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">z</span> <span class="o">=</span> <span class="n">rand</span><span class="x">(</span><span class="n">q_mf_normal</span><span class="x">,</span> <span class="mi">1000</span><span class="x">);</span>
 <span class="n">preds</span> <span class="o">=</span> <span class="n">mapreduce</span><span class="x">(</span><span class="n">hcat</span><span class="x">,</span> <span class="n">eachcol</span><span class="x">(</span><span class="n">z</span><span class="x">))</span> <span class="k">do</span> <span class="n">zi</span>
@@ -1655,68 +1649,69 @@ Test set:
 TuringTutorials.weave(&quot;09-variational-inference&quot;, &quot;09_variational-inference.jmd&quot;)
 </code></pre>
 <p>Computer Information:</p>
-<pre><code>Julia Version 1.6.7
-Commit 3b76b25b64 (2022-07-19 15:11 UTC)
+<pre><code>Julia Version 1.9.2
+Commit e4ee485e909 (2023-07-05 09:39 UTC)
 Platform Info:
-  OS: Linux (x86_64-pc-linux-gnu)
-  CPU: AMD EPYC 7502 32-Core Processor
+  OS: Linux (x86_64-linux-gnu)
+  CPU: 128 × AMD EPYC 7502 32-Core Processor
   WORD_SIZE: 64
   LIBM: libopenlibm
-  LLVM: libLLVM-11.0.1 (ORCJIT, znver2)
+  LLVM: libLLVM-14.0.6 (ORCJIT, znver2)
+  Threads: 1 on 16 virtual cores
 Environment:
   JULIA_CPU_THREADS = 16
-  BUILDKITE_PLUGIN_JULIA_CACHE_DIR = /cache/julia-buildkite-plugin
   JULIA_DEPOT_PATH = /cache/julia-buildkite-plugin/depots/7aa0085e-79a4-45f3-a5bd-9743c91cf3da
 
 </code></pre>
 <p>Package Information:</p>
-<pre><code>      Status `/cache/build/default-amdci4-6/julialang/turingtutorials/tutorials/09-variational-inference/Project.toml`
-  [76274a88] Bijectors v0.10.8
-  [b0b7db55] ComponentArrays v0.13.10
-  [1a297f60] FillArrays v1.2.0
-  [587475ba] Flux v0.13.16
+<pre><code>Status `/cache/build/default-amdci4-6/julialang/turingtutorials/tutorials/09-variational-inference/Project.toml`
+⌅ [76274a88] Bijectors v0.12.8
+  [b0b7db55] ComponentArrays v0.13.14
+⌅ [1a297f60] FillArrays v1.0.0
+  [587475ba] Flux v0.13.17
   [38e38edf] GLM v1.8.3
   [442fdcdd] Measures v0.3.2
   [ce6b1742] RDatasets v0.7.7
   [f3b207a7] StatsPlots v0.15.5
-  [fce5fe82] Turing v0.22.0
+  [fce5fe82] Turing v0.26.2
   [3a884ed6] UnPack v1.0.2
   [37e2e46d] LinearAlgebra
   [9a3f8284] Random
+Info Packages marked with ⌅ have new versions available but compatibility constraints restrict them from upgrading. To see why use `status --outdated`
 </code></pre>
 <p>And the full manifest:</p>
-<pre><code>      Status `/cache/build/default-amdci4-6/julialang/turingtutorials/tutorials/09-variational-inference/Manifest.toml`
-  [47edcb42] ADTypes v0.1.3
-  [621f4979] AbstractFFTs v1.3.1
-  [80f14c24] AbstractMCMC v4.2.0
-  [7a57a42e] AbstractPPL v0.5.4
+<pre><code>Status `/cache/build/default-amdci4-6/julialang/turingtutorials/tutorials/09-variational-inference/Manifest.toml`
+  [47edcb42] ADTypes v0.1.5
+  [621f4979] AbstractFFTs v1.4.0
+  [80f14c24] AbstractMCMC v4.4.2
+⌅ [7a57a42e] AbstractPPL v0.5.4
   [1520ce14] AbstractTrees v0.4.4
   [79e6a3ab] Adapt v3.6.2
-  [0bf59076] AdvancedHMC v0.3.6
-  [5b7e9947] AdvancedMH v0.6.8
-  [576499cb] AdvancedPS v0.3.8
-  [b5ca4192] AdvancedVI v0.1.6
+  [0bf59076] AdvancedHMC v0.4.6
+  [5b7e9947] AdvancedMH v0.7.4
+  [576499cb] AdvancedPS v0.4.3
+  [b5ca4192] AdvancedVI v0.2.4
   [dce04be8] ArgCheck v2.3.0
   [7d9fca2a] Arpack v0.5.4
-  [4fba245c] ArrayInterface v7.4.8
+  [4fba245c] ArrayInterface v7.4.11
   [a9b6321e] Atomix v0.1.0
   [13072b0f] AxisAlgorithms v1.0.1
   [39de3d68] AxisArrays v0.4.6
   [ab4f0b2a] BFloat16s v0.4.2
   [198e06fe] BangBang v0.3.39
   [9718e550] Baselet v0.1.1
-  [76274a88] Bijectors v0.10.8
+⌅ [76274a88] Bijectors v0.12.8
   [d1d4a3ce] BitFlags v0.1.7
   [fa961155] CEnum v0.4.2
   [336ed68f] CSV v0.10.11
-  [052768ef] CUDA v4.3.2
+  [052768ef] CUDA v4.4.0
   [1af6417a] CUDA_Runtime_Discovery v0.2.2
   [49dc2e85] Calculus v0.5.1
   [324d7699] CategoricalArrays v0.10.8
-  [082447d4] ChainRules v1.51.0
+  [082447d4] ChainRules v1.52.0
   [d360d2e6] ChainRulesCore v1.16.0
-  [9e997f8a] ChangesOfVariables v0.1.7
-  [aaaa29a8] Clustering v0.15.2
+  [9e997f8a] ChangesOfVariables v0.1.8
+  [aaaa29a8] Clustering v0.15.3
   [944b1d66] CodecZlib v0.7.1
   [35d6a980] ColorSchemes v3.21.0
   [3da002f7] ColorTypes v0.11.4
@@ -1725,8 +1720,8 @@ Environment:
   [861a8166] Combinatorics v1.0.2
   [38540f10] CommonSolve v0.2.4
   [bbf7d656] CommonSubexpressions v0.3.0
-  [34da2185] Compat v4.6.1
-  [b0b7db55] ComponentArrays v0.13.10
+  [34da2185] Compat v4.7.0
+  [b0b7db55] ComponentArrays v0.13.14
   [a33af91c] CompositionsBase v0.1.2
   [f0e56b4a] ConcurrentUtilities v2.2.0
   [88cd18e8] ConsoleProgressMonitor v0.1.2
@@ -1735,44 +1730,46 @@ Environment:
   [d38c429a] Contour v0.6.2
   [a8cc5b0e] Crayons v4.1.1
   [9a962f9c] DataAPI v1.15.0
-  [a93c6f00] DataFrames v1.5.0
-  [864edb3b] DataStructures v0.18.13
+⌃ [a93c6f00] DataFrames v1.5.0
+  [864edb3b] DataStructures v0.18.14
   [e2d170a0] DataValueInterfaces v1.0.0
   [244e2a9f] DefineSingletons v0.1.2
+  [8bb1440f] DelimitedFiles v1.9.1
   [b429d917] DensityInterface v0.4.0
   [163ba53b] DiffResults v1.1.0
   [b552c78f] DiffRules v1.15.1
-  [b4f34e82] Distances v0.9.2
-  [31c24e10] Distributions v0.25.95
+  [b4f34e82] Distances v0.10.8
+  [31c24e10] Distributions v0.25.98
   [ced4e74d] DistributionsAD v0.6.49
   [ffbed154] DocStringExtensions v0.9.3
   [fa6b7ba4] DualNumbers v0.6.8
-  [366bfd00] DynamicPPL v0.21.4
+⌃ [366bfd00] DynamicPPL v0.23.0
   [cad2338a] EllipticalSliceSampling v1.1.0
   [4e289a0a] EnumX v1.0.4
+  [460bff9d] ExceptionUnwrapping v0.1.9
   [e2ba6199] ExprTools v0.1.9
   [c87230d0] FFMPEG v0.4.1
-  [7a1cc6ca] FFTW v1.7.0
+  [7a1cc6ca] FFTW v1.7.1
   [cc61a311] FLoops v0.2.1
   [b9860ae5] FLoopsBase v0.1.1
   [5789e2e9] FileIO v1.16.1
   [48062228] FilePathsBase v0.9.20
-  [1a297f60] FillArrays v1.2.0
+⌅ [1a297f60] FillArrays v1.0.0
   [53c48c17] FixedPointNumbers v0.8.4
-  [587475ba] Flux v0.13.16
+  [587475ba] Flux v0.13.17
   [59287772] Formatting v0.4.2
   [f6369f11] ForwardDiff v0.10.35
   [069b7b12] FunctionWrappers v1.1.3
   [77dc65aa] FunctionWrappersWrappers v0.1.3
-  [d9f16b24] Functors v0.3.0
+⌃ [d9f16b24] Functors v0.4.4
   [38e38edf] GLM v1.8.3
-  [0c68f7d7] GPUArrays v8.7.1
+  [0c68f7d7] GPUArrays v8.8.1
   [46192b85] GPUArraysCore v0.1.5
-  [61eb1bfa] GPUCompiler v0.20.3
+  [61eb1bfa] GPUCompiler v0.21.3
   [28b8d3ca] GR v0.72.7
   [42e2da0e] Grisu v1.0.2
-  [cd3eb016] HTTP v1.9.6
-  [34004b35] HypergeometricFunctions v0.3.17
+⌃ [cd3eb016] HTTP v1.9.8
+  [34004b35] HypergeometricFunctions v0.3.18
   [7869d1d1] IRTools v0.4.10
   [615f187c] IfElse v0.1.1
   [22cec73e] InitialValues v0.3.1
@@ -1780,29 +1777,30 @@ Environment:
   [505f98c9] InplaceOps v0.3.0
   [a98d9a8b] Interpolations v0.14.7
   [8197267c] IntervalSets v0.7.4
-  [3587e190] InverseFunctions v0.1.9
+  [3587e190] InverseFunctions v0.1.10
   [41ab1584] InvertedIndices v1.3.0
   [92d709cd] IrrationalConstants v0.2.2
-  [c8e1da08] IterTools v1.4.0
+  [c8e1da08] IterTools v1.8.0
   [82899510] IteratorInterfaceExtensions v1.0.0
   [1019f520] JLFzf v0.1.5
   [692b3bcd] JLLWrappers v1.4.1
   [682c06a0] JSON v0.21.4
   [b14d175d] JuliaVariables v0.2.4
-  [63c18a36] KernelAbstractions v0.9.4
+  [63c18a36] KernelAbstractions v0.9.6
   [5ab0869b] KernelDensity v0.6.7
-  [929cbde3] LLVM v5.2.0
+  [929cbde3] LLVM v6.1.0
   [8ac3fa9e] LRUCache v1.4.1
   [b964fa9f] LaTeXStrings v1.3.0
   [23fbe1c1] Latexify v0.16.1
   [50d2b5c4] Lazy v0.15.1
   [1d6d02ad] LeftChildRightSiblingTrees v0.2.0
-  [6f1fad26] Libtask v0.7.0
-  [6fdf6af0] LogDensityProblems v1.0.3
+  [6f1fad26] Libtask v0.8.6
+  [6fdf6af0] LogDensityProblems v2.1.1
+  [996a588d] LogDensityProblemsAD v1.5.0
   [2ab3a3ac] LogExpFunctions v0.3.24
-  [e6f89c97] LoggingExtras v0.4.9
-  [c7f686f2] MCMCChains v5.7.1
-  [be115224] MCMCDiagnosticTools v0.2.6
+  [e6f89c97] LoggingExtras v1.0.0
+  [c7f686f2] MCMCChains v6.0.3
+  [be115224] MCMCDiagnosticTools v0.3.4
   [e80e1ace] MLJModelInterface v1.8.0
   [d8e11817] MLStyle v0.4.17
   [f1d291b0] MLUtils v0.4.3
@@ -1814,7 +1812,7 @@ Environment:
   [e1d29d7a] Missings v1.1.0
   [78c3b35d] Mocking v0.7.7
   [6f286f6a] MultivariateStats v0.10.2
-  [872c559c] NNlib v0.8.21
+⌅ [872c559c] NNlib v0.8.21
   [a00861dc] NNlibCUDA v0.2.7
   [77ba4419] NaNMath v1.0.2
   [71a1bf82] NameResolution v0.1.5
@@ -1822,13 +1820,13 @@ Environment:
   [c020b1a1] NaturalSort v1.0.0
   [b8a86587] NearestNeighbors v0.4.13
   [510215fc] Observables v0.5.4
-  [6fe1bfb0] OffsetArrays v1.12.9
+  [6fe1bfb0] OffsetArrays v1.12.10
   [0b1bfda6] OneHotArrays v0.2.4
   [4d8831e6] OpenSSL v1.4.1
-  [3bd65402] Optimisers v0.2.15
+  [3bd65402] Optimisers v0.2.18
   [bac558e1] OrderedCollections v1.6.0
   [90014a1f] PDMats v0.11.17
-  [69de0a69] Parsers v2.7.0
+  [69de0a69] Parsers v2.7.1
   [b98c9c47] Pipe v1.3.0
   [ccf2f8ad] PlotThemes v3.1.0
   [995b91a9] PlotUtils v1.3.5
@@ -1841,7 +1839,7 @@ Environment:
   [33c8b6b6] ProgressLogging v0.1.4
   [92933f4c] ProgressMeter v1.7.2
   [1fd47b50] QuadGK v2.8.2
-  [df47a6cb] RData v0.8.3
+⌅ [df47a6cb] RData v0.8.3
   [ce6b1742] RDatasets v0.7.7
   [74087812] Random123 v1.6.1
   [e6cf234a] RandomNumbers v1.5.3
@@ -1854,12 +1852,11 @@ Environment:
   [189a3867] Reexport v1.2.2
   [05181044] RelocatableFolders v1.0.0
   [ae029012] Requires v1.3.0
-  [37e2e3b7] ReverseDiff v1.14.6
   [79098fc4] Rmath v0.7.1
   [f2b01f46] Roots v2.0.17
   [7e49a35a] RuntimeGeneratedFunctions v0.5.11
   [0bca4576] SciMLBase v1.93.0
-  [c0aeaf25] SciMLOperators v0.3.1
+  [c0aeaf25] SciMLOperators v0.3.3
   [30f210dd] ScientificTypesBase v3.0.0
   [6c6a2e73] Scratch v1.2.0
   [91c51154] SentinelArrays v1.4.0
@@ -1869,17 +1866,18 @@ Environment:
   [992d4aef] Showoff v1.0.3
   [777ac1f9] SimpleBufferStream v1.1.0
   [699a6c99] SimpleTraits v0.9.4
+  [ce78b400] SimpleUnPack v1.1.0
   [66db9d55] SnoopPrecompile v1.0.3
   [a2af1166] SortingAlgorithms v1.1.1
-  [276daf66] SpecialFunctions v2.2.0
+  [276daf66] SpecialFunctions v2.3.0
   [171d559e] SplittablesBase v0.1.15
   [aedffcd0] Static v0.8.7
   [0d7ed370] StaticArrayInterface v1.4.0
-  [90137ffa] StaticArrays v1.5.26
+  [90137ffa] StaticArrays v1.6.0
   [1e83bf80] StaticArraysCore v1.4.0
   [64bff920] StatisticalTraits v3.2.0
   [82ae8749] StatsAPI v1.6.0
-  [2913bbd2] StatsBase v0.33.21
+  [2913bbd2] StatsBase v0.34.0
   [4c63d2b9] StatsFuns v1.3.0
   [3eaba693] StatsModels v0.7.2
   [f3b207a7] StatsPlots v0.15.5
@@ -1893,38 +1891,38 @@ Environment:
   [5d786b92] TerminalLoggers v0.1.7
   [f269a46b] TimeZones v1.10.0
   [a759f4b9] TimerOutputs v0.5.23
-  [9f7883ad] Tracker v0.2.25
+  [9f7883ad] Tracker v0.2.26
   [3bb67fe8] TranscodingStreams v0.9.13
-  [28d57a85] Transducers v0.4.76
+  [28d57a85] Transducers v0.4.77
   [410a4b4d] Tricks v0.1.7
-  [781d530d] TruncatedStacktraces v1.3.0
-  [fce5fe82] Turing v0.22.0
+  [781d530d] TruncatedStacktraces v1.4.0
+  [fce5fe82] Turing v0.26.2
   [5c2747f8] URIs v1.4.2
   [3a884ed6] UnPack v1.0.2
   [1cfade01] UnicodeFun v0.4.1
-  [1986cc42] Unitful v1.14.0
+  [1986cc42] Unitful v1.15.0
   [45397f5d] UnitfulLatexify v1.6.3
   [013be700] UnsafeAtomics v0.2.1
-  [d80eeb9a] UnsafeAtomicsLLVM v0.1.2
-  [41fe7b60] Unzip v0.1.2
+  [d80eeb9a] UnsafeAtomicsLLVM v0.1.3
+  [41fe7b60] Unzip v0.2.0
   [ea10d353] WeakRefStrings v1.4.2
   [cc8bc4a8] Widgets v0.6.6
   [efce3f68] WoodburyMatrices v0.5.5
   [76eceee3] WorkerUtilities v1.6.1
   [e88e6eb3] Zygote v0.6.62
   [700de1a5] ZygoteRules v0.2.3
-  [02a925ec] cuDNN v1.0.4
-  [68821587] Arpack_jll v3.5.0+3
+  [02a925ec] cuDNN v1.1.0
+⌅ [68821587] Arpack_jll v3.5.1+1
   [6e34b625] Bzip2_jll v1.0.8+0
   [4ee394cb] CUDA_Driver_jll v0.5.0+1
   [76a88914] CUDA_Runtime_jll v0.6.0+0
-  [62b44479] CUDNN_jll v8.8.1+0
+  [62b44479] CUDNN_jll v8.9.2+0
   [83423d85] Cairo_jll v1.16.1+1
-  [2e619515] Expat_jll v2.4.8+0
+  [2e619515] Expat_jll v2.5.0+0
   [b22a6f82] FFMPEG_jll v4.4.2+2
   [f5851436] FFTW_jll v3.3.10+0
   [a3f928ae] Fontconfig_jll v2.13.93+0
-  [d7e528f0] FreeType2_jll v2.10.4+0
+  [d7e528f0] FreeType2_jll v2.13.1+0
   [559328eb] FriBidi_jll v1.0.10+0
   [0656b61e] GLFW_jll v3.3.8+0
   [d2c73de3] GR_jll v0.72.7+0
@@ -1936,20 +1934,20 @@ Environment:
   [aacddb02] JpegTurbo_jll v2.1.91+0
   [c1c5ebd0] LAME_jll v3.100.1+0
   [88015f11] LERC_jll v3.0.0+1
-  [dad2f222] LLVMExtra_jll v0.0.22+0
+  [dad2f222] LLVMExtra_jll v0.0.23+0
   [1d63c593] LLVMOpenMP_jll v15.0.4+0
   [dd4b983a] LZO_jll v2.10.1+0
-  [e9f186c6] Libffi_jll v3.2.2+1
+⌅ [e9f186c6] Libffi_jll v3.2.2+1
   [d4300ac3] Libgcrypt_jll v1.8.7+0
   [7e76a0d4] Libglvnd_jll v1.6.0+0
   [7add5ba3] Libgpg_error_jll v1.42.0+0
   [94ce4f54] Libiconv_jll v1.16.1+2
   [4b2f31a3] Libmount_jll v2.35.0+0
-  [89763e89] Libtiff_jll v4.4.0+0
+⌅ [89763e89] Libtiff_jll v4.4.0+0
   [38a345b3] Libuuid_jll v2.36.0+0
-  [856f044c] MKL_jll v2022.2.0+0
+  [856f044c] MKL_jll v2023.1.0+0
   [e7412a2a] Ogg_jll v1.3.5+1
-  [458c3c95] OpenSSL_jll v1.1.21+0
+⌅ [458c3c95] OpenSSL_jll v1.1.21+0
   [efe28fd5] OpenSpecFun_jll v0.5.5+0
   [91d4177d] Opus_jll v1.3.2+0
   [30392449] Pixman_jll v0.42.2+0
@@ -1959,29 +1957,29 @@ Environment:
   [2381bf8a] Wayland_protocols_jll v1.25.0+0
   [02c8fc9c] XML2_jll v2.10.3+0
   [aed1982a] XSLT_jll v1.1.34+0
-  [4f6342f7] Xorg_libX11_jll v1.6.9+4
-  [0c0b7dd1] Xorg_libXau_jll v1.0.9+4
+  [4f6342f7] Xorg_libX11_jll v1.8.6+0
+  [0c0b7dd1] Xorg_libXau_jll v1.0.11+0
   [935fb764] Xorg_libXcursor_jll v1.2.0+4
-  [a3789734] Xorg_libXdmcp_jll v1.1.3+4
+  [a3789734] Xorg_libXdmcp_jll v1.1.4+0
   [1082639a] Xorg_libXext_jll v1.3.4+4
   [d091e8ba] Xorg_libXfixes_jll v5.0.3+4
   [a51aa0fd] Xorg_libXi_jll v1.7.10+4
   [d1454406] Xorg_libXinerama_jll v1.1.4+4
   [ec84b674] Xorg_libXrandr_jll v1.5.2+4
   [ea2f1a96] Xorg_libXrender_jll v0.9.10+4
-  [14d82f49] Xorg_libpthread_stubs_jll v0.1.0+3
-  [c7cfdc94] Xorg_libxcb_jll v1.13.0+3
-  [cc61e674] Xorg_libxkbfile_jll v1.1.0+4
+  [14d82f49] Xorg_libpthread_stubs_jll v0.1.1+0
+  [c7cfdc94] Xorg_libxcb_jll v1.15.0+0
+  [cc61e674] Xorg_libxkbfile_jll v1.1.2+0
   [12413925] Xorg_xcb_util_image_jll v0.4.0+1
   [2def613f] Xorg_xcb_util_jll v0.4.0+1
   [975044d2] Xorg_xcb_util_keysyms_jll v0.4.0+1
   [0d47668e] Xorg_xcb_util_renderutil_jll v0.3.9+1
   [c22f9ab0] Xorg_xcb_util_wm_jll v0.4.1+1
-  [35661453] Xorg_xkbcomp_jll v1.4.2+4
-  [33bec58e] Xorg_xkeyboard_config_jll v2.27.0+4
-  [c5fb5394] Xorg_xtrans_jll v1.4.0+3
+  [35661453] Xorg_xkbcomp_jll v1.4.6+0
+  [33bec58e] Xorg_xkeyboard_config_jll v2.39.0+0
+  [c5fb5394] Xorg_xtrans_jll v1.5.0+0
   [3161d3a3] Zstd_jll v1.5.5+0
-  [214eeab7] fzf_jll v0.29.0+0
+⌅ [214eeab7] fzf_jll v0.29.0+0
   [a4ae2306] libaom_jll v3.4.0+0
   [0ac62f75] libass_jll v0.15.1+0
   [f638f0a6] libfdk_aac_jll v2.0.2+0
@@ -1990,51 +1988,54 @@ Environment:
   [1270edf5] x264_jll v2021.5.5+0
   [dfaa095f] x265_jll v3.5.0+0
   [d8fb68d0] xkbcommon_jll v1.4.1+0
-  [0dad84c5] ArgTools
+  [0dad84c5] ArgTools v1.1.1
   [56f22d72] Artifacts
   [2a0f44e3] Base64
   [ade2ca70] Dates
-  [8bb1440f] DelimitedFiles
   [8ba89e20] Distributed
-  [f43a241f] Downloads
+  [f43a241f] Downloads v1.6.0
+  [7b1f6079] FileWatching
   [9fa8497b] Future
   [b77e0a4c] InteractiveUtils
   [4af54fe1] LazyArtifacts
-  [b27032c2] LibCURL
+  [b27032c2] LibCURL v0.6.3
   [76f85450] LibGit2
   [8f399da3] Libdl
   [37e2e46d] LinearAlgebra
   [56ddb016] Logging
   [d6f4376e] Markdown
   [a63ad114] Mmap
-  [ca575930] NetworkOptions
-  [44cfe95a] Pkg
+  [ca575930] NetworkOptions v1.2.0
+  [44cfe95a] Pkg v1.9.2
   [de0858da] Printf
   [3fa0cd96] REPL
   [9a3f8284] Random
-  [ea8e919c] SHA
+  [ea8e919c] SHA v0.7.0
   [9e88b42a] Serialization
   [1a1011a3] SharedArrays
   [6462fe0b] Sockets
   [2f01184e] SparseArrays
-  [10745b16] Statistics
+  [10745b16] Statistics v1.9.0
   [4607b0f0] SuiteSparse
-  [fa267f1f] TOML
-  [a4e569a6] Tar
+  [fa267f1f] TOML v1.0.3
+  [a4e569a6] Tar v1.10.0
   [8dfed614] Test
   [cf7118a7] UUIDs
   [4ec0a83e] Unicode
-  [e66e0078] CompilerSupportLibraries_jll
-  [deac9b47] LibCURL_jll
-  [29816b5a] LibSSH2_jll
-  [c8ffd9c3] MbedTLS_jll
-  [14a3606d] MozillaCACerts_jll
-  [4536629a] OpenBLAS_jll
-  [05823500] OpenLibm_jll
-  [efcefdf7] PCRE2_jll
-  [83775a58] Zlib_jll
-  [8e850ede] nghttp2_jll
-  [3f19e933] p7zip_jll
+  [e66e0078] CompilerSupportLibraries_jll v1.0.5+0
+  [deac9b47] LibCURL_jll v7.84.0+0
+  [29816b5a] LibSSH2_jll v1.10.2+0
+  [c8ffd9c3] MbedTLS_jll v2.28.2+0
+  [14a3606d] MozillaCACerts_jll v2022.10.11
+  [4536629a] OpenBLAS_jll v0.3.21+4
+  [05823500] OpenLibm_jll v0.8.1+0
+  [efcefdf7] PCRE2_jll v10.42.0+0
+  [bea87d4a] SuiteSparse_jll v5.10.1+6
+  [83775a58] Zlib_jll v1.2.13+0
+  [8e850b90] libblastrampoline_jll v5.8.0+0
+  [8e850ede] nghttp2_jll v1.48.0+0
+  [3f19e933] p7zip_jll v17.4.0+0
+Info Packages marked with ⌃ and ⌅ have new versions available, but those with ⌅ are restricted by compatibility constraints from upgrading. To see why use `status --outdated -m`
 </code></pre>
     
 <script
