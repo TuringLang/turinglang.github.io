@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-language" content="en">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>AdvancedHMC</title>
+    <meta name="description" content="">
+    <meta name="author" content="The Turing Team">
+    <meta name="theme-color" content="red">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+    <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="canonical" href="/v0.26/docs/library/advancedhmc/">
+    <link rel="alternate" type="application/rss+xml" title="Turing.jl" href="/v0.26/feed.xml">
+    <meta name="lang:clipboard.copy" content="Copy to clipboard">
+    <meta name="lang:clipboard.copied" content="Copied to clipboard">
+    <meta name="lang:search.language" content="en">
+    <meta name="lang:search.pipeline.stopwords" content="True">
+    <meta name="lang:search.pipeline.trimmer" content="True">
+    <meta name="lang:search.result.none" content="No matching documents">
+    <meta name="lang:search.result.one" content="1 matching document">
+    <meta name="lang:search.result.other" content="# matching documents">
+    <meta name="lang:search.tokenizer" content="[\s\-]+">
+    <script src="/versions.js"></script>
+    <script src="/v0.26/assets/js/modernizr.74668098.js"></script>
+    <link rel="shortcut icon" href="/v0.26/assets/img/favicon.ico">
+    <link rel="stylesheet" href="/v0.26/assets/css/main.css">
+    <link rel="stylesheet" href="/v0.26/assets/css/palette.css">
+    <link rel="stylesheet" href="/v0.26/assets/css/header.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+
+    
+
+  </head>
+
+  <body dir="ltr" data-md-color-primary="red" data-md-color-accent="red">
+    
+
+<svg class="md-svg">
+<defs>
+  <svg>
+  <path d="M160 304q0 10-3.125 20.5t-10.75 19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75 19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360 304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25 2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75 1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75 0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5 46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z" fill="currentColor"></path></svg>
+</defs></svg>
+
+    <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off>
+    <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off>
+    <label class=md-overlay data-md-component=overlay for=__drawer></label> <a href="#advancedhmc" tabindex=1 class=md-skip> Skip to content </a>
+    <header class=md-header data-md-component=header data-md-state=none>
+        <nav class="md-header-nav md-grid">
+            <div class=md-flex>
+                <div class="md-flex__cell md-flex__cell--shrink">
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <label class="md-icon md-icon--menu md-header-nav__button" for=__drawer></label>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <a class="md-header-nav__button md-logo" href="/v0.26/" title="Turing.jl">
+                    <div class="md-flex__ellipsis md-header-nav__title" data-md-component=title>
+                        <span class=md-header-nav__topic>Turing.jl</span>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <div class="dropdown version-switch">
+                      <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      </a>
+                      <div class="dropdown-menu">
+                        <!-- a class="dropdown-item" href="#">Stable</a -->
+                        <!-- div class="dropdown-divider"></div -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <a class="md-source" href="/v0.26/docs/using-turing/get-started" title="Get started">
+                      Get Started
+                    </a>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <div class="md-header-nav__source">
+                      <a class="md-source" href="/library/" title="View Library API">
+                        Library API
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="md-flex__cell md-flex__cell--shrink">
+                      <div class="md-header-nav__source">
+                        <a class="md-source" href="/v0.26/tutorials/" title="View tutorials">
+                          Tutorials
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="md-flex__cell md-flex__cell--shrink">
+                      <div class="md-header-nav__source">
+                        <a class="md-source" href="/v0.26/news/" title="News">
+                          News
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="md-flex__cell md-flex__cell--shrink">
+                      <div class="md-header-nav__source">
+                        <a class="md-source" href="/v0.26/team/" title="Team">
+                          Team
+                        </a>
+                      </div>
+                    </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <a class="md-source" data-md-source="github" href="https://github.com/TuringLang/Turing.jl" title="Go to repository">
+                    <div class="md-source__icon" style="padding-top:5px">
+                      <i class="fa fa-github fa-3x"></i>
+                    </div>
+                    <div class="md-source__repository">
+                      TuringLang/Turing.jl
+                    </div></a>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                  <div class="md-header-nav__source">
+                    <a href="https://twitter.com/TuringLang?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                       data-size="large" data-show-screen-name="false" data-show-count="false">Follow @TuringLang</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </div>
+                </div>
+
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <label class="md-icon md-icon--search md-header-nav__button" for=__search></label>
+                    <div class=md-search data-md-component=search role=dialog>
+                        <label class=md-search__overlay for=__search></label>
+                        <div class=md-search__inner role=search>
+                            <form class=md-search__form name=search>
+                                <input type=text class=md-search__input name=query placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=query data-md-state=active>
+                                <label class="md-icon md-search__icon" for=__search></label>
+                                <button type=reset class="md-icon md-search__icon" data-md-component=reset tabindex=-1> &#xE5CD; </button>
+                            </form>
+                            <div class=md-search__output>
+                                <div class=md-search__scrollwrap data-md-scrollfix>
+                                    <div class=md-search-result data-md-component=result>
+                                        <div class=md-search-result__meta> Type to start searching </div>
+                                        <ol class=md-search-result__list></ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="md-container">
+        <main class="md-main">
+            <div class="md-main__inner md-grid full-width" data-md-component="container">
+            
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+  <div class="md-sidebar__scrollwrap">
+    <div class="md-sidebar__inner">
+      <nav class="md-nav md-nav--primary" data-md-level="0">
+
+        <label class="md-nav__title md-nav__title--site">
+            <a class="" href="/v0.26/" title="Turing.jl">
+              <span class="md-nav__button md-logo">
+                Turing.jl
+              </span>
+            </a>
+        </label>
+
+        <ul class="md-nav__list" data-md-scrollfix="">
+          <li class="md-nav__item md-nav__item--active">
+            <input class="md-toggle md-nav__toggle" data-md-toggle="toc" id="__toc" type="checkbox" />
+
+            <nav class="md-nav md-nav--secondary">
+
+                <a class="" href="/v0.26/" title="Turing.jl">
+                  <label class="md-nav__title md-nav__title--site">
+                    <span class="md-nav__button md-logo">
+                      Turing.jl
+                    </span>
+                  </label>
+                </a>
+
+                <div class="md-nav__source">
+                    <a class="md-source" data-md-source="github" href="https://github.com/TuringLang/Turing.jl" title="Go to repository">
+                    <span class="md-source__icon">
+                        <i class="fa fa-github fa-3x"></i>
+                    </span>
+                    <span class="md-source__repository">
+                      TuringLang/Turing.jl
+                    </span></a>
+                </div>
+
+                <div class="md-nav__dropdown">
+                  <select id="version-selector">
+                    <!-- option value="#" selected="selected">v 0.5.1</option -->
+                  </select>
+                </div>
+
+              <label class="md-nav__title" for="__drawer"></label>
+
+              
+
+                <ul class="md-nav__list" data-md-scrollfix="">
+                  
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-using-turing" title="USING TURING">USING TURING</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/get-started"
+                              id="pancakes-getting-started"
+                              title="Getting Started">Getting Started</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/quick-start"
+                              id="pancakes-quick-start"
+                              title="Quick Start">Quick Start</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/guide"
+                              id="pancakes-guide"
+                              title="Guide">Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/advanced"
+                              id="pancakes-advanced-usage"
+                              title="Advanced Usage">Advanced Usage</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/autodiff"
+                              id="pancakes-automatic-differentiation"
+                              title="Automatic Differentiation">Automatic Differentiation</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/performancetips"
+                              id="pancakes-performance-tips"
+                              title="Performance Tips">Performance Tips</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/dynamichmc"
+                              id="pancakes-using-dynamichmc"
+                              title="Using DynamicHMC">Using DynamicHMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/using-turing/sampler-viz"
+                              id="pancakes-sampler-visualization"
+                              title="Sampler Visualization">Sampler Visualization</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/library/"
+                              id="pancakes-turing-api"
+                              title="Turing API">Turing API</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-for-developers" title="FOR DEVELOPERS">FOR DEVELOPERS</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/for-developers/compiler"
+                              id="pancakes-turing-compiler-design"
+                              title="Turing Compiler Design">Turing Compiler Design</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/for-developers/interface"
+                              id="pancakes-interface-guide"
+                              title="Interface Guide">Interface Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/for-developers/how_turing_implements_abstractmcmc"
+                              id="pancakes-how-turing-implements-abstractmcmc"
+                              title="How Turing implements AbstractMCMC">How Turing implements AbstractMCMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/for-developers/variational_inference"
+                              id="pancakes-variational-inference"
+                              title="Variational Inference">Variational Inference</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-tutorials" title="TUTORIALS">TUTORIALS</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials"
+                              id="pancakes-home"
+                              title="Home">Home</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/00-introduction"
+                              id="pancakes-introduction-to-turing"
+                              title="Introduction to Turing">Introduction to Turing</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/01-gaussian-mixture-model"
+                              id="pancakes-gaussian-mixture-models"
+                              title="Gaussian Mixture Models">Gaussian Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/02-logistic-regression"
+                              id="pancakes-bayesian-logistic-regression"
+                              title="Bayesian Logistic Regression">Bayesian Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/03-bayesian-neural-network"
+                              id="pancakes-bayesian-neural-networks"
+                              title="Bayesian Neural Networks">Bayesian Neural Networks</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/04-hidden-markov-model"
+                              id="pancakes-hidden-markov-models"
+                              title="Hidden Markov Models">Hidden Markov Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/05-linear-regression"
+                              id="pancakes-linear-regression"
+                              title="Linear Regression">Linear Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/06-infinite-mixture-model"
+                              id="pancakes-infinite-mixture-models"
+                              title="Infinite Mixture Models">Infinite Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/07-poisson-regression"
+                              id="pancakes-bayesian-poisson-regression"
+                              title="Bayesian Poisson Regression">Bayesian Poisson Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/08-multinomial-logistic-regression"
+                              id="pancakes-multinomial-logistic-regression"
+                              title="Multinomial Logistic Regression">Multinomial Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/09-variational-inference"
+                              id="pancakes-variational-inference"
+                              title="Variational Inference">Variational Inference</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/10-bayesian-differential-equations"
+                              id="pancakes-bayesian-differential-equations"
+                              title="Bayesian Differential Equations">Bayesian Differential Equations</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/11-probabilistic-pca"
+                              id="pancakes-probabilistic-pca"
+                              title="Probabilistic PCA">Probabilistic PCA</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/12-gaussian-process"
+                              id="pancakes-gaussian-processes"
+                              title="Gaussian Processes">Gaussian Processes</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/13-seasonal-time-series"
+                              id="pancakes-bayesian-time-series-analysis"
+                              title="Bayesian Time Series Analysis">Bayesian Time Series Analysis</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/tutorials/14-minituring"
+                              id="pancakes-a-mini-turing-compiler"
+                              title="A Mini Turing Compiler">A Mini Turing Compiler</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                  
+                  <li class="md-nav__item md-nav__item--nested navbar_bottom-border">
+                    <a class="md-nav__link pancakes-parent-mobile"
+                    id="pancakes-contributing" title="CONTRIBUTING">CONTRIBUTING</a>
+                    
+                    <nav class="md-nav md-nav--secondary">
+                      <a class="md-nav__title mobile-navbar-back" for="__toc">Table of contents</a>
+                      <ul class="md-nav__list" data-md-scrollfix="">
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/contributing/guide"
+                              id="pancakes-how-to-contribute"
+                              title="How to Contribute">How to Contribute</a>
+                        </li>
+                        
+                        <li class="md-nav__item navbar_bottom-border">
+                          <a class="md-nav__link" href="/v0.26/docs/contributing/style-guide"
+                              id="pancakes-style-guide"
+                              title="Style Guide">Style Guide</a>
+                        </li>
+                        
+                      </ul>
+                    </nav>
+                    
+                  </li>
+                  
+                </ul>
+            </nav>
+          </li>
+
+          <!-- This navigation is completely for mobile -->
+          <li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="USING TURING">USING TURING</a>
+          </li><li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="FOR DEVELOPERS">FOR DEVELOPERS</a>
+          </li><li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="TUTORIALS">TUTORIALS</a>
+          </li><li class="md-nav__item mobile-nav" style="display:none">
+            <a class="md-nav__link" title="CONTRIBUTING">CONTRIBUTING</a>
+          </li>
+
+          <!-- This navigation is completely for non mobile -->
+          
+
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent "
+                id="pancakes-using-turing"
+                title="USING TURING">USING TURING</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/get-started"
+                           title="Getting Started" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Getting Started</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/quick-start"
+                           title="Quick Start" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Quick Start</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/guide"
+                           title="Guide" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/advanced"
+                           title="Advanced Usage" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Advanced Usage</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/autodiff"
+                           title="Automatic Differentiation" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Automatic Differentiation</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/performancetips"
+                           title="Performance Tips" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Performance Tips</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/dynamichmc"
+                           title="Using DynamicHMC" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Using DynamicHMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/using-turing/sampler-viz"
+                           title="Sampler Visualization" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Sampler Visualization</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/library/"
+                           title="Turing API" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Turing API</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent "
+                id="pancakes-for-developers"
+                title="FOR DEVELOPERS">FOR DEVELOPERS</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/for-developers/compiler"
+                           title="Turing Compiler Design" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Turing Compiler Design</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/for-developers/interface"
+                           title="Interface Guide" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Interface Guide</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/for-developers/how_turing_implements_abstractmcmc"
+                           title="How Turing implements AbstractMCMC" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">How Turing implements AbstractMCMC</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/for-developers/variational_inference"
+                           title="Variational Inference" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Variational Inference</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent "
+                id="pancakes-tutorials"
+                title="TUTORIALS">TUTORIALS</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials"
+                           title="Home" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Home</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/00-introduction"
+                           title="Introduction to Turing" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Introduction to Turing</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/01-gaussian-mixture-model"
+                           title="Gaussian Mixture Models" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Gaussian Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/02-logistic-regression"
+                           title="Bayesian Logistic Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/03-bayesian-neural-network"
+                           title="Bayesian Neural Networks" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Neural Networks</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/04-hidden-markov-model"
+                           title="Hidden Markov Models" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Hidden Markov Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/05-linear-regression"
+                           title="Linear Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Linear Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/06-infinite-mixture-model"
+                           title="Infinite Mixture Models" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Infinite Mixture Models</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/07-poisson-regression"
+                           title="Bayesian Poisson Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Poisson Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/08-multinomial-logistic-regression"
+                           title="Multinomial Logistic Regression" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Multinomial Logistic Regression</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/09-variational-inference"
+                           title="Variational Inference" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Variational Inference</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/10-bayesian-differential-equations"
+                           title="Bayesian Differential Equations" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Differential Equations</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/11-probabilistic-pca"
+                           title="Probabilistic PCA" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Probabilistic PCA</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/12-gaussian-process"
+                           title="Gaussian Processes" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Gaussian Processes</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/13-seasonal-time-series"
+                           title="Bayesian Time Series Analysis" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Bayesian Time Series Analysis</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/tutorials/14-minituring"
+                           title="A Mini Turing Compiler" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">A Mini Turing Compiler</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+         <li class="md-nav__item md-nav__item--nested not-mobile-nav invisible">
+             <a class="md-nav__link pancakes-parent "
+                id="pancakes-contributing"
+                title="CONTRIBUTING">CONTRIBUTING</a>
+                
+                <nav class="md-nav">
+                    <ul class="md-nav__list">
+                        
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/contributing/guide"
+                           title="How to Contribute" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">How to Contribute</a>
+                        </li>
+                        
+                        <li class="md-nav__item">
+                        <a href="/v0.26/docs/contributing/style-guide"
+                           title="Style Guide" style="display:none;"
+                           
+                           class="md-nav__link pancakes-child">Style Guide</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+         </li>
+         
+         
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+<div class="md-sidebar md-sidebar--secondary invisible" data-md-component="toc">
+  <div class="md-sidebar__scrollwrap">
+    <div class="md-sidebar__inner">
+      <nav class="md-nav md-nav--secondary">
+        <label class="md-nav__title" for="__toc">Table of contents</label>
+        <ul id="nav-toc" class="md-nav__list" data-md-scrollfix="">
+        <!-- toc will be appended here!-->
+        </ul>
+        <a href="https://twitter.com/intent/tweet?original_referer=https://github.com/TuringLang/Turing.jl/edit/master/docs/src/library/advancedhmc.md" title="Tweet this page" class="social-link"><i class="fa fa-twitter fa-1x"></i>Tweet this page</a>
+        <a href="https://discourse.julialang.org/c/domain/probprog" title="Ask questions" class="social-link"><i class="fa fa-stack-overflow fa-1x"></i>Ask questions</a>
+        <a href="https://github.com/TuringLang/Turing.jl//issues/new?label=question&title=Question:&body=Question%20on:%20https://github.com/TuringLang/Turing.jl/edit/master/docs/_docs/library/advancedhmc.md" title="Report issues" class="social-link"><i class="fa fa-comments fa-1x"></i>Report issues</a>
+        <a href="https://github.com/TuringLang/Turing.jl/edit/master/docs/src/library/advancedhmc.md" title="Edit this page on github"  class="social-link"><i class="fa fa-github fa-1x"></i> Edit me</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+                <div id="md-container-pancakes">
+                <div class="md-content full-width"> 
+    <article class="md-content__inner md-typeset  full-width">
+    <p><a id='Index'></a></p>
+<p><a id='Index-1'></a></p>
+<h2 id="index">Index</h2>
+<ul>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.AbstractIntegrator"><code>AdvancedHMC.AbstractIntegrator</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.AbstractTrajectorySampler"><code>AdvancedHMC.AbstractTrajectorySampler</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.BinaryTree"><code>AdvancedHMC.BinaryTree</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.ClassicNoUTurn"><code>AdvancedHMC.ClassicNoUTurn</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.EndPointTS"><code>AdvancedHMC.EndPointTS</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.FixedIntegrationTime"><code>AdvancedHMC.FixedIntegrationTime</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.FixedNSteps"><code>AdvancedHMC.FixedNSteps</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.FullMomentumRefreshment"><code>AdvancedHMC.FullMomentumRefreshment</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.GeneralisedNoUTurn"><code>AdvancedHMC.GeneralisedNoUTurn</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.HMCProgressCallback"><code>AdvancedHMC.HMCProgressCallback</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.HMCSampler"><code>AdvancedHMC.HMCSampler</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.HMCState"><code>AdvancedHMC.HMCState</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.JitteredLeapfrog"><code>AdvancedHMC.JitteredLeapfrog</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.Leapfrog"><code>AdvancedHMC.Leapfrog</code></a></li>
+<li>[<code>AdvancedHMC.MultinomialTS</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.MultinomialTS-Tuple{MultinomialTS, AbstractFloat, AdvancedHMC.PhasePoint})</li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.MultinomialTS"><code>AdvancedHMC.MultinomialTS</code></a></li>
+<li>[<code>AdvancedHMC.MultinomialTS</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.MultinomialTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint})</li>
+<li>[<code>AdvancedHMC.NUTS</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.NUTS-Union{Tuple{TC}, Tuple{TS}, Tuple{AdvancedHMC.AbstractIntegrator, Vararg{Any, N} where N}} where {TS, TC})</li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.PartialMomentumRefreshment"><code>AdvancedHMC.PartialMomentumRefreshment</code></a></li>
+<li>[<code>AdvancedHMC.SliceTS</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.SliceTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint})</li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.SliceTS"><code>AdvancedHMC.SliceTS</code></a></li>
+<li>[<code>AdvancedHMC.SliceTS</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.SliceTS-Tuple{SliceTS, AbstractFloat, AdvancedHMC.PhasePoint})</li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.StrictGeneralisedNoUTurn"><code>AdvancedHMC.StrictGeneralisedNoUTurn</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.TemperedLeapfrog"><code>AdvancedHMC.TemperedLeapfrog</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.Termination"><code>AdvancedHMC.Termination</code></a></li>
+<li>[<code>AdvancedHMC.Termination</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.Termination-Union{Tuple{F}, Tuple{MultinomialTS, Trajectory, F, F}} where F&lt;:AbstractFloat)</li>
+<li>[<code>AdvancedHMC.Termination</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.Termination-Union{Tuple{F}, Tuple{SliceTS, Trajectory, F, F}} where F&lt;:AbstractFloat)</li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.Trajectory"><code>AdvancedHMC.Trajectory</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.Transition"><code>AdvancedHMC.Transition</code></a></li>
+<li>[<code>AdvancedHMC.A</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.A-Tuple{Any, Any, Any})</li>
+<li>[<code>AdvancedHMC.build_tree</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.build_tree-Union{Tuple{TC}, Tuple{I}, Tuple{TS}, Tuple{Random.AbstractRNG, Trajectory{TS, I, TC}, Hamiltonian, AdvancedHMC.PhasePoint, AdvancedHMC.AbstractTrajectorySampler, Int64, Int64, AbstractFloat}} where {TS&lt;:AdvancedHMC.AbstractTrajectorySampler, I&lt;:AdvancedHMC.AbstractIntegrator, TC&lt;:AdvancedHMC.DynamicTerminationCriterion})</li>
+<li>[<code>AdvancedHMC.check_left_subtree</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.check_left_subtree-Union{Tuple{T}, Tuple{Hamiltonian, T, T, T}} where T&lt;:AdvancedHMC.BinaryTree)</li>
+<li>[<code>AdvancedHMC.check_right_subtree</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.check_right_subtree-Union{Tuple{T}, Tuple{Hamiltonian, T, T, T}} where T&lt;:AdvancedHMC.BinaryTree)</li>
+<li>[<code>AdvancedHMC.combine</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.combine-Tuple{AdvancedHMC.BinaryTree, AdvancedHMC.BinaryTree})</li>
+<li>[<code>AdvancedHMC.find_good_stepsize</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.find_good_stepsize-Union{Tuple{T}, Tuple{Random.AbstractRNG, Hamiltonian, AbstractVector{T}}} where T&lt;:Real)</li>
+<li>[<code>AdvancedHMC.isterminated</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.isterminated-Tuple{StrictGeneralisedNoUTurn, Hamiltonian, Any, Any, Any})</li>
+<li>[<code>AdvancedHMC.isterminated</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.isterminated-Tuple{GeneralisedNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree})</li>
+<li>[<code>AdvancedHMC.isterminated</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.isterminated-Tuple{ClassicNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree})</li>
+<li>[<code>AdvancedHMC.maxabs</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.maxabs-Tuple{Any, Any})</li>
+<li>[<code>AdvancedHMC.mh_accept_ratio</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.mh_accept_ratio-Union{Tuple{T}, Tuple{Random.AbstractRNG, T, T}} where T&lt;:AbstractFloat)</li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.nom_step_size-Tuple%7BAdvancedHMC.AbstractIntegrator%7D"><code>AdvancedHMC.nom_step_size</code></a></li>
+<li>[<code>AdvancedHMC.pm_next!</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.pm_next!-Tuple{Any, NamedTuple})</li>
+<li>[<code>AdvancedHMC.randcat</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.randcat-Union{Tuple{T}, Tuple{Union{Random.AbstractRNG, AbstractVector{var&quot;#s9&quot;} where var&quot;#s9&quot;&lt;:Random.AbstractRNG}, AbstractMatrix{T}}} where T)</li>
+<li>[<code>AdvancedHMC.simple_pm_next!</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.simple_pm_next!-Tuple{Any, NamedTuple})</li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.stat-Tuple%7BAdvancedHMC.Transition%7D"><code>AdvancedHMC.stat</code></a></li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.step_size"><code>AdvancedHMC.step_size</code></a></li>
+<li>[<code>AdvancedHMC.temper</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.temper-Tuple{TemperedLeapfrog, Any, NamedTuple{(:i, :is_half), var&quot;#s17&quot;} where var&quot;#s17&quot;&lt;:Tuple{Integer, Bool}, Int64})</li>
+<li>[<code>AdvancedHMC.transition</code>](/v0.26/docs/library/advancedhmc/#AdvancedHMC.transition-Tuple{Trajectory, Hamiltonian, AdvancedHMC.PhasePoint})</li>
+<li><a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.update_nom_step_size"><code>AdvancedHMC.update_nom_step_size</code></a></li>
+</ul>
+<p><a id='Functions'></a></p>
+<p><a id='Functions-1'></a></p>
+<h2 id="functions">Functions</h2>
+<p><a id='AdvancedHMC.A-Tuple{Any, Any, Any}' href='#AdvancedHMC.A-Tuple{Any, Any, Any}'>#</a>
+<strong><code>AdvancedHMC.A</code></strong> — <em>Method</em>.</p>
+<p>A single Hamiltonian integration step.</p>
+<p>NOTE: this function is intended to be used in <code>find_good_stepsize</code> only.</p>
+<p><a id='AdvancedHMC.build_tree-Union{Tuple{TC}, Tuple{I}, Tuple{TS}, Tuple{Random.AbstractRNG, Trajectory{TS, I, TC}, Hamiltonian, AdvancedHMC.PhasePoint, AdvancedHMC.AbstractTrajectorySampler, Int64, Int64, AbstractFloat}} where {TS<:AdvancedHMC.AbstractTrajectorySampler, I<:AdvancedHMC.AbstractIntegrator, TC<:AdvancedHMC.DynamicTerminationCriterion}' href='#AdvancedHMC.build_tree-Union{Tuple{TC}, Tuple{I}, Tuple{TS}, Tuple{Random.AbstractRNG, Trajectory{TS, I, TC}, Hamiltonian, AdvancedHMC.PhasePoint, AdvancedHMC.AbstractTrajectorySampler, Int64, Int64, AbstractFloat}} where {TS<:AdvancedHMC.AbstractTrajectorySampler, I<:AdvancedHMC.AbstractIntegrator, TC<:AdvancedHMC.DynamicTerminationCriterion}'>#</a>
+<strong><code>AdvancedHMC.build_tree</code></strong> — <em>Method</em>.</p>
+<p>Recursivly build a tree for a given depth <code>j</code>.</p>
+<p><a id='AdvancedHMC.check_left_subtree-Union{Tuple{T}, Tuple{Hamiltonian, T, T, T}} where T<:AdvancedHMC.BinaryTree' href='#AdvancedHMC.check_left_subtree-Union{Tuple{T}, Tuple{Hamiltonian, T, T, T}} where T<:AdvancedHMC.BinaryTree'>#</a>
+<strong><code>AdvancedHMC.check_left_subtree</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_left_subtree</span><span class="x">(</span><span class="n">h</span><span class="x">,</span> <span class="n">t</span><span class="x">,</span> <span class="n">tleft</span><span class="x">,</span> <span class="n">tright</span><span class="x">)</span>
+
+</code></pre></div></div>
+<p>Do a U-turn check between the leftmost phase point of <code>t</code> and the leftmost  phase point of <code>tright</code>, the right subtree.</p>
+<p><a id='AdvancedHMC.check_right_subtree-Union{Tuple{T}, Tuple{Hamiltonian, T, T, T}} where T<:AdvancedHMC.BinaryTree' href='#AdvancedHMC.check_right_subtree-Union{Tuple{T}, Tuple{Hamiltonian, T, T, T}} where T<:AdvancedHMC.BinaryTree'>#</a>
+<strong><code>AdvancedHMC.check_right_subtree</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">check_right_subtree</span><span class="x">(</span><span class="n">h</span><span class="x">,</span> <span class="n">t</span><span class="x">,</span> <span class="n">tleft</span><span class="x">,</span> <span class="n">tright</span><span class="x">)</span>
+
+</code></pre></div></div>
+<p>Do a U-turn check between the rightmost phase point of <code>t</code> and the rightmost phase point of <code>tleft</code>, the left subtree.</p>
+<p><a id='AdvancedHMC.combine-Tuple{AdvancedHMC.BinaryTree, AdvancedHMC.BinaryTree}' href='#AdvancedHMC.combine-Tuple{AdvancedHMC.BinaryTree, AdvancedHMC.BinaryTree}'>#</a>
+<strong><code>AdvancedHMC.combine</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">combine</span><span class="x">(</span><span class="n">treeleft</span><span class="x">,</span> <span class="n">treeright</span><span class="x">)</span>
+
+</code></pre></div></div>
+<p>Merge a left tree <code>treeleft</code> and a right tree <code>treeright</code> under given Hamiltonian <code>h</code>, then draw a new candidate sample and update related statistics for the resulting tree.</p>
+<p><a id='AdvancedHMC.find_good_stepsize-Union{Tuple{T}, Tuple{Random.AbstractRNG, Hamiltonian, AbstractVector{T}}} where T<:Real' href='#AdvancedHMC.find_good_stepsize-Union{Tuple{T}, Tuple{Random.AbstractRNG, Hamiltonian, AbstractVector{T}}} where T<:Real'>#</a>
+<strong><code>AdvancedHMC.find_good_stepsize</code></strong> — <em>Method</em>.</p>
+<p>Find a good initial leap-frog step-size via heuristic search.</p>
+<p><a id='AdvancedHMC.isterminated-Tuple{ClassicNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree}' href='#AdvancedHMC.isterminated-Tuple{ClassicNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree}'>#</a>
+<strong><code>AdvancedHMC.isterminated</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">isterminated</span><span class="x">(</span><span class="n">_</span><span class="x">,</span> <span class="n">h</span><span class="x">,</span> <span class="n">t</span><span class="x">)</span>
+
+</code></pre></div></div>
+<p>Detect U turn for two phase points (<code>zleft</code> and <code>zright</code>) under given Hamiltonian <code>h</code> using the (original) no-U-turn cirterion.</p>
+<p>Ref: https://arxiv.org/abs/1111.4246, https://arxiv.org/abs/1701.02434</p>
+<p><a id='AdvancedHMC.isterminated-Tuple{GeneralisedNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree}' href='#AdvancedHMC.isterminated-Tuple{GeneralisedNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree}'>#</a>
+<strong><code>AdvancedHMC.isterminated</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">isterminated</span><span class="x">(</span><span class="n">_</span><span class="x">,</span> <span class="n">h</span><span class="x">,</span> <span class="n">t</span><span class="x">)</span>
+
+</code></pre></div></div>
+<p>Detect U turn for two phase points (<code>zleft</code> and <code>zright</code>) under given Hamiltonian <code>h</code> using the generalised no-U-turn criterion.</p>
+<p>Ref: https://arxiv.org/abs/1701.02434</p>
+<p><a id='AdvancedHMC.isterminated-Tuple{StrictGeneralisedNoUTurn, Hamiltonian, Any, Any, Any}' href='#AdvancedHMC.isterminated-Tuple{StrictGeneralisedNoUTurn, Hamiltonian, Any, Any, Any}'>#</a>
+<strong><code>AdvancedHMC.isterminated</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">isterminated</span><span class="x">(</span><span class="n">tc</span><span class="x">,</span> <span class="n">h</span><span class="x">,</span> <span class="n">t</span><span class="x">,</span> <span class="n">tleft</span><span class="x">,</span> <span class="n">tright</span><span class="x">)</span>
+
+</code></pre></div></div>
+<p>Detect U turn for two phase points (<code>zleft</code> and <code>zright</code>) under given Hamiltonian <code>h</code> using the generalised no-U-turn criterion with additional U-turn checks.</p>
+<p>Ref: https://arxiv.org/abs/1701.02434 https://github.com/stan-dev/stan/pull/2800</p>
+<p><a id='AdvancedHMC.maxabs-Tuple{Any, Any}' href='#AdvancedHMC.maxabs-Tuple{Any, Any}'>#</a>
+<strong><code>AdvancedHMC.maxabs</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">maxabs</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">b</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Return the value with the largest absolute value.</p>
+<p><a id='AdvancedHMC.mh_accept_ratio-Union{Tuple{T}, Tuple{Random.AbstractRNG, T, T}} where T<:AbstractFloat' href='#AdvancedHMC.mh_accept_ratio-Union{Tuple{T}, Tuple{Random.AbstractRNG, T, T}} where T<:AbstractFloat'>#</a>
+<strong><code>AdvancedHMC.mh_accept_ratio</code></strong> — <em>Method</em>.</p>
+<p>Perform MH acceptance based on energy, i.e. negative log probability.</p>
+<p><a id='AdvancedHMC.nom_step_size-Tuple{AdvancedHMC.AbstractIntegrator}' href='#AdvancedHMC.nom_step_size-Tuple{AdvancedHMC.AbstractIntegrator}'>#</a>
+<strong><code>AdvancedHMC.nom_step_size</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nom_step_size</span><span class="x">(</span><span class="o">::</span><span class="n">AbstractIntegrator</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Get the nominal integration step size. The current integration step size may differ from this, for example if the step size is jittered. Nominal step size is usually used in adaptation.</p>
+<p><a id='AdvancedHMC.pm_next!-Tuple{Any, NamedTuple}' href='#AdvancedHMC.pm_next!-Tuple{Any, NamedTuple}'>#</a>
+<strong><code>AdvancedHMC.pm_next!</code></strong> — <em>Method</em>.</p>
+<p>Progress meter update with all trajectory stats, iteration number and metric shown.</p>
+<p><a id='AdvancedHMC.randcat-Union{Tuple{T}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s9"} where var"#s9"<:Random.AbstractRNG}, AbstractMatrix{T}}} where T' href='#AdvancedHMC.randcat-Union{Tuple{T}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s9"} where var"#s9"<:Random.AbstractRNG}, AbstractMatrix{T}}} where T'>#</a>
+<strong><code>AdvancedHMC.randcat</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">randcat</span><span class="x">(</span><span class="n">rng</span><span class="x">,</span> <span class="n">P</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Generating Categorical random variables in a vectorized mode. <code>P</code> is supposed to be a matrix of (D, N) where each column is a probability vector.</p>
+<p>Example</p>
+<pre><code>P = [
+    0.5 0.3;
+    0.4 0.6;
+    0.1 0.1
+]
+u = [0.3, 0.4]
+C = [
+    0.5 0.3
+    0.9 0.9
+    1.0 1.0
+]
+</code></pre>
+<p>Then <code>C .&lt; u'</code> is</p>
+<pre><code>[
+    0 1
+    0 0
+    0 0
+]
+</code></pre>
+<p>thus <code>convert.(Int, vec(sum(C .&lt; u'; dims=1))) .+ 1</code> equals <code>[1, 2]</code>.</p>
+<p><a id='AdvancedHMC.simple_pm_next!-Tuple{Any, NamedTuple}' href='#AdvancedHMC.simple_pm_next!-Tuple{Any, NamedTuple}'>#</a>
+<strong><code>AdvancedHMC.simple_pm_next!</code></strong> — <em>Method</em>.</p>
+<p>Simple progress meter update without any show values.</p>
+<p><a id='AdvancedHMC.stat-Tuple{AdvancedHMC.Transition}' href='#AdvancedHMC.stat-Tuple{AdvancedHMC.Transition}'>#</a>
+<strong><code>AdvancedHMC.stat</code></strong> — <em>Method</em>.</p>
+<p>Returns the statistics for transition <code>t</code>.</p>
+<p><a id='AdvancedHMC.step_size' href='#AdvancedHMC.step_size'>#</a>
+<strong><code>AdvancedHMC.step_size</code></strong> — <em>Function</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">step_size</span><span class="x">(</span><span class="o">::</span><span class="n">AbstractIntegrator</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Get the current integration step size.</p>
+<p><a id='AdvancedHMC.temper-Tuple{TemperedLeapfrog, Any, NamedTuple{(:i, :is_half), var"#s17"} where var"#s17"<:Tuple{Integer, Bool}, Int64}' href='#AdvancedHMC.temper-Tuple{TemperedLeapfrog, Any, NamedTuple{(:i, :is_half), var"#s17"} where var"#s17"<:Tuple{Integer, Bool}, Int64}'>#</a>
+<strong><code>AdvancedHMC.temper</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">temper</span><span class="x">(</span><span class="n">lf</span><span class="o">::</span><span class="n">TemperedLeapfrog</span><span class="x">,</span> <span class="n">r</span><span class="x">,</span> <span class="n">step</span><span class="o">::</span><span class="kt">NamedTuple</span><span class="x">{(</span><span class="o">:</span><span class="n">i</span><span class="x">,</span> <span class="o">:</span><span class="n">is_half</span><span class="x">),</span><span class="o">&lt;:</span><span class="kt">Tuple</span><span class="x">{</span><span class="kt">Integer</span><span class="x">,</span><span class="kt">Bool</span><span class="x">}},</span> <span class="n">n_steps</span><span class="o">::</span><span class="kt">Int</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Tempering step. <code>step</code> is a named tuple with</p>
+<ul>
+<li><code>i</code> being the current leapfrog iteration and</li>
+<li><code>is_half</code> indicating whether or not it's (the first) half momentum/tempering step</li>
+</ul>
+<p><a id='AdvancedHMC.transition-Tuple{Trajectory, Hamiltonian, AdvancedHMC.PhasePoint}' href='#AdvancedHMC.transition-Tuple{Trajectory, Hamiltonian, AdvancedHMC.PhasePoint}'>#</a>
+<strong><code>AdvancedHMC.transition</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transition</span><span class="x">(</span><span class="n">τ</span><span class="x">,</span> <span class="n">h</span><span class="x">,</span> <span class="n">z</span><span class="x">)</span>
+
+</code></pre></div></div>
+<p>Make a MCMC transition from phase point <code>z</code> using the trajectory <code>τ</code> under Hamiltonian <code>h</code>.</p>
+<p>NOTE: This is a RNG-implicit fallback function for <code>transition(GLOBAL_RNG, τ, h, z)</code></p>
+<p><a id='AdvancedHMC.update_nom_step_size' href='#AdvancedHMC.update_nom_step_size'>#</a>
+<strong><code>AdvancedHMC.update_nom_step_size</code></strong> — <em>Function</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">update_nom_step_size</span><span class="x">(</span><span class="n">i</span><span class="o">::</span><span class="n">AbstractIntegrator</span><span class="x">,</span> <span class="n">ϵ</span><span class="x">)</span> <span class="o">-&gt;</span> <span class="n">AbstractIntegrator</span>
+</code></pre></div></div>
+<p>Return a copy of the integrator <code>i</code> with the new nominal step size (<a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.nom_step_size-Tuple%7BAdvancedHMC.AbstractIntegrator%7D"><code>nom_step_size</code></a>) <code>ϵ</code>.</p>
+<p><a id='StatsBase.sample-Tuple{AbstractMCMC.LogDensityModel, AdvancedHMC.AbstractMCMCKernel, AdvancedHMC.AbstractMetric, AdvancedHMC.Adaptation.AbstractAdaptor, Integer}' href='#StatsBase.sample-Tuple{AbstractMCMC.LogDensityModel, AdvancedHMC.AbstractMCMCKernel, AdvancedHMC.AbstractMetric, AdvancedHMC.Adaptation.AbstractAdaptor, Integer}'>#</a>
+<strong><code>StatsBase.sample</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample</span><span class="x">(</span>
+    <span class="n">model</span><span class="o">::</span><span class="n">AbstractMCMC</span><span class="o">.</span><span class="n">LogDensityModel</span><span class="x">,</span>
+    <span class="n">kernel</span><span class="o">::</span><span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractMCMCKernel</span><span class="x">,</span>
+    <span class="n">metric</span><span class="o">::</span><span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractMetric</span><span class="x">,</span>
+    <span class="n">adaptor</span><span class="o">::</span><span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">Adaptation</span><span class="o">.</span><span class="n">AbstractAdaptor</span><span class="x">,</span>
+    <span class="n">N</span><span class="o">::</span><span class="kt">Integer</span><span class="x">;</span>
+    <span class="n">kwargs</span><span class="o">...</span>
+<span class="x">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span>
+
+</code></pre></div></div>
+<p>A convenient wrapper around <code>AbstractMCMC.sample</code> avoiding explicit construction of <a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.HMCSampler"><code>HMCSampler</code></a>.</p>
+<p><a id='StatsBase.sample-Union{Tuple{T}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s322"} where var"#s322"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s323"} where var"#s323"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s324"} where var"#s324"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor, Int64}} where T<:(AbstractVecOrMat{var"#s321"} where var"#s321"<:AbstractFloat)' href='#StatsBase.sample-Union{Tuple{T}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s322"} where var"#s322"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s323"} where var"#s323"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s324"} where var"#s324"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor, Int64}} where T<:(AbstractVecOrMat{var"#s321"} where var"#s321"<:AbstractFloat)'>#</a>
+<strong><code>StatsBase.sample</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample</span><span class="x">(</span>
+    <span class="n">rng</span><span class="o">::</span><span class="kt">AbstractRNG</span><span class="x">,</span>
+    <span class="n">h</span><span class="o">::</span><span class="n">Hamiltonian</span><span class="x">,</span>
+    <span class="n">κ</span><span class="o">::</span><span class="n">AbstractMCMCKernel</span><span class="x">,</span>
+    <span class="n">θ</span><span class="o">::</span><span class="kt">AbstractVecOrMat</span><span class="x">{</span><span class="n">T</span><span class="x">},</span>
+    <span class="n">n_samples</span><span class="o">::</span><span class="kt">Int</span><span class="x">,</span>
+    <span class="n">adaptor</span><span class="o">::</span><span class="n">AbstractAdaptor</span><span class="o">=</span><span class="n">NoAdaptation</span><span class="x">(),</span>
+    <span class="n">n_adapts</span><span class="o">::</span><span class="kt">Int</span><span class="o">=</span><span class="n">min</span><span class="x">(</span><span class="n">div</span><span class="x">(</span><span class="n">n_samples</span><span class="x">,</span> <span class="mi">10</span><span class="x">),</span> <span class="mi">1_000</span><span class="x">);</span>
+    <span class="n">drop_warmup</span><span class="o">::</span><span class="kt">Bool</span><span class="o">=</span><span class="nb">false</span><span class="x">,</span>
+    <span class="n">verbose</span><span class="o">::</span><span class="kt">Bool</span><span class="o">=</span><span class="nb">true</span><span class="x">,</span>
+    <span class="n">progress</span><span class="o">::</span><span class="kt">Bool</span><span class="o">=</span><span class="nb">false</span>
+<span class="x">)</span>
+</code></pre></div></div>
+<p>Sample <code>n_samples</code> samples using the proposal <code>κ</code> under Hamiltonian <code>h</code>.</p>
+<ul>
+<li>
+<p>The randomness is controlled by <code>rng</code>.</p>
+<ul>
+<li>If <code>rng</code> is not provided, <code>GLOBAL_RNG</code> will be used.</li>
+</ul>
+</li>
+<li>
+<p>The initial point is given by <code>θ</code>.</p>
+</li>
+<li>
+<p>The adaptor is set by <code>adaptor</code>, for which the default is no adaptation.</p>
+<ul>
+<li>It will perform <code>n_adapts</code> steps of adaptation, for which the default is the minimum of <code>1_000</code> and 10% of <code>n_samples</code></li>
+</ul>
+</li>
+<li>
+<p><code>drop_warmup</code> controls to drop the samples during adaptation phase or not</p>
+</li>
+<li>
+<p><code>verbose</code> controls the verbosity</p>
+</li>
+<li>
+<p><code>progress</code> controls whether to show the progress meter or not</p>
+</li>
+</ul>
+<p><a id='Types'></a></p>
+<p><a id='Types-1'></a></p>
+<h2 id="types">Types</h2>
+<p><a id='AdvancedHMC.AbstractIntegrator' href='#AdvancedHMC.AbstractIntegrator'>#</a>
+<strong><code>AdvancedHMC.AbstractIntegrator</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">abstract type</span><span class="nc"> AbstractIntegrator</span>
+</code></pre></div></div>
+<p>Represents an integrator used to simulate the Hamiltonian system.</p>
+<p><strong>Implementation</strong></p>
+<p>A <code>AbstractIntegrator</code> is expected to have the following implementations:</p>
+<ul>
+<li><code>stat</code>(@ref)</li>
+<li><code>nom_step_size</code>(@ref)</li>
+<li><code>step_size</code>(@ref)</li>
+</ul>
+<p><a id='AdvancedHMC.AbstractTrajectorySampler' href='#AdvancedHMC.AbstractTrajectorySampler'>#</a>
+<strong><code>AdvancedHMC.AbstractTrajectorySampler</code></strong> — <em>Type</em>.</p>
+<p>How to sample a phase-point from the simulated trajectory.</p>
+<p><a id='AdvancedHMC.BinaryTree' href='#AdvancedHMC.BinaryTree'>#</a>
+<strong><code>AdvancedHMC.BinaryTree</code></strong> — <em>Type</em>.</p>
+<p>A full binary tree trajectory with only necessary leaves and information stored.</p>
+<p><a id='AdvancedHMC.ClassicNoUTurn' href='#AdvancedHMC.ClassicNoUTurn'>#</a>
+<strong><code>AdvancedHMC.ClassicNoUTurn</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> ClassicNoUTurn</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">DynamicTerminationCriterion</span>
+</code></pre></div></div>
+<p>Classic No-U-Turn criterion as described in Eq. (9) in [1].</p>
+<p>Informally, this will terminate the trajectory expansion if continuing the simulation either forwards or backwards in time will decrease the distance between the left-most and right-most positions.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>max_depth::Int64</code></li>
+<li><code>Δ_max::AbstractFloat</code></li>
+</ul>
+<p><strong>References</strong></p>
+<ol>
+<li>Hoffman, M. D., &amp; Gelman, A. (2014). The No-U-Turn Sampler: adaptively setting path lengths in Hamiltonian Monte Carlo. Journal of Machine Learning Research, 15(1), 1593-1623. (<a href="http://arxiv.org/abs/1111.4246">arXiv</a>)</li>
+</ol>
+<p><a id='AdvancedHMC.EndPointTS' href='#AdvancedHMC.EndPointTS'>#</a>
+<strong><code>AdvancedHMC.EndPointTS</code></strong> — <em>Type</em>.</p>
+<p>Samples the end-point of the trajectory.</p>
+<p><a id='AdvancedHMC.FixedIntegrationTime' href='#AdvancedHMC.FixedIntegrationTime'>#</a>
+<strong><code>AdvancedHMC.FixedIntegrationTime</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> FixedIntegrationTime</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">StaticTerminationCriterion</span>
+</code></pre></div></div>
+<p>Standard HMC implementation with a fixed integration time.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>λ::AbstractFloat</code>: Total length of the trajectory, i.e. take <code>floor(λ / integrator_step_size)</code> number of leapfrog steps.</li>
+</ul>
+<p><strong>References</strong></p>
+<ol>
+<li>Neal, R. M. (2011). MCMC using Hamiltonian dynamics. Handbook of Markov chain Monte Carlo, 2(11), 2. (<a href="https://arxiv.org/pdf/1206.1901">arXiv</a>)</li>
+</ol>
+<p><a id='AdvancedHMC.FixedNSteps' href='#AdvancedHMC.FixedNSteps'>#</a>
+<strong><code>AdvancedHMC.FixedNSteps</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> FixedNSteps</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">StaticTerminationCriterion</span>
+</code></pre></div></div>
+<p>Static HMC with a fixed number of leapfrog steps.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>L::Int64</code>: Number of steps to simulate, i.e. length of trajectory will be <code>L + 1</code>.</li>
+</ul>
+<p><strong>References</strong></p>
+<ol>
+<li>Neal, R. M. (2011). MCMC using Hamiltonian dynamics. Handbook of Markov chain Monte Carlo, 2(11), 2. (<a href="https://arxiv.org/pdf/1206.1901">arXiv</a>)</li>
+</ol>
+<p><a id='AdvancedHMC.FullMomentumRefreshment' href='#AdvancedHMC.FullMomentumRefreshment'>#</a>
+<strong><code>AdvancedHMC.FullMomentumRefreshment</code></strong> — <em>Type</em>.</p>
+<p>Completly resample new momentum.</p>
+<p><a id='AdvancedHMC.GeneralisedNoUTurn' href='#AdvancedHMC.GeneralisedNoUTurn'>#</a>
+<strong><code>AdvancedHMC.GeneralisedNoUTurn</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> GeneralisedNoUTurn</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">DynamicTerminationCriterion</span>
+</code></pre></div></div>
+<p>Generalised No-U-Turn criterion as described in Section A.4.2 in [1].</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>max_depth::Int64</code></li>
+<li><code>Δ_max::AbstractFloat</code></li>
+</ul>
+<p><strong>References</strong></p>
+<ol>
+<li>Betancourt, M. (2017). A Conceptual Introduction to Hamiltonian Monte Carlo. <a href="https://arxiv.org/abs/1701.02434">arXiv preprint arXiv:1701.02434</a>.</li>
+</ol>
+<p><a id='AdvancedHMC.HMCProgressCallback' href='#AdvancedHMC.HMCProgressCallback'>#</a>
+<strong><code>AdvancedHMC.HMCProgressCallback</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMCProgressCallback</span>
+</code></pre></div></div>
+<p>A callback to be used with AbstractMCMC.jl's interface, replicating the logging behavior of the non-AbstractMCMC [<code>sample</code>](/v0.26/docs/library/advancedhmc/#StatsBase.sample-Tuple{AbstractMCMC.LogDensityModel, AdvancedHMC.AbstractMCMCKernel, AdvancedHMC.AbstractMetric, AdvancedHMC.Adaptation.AbstractAdaptor, Integer}).</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>pm</code>: <code>Progress</code> meter from ProgressMeters.jl.</li>
+<li><code>progress</code>: Specifies whether or not to use display a progress bar.</li>
+<li><code>verbose</code>: If <code>progress</code> is not specified and this is <code>true</code> some information will be logged upon completion of adaptation.</li>
+<li><code>num_divergent_transitions</code>: Number of divergent transitions fo far.</li>
+<li><code>num_divergent_transitions_during_adaption</code></li>
+</ul>
+<p><a id='AdvancedHMC.HMCSampler' href='#AdvancedHMC.HMCSampler'>#</a>
+<strong><code>AdvancedHMC.HMCSampler</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMCSampler</span>
+</code></pre></div></div>
+<p>A <code>AbstractMCMC.AbstractSampler</code> for kernels in AdvancedHMC.jl.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>initial_kernel</code>: Initial <a href="@ref"><code>AbstractMCMCKernel</code></a>.</li>
+<li><code>initial_metric</code>: Initial <a href="@ref"><code>AbstractMetric</code></a>.</li>
+<li><code>initial_adaptor</code>: Initial <a href="@ref"><code>AbstractAdaptor</code></a>.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<p>Note that all the fields have the prefix <code>initial_</code> to indicate that these will not necessarily correspond to the <code>kernel</code>, <code>metric</code>, and <code>adaptor</code> after sampling.</p>
+<p>To access the updated fields use the resulting <a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.HMCState"><code>HMCState</code></a>.</p>
+<p><a id='AdvancedHMC.HMCState' href='#AdvancedHMC.HMCState'>#</a>
+<strong><code>AdvancedHMC.HMCState</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMCState</span>
+</code></pre></div></div>
+<p>Represents the state of a <a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.HMCSampler"><code>HMCSampler</code></a>.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>i</code>: Index of current iteration.</li>
+<li><code>transition</code>: Current <a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.Transition"><code>Transition</code></a>.</li>
+<li><code>metric</code>: Current <a href="@ref"><code>AbstractMetric</code></a>, possibly adapted.</li>
+<li><code>κ</code>: Current <a href="@ref"><code>AbstractMCMCKernel</code></a>.</li>
+<li><code>adaptor</code>: Current <a href="@ref"><code>AbstractAdaptor</code></a>.</li>
+</ul>
+<p><a id='AdvancedHMC.JitteredLeapfrog' href='#AdvancedHMC.JitteredLeapfrog'>#</a>
+<strong><code>AdvancedHMC.JitteredLeapfrog</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> JitteredLeapfrog</span><span class="x">{</span><span class="n">FT</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">,</span> <span class="n">T</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">AbstractArray</span><span class="x">{</span><span class="n">FT</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">,</span> <span class="mi">1</span><span class="x">},</span> <span class="n">FT</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractLeapfrog</span><span class="x">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">AbstractArray</span><span class="x">{</span><span class="n">FT</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">,</span> <span class="mi">1</span><span class="x">},</span> <span class="n">FT</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}}</span>
+</code></pre></div></div>
+<p>Leapfrog integrator with randomly &quot;jittered&quot; step size <code>ϵ</code> for every trajectory.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>ϵ0::Union{AbstractVector{FT}, FT} where FT&lt;:AbstractFloat</code>: Nominal (non-jittered) step size.</li>
+<li><code>jitter::AbstractFloat</code>: The proportion of the nominal step size <code>ϵ0</code> that may be added or subtracted.</li>
+<li><code>ϵ::Union{AbstractVector{FT}, FT} where FT&lt;:AbstractFloat</code>: Current (jittered) step size.</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>This is the same as <code>LeapFrog</code>(@ref) but with a &quot;jittered&quot; step size. This means  that at the beginning of each trajectory we sample a step size <code>ϵ</code> by adding or  subtracting from the nominal/base step size <code>ϵ0</code> some random proportion of <code>ϵ0</code>,  with the proportion specified by <code>jitter</code>, i.e. <code>ϵ = ϵ0 - jitter * ϵ0 * rand()</code>. p Jittering might help alleviate issues related to poor interactions with a fixed step size:</p>
+<ul>
+<li>In regions with high &quot;curvature&quot; the current choice of step size might mean over-shoot  leading to almost all steps being rejected. Randomly sampling the step size at the  beginning of the trajectories can therefore increase the probability of escaping such high-curvature regions.</li>
+<li>Exact periodicity of the simulated trajectories might occur, i.e. you might be so unlucky as to simulate the trajectory forwards in time <code>L ϵ</code> and ending up at the same point (which results in non-ergodicity; see Section 3.2 in [1]). If momentum is refreshed before each trajectory, then this should not happen <em>exactly</em> but it can still be an issue in practice. Randomly choosing the step-size <code>ϵ</code> might help alleviate such problems.</li>
+</ul>
+<p><strong>References</strong></p>
+<ol>
+<li>Neal, R. M. (2011). MCMC using Hamiltonian dynamics. Handbook of Markov chain Monte Carlo, 2(11), 2. (<a href="https://arxiv.org/pdf/1206.1901">arXiv</a>)</li>
+</ol>
+<p><a id='AdvancedHMC.Leapfrog' href='#AdvancedHMC.Leapfrog'>#</a>
+<strong><code>AdvancedHMC.Leapfrog</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> Leapfrog</span><span class="x">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="x">(</span><span class="kt">Union</span><span class="x">{</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="n">var</span><span class="s">"#s29"</span><span class="x">},</span> <span class="n">var</span><span class="s">"#s29"</span><span class="x">}</span> <span class="k">where</span> <span class="n">var</span><span class="s">"#s29"</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">)}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractLeapfrog</span><span class="x">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="x">(</span><span class="kt">Union</span><span class="x">{</span><span class="kt">AbstractVector</span><span class="x">{</span><span class="n">var</span><span class="s">"#s29"</span><span class="x">},</span> <span class="n">var</span><span class="s">"#s29"</span><span class="x">}</span> <span class="k">where</span> <span class="n">var</span><span class="s">"#s29"</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">)}</span>
+</code></pre></div></div>
+<p>Leapfrog integrator with fixed step size <code>ϵ</code>.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>ϵ::Union{AbstractVector{var&quot;#s29&quot;}, var&quot;#s29&quot;} where var&quot;#s29&quot;&lt;:AbstractFloat</code>: Step size.</li>
+</ul>
+<p><a id='AdvancedHMC.MultinomialTS' href='#AdvancedHMC.MultinomialTS'>#</a>
+<strong><code>AdvancedHMC.MultinomialTS</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> MultinomialTS</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractTrajectorySampler</span>
+</code></pre></div></div>
+<p>Multinomial trajectory sampler carried during the building of the tree. It contains the weight of the tree, defined as the total probabilities of the leaves.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>zcand::AdvancedHMC.PhasePoint</code>: Sampled candidate <code>PhasePoint</code>.</li>
+<li><code>ℓw::AbstractFloat</code>: Total energy for the given tree, i.e. the sum of energies of all leaves.</li>
+</ul>
+<p><a id='AdvancedHMC.MultinomialTS-Tuple{MultinomialTS, AbstractFloat, AdvancedHMC.PhasePoint}' href='#AdvancedHMC.MultinomialTS-Tuple{MultinomialTS, AbstractFloat, AdvancedHMC.PhasePoint}'>#</a>
+<strong><code>AdvancedHMC.MultinomialTS</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> MultinomialTS</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractTrajectorySampler</span>
+</code></pre></div></div>
+<p>Multinomial sampler for a trajectory consisting only a leaf node.</p>
+<ul>
+<li>tree weight is the (unnormalised) energy of the leaf.</li>
+</ul>
+<p><a id='AdvancedHMC.MultinomialTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint}' href='#AdvancedHMC.MultinomialTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint}'>#</a>
+<strong><code>AdvancedHMC.MultinomialTS</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> MultinomialTS</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractTrajectorySampler</span>
+</code></pre></div></div>
+<p>Multinomial sampler for the starting single leaf tree. (Log) weights for leaf nodes are their (unnormalised) Hamiltonian energies.</p>
+<p>Ref: https://github.com/stan-dev/stan/blob/develop/src/stan/mcmc/hmc/nuts/base_nuts.hpp#L226</p>
+<p><a id='AdvancedHMC.NUTS-Union{Tuple{TC}, Tuple{TS}, Tuple{AdvancedHMC.AbstractIntegrator, Vararg{Any, N} where N}} where {TS, TC}' href='#AdvancedHMC.NUTS-Union{Tuple{TC}, Tuple{TS}, Tuple{AdvancedHMC.AbstractIntegrator, Vararg{Any, N} where N}} where {TS, TC}'>#</a>
+<strong><code>AdvancedHMC.NUTS</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">NUTS</span><span class="x">(</span><span class="n">int</span><span class="x">,</span> <span class="n">args</span><span class="x">;</span> <span class="n">kwargs</span><span class="o">...</span><span class="x">)</span>
+
+</code></pre></div></div>
+<p>Convenient constructor for the no-U-turn sampler (NUTS). This falls back to <code>HMCKernel(Trajectory{TS}(int, TC(args...; kwargs...)))</code> where</p>
+<ul>
+<li><code>TS&lt;:Union{MultinomialTS, SliceTS}</code> is the type for trajectory sampler</li>
+<li><code>TC&lt;:Union{ClassicNoUTurn, GeneralisedNoUTurn, StrictGeneralisedNoUTurn}</code> is the type for termination criterion.</li>
+</ul>
+<p>See <a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.ClassicNoUTurn"><code>ClassicNoUTurn</code></a>, <a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.GeneralisedNoUTurn"><code>GeneralisedNoUTurn</code></a> and <a href="/v0.26/docs/library/advancedhmc/#AdvancedHMC.StrictGeneralisedNoUTurn"><code>StrictGeneralisedNoUTurn</code></a> for details in parameters.</p>
+<p><a id='AdvancedHMC.PartialMomentumRefreshment' href='#AdvancedHMC.PartialMomentumRefreshment'>#</a>
+<strong><code>AdvancedHMC.PartialMomentumRefreshment</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> PartialMomentumRefreshment</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractMomentumRefreshment</span>
+</code></pre></div></div>
+<p>Partial momentum refreshment with refresh rate <code>α</code>.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>α::AbstractFloat</code></li>
+</ul>
+<p>See equation (5.19) [1]</p>
+<pre><code>r' = α⋅r + sqrt(1-α²)⋅G
+</code></pre>
+<p>where r is the momentum and G is a Gaussian random variable.</p>
+<p><strong>References</strong></p>
+<ol>
+<li>Neal, Radford M. &quot;MCMC using Hamiltonian dynamics.&quot; Handbook of markov chain monte carlo 2.11 (2011): 2.</li>
+</ol>
+<p><a id='AdvancedHMC.SliceTS' href='#AdvancedHMC.SliceTS'>#</a>
+<strong><code>AdvancedHMC.SliceTS</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> SliceTS</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractTrajectorySampler</span>
+</code></pre></div></div>
+<p>Trajectory slice sampler carried during the building of the tree. It contains the slice variable and the number of acceptable condidates in the tree.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>zcand::AdvancedHMC.PhasePoint</code>: Sampled candidate <code>PhasePoint</code>.</li>
+<li><code>ℓu::AbstractFloat</code>: Slice variable in log-space.</li>
+<li><code>n::Int64</code>: Number of acceptable candidates, i.e. those with probability larger than slice variable <code>u</code>.</li>
+</ul>
+<p><a id='AdvancedHMC.SliceTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint}' href='#AdvancedHMC.SliceTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint}'>#</a>
+<strong><code>AdvancedHMC.SliceTS</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> SliceTS</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractTrajectorySampler</span>
+</code></pre></div></div>
+<p>Slice sampler for the starting single leaf tree. Slice variable is initialized.</p>
+<p><a id='AdvancedHMC.SliceTS-Tuple{SliceTS, AbstractFloat, AdvancedHMC.PhasePoint}' href='#AdvancedHMC.SliceTS-Tuple{SliceTS, AbstractFloat, AdvancedHMC.PhasePoint}'>#</a>
+<strong><code>AdvancedHMC.SliceTS</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> SliceTS</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractTrajectorySampler</span>
+</code></pre></div></div>
+<p>Create a slice sampler for a single leaf tree:</p>
+<ul>
+<li>the slice variable is copied from the passed-in sampler <code>s</code> and</li>
+<li>the number of acceptable candicates is computed by comparing the slice variable against the current energy.</li>
+</ul>
+<p><a id='AdvancedHMC.StrictGeneralisedNoUTurn' href='#AdvancedHMC.StrictGeneralisedNoUTurn'>#</a>
+<strong><code>AdvancedHMC.StrictGeneralisedNoUTurn</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> StrictGeneralisedNoUTurn</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">DynamicTerminationCriterion</span>
+</code></pre></div></div>
+<p>Generalised No-U-Turn criterion as described in Section A.4.2 in [1] with  added U-turn check as described in [2].</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>max_depth::Int64</code></li>
+<li><code>Δ_max::AbstractFloat</code></li>
+</ul>
+<p><strong>References</strong></p>
+<ol>
+<li>Betancourt, M. (2017). A Conceptual Introduction to Hamiltonian Monte Carlo. <a href="https://arxiv.org/abs/1701.02434">arXiv preprint arXiv:1701.02434</a>.</li>
+<li><a href="https://github.com/stan-dev/stan/pull/2800">https://github.com/stan-dev/stan/pull/2800</a></li>
+</ol>
+<p><a id='AdvancedHMC.TemperedLeapfrog' href='#AdvancedHMC.TemperedLeapfrog'>#</a>
+<strong><code>AdvancedHMC.TemperedLeapfrog</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> TemperedLeapfrog</span><span class="x">{</span><span class="n">FT</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">,</span> <span class="n">T</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">AbstractArray</span><span class="x">{</span><span class="n">FT</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">,</span> <span class="mi">1</span><span class="x">},</span> <span class="n">FT</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractLeapfrog</span><span class="x">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Union</span><span class="x">{</span><span class="kt">AbstractArray</span><span class="x">{</span><span class="n">FT</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">,</span> <span class="mi">1</span><span class="x">},</span> <span class="n">FT</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}}</span>
+</code></pre></div></div>
+<p>Tempered leapfrog integrator with fixed step size <code>ϵ</code> and &quot;temperature&quot; <code>α</code>.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>ϵ::Union{AbstractVector{FT}, FT} where FT&lt;:AbstractFloat</code>: Step size.</li>
+<li><code>α::AbstractFloat</code>: Temperature parameter.</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>Tempering can potentially allow greater exploration of the posterior, e.g.  in a multi-modal posterior jumps between the modes can be more likely to occur.</p>
+<p><a id='AdvancedHMC.Termination' href='#AdvancedHMC.Termination'>#</a>
+<strong><code>AdvancedHMC.Termination</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Termination</span>
+</code></pre></div></div>
+<p>Termination reasons</p>
+<ul>
+<li><code>dynamic</code>: due to stoping criteria</li>
+<li><code>numerical</code>: due to large energy deviation from starting (possibly numerical errors)</li>
+</ul>
+<p><a id='AdvancedHMC.Termination-Union{Tuple{F}, Tuple{MultinomialTS, Trajectory, F, F}} where F<:AbstractFloat' href='#AdvancedHMC.Termination-Union{Tuple{F}, Tuple{MultinomialTS, Trajectory, F, F}} where F<:AbstractFloat'>#</a>
+<strong><code>AdvancedHMC.Termination</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Termination</span><span class="x">(</span><span class="n">s</span><span class="x">,</span> <span class="n">nt</span><span class="x">,</span> <span class="n">H0</span><span class="x">,</span> <span class="n">H′</span><span class="x">)</span>
+
+</code></pre></div></div>
+<p>Check termination of a Hamiltonian trajectory.</p>
+<p><a id='AdvancedHMC.Termination-Union{Tuple{F}, Tuple{SliceTS, Trajectory, F, F}} where F<:AbstractFloat' href='#AdvancedHMC.Termination-Union{Tuple{F}, Tuple{SliceTS, Trajectory, F, F}} where F<:AbstractFloat'>#</a>
+<strong><code>AdvancedHMC.Termination</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Termination</span><span class="x">(</span><span class="n">s</span><span class="x">,</span> <span class="n">nt</span><span class="x">,</span> <span class="n">H0</span><span class="x">,</span> <span class="n">H′</span><span class="x">)</span>
+
+</code></pre></div></div>
+<p>Check termination of a Hamiltonian trajectory.</p>
+<p><a id='AdvancedHMC.Trajectory' href='#AdvancedHMC.Trajectory'>#</a>
+<strong><code>AdvancedHMC.Trajectory</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> Trajectory</span><span class="x">{</span><span class="n">TS</span><span class="o">&lt;:</span><span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractTrajectorySampler</span><span class="x">,</span> <span class="n">I</span><span class="o">&lt;:</span><span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractIntegrator</span><span class="x">,</span> <span class="n">TC</span><span class="o">&lt;:</span><span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractTerminationCriterion</span><span class="x">}</span>
+</code></pre></div></div>
+<p>Numerically simulated Hamiltonian trajectories.</p>
+<p><a id='AdvancedHMC.Transition' href='#AdvancedHMC.Transition'>#</a>
+<strong><code>AdvancedHMC.Transition</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> Transition</span><span class="x">{</span><span class="n">P</span><span class="o">&lt;:</span><span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">PhasePoint</span><span class="x">,</span> <span class="n">NT</span><span class="o">&lt;:</span><span class="kt">NamedTuple</span><span class="x">}</span>
+</code></pre></div></div>
+<p>A transition that contains the phase point and other statistics of the transition.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>z::AdvancedHMC.PhasePoint</code>: Phase-point for the transition.</li>
+<li><code>stat::NamedTuple</code>: Statistics related to the transition, e.g. energy.</li>
+</ul>
+
+    
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function() {
+
+    var toc = $('#nav-toc');
+
+    // Select each header
+    sections = $('#md-container-pancakes h1');
+        $.each(sections, function(idx, v) {
+            section = $(v);
+            var div_id = $(section).attr('id');
+            var div_text = section.text().split('¶')[0];
+            var parent = $("#" + div_id)
+            var content = '<li id="link_' + div_id + '" class="md-nav__item"><a class="md-nav__link toc-side-bar" href="#' + div_id + '" title="' + div_text +'">' + div_text +'</a></li>';
+            $(toc).append(content);
+
+            // Add section code to subnavigation
+            var children = $('<nav class="md-nav"><ul class="md-nav__list"></nav></ul>')
+            var contenders = $("#" + div_id).nextUntil( "h1" );
+            $.each(contenders, function(idx, contender){
+            if($(contender).is('h2')) {
+                var contender_id = $(contender).attr('id');
+                var contender_text = $(contender).text().split('¶')[0];
+                var content = '<li class="md-nav__item"><a class="md-nav__link toc-side-bar" href="#' + contender_id + '" title="' + contender_text +'">' + contender_text +'</a></li>';
+                children.append(content);
+                }
+            })
+            $("#link_" + div_id).append(children);
+        });
+    });
+</script>
+    <!-- this will parse through the header fields and add a button to open
+     an issue / ask a question on Github. The editable field should be in
+     the post frontend matter, and refer to the label to open the issue for -->
+
+<style>
+.more {
+    float:right;
+    font-size: 1.0rem !important;
+}
+.more:hover {
+    color: cornflowerblue !important;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    font-weight: 200;
+    box-shadow: 0px 8px 6px 0px rgba(0,0,0,0.2);
+    padding: 0px 10px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+
+
+    </article>
+</div>      
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="c-footer md-footer-nav">
+  <div class="md-footer-copyright__highlight">
+    
+    Turing is created by <a style="color:inherit; text-decoration: underline;" href="http://mlg.eng.cam.ac.uk/hong/">Hong Ge</a>, 
+    and lovingly maintained by the <a style="color:inherit; text-decoration: underline;" href="https://github.com/TuringLang/Turing.jl/graphs/contributors">core team</a> of volunteers.
+
+    <br><br>
+    
+    The contents of this website are
+© 2023 under the terms of the <a style="color:inherit; text-decoration: underline;" href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE">MIT License</a>.
+    
+  </div>  
+</footer>
+
+
+    <script src="/v0.26/assets/js/application.js"></script>
+    
+    <script>console.log('4')</script>
+    <script>app.initialize({version:"0.17.4", url:{base:'/v0.26'}})</script>
+
+    
+    <script src="/v0.26/assets/js/version-switch.js"></script>
+
+    <script>
+ var headers = ["h1", "h2", "h3", "h4"]
+ var colors = ["red", "orange", "green", "blue"]
+
+ $.each(headers, function(i, header){
+   var color = colors[i];
+   $(header).each(function () {
+     var href=$(this).attr("id");
+     $(this).append('<a class="headerlink" style="color:' + color + '" href="#' + href + '" title="Permanent link">¶</a>')
+   });
+ })
+
+ // Ensure that sidebar on left has arrows
+ $(".pancakes-parent").on('click', function(){
+   console.log($(this).next());
+   $(this).next().find('.pancakes-child').toggle();
+   if ($(this).hasClass('open-parent')){
+     $(this).removeClass('open-parent');
+   } else {
+     $(this).addClass('open-parent');
+   }
+ })
+
+ $(".pancakes-parent-mobile").on('click', function(){
+   var nav = $(this).next();
+   nav.addClass('mobile-sub-navbar-display');
+ })
+
+ $(".mobile-navbar-back").on('click', function(){
+   var nav = $(this).parent();
+   nav.removeClass('mobile-sub-navbar-display');
+ })
+
+</script>
+
+<script>
+ MathJax = {
+   tex: {
+     inlineMath: [['$', '$'], ['$$', '$$']]
+   }
+ };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+    <script>
+$('h1').first().append('<div></div>')</script>
+
+    <style>
+#scrolltop {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #d2e6f5; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 10px 15px; /* Some padding */
+  border-radius: 100px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+  font-weight: 600;
+}
+
+#scrolltop:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+</style>
+<button onclick="topFunction()" id="scrolltop" title="Go to top">🔝</button>
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("scrolltop").style.display = "block";
+  } else {
+    document.getElementById("scrolltop").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
+
+    
+
+
+  </body>
+</html>
