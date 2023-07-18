@@ -1024,9 +1024,9 @@ Summary Statistics
       Symbol   Float64   Float64   Float64       Float64       Float64   Fl
 oat ⋯
 
-           a    0.9723    0.8970    0.0031    82344.1981   120870.8126    1
+           a    0.9783    0.9014    0.0032    81440.0118   120168.8170    1
 .00 ⋯
-           b    2.8790    0.4877    0.0012   172253.9528   216170.0093    1
+           b    2.8810    0.4876    0.0012   171683.8967   216037.1285    1
 .00 ⋯
                                                                2 columns om
 itted
@@ -1035,8 +1035,8 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           a   -0.7866    0.3694    0.9703    1.5771    2.7271
-           b    1.9196    2.5514    2.8785    3.2068    3.8351
+           a   -0.7870    0.3693    0.9783    1.5866    2.7466
+           b    1.9296    2.5514    2.8806    3.2103    3.8386
 </code></pre>
 <p>We compare these results with Turing.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
@@ -1056,8 +1056,8 @@ Quantiles
 Iterations        = 1:1:1000000
 Number of chains  = 1
 Samples per chain = 1000000
-Wall duration     = 4.88 seconds
-Compute duration  = 4.88 seconds
+Wall duration     = 4.83 seconds
+Compute duration  = 4.83 seconds
 parameters        = a, b
 internals         = lp
 
@@ -1067,9 +1067,9 @@ Summary Statistics
       Symbol   Float64   Float64   Float64       Float64       Float64   Fl
 oat ⋯
 
-           a    0.9771    0.9014    0.0032    77735.6906   119185.4467    1
+           a    0.9751    0.9001    0.0032    80146.7674   119300.8459    1
 .00 ⋯
-           b    2.8830    0.4878    0.0012   172872.9078   216961.1360    1
+           b    2.8813    0.4869    0.0012   173846.2898   216671.5886    1
 .00 ⋯
                                                                2 columns om
 itted
@@ -1078,8 +1078,8 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           a   -0.7820    0.3654    0.9753    1.5838    2.7517
-           b    1.9243    2.5551    2.8829    3.2125    3.8380
+           a   -0.7989    0.3706    0.9767    1.5808    2.7352
+           b    1.9265    2.5547    2.8808    3.2088    3.8384
 </code></pre>
 <p>As you can see, with our simple probabilistic programming language and custom samplers we get similar results as Turing.</p>
 <h2 id="appendix">Appendix</h2>
@@ -1111,7 +1111,7 @@ Environment:
   [c7f686f2] MCMCChains v6.0.3
   [1914dd2f] MacroTools v0.5.10
   [90014a1f] PDMats v0.11.17
-  [fce5fe82] Turing v0.26.2
+  [fce5fe82] Turing v0.26.5
   [9a3f8284] Random
 </code></pre>
 <p>And the full manifest:</p>
@@ -1123,7 +1123,7 @@ Environment:
   [1520ce14] AbstractTrees v0.4.4
   [79e6a3ab] Adapt v3.6.2
   [0bf59076] AdvancedHMC v0.4.6
-  [5b7e9947] AdvancedMH v0.7.4
+  [5b7e9947] AdvancedMH v0.7.5
   [576499cb] AdvancedPS v0.4.3
   [b5ca4192] AdvancedVI v0.2.4
   [dce04be8] ArgCheck v2.3.0
@@ -1136,7 +1136,7 @@ Environment:
 ⌅ [76274a88] Bijectors v0.12.8
   [fa961155] CEnum v0.4.2
   [49dc2e85] Calculus v0.5.1
-  [082447d4] ChainRules v1.52.0
+  [082447d4] ChainRules v1.53.0
   [d360d2e6] ChainRulesCore v1.16.0
   [9e997f8a] ChangesOfVariables v0.1.8
   [861a8166] Combinatorics v1.0.2
@@ -1145,7 +1145,7 @@ Environment:
   [34da2185] Compat v4.7.0
   [a33af91c] CompositionsBase v0.1.2
   [88cd18e8] ConsoleProgressMonitor v0.1.2
-  [187b0558] ConstructionBase v1.5.2
+  [187b0558] ConstructionBase v1.5.3
   [a8cc5b0e] Crayons v4.1.1
   [9a962f9c] DataAPI v1.15.0
   [864edb3b] DataStructures v0.18.14
@@ -1156,7 +1156,7 @@ Environment:
   [163ba53b] DiffResults v1.1.0
   [b552c78f] DiffRules v1.15.1
   [31c24e10] Distributions v0.25.98
-  [ced4e74d] DistributionsAD v0.6.49
+  [ced4e74d] DistributionsAD v0.6.51
   [ffbed154] DocStringExtensions v0.9.3
   [fa6b7ba4] DualNumbers v0.6.8
 ⌃ [366bfd00] DynamicPPL v0.23.0
@@ -1164,25 +1164,25 @@ Environment:
   [4e289a0a] EnumX v1.0.4
   [e2ba6199] ExprTools v0.1.9
   [7a1cc6ca] FFTW v1.7.1
-⌅ [1a297f60] FillArrays v1.0.0
+  [1a297f60] FillArrays v1.4.1
   [59287772] Formatting v0.4.2
   [f6369f11] ForwardDiff v0.10.35
   [069b7b12] FunctionWrappers v1.1.3
   [77dc65aa] FunctionWrappersWrappers v0.1.3
-⌃ [d9f16b24] Functors v0.4.4
+  [d9f16b24] Functors v0.4.5
   [46192b85] GPUArraysCore v0.1.5
-  [34004b35] HypergeometricFunctions v0.3.18
+  [34004b35] HypergeometricFunctions v0.3.21
   [22cec73e] InitialValues v0.3.1
   [505f98c9] InplaceOps v0.3.0
   [a98d9a8b] Interpolations v0.14.7
   [8197267c] IntervalSets v0.7.4
-  [3587e190] InverseFunctions v0.1.10
+  [3587e190] InverseFunctions v0.1.11
   [41ab1584] InvertedIndices v1.3.0
   [92d709cd] IrrationalConstants v0.2.2
   [c8e1da08] IterTools v1.8.0
   [82899510] IteratorInterfaceExtensions v1.0.0
   [692b3bcd] JLLWrappers v1.4.1
-  [63c18a36] KernelAbstractions v0.9.6
+  [63c18a36] KernelAbstractions v0.9.7
   [5ab0869b] KernelDensity v0.6.7
   [929cbde3] LLVM v6.1.0
   [8ac3fa9e] LRUCache v1.4.1
@@ -1201,7 +1201,7 @@ Environment:
   [dbb5928d] MappedArrays v0.4.2
   [128add7d] MicroCollections v0.1.4
   [e1d29d7a] Missings v1.1.0
-  [872c559c] NNlib v0.9.2
+  [872c559c] NNlib v0.9.4
   [77ba4419] NaNMath v1.0.2
   [86f7a689] NamedArrays v0.9.8
   [c020b1a1] NaturalSort v1.0.0
@@ -1211,7 +1211,7 @@ Environment:
   [90014a1f] PDMats v0.11.17
   [aea7be01] PrecompileTools v1.1.2
   [21216c6a] Preferences v1.4.0
-  [08abe8d2] PrettyTables v2.2.4
+  [08abe8d2] PrettyTables v2.2.5
   [33c8b6b6] ProgressLogging v0.1.4
   [92933f4c] ProgressMeter v1.7.2
   [1fd47b50] QuadGK v2.8.2
@@ -1221,13 +1221,13 @@ Environment:
   [c84ed2f1] Ratios v0.4.5
   [c1ae055f] RealDot v0.1.0
   [3cdcf5f2] RecipesBase v1.3.4
-  [731186ca] RecursiveArrayTools v2.38.5
+  [731186ca] RecursiveArrayTools v2.38.7
   [189a3867] Reexport v1.2.2
   [ae029012] Requires v1.3.0
   [79098fc4] Rmath v0.7.1
   [f2b01f46] Roots v2.0.17
   [7e49a35a] RuntimeGeneratedFunctions v0.5.11
-  [0bca4576] SciMLBase v1.93.0
+  [0bca4576] SciMLBase v1.93.2
   [c0aeaf25] SciMLOperators v0.3.3
   [30f210dd] ScientificTypesBase v3.0.0
   [efcf1570] Setfield v1.1.1
@@ -1235,8 +1235,8 @@ Environment:
   [a2af1166] SortingAlgorithms v1.1.1
   [276daf66] SpecialFunctions v2.3.0
   [171d559e] SplittablesBase v0.1.15
-  [90137ffa] StaticArrays v1.6.0
-  [1e83bf80] StaticArraysCore v1.4.0
+  [90137ffa] StaticArrays v1.6.1
+  [1e83bf80] StaticArraysCore v1.4.2
   [64bff920] StatisticalTraits v3.2.0
   [82ae8749] StatsAPI v1.6.0
   [2913bbd2] StatsBase v0.34.0
@@ -1251,7 +1251,7 @@ Environment:
   [28d57a85] Transducers v0.4.77
   [410a4b4d] Tricks v0.1.7
   [781d530d] TruncatedStacktraces v1.4.0
-  [fce5fe82] Turing v0.26.2
+  [fce5fe82] Turing v0.26.5
   [013be700] UnsafeAtomics v0.2.1
   [d80eeb9a] UnsafeAtomicsLLVM v0.1.3
   [efce3f68] WoodburyMatrices v0.5.5
