@@ -888,8 +888,8 @@ Therefore, we write the Lotka-Volterra parameter estimation problem using the Tu
 Iterations        = 501:1:1500
 Number of chains  = 3
 Samples per chain = 1000
-Wall duration     = 56.91 seconds
-Compute duration  = 56.58 seconds
+Wall duration     = 57.68 seconds
+Compute duration  = 57.38 seconds
 parameters        = σ, α, β, γ, δ
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -979,8 +979,8 @@ I.e., we fit the model only to the $y$ variable of the system without providing 
 Iterations        = 1001:1:6000
 Number of chains  = 3
 Samples per chain = 5000
-Wall duration     = 47.51 seconds
-Compute duration  = 47.09 seconds
+Wall duration     = 46.59 seconds
+Compute duration  = 46.19 seconds
 parameters        = σ, α, β, γ, δ
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -1104,8 +1104,8 @@ Moreover, we assume $x(t) = 1$ for $t &lt; 0$.</p>
 Iterations        = 151:1:450
 Number of chains  = 3
 Samples per chain = 300
-Wall duration     = 23.62 seconds
-Compute duration  = 23.34 seconds
+Wall duration     = 23.7 seconds
+Compute duration  = 23.41 seconds
 parameters        = σ, α, β, γ, δ
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -1185,8 +1185,8 @@ For more details, see https://arxiv.org/abs/1812.01892.</p>
 Iterations        = 501:1:1500
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 973.59 seconds
-Compute duration  = 973.59 seconds
+Wall duration     = 1012.1 seconds
+Compute duration  = 1012.1 seconds
 parameters        = σ, α, β, γ, δ
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -1254,8 +1254,8 @@ Here we will not choose a <code>sensealg</code> and let it use the default choic
 Iterations        = 501:1:1500
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 530.55 seconds
-Compute duration  = 530.55 seconds
+Wall duration     = 533.61 seconds
+Compute duration  = 533.61 seconds
 parameters        = σ, α, β, γ, δ
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -1386,24 +1386,24 @@ Environment:
 
 </code></pre>
 <p>Package Information:</p>
-<pre><code>Status `/cache/build/default-amdci4-3/julialang/turingtutorials/tutorials/10-bayesian-differential-equations/Project.toml`
+<pre><code>Status `/cache/build/default-amdci4-4/julialang/turingtutorials/tutorials/10-bayesian-differential-equations/Project.toml`
   [0c46a032] DifferentialEquations v7.8.0
   [1ed8b502] SciMLSensitivity v7.35.1
   [f3b207a7] StatsPlots v0.15.6
-  [fce5fe82] Turing v0.26.6
+  [fce5fe82] Turing v0.27.0
   [e88e6eb3] Zygote v0.6.62
   [37e2e46d] LinearAlgebra
   [9a3f8284] Random
 </code></pre>
 <p>And the full manifest:</p>
-<pre><code>Status `/cache/build/default-amdci4-3/julialang/turingtutorials/tutorials/10-bayesian-differential-equations/Manifest.toml`
-  [47edcb42] ADTypes v0.1.5
+<pre><code>Status `/cache/build/default-amdci4-4/julialang/turingtutorials/tutorials/10-bayesian-differential-equations/Manifest.toml`
+  [47edcb42] ADTypes v0.1.6
   [621f4979] AbstractFFTs v1.4.0
   [80f14c24] AbstractMCMC v4.4.2
 ⌅ [7a57a42e] AbstractPPL v0.5.4
   [1520ce14] AbstractTrees v0.4.4
   [79e6a3ab] Adapt v3.6.2
-  [0bf59076] AdvancedHMC v0.4.6
+⌅ [0bf59076] AdvancedHMC v0.4.6
   [5b7e9947] AdvancedMH v0.7.5
   [576499cb] AdvancedPS v0.4.3
   [b5ca4192] AdvancedVI v0.2.4
@@ -1412,11 +1412,11 @@ Environment:
   [7d9fca2a] Arpack v0.5.4
   [4fba245c] ArrayInterface v7.4.11
   [30b0a656] ArrayInterfaceCore v0.1.29
-  [4c555306] ArrayLayouts v1.0.13
+  [4c555306] ArrayLayouts v1.1.0
   [a9b6321e] Atomix v0.1.0
   [13072b0f] AxisAlgorithms v1.0.1
   [39de3d68] AxisArrays v0.4.7
-  [aae01518] BandedMatrices v0.17.32
+  [aae01518] BandedMatrices v0.17.33
   [198e06fe] BangBang v0.3.39
   [9718e550] Baselet v0.1.1
 ⌅ [76274a88] Bijectors v0.12.8
@@ -1431,7 +1431,7 @@ Environment:
   [d360d2e6] ChainRulesCore v1.16.0
   [9e997f8a] ChangesOfVariables v0.1.8
   [fb6a15b2] CloseOpenIntervals v0.1.12
-  [aaaa29a8] Clustering v0.15.3
+  [aaaa29a8] Clustering v0.15.4
   [944b1d66] CodecZlib v0.7.2
   [35d6a980] ColorSchemes v3.22.0
   [3da002f7] ColorTypes v0.11.4
@@ -1440,7 +1440,7 @@ Environment:
   [861a8166] Combinatorics v1.0.2
   [38540f10] CommonSolve v0.2.4
   [bbf7d656] CommonSubexpressions v0.3.0
-  [34da2185] Compat v4.7.0
+  [34da2185] Compat v4.8.0
   [a33af91c] CompositionsBase v0.1.2
   [f0e56b4a] ConcurrentUtilities v2.2.1
   [88cd18e8] ConsoleProgressMonitor v0.1.2
@@ -1461,7 +1461,7 @@ Environment:
   [163ba53b] DiffResults v1.1.0
   [b552c78f] DiffRules v1.15.1
   [0c46a032] DifferentialEquations v7.8.0
-  [b4f34e82] Distances v0.10.8
+  [b4f34e82] Distances v0.10.9
   [31c24e10] Distributions v0.25.98
   [ced4e74d] DistributionsAD v0.6.51
   [ffbed154] DocStringExtensions v0.9.3
@@ -1474,13 +1474,13 @@ Environment:
 ⌅ [f151be2c] EnzymeCore v0.3.0
   [460bff9d] ExceptionUnwrapping v0.1.9
   [d4d017d3] ExponentialUtilities v1.24.0
-  [e2ba6199] ExprTools v0.1.9
+  [e2ba6199] ExprTools v0.1.10
   [c87230d0] FFMPEG v0.4.1
   [7a1cc6ca] FFTW v1.7.1
   [7034ab61] FastBroadcast v0.2.6
   [9aa1b823] FastClosures v0.3.2
   [29a986be] FastLapackInterface v2.0.0
-  [1a297f60] FillArrays v1.4.2
+  [1a297f60] FillArrays v1.5.0
   [6a86dc24] FiniteDiff v2.21.1
   [53c48c17] FixedPointNumbers v0.8.4
   [59287772] Formatting v0.4.2
@@ -1497,14 +1497,14 @@ Environment:
   [42e2da0e] Grisu v1.0.2
   [cd3eb016] HTTP v1.9.14
   [3e5b6fbb] HostCPUFeatures v0.1.15
-  [34004b35] HypergeometricFunctions v0.3.21
+  [34004b35] HypergeometricFunctions v0.3.23
   [7869d1d1] IRTools v0.4.10
   [615f187c] IfElse v0.1.1
   [d25df0c9] Inflate v0.1.3
   [22cec73e] InitialValues v0.3.1
   [505f98c9] InplaceOps v0.3.0
   [a98d9a8b] Interpolations v0.14.7
-  [8197267c] IntervalSets v0.7.4
+  [8197267c] IntervalSets v0.7.5
   [3587e190] InverseFunctions v0.1.11
   [41ab1584] InvertedIndices v1.3.0
   [92d709cd] IrrationalConstants v0.2.2
@@ -1530,10 +1530,10 @@ Environment:
   [d3d80556] LineSearches v7.2.0
   [7ed4a6bd] LinearSolve v2.4.1
   [6fdf6af0] LogDensityProblems v2.1.1
-  [996a588d] LogDensityProblemsAD v1.6.0
+  [996a588d] LogDensityProblemsAD v1.6.1
   [2ab3a3ac] LogExpFunctions v0.3.24
   [e6f89c97] LoggingExtras v1.0.0
-  [bdcacae8] LoopVectorization v0.12.164
+  [bdcacae8] LoopVectorization v0.12.165
   [c7f686f2] MCMCChains v6.0.3
   [be115224] MCMCDiagnosticTools v0.3.4
   [e80e1ace] MLJModelInterface v1.8.0
@@ -1559,8 +1559,8 @@ Environment:
   [6fe1bfb0] OffsetArrays v1.12.10
   [4d8831e6] OpenSSL v1.4.1
   [429524aa] Optim v1.7.6
-  [3bd65402] Optimisers v0.2.18
-  [bac558e1] OrderedCollections v1.6.1
+  [3bd65402] Optimisers v0.2.19
+  [bac558e1] OrderedCollections v1.6.2
   [1dea7af3] OrdinaryDiffEq v6.53.3
   [90014a1f] PDMats v0.11.17
   [65ce6f38] PackageExtensionCompat v1.0.0
@@ -1569,15 +1569,15 @@ Environment:
   [b98c9c47] Pipe v1.3.0
   [ccf2f8ad] PlotThemes v3.1.0
   [995b91a9] PlotUtils v1.3.5
-  [91a5bcdd] Plots v1.38.16
+  [91a5bcdd] Plots v1.38.17
   [e409e4f3] PoissonRandom v0.4.4
-  [f517fe37] Polyester v0.7.4
+  [f517fe37] Polyester v0.7.5
   [1d0040c9] PolyesterWeave v0.2.1
   [85a6dd25] PositiveFactorizations v0.2.4
   [d236fae5] PreallocationTools v0.4.12
   [aea7be01] PrecompileTools v1.1.2
   [21216c6a] Preferences v1.4.0
-  [08abe8d2] PrettyTables v2.2.6
+  [08abe8d2] PrettyTables v2.2.7
   [33c8b6b6] ProgressLogging v0.1.4
   [92933f4c] ProgressMeter v1.7.2
   [1fd47b50] QuadGK v2.8.2
@@ -1600,7 +1600,7 @@ Environment:
   [7e49a35a] RuntimeGeneratedFunctions v0.5.11
   [94e857df] SIMDTypes v0.1.0
   [476501e8] SLEEFPirates v0.6.39
-  [0bca4576] SciMLBase v1.93.4
+  [0bca4576] SciMLBase v1.94.0
   [e9a6253c] SciMLNLSolve v0.1.8
   [c0aeaf25] SciMLOperators v0.3.5
   [1ed8b502] SciMLSensitivity v7.35.1
@@ -1629,7 +1629,7 @@ Environment:
   [4c63d2b9] StatsFuns v1.3.0
   [f3b207a7] StatsPlots v0.15.6
   [9672c7b4] SteadyStateDiffEq v1.16.0
-  [789caeaf] StochasticDiffEq v6.61.1
+  [789caeaf] StochasticDiffEq v6.61.2
   [7792a7ef] StrideArraysCore v0.4.17
   [892a3eda] StringManipulation v0.3.0
   [09ab397b] StructArrays v0.6.15
@@ -1650,7 +1650,7 @@ Environment:
   [d5829a12] TriangularSolve v0.1.19
   [410a4b4d] Tricks v0.1.7
   [781d530d] TruncatedStacktraces v1.4.0
-  [fce5fe82] Turing v0.26.6
+  [fce5fe82] Turing v0.27.0
   [5c2747f8] URIs v1.4.2
   [3a884ed6] UnPack v1.0.2
   [1cfade01] UnicodeFun v0.4.1

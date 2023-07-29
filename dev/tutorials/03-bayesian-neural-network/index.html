@@ -961,35 +961,35 @@ Platform Info:
   WORD_SIZE: 64
   LIBM: libopenlibm
   LLVM: libLLVM-14.0.6 (ORCJIT, znver2)
-  Threads: 1 on 16 virtual cores
+  Threads: 1 on 128 virtual cores
 Environment:
-  JULIA_CPU_THREADS = 16
+  JULIA_CPU_THREADS = 128
   JULIA_DEPOT_PATH = /cache/julia-buildkite-plugin/depots/7aa0085e-79a4-45f3-a5bd-9743c91cf3da
   JULIA_IMAGE_THREADS = 1
 
 </code></pre>
 <p>Package Information:</p>
-<pre><code>Status `/cache/build/default-amdci4-2/julialang/turingtutorials/tutorials/03-bayesian-neural-network/Project.toml`
+<pre><code>Status `/cache/build/exclusive-amdci3-0/julialang/turingtutorials/tutorials/03-bayesian-neural-network/Project.toml`
   [b5ca4192] AdvancedVI v0.2.4
 ⌅ [76274a88] Bijectors v0.12.8
-  [1a297f60] FillArrays v1.4.2
+  [1a297f60] FillArrays v1.5.0
   [587475ba] Flux v0.14.1
-  [91a5bcdd] Plots v1.38.16
+  [91a5bcdd] Plots v1.38.17
   [37e2e3b7] ReverseDiff v1.15.0
-  [fce5fe82] Turing v0.26.6
+  [fce5fe82] Turing v0.27.0
   [37e2e46d] LinearAlgebra
   [9a3f8284] Random
 Info Packages marked with ⌅ have new versions available but compatibility constraints restrict them from upgrading. To see why use `status --outdated`
 </code></pre>
 <p>And the full manifest:</p>
-<pre><code>Status `/cache/build/default-amdci4-2/julialang/turingtutorials/tutorials/03-bayesian-neural-network/Manifest.toml`
-  [47edcb42] ADTypes v0.1.5
+<pre><code>Status `/cache/build/exclusive-amdci3-0/julialang/turingtutorials/tutorials/03-bayesian-neural-network/Manifest.toml`
+  [47edcb42] ADTypes v0.1.6
   [621f4979] AbstractFFTs v1.4.0
   [80f14c24] AbstractMCMC v4.4.2
 ⌅ [7a57a42e] AbstractPPL v0.5.4
   [1520ce14] AbstractTrees v0.4.4
   [79e6a3ab] Adapt v3.6.2
-  [0bf59076] AdvancedHMC v0.4.6
+⌅ [0bf59076] AdvancedHMC v0.4.6
   [5b7e9947] AdvancedMH v0.7.5
   [576499cb] AdvancedPS v0.4.3
   [b5ca4192] AdvancedVI v0.2.4
@@ -1015,7 +1015,7 @@ Info Packages marked with ⌅ have new versions available but compatibility cons
   [861a8166] Combinatorics v1.0.2
   [38540f10] CommonSolve v0.2.4
   [bbf7d656] CommonSubexpressions v0.3.0
-  [34da2185] Compat v4.7.0
+  [34da2185] Compat v4.8.0
   [a33af91c] CompositionsBase v0.1.2
   [f0e56b4a] ConcurrentUtilities v2.2.1
   [88cd18e8] ConsoleProgressMonitor v0.1.2
@@ -1039,12 +1039,12 @@ Info Packages marked with ⌅ have new versions available but compatibility cons
   [cad2338a] EllipticalSliceSampling v1.1.0
   [4e289a0a] EnumX v1.0.4
   [460bff9d] ExceptionUnwrapping v0.1.9
-  [e2ba6199] ExprTools v0.1.9
+  [e2ba6199] ExprTools v0.1.10
   [c87230d0] FFMPEG v0.4.1
   [7a1cc6ca] FFTW v1.7.1
   [cc61a311] FLoops v0.2.1
   [b9860ae5] FLoopsBase v0.1.1
-  [1a297f60] FillArrays v1.4.2
+  [1a297f60] FillArrays v1.5.0
   [53c48c17] FixedPointNumbers v0.8.4
   [587475ba] Flux v0.14.1
   [59287772] Formatting v0.4.2
@@ -1057,12 +1057,12 @@ Info Packages marked with ⌅ have new versions available but compatibility cons
   [28b8d3ca] GR v0.72.9
   [42e2da0e] Grisu v1.0.2
   [cd3eb016] HTTP v1.9.14
-  [34004b35] HypergeometricFunctions v0.3.21
+  [34004b35] HypergeometricFunctions v0.3.23
   [7869d1d1] IRTools v0.4.10
   [22cec73e] InitialValues v0.3.1
   [505f98c9] InplaceOps v0.3.0
   [a98d9a8b] Interpolations v0.14.7
-  [8197267c] IntervalSets v0.7.4
+  [8197267c] IntervalSets v0.7.5
   [3587e190] InverseFunctions v0.1.11
   [41ab1584] InvertedIndices v1.3.0
   [92d709cd] IrrationalConstants v0.2.2
@@ -1072,7 +1072,7 @@ Info Packages marked with ⌅ have new versions available but compatibility cons
   [692b3bcd] JLLWrappers v1.4.1
   [682c06a0] JSON v0.21.4
   [b14d175d] JuliaVariables v0.2.4
-  [63c18a36] KernelAbstractions v0.9.7
+  [63c18a36] KernelAbstractions v0.9.8
   [5ab0869b] KernelDensity v0.6.7
   [929cbde3] LLVM v6.1.0
   [8ac3fa9e] LRUCache v1.4.1
@@ -1082,7 +1082,7 @@ Info Packages marked with ⌅ have new versions available but compatibility cons
   [1d6d02ad] LeftChildRightSiblingTrees v0.2.0
   [6f1fad26] Libtask v0.8.6
   [6fdf6af0] LogDensityProblems v2.1.1
-  [996a588d] LogDensityProblemsAD v1.6.0
+  [996a588d] LogDensityProblemsAD v1.6.1
   [2ab3a3ac] LogExpFunctions v0.3.24
   [e6f89c97] LoggingExtras v1.0.0
   [c7f686f2] MCMCChains v6.0.3
@@ -1104,18 +1104,18 @@ Info Packages marked with ⌅ have new versions available but compatibility cons
   [6fe1bfb0] OffsetArrays v1.12.10
   [0b1bfda6] OneHotArrays v0.2.4
   [4d8831e6] OpenSSL v1.4.1
-  [3bd65402] Optimisers v0.2.18
-  [bac558e1] OrderedCollections v1.6.1
+  [3bd65402] Optimisers v0.2.19
+  [bac558e1] OrderedCollections v1.6.2
   [90014a1f] PDMats v0.11.17
   [69de0a69] Parsers v2.7.1
   [b98c9c47] Pipe v1.3.0
   [ccf2f8ad] PlotThemes v3.1.0
   [995b91a9] PlotUtils v1.3.5
-  [91a5bcdd] Plots v1.38.16
+  [91a5bcdd] Plots v1.38.17
   [aea7be01] PrecompileTools v1.1.2
   [21216c6a] Preferences v1.4.0
   [8162dcfd] PrettyPrint v0.2.0
-  [08abe8d2] PrettyTables v2.2.6
+  [08abe8d2] PrettyTables v2.2.7
   [33c8b6b6] ProgressLogging v0.1.4
   [92933f4c] ProgressMeter v1.7.2
   [1fd47b50] QuadGK v2.8.2
@@ -1134,7 +1134,7 @@ Info Packages marked with ⌅ have new versions available but compatibility cons
   [79098fc4] Rmath v0.7.1
   [f2b01f46] Roots v2.0.17
   [7e49a35a] RuntimeGeneratedFunctions v0.5.11
-  [0bca4576] SciMLBase v1.93.4
+  [0bca4576] SciMLBase v1.94.0
   [c0aeaf25] SciMLOperators v0.3.5
   [30f210dd] ScientificTypesBase v3.0.0
   [6c6a2e73] Scratch v1.2.0
@@ -1165,7 +1165,7 @@ Info Packages marked with ⌅ have new versions available but compatibility cons
   [28d57a85] Transducers v0.4.78
   [410a4b4d] Tricks v0.1.7
   [781d530d] TruncatedStacktraces v1.4.0
-  [fce5fe82] Turing v0.26.6
+  [fce5fe82] Turing v0.27.0
   [5c2747f8] URIs v1.4.2
   [1cfade01] UnicodeFun v0.4.1
   [1986cc42] Unitful v1.15.0

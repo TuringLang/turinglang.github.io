@@ -802,24 +802,26 @@
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.FixedNSteps"><code>AdvancedHMC.FixedNSteps</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.FullMomentumRefreshment"><code>AdvancedHMC.FullMomentumRefreshment</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.GeneralisedNoUTurn"><code>AdvancedHMC.GeneralisedNoUTurn</code></a></li>
+<li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.HMC"><code>AdvancedHMC.HMC</code></a></li>
+<li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.HMCDA"><code>AdvancedHMC.HMCDA</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.HMCProgressCallback"><code>AdvancedHMC.HMCProgressCallback</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.HMCSampler"><code>AdvancedHMC.HMCSampler</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.HMCState"><code>AdvancedHMC.HMCState</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.JitteredLeapfrog"><code>AdvancedHMC.JitteredLeapfrog</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.Leapfrog"><code>AdvancedHMC.Leapfrog</code></a></li>
-<li>[<code>AdvancedHMC.MultinomialTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.MultinomialTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint})</li>
 <li>[<code>AdvancedHMC.MultinomialTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.MultinomialTS-Tuple{MultinomialTS, AbstractFloat, AdvancedHMC.PhasePoint})</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.MultinomialTS"><code>AdvancedHMC.MultinomialTS</code></a></li>
-<li>[<code>AdvancedHMC.NUTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.NUTS-Union{Tuple{TC}, Tuple{TS}, Tuple{AdvancedHMC.AbstractIntegrator, Vararg{Any, N} where N}} where {TS, TC})</li>
+<li>[<code>AdvancedHMC.MultinomialTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.MultinomialTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint})</li>
+<li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.NUTS"><code>AdvancedHMC.NUTS</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.PartialMomentumRefreshment"><code>AdvancedHMC.PartialMomentumRefreshment</code></a></li>
+<li>[<code>AdvancedHMC.SliceTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.SliceTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint})</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.SliceTS"><code>AdvancedHMC.SliceTS</code></a></li>
 <li>[<code>AdvancedHMC.SliceTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.SliceTS-Tuple{SliceTS, AbstractFloat, AdvancedHMC.PhasePoint})</li>
-<li>[<code>AdvancedHMC.SliceTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.SliceTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint})</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.StrictGeneralisedNoUTurn"><code>AdvancedHMC.StrictGeneralisedNoUTurn</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.TemperedLeapfrog"><code>AdvancedHMC.TemperedLeapfrog</code></a></li>
-<li>[<code>AdvancedHMC.Termination</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.Termination-Union{Tuple{F}, Tuple{MultinomialTS, Trajectory, F, F}} where F&lt;:AbstractFloat)</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.Termination"><code>AdvancedHMC.Termination</code></a></li>
 <li>[<code>AdvancedHMC.Termination</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.Termination-Union{Tuple{F}, Tuple{SliceTS, Trajectory, F, F}} where F&lt;:AbstractFloat)</li>
+<li>[<code>AdvancedHMC.Termination</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.Termination-Union{Tuple{F}, Tuple{MultinomialTS, Trajectory, F, F}} where F&lt;:AbstractFloat)</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.Trajectory"><code>AdvancedHMC.Trajectory</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.Transition"><code>AdvancedHMC.Transition</code></a></li>
 <li>[<code>AdvancedHMC.A</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.A-Tuple{Any, Any, Any})</li>
@@ -827,15 +829,17 @@
 <li>[<code>AdvancedHMC.check_left_subtree</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.check_left_subtree-Union{Tuple{T}, Tuple{Hamiltonian, T, T, T}} where T&lt;:AdvancedHMC.BinaryTree)</li>
 <li>[<code>AdvancedHMC.check_right_subtree</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.check_right_subtree-Union{Tuple{T}, Tuple{Hamiltonian, T, T, T}} where T&lt;:AdvancedHMC.BinaryTree)</li>
 <li>[<code>AdvancedHMC.combine</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.combine-Tuple{AdvancedHMC.BinaryTree, AdvancedHMC.BinaryTree})</li>
+<li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.determine_sampler_eltype-Tuple"><code>AdvancedHMC.determine_sampler_eltype</code></a></li>
 <li>[<code>AdvancedHMC.find_good_stepsize</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.find_good_stepsize-Union{Tuple{T}, Tuple{Random.AbstractRNG, Hamiltonian, AbstractVector{T}}} where T&lt;:Real)</li>
 <li>[<code>AdvancedHMC.isterminated</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.isterminated-Tuple{GeneralisedNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree})</li>
-<li>[<code>AdvancedHMC.isterminated</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.isterminated-Tuple{ClassicNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree})</li>
 <li>[<code>AdvancedHMC.isterminated</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.isterminated-Tuple{StrictGeneralisedNoUTurn, Hamiltonian, Any, Any, Any})</li>
+<li>[<code>AdvancedHMC.isterminated</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.isterminated-Tuple{ClassicNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree})</li>
 <li>[<code>AdvancedHMC.maxabs</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.maxabs-Tuple{Any, Any})</li>
 <li>[<code>AdvancedHMC.mh_accept_ratio</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.mh_accept_ratio-Union{Tuple{T}, Tuple{Random.AbstractRNG, T, T}} where T&lt;:AbstractFloat)</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.nom_step_size-Tuple%7BAdvancedHMC.AbstractIntegrator%7D"><code>AdvancedHMC.nom_step_size</code></a></li>
 <li>[<code>AdvancedHMC.pm_next!</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.pm_next!-Tuple{Any, NamedTuple})</li>
 <li>[<code>AdvancedHMC.randcat</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.randcat-Union{Tuple{T}, Tuple{Union{Random.AbstractRNG, AbstractVector{var&quot;#s9&quot;} where var&quot;#s9&quot;&lt;:Random.AbstractRNG}, AbstractMatrix{T}}} where T)</li>
+<li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.sampler_eltype"><code>AdvancedHMC.sampler_eltype</code></a></li>
 <li>[<code>AdvancedHMC.simple_pm_next!</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.simple_pm_next!-Tuple{Any, NamedTuple})</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.stat-Tuple%7BAdvancedHMC.Transition%7D"><code>AdvancedHMC.stat</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.step_size"><code>AdvancedHMC.step_size</code></a></li>
@@ -871,6 +875,12 @@
 
 </code></pre></div></div>
 <p>Merge a left tree <code>treeleft</code> and a right tree <code>treeright</code> under given Hamiltonian <code>h</code>, then draw a new candidate sample and update related statistics for the resulting tree.</p>
+<p><a id='AdvancedHMC.determine_sampler_eltype-Tuple' href='#AdvancedHMC.determine_sampler_eltype-Tuple'>#</a>
+<strong><code>AdvancedHMC.determine_sampler_eltype</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">determine_sampler_eltype</span><span class="x">(</span><span class="n">xs</span><span class="o">...</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Determine the element type to use for the given arguments.</p>
+<p>Symbols are either resolved to the default float type or simply dropped in favour of determined types from the other arguments.</p>
 <p><a id='AdvancedHMC.find_good_stepsize-Union{Tuple{T}, Tuple{Random.AbstractRNG, Hamiltonian, AbstractVector{T}}} where T<:Real' href='#AdvancedHMC.find_good_stepsize-Union{Tuple{T}, Tuple{Random.AbstractRNG, Hamiltonian, AbstractVector{T}}} where T<:Real'>#</a>
 <strong><code>AdvancedHMC.find_good_stepsize</code></strong> — <em>Method</em>.</p>
 <p>Find a good initial leap-frog step-size via heuristic search.</p>
@@ -937,6 +947,11 @@ C = [
 ]
 </code></pre>
 <p>thus <code>convert.(Int, vec(sum(C .&lt; u'; dims=1))) .+ 1</code> equals <code>[1, 2]</code>.</p>
+<p><a id='AdvancedHMC.sampler_eltype' href='#AdvancedHMC.sampler_eltype'>#</a>
+<strong><code>AdvancedHMC.sampler_eltype</code></strong> — <em>Function</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sampler_eltype</span><span class="x">(</span><span class="n">sampler</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Return the element type of the sampler.</p>
 <p><a id='AdvancedHMC.simple_pm_next!-Tuple{Any, NamedTuple}' href='#AdvancedHMC.simple_pm_next!-Tuple{Any, NamedTuple}'>#</a>
 <strong><code>AdvancedHMC.simple_pm_next!</code></strong> — <em>Method</em>.</p>
 <p>Simple progress meter update without any show values.</p>
@@ -969,20 +984,7 @@ C = [
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">update_nom_step_size</span><span class="x">(</span><span class="n">i</span><span class="o">::</span><span class="n">AbstractIntegrator</span><span class="x">,</span> <span class="n">ϵ</span><span class="x">)</span> <span class="o">-&gt;</span> <span class="n">AbstractIntegrator</span>
 </code></pre></div></div>
 <p>Return a copy of the integrator <code>i</code> with the new nominal step size (<a href="/dev/docs/library/advancedhmc/#AdvancedHMC.nom_step_size-Tuple%7BAdvancedHMC.AbstractIntegrator%7D"><code>nom_step_size</code></a>) <code>ϵ</code>.</p>
-<p><a id='StatsBase.sample-Tuple{AbstractMCMC.LogDensityModel, AdvancedHMC.AbstractMCMCKernel, AdvancedHMC.AbstractMetric, AdvancedHMC.Adaptation.AbstractAdaptor, Integer}' href='#StatsBase.sample-Tuple{AbstractMCMC.LogDensityModel, AdvancedHMC.AbstractMCMCKernel, AdvancedHMC.AbstractMetric, AdvancedHMC.Adaptation.AbstractAdaptor, Integer}'>#</a>
-<strong><code>StatsBase.sample</code></strong> — <em>Method</em>.</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample</span><span class="x">(</span>
-    <span class="n">model</span><span class="o">::</span><span class="n">AbstractMCMC</span><span class="o">.</span><span class="n">LogDensityModel</span><span class="x">,</span>
-    <span class="n">kernel</span><span class="o">::</span><span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractMCMCKernel</span><span class="x">,</span>
-    <span class="n">metric</span><span class="o">::</span><span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractMetric</span><span class="x">,</span>
-    <span class="n">adaptor</span><span class="o">::</span><span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">Adaptation</span><span class="o">.</span><span class="n">AbstractAdaptor</span><span class="x">,</span>
-    <span class="n">N</span><span class="o">::</span><span class="kt">Integer</span><span class="x">;</span>
-    <span class="n">kwargs</span><span class="o">...</span>
-<span class="x">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span>
-
-</code></pre></div></div>
-<p>A convenient wrapper around <code>AbstractMCMC.sample</code> avoiding explicit construction of <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.HMCSampler"><code>HMCSampler</code></a>.</p>
-<p><a id='StatsBase.sample-Union{Tuple{T}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s322"} where var"#s322"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s323"} where var"#s323"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s324"} where var"#s324"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor, Int64}} where T<:(AbstractVecOrMat{var"#s321"} where var"#s321"<:AbstractFloat)' href='#StatsBase.sample-Union{Tuple{T}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s322"} where var"#s322"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s323"} where var"#s323"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s324"} where var"#s324"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor, Int64}} where T<:(AbstractVecOrMat{var"#s321"} where var"#s321"<:AbstractFloat)'>#</a>
+<p><a id='StatsBase.sample-Union{Tuple{T}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s318"} where var"#s318"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s319"} where var"#s319"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s320"} where var"#s320"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor, Int64}} where T<:(AbstractVecOrMat{var"#s317"} where var"#s317"<:AbstractFloat)' href='#StatsBase.sample-Union{Tuple{T}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s318"} where var"#s318"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s319"} where var"#s319"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor}, Tuple{Union{Random.AbstractRNG, AbstractVector{var"#s320"} where var"#s320"<:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor, Int64}} where T<:(AbstractVecOrMat{var"#s317"} where var"#s317"<:AbstractFloat)'>#</a>
 <strong><code>StatsBase.sample</code></strong> — <em>Method</em>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample</span><span class="x">(</span>
     <span class="n">rng</span><span class="o">::</span><span class="kt">AbstractRNG</span><span class="x">,</span>
@@ -1106,11 +1108,44 @@ C = [
 <ol>
 <li>Betancourt, M. (2017). A Conceptual Introduction to Hamiltonian Monte Carlo. <a href="https://arxiv.org/abs/1701.02434">arXiv preprint arXiv:1701.02434</a>.</li>
 </ol>
+<p><a id='AdvancedHMC.HMC' href='#AdvancedHMC.HMC'>#</a>
+<strong><code>AdvancedHMC.HMC</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMC</span><span class="x">(</span><span class="n">ϵ</span><span class="o">::</span><span class="kt">Real</span><span class="x">,</span> <span class="n">n_leapfrog</span><span class="o">::</span><span class="kt">Int</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Hamiltonian Monte Carlo sampler with static trajectory.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>n_leapfrog</code>: Number of leapfrog steps.</li>
+<li><code>integrator</code>: Choice of integrator, specified either using a <code>Symbol</code> or <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractIntegrator"><code>AbstractIntegrator</code></a></li>
+<li><code>metric</code>: Choice of initial metric;  <code>Symbol</code> means it is automatically initialised. The metric type will be preserved during automatic initialisation and adaption.</li>
+</ul>
+<p><strong>Usage:</strong></p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMC</span><span class="x">(</span><span class="mi">10</span><span class="x">,</span> <span class="n">integrator</span> <span class="o">=</span> <span class="n">Leapfrog</span><span class="x">(</span><span class="mf">0.05</span><span class="x">),</span> <span class="n">metric</span> <span class="o">=</span> <span class="o">:</span><span class="n">diagonal</span><span class="x">)</span>
+</code></pre></div></div>
+<p><a id='AdvancedHMC.HMCDA' href='#AdvancedHMC.HMCDA'>#</a>
+<strong><code>AdvancedHMC.HMCDA</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMCDA</span><span class="x">(</span><span class="n">δ</span><span class="o">::</span><span class="kt">Real</span><span class="x">,</span> <span class="n">λ</span><span class="o">::</span><span class="kt">Real</span><span class="x">;</span> <span class="n">ϵ</span><span class="o">::</span><span class="kt">Real</span><span class="o">=</span><span class="mi">0</span><span class="x">,</span> <span class="n">integrator</span> <span class="o">=</span> <span class="o">:</span><span class="n">leapfrog</span><span class="x">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="o">:</span><span class="n">diagonal</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Hamiltonian Monte Carlo sampler with Dual Averaging algorithm.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>δ</code>: Target acceptance rate for dual averaging.</li>
+<li><code>λ</code>: Target leapfrog length.</li>
+<li><code>integrator</code>: Choice of integrator, specified either using a <code>Symbol</code> or <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractIntegrator"><code>AbstractIntegrator</code></a></li>
+<li><code>metric</code>: Choice of initial metric;  <code>Symbol</code> means it is automatically initialised. The metric type will be preserved during automatic initialisation and adaption.</li>
+</ul>
+<p><strong>Usage:</strong></p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMCDA</span><span class="x">(</span><span class="n">δ</span><span class="o">=</span><span class="mf">0.65</span><span class="x">,</span> <span class="n">λ</span><span class="o">=</span><span class="mf">0.3</span><span class="x">)</span>
+</code></pre></div></div>
+<p>For more information, please view the following paper (<a href="https://arxiv.org/abs/1111.4246">arXiv link</a>):</p>
+<ul>
+<li>Hoffman, Matthew D., and Andrew Gelman. &quot;The No-U-turn sampler: adaptively setting path lengths in Hamiltonian Monte Carlo.&quot; Journal of Machine Learning Research 15, no. 1 (2014): 1593-1623.</li>
+</ul>
 <p><a id='AdvancedHMC.HMCProgressCallback' href='#AdvancedHMC.HMCProgressCallback'>#</a>
 <strong><code>AdvancedHMC.HMCProgressCallback</code></strong> — <em>Type</em>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMCProgressCallback</span>
 </code></pre></div></div>
-<p>A callback to be used with AbstractMCMC.jl's interface, replicating the logging behavior of the non-AbstractMCMC [<code>sample</code>](/dev/docs/library/advancedhmc/#StatsBase.sample-Tuple{AbstractMCMC.LogDensityModel, AdvancedHMC.AbstractMCMCKernel, AdvancedHMC.AbstractMetric, AdvancedHMC.Adaptation.AbstractAdaptor, Integer}).</p>
+<p>A callback to be used with AbstractMCMC.jl's interface, replicating the logging behavior of the non-AbstractMCMC [<code>sample</code>](/dev/docs/library/advancedhmc/#StatsBase.sample-Union{Tuple{T}, Tuple{Union{Random.AbstractRNG, AbstractVector{var&quot;#s318&quot;} where var&quot;#s318&quot;&lt;:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64}, Tuple{Union{Random.AbstractRNG, AbstractVector{var&quot;#s319&quot;} where var&quot;#s319&quot;&lt;:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor}, Tuple{Union{Random.AbstractRNG, AbstractVector{var&quot;#s320&quot;} where var&quot;#s320&quot;&lt;:Random.AbstractRNG}, Hamiltonian, HMCKernel, T, Int64, AdvancedHMC.Adaptation.AbstractAdaptor, Int64}} where T&lt;:(AbstractVecOrMat{var&quot;#s317&quot;} where var&quot;#s317&quot;&lt;:AbstractFloat)).</p>
 <p><strong>Fields</strong></p>
 <ul>
 <li><code>pm</code>: <code>Progress</code> meter from ProgressMeters.jl.</li>
@@ -1123,12 +1158,12 @@ C = [
 <strong><code>AdvancedHMC.HMCSampler</code></strong> — <em>Type</em>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMCSampler</span>
 </code></pre></div></div>
-<p>A <code>AbstractMCMC.AbstractSampler</code> for kernels in AdvancedHMC.jl.</p>
+<p>An <code>AbstractMCMC.AbstractSampler</code> for kernels in AdvancedHMC.jl.</p>
 <p><strong>Fields</strong></p>
 <ul>
-<li><code>initial_kernel</code>: Initial <a href="@ref"><code>AbstractMCMCKernel</code></a>.</li>
-<li><code>initial_metric</code>: Initial <a href="@ref"><code>AbstractMetric</code></a>.</li>
-<li><code>initial_adaptor</code>: Initial <a href="@ref"><code>AbstractAdaptor</code></a>.</li>
+<li><code>κ</code>: <a href="@ref"><code>AbstractMCMCKernel</code></a>.</li>
+<li><code>metric</code>: Choice of initial metric <a href="@ref"><code>AbstractMetric</code></a>. The metric type will be preserved during adaption.</li>
+<li><code>adaptor</code>: <a href="@ref"><code>AbstractAdaptor</code></a>.</li>
 </ul>
 <p><strong>Notes</strong></p>
 <p>Note that all the fields have the prefix <code>initial_</code> to indicate that these will not necessarily correspond to the <code>kernel</code>, <code>metric</code>, and <code>adaptor</code> after sampling.</p>
@@ -1200,17 +1235,22 @@ C = [
 </code></pre></div></div>
 <p>Multinomial sampler for the starting single leaf tree. (Log) weights for leaf nodes are their (unnormalised) Hamiltonian energies.</p>
 <p>Ref: https://github.com/stan-dev/stan/blob/develop/src/stan/mcmc/hmc/nuts/base_nuts.hpp#L226</p>
-<p><a id='AdvancedHMC.NUTS-Union{Tuple{TC}, Tuple{TS}, Tuple{AdvancedHMC.AbstractIntegrator, Vararg{Any, N} where N}} where {TS, TC}' href='#AdvancedHMC.NUTS-Union{Tuple{TC}, Tuple{TS}, Tuple{AdvancedHMC.AbstractIntegrator, Vararg{Any, N} where N}} where {TS, TC}'>#</a>
-<strong><code>AdvancedHMC.NUTS</code></strong> — <em>Method</em>.</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">NUTS</span><span class="x">(</span><span class="n">int</span><span class="x">,</span> <span class="n">args</span><span class="x">;</span> <span class="n">kwargs</span><span class="o">...</span><span class="x">)</span>
-
+<p><a id='AdvancedHMC.NUTS' href='#AdvancedHMC.NUTS'>#</a>
+<strong><code>AdvancedHMC.NUTS</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">NUTS</span><span class="x">(</span><span class="n">δ</span><span class="o">::</span><span class="kt">Real</span><span class="x">;</span> <span class="n">max_depth</span><span class="o">::</span><span class="kt">Int</span><span class="o">=</span><span class="mi">10</span><span class="x">,</span> <span class="n">Δ_max</span><span class="o">::</span><span class="kt">Real</span><span class="o">=</span><span class="mi">1000</span><span class="x">,</span> <span class="n">init_ϵ</span><span class="o">::</span><span class="kt">Real</span><span class="o">=</span><span class="mi">0</span><span class="x">,</span> <span class="n">integrator</span> <span class="o">=</span> <span class="o">:</span><span class="n">leapfrog</span><span class="x">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="o">:</span><span class="n">diagonal</span><span class="x">)</span>
 </code></pre></div></div>
-<p>Convenient constructor for the no-U-turn sampler (NUTS). This falls back to <code>HMCKernel(Trajectory{TS}(int, TC(args...; kwargs...)))</code> where</p>
+<p>No-U-Turn Sampler (NUTS) sampler.</p>
+<p><strong>Fields</strong></p>
 <ul>
-<li><code>TS&lt;:Union{MultinomialTS, SliceTS}</code> is the type for trajectory sampler</li>
-<li><code>TC&lt;:Union{ClassicNoUTurn, GeneralisedNoUTurn, StrictGeneralisedNoUTurn}</code> is the type for termination criterion.</li>
+<li><code>δ</code>: Target acceptance rate for dual averaging.</li>
+<li><code>max_depth</code>: Maximum doubling tree depth.</li>
+<li><code>Δ_max</code>: Maximum divergence during doubling tree.</li>
+<li><code>integrator</code>: Choice of integrator, specified either using a <code>Symbol</code> or <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractIntegrator"><code>AbstractIntegrator</code></a></li>
+<li><code>metric</code>: Choice of initial metric;  <code>Symbol</code> means it is automatically initialised. The metric type will be preserved during automatic initialisation and adaption.</li>
 </ul>
-<p>See <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.ClassicNoUTurn"><code>ClassicNoUTurn</code></a>, <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.GeneralisedNoUTurn"><code>GeneralisedNoUTurn</code></a> and <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.StrictGeneralisedNoUTurn"><code>StrictGeneralisedNoUTurn</code></a> for details in parameters.</p>
+<p><strong>Usage:</strong></p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">NUTS</span><span class="x">(</span><span class="n">δ</span><span class="o">=</span><span class="mf">0.65</span><span class="x">)</span>  <span class="c"># Use target accept ratio 0.65.</span>
+</code></pre></div></div>
 <p><a id='AdvancedHMC.PartialMomentumRefreshment' href='#AdvancedHMC.PartialMomentumRefreshment'>#</a>
 <strong><code>AdvancedHMC.PartialMomentumRefreshment</code></strong> — <em>Type</em>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> PartialMomentumRefreshment</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractMomentumRefreshment</span>
