@@ -813,7 +813,7 @@
 <p>A <code>model::Model</code> is a callable struct that one can sample from by calling</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="x">(</span><span class="n">model</span><span class="o">::</span><span class="n">Model</span><span class="x">)([</span><span class="n">rng</span><span class="x">,</span> <span class="n">varinfo</span><span class="x">,</span> <span class="n">sampler</span><span class="x">,</span> <span class="n">context</span><span class="x">])</span>
 </code></pre></div></div>
-<p>where <code>rng</code> is a random number generator (default: <code>Random.GLOBAL_RNG</code>), <code>varinfo</code> is a data structure that stores information
+<p>where <code>rng</code> is a random number generator (default: <code>Random.default_rng()</code>), <code>varinfo</code> is a data structure that stores information
 about the random variables (default: <code>DynamicPPL.VarInfo()</code>), <code>sampler</code> is a sampling algorithm (default: <code>DynamicPPL.SampleFromPrior()</code>),
 and <code>context</code> is a sampling context that can, e.g., modify how the log probability is accumulated (default: <code>DynamicPPL.DefaultContext()</code>).</p>
 <p>Sampling resets the log joint probability of <code>varinfo</code> and increases the evaluation counter of <code>sampler</code>. If <code>context</code> is a <code>LikelihoodContext</code>,

@@ -1024,9 +1024,9 @@ Summary Statistics
       Symbol   Float64   Float64   Float64       Float64       Float64   Fl
 oat ⋯
 
-           a    0.9757    0.8976    0.0031    81787.0232   121619.8853    1
+           a    0.9748    0.9012    0.0032    80155.1771   118824.2976    1
 .00 ⋯
-           b    2.8797    0.4870    0.0012   172022.4471   211507.4021    1
+           b    2.8820    0.4885    0.0012   172803.7214   214810.2869    1
 .00 ⋯
                                                                2 columns om
 itted
@@ -1035,8 +1035,8 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           a   -0.7845    0.3690    0.9757    1.5806    2.7334
-           b    1.9273    2.5510    2.8806    3.2089    3.8317
+           a   -0.7953    0.3677    0.9759    1.5844    2.7384
+           b    1.9231    2.5527    2.8808    3.2120    3.8388
 </code></pre>
 <p>We compare these results with Turing.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
@@ -1056,8 +1056,8 @@ Quantiles
 Iterations        = 1:1:1000000
 Number of chains  = 1
 Samples per chain = 1000000
-Wall duration     = 4.8 seconds
-Compute duration  = 4.8 seconds
+Wall duration     = 4.56 seconds
+Compute duration  = 4.56 seconds
 parameters        = a, b
 internals         = lp
 
@@ -1067,9 +1067,9 @@ Summary Statistics
       Symbol   Float64   Float64   Float64       Float64       Float64   Fl
 oat ⋯
 
-           a    0.9801    0.8986    0.0031    81995.5856   119707.2206    1
+           a    0.9747    0.9008    0.0032    80697.6038   122995.2768    1
 .00 ⋯
-           b    2.8790    0.4878    0.0012   171618.3822   215644.4515    1
+           b    2.8823    0.4868    0.0012   173395.0532   212512.3279    1
 .00 ⋯
                                                                2 columns om
 itted
@@ -1078,8 +1078,8 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           a   -0.7801    0.3763    0.9807    1.5847    2.7418
-           b    1.9220    2.5506    2.8801    3.2073    3.8332
+           a   -0.7948    0.3683    0.9745    1.5835    2.7406
+           b    1.9269    2.5534    2.8821    3.2108    3.8358
 </code></pre>
 <p>As you can see, with our simple probabilistic programming language and custom samplers we get similar results as Turing.</p>
 <h2 id="appendix">Appendix</h2>
@@ -1097,32 +1097,32 @@ Platform Info:
   WORD_SIZE: 64
   LIBM: libopenlibm
   LLVM: libLLVM-14.0.6 (ORCJIT, znver2)
-  Threads: 1 on 16 virtual cores
+  Threads: 1 on 128 virtual cores
 Environment:
-  JULIA_CPU_THREADS = 16
+  JULIA_CPU_THREADS = 128
   JULIA_DEPOT_PATH = /cache/julia-buildkite-plugin/depots/7aa0085e-79a4-45f3-a5bd-9743c91cf3da
   JULIA_IMAGE_THREADS = 1
 
 </code></pre>
 <p>Package Information:</p>
-<pre><code>Status `/cache/build/default-amdci4-5/julialang/turingtutorials/tutorials/14-minituring/Project.toml`
+<pre><code>Status `/cache/build/exclusive-amdci3-0/julialang/turingtutorials/tutorials/14-minituring/Project.toml`
   [80f14c24] AbstractMCMC v4.4.2
   [31c24e10] Distributions v0.25.98
   [c7f686f2] MCMCChains v6.0.3
   [1914dd2f] MacroTools v0.5.10
   [90014a1f] PDMats v0.11.17
-  [fce5fe82] Turing v0.27.0
+  [fce5fe82] Turing v0.28.0
   [9a3f8284] Random
 </code></pre>
 <p>And the full manifest:</p>
-<pre><code>Status `/cache/build/default-amdci4-5/julialang/turingtutorials/tutorials/14-minituring/Manifest.toml`
+<pre><code>Status `/cache/build/exclusive-amdci3-0/julialang/turingtutorials/tutorials/14-minituring/Manifest.toml`
   [47edcb42] ADTypes v0.1.6
-  [621f4979] AbstractFFTs v1.4.0
+  [621f4979] AbstractFFTs v1.5.0
   [80f14c24] AbstractMCMC v4.4.2
 ⌅ [7a57a42e] AbstractPPL v0.5.4
   [1520ce14] AbstractTrees v0.4.4
   [79e6a3ab] Adapt v3.6.2
-⌅ [0bf59076] AdvancedHMC v0.4.6
+  [0bf59076] AdvancedHMC v0.5.3
   [5b7e9947] AdvancedMH v0.7.5
   [576499cb] AdvancedPS v0.4.3
   [b5ca4192] AdvancedVI v0.2.4
@@ -1175,7 +1175,7 @@ Environment:
   [22cec73e] InitialValues v0.3.1
   [505f98c9] InplaceOps v0.3.0
   [a98d9a8b] Interpolations v0.14.7
-  [8197267c] IntervalSets v0.7.5
+  [8197267c] IntervalSets v0.7.7
   [3587e190] InverseFunctions v0.1.11
   [41ab1584] InvertedIndices v1.3.0
   [92d709cd] IrrationalConstants v0.2.2
@@ -1251,7 +1251,7 @@ Environment:
   [28d57a85] Transducers v0.4.78
   [410a4b4d] Tricks v0.1.7
   [781d530d] TruncatedStacktraces v1.4.0
-  [fce5fe82] Turing v0.27.0
+  [fce5fe82] Turing v0.28.0
   [013be700] UnsafeAtomics v0.2.1
   [d80eeb9a] UnsafeAtomicsLLVM v0.1.3
   [efce3f68] WoodburyMatrices v0.5.5
