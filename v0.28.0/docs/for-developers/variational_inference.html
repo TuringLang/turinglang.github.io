@@ -800,7 +800,7 @@
 \end{align*}
 </code></pre>
 <p>where <code>\overset{\text{i.i.d.}}{\sim}</code> denotes that the samples are identically independently distributed. Our goal in Bayesian inference is then to find the <em>posterior</em></p>
-<pre><code class="language-math">>p(z \mid \\{ x\_i \\}\_{i = 1}^n) = \prod\_{i=1}^{n} p(z \mid x\_i).
+<pre><code class="language-math">>p(z \mid \\{ x\_i \\}\_{i = 1}^n) \propto p(z) \prod\_{i=1}^{n} p(x\_i \mid z).
 </code></pre>
 <p>In general one cannot obtain a closed form expression for <code>p(z \mid \\{ x\_i \\}\_{i = 1}^n)</code>, but one might still be able to <em>sample</em> from <code>p(z \mid \\{ x\_i \\}\_{i = 1}^n)</code> with guarantees of converging to the target posterior <code>p(z \mid \\{ x\_i \\}\_{i = 1}^n)</code> as the number of samples go to <code>\infty</code>, e.g. MCMC.</p>
 <p>As you are hopefully already aware, Turing.jl provides a lot of different methods with asymptotic exactness guarantees that we can apply to such a problem!</p>
@@ -928,7 +928,7 @@
 <p>This means that if we have a differentiable bijection <code>f: \mathrm{supp} \left( q(x) \right) \to \mathbb{R}^d</code> with differentiable inverse <code>f^{-1}: \mathbb{R}^d \to \mathrm{supp} \left( p(x) \right)</code>, we can perform a change of variables</p>
 <pre><code class="language-math">>\mathbb{P}\_p(x \in A) = \int\_{f^{-1}(A)} p \left(f^{-1}(y) \right) \ \left| \det \mathcal{J}\_{f^{-1}}(y) \right| \mathrm{d}y,
 </code></pre>
-<p>where <code>\mathcal{J}_{f^{-1}}(x)</code> denotes the jacobian of <code>f^{-1}</code> evaluted at <code>x</code>. Observe that this defines a probability distribution</p>
+<p>where <code>\mathcal{J}_{f^{-1}}(x)</code> denotes the jacobian of <code>f^{-1}</code> evaluated at <code>x</code>. Observe that this defines a probability distribution</p>
 <pre><code class="language-math">>\mathbb{P}\_{\tilde{p}}\left(y \in f^{-1}(A) \right) = \int\_{f^{-1}(A)} \tilde{p}(y) \mathrm{d}y,
 </code></pre>
 <p>since <code>f^{-1}\left(\mathrm{supp} (p(x)) \right) = \mathbb{R}^d</code> which has probability 1. This probability distribution has <em>density</em> <code>\tilde{p}(y)</code> with <code>\mathrm{supp} \left( \tilde{p}(y) \right) = \mathbb{R}^d</code>, defined</p>

@@ -811,24 +811,24 @@
 <pre><code>100-element Vector{Bool}:
  1
  0
- 1
- 1
- 0
- 0
  0
  0
  1
  1
+ 1
+ 0
+ 1
+ 0
  ⋮
- 1
- 1
- 1
- 1
- 1
  0
  1
+ 0
+ 0
  1
  0
+ 0
+ 0
+ 1
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Declare our Turing model.</span>
 <span class="nd">@model</span> <span class="k">function</span><span class="nf"> coinflip</span><span class="x">(</span><span class="n">y</span><span class="x">)</span>
@@ -853,24 +853,25 @@
 <span class="c"># Start sampling.</span>
 <span class="n">chain</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">coinflip</span><span class="x">(</span><span class="n">data</span><span class="x">),</span> <span class="n">HMC</span><span class="x">(</span><span class="n">ϵ</span><span class="x">,</span> <span class="n">τ</span><span class="x">),</span> <span class="n">iterations</span><span class="x">)</span>
 </code></pre></div></div>
-<pre><code>Chains MCMC chain (1000×10×1 Array{Float64, 3}):
+<pre><code>Chains MCMC chain (1000×11×1 Array{Float64, 3}):
 
 Iterations        = 1:1:1000
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 1.11 seconds
-Compute duration  = 1.11 seconds
+Wall duration     = 0.97 seconds
+Compute duration  = 0.97 seconds
 parameters        = p
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
-amiltonian_energy, hamiltonian_energy_error, step_size, nom_step_size
+amiltonian_energy, hamiltonian_energy_error, numerical_error, step_size, no
+m_step_size
 
 Summary Statistics
-  parameters      mean       std   naive_se      mcse         ess      rhat
+  parameters      mean       std      mcse    ess_bulk   ess_tail      rhat
     ⋯
-      Symbol   Float64   Float64    Float64   Float64     Float64   Float64
+      Symbol   Float64   Float64   Float64     Float64    Float64   Float64
     ⋯
 
-           p    0.5199    0.0520     0.0016    0.0005   3000.0000    0.9992
+           p    0.4311    0.0475    0.0009   3000.0000   602.0565    1.0010
     ⋯
                                                                 1 column om
 itted
@@ -879,7 +880,7 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           p    0.4158    0.4867    0.5182    0.5571    0.6178
+           p    0.3404    0.3977    0.4304    0.4633    0.5241
 </code></pre>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Plot a summary of the sampling process for the parameter p, i.e. the probability of heads in a coin.</span>
 <span class="n">histogram</span><span class="x">(</span><span class="n">chain</span><span class="x">[</span><span class="o">:</span><span class="n">p</span><span class="x">])</span>

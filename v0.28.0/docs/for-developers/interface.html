@@ -836,7 +836,7 @@ Metropolis-Hastings sampler using the MCMC interface.</p>
 <p>The full code for this implementation is housed in
 <a href="https://github.com/TuringLang/AdvancedMH.jl">AdvancedMH.jl</a>.</p>
 <h3 id="imports">Imports</h3>
-<p>Let's begin by importing the relevant libraries. We'll import <code>AbstracMCMC</code>, which contains
+<p>Let's begin by importing the relevant libraries. We'll import <code>AbstractMCMC</code>, which contains
 the interface framework we'll fill out. We also need <code>Distributions</code> and <code>Random</code>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Import the relevant libraries.</span>
 <span class="k">using</span> <span class="n">AbstractMCMC</span><span class="o">:</span> <span class="n">AbstractMCMC</span>
@@ -862,7 +862,7 @@ you call <code>sample</code>.</p>
     <span class="k">return</span> <span class="n">MetropolisHastings</span><span class="x">(</span><span class="n">init_θ</span><span class="x">,</span> <span class="n">MvNormal</span><span class="x">(</span><span class="n">zero</span><span class="x">(</span><span class="n">init_θ</span><span class="x">),</span> <span class="n">I</span><span class="x">))</span>
 <span class="k">end</span>
 </code></pre></div></div>
-<pre><code>Main.##WeaveSandBox#276.MetropolisHastings
+<pre><code>Main.var&quot;##WeaveSandBox#293&quot;.MetropolisHastings
 </code></pre>
 <p>Above, we have defined a sampler that stores the initial parameterization of the prior,
 and a distribution object from which proposals are drawn. You can have a struct that has no
@@ -899,7 +899,7 @@ and the log density of that draw:</p>
 <span class="c"># Store the new draw and its log density.</span>
 <span class="n">Transition</span><span class="x">(</span><span class="n">model</span><span class="o">::</span><span class="n">DensityModel</span><span class="x">,</span> <span class="n">θ</span><span class="x">)</span> <span class="o">=</span> <span class="n">Transition</span><span class="x">(</span><span class="n">θ</span><span class="x">,</span> <span class="n">ℓπ</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">θ</span><span class="x">))</span>
 </code></pre></div></div>
-<pre><code>Main.##WeaveSandBox#276.Transition
+<pre><code>Main.var&quot;##WeaveSandBox#293&quot;.Transition
 </code></pre>
 <p><code>Transition</code> can now store any type of parameter, whether it's a vector of draws from
 multiple parameters or a single univariate draw.</p>

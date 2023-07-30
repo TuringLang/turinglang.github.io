@@ -823,10 +823,10 @@
 <span class="n">b</span> <span class="o">=</span> <span class="n">bijector</span><span class="x">(</span><span class="n">dist</span><span class="x">)</span>
 <span class="n">transformed_dist</span> <span class="o">=</span> <span class="n">transformed</span><span class="x">(</span><span class="n">dist</span><span class="x">,</span> <span class="n">b</span><span class="x">)</span> <span class="c"># results in distribution with transformed support + correction for logpdf</span>
 </code></pre></div></div>
-<pre><code>Bijectors.UnivariateTransformed{Distributions.Gamma{Float64}, Bijectors.Log
-{0}}(
+<pre><code>Bijectors.UnivariateTransformed{Distributions.Gamma{Float64}, Base.Fix1{typ
+eof(broadcast), typeof(log)}}(
 dist: Distributions.Gamma{Float64}(α=2.0, θ=3.0)
-transform: Bijectors.Log{0}()
+transform: Base.Fix1{typeof(broadcast), typeof(log)}(broadcast, log)
 )
 </code></pre>
 <p>and then we can call <code>rand</code> and <code>logpdf</code> as usual, where</p>
@@ -896,9 +896,10 @@ Taking the <code>gdemo</code> model as an example, the macro-based definition</p
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">([</span><span class="mf">1.5</span><span class="x">,</span> <span class="mf">2.0</span><span class="x">])</span>
 </code></pre></div></div>
-<pre><code>DynamicPPL.Model{typeof(Main.##WeaveSandBox#321.gdemo), (:x,), (), (), Tupl
-e{Vector{Float64}}, Tuple{}, DynamicPPL.DefaultContext}(Main.##WeaveSandBox
-#321.gdemo, (x = [1.5, 2.0],), NamedTuple(), DynamicPPL.DefaultContext())
+<pre><code>DynamicPPL.Model{typeof(Main.var&quot;##WeaveSandBox#326&quot;.gdemo), (:x,), (), (),
+ Tuple{Vector{Float64}}, Tuple{}, DynamicPPL.DefaultContext}(Main.var&quot;##Wea
+veSandBox#326&quot;.gdemo, (x = [1.5, 2.0],), NamedTuple(), DynamicPPL.DefaultCo
+ntext())
 </code></pre>
 <p>can be implemented also (a bit less generally) with the macro-free version</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
@@ -925,9 +926,10 @@ e{Vector{Float64}}, Tuple{}, DynamicPPL.DefaultContext}(Main.##WeaveSandBox
 <span class="c"># Instantiate a Model object with our data variables.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">([</span><span class="mf">1.5</span><span class="x">,</span> <span class="mf">2.0</span><span class="x">])</span>
 </code></pre></div></div>
-<pre><code>DynamicPPL.Model{typeof(Main.##WeaveSandBox#321.gdemo), (:x,), (), (), Tupl
-e{Vector{Float64}}, Tuple{}, DynamicPPL.DefaultContext}(Main.##WeaveSandBox
-#321.gdemo, (x = [1.5, 2.0],), NamedTuple(), DynamicPPL.DefaultContext())
+<pre><code>DynamicPPL.Model{typeof(Main.var&quot;##WeaveSandBox#326&quot;.gdemo), (:x,), (), (),
+ Tuple{Vector{Float64}}, Tuple{}, DynamicPPL.DefaultContext}(Main.var&quot;##Wea
+veSandBox#326&quot;.gdemo, (x = [1.5, 2.0],), NamedTuple(), DynamicPPL.DefaultCo
+ntext())
 </code></pre>
 <h2 id="task-copying">Task Copying</h2>
 <p>Turing <a href="https://github.com/JuliaLang/julia/issues/4085">copies</a> Julia tasks to

@@ -790,7 +790,7 @@
                 <div class="md-content full-width"> 
     <article class="md-content__inner md-typeset  full-width">
     <h1 id="how-turing-implements-abstractmcmc">How Turing implements AbstractMCMC</h1>
-<p>Prerequisite: <a href="https://turing.ml/dev/docs/for-developers/interface">Interface guide</a>.</p>
+<p>Prerequisite: <a href="https://turinglang.org/dev/docs/for-developers/interface">Interface guide</a>.</p>
 <h2 id="introduction">Introduction</h2>
 <p>Consider the following Turing, code block:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Turing</span>
@@ -810,24 +810,24 @@
 </code></pre></div></div>
 <pre><code>Chains MCMC chain (1000×3×1 Array{Float64, 3}):
 
-Log evidence      = -3.725372172749423
+Log evidence      = -3.790725604478111
 Iterations        = 1:1:1000
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 0.32 seconds
-Compute duration  = 0.32 seconds
+Wall duration     = 0.34 seconds
+Compute duration  = 0.34 seconds
 parameters        = s², m
 internals         = lp
 
 Summary Statistics
-  parameters      mean       std   naive_se      mcse         ess      rhat
-    ⋯
-      Symbol   Float64   Float64    Float64   Float64     Float64   Float64
+  parameters      mean       std      mcse   ess_bulk   ess_tail      rhat 
+  e ⋯
+      Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    2.9787    5.2451     0.1659    0.1549   1010.4105    0.9990
+          s²    2.9066    3.7542    0.1264   801.2404   859.3321    1.0098 
     ⋯
-           m    0.0271    1.5255     0.0482    0.0385   1057.5504    1.0003
+           m   -0.0328    1.8477    0.0671   817.5965   868.2257    1.0051 
     ⋯
                                                                 1 column om
 itted
@@ -836,10 +836,10 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.4929    1.1086    1.7775    3.1168   12.6036
-           m   -3.0910   -0.8114    0.0622    0.8734    3.1207
+          s²    0.5650    1.1552    1.8344    3.1498   11.5904
+           m   -3.2388   -0.9527   -0.0836    0.9151    3.8272
 </code></pre>
-<p>The function <code>sample</code> is part of the AbstractMCMC interface. As explained in the <a href="https://turing.ml/dev/docs/for-developers/interface">interface guide</a>, building a a sampling method that can be used by <code>sample</code> consists in overloading the structs and functions in <code>AbstractMCMC</code>. The interface guide also gives a standalone example of their implementation, <a href=""><code>AdvancedMH.jl</code></a>.</p>
+<p>The function <code>sample</code> is part of the AbstractMCMC interface. As explained in the <a href="https://turinglang.org/dev/docs/for-developers/interface">interface guide</a>, building a a sampling method that can be used by <code>sample</code> consists in overloading the structs and functions in <code>AbstractMCMC</code>. The interface guide also gives a standalone example of their implementation, <a href=""><code>AdvancedMH.jl</code></a>.</p>
 <p>Turing sampling methods (most of which are written <a href="https://github.com/TuringLang/Turing.jl/tree/master/src/inference">here</a>) also implement <code>AbstractMCMC</code>. Turing defines a particular architecture for <code>AbstractMCMC</code> implementations, that enables working with models defined by the <code>@model</code> macro, and uses DynamicPPL as a backend. The goal of this page is to describe this architecture, and how you would go about implementing your own sampling method in Turing, using Importance Sampling as an example. I don't go into all the details: for instance, I don't address selectors or parallelism.</p>
 <p>First, we explain how Importance Sampling works in the abstract. Consider the model defined in the first code block. Mathematically, it can be written:</p>
 <pre><code class="language-math">>\begin{align*}
@@ -863,24 +863,24 @@ y &amp;\sim \text{Normal}(m, \sqrt{s}).
 </code></pre></div></div>
 <pre><code>Chains MCMC chain (1000×3×1 Array{Float64, 3}):
 
-Log evidence      = -3.680561296979398
+Log evidence      = -3.6902878761915265
 Iterations        = 1:1:1000
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 0.04 seconds
-Compute duration  = 0.04 seconds
+Wall duration     = 0.07 seconds
+Compute duration  = 0.07 seconds
 parameters        = s², m
 internals         = lp
 
 Summary Statistics
-  parameters      mean       std   naive_se      mcse         ess      rhat
-    ⋯
-      Symbol   Float64   Float64    Float64   Float64     Float64   Float64
+  parameters      mean       std      mcse   ess_bulk   ess_tail      rhat 
+  e ⋯
+      Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    2.6556    3.3561     0.1061    0.1150    964.5219    1.0060
+          s²    2.8341    4.1980    0.1382   952.1446   943.7586    1.0036 
     ⋯
-           m   -0.0014    1.6201     0.0512    0.0490   1013.5962    0.9991
+           m    0.0149    1.6522    0.0527   991.2954   903.5186    1.0005 
     ⋯
                                                                 1 column om
 itted
@@ -889,17 +889,18 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.5284    1.1109    1.7911    2.9777    9.9523
-           m   -3.2612   -0.9099   -0.0141    0.9268    3.1158
+          s²    0.5288    1.1125    1.7710    3.0189   11.7170
+           m   -3.2808   -0.9386    0.0120    0.9474    3.4025
 </code></pre>
 <p>Here <code>sample</code> takes as arguments a <strong>model</strong> <code>mod</code>, an <strong>algorithm</strong> <code>alg</code>, and a <strong>number of samples</strong> <code>n_samples</code>, and returns an instance <code>chn</code> of <code>Chains</code> which can be analysed using the functions in <code>MCMCChains</code>.</p>
 <h3 id="models">Models</h3>
 <p>To define a <strong>model</strong>, you declare a joint distribution on variables in the <code>@model</code> macro, and specify which variables are observed and which should be inferred, as well as the value of the observed variables. Thus, when implementing Importance Sampling,</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mod</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">(</span><span class="mf">1.5</span><span class="x">,</span> <span class="mi">2</span><span class="x">)</span>
 </code></pre></div></div>
-<pre><code>DynamicPPL.Model{typeof(Main.##WeaveSandBox#310.gdemo), (:x, :y), (), (), T
-uple{Float64, Int64}, Tuple{}, DynamicPPL.DefaultContext}(Main.##WeaveSandB
-ox#310.gdemo, (x = 1.5, y = 2), NamedTuple(), DynamicPPL.DefaultContext())
+<pre><code>DynamicPPL.Model{typeof(Main.var&quot;##WeaveSandBox#315&quot;.gdemo), (:x, :y), (), 
+(), Tuple{Float64, Int64}, Tuple{}, DynamicPPL.DefaultContext}(Main.var&quot;##W
+eaveSandBox#315&quot;.gdemo, (x = 1.5, y = 2), NamedTuple(), DynamicPPL.DefaultC
+ontext())
 </code></pre>
 <p>creates an instance <code>mod</code> of the struct <code>Model</code>, which corresponds to the observations of a value of <code>1.5</code> for <code>x</code>, and a value of <code>2</code> for <code>y</code>.</p>
 <p>This is all handled by DynamicPPL, more specifically <a href="https://github.com/TuringLang/DynamicPPL.jl/blob/master/src/model.jl">here</a>. I will return to how models are used to inform sampling algorithms <a href="#assumeobserve">below</a>.</p>
@@ -910,8 +911,8 @@ Thus</p>
 <span class="n">L</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">alg</span> <span class="o">=</span> <span class="n">HMC</span><span class="x">(</span><span class="n">stepsize</span><span class="x">,</span> <span class="n">L</span><span class="x">)</span>
 </code></pre></div></div>
-<pre><code>Turing.Inference.HMC{Turing.Essential.ForwardDiffAD{0, standardtag} where s
-tandardtag, (), AdvancedHMC.UnitEuclideanMetric}(0.01, 10)
+<pre><code>Turing.Inference.HMC{Turing.Essential.ForwardDiffAD{0}, (), AdvancedHMC.Uni
+tEuclideanMetric}(0.01, 10)
 </code></pre>
 <p>defines a Hamiltonian Monte-Carlo algorithm, an instance of <code>HMC</code>, which is a subtype of <code>InferenceAlgorithm</code>.</p>
 <p>In the case of Importance Sampling, there is no need to specify additional parameters:</p>
@@ -1005,7 +1006,7 @@ tandardtag, (), AdvancedHMC.UnitEuclideanMetric}(0.01, 10)
 <pre><code class="language-math">>p\left(\theta_{\text{prop}}, x_{\text{obs}}\right)
 </code></pre>
 <p>with <code>\theta_{\text{prop}}</code> a sample from the proposal and <code>x_{\text{obs}}</code> the observed data.</p>
-<p>This begs the question: how can these functions access model information during sampling? Recall that the model is stored as an instance <code>m</code> of <code>Model</code>. One of the attributes of <code>m</code> is the model evaluation function <code>m.f</code>, which is built by compiling the <code>@model</code> macro. Executing <code>f</code> runs the tilde statements of the model in order, and adds model information to the sampler (the instance of <code>Sampler</code> that stores information about the ongoing sampling process) at each step (see <a href="https://turing.ml/dev/docs/for-developers/compiler">here</a> for more information about how the <code>@model</code> macro is compiled). The DynamicPPL functions <code>assume</code> and <code>observe</code> determine what kind of information to add to the sampler for every tilde statement.</p>
+<p>This begs the question: how can these functions access model information during sampling? Recall that the model is stored as an instance <code>m</code> of <code>Model</code>. One of the attributes of <code>m</code> is the model evaluation function <code>m.f</code>, which is built by compiling the <code>@model</code> macro. Executing <code>f</code> runs the tilde statements of the model in order, and adds model information to the sampler (the instance of <code>Sampler</code> that stores information about the ongoing sampling process) at each step (see <a href="https://turinglang.org/dev/docs/for-developers/compiler">here</a> for more information about how the <code>@model</code> macro is compiled). The DynamicPPL functions <code>assume</code> and <code>observe</code> determine what kind of information to add to the sampler for every tilde statement.</p>
 <p>Consider an instance <code>m</code> of <code>Model</code> and a sampler <code>spl</code>, with associated <code>VarInfo</code> <code>vi = spl.state.vi</code>. At some point during the sampling process, an AbstractMCMC function such as <code>step!</code> calls  <code>m(vi, ...)</code>, which calls the model evaluation function <code>m.f(vi, ...)</code>.</p>
 <ul>
 <li>
