@@ -7,8 +7,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Probabilistic Programming in Thirty Seconds</title>
-    <meta name="description" content="">
+    <title>Quickstart</title>
+    <meta name="description" content="Probabilistic Programming in Thirty Seconds">
     <meta name="author" content="The Turing Team">
     <meta name="theme-color" content="red">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -54,7 +54,7 @@
 
     <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off>
     <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off>
-    <label class=md-overlay data-md-component=overlay for=__drawer></label> <a href="#probabilistic-programming-in-thirty-seconds" tabindex=1 class=md-skip> Skip to content </a>
+    <label class=md-overlay data-md-component=overlay for=__drawer></label> <a href="#quickstart" tabindex=1 class=md-skip> Skip to content </a>
     <header class=md-header data-md-component=header data-md-state=none>
         <nav class="md-header-nav md-grid">
             <div class=md-flex>
@@ -777,10 +777,10 @@
         <ul id="nav-toc" class="md-nav__list" data-md-scrollfix="">
         <!-- toc will be appended here!-->
         </ul>
-        <a href="https://twitter.com/intent/tweet?original_referer=https://github.com/TuringLang/Turing.jl/edit/master/docs/src/using-turing/quick-start.md" title="Tweet this page" class="social-link"><i class="fa fa-twitter fa-1x"></i>Tweet this page</a>
+        <a href="https://twitter.com/intent/tweet?original_referer=https://github.com/TuringLang/Turing.jl/edit/master/docs/src_tutorials/quick-start.md" title="Tweet this page" class="social-link"><i class="fa fa-twitter fa-1x"></i>Tweet this page</a>
         <a href="https://discourse.julialang.org/c/domain/probprog" title="Ask questions" class="social-link"><i class="fa fa-stack-overflow fa-1x"></i>Ask questions</a>
-        <a href="https://github.com/TuringLang/Turing.jl//issues/new?label=question&title=Question:&body=Question%20on:%20https://github.com/TuringLang/Turing.jl/edit/master/docs/_docs/using-turing/quick-start.md" title="Report issues" class="social-link"><i class="fa fa-comments fa-1x"></i>Report issues</a>
-        <a href="https://github.com/TuringLang/Turing.jl/edit/master/docs/src/using-turing/quick-start.md" title="Edit this page on github"  class="social-link"><i class="fa fa-github fa-1x"></i> Edit me</a>
+        <a href="https://github.com/TuringLang/Turing.jl//issues/new?label=question&title=Question:&body=Question%20on:%20https://github.com/TuringLang/Turing.jl/edit/master/docs/_tutorials/quick-start.md" title="Report issues" class="social-link"><i class="fa fa-comments fa-1x"></i>Report issues</a>
+        <a href="https://github.com/TuringLang/Turing.jl/edit/master/docs/src_tutorials/quick-start.md" title="Edit this page on github"  class="social-link"><i class="fa fa-github fa-1x"></i> Edit me</a>
       </nav>
     </div>
   </div>
@@ -789,29 +789,51 @@
                 <div id="md-container-pancakes">
                 <div class="md-content full-width"> 
     <article class="md-content__inner md-typeset  full-width">
-    <p><a id='Probabilistic-Programming-in-Thirty-Seconds'></a></p>
-<p><a id='Probabilistic-Programming-in-Thirty-Seconds-1'></a></p>
-<h1 id="probabilistic-programming-in-thirty-seconds">Probabilistic Programming in Thirty Seconds</h1>
-<p>If you are already well-versed in probabilistic programming and just want to take a quick look at how Turing's syntax works or otherwise just want a model to start with, we have provided a Bayesian coin-flipping model to play with.</p>
-<p>This example can be run on however you have Julia installed (see <a href="/v0.28/docs/using-turing/get-started">Getting Started</a>), but you will need to install the packages <code>Turing</code> and <code>StatsPlots</code> if you have not done so already.</p>
-<p>This is an excerpt from a more formal example introducing probabilistic programming which can be found in Jupyter notebook form <a href="https://nbviewer.jupyter.org/github/TuringLang/TuringTutorials/blob/master/notebook/00-introduction/00_introduction.ipynb">here</a> or as part of the documentation website <a href="/v0.28/tutorials">here</a>.</p>
+    <h1 id="probabilistic-programming-in-thirty-seconds">Probabilistic Programming in Thirty Seconds</h1>
+<p>If you are already well-versed in probabilistic programming and want to take a quick look at how Turing's syntax works or otherwise just want a model to start with, we have provided a complete Bayesian coin-flipping model below.</p>
+<p>This example can be run wherever you have Julia installed (see <a href="%7B%7Bsite.baseurl%7D%7D/docs/using-turing/get-started">Getting Started</a>), but you will need to install the packages <code>Turing</code> and <code>StatsPlots</code> if you have not done so already.</p>
+<p>This is an excerpt from a more formal example which can be found in <a href="https://nbviewer.jupyter.org/github/TuringLang/TuringTutorials/blob/master/notebook/00-introduction/00_introduction.ipynb">this Jupyter notebook</a> or as part of the documentation website <a href="%7B%7Bsite.baseurl%7D%7D/tutorials">here</a>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Import libraries.</span>
 <span class="k">using</span> <span class="n">Turing</span><span class="x">,</span> <span class="n">StatsPlots</span><span class="x">,</span> <span class="n">Random</span>
-
-<span class="c"># Set the true probability of heads in a coin.</span>
+</code></pre></div></div>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Set the true probability of heads in a coin.</span>
 <span class="n">p_true</span> <span class="o">=</span> <span class="mf">0.5</span>
 
 <span class="c"># Iterate from having seen 0 observations to 100 observations.</span>
 <span class="n">Ns</span> <span class="o">=</span> <span class="mi">0</span><span class="o">:</span><span class="mi">100</span>
-
-<span class="c"># Draw data from a Bernoulli distribution, i.e. draw heads or tails.</span>
+</code></pre></div></div>
+<pre><code>0:100
+</code></pre>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Draw data from a Bernoulli distribution, i.e. draw heads or tails.</span>
 <span class="n">Random</span><span class="o">.</span><span class="n">seed!</span><span class="x">(</span><span class="mi">12</span><span class="x">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">rand</span><span class="x">(</span><span class="n">Bernoulli</span><span class="x">(</span><span class="n">p_true</span><span class="x">),</span> <span class="n">last</span><span class="x">(</span><span class="n">Ns</span><span class="x">))</span>
-
-<span class="c"># Declare our Turing model.</span>
+</code></pre></div></div>
+<pre><code>100-element Vector{Bool}:
+ 1
+ 0
+ 0
+ 0
+ 1
+ 1
+ 1
+ 0
+ 1
+ 0
+ ⋮
+ 0
+ 1
+ 0
+ 0
+ 1
+ 0
+ 0
+ 0
+ 1
+</code></pre>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Declare our Turing model.</span>
 <span class="nd">@model</span> <span class="k">function</span><span class="nf"> coinflip</span><span class="x">(</span><span class="n">y</span><span class="x">)</span>
     <span class="c"># Our prior belief about the probability of heads in a coin.</span>
-    <span class="n">p</span> <span class="o">~</span><span class="err"> </span><span class="n">Beta</span><span class="x">(</span><span class="mi">1</span><span class="x">,</span> <span class="mi">1</span><span class="x">)</span>
+    <span class="n">p</span> <span class="o">~</span> <span class="n">Beta</span><span class="x">(</span><span class="mi">1</span><span class="x">,</span> <span class="mi">1</span><span class="x">)</span>
 
     <span class="c"># The number of observations.</span>
     <span class="n">N</span> <span class="o">=</span> <span class="n">length</span><span class="x">(</span><span class="n">y</span><span class="x">)</span>
@@ -820,18 +842,50 @@
         <span class="n">y</span><span class="x">[</span><span class="n">n</span><span class="x">]</span> <span class="o">~</span> <span class="n">Bernoulli</span><span class="x">(</span><span class="n">p</span><span class="x">)</span>
     <span class="k">end</span>
 <span class="k">end</span>
-
-<span class="c"># Settings of the Hamiltonian Monte Carlo (HMC) sampler.</span>
+</code></pre></div></div>
+<pre><code>coinflip (generic function with 2 methods)
+</code></pre>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Settings of the Hamiltonian Monte Carlo (HMC) sampler.</span>
 <span class="n">iterations</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">ϵ</span> <span class="o">=</span> <span class="mf">0.05</span>
 <span class="n">τ</span> <span class="o">=</span> <span class="mi">10</span>
 
 <span class="c"># Start sampling.</span>
 <span class="n">chain</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">coinflip</span><span class="x">(</span><span class="n">data</span><span class="x">),</span> <span class="n">HMC</span><span class="x">(</span><span class="n">ϵ</span><span class="x">,</span> <span class="n">τ</span><span class="x">),</span> <span class="n">iterations</span><span class="x">)</span>
+</code></pre></div></div>
+<pre><code>Chains MCMC chain (1000×11×1 Array{Float64, 3}):
 
-<span class="c"># Plot a summary of the sampling process for the parameter p, i.e. the probability of heads in a coin.</span>
+Iterations        = 1:1:1000
+Number of chains  = 1
+Samples per chain = 1000
+Wall duration     = 0.95 seconds
+Compute duration  = 0.95 seconds
+parameters        = p
+internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
+amiltonian_energy, hamiltonian_energy_error, numerical_error, step_size, no
+m_step_size
+
+Summary Statistics
+  parameters      mean       std      mcse    ess_bulk   ess_tail      rhat
+    ⋯
+      Symbol   Float64   Float64   Float64     Float64    Float64   Float64
+    ⋯
+
+           p    0.4311    0.0475    0.0009   3000.0000   602.0565    1.0010
+    ⋯
+                                                                1 column om
+itted
+
+Quantiles
+  parameters      2.5%     25.0%     50.0%     75.0%     97.5%
+      Symbol   Float64   Float64   Float64   Float64   Float64
+
+           p    0.3404    0.3977    0.4304    0.4633    0.5241
+</code></pre>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Plot a summary of the sampling process for the parameter p, i.e. the probability of heads in a coin.</span>
 <span class="n">histogram</span><span class="x">(</span><span class="n">chain</span><span class="x">[</span><span class="o">:</span><span class="n">p</span><span class="x">])</span>
 </code></pre></div></div>
+<p><img src="/v0.28/tutorials/figures/quick-start_6_1.png" alt="" /></p>
 
     
 <script
