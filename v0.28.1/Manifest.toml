@@ -439,9 +439,9 @@ version = "0.7.7"
 
 [[InverseFunctions]]
 deps = ["Test"]
-git-tree-sha1 = "eabe3125edba5c9c10b60a160b1779a000dc8b29"
+git-tree-sha1 = "68772f49f54b479fa88ace904f6127f0a3bb2e46"
 uuid = "3587e190-3f89-42d0-90ee-14403ec27112"
-version = "0.1.11"
+version = "0.1.12"
 
 [[InvertedIndices]]
 git-tree-sha1 = "0dc7b50b8d436461be01300fd8cd45aa0274b038"
@@ -864,9 +864,9 @@ version = "1.94.0"
 
 [[SciMLOperators]]
 deps = ["ArrayInterface", "DocStringExtensions", "Lazy", "LinearAlgebra", "Setfield", "SparseArrays", "StaticArraysCore", "Tricks"]
-git-tree-sha1 = "745755a5b932c9a664d7e9e4beb60c692b211d4b"
+git-tree-sha1 = "65c2e6ced6f62ea796af251eb292a0e131a3613b"
 uuid = "c0aeaf25-5076-4817-a8d5-81caf7dfa961"
-version = "0.3.5"
+version = "0.3.6"
 
 [[ScientificTypesBase]]
 git-tree-sha1 = "a8e18eb383b5ecf1b5e6fc237eb39255044fd92b"
