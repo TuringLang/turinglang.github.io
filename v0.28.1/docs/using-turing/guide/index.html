@@ -820,8 +820,8 @@
 Iterations        = 1:1:100000
 Number of chains  = 1
 Samples per chain = 100000
-Wall duration     = 1.68 seconds
-Compute duration  = 1.68 seconds
+Wall duration     = 1.55 seconds
+Compute duration  = 1.55 seconds
 parameters        = s², m, x, y
 internals         = lp
 
@@ -831,13 +831,13 @@ hat ⋯
       Symbol   Float64   Float64   Float64      Float64      Float64   Floa
 t64 ⋯
 
-          s²    2.9728    6.7733    0.0215   99082.0926   97424.9876    1.0
+          s²    2.9829    6.2022    0.0197   99218.0631   98513.0817    1.0
 000 ⋯
-           m   -0.0002    1.7068    0.0055   97128.5961   99672.5295    1.0
+           m   -0.0032    1.7211    0.0055   97183.4379   98497.4244    1.0
 000 ⋯
-           x    0.0016    2.4341    0.0078   97596.4500   97755.5409    1.0
+           x   -0.0137    2.4547    0.0079   97122.6254   98763.4956    1.0
 000 ⋯
-           y    0.0001    2.4399    0.0077   99420.1652   98275.7220    1.0
+           y   -0.0008    2.4297    0.0077   98783.4975   98391.4791    1.0
 000 ⋯
                                                                 1 column om
 itted
@@ -846,10 +846,10 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.5375    1.1164    1.7932    3.1320   12.0203
-           m   -3.3790   -0.9049    0.0078    0.9007    3.3762
-           x   -4.7960   -1.2786    0.0068    1.2910    4.8080
-           y   -4.8022   -1.2841    0.0002    1.2908    4.8054
+          s²    0.5343    1.1123    1.7785    3.1041   12.4102
+           m   -3.3664   -0.9092   -0.0056    0.8971    3.4043
+           x   -4.8343   -1.3005   -0.0097    1.2774    4.8233
+           y   -4.7714   -1.2888   -0.0015    1.2748    4.7773
 </code></pre>
 <p>We can perform inference by using the <code>sample</code> function, the first argument of which is our probabilistic program and the second of which is a sampler. More information on each sampler is located in the <a href="%7B%7Bsite.baseurl%7D%7D/docs/library">API</a>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#  Run sampler, collect results.</span>
@@ -865,8 +865,8 @@ Quantiles
 Iterations        = 501:1:1500
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 1.49 seconds
-Compute duration  = 1.49 seconds
+Wall duration     = 1.5 seconds
+Compute duration  = 1.5 seconds
 parameters        = s², m
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -878,9 +878,9 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    2.0397    1.7662    0.0859   531.3216   491.2213    1.0048 
+          s²    1.9407    1.6032    0.0744   431.7954   531.1155    1.0006 
     ⋯
-           m    1.2301    0.8823    0.0422   485.3409   391.2064    1.0064 
+           m    1.1211    0.8095    0.0359   520.4843   539.8893    1.0000 
     ⋯
                                                                 1 column om
 itted
@@ -889,8 +889,8 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.5988    1.0658    1.5238    2.4005    6.8234
-           m   -0.4014    0.6941    1.2179    1.6803    3.1833
+          s²    0.5587    0.9975    1.4215    2.3039    6.4967
+           m   -0.5913    0.6447    1.1373    1.5970    2.7470
 </code></pre>
 <p>The <code>MCMCChains</code> module (which is re-exported by Turing) provides plotting tools for the <code>Chain</code> objects returned by a <code>sample</code> function. See the <a href="https://github.com/TuringLang/MCMCChains.jl">MCMCChains</a> repository for more information on the suite of tools available for diagnosing MCMC chains.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Summarise results</span>
@@ -939,12 +939,12 @@ parameters <code>&quot;x[1]&quot;</code>, <code>&quot;x[2]&quot;</code>, and <co
 </code></pre></div></div>
 <pre><code>Chains MCMC chain (100×3×1 Array{Float64, 3}):
 
-Log evidence      = -22.42198736156986
+Log evidence      = -13.513060501129228
 Iterations        = 1:1:100
 Number of chains  = 1
 Samples per chain = 100
-Wall duration     = 1.57 seconds
-Compute duration  = 1.57 seconds
+Wall duration     = 1.58 seconds
+Compute duration  = 1.58 seconds
 parameters        = s
 internals         = lp, weight
 
@@ -954,7 +954,7 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-           s    4.0000    0.0000       NaN        NaN        NaN       NaN 
+           s    5.9900    0.1000    0.0100   100.0801        NaN    1.0000 
     ⋯
                                                                 1 column om
 itted
@@ -963,7 +963,7 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           s    4.0000    4.0000    4.0000    4.0000    4.0000
+           s    6.0000    6.0000    6.0000    6.0000    6.0000
 </code></pre>
 <p>But if we switch the <code>s ~ Poisson(1)</code> and <code>y ~ Normal(s, 1)</code> lines, the model will no longer sample correctly:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Define a simple Normal model with unknown mean and variance.</span>
@@ -1057,7 +1057,7 @@ Assign the function with <code>missing</code> inputs to a variable, and Turing w
 <span class="n">g_prior_sample</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">(</span><span class="nb">missing</span><span class="x">,</span> <span class="nb">missing</span><span class="x">)</span>
 <span class="n">g_prior_sample</span><span class="x">()</span>
 </code></pre></div></div>
-<pre><code>(1.424367069367373, 3.003479965217019)
+<pre><code>(2.1514992994765842, -0.8132287949139438)
 </code></pre>
 <h3 id="sampling-from-a-conditional-distribution-the-posterior">Sampling from a Conditional Distribution (The Posterior)</h3>
 <h4 id="treating-observations-as-random-variables">Treating observations as random variables</h4>
@@ -1096,13 +1096,13 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    1.4841    0.5872    0.5196     1.3937    14.5628    1.9815 
+          s²    0.9847    0.6225    0.5075     1.4335    11.2455    1.9108 
     ⋯
-           m    0.3016    0.7009    0.3406     5.4932    26.8660    1.5385 
+           m    0.1462    0.6650    0.5810     1.4097    11.3728    1.9225 
     ⋯
-        x[1]   -2.0716    0.2818    0.1486     3.7332    35.3529    1.2796 
+        x[1]   -0.0567    0.4947    0.4264     1.3775    11.0133    2.0710 
     ⋯
-        x[2]    1.4212    0.2639    0.2061     1.7507    25.3903    1.7222 
+        x[2]    0.5219    0.2418    0.0911     8.1552    50.4388    1.0200 
     ⋯
                                                                 1 column om
 itted
@@ -1111,10 +1111,10 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.7974    0.9800    1.2421    2.0632    2.5473
-           m   -0.6914   -0.2862    0.2233    0.8933    1.5261
-        x[1]   -2.5907   -2.2938   -2.0206   -1.8332   -1.6389
-        x[2]    0.9478    1.2203    1.4080    1.6339    1.8582
+          s²    0.3544    0.5324    0.6513    1.2766    2.4605
+           m   -0.8567   -0.4601    0.0690    0.6601    1.3083
+        x[1]   -0.7937   -0.4551   -0.1413    0.2079    1.1029
+        x[2]    0.0779    0.3378    0.4672    0.7448    0.9348
 </code></pre>
 <p>Note the need to initialize <code>x</code> when missing since we are iterating over its elements later in the model. The generated values for <code>x</code> can be extracted from the <code>Chains</code> object using <code>c[:x]</code>.</p>
 <p>Turing also supports mixed <code>missing</code> and non-<code>missing</code> values in <code>x</code>, where the missing ones will be treated as random variables to be sampled while the others get treated as observations. For example:</p>
@@ -1148,11 +1148,11 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    1.1230    0.3472    0.1335     6.9907    10.8719    1.0359 
+          s²    1.2323    0.4445    0.3756     1.6457    12.0816    1.6310 
     ⋯
-           m    0.1349    0.6552    0.6013     1.3225    13.2450    2.1213 
+           m    1.2272    0.4438    0.4026     1.4280    15.9819    2.0181 
     ⋯
-        x[1]    0.5820    0.3162    0.2279     1.9218    10.9251    1.6032 
+        x[1]    1.3732    0.6313    0.5800     1.3341    20.4703    2.1114 
     ⋯
                                                                 1 column om
 itted
@@ -1161,9 +1161,9 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.4181    0.8808    1.0698    1.3711    1.7972
-           m   -0.9705   -0.4591    0.1176    0.7942    1.1362
-        x[1]    0.0183    0.3350    0.5956    0.7499    1.3055
+          s²    0.5964    0.7711    1.3194    1.6014    1.9242
+           m    0.5523    0.8609    1.0664    1.6662    1.9389
+        x[1]    0.2211    0.8188    1.5565    1.9167    2.2992
 </code></pre>
 <h4 id="default-values">Default Values</h4>
 <p>Arguments to Turing models can have default values much like how default values work in normal Julia functions. For instance, the following will assign <code>missing</code> to <code>x</code> and treat it as a random variable. If the default value is not <code>missing</code>, <code>x</code> will be assigned that value and will be treated as an observation instead.</p>
@@ -1190,8 +1190,8 @@ Quantiles
 Iterations        = 1:1:1000
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 2.8 seconds
-Compute duration  = 2.8 seconds
+Wall duration     = 2.76 seconds
+Compute duration  = 2.76 seconds
 parameters        = s², m, x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], 
 x[9], x[10]
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
@@ -1204,29 +1204,29 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    1.2103    0.4511    0.1629     8.8689    37.6435    1.0473 
+          s²    2.2083    1.2273    0.6443     3.2879    19.3083    1.6071 
     ⋯
-           m    0.3292    0.3237    0.1471     5.4416    43.5081    1.1725 
+           m    0.2302    0.4524    0.1837     6.8731    20.5596    1.2608 
     ⋯
-        x[1]    0.4638    0.5204    0.1875     7.4796    12.5130    1.1440 
+        x[1]    1.7920    0.6687    0.3857     3.1542    21.5432    1.5641 
     ⋯
-        x[2]   -0.7873    0.3293    0.0849    15.3988    35.6929    1.0061 
+        x[2]    0.3002    0.3552    0.1161     9.7362    17.0572    1.0322 
     ⋯
-        x[3]    1.5962    0.7247    0.4604     2.6722    12.3062    1.8817 
+        x[3]   -1.1729    0.6163    0.3729     2.8793    12.2723    1.7730 
     ⋯
-        x[4]    0.9138    0.3870    0.1471     6.9785    26.7546    1.4994 
+        x[4]    0.9689    0.7946    0.5156     2.5588    21.5417    2.0038 
     ⋯
-        x[5]    0.8944    0.2940    0.1019     9.0672    27.5149    1.1420 
+        x[5]    0.4118    0.4032    0.1541     7.2721    50.1975    1.0432 
     ⋯
-        x[6]    1.7526    0.4939    0.2503     5.7895    27.0196    1.3247 
+        x[6]   -1.5890    0.3937    0.1409     8.2256    13.7144    1.0967 
     ⋯
-        x[7]   -0.8302    0.4666    0.1972     6.1731    21.8240    1.1059 
+        x[7]    0.5724    0.7873    0.5147     2.8170    21.6474    1.8025 
     ⋯
-        x[8]    1.7535    0.8162    0.5297     2.5565    22.8628    2.0097 
+        x[8]    1.5101    0.2612    0.0657    16.4672    17.6094    1.0173 
     ⋯
-        x[9]   -0.0266    0.2855    0.0967     9.3657    46.8213    1.0797 
+        x[9]   -0.0926    0.4134    0.1426    10.8388    12.2793    1.1332 
     ⋯
-       x[10]   -0.2617    0.6340    0.2868     6.6579    12.9094    1.3287 
+       x[10]   -0.6982    0.2764    0.0785    12.3530    31.3815    1.0149 
     ⋯
                                                                 1 column om
 itted
@@ -1235,18 +1235,18 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.6697    0.8465    1.0449    1.5525    2.2243
-           m   -0.2358    0.0968    0.2913    0.5521    0.9172
-        x[1]   -0.4878    0.2462    0.3997    0.6444    1.7393
-        x[2]   -1.4133   -1.0394   -0.7683   -0.5944   -0.1195
-        x[3]    0.4012    0.9821    1.6638    2.2251    2.8739
-        x[4]    0.1795    0.6453    0.8945    1.2279    1.5946
-        x[5]    0.3176    0.6861    0.9226    1.1255    1.3966
-        x[6]    0.7824    1.3397    1.9731    2.1355    2.4090
-        x[7]   -1.7211   -1.2149   -0.7250   -0.4308   -0.1922
-        x[8]    0.2539    1.0981    1.9474    2.3652    3.1192
-        x[9]   -0.6308   -0.1768   -0.0199    0.1729    0.4617
-       x[10]   -1.7023   -0.7197   -0.0673    0.2073    0.5731
+          s²    0.8522    1.2591    1.8250    2.7697    5.4451
+           m   -0.4827   -0.1161    0.2226    0.4367    1.2623
+        x[1]    0.3079    1.4677    1.8163    2.3077    2.8245
+        x[2]   -0.3157    0.0474    0.2636    0.5188    0.9533
+        x[3]   -2.1119   -1.6719   -1.2855   -0.7233    0.2212
+        x[4]   -0.0937    0.3191    0.7818    1.5862    2.4290
+        x[5]   -0.2685    0.0807    0.4462    0.7533    1.0700
+        x[6]   -2.2188   -1.9458   -1.5664   -1.3507   -0.6957
+        x[7]   -0.7442   -0.2708    0.9286    1.2528    1.6406
+        x[8]    1.1044    1.3002    1.4887    1.7123    2.0489
+        x[9]   -1.0712   -0.3445   -0.0356    0.2176    0.5260
+       x[10]   -1.1955   -0.8890   -0.7151   -0.5039   -0.1666
 </code></pre>
 <h4 id="access-values-inside-chain">Access Values inside Chain</h4>
 <p>You can access the values inside a chain several ways:</p>
@@ -1383,7 +1383,7 @@ ntext())
 <span class="n">map_estimate</span> <span class="o">=</span> <span class="n">optimize</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">MAP</span><span class="x">())</span>
 </code></pre></div></div>
 <pre><code>ModeResult with maximized lp of -4.62
-[0.9074074074074423, 1.1666666666667456]
+[0.9074074074073953, 1.1666666666666559]
 </code></pre>
 <p>If you wish to change to a different optimizer, such as <code>NelderMead</code>, simply place your optimizer in the third argument slot:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Use NelderMead</span>
@@ -1457,8 +1457,8 @@ m    1.75    0.176777  9.8995
 Iterations        = 1:1:1000
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 16.44 seconds
-Compute duration  = 16.44 seconds
+Wall duration     = 16.5 seconds
+Compute duration  = 16.5 seconds
 parameters        = p, z
 internals         = lp
 
@@ -1468,9 +1468,9 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-           p    0.4026    0.2068    0.0201   105.3306   131.0926    1.0046 
+           p    0.4234    0.1996    0.0249    67.6454   142.9230    1.0103 
     ⋯
-           z    0.1710    0.3767    0.0208   328.0747        NaN    1.0021 
+           z    0.1560    0.3630    0.0216   281.3542        NaN    0.9990 
     ⋯
                                                                 1 column om
 itted
@@ -1479,7 +1479,7 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           p    0.0661    0.2429    0.3803    0.5477    0.8590
+           p    0.0791    0.2792    0.4041    0.5557    0.8370
            z    0.0000    0.0000    0.0000    0.0000    1.0000
 </code></pre>
 <p>The <code>Gibbs</code> sampler can be used to specify unique automatic differentiation backends for different variable spaces. Please see the <a href="%7B%7Bsite.baseurl%7D%7D/docs/using-turing/autodiff">Automatic Differentiation</a> article for more.</p>
