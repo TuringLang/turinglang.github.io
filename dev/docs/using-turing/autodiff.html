@@ -833,9 +833,9 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    2.1438    1.7682    0.1395   166.2627   268.8907    1.0000 
+          s²    2.2645    1.9360    0.1575   161.7601   222.4558    1.0014 
     ⋯
-           m    1.2016    0.8642    0.1097    68.0659    81.5831    1.0195 
+           m    1.1507    0.8135    0.0887    86.9043    86.6418    1.0015 
     ⋯
                                                                 1 column om
 itted
@@ -844,8 +844,8 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.5694    1.0435    1.6100    2.5683    6.9150
-           m   -0.3419    0.6816    1.1732    1.6343    3.2113
+          s²    0.5913    1.1137    1.6647    2.6850    7.6339
+           m   -0.5306    0.6387    1.1709    1.6613    2.7432
 </code></pre>
 <p>Generally, <code>TrackerAD</code> is faster when sampling from variables of high dimensionality (greater than 20), and <code>ForwardDiffAD</code> is more efficient for lower-dimension variables. This functionality allows those who are performance sensitive to fine-tune their automatic differentiation for their specific models.</p>
 <p>If the differentiation method is not specified in this way, Turing will default to using whatever the global AD backend is. Currently, this defaults to <code>ForwardDiff</code>.</p>
