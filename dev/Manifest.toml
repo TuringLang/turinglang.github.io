@@ -24,9 +24,9 @@ version = "4.4.2"
 
 [[AbstractPPL]]
 deps = ["AbstractMCMC", "DensityInterface", "Random", "Setfield", "SparseArrays"]
-git-tree-sha1 = "33ea6c6837332395dbf3ba336f273c9f7fcf4db9"
+git-tree-sha1 = "caa9b62583577b0d6b222f11f54aa29fabbdb5ca"
 uuid = "7a57a42e-76ec-4ea3-a279-07e840d6d9cf"
-version = "0.5.4"
+version = "0.6.2"
 
 [[AbstractTrees]]
 git-tree-sha1 = "faa260e4cb5aba097a73fab382dd4b5819d8ec8c"
@@ -113,10 +113,10 @@ uuid = "9718e550-a3fa-408a-8086-8db961cd8217"
 version = "0.1.1"
 
 [[Bijectors]]
-deps = ["ArgCheck", "ChainRulesCore", "ChangesOfVariables", "Compat", "Distributions", "Functors", "InverseFunctions", "IrrationalConstants", "LinearAlgebra", "LogExpFunctions", "MappedArrays", "Random", "Reexport", "Requires", "Roots", "SparseArrays", "Statistics"]
-git-tree-sha1 = "ff192d037dee3c05fe842a207f8c6b840b04cca2"
+deps = ["ArgCheck", "ChainRules", "ChainRulesCore", "ChangesOfVariables", "Compat", "Distributions", "Functors", "InverseFunctions", "IrrationalConstants", "LinearAlgebra", "LogExpFunctions", "MappedArrays", "Random", "Reexport", "Requires", "Roots", "SparseArrays", "Statistics"]
+git-tree-sha1 = "af192c7c235264bdc6f67321fd1c57be0dd7ffb5"
 uuid = "76274a88-744f-5084-9051-94815aaf08c4"
-version = "0.12.8"
+version = "0.13.6"
 
 [[CEnum]]
 git-tree-sha1 = "eb4cb44a499229b3b8426dcfb5dd85333951ff90"
@@ -294,9 +294,9 @@ version = "0.6.8"
 
 [[DynamicPPL]]
 deps = ["AbstractMCMC", "AbstractPPL", "BangBang", "Bijectors", "ChainRulesCore", "ConstructionBase", "Distributions", "DocStringExtensions", "LinearAlgebra", "LogDensityProblems", "MacroTools", "OrderedCollections", "Random", "Setfield", "Test", "ZygoteRules"]
-git-tree-sha1 = "e3518c62a998defe74c5cc64b2bf2a33b7a788b8"
+git-tree-sha1 = "c85676be0049fd673c71d655b7a308c09eb83ed6"
 uuid = "366bfd00-2699-11ea-058f-f148b4cae6d8"
-version = "0.23.0"
+version = "0.23.13"
 
 [[EllipticalSliceSampling]]
 deps = ["AbstractMCMC", "ArrayInterface", "Distributions", "Random", "Statistics"]
@@ -464,10 +464,10 @@ uuid = "82899510-4779-5014-852e-03e436cf321d"
 version = "1.0.0"
 
 [[JLLWrappers]]
-deps = ["Preferences"]
-git-tree-sha1 = "abc9885a7ca2052a736a600f7fa66209f96506e1"
+deps = ["Artifacts", "Preferences"]
+git-tree-sha1 = "a7e91ef94114d5bc8952bcaa8d6ff952cf709808"
 uuid = "692b3bcd-3c85-4b1f-b108-f13ce0eb3210"
-version = "1.4.1"
+version = "1.4.2"
 
 [[JSON]]
 deps = ["Dates", "Mmap", "Parsers", "Unicode"]
