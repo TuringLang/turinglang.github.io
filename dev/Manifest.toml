@@ -294,9 +294,9 @@ version = "0.6.8"
 
 [[DynamicPPL]]
 deps = ["AbstractMCMC", "AbstractPPL", "BangBang", "Bijectors", "ChainRulesCore", "ConstructionBase", "Distributions", "DocStringExtensions", "LinearAlgebra", "LogDensityProblems", "MacroTools", "OrderedCollections", "Random", "Setfield", "Test", "ZygoteRules"]
-git-tree-sha1 = "fab5c22262fe24cbb09e8ddd34b7a1fe6d5bba23"
+git-tree-sha1 = "c65a403dbacd4e9f08141f030259fafc848a4f21"
 uuid = "366bfd00-2699-11ea-058f-f148b4cae6d8"
-version = "0.23.15"
+version = "0.23.16"
 
 [[EllipticalSliceSampling]]
 deps = ["AbstractMCMC", "ArrayInterface", "Distributions", "Random", "Statistics"]
