@@ -823,6 +823,7 @@
 <li><a href="/dev/docs/library/bijectors/#Bijectors.elementwise-Tuple%7BAny%7D"><code>Bijectors.elementwise</code></a></li>
 <li>[<code>Bijectors.find_alpha</code>](/dev/docs/library/bijectors/#Bijectors.find_alpha-Tuple{Real, Real, Real})</li>
 <li>[<code>Bijectors.get_u_hat</code>](/dev/docs/library/bijectors/#Bijectors.get_u_hat-Tuple{AbstractVector{var&quot;#s35&quot;} where var&quot;#s35&quot;&lt;:Real, AbstractVector{var&quot;#s34&quot;} where var&quot;#s34&quot;&lt;:Real})</li>
+<li><a href="/dev/docs/library/bijectors/#Bijectors.has_constant_bijector-Tuple%7BType%7D"><code>Bijectors.has_constant_bijector</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.isclosedform-Tuple%7BBijectors.Transform%7D"><code>Bijectors.isclosedform</code></a></li>
 <li><a href="/dev/docs/library/bijectors/#Bijectors.isinvertible-Tuple%7BAny%7D"><code>Bijectors.isinvertible</code></a></li>
 <li>[<code>Bijectors.logabsdetjac</code>](/dev/docs/library/bijectors/#Bijectors.logabsdetjac-Tuple{Any, Any})</li>
@@ -970,6 +971,11 @@ wᵀû = wᵀu + \log(1 + \exp{(-wᵀu)}) - 1 = \log(1 + \exp{(wᵀu)}) - 1.
 $$</p>
 <p><strong>References</strong></p>
 <p>D. Rezende, S. Mohamed (2015): Variational Inference with Normalizing Flows. arXiv:1505.05770</p>
+<p><a id='Bijectors.has_constant_bijector-Tuple{Type}' href='#Bijectors.has_constant_bijector-Tuple{Type}'>#</a>
+<strong><code>Bijectors.has_constant_bijector</code></strong> — <em>Method</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">has_constant_bijector</span><span class="x">(</span><span class="n">dist_type</span><span class="o">::</span><span class="kt">Type</span><span class="x">)</span>
+</code></pre></div></div>
+<p>Returns <code>true</code> if the distribution type <code>dist_type</code> has a constant bijector, i.e. the return-value of <a href="/dev/docs/library/bijectors/#Bijectors.bijector-Tuple%7BBijectors.TransformedDistribution%7D"><code>bijector</code></a> does not depend on runtime information.</p>
 <p><a id='Bijectors.isclosedform-Tuple{Bijectors.Transform}' href='#Bijectors.isclosedform-Tuple{Bijectors.Transform}'>#</a>
 <strong><code>Bijectors.isclosedform</code></strong> — <em>Method</em>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">isclosedform</span><span class="x">(</span><span class="n">b</span><span class="o">::</span><span class="n">Transform</span><span class="x">)</span><span class="o">::</span><span class="n">bool</span>
