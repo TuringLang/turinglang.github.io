@@ -85,7 +85,7 @@
   - title: "Probabilistic PCA"
     url: "tutorials/11-probabilistic-pca"
 
-  - title: "GPLVM"
+  - title: "Gaussian Process LVM"
     url: "tutorials/12-gplvm"
 
   - title: "Bayesian Time Series Analysis"
