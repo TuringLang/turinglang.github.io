@@ -94,6 +94,9 @@
   - title: "A Mini Turing Compiler"
     url: "tutorials/14-minituring"
 
+  - title: "Intro to Gaussian Processes"
+    url: "tutorials/15-gaussian-processes"
+
 - title: "CONTRIBUTING"
   url: "docs/contributing/guide"
   children:
