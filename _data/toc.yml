@@ -24,6 +24,9 @@
 
   - title: "Sampler Visualization"
     url: "docs/using-turing/sampler-viz"
+
+  - title: "External Samplers"
+    url: "docs/using-turing/external-samplers"
  
   - title: "Turing API"
     url: "docs/library/"
