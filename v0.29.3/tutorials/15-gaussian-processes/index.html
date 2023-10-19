@@ -906,25 +906,25 @@ it is possible to sample from the prior easily by just calling the model:</p>
 <span class="n">m</span><span class="x">()</span><span class="o">.</span><span class="n">y</span>
 </code></pre></div></div>
 <pre><code>19-element Vector{Int64}:
- 400
- 281
- 185
- 148
- 130
-  54
-  95
-  70
-  89
- 110
- 120
-  88
-  52
-  92
-  86
+ 147
  114
- 134
- 120
- 109
+  69
+  73
+  61
+  66
+  76
+ 108
+ 132
+ 160
+ 125
+ 132
+ 110
+ 104
+ 131
+ 125
+ 132
+  92
+  89
 </code></pre>
 <p>We make use of this to see what kinds of datasets we simulate from the prior:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Plots</span>
@@ -975,8 +975,8 @@ this example. See Turing.jl's docs on Automatic Differentiation for more info.</
 Iterations        = 501:1:1500
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 31.99 seconds
-Compute duration  = 31.99 seconds
+Wall duration     = 21.96 seconds
+Compute duration  = 21.96 seconds
 parameters        = v, l, f_latent[1], f_latent[2], f_latent[3], f_latent[4
 ], f_latent[5], f_latent[6], f_latent[7], f_latent[8], f_latent[9], f_laten
 t[10], f_latent[11], f_latent[12], f_latent[13], f_latent[14], f_latent[15]
