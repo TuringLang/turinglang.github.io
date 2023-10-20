@@ -879,25 +879,25 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-           θ    0.6607    0.7939    0.0973    72.5961   105.7628    1.0213 
+           θ    0.0121    0.8650    0.1314    47.4626    86.6241    1.0210 
     ⋯
-        z[1]   -0.8104    0.8644    0.0741   136.5748   193.1133    1.0280 
+        z[1]   -0.5324    0.7682    0.0892    79.9027   142.8232    1.0157 
     ⋯
-        z[2]    2.4779    0.9590    0.0881   117.4520   114.9107    1.0036 
+        z[2]    1.4455    0.9096    0.1159    65.5889   170.0869    1.0017 
     ⋯
-        z[3]   -0.4896    0.8236    0.0665   152.8934   324.6177    1.0092 
+        z[3]    0.0219    0.7492    0.0668   128.3552   146.8813    1.0227 
     ⋯
-        z[4]    1.0283    0.8642    0.0719   147.8005   288.1243    1.0117 
+        z[4]    0.8745    0.7209    0.0684   108.6626   194.7976    1.0117 
     ⋯
-        z[5]   -0.4502    0.8203    0.0575   207.4025   251.0889    1.0001 
+        z[5]    0.2145    0.7323    0.0834    81.6500   224.5874    1.0042 
     ⋯
-        z[6]   -1.3978    0.8848    0.0744   145.0663   238.2676    1.0202 
+        z[6]   -0.9286    0.8387    0.0970    68.8226    62.2614    1.0112 
     ⋯
-        z[7]    0.9873    0.9029    0.0942    90.1870    66.8746    1.0043 
+        z[7]    0.0349    0.6947    0.0546   153.0607   206.9673    1.0096 
     ⋯
-        z[8]   -0.8703    0.8725    0.0848   109.5568   247.2287    1.0175 
+        z[8]   -0.6871    0.7771    0.0929    70.7733    73.1976    1.0010 
     ⋯
-        z[9]   -0.2816    0.8113    0.0645   159.8647   285.8905    1.0184 
+        z[9]   -0.4666    0.7502    0.0709   107.7177   150.2779    1.0320 
     ⋯
                                                                 1 column om
 itted
@@ -906,16 +906,16 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           θ   -0.8824    0.0585    0.7337    1.2290    2.0544
-        z[1]   -2.5771   -1.4016   -0.7728   -0.2245    0.8919
-        z[2]    0.7082    1.7266    2.5025    3.1241    4.3990
-        z[3]   -2.1684   -1.0482   -0.3724    0.1027    0.9501
-        z[4]   -0.5811    0.3906    1.0485    1.6438    2.7756
-        z[5]   -2.1368   -1.0558   -0.3446    0.0909    1.0409
-        z[6]   -3.1274   -1.9953   -1.3735   -0.6384    0.0386
-        z[7]   -0.5023    0.3727    0.9843    1.5536    2.8396
-        z[8]   -2.4849   -1.4396   -0.9295   -0.2852    0.7471
-        z[9]   -1.9634   -0.8300   -0.2675    0.1937    1.3660
+           θ   -1.4451   -0.6533    0.1445    0.6074    1.5776
+        z[1]   -2.0639   -1.0141   -0.5672    0.0405    0.8580
+        z[2]   -0.1706    0.8554    1.3782    2.0158    3.3755
+        z[3]   -1.6737   -0.4554    0.0411    0.5822    1.3927
+        z[4]   -0.3173    0.3945    0.7433    1.3393    2.5053
+        z[5]   -1.1105   -0.3785    0.1465    0.7622    1.6893
+        z[6]   -2.7768   -1.4725   -0.8207   -0.3002    0.3896
+        z[7]   -1.4561   -0.3197   -0.0252    0.4072    1.5296
+        z[8]   -2.2797   -1.1979   -0.5583   -0.2634    0.8090
+        z[9]   -1.9283   -1.0024   -0.4508    0.0157    1.0232
 </code></pre>
 <h2 id="going-beyond-the-turing-api">Going beyond the Turing API</h2>
 <p>As previously mentioned, the Turing wrappers can often limit the capabilities of the sampling libraries they wrap.
@@ -948,39 +948,39 @@ In this process, <code>Pathfinder</code> computes an estimate of the mass matrix
 Iterations        = 1:1:10000
 Number of chains  = 1
 Samples per chain = 10000
-Wall duration     = 6.26 seconds
-Compute duration  = 6.26 seconds
+Wall duration     = 7.86 seconds
+Compute duration  = 7.86 seconds
 parameters        = θ, z[1], z[2], z[3], z[4], z[5], z[6], z[7], z[8], z[9]
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
 tree_depth, numerical_error, step_size, nom_step_size, is_adapt
 
 Summary Statistics
-  parameters      mean       std      mcse     ess_bulk    ess_tail      rh
-at  ⋯
-      Symbol   Float64   Float64   Float64      Float64     Float64   Float
-64  ⋯
+  parameters      mean       std      mcse    ess_bulk    ess_tail      rha
+t   ⋯
+      Symbol   Float64   Float64   Float64     Float64     Float64   Float6
+4   ⋯
 
-           θ    0.7385    0.7657    0.0126    4301.7002   3078.2772    1.00
-04  ⋯
-        z[1]   -0.9031    0.8959    0.0370     692.9089    200.3252    1.00
-22  ⋯
-        z[2]    2.5099    1.1694    0.0742     593.4340    204.8295    1.00
-32  ⋯
-        z[3]   -0.4322    0.8423    0.0129    4056.1616   7074.6484    1.00
-03  ⋯
-        z[4]    0.9790    0.8442    0.0078   11919.2278   7939.1635    1.00
-00  ⋯
-        z[5]   -0.4131    0.7975    0.0095    6955.5167   7017.4933    1.00
-05  ⋯
-        z[6]   -1.4838    0.9516    0.0448     624.9735    223.4647    1.00
-24  ⋯
-        z[7]    1.0378    0.9231    0.0468     677.2989    210.1990    1.00
-21  ⋯
-        z[8]   -0.8099    0.8614    0.0314     826.6934    209.5013    1.00
-22  ⋯
-        z[9]   -0.3250    0.8579    0.0323     866.9676    215.1511    1.00
-19  ⋯
+           θ   -0.2492    1.0673    0.0270   1671.7391   1194.4760    1.000
+5   ⋯
+        z[1]   -0.4565    0.7999    0.0427    696.1796    223.1810    1.000
+8   ⋯
+        z[2]    1.2484    0.9075    0.0195   1738.0874   6160.8376    1.000
+9   ⋯
+        z[3]   -0.0604    0.6995    0.0169   1831.5252    227.1630    1.000
+5   ⋯
+        z[4]    0.7984    0.7731    0.0113   5020.0991   6377.8484    1.000
+3   ⋯
+        z[5]    0.1271    0.6803    0.0149   2271.3501   6945.0708    1.000
+4   ⋯
+        z[6]   -0.8429    0.7960    0.0160   2097.4126   6229.0701    1.000
+8   ⋯
+        z[7]    0.0519    0.6792    0.0112   3494.3136   6492.5774    1.001
+5   ⋯
+        z[8]   -0.6428    0.7585    0.0166   1713.6610    275.4449    1.000
+2   ⋯
+        z[9]   -0.5094    0.7169    0.0090   6606.0620   6527.5550    0.999
+9   ⋯
                                                                 1 column om
 itted
 
@@ -988,16 +988,16 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           θ   -0.9210    0.2811    0.7741    1.2525    2.1329
-        z[1]   -2.6611   -1.4864   -0.8845   -0.3229    0.9355
-        z[2]    0.3348    1.8182    2.5488    3.2617    4.5875
-        z[3]   -2.1138   -0.9918   -0.4097    0.1444    1.1737
-        z[4]   -0.6124    0.4035    0.9357    1.5376    2.7027
-        z[5]   -2.0605   -0.9423   -0.3923    0.1390    1.1052
-        z[6]   -3.3231   -2.1142   -1.4800   -0.8609    0.3563
-        z[7]   -0.7578    0.4612    1.0240    1.6353    2.8166
-        z[8]   -2.5228   -1.3693   -0.8053   -0.2413    1.0185
-        z[9]   -2.0176   -0.8993   -0.3244    0.2207    1.5921
+           θ   -2.5807   -0.9079   -0.1165    0.5004    1.5692
+        z[1]   -2.1186   -0.9179   -0.4120    0.0161    1.0303
+        z[2]   -0.1721    0.5453    1.1648    1.8331    3.2340
+        z[3]   -1.5168   -0.4808   -0.0554    0.3698    1.3044
+        z[4]   -0.4726    0.2400    0.6981    1.2735    2.4939
+        z[5]   -1.1811   -0.3058    0.0980    0.5481    1.5113
+        z[6]   -2.6191   -1.3479   -0.7414   -0.2526    0.4340
+        z[7]   -1.3363   -0.3714    0.0424    0.4862    1.3870
+        z[8]   -2.2896   -1.1139   -0.5708   -0.1191    0.6331
+        z[9]   -2.0732   -0.9451   -0.4368   -0.0097    0.7970
 </code></pre>
 <h2 id="using-new-inference-methods">Using new inference methods</h2>
 <p>So far we have used Turing's support for external samplers to go beyond the capabilities of the wrappers.
@@ -1020,37 +1020,37 @@ This is achieved by simulating the dynamics of a microcanonical Hamiltonian with
 Iterations        = 1:1:10000
 Number of chains  = 1
 Samples per chain = 10000
-Wall duration     = 1.41 seconds
-Compute duration  = 1.41 seconds
+Wall duration     = 1.38 seconds
+Compute duration  = 1.38 seconds
 parameters        = θ, z[1], z[2], z[3], z[4], z[5], z[6], z[7], z[8], z[9]
 internals         = lp
 
 Summary Statistics
-  parameters      mean       std      mcse    ess_bulk    ess_tail      rha
-t   ⋯
-      Symbol   Float64   Float64   Float64     Float64     Float64   Float6
-4   ⋯
+  parameters      mean       std      mcse   ess_bulk   ess_tail      rhat 
+  e ⋯
+      Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
+    ⋯
 
-           θ    0.7663    0.7869    0.0403    434.9983    380.3436    1.000
-4   ⋯
-        z[1]   -0.9314    0.8360    0.0269    972.0595   2070.7483    1.002
-0   ⋯
-        z[2]    2.6098    1.0404    0.0406    658.0175    743.9614    1.000
-3   ⋯
-        z[3]   -0.4471    0.8165    0.0230   1272.3345   1735.5671    1.003
-1   ⋯
-        z[4]    0.9564    0.8298    0.0258   1032.6801   1920.9735    1.000
-0   ⋯
-        z[5]   -0.4248    0.8190    0.0253   1056.7992   1781.3167    1.003
-0   ⋯
-        z[6]   -1.5380    0.8654    0.0281    946.1267   2325.7645    1.000
-2   ⋯
-        z[7]    1.1074    0.8330    0.0312    737.7582   1763.6669    1.001
-9   ⋯
-        z[8]   -0.8519    0.8779    0.0292    929.0355   1818.5814    1.001
-4   ⋯
-        z[9]   -0.3862    0.8122    0.0256   1013.9282   1780.3013    1.000
-2   ⋯
+           θ   -0.1569    0.9784    0.0598   269.6519   340.0034    1.0155 
+    ⋯
+        z[1]   -0.5781    0.7430    0.0405   348.2620   605.1068    1.0128 
+    ⋯
+        z[2]    1.3363    0.8683    0.0456   372.5555   780.0139    1.0060 
+    ⋯
+        z[3]   -0.0674    0.6713    0.0335   410.2338   550.3580    1.0045 
+    ⋯
+        z[4]    0.8433    0.7846    0.0423   360.3244   695.7552    1.0092 
+    ⋯
+        z[5]    0.0755    0.6543    0.0296   494.4099   756.8816    1.0012 
+    ⋯
+        z[6]   -0.8784    0.7778    0.0332   580.4709   900.7821    1.0006 
+    ⋯
+        z[7]    0.0237    0.6999    0.0313   507.0552   844.3985    1.0049 
+    ⋯
+        z[8]   -0.6734    0.7208    0.0353   437.0096   627.6718    1.0053 
+    ⋯
+        z[9]   -0.5416    0.6778    0.0286   584.2623   845.4894    1.0020 
+    ⋯
                                                                 1 column om
 itted
 
@@ -1058,16 +1058,16 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           θ   -0.9543    0.3047    0.8214    1.2928    2.1504
-        z[1]   -2.6378   -1.4718   -0.8928   -0.3625    0.6253
-        z[2]    0.5581    1.9130    2.6086    3.3038    4.6596
-        z[3]   -2.1266   -0.9705   -0.4364    0.1018    1.1283
-        z[4]   -0.6325    0.3900    0.9388    1.4893    2.6484
-        z[5]   -2.1151   -0.9563   -0.3915    0.1332    1.1057
-        z[6]   -3.2846   -2.1265   -1.5133   -0.9230    0.0587
-        z[7]   -0.4075    0.5168    1.0758    1.6585    2.8237
-        z[8]   -2.6905   -1.3976   -0.8042   -0.2513    0.7669
-        z[9]   -2.0031   -0.9190   -0.3692    0.1595    1.1766
+           θ   -2.3225   -0.7729   -0.0732    0.5369    1.5595
+        z[1]   -2.1870   -1.0472   -0.5105   -0.0661    0.7538
+        z[2]   -0.1247    0.6855    1.2825    1.9083    3.1700
+        z[3]   -1.4243   -0.4847   -0.0793    0.3526    1.3199
+        z[4]   -0.4886    0.2799    0.7717    1.3260    2.5832
+        z[5]   -1.2468   -0.3372    0.0697    0.4793    1.4003
+        z[6]   -2.5755   -1.3640   -0.8194   -0.3205    0.4669
+        z[7]   -1.4323   -0.4014    0.0350    0.4669    1.3771
+        z[8]   -2.2817   -1.1065   -0.6062   -0.1848    0.5883
+        z[9]   -2.0221   -0.9544   -0.4811   -0.0792    0.6479
 </code></pre>
 <p>The only requirement to work with <code>externalsampler</code> is that the provided <code>sampler</code> must implement the AbstractMCMC.jl-interface [INSERT LINK] for a <code>model</code> of type <code>AbstractMCMC.LogDensityModel</code> [INSERT LINK].</p>
 <p>As previously stated, in order to use external sampling libraries within <code>Turing</code> they must follow the <code>AbstractMCMC</code> API.
@@ -1113,20 +1113,20 @@ end
 <p>The output of the functions must be a transition, the current state of the sampler, and a sample, what is saved to the MCMC chain.</p>
 </li>
 </ul>
-<p>The last requirement is that the transition must be structured with a field <code>θ</code> which contains the values of the parameters of the model for said transition.
+<p>The last requirement is that the transition must be structured with a field <code>θ</code>, which contains the values of the parameters of the model for said transition.
 This allows <code>Turing</code> to seamlessly extract the parameter values at each step of the chain when bundling the chains.
-Note that if the external sampler produces transitions that Turing cannot parse the bundling of the samples will be different or fail.</p>
+Note that if the external sampler produces transitions that Turing cannot parse, the bundling of the samples will be different or fail.</p>
 <p>For practical examples of how to adapt a sampling library to the <code>AbstractMCMC</code> interface, the readers can consult the following libraries:</p>
 <ul>
-<li>(AdvancedMH)[https://github.com/TuringLang/AdvancedMH.jl/blob/458a602ac32a8514a117d4c671396a9ba8acbdab/src/mh-core.jl#L73-L115]</li>
-<li>(AdvancedHMC)[https://github.com/TuringLang/AdvancedHMC.jl/blob/762e55f894d142495a41a6eba0eed9201da0a600/src/abstractmcmc.jl#L102-L170]</li>
-<li>(MicroCanonicalHMC)[https://github.com/JaimeRZP/MicroCanonicalHMC.jl/blob/master/src/abstractmcmc.jl] within <code>MicroCanonicalHMC</code>.</li>
+<li><a href="https://github.com/TuringLang/AdvancedMH.jl/blob/458a602ac32a8514a117d4c671396a9ba8acbdab/src/mh-core.jl#L73-L115">AdvancedMH</a></li>
+<li><a href="https://github.com/TuringLang/AdvancedHMC.jl/blob/762e55f894d142495a41a6eba0eed9201da0a600/src/abstractmcmc.jl#L102-L170">AdvancedHMC</a></li>
+<li><a href="https://github.com/JaimeRZP/MicroCanonicalHMC.jl/blob/master/src/abstractmcmc.jl">MicroCanonicalHMC</a></li>
 </ul>
 <h1 id="refences">Refences</h1>
-<p>[^1]: Xu et al, (AdvancedHMC.jl: A robust, modular and efficient implementation of advanced HMC algorithms)[http://proceedings.mlr.press/v118/xu20a/xu20a.pdf], 2019
-[^2]: Zhang et al, (Pathfinder: Parallel quasi-Newton variational inference)[https://arxiv.org/abs/2108.03782], 2021
-[^3]: Robnik et al, (Microcanonical Hamiltonian Monte Carlo)[https://arxiv.org/abs/2212.08549], 2022
-[^4]: Robnik and Seljak, (Langevine Hamiltonian Monte Carlo)[https://arxiv.org/abs/2303.18221], 2023</p>
+<p>[^1]: Xu et al., <a href="http://proceedings.mlr.press/v118/xu20a/xu20a.pdf">AdvancedHMC.jl: A robust, modular and efficient implementation of advanced HMC algorithms</a>, 2019
+[^2]: Zhang et al., <a href="https://arxiv.org/abs/2108.03782">Pathfinder: Parallel quasi-Newton variational inference</a>, 2021
+[^3]: Robnik et al, <a href="https://arxiv.org/abs/2212.08549">Microcanonical Hamiltonian Monte Carlo</a>, 2022
+[^4]: Robnik and Seljak, <a href="https://arxiv.org/abs/2303.18221">Langevine Hamiltonian Monte Carlo</a>, 2023</p>
 
     
 <script
