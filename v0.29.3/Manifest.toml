@@ -17,10 +17,10 @@ uuid = "621f4979-c628-5d54-868e-fcf4e3e8185c"
 version = "1.5.0"
 
 [[AbstractMCMC]]
-deps = ["BangBang", "ConsoleProgressMonitor", "Distributed", "FillArrays", "LogDensityProblems", "Logging", "LoggingExtras", "ProgressLogging", "Random", "StatsBase", "TerminalLoggers", "Transducers"]
-git-tree-sha1 = "e7fba5aed576f624d7bdcfe47f81e4f96c0f4bda"
+deps = ["BangBang", "ConsoleProgressMonitor", "Distributed", "LogDensityProblems", "Logging", "LoggingExtras", "ProgressLogging", "Random", "StatsBase", "TerminalLoggers", "Transducers"]
+git-tree-sha1 = "87e63dcb990029346b091b170252f3c416568afc"
 uuid = "80f14c24-f653-4e6a-9b94-39d6b0f70001"
-version = "4.5.0"
+version = "4.4.2"
 
 [[AbstractPPL]]
 deps = ["AbstractMCMC", "DensityInterface", "Random", "Setfield", "SparseArrays"]
@@ -1072,9 +1072,9 @@ uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
 
 [[ZygoteRules]]
 deps = ["ChainRulesCore", "MacroTools"]
-git-tree-sha1 = "977aed5d006b840e2e40c0b48984f7463109046d"
+git-tree-sha1 = "9d749cd449fb448aeca4feee9a2f4186dbb5d184"
 uuid = "700de1a5-db45-46bc-99cf-38207098b444"
-version = "0.2.3"
+version = "0.2.4"
 
 [[libsass_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
