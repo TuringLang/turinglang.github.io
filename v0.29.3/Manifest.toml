@@ -35,9 +35,9 @@ version = "0.4.4"
 
 [[Adapt]]
 deps = ["LinearAlgebra", "Requires"]
-git-tree-sha1 = "68c4c187a232e7abe00ac29e3b03e09af9d77317"
+git-tree-sha1 = "02f731463748db57cc2ebfbd9fbc9ce8280d3433"
 uuid = "79e6a3ab-5dfb-504d-930d-738a2a938a0e"
-version = "3.7.0"
+version = "3.7.1"
 
 [[AdvancedHMC]]
 deps = ["AbstractMCMC", "ArgCheck", "DocStringExtensions", "InplaceOps", "LinearAlgebra", "LogDensityProblems", "LogDensityProblemsAD", "ProgressMeter", "Random", "Requires", "Setfield", "SimpleUnPack", "Statistics", "StatsBase", "StatsFuns"]
@@ -47,9 +47,9 @@ version = "0.5.5"
 
 [[AdvancedMH]]
 deps = ["AbstractMCMC", "Distributions", "FillArrays", "LinearAlgebra", "LogDensityProblems", "Random", "Requires"]
-git-tree-sha1 = "b2a1602952739e589cf5e2daff1274a49f22c9a4"
+git-tree-sha1 = "5c8f8fdf6588984ee29e08d7129b4a07d23fa52b"
 uuid = "5b7e9947-ddc0-4b3f-9b55-0d8042f74170"
-version = "0.7.5"
+version = "0.7.6"
 
 [[AdvancedPS]]
 deps = ["AbstractMCMC", "Distributions", "Libtask", "Random", "Random123", "StatsFuns"]
@@ -294,9 +294,9 @@ version = "0.6.8"
 
 [[DynamicPPL]]
 deps = ["AbstractMCMC", "AbstractPPL", "BangBang", "Bijectors", "ChainRulesCore", "Compat", "ConstructionBase", "Distributions", "DocStringExtensions", "LinearAlgebra", "LogDensityProblems", "MacroTools", "OrderedCollections", "Random", "Requires", "Setfield", "Test", "ZygoteRules"]
-git-tree-sha1 = "6e3040aaa315a97c8dd9a44504e277ede05ae535"
+git-tree-sha1 = "50a718301941d4ec4f391aa845ee434fce2dbe2e"
 uuid = "366bfd00-2699-11ea-058f-f148b4cae6d8"
-version = "0.23.20"
+version = "0.23.21"
 
 [[EllipticalSliceSampling]]
 deps = ["AbstractMCMC", "ArrayInterface", "Distributions", "Random", "Statistics"]
