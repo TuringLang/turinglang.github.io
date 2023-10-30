@@ -589,9 +589,9 @@ version = "6.0.4"
 
 [[MCMCDiagnosticTools]]
 deps = ["AbstractFFTs", "DataAPI", "DataStructures", "Distributions", "LinearAlgebra", "MLJModelInterface", "Random", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "Tables"]
-git-tree-sha1 = "56c61163890d15d45901de423be0ad91855a2cd7"
+git-tree-sha1 = "6ea46c36b86320593d2017da3c28c79165167ef4"
 uuid = "be115224-59cd-429b-ad48-344e309966f0"
-version = "0.3.7"
+version = "0.3.8"
 
 [[MKL_jll]]
 deps = ["Artifacts", "IntelOpenMP_jll", "JLLWrappers", "LazyArtifacts", "Libdl", "Pkg"]
