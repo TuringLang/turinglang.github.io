@@ -820,9 +820,13 @@
 <h2 id="index">Index</h2>
 <ul>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractIntegrator"><code>AdvancedHMC.AbstractIntegrator</code></a></li>
+<li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractMCMCKernel"><code>AdvancedHMC.AbstractMCMCKernel</code></a></li>
+<li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractMetric"><code>AdvancedHMC.AbstractMetric</code></a></li>
+<li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractTerminationCriterion"><code>AdvancedHMC.AbstractTerminationCriterion</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractTrajectorySampler"><code>AdvancedHMC.AbstractTrajectorySampler</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.BinaryTree"><code>AdvancedHMC.BinaryTree</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.ClassicNoUTurn"><code>AdvancedHMC.ClassicNoUTurn</code></a></li>
+<li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.DynamicTerminationCriterion"><code>AdvancedHMC.DynamicTerminationCriterion</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.EndPointTS"><code>AdvancedHMC.EndPointTS</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.FixedIntegrationTime"><code>AdvancedHMC.FixedIntegrationTime</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.FixedNSteps"><code>AdvancedHMC.FixedNSteps</code></a></li>
@@ -835,19 +839,20 @@
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.HMCState"><code>AdvancedHMC.HMCState</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.JitteredLeapfrog"><code>AdvancedHMC.JitteredLeapfrog</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.Leapfrog"><code>AdvancedHMC.Leapfrog</code></a></li>
+<li>[<code>AdvancedHMC.MultinomialTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.MultinomialTS-Tuple{MultinomialTS, AbstractFloat, AdvancedHMC.PhasePoint})</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.MultinomialTS"><code>AdvancedHMC.MultinomialTS</code></a></li>
 <li>[<code>AdvancedHMC.MultinomialTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.MultinomialTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint})</li>
-<li>[<code>AdvancedHMC.MultinomialTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.MultinomialTS-Tuple{MultinomialTS, AbstractFloat, AdvancedHMC.PhasePoint})</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.NUTS"><code>AdvancedHMC.NUTS</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.PartialMomentumRefreshment"><code>AdvancedHMC.PartialMomentumRefreshment</code></a></li>
 <li>[<code>AdvancedHMC.SliceTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.SliceTS-Tuple{Random.AbstractRNG, AdvancedHMC.PhasePoint})</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.SliceTS"><code>AdvancedHMC.SliceTS</code></a></li>
 <li>[<code>AdvancedHMC.SliceTS</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.SliceTS-Tuple{SliceTS, AbstractFloat, AdvancedHMC.PhasePoint})</li>
+<li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.StaticTerminationCriterion"><code>AdvancedHMC.StaticTerminationCriterion</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.StrictGeneralisedNoUTurn"><code>AdvancedHMC.StrictGeneralisedNoUTurn</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.TemperedLeapfrog"><code>AdvancedHMC.TemperedLeapfrog</code></a></li>
 <li>[<code>AdvancedHMC.Termination</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.Termination-Union{Tuple{F}, Tuple{SliceTS, Trajectory, F, F}} where F&lt;:AbstractFloat)</li>
-<li>[<code>AdvancedHMC.Termination</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.Termination-Union{Tuple{F}, Tuple{MultinomialTS, Trajectory, F, F}} where F&lt;:AbstractFloat)</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.Termination"><code>AdvancedHMC.Termination</code></a></li>
+<li>[<code>AdvancedHMC.Termination</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.Termination-Union{Tuple{F}, Tuple{MultinomialTS, Trajectory, F, F}} where F&lt;:AbstractFloat)</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.Trajectory"><code>AdvancedHMC.Trajectory</code></a></li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.Transition"><code>AdvancedHMC.Transition</code></a></li>
 <li>[<code>AdvancedHMC.A</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.A-Tuple{Any, Any, Any})</li>
@@ -857,9 +862,9 @@
 <li>[<code>AdvancedHMC.combine</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.combine-Tuple{AdvancedHMC.BinaryTree, AdvancedHMC.BinaryTree})</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.determine_sampler_eltype-Tuple"><code>AdvancedHMC.determine_sampler_eltype</code></a></li>
 <li>[<code>AdvancedHMC.find_good_stepsize</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.find_good_stepsize-Union{Tuple{T}, Tuple{Random.AbstractRNG, Hamiltonian, AbstractVector{T}}} where T&lt;:Real)</li>
+<li>[<code>AdvancedHMC.isterminated</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.isterminated-Tuple{ClassicNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree})</li>
 <li>[<code>AdvancedHMC.isterminated</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.isterminated-Tuple{GeneralisedNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree})</li>
 <li>[<code>AdvancedHMC.isterminated</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.isterminated-Tuple{StrictGeneralisedNoUTurn, Hamiltonian, Any, Any, Any})</li>
-<li>[<code>AdvancedHMC.isterminated</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.isterminated-Tuple{ClassicNoUTurn, Hamiltonian, AdvancedHMC.BinaryTree})</li>
 <li>[<code>AdvancedHMC.maxabs</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.maxabs-Tuple{Any, Any})</li>
 <li>[<code>AdvancedHMC.mh_accept_ratio</code>](/dev/docs/library/advancedhmc/#AdvancedHMC.mh_accept_ratio-Union{Tuple{T}, Tuple{Random.AbstractRNG, T, T}} where T&lt;:AbstractFloat)</li>
 <li><a href="/dev/docs/library/advancedhmc/#AdvancedHMC.nom_step_size-Tuple%7BAdvancedHMC.AbstractIntegrator%7D"><code>AdvancedHMC.nom_step_size</code></a></li>
@@ -1067,6 +1072,21 @@ C = [
 <li><code>nom_step_size</code>(@ref)</li>
 <li><code>step_size</code>(@ref)</li>
 </ul>
+<p><a id='AdvancedHMC.AbstractMCMCKernel' href='#AdvancedHMC.AbstractMCMCKernel'>#</a>
+<strong><code>AdvancedHMC.AbstractMCMCKernel</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">abstract type</span><span class="nc"> AbstractMCMCKernel</span>
+</code></pre></div></div>
+<p>Abstract type for HMC kernels.</p>
+<p><a id='AdvancedHMC.AbstractMetric' href='#AdvancedHMC.AbstractMetric'>#</a>
+<strong><code>AdvancedHMC.AbstractMetric</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">abstract type</span><span class="nc"> AbstractMetric</span>
+</code></pre></div></div>
+<p>Abstract type for preconditioning metrics.</p>
+<p><a id='AdvancedHMC.AbstractTerminationCriterion' href='#AdvancedHMC.AbstractTerminationCriterion'>#</a>
+<strong><code>AdvancedHMC.AbstractTerminationCriterion</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">abstract type</span><span class="nc"> AbstractTerminationCriterion</span>
+</code></pre></div></div>
+<p>Abstract type for termination criteria for Hamiltonian trajectories, e.g. no-U-turn and fixed number of leapfrog integration steps.</p>
 <p><a id='AdvancedHMC.AbstractTrajectorySampler' href='#AdvancedHMC.AbstractTrajectorySampler'>#</a>
 <strong><code>AdvancedHMC.AbstractTrajectorySampler</code></strong> — <em>Type</em>.</p>
 <p>How to sample a phase-point from the simulated trajectory.</p>
@@ -1088,6 +1108,11 @@ C = [
 <ol>
 <li>Hoffman, M. D., &amp; Gelman, A. (2014). The No-U-Turn Sampler: adaptively setting path lengths in Hamiltonian Monte Carlo. Journal of Machine Learning Research, 15(1), 1593-1623. (<a href="http://arxiv.org/abs/1111.4246">arXiv</a>)</li>
 </ol>
+<p><a id='AdvancedHMC.DynamicTerminationCriterion' href='#AdvancedHMC.DynamicTerminationCriterion'>#</a>
+<strong><code>AdvancedHMC.DynamicTerminationCriterion</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">abstract type</span><span class="nc"> DynamicTerminationCriterion</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractTerminationCriterion</span>
+</code></pre></div></div>
+<p>Abstract type for dynamic Hamiltonian trajectory termination criteria.</p>
 <p><a id='AdvancedHMC.EndPointTS' href='#AdvancedHMC.EndPointTS'>#</a>
 <strong><code>AdvancedHMC.EndPointTS</code></strong> — <em>Type</em>.</p>
 <p>Samples the end-point of the trajectory.</p>
@@ -1182,13 +1207,13 @@ C = [
 <p>An <code>AbstractMCMC.AbstractSampler</code> for kernels in AdvancedHMC.jl.</p>
 <p><strong>Fields</strong></p>
 <ul>
-<li><code>κ</code>: <a href="@ref"><code>AbstractMCMCKernel</code></a>.</li>
-<li><code>metric</code>: Choice of initial metric <a href="@ref"><code>AbstractMetric</code></a>. The metric type will be preserved during adaption.</li>
-<li><code>adaptor</code>: <a href="@ref"><code>AbstractAdaptor</code></a>.</li>
+<li><code>κ</code>: <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractMCMCKernel"><code>AbstractMCMCKernel</code></a>.</li>
+<li><code>metric</code>: Choice of initial metric <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractMetric"><code>AbstractMetric</code></a>. The metric type will be preserved during adaption.</li>
+<li><code>adaptor</code>: <a href="@ref"><code>AdvancedHMC.Adaptation.AbstractAdaptor</code></a>.</li>
 </ul>
 <p><strong>Notes</strong></p>
 <p>Note that all the fields have the prefix <code>initial_</code> to indicate that these will not necessarily correspond to the <code>kernel</code>, <code>metric</code>, and <code>adaptor</code> after sampling.</p>
-<p>To access the updated fields use the resulting <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.HMCState"><code>HMCState</code></a>.</p>
+<p>To access the updated fields, use the resulting <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.HMCState"><code>HMCState</code></a>.</p>
 <p><a id='AdvancedHMC.HMCState' href='#AdvancedHMC.HMCState'>#</a>
 <strong><code>AdvancedHMC.HMCState</code></strong> — <em>Type</em>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMCState</span>
@@ -1198,8 +1223,8 @@ C = [
 <ul>
 <li><code>i</code>: Index of current iteration.</li>
 <li><code>transition</code>: Current <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.Transition"><code>Transition</code></a>.</li>
-<li><code>metric</code>: Current <a href="@ref"><code>AbstractMetric</code></a>, possibly adapted.</li>
-<li><code>κ</code>: Current <a href="@ref"><code>AbstractMCMCKernel</code></a>.</li>
+<li><code>metric</code>: Current <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractMetric"><code>AbstractMetric</code></a>, possibly adapted.</li>
+<li><code>κ</code>: Current <a href="/dev/docs/library/advancedhmc/#AdvancedHMC.AbstractMCMCKernel"><code>AbstractMCMCKernel</code></a>.</li>
 <li><code>adaptor</code>: Current <a href="@ref"><code>AbstractAdaptor</code></a>.</li>
 </ul>
 <p><a id='AdvancedHMC.JitteredLeapfrog' href='#AdvancedHMC.JitteredLeapfrog'>#</a>
@@ -1311,6 +1336,11 @@ C = [
 <li>the slice variable is copied from the passed-in sampler <code>s</code> and</li>
 <li>the number of acceptable candicates is computed by comparing the slice variable against the current energy.</li>
 </ul>
+<p><a id='AdvancedHMC.StaticTerminationCriterion' href='#AdvancedHMC.StaticTerminationCriterion'>#</a>
+<strong><code>AdvancedHMC.StaticTerminationCriterion</code></strong> — <em>Type</em>.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">abstract type</span><span class="nc"> StaticTerminationCriterion</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">AbstractTerminationCriterion</span>
+</code></pre></div></div>
+<p>Abstract type for a fixed number of leapfrog integration steps.</p>
 <p><a id='AdvancedHMC.StrictGeneralisedNoUTurn' href='#AdvancedHMC.StrictGeneralisedNoUTurn'>#</a>
 <strong><code>AdvancedHMC.StrictGeneralisedNoUTurn</code></strong> — <em>Type</em>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span><span class="nc"> StrictGeneralisedNoUTurn</span><span class="x">{</span><span class="n">F</span><span class="o">&lt;:</span><span class="kt">AbstractFloat</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">AdvancedHMC</span><span class="o">.</span><span class="n">DynamicTerminationCriterion</span>
