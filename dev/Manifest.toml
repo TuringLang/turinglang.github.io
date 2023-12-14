@@ -131,9 +131,9 @@ version = "0.5.1"
 
 [[ChainRules]]
 deps = ["Adapt", "ChainRulesCore", "Compat", "Distributed", "GPUArraysCore", "IrrationalConstants", "LinearAlgebra", "Random", "RealDot", "SparseArrays", "SparseInverseSubset", "Statistics", "StructArrays", "SuiteSparse"]
-git-tree-sha1 = "006cc7170be3e0fa02ccac6d4164a1eee1fc8c27"
+git-tree-sha1 = "0aa0a3dd7b9bacbbadf1932ccbdfa938985c5561"
 uuid = "082447d4-558c-5d27-93f4-14fc19e9eca2"
-version = "1.58.0"
+version = "1.58.1"
 
 [[ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra", "SparseArrays"]
@@ -924,9 +924,9 @@ version = "0.1.15"
 
 [[StaticArrays]]
 deps = ["LinearAlgebra", "PrecompileTools", "Random", "StaticArraysCore", "Statistics"]
-git-tree-sha1 = "5ef59aea6f18c25168842bded46b16662141ab87"
+git-tree-sha1 = "2aded4182a14b19e9b62b063c0ab561809b5af2c"
 uuid = "90137ffa-7385-5640-81b9-e52037218182"
-version = "1.7.0"
+version = "1.8.0"
 
 [[StaticArraysCore]]
 git-tree-sha1 = "36b3d696ce6366023a0ea192b4cd442268995a0d"
