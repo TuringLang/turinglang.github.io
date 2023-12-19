@@ -477,9 +477,9 @@ version = "0.21.4"
 
 [[KernelAbstractions]]
 deps = ["Adapt", "Atomix", "InteractiveUtils", "LinearAlgebra", "MacroTools", "PrecompileTools", "Requires", "SparseArrays", "StaticArrays", "UUIDs", "UnsafeAtomics", "UnsafeAtomicsLLVM"]
-git-tree-sha1 = "81de11f7b02465435aab0ed7e935965bfcb3072b"
+git-tree-sha1 = "653e0824fc9ab55b3beec67a6dbbe514a65fb954"
 uuid = "63c18a36-062a-441e-b654-da1e3ab1ce7c"
-version = "0.9.14"
+version = "0.9.15"
 
 [[KernelDensity]]
 deps = ["Distributions", "DocStringExtensions", "FFTW", "Interpolations", "StatsBase"]
@@ -607,9 +607,9 @@ version = "1.9.3"
 
 [[MacroTools]]
 deps = ["Markdown", "Random"]
-git-tree-sha1 = "9ee1618cbf5240e6d4e0371d6f24065083f60c48"
+git-tree-sha1 = "b211c553c199c111d998ecdaf7623d1b89b69f93"
 uuid = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
-version = "0.5.11"
+version = "0.5.12"
 
 [[MappedArrays]]
 git-tree-sha1 = "2dab0221fe2b0f2cb6754eaa743cc266339f527e"
