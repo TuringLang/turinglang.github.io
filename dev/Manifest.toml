@@ -137,15 +137,15 @@ version = "0.5.1"
 
 [[ChainRules]]
 deps = ["Adapt", "ChainRulesCore", "Compat", "Distributed", "GPUArraysCore", "IrrationalConstants", "LinearAlgebra", "Random", "RealDot", "SparseArrays", "SparseInverseSubset", "Statistics", "StructArrays", "SuiteSparse"]
-git-tree-sha1 = "07fbef147241b3869deb9cb08b10a2fc37600101"
+git-tree-sha1 = "4cfc4916725289132746f730755262e1919cff38"
 uuid = "082447d4-558c-5d27-93f4-14fc19e9eca2"
-version = "1.59.0"
+version = "1.59.1"
 
 [[ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra", "SparseArrays"]
-git-tree-sha1 = "c1deebd76f7a443d527fc0430d5758b8b2112ed8"
+git-tree-sha1 = "0d12ee16b3f62e4e33c3277773730a5b21a74152"
 uuid = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
-version = "1.19.1"
+version = "1.20.0"
 
 [[ChangesOfVariables]]
 deps = ["InverseFunctions", "LinearAlgebra", "Test"]
@@ -506,9 +506,10 @@ uuid = "dad2f222-ce93-54a1-a47d-0025e8a3acab"
 version = "0.0.23+0"
 
 [[LRUCache]]
-git-tree-sha1 = "5930ef949f30a9a947c69ef6b069c0b1aa27619d"
+deps = ["Serialization"]
+git-tree-sha1 = "b3cc6698599b10e652832c2f23db3cab99d51b59"
 uuid = "8ac3fa9e-de4c-5943-b1dc-09c6b5f20637"
-version = "1.6.0"
+version = "1.6.1"
 
 [[LaTeXStrings]]
 git-tree-sha1 = "50901ebc375ed41dbf8058da26f9de442febbbec"
@@ -843,9 +844,9 @@ version = "0.4.0+0"
 
 [[Roots]]
 deps = ["Accessors", "ChainRulesCore", "CommonSolve", "Printf"]
-git-tree-sha1 = "af540898b1e6ca7aa6ba7213c05052809c6c522a"
+git-tree-sha1 = "39ebae5b76c8cd5629bec21adfca78b437dac1e6"
 uuid = "f2b01f46-fcfa-551c-844a-d8ac1e96c665"
-version = "2.1.0"
+version = "2.1.1"
 
 [[RuntimeGeneratedFunctions]]
 deps = ["ExprTools", "SHA", "Serialization"]
