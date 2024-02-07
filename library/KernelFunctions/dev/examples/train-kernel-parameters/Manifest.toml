@@ -113,9 +113,9 @@ version = "1.61.0"
 
 [[deps.ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra"]
-git-tree-sha1 = "1287e3872d646eed95198457873249bd9f0caed2"
+git-tree-sha1 = "ab79d1f9754a3988a7792caec43bfdc03996020f"
 uuid = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
-version = "1.20.1"
+version = "1.21.0"
 weakdeps = ["SparseArrays"]
 
     [deps.ChainRulesCore.extensions]
@@ -589,11 +589,11 @@ version = "0.9.16"
 
 [[deps.KernelFunctions]]
 deps = ["ChainRulesCore", "Compat", "CompositionsBase", "Distances", "FillArrays", "Functors", "IrrationalConstants", "LinearAlgebra", "LogExpFunctions", "Random", "Requires", "SpecialFunctions", "Statistics", "StatsBase", "TensorCore", "Test", "ZygoteRules"]
-git-tree-sha1 = "76439b55c8262e97b818890d9000d68037538c5d"
+git-tree-sha1 = "1e25858fe0bd1d1fa805a43417d58b039b51d156"
 repo-rev = "master"
 repo-url = "/home/runner/work/KernelFunctions.jl/KernelFunctions.jl"
 uuid = "ec8451be-7e33-11e9-00cf-bbf324bd1392"
-version = "0.10.61"
+version = "0.10.62"
 
 [[deps.LAME_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
