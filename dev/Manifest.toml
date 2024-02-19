@@ -29,9 +29,9 @@ uuid = "7a57a42e-76ec-4ea3-a279-07e840d6d9cf"
 version = "0.7.0"
 
 [[AbstractTrees]]
-git-tree-sha1 = "faa260e4cb5aba097a73fab382dd4b5819d8ec8c"
+git-tree-sha1 = "2d9c9a55f9c93e8887ad391fbae72f8ef55e1177"
 uuid = "1520ce14-60c1-5f80-bbc7-55ef81b5835c"
-version = "0.4.4"
+version = "0.4.5"
 
 [[Accessors]]
 deps = ["CompositionsBase", "ConstructionBase", "Dates", "InverseFunctions", "LinearAlgebra", "MacroTools", "Requires", "Test"]
@@ -171,9 +171,9 @@ version = "0.3.0"
 
 [[Compat]]
 deps = ["Dates", "LinearAlgebra", "TOML", "UUIDs"]
-git-tree-sha1 = "75bd5b6fc5089df449b5d35fa501c846c9b6549b"
+git-tree-sha1 = "d2c021fbdde94f6cdaa799639adfeeaa17fd67f5"
 uuid = "34da2185-b29b-5c13-b0c7-acf172513d20"
-version = "4.12.0"
+version = "4.13.0"
 
 [[CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
@@ -1047,7 +1047,7 @@ version = "1.4.0"
 deps = ["ADTypes", "AbstractMCMC", "AdvancedHMC", "AdvancedMH", "AdvancedPS", "AdvancedVI", "BangBang", "Bijectors", "DataStructures", "Distributions", "DistributionsAD", "DocStringExtensions", "DynamicPPL", "EllipticalSliceSampling", "ForwardDiff", "Libtask", "LinearAlgebra", "LogDensityProblems", "LogDensityProblemsAD", "MCMCChains", "NamedArrays", "Printf", "Random", "Reexport", "Requires", "SciMLBase", "Setfield", "SpecialFunctions", "Statistics", "StatsAPI", "StatsBase", "StatsFuns"]
 path = "/home/runner/.julia/dev/Turing"
 uuid = "fce5fe82-541a-59a6-adf8-730c64b5f9a0"
-version = "0.30.4"
+version = "0.30.5"
 
 [[UUIDs]]
 deps = ["Random", "SHA"]
