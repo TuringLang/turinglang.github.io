@@ -36,10 +36,10 @@ We want to emphasise that we do not provide additional analysis of the Imperial 
 
 For our next steps, we're looking at collaboration with other researchers and further developments of this and similar models.
 There are some immediate directions to explore:
-1. Incoporation of more sources of data, e.g. national mobility, seasonal changes and behavior changes in individuals.
+1. Incorporation of more sources of data, e.g. national mobility, seasonal changes and behavior changes in individuals.
 2. How the assumptions incorporated into the priors and their parameters change resulting posterior.
 3. The current model does not directly include recovery as a possibility and assumes that if a person has been infected once then he/she will be infectious until death. Number of recovered cases suffers from the same issues as the number of cases: it cannot be directly observed. But we can also deal with it in a similar manner as is done with number of cases and incorporate this into the model for a potential improvement.
-This will result in a plethora of different models from which we can select the most realistic one using different model comparions techniques, e.g. leave-one-out cross-validation (loo-cv). 
+This will result in a plethora of different models from which we can select the most realistic one using different model comparison techniques, e.g. leave-one-out cross-validation (loo-cv). 
 
 Such model refinement can be potentially valuable given the high impact of this pandemic and the uncertainty and debates in the potential outcomes.
 
