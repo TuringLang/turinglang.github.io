@@ -342,10 +342,10 @@ uuid = "1a297f60-69ca-5386-bcde-b61e274b549b"
 version = "1.9.3"
 
 [[Formatting]]
-deps = ["Printf"]
-git-tree-sha1 = "8339d61043228fdd3eb658d86c926cb282ae72a8"
+deps = ["Logging", "Printf"]
+git-tree-sha1 = "fb409abab2caf118986fc597ba84b50cbaf00b87"
 uuid = "59287772-0a20-5a39-b81b-1366585eb4c0"
-version = "0.4.2"
+version = "0.4.3"
 
 [[ForwardDiff]]
 deps = ["CommonSubexpressions", "DiffResults", "DiffRules", "LinearAlgebra", "LogExpFunctions", "NaNMath", "Preferences", "Printf", "Random", "SpecialFunctions", "StaticArrays"]
@@ -483,9 +483,9 @@ version = "0.21.4"
 
 [[KernelAbstractions]]
 deps = ["Adapt", "Atomix", "InteractiveUtils", "LinearAlgebra", "MacroTools", "PrecompileTools", "Requires", "SparseArrays", "StaticArrays", "UUIDs", "UnsafeAtomics", "UnsafeAtomicsLLVM"]
-git-tree-sha1 = "4e0cb2f5aad44dcfdc91088e85dee4ecb22c791c"
+git-tree-sha1 = "c7753cc3febe006708ce6798482004241f7d890b"
 uuid = "63c18a36-062a-441e-b654-da1e3ab1ce7c"
-version = "0.9.16"
+version = "0.9.17"
 
 [[KernelDensity]]
 deps = ["Distributions", "DocStringExtensions", "FFTW", "Interpolations", "StatsBase"]
