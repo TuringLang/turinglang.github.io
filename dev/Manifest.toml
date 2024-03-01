@@ -143,9 +143,9 @@ version = "1.63.0"
 
 [[ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra", "SparseArrays"]
-git-tree-sha1 = "aef70bb349b20aa81a82a19704c3ef339d4ee494"
+git-tree-sha1 = "575cd02e080939a33b6df6c5853d14924c08e35b"
 uuid = "d360d2e6-b24c-11e9-a2a3-2a2ae2dbcce4"
-version = "1.22.1"
+version = "1.23.0"
 
 [[ChangesOfVariables]]
 deps = ["InverseFunctions", "LinearAlgebra", "Test"]
@@ -300,9 +300,9 @@ version = "0.6.8"
 
 [[DynamicPPL]]
 deps = ["ADTypes", "AbstractMCMC", "AbstractPPL", "BangBang", "Bijectors", "ChainRulesCore", "Compat", "ConstructionBase", "Distributions", "DocStringExtensions", "LinearAlgebra", "LogDensityProblems", "LogDensityProblemsAD", "MacroTools", "OrderedCollections", "Random", "Requires", "Setfield", "Test", "ZygoteRules"]
-git-tree-sha1 = "60a3a231813a89bd796a639d5ce389386e89f4e3"
+git-tree-sha1 = "6fe2424f8f47c0fecd01349a2a77987f3c988393"
 uuid = "366bfd00-2699-11ea-058f-f148b4cae6d8"
-version = "0.24.7"
+version = "0.24.9"
 
 [[EllipticalSliceSampling]]
 deps = ["AbstractMCMC", "ArrayInterface", "Distributions", "Random", "Statistics"]
