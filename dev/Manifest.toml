@@ -602,9 +602,9 @@ version = "2024.0.0+0"
 
 [[MLJModelInterface]]
 deps = ["Random", "ScientificTypesBase", "StatisticalTraits"]
-git-tree-sha1 = "14bd8088cf7cd1676aa83a57004f8d23d43cd81e"
+git-tree-sha1 = "d2a45e1b5998ba3fdfb6cfe0c81096d4c7fb40e7"
 uuid = "e80e1ace-859a-464e-9ed9-23947d8ae3ea"
-version = "1.9.5"
+version = "1.9.6"
 
 [[MacroTools]]
 deps = ["Markdown", "Random"]
