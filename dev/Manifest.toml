@@ -137,9 +137,9 @@ version = "0.5.1"
 
 [[ChainRules]]
 deps = ["Adapt", "ChainRulesCore", "Compat", "Distributed", "GPUArraysCore", "IrrationalConstants", "LinearAlgebra", "Random", "RealDot", "SparseArrays", "SparseInverseSubset", "Statistics", "StructArrays", "SuiteSparse"]
-git-tree-sha1 = "4e42872be98fa3343c4f8458cbda8c5c6a6fa97c"
+git-tree-sha1 = "3e79289d94b579d81618f4c7c974bb9390dab493"
 uuid = "082447d4-558c-5d27-93f4-14fc19e9eca2"
-version = "1.63.0"
+version = "1.64.0"
 
 [[ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra", "SparseArrays"]
@@ -563,9 +563,9 @@ version = "2.1.1"
 
 [[LogDensityProblemsAD]]
 deps = ["DocStringExtensions", "LogDensityProblems", "Requires", "SimpleUnPack"]
-git-tree-sha1 = "9c50732cd0f188766b6217ed6a2ebbdaf9890029"
+git-tree-sha1 = "54a8ab6b7f3c321876395639788c6891b5e806b4"
 uuid = "996a588d-648d-4e1f-a8f0-a84b347e47b1"
-version = "1.7.0"
+version = "1.8.0"
 
 [[LogExpFunctions]]
 deps = ["ChainRulesCore", "ChangesOfVariables", "DocStringExtensions", "InverseFunctions", "IrrationalConstants", "LinearAlgebra"]
