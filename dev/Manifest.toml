@@ -260,9 +260,9 @@ version = "0.25.107"
 
 [[DistributionsAD]]
 deps = ["Adapt", "ChainRules", "ChainRulesCore", "Compat", "Distributions", "FillArrays", "LinearAlgebra", "PDMats", "Random", "Requires", "SpecialFunctions", "StaticArrays", "StatsFuns", "ZygoteRules"]
-git-tree-sha1 = "060a19f3f879773399a7011676eb273ccc265241"
+git-tree-sha1 = "f4dd7727b07b4b7fff5ff4149118ee06e83dfab7"
 uuid = "ced4e74d-a319-5a8a-b0ac-84af2272839c"
-version = "0.6.54"
+version = "0.6.55"
 
 [[DocStringExtensions]]
 deps = ["LibGit2"]
@@ -300,9 +300,9 @@ version = "0.6.8"
 
 [[DynamicPPL]]
 deps = ["ADTypes", "AbstractMCMC", "AbstractPPL", "BangBang", "Bijectors", "ChainRulesCore", "Compat", "ConstructionBase", "Distributions", "DocStringExtensions", "LinearAlgebra", "LogDensityProblems", "LogDensityProblemsAD", "MacroTools", "OrderedCollections", "Random", "Requires", "Setfield", "Test", "ZygoteRules"]
-git-tree-sha1 = "6fe2424f8f47c0fecd01349a2a77987f3c988393"
+git-tree-sha1 = "e82fd71badd88ee23d9ce748fb04f024fb952501"
 uuid = "366bfd00-2699-11ea-058f-f148b4cae6d8"
-version = "0.24.9"
+version = "0.24.10"
 
 [[EllipticalSliceSampling]]
 deps = ["AbstractMCMC", "ArrayInterface", "Distributions", "Random", "Statistics"]
