@@ -58,10 +58,10 @@ uuid = "5b7e9947-ddc0-4b3f-9b55-0d8042f74170"
 version = "0.8.1"
 
 [[AdvancedPS]]
-deps = ["AbstractMCMC", "Distributions", "Random", "Random123", "Requires", "StatsFuns"]
-git-tree-sha1 = "672f7ce648e06f93fceefde463c5855d77b6915a"
+deps = ["AbstractMCMC", "Distributions", "Random", "Random123", "Requires", "SSMProblems", "StatsFuns"]
+git-tree-sha1 = "5dcd3de7e7346f48739256e71a86d0f96690b8c8"
 uuid = "576499cb-2369-40b2-a588-c64705576edc"
-version = "0.5.4"
+version = "0.6.0"
 
 [[AdvancedVI]]
 deps = ["ADTypes", "Bijectors", "DiffResults", "Distributions", "DistributionsAD", "DocStringExtensions", "ForwardDiff", "LinearAlgebra", "ProgressMeter", "Random", "Requires", "StatsBase", "StatsFuns", "Tracker"]
@@ -71,9 +71,9 @@ version = "0.2.5"
 
 [[AliasTables]]
 deps = ["Random"]
-git-tree-sha1 = "ca95b2220ef440817963baa71525a8f2f4ae7f8f"
+git-tree-sha1 = "6f186dadec4d7725aa88d18487139d512f02db7b"
 uuid = "66dad0bd-aa9a-41b7-9441-69ab47430ed8"
-version = "1.0.0"
+version = "1.1.0"
 
 [[ArgCheck]]
 git-tree-sha1 = "a3a402a35a2f7e0b87828ccabbd5ebfbebe356b4"
@@ -857,6 +857,12 @@ version = "0.5.12"
 [[SHA]]
 uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
 
+[[SSMProblems]]
+deps = ["AbstractMCMC"]
+git-tree-sha1 = "f640e4e8343c9d5f470e2f6ca6ce79f708ab6376"
+uuid = "26aad666-b158-4e64-9d35-0e672562fa48"
+version = "0.1.1"
+
 [[Sass]]
 deps = ["libsass_jll"]
 git-tree-sha1 = "aa841c3738cec78b5dbccd56dda332710f35f6a5"
@@ -1047,7 +1053,7 @@ version = "1.4.0"
 deps = ["ADTypes", "AbstractMCMC", "Accessors", "AdvancedHMC", "AdvancedMH", "AdvancedPS", "AdvancedVI", "BangBang", "Bijectors", "DataStructures", "Distributions", "DistributionsAD", "DocStringExtensions", "DynamicPPL", "EllipticalSliceSampling", "ForwardDiff", "Libtask", "LinearAlgebra", "LogDensityProblems", "LogDensityProblemsAD", "MCMCChains", "NamedArrays", "Printf", "Random", "Reexport", "Requires", "SciMLBase", "SpecialFunctions", "Statistics", "StatsAPI", "StatsBase", "StatsFuns"]
 path = "/home/runner/.julia/dev/Turing"
 uuid = "fce5fe82-541a-59a6-adf8-730c64b5f9a0"
-version = "0.31.1"
+version = "0.31.2"
 
 [[UUIDs]]
 deps = ["Random", "SHA"]
