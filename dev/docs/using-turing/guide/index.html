@@ -846,8 +846,8 @@
 Iterations        = 1:1:100000
 Number of chains  = 1
 Samples per chain = 100000
-Wall duration     = 1.8 seconds
-Compute duration  = 1.8 seconds
+Wall duration     = 2.1 seconds
+Compute duration  = 2.1 seconds
 parameters        = s², m, x, y
 internals         = lp
 
@@ -857,13 +857,13 @@ rha ⋯
       Symbol   Float64   Float64   Float64       Float64      Float64   Flo
 at6 ⋯
 
-          s²    2.9656    5.7909    0.0184    99715.8341   99377.3172    1.
+          s²    2.9424    5.6793    0.0180   100347.7019   99440.6204    1.
 000 ⋯
-           m   -0.0017    1.7387    0.0055   100117.4247   98621.1531    1.
+           m    0.0003    1.7101    0.0054    99890.2582   98065.6160    1.
 000 ⋯
-           x   -0.0013    2.4329    0.0078    98462.7273   98483.2215    1.
+           x    0.0139    2.4361    0.0077    99755.2179   98064.8845    1.
 000 ⋯
-           y   -0.0051    2.4425    0.0077    99760.7974   98624.2246    1.
+           y   -0.0063    2.4221    0.0077    99001.9384   98925.3975    1.
 000 ⋯
                                                                2 columns om
 itted
@@ -872,10 +872,10 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.5409    1.1090    1.7871    3.1172   12.2321
-           m   -3.4028   -0.9162   -0.0058    0.9074    3.3604
-           x   -4.7530   -1.2989   -0.0007    1.2870    4.7911
-           y   -4.8025   -1.2891   -0.0072    1.2910    4.7621
+          s²    0.5381    1.1138    1.7825    3.1037   12.1347
+           m   -3.3473   -0.9125   -0.0049    0.9035    3.3792
+           x   -4.7745   -1.2786    0.0120    1.2816    4.8070
+           y   -4.7919   -1.2892   -0.0003    1.2713    4.7882
 </code></pre>
 <p>We can perform inference by using the <code>sample</code> function, the first argument of which is our probabilistic program and the second of which is a sampler. More information on each sampler is located in the <a href="%7B%7Bsite.baseurl%7D%7D/docs/library">API</a>.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#  Run sampler, collect results.</span>
@@ -891,8 +891,8 @@ Quantiles
 Iterations        = 501:1:1500
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 2.14 seconds
-Compute duration  = 2.14 seconds
+Wall duration     = 2.06 seconds
+Compute duration  = 2.06 seconds
 parameters        = s², m
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, max_hamiltonian_energy_error, 
@@ -904,9 +904,9 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    1.9035    1.4454    0.0713   452.8370   645.8307    0.9991 
+          s²    1.9289    1.4467    0.0604   565.2070   633.2511    1.0015 
     ⋯
-           m    1.1354    0.7774    0.0343   494.6409   545.1067    0.9990 
+           m    1.1824    0.7217    0.0298   585.7603   655.4807    1.0000 
     ⋯
                                                                 1 column om
 itted
@@ -915,8 +915,8 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.5759    1.0173    1.5261    2.2712    5.6469
-           m   -0.5334    0.6810    1.1581    1.6139    2.5896
+          s²    0.5766    1.0328    1.5063    2.3328    5.8806
+           m   -0.2834    0.6983    1.1991    1.6599    2.5946
 </code></pre>
 <p>The <code>MCMCChains</code> module (which is re-exported by Turing) provides plotting tools for the <code>Chain</code> objects returned by a <code>sample</code> function. See the <a href="https://github.com/TuringLang/MCMCChains.jl">MCMCChains</a> repository for more information on the suite of tools available for diagnosing MCMC chains.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Summarise results</span>
@@ -965,12 +965,12 @@ parameters <code>&quot;x[1]&quot;</code>, <code>&quot;x[2]&quot;</code>, and <co
 </code></pre></div></div>
 <pre><code>Chains MCMC chain (100×3×1 Array{Float64, 3}):
 
-Log evidence      = -13.5020446594351
+Log evidence      = -22.4209907336435
 Iterations        = 1:1:100
 Number of chains  = 1
 Samples per chain = 100
-Wall duration     = 1.86 seconds
-Compute duration  = 1.86 seconds
+Wall duration     = 1.84 seconds
+Compute duration  = 1.84 seconds
 parameters        = s
 internals         = lp, weight
 
@@ -980,7 +980,7 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-           s    5.9800    0.1407    0.0221    40.6437        NaN    1.0104 
+           s    4.0000    0.0000       NaN        NaN        NaN       NaN 
     ⋯
                                                                 1 column om
 itted
@@ -989,7 +989,7 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           s    6.0000    6.0000    6.0000    6.0000    6.0000
+           s    4.0000    4.0000    4.0000    4.0000    4.0000
 </code></pre>
 <p>But if we switch the <code>s ~ Poisson(1)</code> and <code>y ~ Normal(s, 1)</code> lines, the model will no longer sample correctly:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Define a simple Normal model with unknown mean and variance.</span>
@@ -1083,7 +1083,7 @@ Assign the function with <code>missing</code> inputs to a variable, and Turing w
 <span class="n">g_prior_sample</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">(</span><span class="nb">missing</span><span class="x">,</span> <span class="nb">missing</span><span class="x">)</span>
 <span class="n">g_prior_sample</span><span class="x">()</span>
 </code></pre></div></div>
-<pre><code>(0.9222955586086037, -0.29741353666905757)
+<pre><code>(0.1741213188090317, -0.5141306911530534)
 </code></pre>
 <h3 id="sampling-from-a-conditional-distribution-the-posterior">Sampling from a Conditional Distribution (The Posterior)</h3>
 <h4 id="treating-observations-as-random-variables">Treating observations as random variables</h4>
@@ -1109,8 +1109,8 @@ Assign the function with <code>missing</code> inputs to a variable, and Turing w
 Iterations        = 1:1:500
 Number of chains  = 1
 Samples per chain = 500
-Wall duration     = 1.88 seconds
-Compute duration  = 1.88 seconds
+Wall duration     = 1.86 seconds
+Compute duration  = 1.86 seconds
 parameters        = s², m, x[1], x[2]
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, numerical_error, step_size, no
@@ -1122,13 +1122,13 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    0.7511    0.2462    0.1661     2.0752    10.8700    1.4445 
+          s²    0.7271    0.2249    0.0842     7.6115    10.8946    1.0866 
     ⋯
-           m    0.0440    0.2488    0.0904     8.5523    13.2237    1.1229 
+           m   -0.2311    0.2300    0.0543    18.7223    38.4238    1.0040 
     ⋯
-        x[1]    0.0454    0.2730    0.2057     2.0840    26.7105    1.4669 
+        x[1]   -0.0177    0.3176    0.2204     2.1975    27.9147    1.3983 
     ⋯
-        x[2]   -0.9102    0.2356    0.0799     9.3071    12.9486    1.0259 
+        x[2]   -0.6931    0.2532    0.0768    11.8370    28.3523    1.0758 
     ⋯
                                                                 1 column om
 itted
@@ -1137,10 +1137,10 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    0.3289    0.6155    0.7019    0.8115    1.3660
-           m   -0.3255   -0.1247   -0.0010    0.1817    0.6228
-        x[1]   -0.4240   -0.1805    0.0894    0.2648    0.5150
-        x[2]   -1.2415   -1.0948   -0.9705   -0.7049   -0.4481
+          s²    0.2867    0.5873    0.7466    0.8790    1.1814
+           m   -0.6826   -0.4042   -0.2247   -0.0424    0.1559
+        x[1]   -0.5122   -0.2953   -0.0706    0.2731    0.4980
+        x[2]   -1.1639   -0.8739   -0.6643   -0.4794   -0.2824
 </code></pre>
 <p>Note the need to initialize <code>x</code> when missing since we are iterating over its elements later in the model. The generated values for <code>x</code> can be extracted from the <code>Chains</code> object using <code>c[:x]</code>.</p>
 <p>Turing also supports mixed <code>missing</code> and non-<code>missing</code> values in <code>x</code>, where the missing ones will be treated as random variables to be sampled while the others get treated as observations. For example:</p>
@@ -1161,8 +1161,8 @@ Quantiles
 Iterations        = 1:1:500
 Number of chains  = 1
 Samples per chain = 500
-Wall duration     = 1.9 seconds
-Compute duration  = 1.9 seconds
+Wall duration     = 1.87 seconds
+Compute duration  = 1.87 seconds
 parameters        = s², m, x[1]
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
 amiltonian_energy, hamiltonian_energy_error, numerical_error, step_size, no
@@ -1174,11 +1174,11 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    3.5040    1.7589    1.4535     1.4714    29.4290    1.9104 
+          s²    3.1704    1.7342    1.4214     1.5735    11.1270    1.7116 
     ⋯
-           m    3.6117    0.4746    0.1850     6.8838    10.8708    1.0158 
+           m   -0.5925    0.4070    0.3487     1.4041    17.9775    1.9386 
     ⋯
-        x[1]    5.0570    0.5935    0.4095     4.4779    11.2143    1.6357 
+        x[1]   -1.4030    0.6071    0.5276     1.4381    22.5542    1.9377 
     ⋯
                                                                 1 column om
 itted
@@ -1187,9 +1187,9 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    1.3740    1.8683    3.3237    4.4671    7.4676
-           m    2.7320    3.3334    3.6132    4.0281    4.4035
-        x[1]    4.2821    4.5992    4.7941    5.7049    6.1482
+          s²    0.7774    1.4557    3.1170    4.4699    6.6135
+           m   -1.2511   -0.9028   -0.6544   -0.3092    0.2459
+        x[1]   -2.4749   -1.8908   -1.2775   -0.9157   -0.5026
 </code></pre>
 <h4 id="default-values">Default Values</h4>
 <p>Arguments to Turing models can have default values much like how default values work in normal Julia functions. For instance, the following will assign <code>missing</code> to <code>x</code> and treat it as a random variable. If the default value is not <code>missing</code>, <code>x</code> will be assigned that value and will be treated as an observation instead.</p>
@@ -1216,8 +1216,8 @@ Quantiles
 Iterations        = 1:1:1000
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 3.5 seconds
-Compute duration  = 3.5 seconds
+Wall duration     = 3.48 seconds
+Compute duration  = 3.48 seconds
 parameters        = s², m, x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], 
 x[9], x[10]
 internals         = lp, n_steps, is_accept, acceptance_rate, log_density, h
@@ -1230,29 +1230,29 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-          s²    2.0382    0.7629    0.2327     9.2495    28.4166    1.0834 
+          s²    1.1119    0.5207    0.2842     3.1801    21.1090    1.4925 
     ⋯
-           m    0.3864    0.3593    0.1888     3.7504    32.1097    1.3950 
+           m    0.7230    0.3327    0.1126     9.5545    20.4148    1.0748 
     ⋯
-        x[1]   -1.3528    0.5499    0.3313     2.8972    19.6414    1.6858 
+        x[1]    1.1839    0.5516    0.3449     2.8437    21.5142    1.8318 
     ⋯
-        x[2]    1.3947    0.6782    0.4270     2.6795    16.9388    1.8294 
+        x[2]   -0.0426    1.1914    0.7555     2.5746    14.5364    2.0000 
     ⋯
-        x[3]   -0.4247    0.4071    0.2381     3.1210    29.9796    1.6456 
+        x[3]    2.2109    0.4282    0.2460     3.3195    21.2188    1.4879 
     ⋯
-        x[4]   -0.7179    0.3113    0.1111     7.1947    27.2515    1.1871 
+        x[4]    0.7597    0.2948    0.1332     5.3609    38.9687    1.1695 
     ⋯
-        x[5]   -0.7457    0.3914    0.2282     2.9465    13.0191    1.7345 
+        x[5]    0.1832    0.4150    0.1246    11.7747    18.1758    1.0769 
     ⋯
-        x[6]    0.3430    1.0474    0.6859     2.6226    20.3854    1.9926 
+        x[6]    0.1954    0.4584    0.2712     2.9072    20.2899    1.8015 
     ⋯
-        x[7]    0.8443    0.6827    0.4467     2.5889    20.6180    2.0921 
+        x[7]    1.1014    0.2734    0.0862    10.2761    33.9279    1.0363 
     ⋯
-        x[8]    1.5283    0.5809    0.3408     2.9898    21.2077    1.7216 
+        x[8]    0.8650    0.7467    0.4947     2.6025    24.3852    2.1000 
     ⋯
-        x[9]    2.1988    0.7715    0.3304     6.1963    15.8040    1.0587 
+        x[9]    0.7267    0.3944    0.1444     7.4158    15.8452    1.0546 
     ⋯
-       x[10]    0.1483    0.4808    0.2361     4.4751    14.2521    1.3025 
+       x[10]    0.9286    0.3653    0.1516     5.9118    21.5974    1.2243 
     ⋯
                                                                 1 column om
 itted
@@ -1261,18 +1261,18 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-          s²    1.0826    1.4337    1.9049    2.5292    3.7260
-           m   -0.2728    0.1279    0.3731    0.6562    1.0326
-        x[1]   -2.1318   -1.8047   -1.4059   -1.1352   -0.2476
-        x[2]    0.3123    0.8748    1.2580    2.0232    2.6661
-        x[3]   -0.9913   -0.7706   -0.5389   -0.0228    0.2887
-        x[4]   -1.2156   -0.9486   -0.7408   -0.5242   -0.0727
-        x[5]   -1.5032   -0.9820   -0.7742   -0.4968    0.0769
-        x[6]   -1.0427   -0.6121   -0.0328    1.5125    2.1144
-        x[7]   -0.2735    0.2385    0.7708    1.4107    1.9892
-        x[8]    0.4061    1.1089    1.6818    1.9198    2.4081
-        x[9]    1.3179    1.5292    1.9498    2.9387    3.5888
-       x[10]   -0.7949   -0.1911    0.1501    0.5589    0.9514
+          s²    0.4383    0.7739    1.0078    1.3546    2.6791
+           m    0.0607    0.4999    0.7738    0.9723    1.2585
+        x[1]    0.3118    0.7075    1.1020    1.7223    2.0737
+        x[2]   -1.5459   -0.8948   -0.6965    1.3969    2.2193
+        x[3]    1.4374    1.8335    2.2466    2.6105    2.8625
+        x[4]    0.2627    0.5428    0.7215    0.9632    1.3350
+        x[5]   -0.4876   -0.1422    0.1458    0.4749    1.0366
+        x[6]   -0.4925   -0.1268    0.0906    0.4979    1.1674
+        x[7]    0.5612    0.9157    1.0847    1.2993    1.6003
+        x[8]   -0.1609    0.1762    0.6902    1.5329    2.0586
+        x[9]    0.0375    0.3880    0.7529    1.0318    1.5096
+       x[10]    0.1622    0.6578    0.9234    1.2332    1.5525
 </code></pre>
 <h4 id="access-values-inside-chain">Access Values inside Chain</h4>
 <p>You can access the values inside a chain several ways:</p>
@@ -1297,78 +1297,101 @@ Similarly, when using a particle sampler, the Julia variable used should either 
 <li>An instance of some type parameter <code>T</code> defined in the model header using the type parameter syntax, e.g. <code>function gdemo(x, ::Type{T} = Vector{Float64}) where {T}</code>.</li>
 </ol>
 <h3 id="querying-probabilities-from-model-or-chain">Querying Probabilities from Model or Chain</h3>
-<p>Consider first the following simplified <code>gdemo</code> model:</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo0</span><span class="x">(</span><span class="n">x</span><span class="x">)</span>
+<p>Turing offers three functions: <a href="https://turinglang.org/DynamicPPL.jl/dev/api/#StatsAPI.loglikelihood"><code>loglikelihood</code></a>, <a href="https://turinglang.org/DynamicPPL.jl/dev/api/#DynamicPPL.logprior"><code>logprior</code></a>, and <a href="https://turinglang.org/DynamicPPL.jl/dev/api/#DynamicPPL.logjoint"><code>logjoint</code></a> to query the log-likelihood, log-prior, and log-joint probabilities of a model, respectively.</p>
+<p>Let's look at a simple model called <code>gdemo</code>:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo0</span><span class="x">()</span>
     <span class="n">s</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
     <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s</span><span class="x">))</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s</span><span class="x">))</span>
 <span class="k">end</span>
+</code></pre></div></div>
+<pre><code>gdemo0 (generic function with 2 methods)
+</code></pre>
+<p>If we observe x to be 1.0, we can condition the model on this datum using the <a href="https://turinglang.org/DynamicPPL.jl/dev/api/#AbstractPPL.condition"><code>condition</code></a> syntax:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">gdemo0</span><span class="x">()</span> <span class="o">|</span> <span class="x">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="x">,)</span>
+</code></pre></div></div>
+<pre><code>DynamicPPL.Model{typeof(Main.var&quot;##WeaveSandBox#413&quot;.gdemo0), (), (), (), T
+uple{}, Tuple{}, DynamicPPL.ConditionContext{@NamedTuple{x::Float64}, Dynam
+icPPL.DefaultContext}}(Main.var&quot;##WeaveSandBox#413&quot;.gdemo0, NamedTuple(), N
+amedTuple(), ConditionContext((x = 1.0,), DynamicPPL.DefaultContext()))
+</code></pre>
+<p>Now, let's compute the log-likelihood of the observation given specific values of the model parameters, <code>s</code> and <code>m</code>:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">loglikelihood</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="x">(</span><span class="n">s</span><span class="o">=</span><span class="mf">1.0</span><span class="x">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.0</span><span class="x">))</span>
+</code></pre></div></div>
+<pre><code>-0.9189385332046728
+</code></pre>
+<p>We can easily verify that value in this case:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logpdf</span><span class="x">(</span><span class="n">Normal</span><span class="x">(</span><span class="mf">1.0</span><span class="x">,</span> <span class="mf">1.0</span><span class="x">),</span> <span class="mf">1.0</span><span class="x">)</span>
+</code></pre></div></div>
+<pre><code>-0.9189385332046728
+</code></pre>
+<p>We can also compute the log-prior probability of the model for the same values of s and m:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logprior</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="x">(</span><span class="n">s</span><span class="o">=</span><span class="mf">1.0</span><span class="x">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.0</span><span class="x">))</span>
+</code></pre></div></div>
+<pre><code>-2.221713955868453
+</code></pre>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logpdf</span><span class="x">(</span><span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">),</span> <span class="mf">1.0</span><span class="x">)</span> <span class="o">+</span> <span class="n">logpdf</span><span class="x">(</span><span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="mf">1.0</span><span class="x">)),</span> <span class="mf">1.0</span><span class="x">)</span>
+</code></pre></div></div>
+<pre><code>-2.221713955868453
+</code></pre>
+<p>Finally, we can compute the log-joint probability of the model parameters and data:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logjoint</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="x">(</span><span class="n">s</span><span class="o">=</span><span class="mf">1.0</span><span class="x">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.0</span><span class="x">))</span>
+</code></pre></div></div>
+<pre><code>-3.1406524890731258
+</code></pre>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logpdf</span><span class="x">(</span><span class="n">Normal</span><span class="x">(</span><span class="mf">1.0</span><span class="x">,</span> <span class="mf">1.0</span><span class="x">),</span> <span class="mf">1.0</span><span class="x">)</span> <span class="o">+</span>
+<span class="n">logpdf</span><span class="x">(</span><span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">),</span> <span class="mf">1.0</span><span class="x">)</span> <span class="o">+</span>
+<span class="n">logpdf</span><span class="x">(</span><span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="mf">1.0</span><span class="x">)),</span> <span class="mf">1.0</span><span class="x">)</span>
+</code></pre></div></div>
+<pre><code>-3.1406524890731258
+</code></pre>
+<p>Querying with <code>Chains</code> object is easy as well:</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">chn</span> <span class="o">=</span> <span class="n">sample</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">Prior</span><span class="x">(),</span> <span class="mi">10</span><span class="x">)</span>
+</code></pre></div></div>
+<pre><code>Chains MCMC chain (10×3×1 Array{Float64, 3}):
 
-<span class="c"># Instantiate three models, with different value of x</span>
-<span class="n">model1</span> <span class="o">=</span> <span class="n">gdemo0</span><span class="x">(</span><span class="mi">1</span><span class="x">)</span>
-<span class="n">model4</span> <span class="o">=</span> <span class="n">gdemo0</span><span class="x">(</span><span class="mi">4</span><span class="x">)</span>
-<span class="n">model10</span> <span class="o">=</span> <span class="n">gdemo0</span><span class="x">(</span><span class="mi">10</span><span class="x">)</span>
-</code></pre></div></div>
-<pre><code>DynamicPPL.Model{typeof(Main.var&quot;##WeaveSandBox#434&quot;.gdemo0), (:x,), (), ()
-, Tuple{Int64}, Tuple{}, DynamicPPL.DefaultContext}(Main.var&quot;##WeaveSandBox
-#434&quot;.gdemo0, (x = 10,), NamedTuple(), DynamicPPL.DefaultContext())
-</code></pre>
-<p>Now, query the instantiated models: compute the likelihood of <code>x = 1.0</code> given the values of <code>s = 1.0</code> and <code>m = 1.0</code> for the parameters:</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prob</span><span class="s">"x = 1.0 | model = model1, s = 1.0, m = 1.0"</span>
-</code></pre></div></div>
-<pre><code>0.39894228040143265
-</code></pre>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prob</span><span class="s">"x = 1.0 | model = model4, s = 1.0, m = 1.0"</span>
-</code></pre></div></div>
-<pre><code>0.39894228040143265
-</code></pre>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prob</span><span class="s">"x = 1.0 | model = model10, s = 1.0, m = 1.0"</span>
-</code></pre></div></div>
-<pre><code>0.39894228040143265
-</code></pre>
-<p>Notice that even if we use three models, instantiated with three different values of <code>x</code>, we should obtain the same likelihood. We can easily verify that value in this case:</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pdf</span><span class="x">(</span><span class="n">Normal</span><span class="x">(</span><span class="mf">1.0</span><span class="x">,</span> <span class="mf">1.0</span><span class="x">),</span> <span class="mf">1.0</span><span class="x">)</span>
-</code></pre></div></div>
-<pre><code>0.3989422804014327
-</code></pre>
-<p>Let us now consider the following <code>gdemo</code> model:</p>
-<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@model</span> <span class="k">function</span><span class="nf"> gdemo</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span>
-    <span class="n">s²</span> <span class="o">~</span> <span class="n">InverseGamma</span><span class="x">(</span><span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">)</span>
-    <span class="n">m</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="mi">0</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
-    <span class="n">x</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
-    <span class="k">return</span> <span class="n">y</span> <span class="o">~</span> <span class="n">Normal</span><span class="x">(</span><span class="n">m</span><span class="x">,</span> <span class="n">sqrt</span><span class="x">(</span><span class="n">s²</span><span class="x">))</span>
-<span class="k">end</span>
+Iterations        = 1:1:10
+Number of chains  = 1
+Samples per chain = 10
+Wall duration     = 0.39 seconds
+Compute duration  = 0.39 seconds
+parameters        = s, m
+internals         = lp
 
-<span class="c"># Instantiate the model.</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">(</span><span class="mf">2.0</span><span class="x">,</span> <span class="mf">4.0</span><span class="x">)</span>
-</code></pre></div></div>
-<pre><code>DynamicPPL.Model{typeof(Main.var&quot;##WeaveSandBox#434&quot;.gdemo), (:x, :y), (), 
-(), Tuple{Float64, Float64}, Tuple{}, DynamicPPL.DefaultContext}(Main.var&quot;#
-#WeaveSandBox#434&quot;.gdemo, (x = 2.0, y = 4.0), NamedTuple(), DynamicPPL.Defa
-ultContext())
+Summary Statistics
+  parameters      mean       std      mcse   ess_bulk   ess_tail      rhat 
+  e ⋯
+      Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
+    ⋯
+
+           s    2.3521    1.0661    0.4174     4.9687    10.0000    1.4156 
+    ⋯
+           m   -0.2634    1.9127    0.6048    10.0000    10.0000    0.9681 
+    ⋯
+                                                                1 column om
+itted
+
+Quantiles
+  parameters      2.5%     25.0%     50.0%     75.0%     97.5%
+      Symbol   Float64   Float64   Float64   Float64   Float64
+
+           s    1.1649    1.6899    2.0003    3.2842    4.0077
+           m   -2.1049   -1.9263   -0.6289    0.9718    3.0625
 </code></pre>
-<p>The following are examples of valid queries of the <code>Turing</code> model or chain:</p>
-<ul>
-<li>
-<p><code>prob&quot;x = 1.0, y = 1.0 | model = model, s = 1.0, m = 1.0&quot;</code> calculates the likelihood of <code>x = 1</code> and <code>y = 1</code> given <code>s = 1</code> and <code>m = 1</code>.</p>
-</li>
-<li>
-<p><code>prob&quot;s² = 1.0, m = 1.0 | model = model, x = nothing, y = nothing&quot;</code> calculates the joint probability of <code>s = 1</code> and <code>m = 1</code> ignoring <code>x</code> and <code>y</code>. <code>x</code> and <code>y</code> are ignored so they can be optionally dropped from the RHS of <code>|</code>, but it is recommended to define them.</p>
-</li>
-<li>
-<p><code>prob&quot;s² = 1.0, m = 1.0, x = 1.0 | model = model, y = nothing&quot;</code> calculates the joint probability of <code>s = 1</code>, <code>m = 1</code> and <code>x = 1</code> ignoring <code>y</code>.</p>
-</li>
-<li>
-<p><code>prob&quot;s² = 1.0, m = 1.0, x = 1.0, y = 1.0 | model = model&quot;</code> calculates the joint probability of all the variables.</p>
-</li>
-<li>
-<p>After the MCMC sampling, given a <code>chain</code>, <code>prob&quot;x = 1.0, y = 1.0 | chain = chain, model = model&quot;</code> calculates the element-wise likelihood of <code>x = 1.0</code> and <code>y = 1.0</code> for each sample in <code>chain</code>.</p>
-</li>
-<li>
-<p>If <code>save_state=true</code> was used during sampling (i.e., <code>sample(model, sampler, N; save_state=true)</code>), you can simply do <code>prob&quot;x = 1.0, y = 1.0 | chain = chain&quot;</code>.</p>
-</li>
-</ul>
-<p>In all the above cases, <code>logprob</code> can be used instead of <code>prob</code> to calculate the log probabilities instead.</p>
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">loglikelihood</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">chn</span><span class="x">)</span>
+</code></pre></div></div>
+<pre><code>10×1 Matrix{Float64}:
+ -1.152512581810826
+ -3.209564317808394
+ -1.2822047083624553
+ -1.1774957331222868
+ -2.784582448464323
+ -3.5390362387698215
+ -3.015852527660817
+ -3.8036178159082445
+ -1.744721992326117
+ -2.431462231454251
+</code></pre>
 <h3 id="maximum-likelihood-and-maximum-a-posterior-estimates">Maximum likelihood and maximum a posterior estimates</h3>
 <p>Turing provides support for two mode estimation techniques, <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">maximum likelihood estimation</a> (MLE) and <a href="https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation">maximum a posterior</a> (MAP) estimation. Optimization is performed by the <a href="https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a> package. Mode estimation is currently a optional tool, and will not be available to you unless you have manually installed Optim and loaded the package with a <code>using</code> statement. To install Optim, run <code>import Pkg; Pkg.add(&quot;Optim&quot;)</code>.</p>
 <p>Mode estimation only works when all model parameters are continuous -- discrete parameters cannot be estimated with MLE/MAP as of yet.</p>
@@ -1396,9 +1419,9 @@ ultContext())
 <span class="c"># Instantiate the gdemo model with our data.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">gdemo</span><span class="x">(</span><span class="n">data</span><span class="x">)</span>
 </code></pre></div></div>
-<pre><code>DynamicPPL.Model{typeof(Main.var&quot;##WeaveSandBox#434&quot;.gdemo), (:x,), (), (),
+<pre><code>DynamicPPL.Model{typeof(Main.var&quot;##WeaveSandBox#413&quot;.gdemo), (:x,), (), (),
  Tuple{Vector{Float64}}, Tuple{}, DynamicPPL.DefaultContext}(Main.var&quot;##Wea
-veSandBox#434&quot;.gdemo, (x = [1.5, 2.0],), NamedTuple(), DynamicPPL.DefaultCo
+veSandBox#413&quot;.gdemo, (x = [1.5, 2.0],), NamedTuple(), DynamicPPL.DefaultCo
 ntext())
 </code></pre>
 <p>Mode estimation is typically quick and easy at this point. Turing extends the function <code>Optim.optimize</code> and accepts the structs <code>MLE()</code> or <code>MAP()</code>, which inform Turing whether to provide an MLE or MAP estimate, respectively. By default, the <a href="https://julianlsolvers.github.io/Optim.jl/stable/#algo/lbfgs/">LBFGS optimizer</a> is used, though this can be changed. Basic usage is:</p>
@@ -1409,7 +1432,7 @@ ntext())
 <span class="n">map_estimate</span> <span class="o">=</span> <span class="n">optimize</span><span class="x">(</span><span class="n">model</span><span class="x">,</span> <span class="n">MAP</span><span class="x">())</span>
 </code></pre></div></div>
 <pre><code>ModeResult with maximized lp of -4.62
-[0.9074074074087559, 1.166666666667198]
+[0.9074074074073607, 1.1666666666663343]
 </code></pre>
 <p>If you wish to change to a different optimizer, such as <code>NelderMead</code>, simply place your optimizer in the third argument slot:</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Use NelderMead</span>
@@ -1483,8 +1506,8 @@ m    1.75    0.176777  9.8995
 Iterations        = 1:1:1000
 Number of chains  = 1
 Samples per chain = 1000
-Wall duration     = 15.82 seconds
-Compute duration  = 15.82 seconds
+Wall duration     = 15.52 seconds
+Compute duration  = 15.52 seconds
 parameters        = p, z
 internals         = lp
 
@@ -1494,9 +1517,9 @@ Summary Statistics
       Symbol   Float64   Float64   Float64    Float64    Float64   Float64 
     ⋯
 
-           p    0.4449    0.2221    0.0235    86.7528   108.0304    1.0101 
+           p    0.4408    0.2047    0.0206    98.8899   136.7330    1.0129 
     ⋯
-           z    0.1920    0.3941    0.0204   372.8720        NaN    1.0034 
+           z    0.1920    0.3941    0.0221   317.1798        NaN    0.9999 
     ⋯
                                                                 1 column om
 itted
@@ -1505,7 +1528,7 @@ Quantiles
   parameters      2.5%     25.0%     50.0%     75.0%     97.5%
       Symbol   Float64   Float64   Float64   Float64   Float64
 
-           p    0.0585    0.2685    0.4275    0.6161    0.8650
+           p    0.1122    0.2779    0.4240    0.6007    0.8589
            z    0.0000    0.0000    0.0000    0.0000    1.0000
 </code></pre>
 <p>The <code>Gibbs</code> sampler can be used to specify unique automatic differentiation backends for different variable spaces. Please see the <a href="%7B%7Bsite.baseurl%7D%7D/docs/using-turing/autodiff">Automatic Differentiation</a> article for more.</p>
@@ -1543,7 +1566,7 @@ Note that in contrast to the product distribution interface provided by Distribu
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">describe</span><span class="x">(</span><span class="n">chn</span><span class="x">)</span> <span class="c"># Lists statistics of the samples.</span>
 <span class="n">plot</span><span class="x">(</span><span class="n">chn</span><span class="x">)</span> <span class="c"># Plots statistics of the samples.</span>
 </code></pre></div></div>
-<p><img src="/dev/tutorials/figures/using-turing-guide_35_1.png" alt="" /></p>
+<p><img src="/dev/tutorials/figures/using-turing-guide_39_1.png" alt="" /></p>
 <p>There are numerous functions in addition to <code>describe</code> and <code>plot</code> in the <code>MCMCChains</code> package, such as those used in convergence diagnostics. For more information on the package, please see the <a href="https://github.com/TuringLang/MCMCChains.jl">GitHub repository</a>.</p>
 <h3 id="changing-default-settings">Changing Default Settings</h3>
 <p>Some of Turing.jl's default settings can be changed for better usage.</p>
