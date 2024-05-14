@@ -79,7 +79,7 @@ website:
         aria-label: Turing GitHub
 
   back-to-top-navigation: true
-  repo-url: https://github.com/TuringLang/turing-test-website
+  repo-url: https://github.com/TuringLang/turinglang.github.io/
   repo-actions: [edit, issue]
   repo-link-target: _blank
   page-navigation: true
