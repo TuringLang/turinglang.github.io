@@ -12,13 +12,13 @@ Once you have these prerequisites installed, you can follow these steps:
 1. Clone this repository:
 
     ```bash
-    https://github.com/TuringLang/turing-test-website.git
+    git clone https://github.com/TuringLang/turinglang.github.io.git
     ```
 
 2. Navigate into the cloned directory:
 
     ```bash
-    cd turing-test-website
+    cd turinglang.github.io
     ```
 
 3. Preview the website using Quarto Preview:
