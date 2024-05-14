@@ -6,9 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Turing.jl is a probabilistic programming language and Bayesian modeling framework for the Julia programming language.">
+<meta name="author" content="Cameron Pfiffer">
+<meta name="dcterms.date" content="2021-02-10">
+<meta name="description" content="It’s about time for us to start thinking about projects we’d like to see at Turing.jl for the Google Summer of Code 2021! Below is a list of projects the Turing team would be interested in working with students on for the summer.">
 
-<title>Turing.jl</title>
+<title>Turing.jl - Google Summer of Code 2021</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../assets/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,9 +70,17 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<style>
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -80,10 +90,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./assets/images/turing-logo.svg" alt="" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../assets/images/turing-logo.svg" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Turing.jl</span>
     </a>
   </div>
@@ -94,19 +104,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./dev/docs/using-turing/get-started"> 
+    <a class="nav-link" href="../../../dev/docs/using-turing/get-started"> 
 <span class="menu-text">Get Started</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./dev/tutorials/00-introduction"> 
+    <a class="nav-link" href="../../../dev/tutorials/00-introduction"> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./news/"> 
+    <a class="nav-link" href="../../../news/"> 
 <span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./team/"> 
+    <a class="nav-link" href="../../../team/"> 
 <span class="menu-text">Team</span></a>
   </li>  
 </ul>
@@ -119,54 +129,111 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
+    
 <!-- main -->
+<main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Google Summer of Code 2021</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Blog</div>
+    <div class="quarto-category">GSoC</div>
+  </div>
+  </div>
 
-
-
-<div class="hero-banner">
-<div class="grid">
-<div class="g-col-1">
-
+<div>
+  <div class="description">
+    <p>It’s about time for us to start thinking about projects we’d like to see at Turing.jl for the Google Summer of Code 2021! Below is a list of projects the Turing team would be interested in working with students on for the summer.</p>
+  </div>
 </div>
-<section id="turing.jl-bayesian-inference-with-probabilistic-programming." class="g-col-8">
-<h1>Turing.jl: Bayesian inference with probabilistic programming.</h1>
-<h3 id="intuitive">Intuitive</h3>
-<p>Turing models are easy to read and write — models work the way you write them.</p>
-<h3 id="general-purpose">General-purpose</h3>
-<p>Turing supports models with discrete parameters and stochastic control flow. Specify complex models quickly and easily.</p>
-<h3 id="modular">Modular</h3>
-<p>Turing is modular, written fully in Julia, and can be modified to suit your needs.</p>
-<div class="hero-buttons" style="position: relative; display: flex; justify-content: center;">
-<p><a href="dev/docs/using-turing/get-started" class="btn-action-primary btn-action btn btn-lg" role="button" style="background-color: #073c44; color: white">Get Started</a></p>
-</div>
-<div class="g-col-3">
 
-</div>
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author"><a href="https://cameron.pfiffer.org/">Cameron Pfiffer</a> <a href="mailto:cpfiffer@uoregon.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Oregon
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 10, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>It’s about time for us to start thinking about projects we’d like to see at Turing.jl for the <a href="https://summerofcode.withgoogle.com/">Google Summer of Code 2021</a>! Below is a list of projects the Turing team would be interested in working with students on for the summer.</p>
+<p>If you are interested in exploring any of these projects, please reach out to the listed project mentors. You can find their contact information at <a href="https://turinglang.org/stable/team">turinglang.org/team</a>.</p>
+<section id="mcmcchains-improvements" class="level1">
+<h1>MCMCChains improvements</h1>
+<p><strong>Mentors</strong>: Cameron Pfiffer, Hong Ge</p>
+<p><strong>Project difficulty</strong>: Easy</p>
+<p><strong>Description</strong>: MCMCChains is a key component of the Turing.jl ecosystem. It is the package that determines how to analyze and store MCMC samples provided by packages like Turing. It’s also used outside of Turing.</p>
+<p>For this project, a student might improve the performance of the various statistical functions provided by MCMCChains, changing the back end to use a data storage format that maintains the shape of parameter samples, or improve the general plotting functionality of the package.</p>
+<p>There’s lots of fun little things to do for MCMCChains. Check out this <a href="https://github.com/TuringLang/MCMCChains.jl/issues/246">meta-issue</a> for more details and discussions.</p>
 </section>
-</div>
-</div>
-<div style="position: relative; display: flex; justify-content: center;">
-<div class="grid">
-<div class="g-col-1">
-
-</div>
-<section id="community-resources" class="g-col-8">
-<h2>Community Resources</h2>
-<p>The Turing.jl <a href="https://discourse.julialang.org/c/domain/probprog">discourse forum</a> provides support and discussion for all user levels. The <a href="dev/docs/using-turing/get-started">Turing.jl documentation</a> and <a href="dev/tutorials/">tutorials</a> help users learn and use Turing.jl!</p>
+<section id="particle-filtering-methods" class="level1">
+<h1>Particle filtering methods</h1>
+<p><strong>Mentors</strong>: Hong Ge, Cameron Pfiffer</p>
+<p><strong>Project difficulty</strong>: Medium</p>
+<p><strong>Description</strong>: Turing’s support for particle sampling methods is slowing being improved with the addition of <a href="https://github.com/TuringLang/AdvancedPS.jl">AdvancedPS.jl</a>. If you’re interested in implementing or improving particle sampling methods, this is a great project for you!</p>
 </section>
-<div class="g-col-3">
+<section id="nested-sampling" class="level1">
+<h1>Nested Sampling</h1>
+<p><strong>Mentors</strong>: Miles Lucas, Cameron Pfiffer, Hong Ge</p>
+<p><strong>Project difficulty</strong>: Hard</p>
+<p><strong>Description</strong>: <a href="https://github.com/TuringLang/NestedSamplers.jl">NestedSamplers.jl</a> is an excellent package which implements nested sampling methods. As of yet, it is not connected to Turing.jl. For this project, a student would connect the NestedSamplers.jl library to Turing.jl.</p>
+</section>
+<section id="gpu-acceleration" class="level1">
+<h1>GPU acceleration</h1>
+<p><strong>Mentors</strong>: Mohamed Tarek, Hong Ge, Kai Xu, Tor Fjelde</p>
+<p><strong>Project difficulty</strong>: Medium</p>
+<p><strong>Description</strong>: Turing’s native GPU support is limited in that the Metropolis-Hastings and HMC samplers do not implement GPU sampling methods. This can and should be done – GPU methods are awesome! If you are interested with working on parallelism and GPUs, this project is for you.</p>
+<p>Students will work with the code at <a href="https://github.com/TuringLang/AdvancedMH.jl">AdvancedMH</a> or <a href="https://github.com/TuringLang/AdvancedHMC.jl">AdvancedHMC</a>, depending on their interests.</p>
+</section>
+<section id="documentation-and-tutorial-improvements" class="level1">
+<h1>Documentation and tutorial improvements</h1>
+<p><strong>Mentors</strong>: Cameron Pfiffer, Martin Trapp</p>
+<p><strong>Project difficulty</strong>: Easy</p>
+<p><strong>Description</strong>: Turing’s documentation and tutorials need a bit of an overhaul. Turing has changed significantly since the last time the documentation was written, and it’s beginning to show. Students would use their knowledge of probabilistic programming languages and Turing to shore-up or rewrite documentation and tutorials.</p>
+</section>
+<section id="iterative-methods-for-inference-in-gaussian-processes" class="level1">
+<h1>Iterative Methods for Inference in Gaussian Processes</h1>
+<p><strong>Mentors</strong>: Will Tebbutt, S. T. John, Theo Galy-Fajou</p>
+<p><strong>Project difficulty</strong>: Medium</p>
+<p><strong>Description</strong>: There has recently been quite a bit of work on inference methods for GPs that use iterative methods rather than the Cholesky factorisation. They look quite promising, but no one has implemented any of these within the Julia GP ecosystem yet, but they should fit nicely within the AbstractGPs framework. If you’re interested in improving the GP ecosystem in Julia, this project might be for you!</p>
+</section>
+<section id="implement-advanced-variational-gaussian-process-models" class="level1">
+<h1>Implement advanced variational Gaussian process models</h1>
+<p><strong><em>Mentors</em></strong>: ST John, Will Tebbutt, Theo Galy-Fajou</p>
+<p><strong><em>Project difficulty</em></strong>: Easy to Medium</p>
+<p><strong><em>Description</em></strong>: Sparse variational Gaussian process models provide the flexibility to scale to large datasets, handle arbitrary (non-conjugate) likelihoods, and to be used as building blocks for composite models such as deep GPs. This project is about making such models more readily available within the Julia GP ecosystem - depending on your interests you can focus on making it easier for end users and providing good tutorials, or on the implementations of these models to give us the same or better performance as with established Python packages such as GPflow, integrating with Flux.jl, etc.</p>
 
-</div>
-</div>
-</div>
 
+</section>
 
-
-
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -584,7 +651,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/news/posts/2021-02-04-gsoc/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -607,5 +674,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

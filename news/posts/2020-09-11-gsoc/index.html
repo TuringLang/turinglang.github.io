@@ -6,9 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Turing.jl is a probabilistic programming language and Bayesian modeling framework for the Julia programming language.">
+<meta name="author" content="Cameron Pfiffer">
+<meta name="dcterms.date" content="2020-09-11">
+<meta name="description" content="As the 2020 Google Summer of Code comes to a close, the Turing team thought it would be a good opportunity to reflect on the work that was done by our superb students this summer.">
 
-<title>Turing.jl</title>
+<title>Turing.jl - Google Summer of Code 2020</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../assets/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,9 +70,17 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<style>
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -80,10 +90,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./assets/images/turing-logo.svg" alt="" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../assets/images/turing-logo.svg" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Turing.jl</span>
     </a>
   </div>
@@ -94,19 +104,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./dev/docs/using-turing/get-started"> 
+    <a class="nav-link" href="../../../dev/docs/using-turing/get-started"> 
 <span class="menu-text">Get Started</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./dev/tutorials/00-introduction"> 
+    <a class="nav-link" href="../../../dev/tutorials/00-introduction"> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./news/"> 
+    <a class="nav-link" href="../../../news/"> 
 <span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./team/"> 
+    <a class="nav-link" href="../../../team/"> 
 <span class="menu-text">Team</span></a>
   </li>  
 </ul>
@@ -119,54 +129,80 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
+    
 <!-- main -->
+<main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Google Summer of Code 2020</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Blog</div>
+    <div class="quarto-category">GSoC</div>
+  </div>
+  </div>
 
-
-
-<div class="hero-banner">
-<div class="grid">
-<div class="g-col-1">
-
-</div>
-<section id="turing.jl-bayesian-inference-with-probabilistic-programming." class="g-col-8">
-<h1>Turing.jl: Bayesian inference with probabilistic programming.</h1>
-<h3 id="intuitive">Intuitive</h3>
-<p>Turing models are easy to read and write — models work the way you write them.</p>
-<h3 id="general-purpose">General-purpose</h3>
-<p>Turing supports models with discrete parameters and stochastic control flow. Specify complex models quickly and easily.</p>
-<h3 id="modular">Modular</h3>
-<p>Turing is modular, written fully in Julia, and can be modified to suit your needs.</p>
-<div class="hero-buttons" style="position: relative; display: flex; justify-content: center;">
-<p><a href="dev/docs/using-turing/get-started" class="btn-action-primary btn-action btn btn-lg" role="button" style="background-color: #073c44; color: white">Get Started</a></p>
-</div>
-<div class="g-col-3">
-
-</div>
-</section>
-</div>
-</div>
-<div style="position: relative; display: flex; justify-content: center;">
-<div class="grid">
-<div class="g-col-1">
-
-</div>
-<section id="community-resources" class="g-col-8">
-<h2>Community Resources</h2>
-<p>The Turing.jl <a href="https://discourse.julialang.org/c/domain/probprog">discourse forum</a> provides support and discussion for all user levels. The <a href="dev/docs/using-turing/get-started">Turing.jl documentation</a> and <a href="dev/tutorials/">tutorials</a> help users learn and use Turing.jl!</p>
-</section>
-<div class="g-col-3">
-
-</div>
-</div>
+<div>
+  <div class="description">
+    <p>As the 2020 Google Summer of Code comes to a close, the Turing team thought it would be a good opportunity to reflect on the work that was done by our superb students this summer.</p>
+  </div>
 </div>
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author"><a href="https://cameron.pfiffer.org/">Cameron Pfiffer</a> <a href="mailto:cpfiffer@uoregon.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Oregon
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 11, 2020</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>As the 2020 <a href="https://summerofcode.withgoogle.com/">Google Summer of Code</a> comes to a close, the Turing team thought it would be a good opportunity to reflect on the work that was done by our superb students this summer.</p>
+<p><a href="https://github.com/SaranjeetKaur">Saranjeet Kaur</a>’s <a href="https://summerofcode.withgoogle.com/projects/#6567464390885376">project</a> focused primarily on expanding <a href="https://github.com/TuringLang/NestedSamplers.jl">NestedSamplers.jl</a>. NestedSamplers.jl now supports <a href="https://arxiv.org/abs/1506.00171">PolyChord-style</a> nested sampling natively, which is an absolute delight. Saranjeet wrote about this <a href="https://nextjournal.com/Saranjeet-Kaur/extending-nestedsamplersjl">here</a>. She also provided a good tutorial on how to use NestedSamplers.jl <a href="https://nextjournal.com/Saranjeet-Kaur/illustrations-of-use-of-nestedsamplersjl">here</a>. The NestedSamplers.jl integration with Turing is still on-going – integrating new samplers with Turing is one of the more difficult tasks. If you are interested to see the progress on this, check out the relevant <a href="https://github.com/TuringLang/Turing.jl/pull/1333">pull request</a>.</p>
+<p><a href="https://github.com/luiarthur">Arthur Lui</a>’s <a href="https://summerofcode.withgoogle.com/projects/#5861616765108224">project</a> was to provide a much-needed set of benchmarks of Bayesian nonparametric models between Turing and other PPLs. Arthur’s work spawned a <a href="https://github.com/luiarthur/TuringBnpBenchmarks">GitHub repository</a> with good practices for benchmarking, as well as three blog posts with some (very cool!) statistics on Turing’s performance:</p>
+<ol type="1">
+<li><a href="https://luiarthur.github.io/TuringBnpBenchmarks/dpsbgmm">Dirichlet Process Gaussian mixture model via the stick-breaking construction in various PPLs</a></li>
+<li><a href="https://luiarthur.github.io/TuringBnpBenchmarks/gp">Gaussian Process Regression Model in various PPLs</a></li>
+<li><a href="https://luiarthur.github.io/TuringBnpBenchmarks/gpclassify">Gaussian Process Classification Model in various PPLs</a></li>
+</ol>
+<p>Finally, <a href="https://github.com/sharanry">Sharan Yalburgi</a> (a returning GSoC student) completed an epic amount of work Turing’s growing suite of <a href="https://summerofcode.withgoogle.com/projects/#5565948129443840">Gaussian process tools</a>. In particular, the GitHub organization <a href="https://github.com/JuliaGaussianProcesses">JuliaGaussianProcesses</a> was founded, and serves as an effort to build a robust Gaussian process framework for the Julia ecosystem. The framework consists of multiple GP related Julia packages:</p>
+<ul>
+<li><a href="https://github.com/JuliaGaussianProcesses/KernelFunctions.jl">KernelFunctions.jl</a> provides kernel functions for GPs as well as efficient AD for these kernels. KernelFunctions.jl also supports multi-output GPs by providing necessary data abstractions and multi-output kernels.</li>
+<li><a href="https://github.com/JuliaGaussianProcesses/AbstractGPs.jl">AbstractGPs.jl</a> defines GP abstractions and provides exact posteriors. It provides support for induced points based GP posteriors and for efficient sequential/online (sparse) GP updates.</li>
+<li><a href="https://github.com/JuliaGaussianProcesses/GPLikelihoods.jl">GPLikelihoods.jl</a> defines alternate likelihoods for Non-Gaussian GPs.</li>
+<li><a href="https://github.com/JuliaGaussianProcesses/GPMLj.jl">GPMLj.jl</a> provides a Julia interface for <a href="https://github.com/GPflow/GPflow">GPFlow</a>, a GP library written in Python using TensorFlow.</li>
+</ul>
+<p>Special thanks to our three GSoC students for this summer, who all did excellent work. Additional thanks to Google for supporting open source software development and the Julia language!</p>
 
 
 
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -584,7 +620,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/news/posts/2020-09-11-gsoc/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -607,5 +643,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
