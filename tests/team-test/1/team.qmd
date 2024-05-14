@@ -1,0 +1,16 @@
+<!-- ---
+pagetitle: "Team"
+page-layout: custom
+search: false
+# css: team.css
+toc: false
+sidebar: false
+listing:
+  id: team-data
+  template: team.ejs
+  contents: team.yml
+---
+
+::: {#team-data}
+
+::: -->

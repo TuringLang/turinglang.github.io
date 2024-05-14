@@ -1,0 +1,54 @@
+---
+# pagetitle: "Turing"
+toc: false
+page-layout: custom
+section-divs: false
+hide-description: true
+description: |
+  Turing.jl is a probabilistic programming language and Bayesian modeling framework for the Julia programming language.
+---
+
+::: {.hero-banner}
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-8}
+
+# Turing.jl: Bayesian inference with probabilistic programming. 
+
+### Intuitive
+Turing models are easy to read and write — models work the way you write them.
+
+### General-purpose
+Turing supports models with discrete parameters and stochastic control flow. Specify complex models quickly and easily.
+
+### Modular
+Turing is modular, written fully in Julia, and can be modified to suit your needs.
+
+
+::: {.hero-buttons style="position: relative; display: flex; justify-content: center;"}
+[Get Started](docs/using-turing/getting-started/){.btn-action-primary .btn-action .btn .btn-lg role="button" style="background-color: #073c44; color: white"}
+:::
+
+::: {.g-col-3}
+:::
+:::
+:::
+
+:::
+
+::: {style="position: relative; display: flex; justify-content: center;"}
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-8}
+## Community Resources
+
+The Turing.jl [discourse forum](https://discourse.julialang.org/c/domain/probprog) provides support and discussion for all user levels.
+The [Turing.jl documentation](docs/using-turing/) and [tutorials](docs/tutorials/) help users learn and use Turing.jl!
+
+:::
+::: {.g-col-3}
+:::
+:::
+:::

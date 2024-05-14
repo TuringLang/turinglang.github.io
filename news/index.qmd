@@ -1,0 +1,16 @@
+---
+title: Turing Blog
+subtitle: News, tips, and updates about all that happens at The Turing
+css: news.css
+listing:
+  sort: "date desc"
+  contents: "posts/*/index.qmd"
+  sort-ui: true
+  filter-ui: true
+  categories: true
+  feed: true
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "black"
+search: false
+---

@@ -1,0 +1,104 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "!docs_tmp/"
+  preview:
+    port: 4200
+    browser: true
+
+website:
+  title: "Turing.jl"
+  site-url: https://turinglang.org/turing-test-website/
+  site-path: "/turing-test-website/"
+  favicon: "assets/favicon.ico"
+  search: 
+    location: navbar
+    type: overlay
+    # keyboard-shortcut: ["?", "H", "f"]
+  navbar:
+    logo: "assets/images/turing-logo.svg"
+    background: "#073c44"
+    foreground: "#ffffff"
+    left:
+      # - href: index.qmd
+      #   text: Home
+      - href: docs/using-turing/getting-started/
+        text: Get Started
+      - href: docs/tutorials/introduction/
+        text: Tutorials
+      - href: news/
+        text: News
+      - href: team/
+        text: Team
+    tools:
+      - icon: twitter
+        href: https://x.com/TuringLang
+        text: Turing Twitter
+      - icon: github
+        href: https://github.com/TuringLang/Turing.jl
+        text: Turing GitHub
+
+  sidebar:
+    - id: documentation
+      collapse-level: 1
+      contents: 
+        - section: "Documentation"
+          href: docs/index.qmd
+          contents:
+          - section: "Using Turing"
+            collapse-level: 1
+            # href: docs/using-turing/getting-started/
+            contents: 
+              - docs/using-turing/getting-started/index.qmd
+              - text: "Quick Start"
+                href: docs/using-turing/quick-start/index.qmd
+              - docs/using-turing/guide/index.qmd
+              - docs/using-turing/advanced-usage/index.qmd
+              - docs/using-turing/automatic-differentiation/index.qmd
+              - docs/using-turing/performance-tips/index.qmd
+              - docs/using-turing/using-dynamichmc/index.qmd
+              - docs/using-turing/sampler-visualization/index.qmd
+              - text: "External Samplers"
+                href: docs/using-turing/external-samplers/index.qmd
+
+          - section: "Tutorials"
+            contents: 
+              - docs/tutorials/introduction/index.qmd
+
+  
+  page-footer:
+    background: "#073c44"
+    left: |
+      Turing is created by <a href="http://mlg.eng.cam.ac.uk/hong/" target="_blank">Hong Ge</a>, and lovingly maintained by the <a href="https://github.com/TuringLang/Turing.jl/graphs/contributors" target="_blank">core team</a> of volunteers. <br>
+      The contents of this website are © 2024 under the terms of the <a href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE" target="_blank">MIT License</a>. 
+
+    right:
+      - icon: twitter
+        href: https://x.com/TuringLang
+        aria-label: Turing Twitter
+      - icon: github
+        href: https://github.com/TuringLang/Turing.jl
+        aria-label: Turing GitHub
+
+  back-to-top-navigation: true
+  repo-url: https://github.com/TuringLang/turing-test-website
+  repo-actions: [edit, issue]
+  repo-link-target: _blank
+  page-navigation: true
+
+format:
+  html:
+    theme:
+      light: cosmo
+      # dark: [cosmo, theming/theme-dark.scss]
+    css: styles.css
+    toc: true
+    smooth-scroll: true
+    code-overflow: wrap
+    output-block-background: true
+    # code-block-border-left: true
+    # code-line-numbers: true
+
+# execute:
+#   freeze: auto

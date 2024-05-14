@@ -1,0 +1,51 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Deploy to GitHub Pages
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Julia
+        uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.10'
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: pre-release
+
+      - run: julia --version
+      - run: quarto --version
+      
+      - name: Checkout Documentations Repositoty
+        uses: actions/checkout@v4
+        with:
+          repository: 'TuringLang/TuringTutorials'
+          path: 'docs_tmp'
+
+      - name: Copy docs from Documentation repo
+        run: cp -r docs_tmp/docs ./docs
+      
+      - name: Delete temp folder
+        run: rm -rf docs_tmp
+
+      - name: Instantiating all Quarto Notebooks
+        run: julia make.jl
+
+      - name: Render Quarto site
+        run: quarto render
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: _site

@@ -1,0 +1,114 @@
+<!-- ::: {.panel-tabset} -->
+<% for (const item of items) { %>
+
+# <%- item.title %>
+
+<!-- Team Container CSS served by Quarto-->
+::: {.team-container}
+
+### <%- item.subtitle %>
+<!-- Team Members Loop-->
+<% for (const member of item.members) { %>
+
+<!-- Team Member CSS Class served by Quarto -->
+::: {.team-member}
+
+<!-- Team Member Image -->
+<% if (member.image) { %>
+```{=html}
+<img src="../assets/images/team/<%- member.image %>" alt="<%- member.image %>">
+```
+<% } else { %>
+```{=html}
+<img src="../assets/images/team/placeholder.webp" alt="placeholder">
+```
+<% } %>
+<!-- Team Member Image Ends-->
+
+#### <%- member.name %>
+<%- member.university %>
+<!-- <br> <% if (member.year) { %> GSoC-<%- member.year %> <% } %> -->
+
+```{=html}
+<% if (member.gsoc_project) { %>
+    <!-- <%- member.gsoc_project %> -->
+    Project: <a href="<%- member.gsoc_project_link %>" target="_blank"><%- member.gsoc_project %></a>
+    <br>
+<% } %>
+<% if (member.gsoc_report) { %>
+    <a class="external" href="<%- member.gsoc_report %>" target="_blank">Contributions & Report</a>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+      </svg> -->
+      <br>
+<% } %>
+```
+
+<!-- Team Member Links -->
+<ul>
+<% for (const link of member.links) { %>
+
+<% if (link.website) { %>
+<li><a class="bi-globe" href="<%- link.website %>" target="_blank"></a></li>
+<% } %>
+
+<% if (link.github) { %>
+<li><a class="bi-github" href="<%- link.github %>" target="_blank"></a></li>
+<% } %>
+
+<% if (link.twitter) { %>
+<li><a class="bi-twitter" href="<%- link.twitter %>" target="_blank"></a></li>
+<% } %>
+
+<% if (link.mail) { %>
+<li><a class="bi-envelope-fill" href="mailto:<%- link.mail %>"></a></li>
+<% } %>
+
+<% if (link.linkedin) { %>
+<li><a class="bi-linkedin" href="<%- link.linkedin %>" target="_blank"></a></li>
+<% } %>
+
+<% if (link.mastodon) { %>
+<li><a class="bi-mastodon" href="<%- link.mastodon %>" target="_blank"></a></li>
+<% } %>
+
+<% if (link.scholar) { %>
+<li><a class="bi-mortarboard-fill" href="<%- link.scholar %>" target="_blank"></a></li>
+<% } %>
+
+<!-- <% if (link.orcid) { %>
+<li><a href="<%- link.orcid %>" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 16 16" fill="#1f4eb6"><path d="M294.8 188.2h-45.9V342h47.5c67.6 0 83.1-51.3 83.1-76.9 0-41.6-26.5-76.9-84.7-76.9zM256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm-80.8 360.8h-29.8v-207.5h29.8zm-14.9-231.1a19.6 19.6 0 1 1 19.6-19.6 19.6 19.6 0 0 1 -19.6 19.6zM300 369h-81V161.3h80.6c76.7 0 110.4 54.8 110.4 103.9C410 318.4 368.4 369 300 369z"/></svg></a></li>
+<% } %> -->
+
+<% if (link.youtube) { %>
+<li><a class="bi-youtube" href="<%- link.youtube %>" target="_blank"></a></li>
+<% } %>
+
+<% if (link.medium) { %>
+<li><a class="bi-medium" href="<%- link.medium %>" target="_blank"></a></li>
+<% } %>
+
+<% if (link.resume) { %>
+<li><a class="bi-file-earmark-text" href="<%- link.resume %>" target="_blank"></a></li>
+<% } %>
+
+<!-- Add any Additional Links if required here -->
+
+
+<% } %>
+</ul>
+<!-- Team Member Links End -->
+
+:::
+<!-- Team Member CSS Class served by Quarto Ends -->
+
+
+<% } %>
+<!-- Team Member Loop Ends -->
+
+:::
+<!-- Team Container CSS served by Quarto Ends-->
+
+<% } %>
+<!-- ::: -->

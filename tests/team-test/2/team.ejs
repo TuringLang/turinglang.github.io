@@ -1,0 +1,69 @@
+::: {.panel-tabset}
+<% for (const item of items) { %>
+
+## <%- item.title %>
+
+<!-- Team Container CSS served by Quarto-->
+::: {.team-container}
+
+<!-- Team Members Loop-->
+<% for (const member of item.members) { %>
+
+<!-- Team Member CSS Class served by Quarto -->
+::: {.team-member}
+
+<!-- Team Member Image -->
+<% if (member.image) { %>
+```{=html}
+<img src="/assets/images/team/<%- member.image %>" alt="<%- member.image %>">
+```
+<% } else { %>
+```{=html}
+<img src="/assets/images/team/placeholder.webp" alt="placeholder">
+```
+<% } %>
+<!-- Team Member Image Ends-->
+
+#### <%- member.name %>
+<%- member.university %> <br> <% if (member.year) { %> GSoC-<%- member.year %> <% } %>
+
+<!-- Team Member Links -->
+<ul>
+<% for (const link of member.links) { %>
+
+<% if (link.website) { %>
+<li><a class="bi-globe" href="<%- link.website %>" target="_blank"></a></li>
+<% } %>
+
+<% if (link.github) { %>
+<li><a class="bi-github" href="<%- link.github %>" target="_blank"></a></li>
+<% } %>
+
+<% if (link.twitter) { %>
+<li><a class="bi-twitter" href="<%- link.twitter %>" target="_blank"></a></li>
+<% } %>
+
+<% if (link.mail) { %>
+<li><a class="bi-envelope" href="mailto:<%- link.mail %>" target="_blank"></a></li>
+<% } %>
+
+<% if (link.linkedin) { %>
+<li><a class="bi-linkedin" href="<%- link.linkedin %>" target="_blank"></a></li>
+<% } %>
+
+<% } %>
+</ul>
+<!-- Team Member Links End -->
+
+:::
+<!-- Team Member CSS Class served by Quarto Ends -->
+
+
+<% } %>
+<!-- Team Member Loop Ends -->
+
+:::
+<!-- Team Container CSS served by Quarto Ends-->
+
+<% } %>
+:::

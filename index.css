@@ -1,0 +1,114 @@
+body {
+    font-family: "Lato", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+    margin: 0;
+}
+
+.main-banner {
+    background-color: #d2e6f5;
+    background-image: url('assets/images/turing-logo-wide.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 80%;
+    background-position: center bottom;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.main-banner-content {
+    max-width: 600px;
+    padding: 2rem;
+    text-align: right;
+    color: black;
+    margin-right: 5%;
+}
+
+.main-banner-intro p {
+    font-size: 1rem;
+}
+
+@media (max-width: 992px) {
+    .main-banner {
+        background-size: 150% 80%;
+        height: 300px;
+    }
+}
+
+@media (max-width: 767px) {
+    .main-banner-content {
+        margin-right: 0;
+        text-align: center;
+    }
+}
+
+/* Main Feature Row */
+.main-feature-row {
+    background-color: #f3f4f7;
+    padding-bottom: 20px;
+}
+
+.feature-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature {
+    padding: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.feature:nth-child(4n) {
+    border-right: none;
+}
+
+.feature:nth-last-child(-n+4) {
+    border-bottom: none;
+}
+
+@media (max-width: 767px) {
+    .feature {
+        width: 100%;
+        border-right: none;
+    }
+
+    .feature:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .feature {
+        width: 50%;
+    }
+
+    .feature:nth-child(2n) {
+        border-right: none;
+    }
+
+    .feature:nth-last-child(-n+2) {
+        border-bottom: none;
+    }
+}
+
+@media (min-width: 992px) {
+    .feature {
+        width: 25%;
+    }
+}
+
+.feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 1rem;
+    line-height: 1.5;
+}

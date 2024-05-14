@@ -1,0 +1,74 @@
+<!-- ---
+pagetitle: The Team
+toc: false
+page-layout: custom
+css: team.css
+---
+
+# Team Members {style="text-align: center"}
+
+::: {.panel-tabset}
+
+### Team
+
+::: {.team-container}
+
+::: {.team-member}
+![](../assets/images/turing-logo.svg)
+
+#### John Doe
+University of XYZ
+
+- [](#){target="_blank" .bi-house-door-fill}
+- [](#){target="_blank" .bi-github}
+- [](#){target="_blank" .bi-linkedin}
+- [](#){target="_blank" .bi-twitter}
+- [](#){.bi-envelope-fill}
+:::
+
+::: {.team-member}
+![](../assets/images/turing-logo.svg)
+
+#### John Doe
+University of XYZ
+
+- [](#){target="_blank" .bi-house-door-fill}
+- [](#){target="_blank" .bi-github}
+- [](#){target="_blank" .bi-linkedin}
+- [](#){target="_blank" .bi-twitter}
+- [](#){.bi-envelope-fill}
+:::
+
+::: {.team-member}
+![](../assets/images/turing-logo.svg)
+
+#### John Doe
+University of XYZ
+
+- [](#){target="_blank" .bi-house-door-fill}
+- [](#){target="_blank" .bi-github}
+- [](#){target="_blank" .bi-linkedin}
+- [](#){target="_blank" .bi-twitter}
+- [](#){.bi-envelope-fill}
+:::
+
+::: {.team-member}
+![](../assets/images/turing-logo.svg)
+
+#### John Doe
+University of XYZ
+
+- [](#){target="_blank" .bi-house-door-fill}
+- [](#){target="_blank" .bi-github}
+- [](#){target="_blank" .bi-linkedin}
+- [](#){target="_blank" .bi-twitter}
+- [](#){.bi-envelope-fill}
+:::
+
+:::
+
+### GSOC Contributors
+
+Content for GSOC Contributors goes here.
+
+::: -->
