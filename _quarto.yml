@@ -1,8 +1,5 @@
 project:
   type: website
-  render:
-    - "*.qmd"
-    - "!docs_tmp/"
   preview:
     port: 4200
     browser: true

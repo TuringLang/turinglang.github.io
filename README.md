@@ -4,7 +4,6 @@ This repository contains the source code for the new Turing.jl website, which co
 
 #### To get started with the Turing.jl website locally, you'll need to have the following prerequisites installed:
 
-- [Julia](https://julialang.org/)
 - [Quarto Pre-release](https://quarto.org/docs/download/)
 
 Once you have these prerequisites installed, you can follow these steps:
