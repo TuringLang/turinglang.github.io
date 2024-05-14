@@ -6,9 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Turing.jl is a probabilistic programming language and Bayesian modeling framework for the Julia programming language.">
+<meta name="author" content="Cameron Pfiffer">
+<meta name="dcterms.date" content="2019-12-14">
+<meta name="description" content="All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts…">
 
-<title>Turing.jl</title>
+<title>Turing.jl - Turing’s Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../assets/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,9 +70,17 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<style>
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -80,10 +90,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./assets/images/turing-logo.svg" alt="" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../assets/images/turing-logo.svg" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Turing.jl</span>
     </a>
   </div>
@@ -94,19 +104,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./docs/using-turing/getting-started/"> 
+    <a class="nav-link" href="../../../docs/using-turing/getting-started/"> 
 <span class="menu-text">Get Started</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs/tutorials/introduction/"> 
+    <a class="nav-link" href="../../../docs/tutorials/introduction/"> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./news/"> 
+    <a class="nav-link" href="../../../news/"> 
 <span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./team/"> 
+    <a class="nav-link" href="../../../team/"> 
 <span class="menu-text">Team</span></a>
   </li>  
 </ul>
@@ -119,54 +129,72 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
+    
 <!-- main -->
+<main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Turing’s Blog</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Blog</div>
+  </div>
+  </div>
 
-
-
-<div class="hero-banner">
-<div class="grid">
-<div class="g-col-1">
-
-</div>
-<section id="turing.jl-bayesian-inference-with-probabilistic-programming." class="g-col-8">
-<h1>Turing.jl: Bayesian inference with probabilistic programming.</h1>
-<h3 id="intuitive">Intuitive</h3>
-<p>Turing models are easy to read and write — models work the way you write them.</p>
-<h3 id="general-purpose">General-purpose</h3>
-<p>Turing supports models with discrete parameters and stochastic control flow. Specify complex models quickly and easily.</p>
-<h3 id="modular">Modular</h3>
-<p>Turing is modular, written fully in Julia, and can be modified to suit your needs.</p>
-<div class="hero-buttons" style="position: relative; display: flex; justify-content: center;">
-<p><a href="docs/using-turing/getting-started/" class="btn-action-primary btn-action btn btn-lg" role="button" style="background-color: #073c44; color: white">Get Started</a></p>
-</div>
-<div class="g-col-3">
-
-</div>
-</section>
-</div>
-</div>
-<div style="position: relative; display: flex; justify-content: center;">
-<div class="grid">
-<div class="g-col-1">
-
-</div>
-<section id="community-resources" class="g-col-8">
-<h2>Community Resources</h2>
-<p>The Turing.jl <a href="https://discourse.julialang.org/c/domain/probprog">discourse forum</a> provides support and discussion for all user levels. The <a href="docs/using-turing/">Turing.jl documentation</a> and <a href="docs/tutorials/">tutorials</a> help users learn and use Turing.jl!</p>
-</section>
-<div class="g-col-3">
-
-</div>
-</div>
+<div>
+  <div class="description">
+    <p>All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts…</p>
+  </div>
 </div>
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author"><a href="https://cameron.pfiffer.org/">Cameron Pfiffer</a> <a href="mailto:cpfiffer@uoregon.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Oregon
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 14, 2019</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts on topics like</p>
+<ul>
+<li>Interesting things you can do with Turing, or interesting things we have seen others do.</li>
+<li>Development updates and major release announcements.</li>
+<li>Research updates.</li>
+<li>Explorations of Turing’s internals.</li>
+<li>Updates to Turing’s satellite projects <a href="https://github.com/TuringLang/AdvancedHMC.jl">AdvancedHMC.jl</a> or <a href="https://github.com/TuringLang/Bijectors.jl">Bijectors.jl</a>.</li>
+</ul>
+<p>Stay tuned!</p>
 
 
 
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -584,7 +612,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turing-test-website/edit/main/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turing-test-website/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turing-test-website/edit/main/news/posts/2019-12-14-initial-post/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turing-test-website/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -607,5 +635,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

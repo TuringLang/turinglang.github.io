@@ -6,9 +6,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Turing.jl is a probabilistic programming language and Bayesian modeling framework for the Julia programming language.">
+<meta name="author" content="Kai Xu">
+<meta name="author" content="the TuringLang team">
+<meta name="dcterms.date" content="2022-02-17">
+<meta name="description" content="It is another year of the Google Summer of Code time, and we have compiled an updated list of exciting Turing projects! Projects that the Turing team would be interested in working with students on over the summer are listed below. This information is also cross-posted at Julia’s Turing project page.">
 
-<title>Turing.jl</title>
+<title>Turing.jl - Google Summer of Code 2022</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +27,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../assets/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,9 +71,17 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<style>
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -80,10 +91,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./assets/images/turing-logo.svg" alt="" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../assets/images/turing-logo.svg" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Turing.jl</span>
     </a>
   </div>
@@ -94,19 +105,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./docs/using-turing/getting-started/"> 
+    <a class="nav-link" href="../../../docs/using-turing/getting-started/"> 
 <span class="menu-text">Get Started</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs/tutorials/introduction/"> 
+    <a class="nav-link" href="../../../docs/tutorials/introduction/"> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./news/"> 
+    <a class="nav-link" href="../../../news/"> 
 <span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./team/"> 
+    <a class="nav-link" href="../../../team/"> 
 <span class="menu-text">Team</span></a>
   </li>  
 </ul>
@@ -119,54 +130,129 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
+    
 <!-- main -->
+<main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Google Summer of Code 2022</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Blog</div>
+    <div class="quarto-category">GSoC</div>
+  </div>
+  </div>
 
-
-
-<div class="hero-banner">
-<div class="grid">
-<div class="g-col-1">
-
+<div>
+  <div class="description">
+    <p>It is another year of the Google Summer of Code time, and we have compiled an updated list of exciting Turing projects! Projects that the Turing team would be interested in working with students on over the summer are listed below. This information is also cross-posted at Julia’s Turing project page.</p>
+  </div>
 </div>
-<section id="turing.jl-bayesian-inference-with-probabilistic-programming." class="g-col-8">
-<h1>Turing.jl: Bayesian inference with probabilistic programming.</h1>
-<h3 id="intuitive">Intuitive</h3>
-<p>Turing models are easy to read and write — models work the way you write them.</p>
-<h3 id="general-purpose">General-purpose</h3>
-<p>Turing supports models with discrete parameters and stochastic control flow. Specify complex models quickly and easily.</p>
-<h3 id="modular">Modular</h3>
-<p>Turing is modular, written fully in Julia, and can be modified to suit your needs.</p>
-<div class="hero-buttons" style="position: relative; display: flex; justify-content: center;">
-<p><a href="docs/using-turing/getting-started/" class="btn-action-primary btn-action btn btn-lg" role="button" style="background-color: #073c44; color: white">Get Started</a></p>
-</div>
-<div class="g-col-3">
 
-</div>
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author"><a href="https://xuk.ai/">Kai Xu</a> <a href="mailto:kai.xu@ed.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Edinburgh
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author"><a href="../../../team/">the TuringLang team</a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 17, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>It is another year of the <a href="https://summerofcode.withgoogle.com/">Google Summer of Code</a> time, and we have compiled an updated list of exciting Turing projects! Projects that the Turing team would be interested in working with students on over the summer are listed below. This information is also cross-posted at <a href="https://julialang.org/jsoc/gsoc/turing/">Julia’s Turing project page</a>.</p>
+<p>If you are interested in exploring any of these projects or have any questions, please reach out to the listed project mentors. You can find their contact information at <a href="https://turinglang.org/stable/team">turinglang.org/team</a>.</p>
+<section id="more-real-world-bayesian-models-in-turing-julia" class="level2">
+<h2 class="anchored" data-anchor-id="more-real-world-bayesian-models-in-turing-julia">More real-world Bayesian models in Turing / Julia</h2>
+<p><strong>Mentors</strong>: Kai Xu, Tor E. Fjelde, Hong Ge</p>
+<p><strong>Project difficulty</strong>: Medium</p>
+<p><strong>Project length</strong>: 175 hrs or 350 hrs</p>
+<p><strong>Description</strong>: There are many real-world Bayesian models out there, and they deserve a Turing / Julia implementation.</p>
+<p>Examples include but not limited to - Forecasting (<a href="https://facebook.github.io/prophet/">Prophet</a>, <a href="https://github.com/facebook/prophet/tree/main/examples">datasets</a>) - Recommender system (<a href="http://www.cs.utoronto.ca/~amnih/papers/pmf.pdf">probabilistic matrix factorisation</a>, <a href="https://grouplens.org/datasets/movielens/">dataset</a>) - Ranking (<a href="https://en.wikipedia.org/wiki/TrueSkill">TrueSkill</a>, <a href="https://github.com/dotnet/mbmlbook/tree/main/src/3.%20Meeting%20Your%20Match/Data">dataset</a>) - Bayesian revenue estimation (<a href="https://www.smartly.io/blog/tutorial-how-we-productized-bayesian-revenue-estimation-with-stan">example</a>) - Political forecasting model (<a href="https://github.com/sjwild/Canandian_Election_2021">example</a>) - Topic mining (latent Dirichlet allocation and new variants) - Multiple Annotators/Combining Unreliable Observations (Dawid and Skene, 1979)</p>
+<p>For each model, we would consider the following tasks as part of a GSoC project: - Correctness test: correctness of the implementation can be tested by doing inference for prior samples, for which we know the ground truth latent variables. - Performance benchmark: this includes (i) time per MCMC step and (ii) time per effective sample; if the model is differentiable, a further break-down of (i) into (i.1) time per forward pass and (i.2) time per gradient pass are needed. - Real-world results: if available, the final step is to apply the model to a real-world dataset; if such an experiment has been done in the literature, consistency of inference results needs to be checked</p>
 </section>
-</div>
-</div>
-<div style="position: relative; display: flex; justify-content: center;">
-<div class="grid">
-<div class="g-col-1">
-
-</div>
-<section id="community-resources" class="g-col-8">
-<h2>Community Resources</h2>
-<p>The Turing.jl <a href="https://discourse.julialang.org/c/domain/probprog">discourse forum</a> provides support and discussion for all user levels. The <a href="docs/using-turing/">Turing.jl documentation</a> and <a href="docs/tutorials/">tutorials</a> help users learn and use Turing.jl!</p>
+<section id="improving-the-integration-between-turing-and-turings-mcmc-inference-packages" class="level2">
+<h2 class="anchored" data-anchor-id="improving-the-integration-between-turing-and-turings-mcmc-inference-packages">Improving the integration between Turing and Turing’s MCMC inference packages</h2>
+<p><strong>Mentors</strong>: Cameron Pfiffer, Mohamed Tarek, David Widmann</p>
+<p><strong>Project difficulty</strong>: Easy</p>
+<p><strong>Project length</strong>: 175 hrs</p>
+<p><strong>Description</strong>: Turing.jl is based on a set of inference packages maintained by the TuringLang group. This project is about making use of improvements in DynamicPPL to create a generic integration between Turing.jl and the AbstractMCMC.jl sampling API. The ultimate goal is to remove or substantially reduce algorithm-specific glue code inside Turing.jl. The project would also involve improving data structures for storing model parameters in DynamicPPL.</p>
 </section>
-<div class="g-col-3">
+<section id="directed-graphical-model-support-for-the-abstract-probabilistic-programming-library" class="level2">
+<h2 class="anchored" data-anchor-id="directed-graphical-model-support-for-the-abstract-probabilistic-programming-library">Directed-graphical model support for the abstract probabilistic programming library</h2>
+<p><strong>Mentors</strong>: Philipp Gabler, Hong Ge</p>
+<p><strong>Project difficulty</strong>: Hard</p>
+<p><strong>Project length</strong>: 350 hrs</p>
+<p><strong>Description</strong>: We want to have a very light-weight representation of probabilistic models of static graphs (similar to BUGS), which can serve as a representation target of other front-end DSLs or be dynamically built. The representation should consist of the model and node representations (stochastic and deterministic, perhaps hyperparameters) and conform to the AbstractPPL model interface, with basic functions (evaluation of density, sampling, conditioning; at later stages some static analysis like extraction of Markov blankets). The model should also contain the state of the variables and implement the AbstractPPL trace interface (dictionary functions, querying of variable names). The result should be able to work with existing sampling packages through the abstract interfaces.</p>
+</section>
+<section id="a-modular-tape-caching-mechanism-for-reversediff" class="level2">
+<h2 class="anchored" data-anchor-id="a-modular-tape-caching-mechanism-for-reversediff">A modular tape caching mechanism for ReverseDiff</h2>
+<p><strong>Mentors</strong>: Qingliang Zhuo, Mohamed Tarek</p>
+<p><strong>Project difficulty</strong>: Medium</p>
+<p><strong>Project length</strong>: 175 hrs</p>
+<p><strong>Description</strong>: Tape caching often leads to significant performance improvements for gradient-based sampling algorithms (e.g.&nbsp;HMC/NUTS). Tape caching is only possible at the complete computational level for ReverseDiff at the moment. This project is about implementing a more modular, i.e.&nbsp;function-as-a-caching-barrier, tape caching mechanism for ReverseDiff.jl.</p>
+</section>
+<section id="benchmarking-improving-performance-of-the-juliagaussianprocesses-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="benchmarking-improving-performance-of-the-juliagaussianprocesses-libraries">Benchmarking &amp; improving performance of the JuliaGaussianProcesses libraries</h2>
+<p><strong>Mentors</strong>: Theo Galy-Fajou, Will Tebbutt, ST John</p>
+<p><strong>Project difficulty</strong>: Medium</p>
+<p><strong>Project length</strong>: 350 hrs</p>
+<p><strong>Description</strong>: Although KernelFunctions.jl has extensive correctness testing, our performance testing is lacking. This project aims to resolve this, and resolve performance issues wherever they are found. The student would first need to extend our existing benchmarking coverage, and debug any obvious performance problems. The next phase of the work would be to construct end-to-end examples of KernelFunctions being used in practice, profile them to determine where performance problems lie, and fix them.</p>
+</section>
+<section id="iterative-methods-for-inference-in-gaussian-processes" class="level2">
+<h2 class="anchored" data-anchor-id="iterative-methods-for-inference-in-gaussian-processes">Iterative methods for inference in Gaussian Processes</h2>
+<p><strong>Mentors</strong>: Will Tebbutt, S. T. John, Ross Viljoen</p>
+<p><strong>Project difficulty</strong>: Medium</p>
+<p><strong>Project length</strong>: 175 hrs</p>
+<p><strong>Description</strong>: There has recently been quite a bit of work on inference methods for GPs that use iterative methods rather than the Cholesky factorisation. They look quite promising, but no one has implemented any of these within the Julia GP ecosystem yet, but they should fit nicely within the AbstractGPs framework. If you’re interested in improving the GP ecosystem in Julia, this project might be for you!</p>
+</section>
+<section id="approximate-inference-methods-for-non-gaussian-likelihoods-in-gaussian-processes" class="level2">
+<h2 class="anchored" data-anchor-id="approximate-inference-methods-for-non-gaussian-likelihoods-in-gaussian-processes">Approximate inference methods for non-Gaussian likelihoods in Gaussian Processes</h2>
+<p><strong>Mentors</strong>: S. T. John, Ross Viljoen, Theo Galy-Fajou</p>
+<p><strong>Project difficulty</strong>: Hard</p>
+<p><strong>Project length</strong>: 350 hrs</p>
+<p><strong>Description</strong>: Adding <a href="https://github.com/JuliaGaussianProcesses/JuliaGaussianProcesses.github.io/discussions/5#discussioncomment-1627101">approximate inference</a> methods for non-Gaussian likelihoods which are available in other GP packages but not yet within JuliaGPs. The project would start by determining which approximate inference method(s) to implement—there’s lots to do, and we’re happy to work with a student on whichever method they are most interested in, or to suggest one if they have no strong preference.</p>
+</section>
+<section id="gpu-integration-in-the-juliagps-ecosystem" class="level2">
+<h2 class="anchored" data-anchor-id="gpu-integration-in-the-juliagps-ecosystem">GPU integration in the JuliaGPs ecosystem</h2>
+<p><strong>Mentors</strong>: Ross Viljoen, Theo Galy-Fajou, Will Tebbutt</p>
+<p><strong>Project difficulty</strong>: Medium</p>
+<p><strong>Project length</strong>: 350 hrs</p>
+<p><strong>Description</strong>: This would involve first ensuring that common models are able to run fully on the GPU, then identifying and improving GPU-specific performance bottlenecks. This would begin by implementing a limited end-to-end example involving a GP with a standard kernel, and profiling it to debug any substantial performance bottlenecks. From there, support for a wider range of the functionality available in KernelFunctions.jl and AbstractGPs.jl can be added. Stretch goal: extension of GPU support to some functionality in ApproximateGPs.jl.</p>
 
-</div>
-</div>
-</div>
 
+</section>
 
-
-
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -584,7 +670,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turing-test-website/edit/main/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turing-test-website/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turing-test-website/edit/main/news/posts/2022-02-17-gsoc/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turing-test-website/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -607,5 +693,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
