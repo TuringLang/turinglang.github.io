@@ -105,16 +105,6 @@
         - linkedin: https://www.linkedin.com/in/david-widmann/
         - mail: david.widmann@it.uu.se
 
-    - name: Sharan Yalburgi
-      image: sharan-yalburgi.jpeg
-      university:  BITS Pilani
-      links:
-        - website: https://sharanry.github.io/
-        - github: https://github.com/sharanry
-        - twitter: https://twitter.com/sharanry
-        - linkedin: https://www.linkedin.com/in/sharanry/
-        - mail: sharanyalburgi@gmail.com
-
     - name: Qingliang ZHUO
       image: qingliang-zhuo.jpeg
       university: Beijing Paoding Technology Co., LTD.
@@ -300,6 +290,19 @@
 - title: 
   subtitle: GSoC 2020
   members:
+    - name: Sharan Yalburgi
+      image: sharan-yalburgi.jpeg
+      university:  BITS Pilani
+      gsoc_project: Adding GPML capabilities to JuliaGaussianProcesses
+      gsoc_project_link: https://summerofcode.withgoogle.com/archive/2020/projects/5115669181366272
+      gsoc_report: https://github.com/JuliaGaussianProcesses/
+      links:
+        - website: https://sharanry.github.io/
+        - github: https://github.com/sharanry
+        - twitter: https://twitter.com/sharanry
+        - linkedin: https://www.linkedin.com/in/sharanry/
+        - mail: sharanyalburgi@gmail.com
+
     - name: Arthur Lui
       image: gsoc/arthur-lui.jpeg
       university: University of California, Santa Cruz
