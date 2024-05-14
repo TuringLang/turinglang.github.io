@@ -18,12 +18,12 @@ website:
     background: "#073c44"
     foreground: "#ffffff"
     left:
-      # - href: index.qmd
-      #   text: Home
       - href: dev/docs/using-turing/get-started
         text: Get Started
       - href: dev/tutorials/00-introduction
         text: Tutorials
+      - href: library/
+        text: Library API
       - href: news/
         text: News
       - href: team/
