@@ -20,9 +20,9 @@ website:
     left:
       # - href: index.qmd
       #   text: Home
-      - href: dev/docs/using-turing/getting-started/
+      - href: dev/docs/using-turing/get-started
         text: Get Started
-      - href: dev/docs/tutorials/introduction/
+      - href: dev/tutorials/00-introduction
         text: Tutorials
       - href: news/
         text: News
@@ -45,7 +45,7 @@ website:
           contents:
           - section: "Using Turing"
             collapse-level: 1
-            # href: dev/docs/using-turing/getting-started/
+            # href: dev/docs/using-turing/get-started
             contents: 
               - dev/docs/using-turing/getting-started/index.qmd
               - text: "Quick Start"
