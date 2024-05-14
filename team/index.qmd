@@ -14,7 +14,7 @@ listing:
   contents: team.yml
 ---
 
-<!-- To Add or Modify Team Member Data, see team.yml file: https://github.com/TuringLang/turing-test-website/blob/main/team/team.yml -->
+<!-- To Add or Modify Team Member Data, see team.yml file: https://github.com/TuringLang/turinglang.github.io/blob/main/team/team.yml -->
 
 ::: {#team-data}
 

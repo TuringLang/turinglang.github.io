@@ -193,16 +193,38 @@
         - linkedin: https://www.linkedin.com/in/red-portal/
         - mail: kyrkim@seas.upenn.edu
 
-    - name: Xianda Sun
-      image:
-      university: University of Cambridge
+    - name: Markus Hauru
+      image: markus-hauru.jpeg
+      university: The Alan Turing Institute
       links:
-        - github: https://github.com/sunxd3
-        - mail: xs307@cam.ac.uk
+        - website: https://mhauru.org/
+        - github: https://github.com/mhauru/
+        - scholar: https://scholar.google.be/citations?user=Ht0KSeUAAAAJ&hl
+        - mail: markus@mhauru.org
 
+    - name: Shravan Goswami
+      image: shravan-goswami.jpeg
+      university: Uka Tarsadia University
+      links:
+        - website: https://shravangoswami.com/
+        - github: https://github.com/shravanngoswamii
+        - twitter: https://twitter.com/shravangoswamii
+        - linkedin: https://www.linkedin.com/in/shravangoswami/
+        - mail: shravanngoswamii@gmail.com
+
+       
+        
+# GSOC Contributors:
+
+- title: Google Summer of Code Students
+  subtitle: GSoC 2023
+  members:
     - name: Zuheng(David) Xu
       image: zuheng-xu.jpeg
       university: University of British Columbia
+      gsoc_project: Development of a Modular and Composable Variational Inference and Normalizing Flow Library for Julia
+      gsoc_project_link: https://summerofcode.withgoogle.com/archive/2023/projects/IE6teU9f
+      gsoc_report: https://github.com/TuringLang/NormalizingFlows.jl
       links:
         - website: https://zuhengxu.github.io/
         - github: https://github.com/zuhengxu
@@ -210,11 +232,32 @@
         - linkedin: https://www.linkedin.com/in/zuheng-david-xu-29825624b/
         - mail: zuheng.xu@stat.ubc.ca
 
-       
-        
-# GSOC Contributors:
+- title:
+  subtitle: GSoC 2022
+  members:
+    - name: Xianda Sun
+      image:
+      university: University of Cambridge
+      gsoc_project: Let Turing Handle The BUGS
+      gsoc_project_link: https://summerofcode.withgoogle.com/archive/2022/projects/s2dcBFqV
+      gsoc_report: https://gist.github.com/sunxd3/53cb2719f85146490ef7e54fee20195d
+      links:
+        - github: https://github.com/sunxd3
+        - mail: xs307@cam.ac.uk
 
-- title: Google Summer of Code Students
+    - name: Matthew Baggins
+      image: matthew-baggins.jpeg
+      university: University of Cambridge
+      gsoc_project: David-Skene algorithms for Turing.jl 
+      gsoc_project_link: https://summerofcode.withgoogle.com/archive/2022/projects/hYSoWAuX
+      gsoc_report: https://github.com/MatthewBaggins/DawidSkeneAlgorithms/
+      links:
+        - website: https://matthewbaggins.github.io/about/
+        - github: https://github.com/MatthewBaggins
+        - twiter: https://www.twitter.com/mlbaggins
+        - mail: bagginsmatthew@gmail.com
+
+- title:
   subtitle: GSoC 2021
   members:
     - name: Michael P Schneider

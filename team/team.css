@@ -1,20 +1,3 @@
-/* .panel-tabset > .nav-tabs,
-.panel-tabset > .tab-content {
-  border: none;
-}
-
-.panel-tabset > .nav-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.panel-tabset > .nav-tabs > .nav-item:hover {
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
-} */
-
 a {
   text-decoration: none;
 }

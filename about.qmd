@@ -3,4 +3,4 @@ title: "About"
 sidebar: false
 ---
 
-Sample for Turing Site
+Will be updated in future
