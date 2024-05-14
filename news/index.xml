@@ -6,8 +6,8 @@
       version="2.0">
 <channel>
 <title>Turing.jl</title>
-<link>https://turinglang.org/turing-test-website/news/</link>
-<atom:link href="https://turinglang.org/turing-test-website/news/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://turinglang.org/news/</link>
+<atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.4.554</generator>
 <lastBuildDate>Thu, 17 Feb 2022 00:00:00 GMT</lastBuildDate>
@@ -15,7 +15,7 @@
   <title>Google Summer of Code 2022</title>
   <dc:creator>Kai Xu</dc:creator>
   <dc:creator>the TuringLang team</dc:creator>
-  <link>https://turinglang.org/turing-test-website/news/posts/2022-02-17-gsoc/</link>
+  <link>https://turinglang.org/news/posts/2022-02-17-gsoc/</link>
   <description><![CDATA[ 
 
 
@@ -87,13 +87,13 @@
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>Blog</category>
   <category>GSoC</category>
-  <guid>https://turinglang.org/turing-test-website/news/posts/2022-02-17-gsoc/</guid>
+  <guid>https://turinglang.org/news/posts/2022-02-17-gsoc/</guid>
   <pubDate>Thu, 17 Feb 2022 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Google Summer of Code 2021</title>
   <dc:creator>Cameron Pfiffer</dc:creator>
-  <link>https://turinglang.org/turing-test-website/news/posts/2021-02-04-gsoc/</link>
+  <link>https://turinglang.org/news/posts/2021-02-04-gsoc/</link>
   <description><![CDATA[ 
 
 
@@ -152,13 +152,13 @@
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>Blog</category>
   <category>GSoC</category>
-  <guid>https://turinglang.org/turing-test-website/news/posts/2021-02-04-gsoc/</guid>
+  <guid>https://turinglang.org/news/posts/2021-02-04-gsoc/</guid>
   <pubDate>Wed, 10 Feb 2021 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Google Summer of Code 2020</title>
   <dc:creator>Cameron Pfiffer</dc:creator>
-  <link>https://turinglang.org/turing-test-website/news/posts/2020-09-11-gsoc/</link>
+  <link>https://turinglang.org/news/posts/2020-09-11-gsoc/</link>
   <description><![CDATA[ 
 
 
@@ -186,7 +186,7 @@
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>Blog</category>
   <category>GSoC</category>
-  <guid>https://turinglang.org/turing-test-website/news/posts/2020-09-11-gsoc/</guid>
+  <guid>https://turinglang.org/news/posts/2020-09-11-gsoc/</guid>
   <pubDate>Fri, 11 Sep 2020 00:00:00 GMT</pubDate>
 </item>
 <item>
@@ -198,7 +198,7 @@
   <dc:creator>Martin Trapp</dc:creator>
   <dc:creator>Cameron Pfiffer</dc:creator>
   <dc:creator>Hong Ge</dc:creator>
-  <link>https://turinglang.org/turing-test-website/news/posts/2020-05-04-Imperial-Report13-analysis/</link>
+  <link>https://turinglang.org/news/posts/2020-05-04-Imperial-Report13-analysis/</link>
   <description><![CDATA[ 
 
 
@@ -258,13 +258,13 @@
 
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>Research</category>
-  <guid>https://turinglang.org/turing-test-website/news/posts/2020-05-04-Imperial-Report13-analysis/</guid>
+  <guid>https://turinglang.org/news/posts/2020-05-04-Imperial-Report13-analysis/</guid>
   <pubDate>Thu, 14 May 2020 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Google Summer of Code/Julia Summer of Code</title>
   <dc:creator>Cameron Pfiffer</dc:creator>
-  <link>https://turinglang.org/turing-test-website/news/posts/2020-02-12-jsoc/</link>
+  <link>https://turinglang.org/news/posts/2020-02-12-jsoc/</link>
   <description><![CDATA[ 
 
 
@@ -294,13 +294,13 @@
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>Blog</category>
   <category>GSoC</category>
-  <guid>https://turinglang.org/turing-test-website/news/posts/2020-02-12-jsoc/</guid>
+  <guid>https://turinglang.org/news/posts/2020-02-12-jsoc/</guid>
   <pubDate>Wed, 12 Feb 2020 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Turing’s Blog</title>
   <dc:creator>Cameron Pfiffer</dc:creator>
-  <link>https://turinglang.org/turing-test-website/news/posts/2019-12-14-initial-post/</link>
+  <link>https://turinglang.org/news/posts/2019-12-14-initial-post/</link>
   <description><![CDATA[ 
 
 
@@ -320,7 +320,7 @@
 
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
   <category>Blog</category>
-  <guid>https://turinglang.org/turing-test-website/news/posts/2019-12-14-initial-post/</guid>
+  <guid>https://turinglang.org/news/posts/2019-12-14-initial-post/</guid>
   <pubDate>Sat, 14 Dec 2019 00:00:00 GMT</pubDate>
 </item>
 </channel>

@@ -1,1 +1,1 @@
-Sitemap: https://turinglang.org/turing-test-website/sitemap.xml
+Sitemap: https://turinglang.org/sitemap.xml
