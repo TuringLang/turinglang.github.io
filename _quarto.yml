@@ -6,8 +6,8 @@ project:
 
 website:
   title: "Turing.jl"
-  site-url: https://turinglang.org/turing-test-website/
-  site-path: "/turing-test-website/"
+  site-url: https://turinglang.org
+  site-path: "/"
   favicon: "assets/favicon.ico"
   search: 
     location: navbar
