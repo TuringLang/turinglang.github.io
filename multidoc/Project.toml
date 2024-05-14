@@ -1,5 +1,0 @@
-[deps]
-MultiDocumenter = "87ed4bf0-c935-4a67-83c3-2a03bee4197c"
-
-[compat]
-MultiDocumenter = "0.6"

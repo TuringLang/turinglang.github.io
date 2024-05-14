@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Deploy to GitHub Pages
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - run: quarto --version
+
+      - name: Render Quarto site
+        run: quarto render
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: _site

@@ -1,0 +1,283 @@
+# This page is indentation sensitive. Please make sure to maintain the indentation as shown in the example below.
+# Please Keep the sequence of links in the same order as shown in the example below for consistency.
+# Use "https://" before any link.
+
+# Do not create new "title" if not required. Use the existing title "Team Members" and "GSOC Contributors" for adding team members and GSOC contributors respectively.
+
+#   members:
+#     - name: Your Name
+#       image: your-image-name.extension (Add your image in the "assets/images/team" folder) & for gsoc, "gsoc/your-image-name.extension" - add image in "assets/images/team/gsoc" folder
+#       university: Any Affiliation
+#       links:
+#         - website: https://your-website.com
+#         - github: link-to-your-github-profile
+#         - twitter: link-to-your-twitter-profile
+#         - linkedin: link-to-your-linkedin-profile
+#         - mail: your-mail@provider.com
+# Youtube, Resume,  Medium and Mastodon links can be added with changes in ejs file.
+#         - youtube: link-to-your-youtube-channel
+#         - resume: link-to-your-resume
+#         - medium: link-to-your-medium-profile
+#         - mastodon: link-to-your-mastodon-profile
+# Make changes in team.ejs file if more any other link is required.
+
+- title: Team Members
+  members:
+    - name: Zoubin Ghahramani
+      image: zoubin-ghahramani.jpeg
+      university: University of Cambridge
+      links:
+        - website: https://mlg.eng.cam.ac.uk/zoubin/
+        - mail: zoubin@eng.cam.ac.uk
+
+    - name: Hong Ge
+      image: hong-ge.jpeg
+      university: University of Cambridge
+      links:
+        - website: http://mlg.eng.cam.ac.uk/hong/
+        - github: https://github.com/yebai
+        - mail: hg344@cam.ac.uk
+
+    - name: Kai Xu
+      image: kai-xu.jpeg
+      university: University of Edinburgh
+      links:
+        - website: https://xuk.ai/
+        - github: https://github.com/xukai92
+        - twitter: https://twitter.com/xukai92
+        - mail: kai.xu@ed.ac.uk
+
+    - name: Martin Trapp
+      image: martin-trapp.jpeg
+      university: Graz University of Technology
+      links:
+        - website: https://trappmartin.github.io/
+        - github: https://github.com/trappmartin
+        - linkedin: https://www.linkedin.com/in/martintrapp
+        - mastodon: https://ellis.social/@trappmartin
+        - mail: martin.trapp@aalto.fi
+
+    - name: Will Tebbutt
+      image: will-tebbutt.jpeg
+      university: University of Cambridge
+      links:
+        - website: https://willtebbutt.github.io/
+        - github: https://github.com/willtebbutt
+        - scholar: https://scholar.google.com/citations?user=lFKWc8MAAAAJ&hl=en&oi=ao
+        - mail: wct23@cam.ac.uk
+
+    - name: Mohamed Tarek
+      image: mohamed-tarek.jpeg
+      university: UNSW Canberra
+      links:
+        - website: https://mohamed82008.github.io/
+        - github: https://github.com/mohamed82008
+        - linkedin: https://www.linkedin.com/in/mabdelaty/
+        - scholar: https://scholar.google.com.au/citations?user=um_AxkwAAAAJ&hl=en
+        - mail: m.mohamed@student.adfa.edu.au
+
+    - name: Tor Erlend Fjelde
+      image: tor-erlend-fjelde.jpeg
+      university: University of Cambridge
+      links:
+        - website: https://retiredparkingguard.com/about.html
+        - github: https://github.com/torfjelde
+        - twitter: https://twitter.com/torfjelde
+        - linkedin: https://www.linkedin.com/in/torfjelde/
+        - mail: tef30@cam.ac.uk
+
+    - name: Cameron Pfiffer
+      image: cameron-pfiffer.jpeg
+      university:  University of Oregon
+      links:
+        - website: https://cameron.pfiffer.org/
+        - github: https://github.com/cpfiffer
+        - twitter: https://twitter.com/cameron_pfiffer
+        - linkedin: https://www.linkedin.com/in/cameron-pfiffer/
+        - mail: cpfiffer@uoregon.edu
+
+    - name: David Widmann
+      image: david-widmann.jpeg
+      university: Uppsala University
+      links:
+        - website: https://www.widmann.dev/
+        - github: https://github.com/devmotion
+        - linkedin: https://www.linkedin.com/in/david-widmann/
+        - mail: david.widmann@it.uu.se
+
+    - name: Sharan Yalburgi
+      image: sharan-yalburgi.jpeg
+      university:  BITS Pilani
+      links:
+        - website: https://sharanry.github.io/
+        - github: https://github.com/sharanry
+        - twitter: https://twitter.com/sharanry
+        - linkedin: https://www.linkedin.com/in/sharanry/
+        - mail: sharanyalburgi@gmail.com
+
+    - name: Qingliang ZHUO
+      image: qingliang-zhuo.jpeg
+      university: Beijing Paoding Technology Co., LTD.
+      links:
+        - website: https://kdr2.com/
+        - github: https://github.com/KDr2
+        - mail: killian.zhuo@gmail.com
+
+    - name: Philipp Gabler
+      image: philipp-gabler.jpeg
+      university: Graz University of Technology
+      links:
+        - github: https://github.com/phipsgabler
+        - mail: pgabler@student.tugraz.at
+
+    - name: Miles Lucas
+      image: miles-lucas.jpeg
+      university: Institute for Astronomy, University of Hawai'i 
+      links:
+        - website: https://mileslucas.com/
+        - github: https://github.com/mileslucas
+        - mail: mdlucas@hawaii.edu
+
+    - name: Théo Galy-Fajou
+      image: theo-galy-fajou.jpeg
+      university: TU Berlin
+      links:
+        - website: https://theogf.github.io/
+        - github: https://github.com/theogf
+        - twitter: https://twitter.com/theo_gf
+        - linkedin: https://www.linkedin.com/in/theogalyfajou
+        - mail: theo.galyfajou@gmail.com
+
+    - name: Harrison Wilde
+      image: harrison-wilde.jpeg
+      university: University of Warwick
+      links:
+        - website: https://hwil.de/
+        - github: https://github.com/harrisonwilde
+        - twitter: https://twitter.com/harrisondwilde
+        - linkedin: https://www.linkedin.com/in/harrisonwilde
+        - mail: h.wilde@warwick.ac.uk
+
+    - name: Jose Storopoli
+      image: jose-storopoli.jpeg
+      university: Universidade Nove de Julho
+      links:
+        - website: https://storopoli.io/
+        - github: https://github.com/storopoli
+        - mail: jose@storopoli.io
+
+    - name: Rik Huijzer
+      image: rik-huijzer.jpeg
+      university: University of Groningen
+      links:
+        - website: https://huijzer.xyz/
+        - github: https://github.com/rikhuijzer
+        - linkedin: https://www.linkedin.com/in/rik-huijzer/
+        - mail: t.h.huijzer@rug.nl
+
+    - name: Jaime Ruiz Zapatero
+      image: jaime-ruiz-zapatero.jpeg
+      university: University of Oxford
+      links:
+        - website: https://jaimeruizzapatero.net/
+        - github: https://github.com/jaimerzp
+        - linkedin: https://www.linkedin.com/in/jaime-ruiz-zapatero-524ab0130/
+        - mail: jaime.ruiz-zapatero@physics.ox.ac.uk
+
+    - name: Kyurae Kim
+      image: kyurae-kim.jpeg
+      university: University of Pennsylvania
+      links:
+        - website: https://krkim.me/
+        - github: https://github.com/Red-Portal
+        - linkedin: https://www.linkedin.com/in/red-portal/
+        - mail: kyrkim@seas.upenn.edu
+
+    - name: Xianda Sun
+      image:
+      university: University of Cambridge
+      links:
+        - github: https://github.com/sunxd3
+        - mail: xs307@cam.ac.uk
+
+    - name: Zuheng(David) Xu
+      image: zuheng-xu.jpeg
+      university: University of British Columbia
+      links:
+        - website: https://zuhengxu.github.io/
+        - github: https://github.com/zuhengxu
+        - twitter: https://twitter.com/ZuhDav
+        - linkedin: https://www.linkedin.com/in/zuheng-david-xu-29825624b/
+        - mail: zuheng.xu@stat.ubc.ca
+
+       
+        
+# GSOC Contributors:
+
+- title: Google Summer of Code Students
+  subtitle: GSoC 2021
+  members:
+    - name: Michael P Schneider
+      image: gsoc/michael-p-schneider.jpeg
+      university: University of Cambridge
+      gsoc_project: Improving Turing’s documentation and tutorials
+      gsoc_project_link: https://summerofcode.withgoogle.com/archive/2021/projects/5628292215865344
+      gsoc_report: https://gist.github.com/leachim/a83c012f337743c5c080484372694328
+      links:
+        - website: https://www.mi-schneider.de/
+        - github: https://github.com/leachim
+        - twitter: https://github.com/leachim
+        - linkedin: https://www.linkedin.com/in/michaelschneider11
+        - mail: contact@mi-schneider.de
+
+    - name: Paulina Martin
+      image: gsoc/paulina-martin.jpeg
+      university: Universidad Nacional Autónoma de México (UNAM), Ciudad de México
+      gsoc_project: MCMC Chains improvements
+      gsoc_project_link: https://summerofcode.withgoogle.com/archive/2021/projects/4929311521374208
+      gsoc_report: https://gist.github.com/PaulinaMartin96/034445da14e33d41157554670a58c194
+      links:
+        - website: https://paulinamartin96.github.io/
+        - github: https://github.com/PaulinaMartin96
+        - linkedin: https://www.linkedin.com/in/paulina-martin-747445a8
+        - mail: paulinamartin96@ciencias.unam.mx
+
+    - name: Carol Mak
+      image: gsoc/carol-mak.jpeg
+      university: University of Oxford
+      gsoc_project: Involutive Markov Chain Monte Carlo in Turing
+      gsoc_project_link: https://summerofcode.withgoogle.com/archive/2021/projects/5224810203840512
+      gsoc_report: https://github.com/cmaarkol/InvolutiveMCMC.jl
+      links:
+        - website: https://cmaarkol.github.io/
+        - github: https://github.com/cmaarkol
+        - linkedin: https://www.linkedin.com/in/carol-mak-14801a92
+        - mail: puiyiu123@gmail.com
+    
+- title: 
+  subtitle: GSoC 2020
+  members:
+    - name: Arthur Lui
+      image: gsoc/arthur-lui.jpeg
+      university: University of California, Santa Cruz
+      gsoc_project: BNP Benchmarks and Feature Comparisons for Turing and Other PPLs
+      gsoc_project_link: https://summerofcode.withgoogle.com/archive/2020/projects/5097445601574912
+      gsoc_report: https://luiarthur.github.io/TuringBnpBenchmarks/
+      links:
+        - website: https://luiarthur.github.io/
+        - github: https://github.com/luiarthur
+        - twitter: https://twitter.com/luiarthur89
+        - linkedin: https://www.linkedin.com/in/lui-arthur
+        - mail: alui2@ucsc.edu
+
+    - name: Saranjeet Kaur
+      image: /gsoc/saranjeet-kaur.jpeg
+      university: University of Pune, Pune
+      gsoc_project: Polychord Nested Sampling Algorithm Building and Integration with Turing in Julia
+      gsoc_project_link: https://summerofcode.withgoogle.com/archive/2020/projects/6019152965271552
+      gsoc_report: https://gist.github.com/SaranjeetKaur/37086fea06076bd3ec76d052cc166378
+      links:
+        - website: https://saranjeetkaur.github.io/About-Me/
+        - github: https://github.com/SaranjeetKaur
+        - linkedin: https://www.linkedin.com/in/saranjeet-k-48ab769b/
+        - mail: kaur.saranjeet3@gmail.com

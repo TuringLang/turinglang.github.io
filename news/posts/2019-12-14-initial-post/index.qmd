@@ -1,0 +1,24 @@
+---
+title: Turing's Blog
+description: |
+    All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts...
+categories:
+  - Blog
+author:
+  - name: Cameron Pfiffer
+    url: https://cameron.pfiffer.org/
+    email: cpfiffer@uoregon.edu
+    affiliation: 
+      - name: University of Oregon
+date: 12/14/2019
+---
+
+All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts on topics like
+
+- Interesting things you can do with Turing, or interesting things we have seen others do.
+- Development updates and major release announcements.
+- Research updates.
+- Explorations of Turing's internals.
+- Updates to Turing's satellite projects [AdvancedHMC.jl](https://github.com/TuringLang/AdvancedHMC.jl) or [Bijectors.jl](https://github.com/TuringLang/Bijectors.jl).
+
+Stay tuned!

@@ -1,0 +1,12 @@
+toc: false
+sidebar: false
+include-in-header:
+  - text: |
+      <style>
+        a {
+          text-decoration: none;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      </style>
