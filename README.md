@@ -1,10 +1,10 @@
-# Turing.jl Website
+# `Turing.jl` Website
 
-This repository contains the source code for the new Turing.jl website, which contains the documentation, tutorials, news, contribution guide, etc...
+This repository contains the source code for the `Turing.jl` website. 
 
-#### To get started with the Turing.jl website locally, you'll need to have the following prerequisites installed:
+#### To get started with the `Turing.jl` website locally, you'll need to have the following prerequisites installed:
 
-- [Quarto Pre-release](https://quarto.org/docs/download/)
+- [Quarto](https://quarto.org/docs/download/)
 
 Once you have these prerequisites installed, you can follow these steps:
 
@@ -25,7 +25,7 @@ Once you have these prerequisites installed, you can follow these steps:
     ```bash
     quarto preview
     ```
-This will launch a local server on http://localhost:4200/, and you can view it in your web browser by navigating on link showing in your terminal.
+This will launch a local server at http://localhost:4200/, which you can view in your web browser by navigating to the link shown in your terminal.
 
 4. Render the website locally:
 
