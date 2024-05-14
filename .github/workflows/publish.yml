@@ -26,3 +26,4 @@ jobs:
         with:
           branch: gh-pages
           folder: _site
+          clean: false
