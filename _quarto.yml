@@ -99,3 +99,7 @@ format:
 
 # execute:
 #   freeze: auto
+
+# Global Variables to use in any qmd files using:
+# {{< meta site-url >}}
+site-url: https://turinglang.org/turing-test-website

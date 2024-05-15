@@ -1,6 +1,0 @@
----
-title: "About"
-sidebar: false
----
-
-Will be updated in future
