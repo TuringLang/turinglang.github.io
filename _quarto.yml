@@ -103,6 +103,6 @@ format:
 
 # Global Variables to use in any qmd files using:
 # {{< meta site-url >}}
-site-url: https://turinglang.org/turing-test-website
+site-url: https://turinglang.org
 get-started: dev/docs/using-turing/get-started
 tutorials-intro: dev/docs/tutorials/00-introduction
