@@ -36,34 +36,6 @@ website:
       - icon: github
         href: https://github.com/TuringLang/Turing.jl
         text: Turing GitHub
-
-  sidebar:
-    - id: documentation
-      collapse-level: 1
-      contents: 
-        - section: "Documentation"
-          href: dev/docs/index.qmd
-          contents:
-          - section: "Using Turing"
-            collapse-level: 1
-            # href: dev/docs/using-turing/get-started
-            contents: 
-              - dev/docs/using-turing/getting-started/index.qmd
-              - text: "Quick Start"
-                href: dev/docs/using-turing/quick-start/index.qmd
-              - dev/docs/using-turing/guide/index.qmd
-              - dev/docs/using-turing/advanced-usage/index.qmd
-              - dev/docs/using-turing/automatic-differentiation/index.qmd
-              - dev/docs/using-turing/performance-tips/index.qmd
-              - dev/docs/using-turing/using-dynamichmc/index.qmd
-              - dev/docs/using-turing/sampler-visualization/index.qmd
-              - text: "External Samplers"
-                href: dev/docs/using-turing/external-samplers/index.qmd
-
-          - section: "Tutorials"
-            contents: 
-              - dev/docs/tutorials/introduction/index.qmd
-
   
   page-footer:
     background: "#073c44"
@@ -90,7 +62,7 @@ format:
     theme:
       light: cosmo
       # dark: [cosmo, theming/theme-dark.scss]
-    css: styles.css
+    css: theming/styles.css
     toc: true
     smooth-scroll: true
     code-overflow: wrap
