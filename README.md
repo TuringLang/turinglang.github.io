@@ -2,7 +2,7 @@
 
 This repository contains the source code for the `Turing.jl` website. 
 
-#### To get started with the `Turing.jl` website locally, you'll need to have the following prerequisites installed:
+To get started with the `Turing.jl` website locally, you'll need to have the following prerequisites installed:
 
 - [Quarto](https://quarto.org/docs/download/)
 
