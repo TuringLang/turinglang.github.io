@@ -1,6 +1,7 @@
 project:
   type: website
   preview:
+    # Change port if it's busy in your system or just remove this line so that It will automatically use any free port
     port: 4200
     browser: true
 
@@ -13,17 +14,17 @@ website:
   search: 
     location: navbar
     type: overlay
-    # keyboard-shortcut: ["?", "H", "f"]
   navbar:
     logo: "assets/images/turing-logo.svg"
+    logo-href: https://turinglang.org/
     background: "#073c44"
     foreground: "#ffffff"
     left:
-      - href: dev/docs/using-turing/get-started
+      - href: https://turinglang.org/docs/tutorials/docs-00-getting-started/
         text: Get Started
-      - href: dev/tutorials/00-introduction
+      - href: https://turinglang.org/docs/tutorials/00-introduction/
         text: Tutorials
-      - href: library/
+      - href: https://turinglang.org/library/
         text: Library API
       - href: news/
         text: News
@@ -61,20 +62,14 @@ format:
   html:
     theme:
       light: cosmo
-      # dark: [cosmo, theming/theme-dark.scss]
     css: theming/styles.css
     toc: true
     smooth-scroll: true
     code-overflow: wrap
     output-block-background: true
-    # code-block-border-left: true
-    # code-line-numbers: true
-
-# execute:
-#   freeze: auto
 
 # Global Variables to use in any qmd files using:
 # {{< meta site-url >}}
 site-url: https://turinglang.org
-get-started: dev/docs/using-turing/get-started
-tutorials-intro: dev/tutorials/00-introduction
+get-started: https://turinglang.org/docs/tutorials/docs-00-getting-started/
+tutorials-intro: https://turinglang.org/docs/tutorials/00-introduction/
