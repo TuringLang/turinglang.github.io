@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout main repository
+      - name: Checkout turinglang.github.io repo
         uses: actions/checkout@v4
 
       - name: Set up Quarto
