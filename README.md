@@ -2,11 +2,11 @@
 
 This repository contains the quarto source for the `Turing.jl` website. 
 
-To get started with the `Turing.jl` website locally, you'll need to have the following prerequisites installed:
+To get started with the `Turing.jl` website locally, you'll need to have the following prerequisite installed:
 
 - [Quarto](https://quarto.org/docs/download/)
 
-Once you have these prerequisites installed, you can follow these steps:
+Once you have this prerequisite installed, you can follow these steps:
 
 1. Clone this repository:
 
