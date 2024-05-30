@@ -29,9 +29,14 @@ jobs:
           git clone --branch gh-pages https://github.com/TuringLang/docs.git docs-repo
           cp docs-repo/search.json docs_search.json
 
+      - name: Fix URLs in docs search index
+        run: |
+          jq 'map(if .href then .href = "/docs/" + .href else . end) | 
+              map(if .objectID then .objectID = "/docs/" + .objectID else . end)' docs_search.json > fixed_docs_search.json
+
       - name: Merge search indices
         run: |
-          jq -s '.[0] + .[1]' _site/search.json docs_search.json > merged_search.json
+          jq -s '.[0] + .[1]' _site/search.json fixed_docs_search.json > merged_search.json
           mv merged_search.json _site/search.json
 
       - name: Deploy to GitHub Pages
