@@ -45,3 +45,4 @@ jobs:
         with:
           branch: gh-pages
           folder: _site
+          clean: false # we need this to preserve the old versions of Turing docs, e.g. library/
