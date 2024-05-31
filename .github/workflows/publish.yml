@@ -28,12 +28,12 @@ jobs:
         run: sudo apt-get install jq
 
       - name: Fetch search_original.json from docs site
-        run: curl -O https://raw.githubusercontent.com/TuringLang/docs/gh-pages/search_original.json
+        run: curl -O https://raw.githubusercontent.com/TuringLang/docs/gh-pages/search.json
 
       - name: Fix URLs in docs site search index
         run: |
           jq 'map(if .href then .href = "docs/" + .href else . end) | 
-              map(if .objectID then .objectID = "docs/" + .objectID else . end)' search_original.json > fixed_docs_search.json
+              map(if .objectID then .objectID = "docs/" + .objectID else . end)' search.json > fixed_docs_search.json
 
       - name: Merge search indices
         run: |
