@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout main repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up Quarto
@@ -27,15 +27,13 @@ jobs:
       - name: Install jq
         run: sudo apt-get install jq
 
-      - name: Fetch search_original.json from docs repository
-        run: |
-          git clone --branch gh-pages https://github.com/TuringLang/docs.git docs-repo
-          cp docs-repo/search_original.json docs_search_original.json
+      - name: Fetch search_original.json from docs site
+        run: curl -O https://raw.githubusercontent.com/TuringLang/docs/gh-pages/search_original.json
 
-      - name: Fix URLs in docs search index
+      - name: Fix URLs in docs site search index
         run: |
-          jq 'map(if .href then .href = "/docs/" + .href else . end) | 
-              map(if .objectID then .objectID = "/docs/" + .objectID else . end)' docs_search_original.json > fixed_docs_search.json
+          jq 'map(if .href then .href = "docs/" + .href else . end) | 
+              map(if .objectID then .objectID = "docs/" + .objectID else . end)' search_original.json > fixed_docs_search.json
 
       - name: Merge search indices
         run: |
@@ -46,4 +44,3 @@ jobs:
         with:
           branch: gh-pages
           folder: _site
-          clean: false
