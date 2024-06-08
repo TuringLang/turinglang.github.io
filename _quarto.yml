@@ -4,6 +4,7 @@ project:
     # Change port if it's busy in your system or just remove this line so that It will automatically use any free port
     port: 4200
     browser: true
+  pre-render: sh assets/scripts/changelog.sh
 
 # These cannot be used as variables. They are reserved for the project configuration.
 website:
@@ -16,7 +17,7 @@ website:
     type: overlay
   navbar:
     logo: "assets/images/turing-logo.svg"
-    logo-href: https://turinglang.org/
+    # logo-href: https://turinglang.org/
     background: "#073c44"
     foreground: "#ffffff"
     left:
@@ -37,6 +38,8 @@ website:
       - icon: github
         href: https://github.com/TuringLang/Turing.jl
         text: Turing GitHub
+      - icon: file-earmark-diff
+        href: changelog.qmd
   
   page-footer:
     background: "#073c44"
