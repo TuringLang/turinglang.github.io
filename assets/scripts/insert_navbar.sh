@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# This script inserts a top navigation bar (e.g., `navbar.html`) into Documenter.jl generated sites. 
-# The resulting output is similar to MultiDocumenter's navigation menu. The navigation menu is 
-# hard-coded at the moment, which could be improved in the future. 
+# This script inserts a top navigation bar (e.g., `navbar.html`) into Documenter.jl generated sites.
+# It checks all HTML files in the specified directory and its subdirectories.
+# The script also avoids inserting the navbar if it's already present.
 
 # URL of the navigation bar HTML file
 NAVBAR_URL="https://raw.githubusercontent.com/TuringLang/turinglang.github.io/main/assets/scripts/navbar.html"
@@ -19,15 +19,20 @@ if [ -z "$NAVBAR_HTML" ]; then
     exit 1
 fi
 
-# Process each HTML file in the directory
-for file in $(find $HTML_DIR -name "*.html"); do
-    # Read the contents of the HTML file
-    file_contents=$(cat "$file")
-
-    # Insert the navbar HTML after the <body> tag
-    updated_contents="${file_contents/$'<body>'/$'<body>\n'$NAVBAR_HTML}"
-
-    # Write the updated contents back to the file
-    echo "$updated_contents" > "$file"
-    echo "Updated $file"
+# Process each HTML file in the directory and its subdirectories
+find "$HTML_DIR" -name "*.html" | while read file; do
+    # Check if the navbar is already present using the comment
+    if ! grep -q "<!-- NAVBAR START -->" "$file"; then
+        # Read the contents of the HTML file
+        file_contents=$(cat "$file")
+        
+        # Insert the navbar HTML after the <body> tag
+        updated_contents="${file_contents/<body>/<body>$NAVBAR_HTML}"
+        
+        # Write the updated contents back to the file
+        echo "$updated_contents" > "$file"
+        echo "Updated $file"
+    else
+        echo "Skipped $file (navbar already present)"
+    fi
 done
