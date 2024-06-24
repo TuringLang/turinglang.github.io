@@ -4,7 +4,6 @@
 # The resulting output is similar to MultiDocumenter's navigation menu. The navigation menu is
 # hard-coded at the moment, which could be improved in the future. 
 # It checks all HTML files in the specified directory and its subdirectories.
-# The script also avoids inserting the navbar if it's already present.
 
 # URL of the navigation bar HTML file
 NAVBAR_URL="https://raw.githubusercontent.com/TuringLang/turinglang.github.io/main/assets/scripts/navbar.html"
@@ -23,18 +22,25 @@ fi
 
 # Process each HTML file in the directory and its subdirectories
 find "$HTML_DIR" -name "*.html" | while read file; do
-    # Check if the navbar is already present using the comment
-    if ! grep -q "<!-- NAVBAR START -->" "$file"; then
-        # Read the contents of the HTML file
-        file_contents=$(cat "$file")
-        
-        # Insert the navbar HTML after the <body> tag
-        updated_contents="${file_contents/<body>/<body>$NAVBAR_HTML}"
-        
-        # Write the updated contents back to the file
-        echo "$updated_contents" > "$file"
-        echo "Updated $file"
-    else
-        echo "Skipped $file (navbar already present)"
+    # Remove the existing navbar HTML section if present
+    if grep -q "<!-- NAVBAR START -->" "$file"; then
+        awk '/<!-- NAVBAR START -->/{flag=1;next}/<!-- NAVBAR END -->/{flag=0;next}!flag' "$file" > temp && mv temp "$file"
+        echo "Removed existing navbar from $file"
     fi
+
+    # Read the contents of the HTML file
+    file_contents=$(cat "$file")
+
+    # Insert the navbar HTML after the <body> tag
+    updated_contents="${file_contents/<body>/<body>
+$NAVBAR_HTML
+}"
+
+    # Write the updated contents back to the file
+    echo "$updated_contents" > "$file"
+
+    # Remove trailing blank lines immediately after the navbar
+    awk 'BEGIN {RS=""; ORS="\n\n"} {gsub(/\n+$/, ""); print}' "$file" > temp_cleaned && mv temp_cleaned "$file"
+
+    echo "Inserted new navbar into $file"
 done
