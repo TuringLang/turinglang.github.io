@@ -5,11 +5,8 @@ This `scripts` folder contains utilities for building Turing language satellite 
 
 ## How to use
 
-Add the following line after `makedocs()` function in `docs/make.jl` of each package:
+Add a new Github Actions workflow, `DocsNav.yml` in your `main` or `master` branch and update 5th line, `workflows` in `DocsNav.yml` by adding your other workflow names that are generating docs site, previews and publishing them to gh-pages branch.
 
-```julia
-# Insert navbar in each html file
-run(`sh -c "curl -s https://raw.githubusercontent.com/TuringLang/turinglang.github.io/main/assets/scripts/insert_navbar.sh | bash -s docs/build"`)
-```
+You can find `DocsNav.yml` template [here](DocsNav.yml).
 
 See https://github.com/TuringLang/AbstractMCMC.jl/pull/141 for an example. 
