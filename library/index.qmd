@@ -40,15 +40,15 @@ This page lists all the packages that are part of the [The Turing Organization](
 
 ## Bijectors.jl
 
-> [Bijectors.jl](https://turinglang.org/Bijectors.jl/): A package for transforming distributions, used by [Turing.jl](https://github.com/TuringLang/Turing.jl).
+- [Bijectors.jl](https://turinglang.org/Bijectors.jl/): A package for transforming distributions, used by [Turing.jl](https://github.com/TuringLang/Turing.jl).
 
 ## TuringCallbacks.jl
 
-> [TuringCallbacks.jl](https://turinglang.org/TuringCallbacks.jl/): A package containing some convenient callbacks to use when you sample in [`Turing.jl`](https://app.codecov.io/gh/TuringLang/Turing.jl).
+- [TuringCallbacks.jl](https://turinglang.org/TuringCallbacks.jl/): A package containing some convenient callbacks to use when you sample in [`Turing.jl`](https://app.codecov.io/gh/TuringLang/Turing.jl).
 
 ## TuringBenchmarking.jl
 
-> [TuringBenchmarking.jl](https://turinglang.org/TuringBenchmarking.jl/): A useful package for benchmarking and checking [`Turing.jl`](https://github.com/TuringLang/Turing.jl) models.
+- [TuringBenchmarking.jl](https://turinglang.org/TuringBenchmarking.jl/): A useful package for benchmarking and checking [`Turing.jl`](https://github.com/TuringLang/Turing.jl) models.
 
 ## Gaussion Processes
 
