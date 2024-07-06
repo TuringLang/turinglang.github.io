@@ -20,23 +20,23 @@ website:
     background: "#073c44"
     foreground: "#ffffff"
     left:
-      - href: https://turinglang.org/docs/tutorials/docs-00-getting-started/
-        text: Get Started
-      - href: https://turinglang.org/docs/tutorials/00-introduction/
-        text: Tutorials
-      - href: https://turinglang.org/library/
-        text: Library API
-      - href: news/
-        text: News
-      - href: team/
-        text: Team
+      - text: Get Started
+        href: https://turinglang.org/docs/tutorials/docs-00-getting-started/
+      - text: Tutorials
+        href: https://turinglang.org/docs/tutorials/00-introduction/
+      - text: Library API
+        href: library/
+      - text: News
+        href: news/
+      - text: Team
+        href: team/
     tools:
       - icon: twitter
-        href: https://x.com/TuringLang
         text: Turing Twitter
+        href: https://x.com/TuringLang
       - icon: github
-        href: https://github.com/TuringLang/Turing.jl
         text: Turing GitHub
+        href: https://github.com/TuringLang/Turing.jl
   
   page-footer:
     background: "#073c44"

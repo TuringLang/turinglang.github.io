@@ -1,0 +1,59 @@
+---
+title: "Turing Library API"
+page-layout: full
+include-in-header:
+    - text: |
+        <style>a {text-decoration: none;}a:hover {text-decoration: underline;}</style>
+---
+
+This page lists all the packages that are part of the [The Turing Organization](https://github.com/TuringLang).
+
+## Modelling Languages
+
+- [DynamicPPL.jl](https://turinglang.org/DynamicPPL.jl/): A domain-specific language and backend for probabilistic programming languages, used by Turing.jl.
+
+- [JuliaBUGS.jl](https://turinglang.org/JuliaBUGS.jl/): JuliaBUGS is a graph-based probabilistic programming language and a component of the Turing ecosystem.
+
+- [TuringGLM.jl](https://turinglang.org/TuringGLM.jl/): A Julia package for Bayesian generalized linear models used for returning an instantiated Turing model using the formula syntax
+
+## Markov chain Monte Carlo (MCMC)
+
+- [AdvancedHMC.jl](https://turinglang.org/AdvancedHMC.jl/): It provides a robust, modular, and efficient implementation of advanced Hamiltonian Monte Carlo (HMC) algorithms.
+
+- [AbstractMCMC.jl](https://turinglang.org/AbstractMCMC.jl/): Abstract types and interfaces for Markov chain Monte Carlo methods. This defines an interface for sampling and combining Markov chains.
+
+- [ThermodynamicIntegration.jl](https://github.com/theogf/ThermodynamicIntegration.jl): A simple package to compute Thermodynamic Integration for computing the evidence in a Bayesian setting.
+
+- [AdvancedPS.jl](https://turinglang.org/AdvancedPS.jl/): This is a lightweight package that implements particle based Monte Carlo algorithms for the [Turing](https://turinglang.org/) ecosystem.
+
+- [EllipticalSliceSampling.jl](https://turinglang.org/EllipticalSliceSampling.jl/): This package implements elliptical slice sampling in the Julia language, as described in [Murray, Adams & MacKay (2010)](http://proceedings.mlr.press/v9/murray10a/murray10a.pdf).
+
+- [NestedSamplers.jl](https://turinglang.org/NestedSamplers.jl/): A Julian implementation of single- and multi-ellipsoidal nested sampling algorithms using the [AbstractMCMC](https://github.com/turinglang/abstractmcmc.jl) interface.
+
+## Diagnostics
+
+- [MCMCChains.jl](https://turinglang.org/MCMCChains.jl/): Implementation of Julia types for summarizing MCMC simulations and utility functions for [diagnostics](https://turinglang.org/MCMCChains.jl/stable/diagnostics/#Diagnostics) and [visualizations](https://turinglang.org/MCMCChains.jl/stable/statsplots/#StatsPlots.jl).
+
+- [MCMCDiagnosticTools.jl](https://turinglang.org/MCMCDiagnosticTools.jl/): This package provides functionality for diagnosing samples generated using Markov Chain Monte Carlo.
+
+- [ParetoSmooth.jl](https://turinglang.org/ParetoSmooth.jl/): An implementation of Pareto smoothed importance sampling(PSIS) algorithms in Julia.
+
+## Bijectors.jl
+
+> [Bijectors.jl](https://turinglang.org/Bijectors.jl/): A package for transforming distributions, used by [Turing.jl](https://github.com/TuringLang/Turing.jl).
+
+## TuringCallbacks.jl
+
+> [TuringCallbacks.jl](https://turinglang.org/TuringCallbacks.jl/): A package containing some convenient callbacks to use when you sample in [`Turing.jl`](https://app.codecov.io/gh/TuringLang/Turing.jl).
+
+## TuringBenchmarking.jl
+
+> [TuringBenchmarking.jl](https://turinglang.org/TuringBenchmarking.jl/): A useful package for benchmarking and checking [`Turing.jl`](https://github.com/TuringLang/Turing.jl) models.
+
+## Gaussion Processes
+
+- [AbstractGPs.jl](https://juliagaussianprocesses.github.io/AbstractGPs.jl): AbstractGPs.jl is a package that defines a low-level API for working with Gaussian processes (GPs), and basic functionality for working with them in the simplest cases.
+
+- [KernelFunctions.jl](https://juliagaussianprocesses.github.io/KernelFunctions.jl): Julia package for kernel functions for machine learning.
+
+- [ApproximateGPs.jl](https://juliagaussianprocesses.github.io/ApproximateGPs.jl): This is a package that provides some approximate inference algorithms for Gaussian process models, built on top of [AbstractGPs.jl](https://github.com/JuliaGaussianProcesses/AbstractGPs.jl).
