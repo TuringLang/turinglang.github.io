@@ -24,7 +24,7 @@ website:
         href: https://turinglang.org/docs/tutorials/docs-00-getting-started/
       - text: Tutorials
         href: https://turinglang.org/docs/tutorials/00-introduction/
-      - text: Library API
+      - text: Libraries
         href: library/
       - text: News
         href: news/
