@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Turing Library API – Turing.jl</title>
+<title>Turing Libraries – Turing.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#bijectors.jl" id="toc-bijectors.jl" class="nav-link" data-scroll-target="#bijectors.jl">Bijectors.jl</a></li>
   <li><a href="#turingcallbacks.jl" id="toc-turingcallbacks.jl" class="nav-link" data-scroll-target="#turingcallbacks.jl">TuringCallbacks.jl</a></li>
   <li><a href="#turingbenchmarking.jl" id="toc-turingbenchmarking.jl" class="nav-link" data-scroll-target="#turingbenchmarking.jl">TuringBenchmarking.jl</a></li>
-  <li><a href="#gaussion-processes" id="toc-gaussion-processes" class="nav-link" data-scroll-target="#gaussion-processes">Gaussion Processes</a></li>
+  <li><a href="#gaussian-processes" id="toc-gaussian-processes" class="nav-link" data-scroll-target="#gaussian-processes">Gaussian Processes</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/library/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -146,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Turing Library API</h1>
+<h1 class="title">Turing Libraries</h1>
 </div>
 
 
@@ -167,9 +167,9 @@ ul.task-list li input[type="checkbox"] {
 <section id="modelling-languages" class="level2">
 <h2 class="anchored" data-anchor-id="modelling-languages">Modelling Languages</h2>
 <ul>
-<li><p><a href="https://turinglang.org/DynamicPPL.jl/">DynamicPPL.jl</a>: A domain-specific language and backend for probabilistic programming languages, used by Turing.jl.</p></li>
+<li><p><a href="https://turinglang.org/DynamicPPL.jl/">DynamicPPL.jl</a>: A domain-specific language and backend for probabilistic programming languages used by Turing.jl.</p></li>
 <li><p><a href="https://turinglang.org/JuliaBUGS.jl/">JuliaBUGS.jl</a>: JuliaBUGS is a graph-based probabilistic programming language and a component of the Turing ecosystem.</p></li>
-<li><p><a href="https://turinglang.org/TuringGLM.jl/">TuringGLM.jl</a>: A Julia package for Bayesian generalized linear models used for returning an instantiated Turing model using the formula syntax</p></li>
+<li><p><a href="https://turinglang.org/TuringGLM.jl/">TuringGLM.jl</a>: A Julia package for Bayesian generalised linear models used for returning an instantiated Turing model using the formula syntax</p></li>
 </ul>
 </section>
 <section id="markov-chain-monte-carlo-mcmc" class="level2">
@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p><a href="https://turinglang.org/AdvancedHMC.jl/">AdvancedHMC.jl</a>: It provides a robust, modular, and efficient implementation of advanced Hamiltonian Monte Carlo (HMC) algorithms.</p></li>
 <li><p><a href="https://turinglang.org/AbstractMCMC.jl/">AbstractMCMC.jl</a>: Abstract types and interfaces for Markov chain Monte Carlo methods. This defines an interface for sampling and combining Markov chains.</p></li>
 <li><p><a href="https://github.com/theogf/ThermodynamicIntegration.jl">ThermodynamicIntegration.jl</a>: A simple package to compute Thermodynamic Integration for computing the evidence in a Bayesian setting.</p></li>
-<li><p><a href="https://turinglang.org/AdvancedPS.jl/">AdvancedPS.jl</a>: This is a lightweight package that implements particle based Monte Carlo algorithms for the <a href="https://turinglang.org/">Turing</a> ecosystem.</p></li>
+<li><p><a href="https://turinglang.org/AdvancedPS.jl/">AdvancedPS.jl</a>: This is a lightweight package that implements particle-based Monte Carlo algorithms for the <a href="https://turinglang.org/">Turing</a> ecosystem.</p></li>
 <li><p><a href="https://turinglang.org/EllipticalSliceSampling.jl/">EllipticalSliceSampling.jl</a>: This package implements elliptical slice sampling in the Julia language, as described in <a href="http://proceedings.mlr.press/v9/murray10a/murray10a.pdf">Murray, Adams &amp; MacKay (2010)</a>.</p></li>
 <li><p><a href="https://turinglang.org/NestedSamplers.jl/">NestedSamplers.jl</a>: A Julian implementation of single- and multi-ellipsoidal nested sampling algorithms using the <a href="https://github.com/turinglang/abstractmcmc.jl">AbstractMCMC</a> interface.</p></li>
 </ul>
@@ -186,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="diagnostics" class="level2">
 <h2 class="anchored" data-anchor-id="diagnostics">Diagnostics</h2>
 <ul>
-<li><p><a href="https://turinglang.org/MCMCChains.jl/">MCMCChains.jl</a>: Implementation of Julia types for summarizing MCMC simulations and utility functions for <a href="https://turinglang.org/MCMCChains.jl/stable/diagnostics/#Diagnostics">diagnostics</a> and <a href="https://turinglang.org/MCMCChains.jl/stable/statsplots/#StatsPlots.jl">visualizations</a>.</p></li>
+<li><p><a href="https://turinglang.org/MCMCChains.jl/">MCMCChains.jl</a>: Implementation of Julia types for summarising MCMC simulations and utility functions for <a href="https://turinglang.org/MCMCChains.jl/stable/diagnostics/#Diagnostics">diagnostics</a> and <a href="https://turinglang.org/MCMCChains.jl/stable/statsplots/#StatsPlots.jl">visualisations</a>.</p></li>
 <li><p><a href="https://turinglang.org/MCMCDiagnosticTools.jl/">MCMCDiagnosticTools.jl</a>: This package provides functionality for diagnosing samples generated using Markov Chain Monte Carlo.</p></li>
 <li><p><a href="https://turinglang.org/ParetoSmooth.jl/">ParetoSmooth.jl</a>: An implementation of Pareto smoothed importance sampling(PSIS) algorithms in Julia.</p></li>
 </ul>
@@ -206,11 +206,11 @@ ul.task-list li input[type="checkbox"] {
 <section id="turingbenchmarking.jl" class="level2">
 <h2 class="anchored" data-anchor-id="turingbenchmarking.jl">TuringBenchmarking.jl</h2>
 <ul>
-<li><a href="https://turinglang.org/TuringBenchmarking.jl/">TuringBenchmarking.jl</a>: A useful package for benchmarking and checking <a href="https://github.com/TuringLang/Turing.jl"><code>Turing.jl</code></a> models.</li>
+<li><a href="https://turinglang.org/TuringBenchmarking.jl/">TuringBenchmarking.jl</a>: A package for benchmarking and checking <a href="https://github.com/TuringLang/Turing.jl"><code>Turing.jl</code></a> models.</li>
 </ul>
 </section>
-<section id="gaussion-processes" class="level2">
-<h2 class="anchored" data-anchor-id="gaussion-processes">Gaussion Processes</h2>
+<section id="gaussian-processes" class="level2">
+<h2 class="anchored" data-anchor-id="gaussian-processes">Gaussian Processes</h2>
 <ul>
 <li><p><a href="https://juliagaussianprocesses.github.io/AbstractGPs.jl">AbstractGPs.jl</a>: AbstractGPs.jl is a package that defines a low-level API for working with Gaussian processes (GPs), and basic functionality for working with them in the simplest cases.</p></li>
 <li><p><a href="https://juliagaussianprocesses.github.io/KernelFunctions.jl">KernelFunctions.jl</a>: Julia package for kernel functions for machine learning.</p></li>
