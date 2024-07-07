@@ -1,0 +1,36 @@
+/*-- scss:defaults --*/
+$navbar-bg: #073c44;
+$navbar-fg: #fff;
+$footer-bg: #073c44;
+$footer-fg: #fff;
+$body-color: #fff;
+$toc-color: #fff;
+
+* {
+    color: #fff !important;
+}
+
+a {
+    color: #2aa198 !important;
+
+}
+.team-member {
+    background-color: #073c44 !important;
+}
+
+.team-member li a {
+    color: #2aa198 !important;
+}
+
+code {
+    background-color: #2aa198 !important;
+}
+
+.quarto-title-banner {
+    background-color: #073c44 !important;
+    color: #fff !important;
+}
+
+.quarto-listing a {
+    color: #fff !important;
+}
