@@ -1,15 +1,21 @@
 #!/bin/bash
 
-# This script inserts a top navigation bar (e.g., `navbar.html`) into Documenter.jl generated sites.
+# This script inserts a top navigation bar into Documenter.jl generated sites.
 # The resulting output is similar to MultiDocumenter's navigation menu. The navigation menu is
 # hard-coded at the moment, which could be improved in the future. 
 # It checks all HTML files in the specified directory and its subdirectories.
 
-# URL of the navigation bar HTML file
-NAVBAR_URL="https://raw.githubusercontent.com/TuringLang/turinglang.github.io/main/assets/scripts/navbar.html"
+# Check if the correct number of arguments are provided
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <html-directory> <navbar-url>"
+    exit 1
+fi
 
 # Directory containing HTML files (passed as the first argument to the script)
 HTML_DIR=$1
+
+# URL of the navigation bar HTML file (passed as the second argument to the script)
+NAVBAR_URL=$2
 
 # Download the navigation bar HTML content
 NAVBAR_HTML=$(curl -s $NAVBAR_URL)
