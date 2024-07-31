@@ -165,6 +165,14 @@
         - linkedin: https://www.linkedin.com/in/rik-huijzer/
         - mail: t.h.huijzer@rug.nl
 
+    - name: Tim Hargreaves
+      image: tim-hargreaves.jpeg
+      university: University of Cambridge
+      links:
+        - website: https://www.ttested.com/
+        - github: https://github.com/THargreaves
+        - mail: th542@cam.ac.uk
+
     - name: Jaime Ruiz Zapatero
       image: jaime-ruiz-zapatero.jpeg
       university: University of Oxford
