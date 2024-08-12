@@ -15,8 +15,13 @@ a:hover {
     color: #31dce6 !important;
 }
 
-code {
+code, p code {
     background-color: #172424 !important;
+    color: #2aa198;
+}
+
+li {
+    color: #979c9c !important;
 }
 
 .menu-text:hover {   
@@ -45,4 +50,9 @@ p {
 
 .level4 {
     color: #1bb3ac !important;
+}
+
+::selection {
+    color: #31dce6;
+    background: #192222;
 }
