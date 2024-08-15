@@ -26,6 +26,8 @@ This page lists all the packages that are part of the [The Turing Organization](
 
 - [AdvancedPS.jl](https://turinglang.org/AdvancedPS.jl/): This is a lightweight package that implements particle-based Monte Carlo algorithms for the [Turing](https://turinglang.org/) ecosystem.
 
+- [SliceSampling.jl](https://turinglang.org/SliceSampling.jl): This package is a collection of slice sampling algorithms including the univariate slice samplers by [Neal (2003)](https://arxiv.org/abs/physics/0009028).
+
 - [EllipticalSliceSampling.jl](https://turinglang.org/EllipticalSliceSampling.jl/): This package implements elliptical slice sampling in the Julia language, as described in [Murray, Adams & MacKay (2010)](http://proceedings.mlr.press/v9/murray10a/murray10a.pdf).
 
 - [NestedSamplers.jl](https://turinglang.org/NestedSamplers.jl/): A Julian implementation of single- and multi-ellipsoidal nested sampling algorithms using the [AbstractMCMC](https://github.com/turinglang/abstractmcmc.jl) interface.
