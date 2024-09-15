@@ -9,7 +9,7 @@
 <link>https://turinglang.org/news/</link>
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.5.56</generator>
+<generator>quarto-1.5.57</generator>
 <lastBuildDate>Thu, 17 Feb 2022 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Google Summer of Code 2022</title>
