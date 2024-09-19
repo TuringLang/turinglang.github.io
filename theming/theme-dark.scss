@@ -90,7 +90,7 @@ a:hover {
     color: $links-hover !important;
 }
 
-code, p code {
+code, p code, li code {
     background-color: $code-background-color !important;
     color: $links;
 }
@@ -131,4 +131,9 @@ p {
 ::selection {
     color: $links-hover;
     background: $background-nav;
+}
+
+.tooltip {
+    --bs-tooltip-color: $black !important;
+    --bs-tooltip-bg: $white !important;
 }
