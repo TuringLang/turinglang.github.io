@@ -1,9 +1,5 @@
 [
   {
-    "listing": "/team/index.html",
-    "items": []
-  },
-  {
     "listing": "/news/index.html",
     "items": [
       "/news/posts/2022-02-17-gsoc/index.html",
@@ -13,5 +9,9 @@
       "/news/posts/2020-02-12-jsoc/index.html",
       "/news/posts/2019-12-14-initial-post/index.html"
     ]
+  },
+  {
+    "listing": "/team/index.html",
+    "items": []
   }
 ]
