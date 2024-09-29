@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Team – Turing.jl</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-team-data .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-members','listing-subtitle',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-title","listing-members","listing-subtitle"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-team-data'] = new List('listing-team-data', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../theming/styles.css">
+<link rel="stylesheet" href="team.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="https://turinglang.org/" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/images/turing-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="https://turinglang.org/">
+    <span class="navbar-title">Turing.jl</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://turinglang.org/docs/tutorials/docs-00-getting-started/"> 
+<span class="menu-text">Get Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://turinglang.org/docs/tutorials/00-introduction/"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../library/"> 
+<span class="menu-text">Libraries</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../news/"> 
+<span class="menu-text">News</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../team/"> 
+<span class="menu-text">Team</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://x.com/TuringLang" title="Turing Twitter" class="quarto-navigation-tool px-1" aria-label="Turing Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/TuringLang/Turing.jl" title="Turing GitHub" class="quarto-navigation-tool px-1" aria-label="Turing GitHub"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<!-- To Add or Modify Team Member Data, see team.yml file: https://github.com/TuringLang/turinglang.github.io/blob/main/team/team.yml -->
+<div id="listing-team-data" class="quarto-listing quarto-listing-container-custom">
+<!-- ::: {.panel-tabset} -->
+<section id="team-members" class="level1">
+<h1>Team Members</h1>
+<!-- Team Container CSS served by Quarto-->
+<section id="section" class="level3 team-container">
+<h3 data-anchor-id="section"></h3>
+<!-- Team Members Loop-->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/zoubin-ghahramani.jpeg" alt="zoubin-ghahramani.jpeg">
+<!-- Team Member Image Ends-->
+<section id="zoubin-ghahramani" class="level4">
+<h4 data-anchor-id="zoubin-ghahramani">Zoubin Ghahramani</h4>
+<p>University of Cambridge <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://mlg.eng.cam.ac.uk/zoubin/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:zoubin@eng.cam.ac.uk"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/hong-ge.jpeg" alt="hong-ge.jpeg">
+<!-- Team Member Image Ends-->
+<section id="hong-ge" class="level4">
+<h4 data-anchor-id="hong-ge">Hong Ge</h4>
+<p>University of Cambridge <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="http://mlg.eng.cam.ac.uk/hong/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/yebai" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:hg344@cam.ac.uk"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/kai-xu.jpeg" alt="kai-xu.jpeg">
+<!-- Team Member Image Ends-->
+<section id="kai-xu" class="level4">
+<h4 data-anchor-id="kai-xu">Kai Xu</h4>
+<p>University of Edinburgh <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://xuk.ai/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/xukai92" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-twitter" href="https://twitter.com/xukai92" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:kai.xu@ed.ac.uk"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/martin-trapp.jpeg" alt="martin-trapp.jpeg">
+<!-- Team Member Image Ends-->
+<section id="martin-trapp" class="level4">
+<h4 data-anchor-id="martin-trapp">Martin Trapp</h4>
+<p>Graz University of Technology <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://trappmartin.github.io/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/trappmartin" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/martintrapp" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-mastodon" href="https://ellis.social/@trappmartin" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:martin.trapp@aalto.fi"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/will-tebbutt.jpeg" alt="will-tebbutt.jpeg">
+<!-- Team Member Image Ends-->
+<section id="will-tebbutt" class="level4">
+<h4 data-anchor-id="will-tebbutt">Will Tebbutt</h4>
+<p>University of Cambridge <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://willtebbutt.github.io/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/willtebbutt" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-mortarboard-fill" href="https://scholar.google.com/citations?user=lFKWc8MAAAAJ&amp;hl=en&amp;oi=ao" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:wct23@cam.ac.uk"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/mohamed-tarek.jpeg" alt="mohamed-tarek.jpeg">
+<!-- Team Member Image Ends-->
+<section id="mohamed-tarek" class="level4">
+<h4 data-anchor-id="mohamed-tarek">Mohamed Tarek</h4>
+<p>UNSW Canberra <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://mohamed82008.github.io/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/mohamed82008" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/mabdelaty/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-mortarboard-fill" href="https://scholar.google.com.au/citations?user=um_AxkwAAAAJ&amp;hl=en" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:m.mohamed@student.adfa.edu.au"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/tor-erlend-fjelde.jpeg" alt="tor-erlend-fjelde.jpeg">
+<!-- Team Member Image Ends-->
+<section id="tor-erlend-fjelde" class="level4">
+<h4 data-anchor-id="tor-erlend-fjelde">Tor Erlend Fjelde</h4>
+<p>University of Cambridge <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://retiredparkingguard.com/about.html" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/torfjelde" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-twitter" href="https://twitter.com/torfjelde" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/torfjelde/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:tef30@cam.ac.uk"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/cameron-pfiffer.jpeg" alt="cameron-pfiffer.jpeg">
+<!-- Team Member Image Ends-->
+<section id="cameron-pfiffer" class="level4">
+<h4 data-anchor-id="cameron-pfiffer">Cameron Pfiffer</h4>
+<p>University of Oregon <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://cameron.pfiffer.org/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/cpfiffer" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-twitter" href="https://twitter.com/cameron_pfiffer" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/cameron-pfiffer/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:cpfiffer@uoregon.edu"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/david-widmann.jpeg" alt="david-widmann.jpeg">
+<!-- Team Member Image Ends-->
+<section id="david-widmann" class="level4">
+<h4 data-anchor-id="david-widmann">David Widmann</h4>
+<p>Uppsala University <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://www.widmann.dev/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/devmotion" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/david-widmann/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:david.widmann@it.uu.se"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/qingliang-zhuo.jpeg" alt="qingliang-zhuo.jpeg">
+<!-- Team Member Image Ends-->
+<section id="qingliang-zhuo" class="level4">
+<h4 data-anchor-id="qingliang-zhuo">Qingliang ZHUO</h4>
+<p>Beijing Paoding Technology Co., LTD. <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://kdr2.com/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/KDr2" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:killian.zhuo@gmail.com"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/philipp-gabler.jpeg" alt="philipp-gabler.jpeg">
+<!-- Team Member Image Ends-->
+<section id="philipp-gabler" class="level4">
+<h4 data-anchor-id="philipp-gabler">Philipp Gabler</h4>
+<p>Graz University of Technology <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-github" href="https://github.com/phipsgabler" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:pgabler@student.tugraz.at"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/miles-lucas.jpeg" alt="miles-lucas.jpeg">
+<!-- Team Member Image Ends-->
+<section id="miles-lucas" class="level4">
+<h4 data-anchor-id="miles-lucas">Miles Lucas</h4>
+<p>Institute for Astronomy, University of Hawai'i <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://mileslucas.com/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/mileslucas" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:mdlucas@hawaii.edu"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/theo-galy-fajou.jpeg" alt="theo-galy-fajou.jpeg">
+<!-- Team Member Image Ends-->
+<section id="théo-galy-fajou" class="level4">
+<h4 data-anchor-id="théo-galy-fajou">Théo Galy-Fajou</h4>
+<p>TU Berlin <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://theogf.github.io/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/theogf" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-twitter" href="https://twitter.com/theo_gf" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/theogalyfajou" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:theo.galyfajou@gmail.com"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/harrison-wilde.jpeg" alt="harrison-wilde.jpeg">
+<!-- Team Member Image Ends-->
+<section id="harrison-wilde" class="level4">
+<h4 data-anchor-id="harrison-wilde">Harrison Wilde</h4>
+<p>University of Warwick <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://hwil.de/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/harrisonwilde" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-twitter" href="https://twitter.com/harrisondwilde" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/harrisonwilde" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:h.wilde@warwick.ac.uk"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/jose-storopoli.jpeg" alt="jose-storopoli.jpeg">
+<!-- Team Member Image Ends-->
+<section id="jose-storopoli" class="level4">
+<h4 data-anchor-id="jose-storopoli">Jose Storopoli</h4>
+<p>Universidade Nove de Julho <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://storopoli.io/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/storopoli" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:jose@storopoli.io"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/rik-huijzer.jpeg" alt="rik-huijzer.jpeg">
+<!-- Team Member Image Ends-->
+<section id="rik-huijzer" class="level4">
+<h4 data-anchor-id="rik-huijzer">Rik Huijzer</h4>
+<p>University of Groningen <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://huijzer.xyz/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/rikhuijzer" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/rik-huijzer/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:t.h.huijzer@rug.nl"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/tim-hargreaves.jpeg" alt="tim-hargreaves.jpeg">
+<!-- Team Member Image Ends-->
+<section id="tim-hargreaves" class="level4">
+<h4 data-anchor-id="tim-hargreaves">Tim Hargreaves</h4>
+<p>University of Cambridge <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://www.ttested.com/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/THargreaves" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:th542@cam.ac.uk"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/jaime-ruiz-zapatero.jpeg" alt="jaime-ruiz-zapatero.jpeg">
+<!-- Team Member Image Ends-->
+<section id="jaime-ruiz-zapatero" class="level4">
+<h4 data-anchor-id="jaime-ruiz-zapatero">Jaime Ruiz Zapatero</h4>
+<p>University of Oxford <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://jaimeruizzapatero.net/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/jaimerzp" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/jaime-ruiz-zapatero-524ab0130/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:jaime.ruiz-zapatero@physics.ox.ac.uk"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/placeholder.webp" alt="placeholder">
+<!-- Team Member Image Ends-->
+<section id="xianda-sun" class="level4">
+<h4 data-anchor-id="xianda-sun">Xianda Sun</h4>
+<p>University of Cambridge <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-github" href="https://github.com/sunxd3" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:xs307@cam.ac.uk"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/kyurae-kim.jpeg" alt="kyurae-kim.jpeg">
+<!-- Team Member Image Ends-->
+<section id="kyurae-kim" class="level4">
+<h4 data-anchor-id="kyurae-kim">Kyurae Kim</h4>
+<p>University of Pennsylvania <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://krkim.me/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/Red-Portal" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/red-portal/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:kyrkim@seas.upenn.edu"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/markus-hauru.jpeg" alt="markus-hauru.jpeg">
+<!-- Team Member Image Ends-->
+<section id="markus-hauru" class="level4">
+<h4 data-anchor-id="markus-hauru">Markus Hauru</h4>
+<p>The Alan Turing Institute <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://mhauru.org/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/mhauru/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-mortarboard-fill" href="https://scholar.google.be/citations?user=Ht0KSeUAAAAJ&amp;hl" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:markus@mhauru.org"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/shravan-goswami.jpeg" alt="shravan-goswami.jpeg">
+<!-- Team Member Image Ends-->
+<section id="shravan-goswami" class="level4">
+<h4 data-anchor-id="shravan-goswami">Shravan Goswami</h4>
+<p>Uka Tarsadia University <!-- <br>  --></p>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://shravangoswami.com/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/shravanngoswamii" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-twitter" href="https://twitter.com/shravangoswamii" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/shravangoswami/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:shravanngoswamii@gmail.com"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member Loop Ends -->
+</section>
+<!-- Team Container CSS served by Quarto Ends-->
+</section>
+<section id="google-summer-of-code-students" class="level1">
+<h1>Google Summer of Code Students</h1>
+<!-- Team Container CSS served by Quarto-->
+<section id="gsoc-2023" class="level3 team-container">
+<h3 data-anchor-id="gsoc-2023">GSoC 2023</h3>
+<!-- Team Members Loop-->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/zuheng-xu.jpeg" alt="zuheng-xu.jpeg">
+<!-- Team Member Image Ends-->
+<section id="zuhengdavid-xu" class="level4">
+<h4 data-anchor-id="zuhengdavid-xu">Zuheng(David) Xu</h4>
+<p>University of British Columbia <!-- <br>  --></p>
+
+    <!-- Development of a Modular and Composable Variational Inference and Normalizing Flow Library for Julia -->
+    Project: <a href="https://summerofcode.withgoogle.com/archive/2023/projects/IE6teU9f" target="_blank">Development of a Modular and Composable Variational Inference and Normalizing Flow Library for Julia</a>
+    <br>
+
+    <a class="external" href="https://github.com/TuringLang/NormalizingFlows.jl" target="_blank">Contributions &amp; Report</a>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+      </svg> -->
+      <br>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://zuhengxu.github.io/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/zuhengxu" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-twitter" href="https://twitter.com/ZuhDav" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/zuheng-david-xu-29825624b/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:zuheng.xu@stat.ubc.ca"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member Loop Ends -->
+</section>
+<!-- Team Container CSS served by Quarto Ends-->
+</section>
+<section id="section-1" class="level1">
+<h1></h1>
+<!-- Team Container CSS served by Quarto-->
+<section id="gsoc-2022" class="level3 team-container">
+<h3 data-anchor-id="gsoc-2022">GSoC 2022</h3>
+<!-- Team Members Loop-->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/matthew-baggins.jpeg" alt="matthew-baggins.jpeg">
+<!-- Team Member Image Ends-->
+<section id="matthew-baggins" class="level4">
+<h4 data-anchor-id="matthew-baggins">Matthew Baggins</h4>
+<p>University of Cambridge <!-- <br>  --></p>
+
+    <!-- David-Skene algorithms for Turing.jl -->
+    Project: <a href="https://summerofcode.withgoogle.com/archive/2022/projects/hYSoWAuX" target="_blank">David-Skene algorithms for Turing.jl</a>
+    <br>
+
+    <a class="external" href="https://github.com/MatthewBaggins/DawidSkeneAlgorithms/" target="_blank">Contributions &amp; Report</a>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+      </svg> -->
+      <br>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://matthewbaggins.github.io/about/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/MatthewBaggins" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:bagginsmatthew@gmail.com"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member Loop Ends -->
+</section>
+<!-- Team Container CSS served by Quarto Ends-->
+</section>
+<section id="section-2" class="level1">
+<h1></h1>
+<!-- Team Container CSS served by Quarto-->
+<section id="gsoc-2021" class="level3 team-container">
+<h3 data-anchor-id="gsoc-2021">GSoC 2021</h3>
+<!-- Team Members Loop-->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/gsoc/michael-p-schneider.jpeg" alt="gsoc/michael-p-schneider.jpeg">
+<!-- Team Member Image Ends-->
+<section id="michael-p-schneider" class="level4">
+<h4 data-anchor-id="michael-p-schneider">Michael P Schneider</h4>
+<p>University of Cambridge <!-- <br>  --></p>
+
+    <!-- Improving Turing’s documentation and tutorials -->
+    Project: <a href="https://summerofcode.withgoogle.com/archive/2021/projects/5628292215865344" target="_blank">Improving Turing’s documentation and tutorials</a>
+    <br>
+
+    <a class="external" href="https://gist.github.com/leachim/a83c012f337743c5c080484372694328" target="_blank">Contributions &amp; Report</a>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+      </svg> -->
+      <br>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://www.mi-schneider.de/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/leachim" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-twitter" href="https://github.com/leachim" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/michaelschneider11" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:contact@mi-schneider.de"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/gsoc/paulina-martin.jpeg" alt="gsoc/paulina-martin.jpeg">
+<!-- Team Member Image Ends-->
+<section id="paulina-martin" class="level4">
+<h4 data-anchor-id="paulina-martin">Paulina Martin</h4>
+<p>Universidad Nacional Autónoma de México (UNAM), Ciudad de México <!-- <br>  --></p>
+
+    <!-- MCMC Chains improvements -->
+    Project: <a href="https://summerofcode.withgoogle.com/archive/2021/projects/4929311521374208" target="_blank">MCMC Chains improvements</a>
+    <br>
+
+    <a class="external" href="https://gist.github.com/PaulinaMartin96/034445da14e33d41157554670a58c194" target="_blank">Contributions &amp; Report</a>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+      </svg> -->
+      <br>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://paulinamartin96.github.io/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/PaulinaMartin96" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/paulina-martin-747445a8" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:paulinamartin96@ciencias.unam.mx"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/gsoc/carol-mak.jpeg" alt="gsoc/carol-mak.jpeg">
+<!-- Team Member Image Ends-->
+<section id="carol-mak" class="level4">
+<h4 data-anchor-id="carol-mak">Carol Mak</h4>
+<p>University of Oxford <!-- <br>  --></p>
+
+    <!-- Involutive Markov Chain Monte Carlo in Turing -->
+    Project: <a href="https://summerofcode.withgoogle.com/archive/2021/projects/5224810203840512" target="_blank">Involutive Markov Chain Monte Carlo in Turing</a>
+    <br>
+
+    <a class="external" href="https://github.com/cmaarkol/InvolutiveMCMC.jl" target="_blank">Contributions &amp; Report</a>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+      </svg> -->
+      <br>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://cmaarkol.github.io/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/cmaarkol" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/carol-mak-14801a92" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:puiyiu123@gmail.com"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member Loop Ends -->
+</section>
+<!-- Team Container CSS served by Quarto Ends-->
+</section>
+<section id="section-3" class="level1">
+<h1></h1>
+<!-- Team Container CSS served by Quarto-->
+<section id="gsoc-2020" class="level3 team-container">
+<h3 data-anchor-id="gsoc-2020">GSoC 2020</h3>
+<!-- Team Members Loop-->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/sharan-yalburgi.jpeg" alt="sharan-yalburgi.jpeg">
+<!-- Team Member Image Ends-->
+<section id="sharan-yalburgi" class="level4">
+<h4 data-anchor-id="sharan-yalburgi">Sharan Yalburgi</h4>
+<p>BITS Pilani <!-- <br>  --></p>
+
+    <!-- Adding GPML capabilities to JuliaGaussianProcesses -->
+    Project: <a href="https://summerofcode.withgoogle.com/archive/2020/projects/5115669181366272" target="_blank">Adding GPML capabilities to JuliaGaussianProcesses</a>
+    <br>
+
+    <a class="external" href="https://github.com/JuliaGaussianProcesses/" target="_blank">Contributions &amp; Report</a>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+      </svg> -->
+      <br>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://sharanry.github.io/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/sharanry" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-twitter" href="https://twitter.com/sharanry" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/sharanry/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:sharanyalburgi@gmail.com"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team/gsoc/arthur-lui.jpeg" alt="gsoc/arthur-lui.jpeg">
+<!-- Team Member Image Ends-->
+<section id="arthur-lui" class="level4">
+<h4 data-anchor-id="arthur-lui">Arthur Lui</h4>
+<p>University of California, Santa Cruz <!-- <br>  --></p>
+
+    <!-- BNP Benchmarks and Feature Comparisons for Turing and Other PPLs -->
+    Project: <a href="https://summerofcode.withgoogle.com/archive/2020/projects/5097445601574912" target="_blank">BNP Benchmarks and Feature Comparisons for Turing and Other PPLs</a>
+    <br>
+
+    <a class="external" href="https://luiarthur.github.io/TuringBnpBenchmarks/" target="_blank">Contributions &amp; Report</a>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+      </svg> -->
+      <br>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://luiarthur.github.io/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/luiarthur" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-twitter" href="https://twitter.com/luiarthur89" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/lui-arthur" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:alui2@ucsc.edu"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member CSS Class served by Quarto -->
+<div class="team-member">
+<!-- Team Member Image -->
+<img src="../assets/images/team//gsoc/saranjeet-kaur.jpeg" alt="/gsoc/saranjeet-kaur.jpeg">
+<!-- Team Member Image Ends-->
+<section id="saranjeet-kaur" class="level4">
+<h4 data-anchor-id="saranjeet-kaur">Saranjeet Kaur</h4>
+<p>University of Pune, Pune <!-- <br>  --></p>
+
+    <!-- Polychord Nested Sampling Algorithm Building and Integration with Turing in Julia -->
+    Project: <a href="https://summerofcode.withgoogle.com/archive/2020/projects/6019152965271552" target="_blank">Polychord Nested Sampling Algorithm Building and Integration with Turing in Julia</a>
+    <br>
+
+    <a class="external" href="https://gist.github.com/SaranjeetKaur/37086fea06076bd3ec76d052cc166378" target="_blank">Contributions &amp; Report</a>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+      </svg> -->
+      <br>
+
+<!-- Team Member Links -->
+<ul>
+<li>
+<a class="bi-globe" href="https://saranjeetkaur.github.io/About-Me/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-github" href="https://github.com/SaranjeetKaur" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-linkedin" href="https://www.linkedin.com/in/saranjeet-k-48ab769b/" target="_blank"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+<li>
+<a class="bi-envelope-fill" href="mailto:kaur.saranjeet3@gmail.com"></a>
+</li>
+<!--  -->
+<!-- Add any Additional Links if required here -->
+</ul>
+<!-- Team Member Links End -->
+</section>
+</div>
+<!-- Team Member CSS Class served by Quarto Ends -->
+<!-- Team Member Loop Ends -->
+</section>
+<!-- Team Container CSS served by Quarto Ends-->
+<!-- ::: -->
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</section>
+</div>
+
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/turinglang\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Turing is created by <a href="http://mlg.eng.cam.ac.uk/hong/" target="_blank">Hong Ge</a>, and lovingly maintained by the <a href="https://github.com/TuringLang/Turing.jl/graphs/contributors" target="_blank">core team</a> of volunteers. <br> The contents of this website are © 2024 under the terms of the <a href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE" target="_blank">MIT License</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/team/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/TuringLang">
+      <i class="bi bi-twitter" role="img" aria-label="Turing Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/TuringLang/Turing.jl">
+      <i class="bi bi-github" role="img" aria-label="Turing GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
