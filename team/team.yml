@@ -181,6 +181,13 @@
         - github: https://github.com/jaimerzp
         - linkedin: https://www.linkedin.com/in/jaime-ruiz-zapatero-524ab0130/
         - mail: jaime.ruiz-zapatero@physics.ox.ac.uk
+    
+    - name: Xianda Sun
+      image:
+      university: University of Cambridge
+      links:
+        - github: https://github.com/sunxd3
+        - mail: xs307@cam.ac.uk
 
     - name: Kyurae Kim
       image: kyurae-kim.jpeg
@@ -233,16 +240,6 @@
 - title:
   subtitle: GSoC 2022
   members:
-    - name: Xianda Sun
-      image:
-      university: University of Cambridge
-      gsoc_project: Let Turing Handle The BUGS
-      gsoc_project_link: https://summerofcode.withgoogle.com/archive/2022/projects/s2dcBFqV
-      gsoc_report: https://gist.github.com/sunxd3/53cb2719f85146490ef7e54fee20195d
-      links:
-        - github: https://github.com/sunxd3
-        - mail: xs307@cam.ac.uk
-
     - name: Matthew Baggins
       image: matthew-baggins.jpeg
       university: University of Cambridge
