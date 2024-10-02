@@ -183,7 +183,7 @@
         - mail: jaime.ruiz-zapatero@physics.ox.ac.uk
     
     - name: Xianda Sun
-      image:
+      image: xianda_sun.jpeg
       university: University of Cambridge
       links:
         - github: https://github.com/sunxd3
