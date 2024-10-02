@@ -241,7 +241,7 @@
   subtitle: GSoC 2022
   members:
     - name: Xianda Sun
-      image:
+      image: xianda_sun.jpeg
       university: University of Cambridge
       gsoc_project: Let Turing Handle The BUGS
       gsoc_project_link: https://summerofcode.withgoogle.com/archive/2022/projects/s2dcBFqV
