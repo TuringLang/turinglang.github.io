@@ -181,6 +181,13 @@
         - github: https://github.com/jaimerzp
         - linkedin: https://www.linkedin.com/in/jaime-ruiz-zapatero-524ab0130/
         - mail: jaime.ruiz-zapatero@physics.ox.ac.uk
+    
+    - name: Xianda Sun
+      image: xianda_sun.jpeg
+      university: University of Cambridge
+      links:
+        - github: https://github.com/sunxd3
+        - mail: xs307@cam.ac.uk
 
     - name: Kyurae Kim
       image: kyurae-kim.jpeg
