@@ -1,0 +1,17 @@
+.card {
+    border-radius: $border-radius-sm;
+    padding: 1rem;
+    min-height: 120px;
+    min-width: 200px;
+    max-width: 300px;
+
+    color: $color-fg !important;
+    background-color: $color-mute-bg !important;
+    border: solid $color-mute-bg 0px !important;
+
+    .card-title {
+        color: $color-fg !important;
+        font-size: x-large;
+        font-weight: 700;
+    }
+}
