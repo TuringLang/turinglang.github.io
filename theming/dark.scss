@@ -1,0 +1,15 @@
+/*-- scss:defaults --*/
+// Cosmo 5.3.3
+// Bootswatch
+
+$theme: "cosmo" !default;
+@import "variables/colorsdark";
+@import "variables/borders";
+
+/*-- scss:rules --*/
+
+@import "rules/cards";
+@import "rules/buttons";
+@import "rules/navbar";
+
+//

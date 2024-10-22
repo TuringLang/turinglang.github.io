@@ -1,0 +1,36 @@
+$white:    #ffffff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #373a3c !default;
+$gray-900: #212529 !default;
+$black:    #000000 !default;
+
+$dark-green: #073c44;
+$thistle: #E7CEED;
+$light-orange: darken(#FEEEEB, 5%); // the actual KI color is a little light for many potential use cases
+$light-blue: darken(#EDF4F4, 5%);
+$logo-plum: #870052;
+$medium-grey: #CCD1D5;
+
+$color-primary: $thistle;
+$color-secondary: $dark-green;
+$color-highlight: lighten($dark-green, 10%);
+
+$color-mute-bg: $gray-800;
+
+$body-color: white;
+$body-bg: #201F24;
+$light-bg: #201F24;
+$light-bg-offset: $color-secondary;
+$color-fg: white;
+
+$quarto-category-background-color: lighten($light-bg, 2%);
+$quarto-category-border-color: lighten($light-bg, 30%);
+$quarto-category-hover-background-color: darken($light-bg, 5%);
+$quarto-category-hover-border-color: lighten($light-bg, 50%);
+$quarto-category-highlight: $color-fg;

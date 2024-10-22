@@ -1,0 +1,24 @@
+.button {
+    padding: 0.5rem 1rem;
+    //margin: 0.25rem;
+    border-radius: 25px;
+    border: solid $text-muted 1px;
+    color: $color-fg;
+    background-color: $body-bg;
+
+    &:hover {
+        background-color: $color-mute-bg !important;
+        border: solid $text-muted 1px;
+    }
+    
+    &--fill {
+        @extend .button;
+        background-color: $color-secondary;
+        border: solid $color-secondary 1px;
+
+        &:hover {
+            background-color: lighten($color-secondary, 10%) !important;
+            border-color: lighten($color-secondary, 10%) !important;
+        }
+    }
+}
