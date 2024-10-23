@@ -17,8 +17,8 @@
         border: solid $color-secondary 1px;
 
         &:hover {
-            background-color: lighten($color-secondary, 10%) !important;
-            border-color: lighten($color-secondary, 10%) !important;
+            background-color: $color-highlight !important;
+            border-color: $color-highlight !important;
         }
     }
 }

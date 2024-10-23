@@ -1,4 +1,8 @@
 .navbar {
     background-color: $body-bg;
     color: $text-muted;
+
+    a:hover {
+        text-decoration: none;
+    }
 }
