@@ -8,8 +8,10 @@ $theme: "cosmo" !default;
 
 /*-- scss:rules --*/
 
+@import "rules/layouts";
 @import "rules/cards";
 @import "rules/buttons";
 @import "rules/navbar";
+@import "rules/sourceCode";
 
 //
