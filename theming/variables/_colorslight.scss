@@ -11,15 +11,13 @@ $gray-900: #212529 !default;
 $black:    #000000 !default;
 
 $dark-green: #073c44;
-$thistle: #E7CEED;
-$light-orange: darken(#FEEEEB, 5%); // the actual KI color is a little light for many potential use cases
 $light-blue: #EDF4F4;
-$logo-plum: #870052;
 $medium-grey: #CCD1D5;
 $color-fg: black;
 
 $color-primary: $dark-green;
 $color-secondary: darken($light-blue, 20%);
+$color-highlight: lighten($color-secondary, 10%);
 
 $color-mute-bg: $gray-200;
 
@@ -32,3 +30,5 @@ $quarto-category-highlight: $color-fg;
 
 $light-bg: white;
 $light-bg-offset: $color-secondary;
+
+$link-color: lighten($dark-green, 15%);

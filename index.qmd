@@ -8,33 +8,96 @@ description: |
   Turing.jl is a probabilistic programming language and Bayesian modelling framework for the Julia programming language.
 ---
 
-<div class="d-flex flex-column align-items-center gap-0" style="padding:7rem 0;">
-<image src="assets/images/turing-logo.svg" width="150px" alt="Three normal probability distributions"> 
-<span style="font-size:4rem;font-weight:700;">Turing.jl</span>
-<span style="font-size:2rem;padding-bottom:1.25rem;">Bayesian inference with probabilistic programming</span>
-<div class="d-flex flex-row gap-2">
-[Get Started](https://turinglang.org/docs/tutorials/docs-00-getting-started/){.button--fill .btn}
+```{=html}
+<div class="content-panel">
+  <div class="d-flex flex-column align-items-center gap-0" style="padding:6rem 0;">
+    <image src="assets/images/turing-logo.svg" width="150px" alt="Three normal probability distributions">
+    <span style="font-size:4rem;font-weight:700;">
+      Turing.jl
+    </span>
+    <span class="display-6 d-block text-center pb-4 display-md-5 display-lg-4">
+      Bayesian inference with probabilistic programming
+    </span>
+    <div class="d-flex flex-row flex-wrap justify-content-center gap-2">
+      <a href="https://turinglang.org/docs/tutorials/docs-00-getting-started/" class="button--fill btn">
+        Tutorials
+      </a>
+      <a href="/library" class="button btn">
+        Ecosystem
+      </a>
+      <a href="https://github.com/TuringLang" class="button btn">
+        View on GitHub
+      </a>
+    </div>
+  </div>
+  <div class="d-flex flex-row flex-wrap justify-content-center gap-3" style="padding-bottom:6rem;">
+    <div class="card">
+      <div class="card-title">
+        Intuitive
+      </div>
+      Turing models are easy to write and communicate — syntax is close to mathematical notations. 
+    </div>
+    <div class="card">
+      <div class="card-title">
+        General-purpose
+      </div>
+      Turing supports models with discrete parameters and stochastic control flow. 
+    </div>
+    <div class="card">
+      <div class="card-title">
+        Modular & composable
+      </div>
+      Turing is modular, written entirely in Julia, and is interoperable with the powerful Julia ecosystem.
+    </div>
+  </div>
+</div>
+```
+<div class="content-panel">
+<div class="d-flex flex-row flex-wrap justify-content-center gap-3">
+<div style="min-width:420px; max-width:420px;text-align:right;padding:0.5rem;">
+  <div style="font-size:x-large;font-weight:700;padding-bottom:0.5rem;">
+  Hello, World in Turing
+  </div>
+  Some text about how easy it is to [get going](https://turinglang.org/docs/tutorials/00-introduction/).
+</div>
+<div style="min-width:500px;">
+```julia
+@model function coinflip(; N::Int)
+    # Prior belief about the probability of heads
+    p ~ Beta(1, 1)
 
-<!-- The empty line above makes quarto accept the div class -->
-[API reference](/library/){.button .btn}
+    # Heads or tails of a coin are drawn from `N`
+    # Bernoulli distributions with success rate `p`
+    y ~ filldist(Bernoulli(p), N)
+
+    return y
+end;
+```
 </div>
 </div>
-<div class="d-flex flex-row flex-wrap justify-content-center gap-3 pb-5">
-  <div class="card">
-  <div class="card-title">Intuitive</div>
-  Turing models are easy to write and communicate — syntax is close to mathematical notations. 
-  </div>
-
-  <div class="card">
-  <div class="card-title">General-purpose</div>
-  Turing supports models with discrete parameters and stochastic control flow. 
-  </div>
-
-  <div class="card">
-  <div class="card-title">Modular & composable</div>
-  Turing is modular, written entirely in Julia, and is interoperable with the powerful Julia ecosystem.
-  </div>
+<div class="d-flex flex-row flex-wrap justify-content-center gap-3">
+<div style="min-width:500px;">
+```julia
+@model function putting_model(d, n; jitter=1e-4)
+    v ~ Gamma(2, 1)
+    l ~ Gamma(4, 1)
+    f = GP(v * with_lengthscale(SEKernel(), l))
+    f_latent ~ f(d, jitter)
+    binomials = Binomial.(n, logistic.(f_latent))
+    y ~ product_distribution(binomials)
+    return (fx=f(d, jitter), f_latent=f_latent, y=y)
+end
+```
 </div>
+<div style="min-width:420px; max-width:420px;padding:0.5rem;">
+  <div style="font-size:x-large;font-weight:700;padding-bottom:0.5rem;">
+  Goodbye, World in Turing
+  </div>
+  Some text about how easy it is to interface with external packages like AbstractGPs. Learn more about modelling [Gaussian Processes](https://turinglang.org/docs/tutorials/15-gaussian-processes/) with Turing.jl.
+</div>
+</div>
+</div>
+
 
 <!--
 ::: {.hero-banner}

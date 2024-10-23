@@ -17,8 +17,6 @@ website:
   navbar:
     logo: "assets/images/turing-logo.svg"
     logo-href: https://turinglang.org/
-    #background: "#073c44"
-    #foreground: "#ffffff"
     left:
       - text: Get Started
         href: https://turinglang.org/docs/getting-started/
@@ -63,6 +61,7 @@ format:
     theme:
       light: [cosmo, theming/light.scss]
       dark: [cosmo, theming/dark.scss]
+    highlight-style: github
     toc: true
     smooth-scroll: true
     code-overflow: wrap
