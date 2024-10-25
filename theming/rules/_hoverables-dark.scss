@@ -1,0 +1,25 @@
+$hover-border: lighten($color-secondary, 5%);
+
+.button {
+    @include button($hover-border)
+}
+
+.card {
+    @include card($hover-border)
+}
+
+.example-code {
+    flex: 0 1 45%;
+    
+    @media screen and (max-width: 992px) {
+        flex: 0 1 100%;
+    }
+}
+
+.example-text {
+    flex: 0 1 53%;
+    
+    @media screen and (max-width: 992px) {
+        flex: 0 1 100%;
+    }
+}

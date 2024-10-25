@@ -3,15 +3,19 @@
 // Bootswatch
 
 $theme: "cosmo" !default;
+@import "variables/greys";
 @import "variables/colorsdark";
 @import "variables/borders";
+@import "variables/spacers";
 
 /*-- scss:rules --*/
 
-@import "rules/layouts";
-@import "rules/cards";
-@import "rules/buttons";
-@import "rules/navbar";
-@import "rules/sourceCode";
+@import "rules/mixins";
 
-//
+@import "rules/layouts";
+@import "rules/hoverables-dark";
+@import "rules/panels";
+@import "rules/navbar";
+@import "rules/codeblocks";
+
+@import "old/old-styles";
