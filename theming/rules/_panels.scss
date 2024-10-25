@@ -1,15 +1,15 @@
-.card {
+.panel {
     border-radius: $border-radius-sm;
     padding: 1rem;
-    min-height: 120px;
-    min-width: 200px;
-    max-width: 300px;
+    min-height: 150px;
+    min-width: 300px;
+    max-width: 31%;
 
     color: $color-fg !important;
     background-color: $color-mute-bg !important;
     border: solid $color-mute-bg 0px !important;
 
-    .card-title {
+    .panel-title {
         color: $color-fg !important;
         margin-bottom: 0.5rem !important;
         font-size: x-large;
@@ -17,7 +17,7 @@
     }
 
     &--nopad {
-        @extend .card;
+        @extend .panel;
         padding: 0rem;
     }
 }
