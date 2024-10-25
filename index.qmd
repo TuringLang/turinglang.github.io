@@ -30,7 +30,7 @@ description: |
   <span class="display-6 d-block text-center pb-4 display-md-5 display-lg-4">
     Bayesian inference with probabilistic programming
   </span>
-  <div class="d-flex flex-row flex-wrap justify-content-center gap-2">
+  <div class="d-flex flex-row flex-wrap panel-wrapper gap-2">
     <a href="https://turinglang.org/docs/tutorials/docs-00-getting-started/" class="button--fill btn">
       Tutorials
     </a>
@@ -42,7 +42,7 @@ description: |
     </a>
   </div>
 </div>
-<div class="d-flex flex-row flex-wrap justify-content-center gap-4 section-end-space">
+<div class="d-flex flex-row flex-wrap panel-wrapper gap-4 section-end-space">
   <div class="panel">
     <div class="panel-title">
       Intuitive
@@ -64,7 +64,7 @@ description: |
 </div>
 ```
 
-<div class="d-flex flex-row flex-wrap justify-content-center gap-3 pb-2">
+<div class="d-flex flex-row flex-wrap panel-wrapper gap-3 pb-2">
 <div class="example-text" style="text-align:right;padding:0.5rem;">
   <div class="fs-4 fw-bold pb-1">
   Hello, World in Turing
@@ -86,7 +86,7 @@ end;
 ```
 </div>
 </div>
-<div class="d-flex flex-row-reverse flex-wrap justify-content-center gap-3 pt-2 section-end-space">
+<div class="d-flex flex-row-reverse flex-wrap panel-wrapper gap-3 pt-2 section-end-space">
 <div class="example-text" style="padding:0.5rem;">
   <div class="fs-4 fw-bold pb-1">
   Goodbye, World in Turing

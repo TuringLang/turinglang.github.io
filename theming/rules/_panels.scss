@@ -21,3 +21,11 @@
         padding: 0rem;
     }
 }
+
+.panel-wrapper {
+    justify-content: space-between;
+
+    @media screen and (max-width: 992px) {
+        justify-content: center;
+    }
+}
