@@ -10,8 +10,13 @@
 <!-- Team Members Loop-->
 <% for (const member of item.members) { %>
 
+<% 
+  // Generate member ID using name
+  const memberId = member.name.replace(/\(.*?\)/g, '').trim().toLowerCase().replace(/\s+/g, '-');
+%>
+
 <!-- Team Member CSS Class served by Quarto -->
-::: {.team-member}
+::: {#<%- memberId %> .team-member}
 
 <!-- Team Member Image -->
 <% if (member.image) { %>
