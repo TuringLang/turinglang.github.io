@@ -118,3 +118,59 @@ end
 :::
 
 [See all news &rarr;](news/)
+
+```{=html}
+<div class="section-start-space pb-3 fs-2 fw-bold">
+  Learn more
+</div>
+<div class="list grid quarto-listing-cols-3">
+  <a class="pseudolisting" href="https://discourse.julialang.org/c/domain/probprog/48">
+    <div class="card-title h5">
+      Discourse
+    </div>
+    <div class="card-text quarto-grid-item">
+      Get support from and discuss with other users.
+    </div>
+  </a>
+  <a class="pseudolisting" href="https://turinglang.org/docs/tutorials/docs-00-getting-started/">
+    <div class="card-title h5">
+      Documentation
+    </div>
+    <div class="card-text quarto-grid-item">
+      Familiarize yourself with the Turing.jl API.
+    </div>
+  </a>
+  <a class="pseudolisting" href="https://turinglang.org/docs/tutorials/00-introduction/">
+    <div class="card-title h5">
+      Official tutorials
+    </div>
+    <div class="card-text quarto-grid-item">
+      Learn to tackle specific problems with Turing.jl.
+    </div>
+  </a>
+  <a class="pseudolisting" href="resources/content/inofficial_tutorials.qmd">
+    <div class="card-title h5">
+      Inofficial tutorials
+    </div>
+    <div class="card-text quarto-grid-item">
+      A list of inofficial tutorials using Turing.jl.
+    </div>
+  </a>
+  <a class="pseudolisting" href="resources/content/talks.qmd">
+    <div class="card-title h5">
+      Talks
+    </div>
+    <div class="card-text quarto-grid-item">
+      A list of talks on the Turing.jl ecosystem.
+    </div>
+  </a>
+  <a class="pseudolisting" href="">
+    <div class="card-title h5">
+      Workshop
+    </div>
+    <div class="card-text quarto-grid-item">
+      Placeholder for Turing-Workshop repo link.
+    </div>
+  </a>
+</div>
+```

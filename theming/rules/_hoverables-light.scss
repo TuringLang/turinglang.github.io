@@ -23,3 +23,9 @@ $hover-border: darken($color-secondary, 15%);
         flex: 0 1 100%;
     }
 }
+
+.pseudolisting {
+    @extend .card;
+    @extend .quarto-grid-item;
+    text-decoration: none;
+}

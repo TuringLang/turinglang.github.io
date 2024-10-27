@@ -1,8 +1,6 @@
 @mixin raw-card {
     border-radius: $border-radius-sm;
     padding: 1rem;
-    min-height: 120px !important;
-    //min-width: 300px !important;
 
     --bs-card-spacer-x: 0rem !important;
     --bs-card-spacer-y: 0rem !important;
@@ -20,6 +18,10 @@
     .card-title {
         color: $color-fg !important;
         font-weight: 700;
+    }
+
+    .card-text {
+        color: $text-muted !important;
     }
 
     &:hover {
