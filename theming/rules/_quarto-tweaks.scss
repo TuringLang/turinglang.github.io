@@ -25,3 +25,12 @@
 .input-group-text {
     background-color: $color-mute-bg !important;
 }
+
+a {
+    text-decoration: none;
+    &:hover {
+        color: $link-color;
+        text-decoration: underline;
+    }
+    
+}

@@ -3,15 +3,15 @@
     color: $text-muted;
 
     a:hover {
-        text-decoration: none;
+        text-decoration: none !important;
     }
 
     .nav-link:hover {
-        color: $links-hover !important;
+        color: $link-color !important;
     }
 
     .navbar-brand:hover {
-        color: $links-hover !important;
+        color: $link-color !important;
         transition: color 0.15s ease-in-out !important;
     }
 }
