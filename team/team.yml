@@ -217,8 +217,13 @@
         - linkedin: https://www.linkedin.com/in/shravangoswami/
         - mail: shravanngoswamii@gmail.com
 
-       
-        
+    - name: Penelope Yong
+      image: penelope-yong.jpg
+      university: The Alan Turing Institute
+      links:
+        - github: https://github.com/penelopeysm
+        - mail: pyong@turing.ac.uk
+ 
 # GSOC Contributors:
 
 - title: Google Summer of Code Students

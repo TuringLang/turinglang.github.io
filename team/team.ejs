@@ -1,3 +1,31 @@
+<% items.forEach(item => {
+  if (item.title === "Team Members") {
+    // Update this to the number of initial members to keep unsorted
+    const m = 2;
+    
+    // Separate the first m members
+    const firstMembers = item.members.slice(0, m);
+    const remainingMembers = item.members.slice(m);
+
+    // Sort the remaining members by last name
+    remainingMembers.sort((a, b) => {
+      const lastNameA = a.name.split(' ').pop().toLowerCase();
+      const lastNameB = b.name.split(' ').pop().toLowerCase();
+      return lastNameA.localeCompare(lastNameB);
+    });
+
+    // Recombine the arrays: unsorted first m members + sorted remaining members
+    item.members = firstMembers.concat(remainingMembers);
+  } else {
+    // Sort all members by last name if title is not "Team Members"
+    item.members.sort((a, b) => {
+      const lastNameA = a.name.split(' ').pop().toLowerCase();
+      const lastNameB = b.name.split(' ').pop().toLowerCase();
+      return lastNameA.localeCompare(lastNameB);
+    });
+  }
+}); %>
+
 <!-- ::: {.panel-tabset} -->
 <% for (const item of items) { %>
 
