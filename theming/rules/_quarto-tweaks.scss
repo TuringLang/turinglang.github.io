@@ -1,0 +1,27 @@
+.sourceCode {
+    background-color: $color-mute-bg !important;
+    border-color: $color-mute-bg !important;
+    border-radius: $border-radius-sm !important;
+
+    pre {
+        padding: 0.5rem !important;
+    }
+}
+
+.quarto-title-banner {
+    background-color: $body-bg !important;
+
+    .title {
+        color: $color-fg !important;
+    }
+}
+
+.listing-description {
+    .no-external {
+        color: $text-muted !important;
+    }
+}
+
+.input-group-text {
+    background-color: $color-mute-bg !important;
+}

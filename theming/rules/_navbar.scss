@@ -5,4 +5,13 @@
     a:hover {
         text-decoration: none;
     }
+
+    .nav-link:hover {
+        color: $links-hover !important;
+    }
+
+    .navbar-brand:hover {
+        color: $links-hover !important;
+        transition: color 0.15s ease-in-out !important;
+    }
 }

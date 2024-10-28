@@ -1,11 +1,13 @@
-$hover-border: lighten($color-secondary, 5%);
-
 .button {
-    @include button($hover-border)
+    @include button($border-hover);
 }
 
 .card {
-    @include card($hover-border)
+    @include card($border-hover);
+
+    .card-text {
+        color: $text-muted;
+    }
 }
 
 .example-code {

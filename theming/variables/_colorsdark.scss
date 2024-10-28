@@ -1,6 +1,6 @@
 $dark-green: #073c44;
 $light-blue: darken(#EDF4F4, 5%);
-$medium-grey: #CCD1D5;
+$medium-grey: #bcbcbc;
 
 $color-primary: $light-blue; // not sure about this one
 $color-secondary: $dark-green;
@@ -10,8 +10,16 @@ $color-mute-bg: $gray-800;
 
 $body-color: white;
 $body-bg: #201F24;
-$light-bg: #201F24;
 $light-bg-offset: $color-secondary;
 $color-fg: white;
 
-$link-color: lighten($dark-green, 15%);
+$text-muted: $medium-grey;
+
+$color-active: lighten($color-secondary, 5%);
+$link-color: lighten($color-active, 30%);
+$links-hover: lighten($color-active, 30%);
+$border-hover: $color-active;
+
+p {
+    color: $text-muted !important;
+}

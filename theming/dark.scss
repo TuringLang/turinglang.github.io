@@ -14,10 +14,8 @@ $theme: "cosmo" !default;
 
 @import "rules/layouts";
 @import "rules/hoverables-dark";
-@import "rules/panels";
 @import "rules/navbar";
-@import "rules/codeblocks";
+@import "rules/quarto-tweaks";
 
 @import "old/old-styles";
 
-//
