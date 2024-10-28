@@ -6,12 +6,18 @@
         text-decoration: none !important;
     }
 
-    .nav-link:hover {
-        color: $link-color !important;
+    .nav-link {
+        color: $text-muted;
+        &:hover {
+            color: $link-color !important;
+        }
     }
 
-    .navbar-brand:hover {
-        color: $link-color !important;
-        transition: color 0.15s ease-in-out !important;
+    .navbar-brand {
+        color: $text-muted;
+        &:hover {
+            color: $link-color !important;
+            transition: color 0.15s ease-in-out !important;
+        }
     }
 }
