@@ -22,14 +22,25 @@ description: |
 ---
 
 ```{=html}
-<div class="d-flex flex-column align-items-center gap-0" style="padding:6rem 0;">
-  <image src="assets/images/turing-logo.svg" width="150px" alt="Three normal probability distributions">
-  <span style="font-size:4rem;font-weight:700;">
-    Turing.jl
-  </span>
-  <span class="display-6 d-block text-center pb-4 display-md-5 display-lg-4">
+<div class="line-graph">
+  <div class="upperContent">
+    <h1>Turing.jl</h1>
+  </div>
+  <div class="Animation">
+     <svg width="2300" height="498" viewBox="0 0 2300 498" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="line line1"
+           d="M0 487C428.737 486.5 424.61 478.535 493.575 389C523.23 350.5 595.105 213 654.414 213C713.724 213 748.907 290 790.625 344.5C832.343 399 846.416 425.5 908.239 461.5C979.498 502.995 1144.47 487 2300 487"/>
+        <path class="line line2"
+           d="M0 485.5C212.654 485.5 378.977 486 565.45 486C751.923 486 763.644 514.469 852.448 292.5C881.709 219.36 911.829 96 950.052 96C988.276 96 1016.27 197.222 1050.19 287.031C1116.15 461.682 1136.64 484.016 1322.06 484.016C1416.28 484.016 2076.04 486.5 2300 486.5"/>
+        <path class="line line3"
+           d="M0 486.499C101.007 486.499 207.547 486.499 308.554 486.499C409.56 486.499 483.491 486.499 577.149 486.499C668.492 486.499 699.329 489.286 731.197 460.973C773.165 423.687 790.94 330.837 809.112 262.111C827.285 193.386 858.089 8 890.182 8C922.275 8 944 162.661 971.155 262.111C988.985 327.407 1006.43 426.95 1058.05 469.982C1081.26 489.327 1164.7 486.499 1248.64 486.499C1356.96 486.499 1406.25 486.499 1516.74 486.499C1627.23 486.499 2191.68 487 2300 487"/>
+     </svg>
+  </div>
+</div>
+<span class="display-6 d-block text-center py-5 display-md-5 display-lg-4">
     Bayesian inference with probabilistic programming
-  </span>
+</span>
+<div class="d-flex flex-column align-items-center gap-0 pb-5">
   <div class="d-flex flex-row flex-wrap panel-wrapper gap-2">
     <a href="https://turinglang.org/docs/tutorials/docs-00-getting-started/" class="button--fill btn">
       Tutorials
@@ -42,6 +53,9 @@ description: |
     </a>
   </div>
 </div>
+```
+
+```{=html}
 <div class="d-flex flex-row flex-wrap panel-wrapper gap-4 section-end-space">
   <div class="panel">
     <div class="panel-title pb-1">
