@@ -1,0 +1,89 @@
+.line-graph {
+    /* height: 85vh; */
+    width: 100%;
+    padding-top: 5%;
+    position: relative;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.line {
+    fill: none;
+    stroke-width: 7;
+    stroke-dasharray: 3900;
+    stroke-dashoffset: 3900;
+    animation: draw 6s forwards ease-in-out;
+    stroke-opacity: 1;
+}
+
+.line1 {
+    stroke: #b352cc;
+    animation-delay: 0s;
+}
+
+.line2 {
+    stroke: #cc3333;
+    animation-delay: 0.5s;
+}
+
+.line3 {
+    stroke: #218921;
+    animation-delay: 1s;
+}
+
+.upperContent {
+    width: 88%;
+    text-align: end;
+    padding-top: 7%;
+    padding-right: 10%;
+    position: absolute;
+    z-index: 5;
+    opacity: 0;
+    animation: fadeInText 2s forwards ease-in-out;
+    animation-delay: 3s;
+    
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        padding-top: 0%;
+        padding-right: 0%;
+        text-align: center;
+    }
+}
+
+.upperContent > h1 {
+    font-size: 5rem;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    
+    @media screen and (max-width: 992px) {
+        font-size: 3.5rem;
+    }
+}
+
+.upperContent > p {
+    font-size: 25px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    margin-top: 5%;
+}
+
+.upperContent > h1,
+
+.upperContent > p {
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes fadeInText {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
