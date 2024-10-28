@@ -1,15 +1,20 @@
 $dark-green: #073c44;
+$red: #d73a4a;
 $light-blue: #EDF4F4;
 $medium-grey: #CCD1D5;
 $color-fg: black;
 
 $color-primary: $dark-green;
 $color-secondary: darken($light-blue, 20%);
+$color-tertiary: $red;
 $color-highlight: lighten($color-secondary, 10%);
 
 $color-mute-bg: $gray-200;
 
-$light-bg: white;
+$color-active: lighten($color-secondary, 5%);
+$link-color: $color-tertiary;
+$border-hover: darken($color-secondary, 5%);
+
+$body-bg: white;
 $light-bg-offset: $color-secondary;
 
-$link-color: lighten($dark-green, 15%);

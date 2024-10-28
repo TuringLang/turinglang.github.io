@@ -9,3 +9,34 @@
 .section-start-space {
     padding-top: $large-y-space;
 }
+
+.panel {
+    border-radius: $border-radius-sm;
+    padding: 1rem 1.25rem;
+    min-height: 150px;
+    min-width: 300px;
+    max-width: 31%;
+
+    color: $text-muted !important;
+    background-color: $color-mute-bg !important;
+    border: solid $color-mute-bg 0px !important;
+
+    .panel-title {
+        color: $color-fg !important;
+        font-size: x-large;
+        font-weight: 700;
+    }
+
+    &--nopad {
+        @extend .panel;
+        padding: 0rem;
+    }
+}
+
+.panel-wrapper {
+    justify-content: space-between;
+
+    @media screen and (max-width: 992px) {
+        justify-content: center;
+    }
+}
