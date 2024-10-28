@@ -26,4 +26,7 @@
     @extend .card;
     @extend .quarto-grid-item;
     text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
 }
