@@ -9,10 +9,10 @@
 
 @import "rules/mixins";
 
-@import "rules/layouts";
-@import "rules/hoverables-light";
+@import "rules/layouts"; // custom spacing and layout elements
+@import "rules/hoverables-light"; // hover styling of buttons, listings
 @import "rules/navbar";
-@import "rules/quarto-tweaks";
-@import "rules/svg";
+@import "rules/quarto-tweaks"; // style modifications of (mostly) quarto classes
+@import "rules/svg"; // svg on landing page
 
-@import "old/old-styles";
+@import "old/old-styles"; // copy of old css style sheet
