@@ -68,6 +68,17 @@ format:
     smooth-scroll: true
     code-overflow: wrap
     output-block-background: true
+    include-in-header:
+      - text: |
+          <script type="application/ld+json">
+          {
+            "@context" : "https://schema.org",
+            "@type" : "WebSite",
+            "name" : "Turing.jl",
+            "alternateName": "The Turing Language",
+            "url" : "https://turinglang.org/",
+          }
+          </script>
 
 # Global Variables to use in any qmd files using:
 # {{< meta site-url >}}
