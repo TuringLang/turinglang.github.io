@@ -45,11 +45,14 @@ description: |
     <a href="https://turinglang.org/docs/tutorials/docs-00-getting-started/" class="button--fill btn">
       Tutorials
     </a>
-    <a href="/library" class="button btn">
-      Ecosystem
+    <a href="https://julialang.slack.com/archives/CCYDC34A0" class="button btn">
+      Slack
+    </a>
+    <a href="https://discourse.julialang.org/c/domain/probprog/48" class="button btn">
+      Discourse
     </a>
     <a href="https://github.com/TuringLang" class="button btn">
-      View on GitHub
+      GitHub
     </a>
   </div>
 </div>
@@ -138,12 +141,12 @@ end
   Learn more
 </h3>
 <div class="list grid quarto-listing-cols-3">
-  <a class="pseudolisting" href="https://discourse.julialang.org/c/domain/probprog/48">
+  <a class="pseudolisting" href="/library">
     <div class="card-title h5">
-      Discourse
+      Ecosystem
     </div>
     <p class="quarto-grid-item">
-      Get support from and discuss with other users.
+      Learn about all the packages that are part of The Turing Organization.
     </p>
   </a>
   <a class="pseudolisting" href="https://turinglang.org/docs/tutorials/docs-00-getting-started/">
