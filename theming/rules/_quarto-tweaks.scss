@@ -32,5 +32,9 @@ a {
         color: $link-color;
         text-decoration: underline;
     }
-    
+}
+
+code {
+    background-color: $color-mute-bg !important;
+    color: $color-fg !important;
 }
