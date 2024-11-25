@@ -43,13 +43,13 @@ svg {
 .upperContent {
     width: 88%;
     text-align: end;
-    padding-top: 7%;
-    padding-right: 10%;
+    padding-top: 5.5%;
+    padding-right: 45%;
     position: absolute;
     z-index: 5;
     opacity: 0;
-    animation: fadeInText 2s forwards ease-in-out;
-    animation-delay: 3s;
+    animation: fadeInText 1s forwards ease-in-out;
+    animation-delay: 0.5s;
     
     @media screen and (max-width: 768px) {
         width: 100%;
