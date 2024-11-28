@@ -165,29 +165,60 @@ end
       Learn to tackle specific problems with Turing.jl.
     </p>
   </a>
-  <a class="pseudolisting" href="resources/content/inofficial_tutorials.qmd">
-    <div class="card-title h5">
-      Inofficial tutorials
-    </div>
-    <p class="quarto-grid-item">
-      A list of inofficial tutorials using Turing.jl.
-    </p>
-  </a>
-  <a class="pseudolisting" href="resources/content/talks.qmd">
-    <div class="card-title h5">
-      Talks
-    </div>
-    <p class="quarto-grid-item">
-      A list of talks on the Turing.jl ecosystem.
-    </p>
-  </a>
-  <a class="pseudolisting" href="">
-    <div class="card-title h5">
-      Workshop
-    </div>
-    <p class="quarto-grid-item">
-      Placeholder for Turing-Workshop repo link.
-    </p>
-  </a>
+</div>
+```
+
+::: {.section-start-space}
+
+### Algorithms
+
+Placeholder text introducing this section on algorithms.
+
+| Column 1 | Column 2 | Column 3 | Column 4 |
+|----------|----------|----------|----------|
+|  Entry A |  Entry D |  Entry G |  Entry J |
+|  Entry B |  Entry E |  Entry H |  Entry K |
+|  Entry C |  Entry F |  Entry I |  Entry L |
+
+: Supported MCMC and other learning algorithms {.striped .borderless}
+
+:::
+
+::: {.section-start-space}
+
+### Bayesian Workflow
+
+Placeholder text introducing the Bayesian Workflow diagram from the ACM special issue submission.
+
+```{=html}
+<div style="text-align:center;">
+<img src="https://i0.wp.com/www.honeybeesuite.com/wp-content/uploads/2019/09/Multiple-teeth-HBS.jpg?w=400&ssl=1" style="margin:0.5rem 0;border-radius:10pt">
+<p>An example of the Beeysian workflow.</p>
+</div>
+```
+
+:::
+
+```{=html}
+<div class="d-flex flex-row panel-wrapper gap-3 section-start-space">
+<div class="flex-grow-1">
+<h3>Talks</h3>
+  <p>Placeholder for intro text on list of talks which are available online</p>
+  <ul>
+    <li>Talk 1
+    <li>Talk 2
+    <li>Talk 3
+  </ul>
+</div>
+<div class="flex-grow-1">
+  <h3>Inofficial tutorials</h3>
+  <p>Placeholder for intro text on list of inofficial tutorials</p>
+  <ul>
+    <li><a href="https://github.com/StatisticalRethinkingJulia/SR2TuringPluto.jl">Statistical Rethinking</a>
+    <li><a href="storopoli.github.io/Turing-Workshop/">Jose Storopoli's Turing workshop</a>
+    <li><a href="https://storopoli.io/Bayesian-Julia/">Jose Storopoli's blog on Turing and Bayesian Statistics</a>
+    <li>Placeholder for more...
+  </ul>
+</div>
 </div>
 ```
