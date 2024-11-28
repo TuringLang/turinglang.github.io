@@ -24,7 +24,7 @@ description: |
 ```{=html}
 <div class="line-graph">
   <div class="upperContent">
-    <h1 style="font-size:6rem;">Turing.jl</h1>
+    <h1 class="responsive-heading">Turing.jl</h1>
   </div>
   <div class="Animation">
     <svg viewBox="0 0 2300 498" xmlns="http://www.w3.org/2000/svg">
