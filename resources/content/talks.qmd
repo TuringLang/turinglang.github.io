@@ -1,5 +1,0 @@
----
-title: Talks
----
-
-TODO: Add a list of inofficial talks.
