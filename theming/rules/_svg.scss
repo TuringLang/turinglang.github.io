@@ -40,7 +40,7 @@ svg {
     animation-delay: 1s;
 }
 
-.upperContent {
+.upper-content {
     width: 88%;
     text-align: end;
     padding-top: 7%;
@@ -59,7 +59,7 @@ svg {
     }
 }
 
-.upperContent > h1 {
+.upper-content > h1 {
     font-size: 5rem;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     
@@ -68,17 +68,10 @@ svg {
     }
 }
 
-.upperContent > p {
+.upper-content > p {
     font-size: 25px;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     margin-top: 5%;
-}
-
-.upperContent > h1,
-
-.upperContent > p {
-    margin: 0;
-    padding: 0;
 }
 
 @keyframes fadeInText {
