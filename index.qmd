@@ -1,5 +1,4 @@
 ---
-# pagetitle: "Turing"
 toc: false
 page-layout: full
 section-divs: false
@@ -23,10 +22,10 @@ description: |
 
 ```{=html}
 <div class="line-graph">
-  <div class="upperContent">
-    <h1 class="responsive-heading">Turing.jl</h1>
+  <div class="upper-content">
+    <div class="responsive-heading">Turing.jl</div>
   </div>
-  <div class="Animation">
+  <div>
     <svg viewBox="0 0 2300 498" xmlns="http://www.w3.org/2000/svg">
       <path class="line line1"
         d="M0 487 C1155.53 487 1320.502 502.995 1391.761 461.5C1453.584 425.5 1467.657 399 1509.375 344.5C1551.093 290 1586.276 213 1645.586 213C1704.895 213 1776.77 350.5 1806.425 389C1875.39 478.535 1871.263 486.5 2300 487"/>
@@ -37,6 +36,9 @@ description: |
     </svg>
   </div>
 </div>
+```
+
+```{=html}
 <span class="display-6 d-block text-center py-5 display-md-5 display-lg-4">
     Bayesian inference with probabilistic programming
 </span>
