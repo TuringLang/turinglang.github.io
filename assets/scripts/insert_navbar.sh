@@ -1,7 +1,8 @@
 #!/bin/bash
-# This script inserts a top navigation bar into Documenter.jl generated sites.
+# This script inserts a top navigation bar into Documenter.jl-generated sites.
 # The resulting output is similar to MultiDocumenter's navigation menu.
-# It checks all HTML files in the specified directory and its subdirectories.
+# It checks all HTML files in the specified directory and its subdirectories,
+# removes any existing navbar, then inserts the new navbar right after <body>.
 
 # Function to print usage
 print_usage() {
@@ -15,15 +16,17 @@ if [ "$#" -lt 2 ]; then
     exit 1
 fi
 
-# Directory containing HTML files (passed as the first argument to the script)
+# Directory containing HTML files
 HTML_DIR=$1
-# URL of the navigation bar HTML file (passed as the second argument to the script)
+# URL of the navigation bar HTML file
 NAVBAR_URL=$2
+# Shift off the first two arguments so we can parse the rest
+shift 2
+
 # Initialize exclude list
 EXCLUDE_LIST=""
 
 # Parse optional arguments
-shift 2
 while [[ $# -gt 0 ]]; do
     key="$1"
     case $key in
@@ -40,11 +43,11 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Download the navigation bar HTML content
-NAVBAR_HTML=$(curl -s $NAVBAR_URL)
+NAVBAR_HTML=$(curl -s "$NAVBAR_URL")
 
 # Check if the download was successful
 if [ -z "$NAVBAR_HTML" ]; then
-    echo "Failed to download navbar HTML"
+    echo "Failed to download navbar HTML from '$NAVBAR_URL'"
     exit 1
 fi
 
@@ -60,32 +63,32 @@ should_exclude() {
     return 1  # Should not exclude
 }
 
-# Process each HTML file in the directory and its subdirectories
-find "$HTML_DIR" -name "*.html" | while read file; do
+# Find and process each HTML file
+find "$HTML_DIR" -type f -name "*.html" | while read -r file; do
     # Check if the file should be excluded
-    if [ ! -z "$EXCLUDE_LIST" ] && should_exclude "$file"; then
+    if [ -n "$EXCLUDE_LIST" ] && should_exclude "$file"; then
         echo "Skipping excluded file: $file"
         continue
     fi
 
-    # Remove the existing navbar HTML section if present
+    # Remove existing navbar (if any) between <!-- NAVBAR START --> and <!-- NAVBAR END -->
     if grep -q "<!-- NAVBAR START -->" "$file"; then
         awk '/<!-- NAVBAR START -->/{flag=1;next}/<!-- NAVBAR END -->/{flag=0;next}!flag' "$file" > temp && mv temp "$file"
         echo "Removed existing navbar from $file"
     fi
 
-    # Read the contents of the HTML file
-    file_contents=$(cat "$file")
+    # Insert the new navbar right after the first <body> tag using awk
+    awk -v nav="$NAVBAR_HTML" '
+    /<body>/ {
+        print $0
+        print nav
+        next
+    }
+    { print }
+    ' "$file" > temp && mv temp "$file"
 
-    # Insert the navbar HTML after the <body> tag
-    updated_contents="${file_contents/<body>/<body>
-$NAVBAR_HTML
-}"
-
-    # Write the updated contents back to the file
-    echo "$updated_contents" > "$file"
-
-    # Remove trailing blank lines immediately after the navbar
+    # Remove excessive trailing blank lines after insertion
     awk 'BEGIN {RS=""; ORS="\n\n"} {gsub(/\n+$/, ""); print}' "$file" > temp_cleaned && mv temp_cleaned "$file"
+
     echo "Inserted new navbar into $file"
 done
