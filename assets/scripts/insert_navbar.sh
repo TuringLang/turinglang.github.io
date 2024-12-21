@@ -42,8 +42,12 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Download the navigation bar HTML content
-NAVBAR_HTML=$(curl -s "$NAVBAR_URL")
+# Determine if NAVBAR_SOURCE is a URL (starts with http or https) or a file path
+if [[ $NAVBAR_SOURCE == http* ]]; then
+    NAVBAR_HTML=$(curl -s "$NAVBAR_SOURCE")
+else
+    NAVBAR_HTML=$(cat "$NAVBAR_SOURCE")
+fi
 
 # Check if the download was successful
 if [ -z "$NAVBAR_HTML" ]; then
