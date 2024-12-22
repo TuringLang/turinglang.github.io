@@ -43,10 +43,10 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Determine if NAVBAR_SOURCE is a URL (starts with http or https) or a file path
-if [[ $NAVBAR_SOURCE == http* ]]; then
-    NAVBAR_HTML=$(curl -s "$NAVBAR_SOURCE")
+if [[ $NAVBAR_SOURCE_URL == http* ]]; then
+    NAVBAR_HTML=$(curl -s "$NAVBAR_SOURCE_URL")
 else
-    NAVBAR_HTML=$(cat "$NAVBAR_SOURCE")
+    NAVBAR_HTML=$(cat "$NAVBAR_SOURCE_URL")
 fi
 
 # Check if the download was successful
