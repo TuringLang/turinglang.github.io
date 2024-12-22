@@ -18,8 +18,8 @@ fi
 
 # Directory containing HTML files
 HTML_DIR=$1
-# URL of the navigation bar HTML file
-NAVBAR_URL=$2
+# Source URL of the navigation bar HTML file
+NAVBAR_SOURCE_URL=$2
 # Shift off the first two arguments so we can parse the rest
 shift 2
 
@@ -43,15 +43,15 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Determine if NAVBAR_SOURCE is a URL (starts with http or https) or a file path
-if [[ $NAVBAR_SOURCE == http* ]]; then
-    NAVBAR_HTML=$(curl -s "$NAVBAR_SOURCE")
+if [[ $NAVBAR_SOURCE_URL == http* ]]; then
+    NAVBAR_HTML=$(curl -s "$NAVBAR_SOURCE_URL")
 else
-    NAVBAR_HTML=$(cat "$NAVBAR_SOURCE")
+    NAVBAR_HTML=$(cat "$NAVBAR_SOURCE_URL")
 fi
 
 # Check if the download was successful
 if [ -z "$NAVBAR_HTML" ]; then
-    echo "Failed to download navbar HTML from '$NAVBAR_URL'"
+    echo "Failed to download navbar HTML from '$NAVBAR_SOURCE_URL'"
     exit 1
 fi
 
