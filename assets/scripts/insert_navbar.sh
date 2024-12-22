@@ -18,7 +18,7 @@ fi
 
 # Directory containing HTML files
 HTML_DIR=$1
-# Source of the navigation bar HTML file
+# Source URL of the navigation bar HTML file
 NAVBAR_SOURCE=$2
 # Shift off the first two arguments so we can parse the rest
 shift 2
