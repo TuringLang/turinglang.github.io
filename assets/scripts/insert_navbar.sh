@@ -18,8 +18,8 @@ fi
 
 # Directory containing HTML files
 HTML_DIR=$1
-# URL of the navigation bar HTML file
-NAVBAR_URL=$2
+# Source of the navigation bar HTML file
+NAVBAR_SOURCE=$2
 # Shift off the first two arguments so we can parse the rest
 shift 2
 
@@ -51,7 +51,7 @@ fi
 
 # Check if the download was successful
 if [ -z "$NAVBAR_HTML" ]; then
-    echo "Failed to download navbar HTML from '$NAVBAR_URL'"
+    echo "Failed to download navbar HTML from '$NAVBAR_SOURCE'"
     exit 1
 fi
 
