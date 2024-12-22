@@ -51,7 +51,7 @@ fi
 
 # Check if the download was successful
 if [ -z "$NAVBAR_HTML" ]; then
-    echo "Failed to download navbar HTML from '$NAVBAR_SOURCE'"
+    echo "Failed to download navbar HTML from '$NAVBAR_SOURCE_URL'"
     exit 1
 fi
 
