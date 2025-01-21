@@ -1,0 +1,148 @@
+- name: Turing
+  api: https://turinglang.org/Turing.jl/
+  github: https://github.com/TuringLang/Turing.jl
+  description: "The main entry point to the Turing ecosystem"
+  category: main
+
+- name: DynamicPPL
+  api: https://turinglang.org/DynamicPPL.jl/
+  github: https://github.com/TuringLang/DynamicPPL.jl
+  description: "Domain-specific language and backend for probabilistic programming; contains the core functionality of Turing.jl"
+  category: modelling
+- name: JuliaBUGS
+  api: https://turinglang.org/JuliaBUGS.jl/
+  github: https://github.com/TuringLang/JuliaBUGS.jl
+  description: "A graph-based probabilistic programming language"
+  category: modelling
+- name: TuringGLM
+  api: https://turinglang.org/TuringGLM.jl/
+  github: https://github.com/TuringLang/TuringGLM.jl
+  description: "Bayesian generalised linear models used for returning an instantiated Turing model using the formula syntax"
+  category: modelling
+- name: AbstractPPL
+  api: https://turinglang.org/AbstractPPL.jl/
+  github: https://github.com/TuringLang/AbstractPPL.jl
+  description: "An abstract interface for probabilistic programming languages"
+  category: modelling
+
+- name: AbstractMCMC
+  api: https://turinglang.org/AbstractMCMC.jl/
+  github: https://github.com/TuringLang/AbstractMCMC.jl
+  description: "Abstract types and interfaces for Markov chain Monte Carlo methods, featuring progress bars, parallel sampling, and user-defined callbacks"
+  category: mcmc
+- name: AdvancedHMC
+  api: https://turinglang.org/AdvancedHMC.jl/
+  github: https://github.com/TuringLang/AdvancedHMC.jl
+  description: "A robust, modular, and efficient implementation of advanced Hamiltonian Monte Carlo algorithms"
+  category: mcmc
+- name: AdvancedMH
+  api: https://turinglang.org/AdvancedMH.jl/
+  github: https://github.com/TuringLang/AdvancedMH.jl
+  description: "Random walk and adaptive Metropolis–Hastings algorithms"
+  category: mcmc
+- name: AdvancedPS
+  api: https://turinglang.org/AdvancedPS.jl/
+  github: https://github.com/TuringLang/AdvancedPS.jl
+  description: "Lightweight implementation of particle-based Monte Carlo algorithms"
+  category: mcmc
+- name: SliceSampling
+  api: https://turinglang.org/SliceSampling.jl/
+  github: https://github.com/TuringLang/SliceSampling.jl
+  description: "Univariate and multivariate slice sampling algorithms"
+  category: mcmc
+- name: EllipticalSliceSampling
+  api: https://turinglang.org/EllipticalSliceSampling.jl/
+  github: https://github.com/TuringLang/EllipticalSliceSampling.jl
+  description: "Elliptical slice sampling for inference in models with multivariate Gaussian priors"
+  category: mcmc
+- name: NestedSamplers
+  api: https://turinglang.org/NestedSamplers.jl/
+  github: https://github.com/TuringLang/NestedSamplers.jl
+  description: "Single- and multi-ellipsoidal nested sampling algorithms"
+  category: mcmc
+- name: ThermodynamicIntegration
+  api: https://theogf.github.io/ThermodynamicIntegration.jl/
+  github: https://github.com/theogf/ThermodynamicIntegration.jl
+  description: "Computing Bayesian evidence using thermodynamic integration"
+  category: mcmc
+
+- name: AdvancedVI
+  api: https://turinglang.org/AdvancedVI.jl/
+  github: https://github.com/TuringLang/AdvancedVI.jl
+  description: "Variational inference algorithms for Bayesian models"
+  category: vi
+
+- name: TuringCallbacks
+  api: https://turinglang.org/TuringCallbacks.jl/
+  github: https://github.com/TuringLang/TuringCallbacks.jl
+  description: "Convenient callbacks for sampling in Turing.jl"
+  category: utilities
+- name: TuringBenchmarking
+  api: https://turinglang.org/TuringBenchmarking.jl/
+  github: https://github.com/TuringLang/TuringBenchmarking.jl
+  description: "Tools to benchmark and check Turing models"
+  category: utilities
+
+- name: MCMCChains
+  api: https://turinglang.org/MCMCChains.jl/
+  github: https://github.com/TuringLang/MCMCChains.jl
+  description: "Implementation of the Chains type returned by Turing sampling, with functions for diagnostics and visualisations"
+  category: diagnostics
+- name: MCMCDiagnosticTools
+  api: https://turinglang.org/MCMCDiagnosticTools.jl/
+  github: https://github.com/TuringLang/MCMCDiagnosticTools.jl
+  description: "Extra functionality for diagnosing samples generated with MCMC methods"
+  category: diagnostics
+- name: ParetoSmooth
+  api: https://turinglang.org/ParetoSmooth.jl/
+  github: https://github.com/TuringLang/ParetoSmooth.jl
+  description: "Leave-one-out cross-validation for fitted Bayesian models using Pareto smoothed importance sampling"
+  category: diagnostics
+
+- name: Bijectors
+  api: https://turinglang.org/Bijectors.jl/
+  github: https://github.com/TuringLang/Bijectors.jl
+  description: "Transformations for distributions"
+  category: distributions
+- name: DistributionsAD
+  api: https://turinglang.org/DistributionsAD.jl/
+  github: https://github.com/TuringLang/DistributionsAD.jl
+  description: "Automatic differentiation for calculating the log probability densities of distributions"
+  category: distributions
+
+- name: turinglang.github.io
+  api: ""
+  github: https://github.com/TuringLang/turinglang.github.io
+  description: "The code for this website itself"
+  category: infrastructure
+- name: docs
+  api: ""
+  github: https://github.com/TuringLang/docs
+  description: "The tutorials and usage guides; any page whose URL begins with  https://turinglang.org/docs is built here"
+  category: infrastructure
+- name: actions
+  api: ""
+  github: https://github.com/TuringLang/actions
+  description: "Shared GitHub Actions for the TuringLang organisation"
+  category: infrastructure
+
+- name: AbstractGPs
+  api: https://juliagaussianprocesses.github.io/AbstractGPs.jl
+  github: https://github.com/JuliaGaussianProcesses/AbstractGPs.jl
+  description: "Low-level API and basic functionality for working with Gaussian processes"
+  category: gps
+- name: KernelFunctions
+  api: https://juliagaussianprocesses.github.io/KernelFunctions.jl
+  github: https://github.com/JuliaGaussianProcesses/KernelFunctions.jl
+  description: "Kernel functions for machine learning"
+  category: gps
+- name: ApproximateGPs
+  api: https://juliagaussianprocesses.github.io/ApproximateGPs.jl
+  github: https://github.com/JuliaGaussianProcesses/ApproximateGPs.jl
+  description: "Approximate inference algorithms for Gaussian process models"
+  category: gps
+- name: GPLikelihoods
+  api: https://juliagaussianprocesses.github.io/GPLikelihoods.jl
+  github: https://github.com/JuliaGaussianProcesses/GPLikelihoods.jl
+  description: "Likelihoods used as building blocks in non-Gaussian problems"
+  category: gps

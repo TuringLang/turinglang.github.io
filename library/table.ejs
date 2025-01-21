@@ -1,0 +1,14 @@
+<table width="100%">
+<tbody>
+<% for (const item of items) { %>
+<tr>
+<td style="padding: 5px 5px 5px 0"><span style="font-weight: bold"><%- item.name %></span></td>
+<% if (item.api !== "") { %>
+<td style="padding: 5px 5px"><a href="<%- item.api %>" target="_blank">API</a></td>
+<% } %>
+<td style="padding: 5px 5px"><a href="<%- item.github %>" target="_blank">GitHub</a></td>
+<td style="padding: 5px 0 5px 5px"><%- item.description %></td>
+</tr>
+<% } %>
+</tbody>
+</table>
