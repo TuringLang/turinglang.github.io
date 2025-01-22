@@ -71,6 +71,11 @@
   github: https://github.com/TuringLang/AdvancedVI.jl
   description: "Variational inference algorithms for Bayesian models"
   category: vi
+- name: NormalizingFlows
+  api: https://turinglang.org/NormalizingFlows.jl/
+  github: https://github.com/TuringLang/NormalizingFlows.jl
+  description: "Variational inference and normalizing flows for Bayesian computation"
+  category: vi
 
 - name: TuringCallbacks
   api: https://turinglang.org/TuringCallbacks.jl/
