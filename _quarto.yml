@@ -21,9 +21,9 @@ website:
     foreground: "#ffffff"
     left:
       - text: Get Started
-        href: https://turinglang.org/docs/tutorials/docs-00-getting-started/
+        href: https://turinglang.org/docs/getting-started/
       - text: Tutorials
-        href: https://turinglang.org/docs/tutorials/00-introduction/
+        href: https://turinglang.org/docs/tutorials/
       - text: Libraries
         href: library/
       - text: News
@@ -36,7 +36,7 @@ website:
         href: https://x.com/TuringLang
       - icon: github
         text: Turing GitHub
-        href: https://github.com/TuringLang/Turing.jl
+        href: https://github.com/TuringLang
   
   page-footer:
     background: "#073c44"
@@ -83,5 +83,5 @@ format:
 # Global Variables to use in any qmd files using:
 # {{< meta site-url >}}
 site-url: https://turinglang.org
-get-started: https://turinglang.org/docs/tutorials/docs-00-getting-started/
-tutorials-intro: https://turinglang.org/docs/tutorials/00-introduction/
+get-started: https://turinglang.org/docs/getting-started/
+tutorials-intro: https://turinglang.org/docs/tutorials/
