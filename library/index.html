@@ -31,6 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../assets/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -40,8 +42,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f7d47109ef0af74e1bd0de52084fb680.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-d9530a5ed4f361e5b26226d63128c62b.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32377c139570b6b0d63329385e969f48.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7d0272c881a50a1feed65998d3ca846e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,6 +70,259 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-libraries-main .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-api','listing-github','listing-description','listing-category',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-api","listing-github","listing-description","listing-category"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-libraries-main'] = new List('listing-libraries-main', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-libraries-modelling .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-api','listing-github','listing-description','listing-category',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-api","listing-github","listing-description","listing-category"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-libraries-modelling'] = new List('listing-libraries-modelling', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-libraries-mcmc .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-api','listing-github','listing-description','listing-category',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-api","listing-github","listing-description","listing-category"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-libraries-mcmc'] = new List('listing-libraries-mcmc', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-libraries-vi .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-api','listing-github','listing-description','listing-category',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-api","listing-github","listing-description","listing-category"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-libraries-vi'] = new List('listing-libraries-vi', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-libraries-utilities .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-api','listing-github','listing-description','listing-category',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-api","listing-github","listing-description","listing-category"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-libraries-utilities'] = new List('listing-libraries-utilities', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-libraries-diagnostics .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-api','listing-github','listing-description','listing-category',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-api","listing-github","listing-description","listing-category"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-libraries-diagnostics'] = new List('listing-libraries-diagnostics', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-libraries-distributions .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-api','listing-github','listing-description','listing-category',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-api","listing-github","listing-description","listing-category"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-libraries-distributions'] = new List('listing-libraries-distributions', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-libraries-infrastructure .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-api','listing-github','listing-description','listing-category',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-api","listing-github","listing-description","listing-category"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-libraries-infrastructure'] = new List('listing-libraries-infrastructure', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-libraries-gps .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-name','listing-api','listing-github','listing-description','listing-category',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-name","listing-api","listing-github","listing-description","listing-category"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-libraries-gps'] = new List('listing-libraries-gps', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 <script type="application/ld+json">
 {
@@ -80,11 +335,40 @@ ul.task-list li input[type="checkbox"] {
 </script>
 <style>a {text-decoration: none;}a:hover {text-decoration: underline;}</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../theming/styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -105,11 +389,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://turinglang.org/docs/tutorials/docs-00-getting-started/"> 
+    <a class="nav-link" href="https://turinglang.org/docs/getting-started/"> 
 <span class="menu-text">Get Started</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://turinglang.org/docs/tutorials/00-introduction/"> 
+    <a class="nav-link" href="https://turinglang.org/docs/tutorials/"> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
@@ -128,33 +412,19 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools tools-wide">
     <a href="https://x.com/TuringLang" title="Turing Twitter" class="quarto-navigation-tool px-1" aria-label="Turing Twitter"><i class="bi bi-twitter"></i></a>
-    <a href="https://github.com/TuringLang/Turing.jl" title="Turing GitHub" class="quarto-navigation-tool px-1" aria-label="Turing GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/TuringLang" title="Turing GitHub" class="quarto-navigation-tool px-1" aria-label="Turing GitHub"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#modelling-languages" id="toc-modelling-languages" class="nav-link active" data-scroll-target="#modelling-languages">Modelling Languages</a></li>
-  <li><a href="#markov-chain-monte-carlo-mcmc" id="toc-markov-chain-monte-carlo-mcmc" class="nav-link" data-scroll-target="#markov-chain-monte-carlo-mcmc">Markov chain Monte Carlo (MCMC)</a></li>
-  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics">Diagnostics</a></li>
-  <li><a href="#bijectors.jl" id="toc-bijectors.jl" class="nav-link" data-scroll-target="#bijectors.jl">Bijectors.jl</a></li>
-  <li><a href="#turingcallbacks.jl" id="toc-turingcallbacks.jl" class="nav-link" data-scroll-target="#turingcallbacks.jl">TuringCallbacks.jl</a></li>
-  <li><a href="#turingbenchmarking.jl" id="toc-turingbenchmarking.jl" class="nav-link" data-scroll-target="#turingbenchmarking.jl">TuringBenchmarking.jl</a></li>
-  <li><a href="#gaussian-processes" id="toc-gaussian-processes" class="nav-link" data-scroll-target="#gaussian-processes">Gaussian Processes</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/library/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-    </div>
+    
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -163,7 +433,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta">
 
     
   
@@ -175,60 +445,514 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This page lists all the packages that are part of the <a href="https://github.com/TuringLang">The Turing Organization</a>.</p>
+<p>This page lists all the packages that are part of the <a href="https://github.com/TuringLang">The Turing Organisation</a>, and provides links to their respective API documentation pages and GitHub repositories.</p>
+<p>If you are looking for tutorials and usage guides, please visit <a href="https://turinglang.org/docs/">this page</a>.</p>
+<section id="turing.jl-itself" class="level2">
+<h2 class="anchored" data-anchor-id="turing.jl-itself">Turing.jl itself</h2>
+<div id="listing-libraries-main" class="quarto-listing quarto-listing-container-custom">
+<table width="100%">
+<tbody>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">Turing</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/Turing.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/Turing.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+The main entry point to the Turing ecosystem
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
 <section id="modelling-languages" class="level2">
 <h2 class="anchored" data-anchor-id="modelling-languages">Modelling Languages</h2>
-<ul>
-<li><p><a href="https://turinglang.org/DynamicPPL.jl/">DynamicPPL.jl</a>: A domain-specific language and backend for probabilistic programming languages used by Turing.jl.</p></li>
-<li><p><a href="https://turinglang.org/JuliaBUGS.jl/">JuliaBUGS.jl</a>: JuliaBUGS is a graph-based probabilistic programming language and a component of the Turing ecosystem.</p></li>
-<li><p><a href="https://turinglang.org/TuringGLM.jl/">TuringGLM.jl</a>: A Julia package for Bayesian generalised linear models used for returning an instantiated Turing model using the formula syntax</p></li>
-</ul>
+<div id="listing-libraries-modelling" class="quarto-listing quarto-listing-container-custom">
+<table width="100%">
+<tbody>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">DynamicPPL</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/DynamicPPL.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/DynamicPPL.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Domain-specific language and backend for probabilistic programming; contains the core functionality of Turing.jl
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">JuliaBUGS</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/JuliaBUGS.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/JuliaBUGS.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+A graph-based probabilistic programming language
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">TuringGLM</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/TuringGLM.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/TuringGLM.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Bayesian generalised linear models used for returning an instantiated Turing model using the formula syntax
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">AbstractPPL</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/AbstractPPL.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/AbstractPPL.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+An abstract interface for probabilistic programming languages
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
 </section>
 <section id="markov-chain-monte-carlo-mcmc" class="level2">
-<h2 class="anchored" data-anchor-id="markov-chain-monte-carlo-mcmc">Markov chain Monte Carlo (MCMC)</h2>
-<ul>
-<li><p><a href="https://turinglang.org/AdvancedHMC.jl/">AdvancedHMC.jl</a>: It provides a robust, modular, and efficient implementation of advanced Hamiltonian Monte Carlo (HMC) algorithms.</p></li>
-<li><p><a href="https://turinglang.org/AbstractMCMC.jl/">AbstractMCMC.jl</a>: Abstract types and interfaces for Markov chain Monte Carlo methods. This defines an interface for sampling and combining Markov chains.</p></li>
-<li><p><a href="https://github.com/theogf/ThermodynamicIntegration.jl">ThermodynamicIntegration.jl</a>: A simple package to compute Thermodynamic Integration for computing the evidence in a Bayesian setting.</p></li>
-<li><p><a href="https://turinglang.org/AdvancedPS.jl/">AdvancedPS.jl</a>: This is a lightweight package that implements particle-based Monte Carlo algorithms for the <a href="https://turinglang.org/">Turing</a> ecosystem.</p></li>
-<li><p><a href="https://turinglang.org/SliceSampling.jl">SliceSampling.jl</a>: This package is a collection of slice sampling algorithms including the univariate slice samplers by <a href="https://arxiv.org/abs/physics/0009028">Neal (2003)</a>.</p></li>
-<li><p><a href="https://turinglang.org/EllipticalSliceSampling.jl/">EllipticalSliceSampling.jl</a>: This package implements elliptical slice sampling in the Julia language, as described in <a href="http://proceedings.mlr.press/v9/murray10a/murray10a.pdf">Murray, Adams &amp; MacKay (2010)</a>.</p></li>
-<li><p><a href="https://turinglang.org/NestedSamplers.jl/">NestedSamplers.jl</a>: A Julian implementation of single- and multi-ellipsoidal nested sampling algorithms using the <a href="https://github.com/turinglang/abstractmcmc.jl">AbstractMCMC</a> interface.</p></li>
-</ul>
+<h2 class="anchored" data-anchor-id="markov-chain-monte-carlo-mcmc">Markov Chain Monte Carlo (MCMC)</h2>
+<div id="listing-libraries-mcmc" class="quarto-listing quarto-listing-container-custom">
+<table width="100%">
+<tbody>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">AbstractMCMC</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/AbstractMCMC.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/AbstractMCMC.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Abstract types and interfaces for Markov chain Monte Carlo methods, featuring progress bars, parallel sampling, and user-defined callbacks
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">AdvancedHMC</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/AdvancedHMC.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/AdvancedHMC.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+A robust, modular, and efficient implementation of advanced Hamiltonian Monte Carlo algorithms
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">AdvancedMH</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/AdvancedMH.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/AdvancedMH.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Random walk and adaptive Metropolis–Hastings algorithms
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">AdvancedPS</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/AdvancedPS.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/AdvancedPS.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Lightweight implementation of particle-based Monte Carlo algorithms
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">SliceSampling</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/SliceSampling.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/SliceSampling.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Univariate and multivariate slice sampling algorithms
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">EllipticalSliceSampling</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/EllipticalSliceSampling.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/EllipticalSliceSampling.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Elliptical slice sampling for inference in models with multivariate Gaussian priors
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">NestedSamplers</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/NestedSamplers.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/NestedSamplers.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Single- and multi-ellipsoidal nested sampling algorithms
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">ThermodynamicIntegration</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://theogf.github.io/ThermodynamicIntegration.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/theogf/ThermodynamicIntegration.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Computing Bayesian evidence using thermodynamic integration
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="variational-inference" class="level2">
+<h2 class="anchored" data-anchor-id="variational-inference">Variational Inference</h2>
+<div id="listing-libraries-vi" class="quarto-listing quarto-listing-container-custom">
+<table width="100%">
+<tbody>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">AdvancedVI</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/AdvancedVI.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/AdvancedVI.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Variational inference algorithms for Bayesian models
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">NormalizingFlows</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/NormalizingFlows.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/NormalizingFlows.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Variational inference and normalizing flows for Bayesian computation
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="utilities" class="level2">
+<h2 class="anchored" data-anchor-id="utilities">Utilities</h2>
+<div id="listing-libraries-utilities" class="quarto-listing quarto-listing-container-custom">
+<table width="100%">
+<tbody>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">TuringCallbacks</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/TuringCallbacks.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/TuringCallbacks.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Convenient callbacks for sampling in Turing.jl
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">TuringBenchmarking</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/TuringBenchmarking.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/TuringBenchmarking.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Tools to benchmark and check Turing models
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
 </section>
 <section id="diagnostics" class="level2">
 <h2 class="anchored" data-anchor-id="diagnostics">Diagnostics</h2>
-<ul>
-<li><p><a href="https://turinglang.org/MCMCChains.jl/">MCMCChains.jl</a>: Implementation of Julia types for summarising MCMC simulations and utility functions for <a href="https://turinglang.org/MCMCChains.jl/stable/diagnostics/#Diagnostics">diagnostics</a> and <a href="https://turinglang.org/MCMCChains.jl/stable/statsplots/#StatsPlots.jl">visualisations</a>.</p></li>
-<li><p><a href="https://turinglang.org/MCMCDiagnosticTools.jl/">MCMCDiagnosticTools.jl</a>: This package provides functionality for diagnosing samples generated using Markov Chain Monte Carlo.</p></li>
-<li><p><a href="https://turinglang.org/ParetoSmooth.jl/">ParetoSmooth.jl</a>: An implementation of Pareto smoothed importance sampling(PSIS) algorithms in Julia.</p></li>
-</ul>
+<div id="listing-libraries-diagnostics" class="quarto-listing quarto-listing-container-custom">
+<table width="100%">
+<tbody>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">MCMCChains</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/MCMCChains.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/MCMCChains.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Implementation of the Chains type returned by Turing sampling, with functions for diagnostics and visualisations
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">MCMCDiagnosticTools</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/MCMCDiagnosticTools.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/MCMCDiagnosticTools.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Extra functionality for diagnosing samples generated with MCMC methods
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">ParetoSmooth</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/ParetoSmooth.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/ParetoSmooth.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Leave-one-out cross-validation for fitted Bayesian models using Pareto smoothed importance sampling
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
 </section>
-<section id="bijectors.jl" class="level2">
-<h2 class="anchored" data-anchor-id="bijectors.jl">Bijectors.jl</h2>
-<ul>
-<li><a href="https://turinglang.org/Bijectors.jl/">Bijectors.jl</a>: A package for transforming distributions, used by <a href="https://github.com/TuringLang/Turing.jl">Turing.jl</a>.</li>
-</ul>
+<section id="distributions" class="level2">
+<h2 class="anchored" data-anchor-id="distributions">Distributions</h2>
+<div id="listing-libraries-distributions" class="quarto-listing quarto-listing-container-custom">
+<table width="100%">
+<tbody>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">Bijectors</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/Bijectors.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/Bijectors.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Transformations for distributions
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">DistributionsAD</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://turinglang.org/DistributionsAD.jl/" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/DistributionsAD.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Automatic differentiation for calculating the log probability densities of distributions
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
 </section>
-<section id="turingcallbacks.jl" class="level2">
-<h2 class="anchored" data-anchor-id="turingcallbacks.jl">TuringCallbacks.jl</h2>
-<ul>
-<li><a href="https://turinglang.org/TuringCallbacks.jl/">TuringCallbacks.jl</a>: A package containing some convenient callbacks to use when you sample in <a href="https://app.codecov.io/gh/TuringLang/Turing.jl"><code>Turing.jl</code></a>.</li>
-</ul>
-</section>
-<section id="turingbenchmarking.jl" class="level2">
-<h2 class="anchored" data-anchor-id="turingbenchmarking.jl">TuringBenchmarking.jl</h2>
-<ul>
-<li><a href="https://turinglang.org/TuringBenchmarking.jl/">TuringBenchmarking.jl</a>: A package for benchmarking and checking <a href="https://github.com/TuringLang/Turing.jl"><code>Turing.jl</code></a> models.</li>
-</ul>
+<section id="infrastructure" class="level2">
+<h2 class="anchored" data-anchor-id="infrastructure">Infrastructure</h2>
+<div id="listing-libraries-infrastructure" class="quarto-listing quarto-listing-container-custom">
+<table width="100%">
+<tbody>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">turinglang.github.io</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/turinglang.github.io" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+The code for this website itself
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">docs</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/docs" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+The tutorials and usage guides; any page whose URL begins with https://turinglang.org/docs is built here
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">actions</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/TuringLang/actions" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Shared GitHub Actions for the TuringLang organisation
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
 </section>
 <section id="gaussian-processes" class="level2">
 <h2 class="anchored" data-anchor-id="gaussian-processes">Gaussian Processes</h2>
-<ul>
-<li><p><a href="https://juliagaussianprocesses.github.io/AbstractGPs.jl">AbstractGPs.jl</a>: AbstractGPs.jl is a package that defines a low-level API for working with Gaussian processes (GPs), and basic functionality for working with them in the simplest cases.</p></li>
-<li><p><a href="https://juliagaussianprocesses.github.io/KernelFunctions.jl">KernelFunctions.jl</a>: Julia package for kernel functions for machine learning.</p></li>
-<li><p><a href="https://juliagaussianprocesses.github.io/ApproximateGPs.jl">ApproximateGPs.jl</a>: This is a package that provides some approximate inference algorithms for Gaussian process models, built on top of <a href="https://github.com/JuliaGaussianProcesses/AbstractGPs.jl">AbstractGPs.jl</a>.</p></li>
-</ul>
+<p>The following packages come under the umbrella of the <a href="https://github.com/JuliaGaussianProcesses">JuliaGaussianProcesses organisation</a>.</p>
+<div id="listing-libraries-gps" class="quarto-listing quarto-listing-container-custom">
+<table width="100%">
+<tbody>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">AbstractGPs</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://juliagaussianprocesses.github.io/AbstractGPs.jl" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/JuliaGaussianProcesses/AbstractGPs.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Low-level API and basic functionality for working with Gaussian processes
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">KernelFunctions</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://juliagaussianprocesses.github.io/KernelFunctions.jl" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/JuliaGaussianProcesses/KernelFunctions.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Kernel functions for machine learning
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">ApproximateGPs</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://juliagaussianprocesses.github.io/ApproximateGPs.jl" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/JuliaGaussianProcesses/ApproximateGPs.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Approximate inference algorithms for Gaussian process models
+</td>
+</tr>
+<tr>
+<td style="padding: 5px 5px 5px 0">
+<span style="font-weight: bold">GPLikelihoods</span>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://juliagaussianprocesses.github.io/GPLikelihoods.jl" target="_blank">API</a>
+</td>
+<td style="padding: 5px 5px">
+<a href="https://github.com/JuliaGaussianProcesses/GPLikelihoods.jl" target="_blank">GitHub</a>
+</td>
+<td style="padding: 5px 0 5px 5px">
+Likelihoods used as building blocks in non-Gaussian problems
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+
 
 
 </section>
@@ -803,7 +1527,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/library/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/library/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
