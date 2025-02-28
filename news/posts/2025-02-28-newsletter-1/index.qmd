@@ -27,7 +27,7 @@ The main user-facing changes here are the simplification of broadcasted tilde `.
 
 **DifferentiationInterface migration**
 
-From a developer perspective, we have now fully switched over to DifferentiationInterface.jl for automatic differentiation of models occurs. This work of course couldn't have been possible without @gdalle's work on DI itself and also his help with integrating it into DynamicPPL. This also paves the way for a long-standing goal of Turing, which is to expose a series of AD testing utilities that will allow AD package developers to test against a fixed set of models — this will allow us to formalise the idea of Turing being 'compatible' with a given AD package.
+From a developer perspective, we have now fully switched over to DifferentiationInterface.jl for automatic differentiation of models occurs. This work of course couldn't have been possible without Guillaume Dalle's work on DI itself and also his help with integrating it into DynamicPPL. This also paves the way for a long-standing goal of Turing, which is to expose a series of AD testing utilities that will allow AD package developers to test against a fixed set of models — this will allow us to formalise the idea of Turing being 'compatible' with a given AD package.
 
 **The plan for submodels**
 
