@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://turinglang.org/team/index.html</loc>
-    <lastmod>2025-01-23T12:11:28.342Z</lastmod>
+    <loc>https://turinglang.org/library/index.html</loc>
+    <lastmod>2025-02-28T17:18:05.264Z</lastmod>
   </url>
   <url>
-    <loc>https://turinglang.org/library/index.html</loc>
-    <lastmod>2025-01-23T12:11:28.337Z</lastmod>
+    <loc>https://turinglang.org/news/posts/2025-02-28-newsletter-1/index.html</loc>
+    <lastmod>2025-02-28T17:18:05.269Z</lastmod>
   </url>
   <url>
     <loc>https://turinglang.org/news/posts/2020-09-11-gsoc/index.html</loc>
-    <lastmod>2025-01-23T12:11:28.342Z</lastmod>
-  </url>
-  <url>
-    <loc>https://turinglang.org/news/posts/2022-02-17-gsoc/index.html</loc>
-    <lastmod>2025-01-23T12:11:28.342Z</lastmod>
-  </url>
-  <url>
-    <loc>https://turinglang.org/news/posts/2020-05-04-Imperial-Report13-analysis/index.html</loc>
-    <lastmod>2025-01-23T12:11:28.342Z</lastmod>
-  </url>
-  <url>
-    <loc>https://turinglang.org/news/index.html</loc>
-    <lastmod>2025-01-23T12:11:28.337Z</lastmod>
-  </url>
-  <url>
-    <loc>https://turinglang.org/news/posts/2019-12-14-initial-post/index.html</loc>
-    <lastmod>2025-01-23T12:11:28.338Z</lastmod>
-  </url>
-  <url>
-    <loc>https://turinglang.org/news/posts/2020-02-12-jsoc/index.html</loc>
-    <lastmod>2025-01-23T12:11:28.338Z</lastmod>
+    <lastmod>2025-02-28T17:18:05.269Z</lastmod>
   </url>
   <url>
     <loc>https://turinglang.org/news/posts/2021-02-04-gsoc/index.html</loc>
-    <lastmod>2025-01-23T12:11:28.342Z</lastmod>
+    <lastmod>2025-02-28T17:18:05.269Z</lastmod>
+  </url>
+  <url>
+    <loc>https://turinglang.org/news/index.html</loc>
+    <lastmod>2025-02-28T17:18:05.264Z</lastmod>
   </url>
   <url>
     <loc>https://turinglang.org/index.html</loc>
-    <lastmod>2025-01-23T12:11:28.337Z</lastmod>
+    <lastmod>2025-02-28T17:18:05.264Z</lastmod>
+  </url>
+  <url>
+    <loc>https://turinglang.org/news/posts/2022-02-17-gsoc/index.html</loc>
+    <lastmod>2025-02-28T17:18:05.269Z</lastmod>
+  </url>
+  <url>
+    <loc>https://turinglang.org/news/posts/2020-05-04-Imperial-Report13-analysis/index.html</loc>
+    <lastmod>2025-02-28T17:18:05.268Z</lastmod>
+  </url>
+  <url>
+    <loc>https://turinglang.org/news/posts/2020-02-12-jsoc/index.html</loc>
+    <lastmod>2025-02-28T17:18:05.265Z</lastmod>
+  </url>
+  <url>
+    <loc>https://turinglang.org/news/posts/2019-12-14-initial-post/index.html</loc>
+    <lastmod>2025-02-28T17:18:05.265Z</lastmod>
+  </url>
+  <url>
+    <loc>https://turinglang.org/team/index.html</loc>
+    <lastmod>2025-02-28T17:18:05.269Z</lastmod>
   </url>
 </urlset>

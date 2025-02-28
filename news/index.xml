@@ -9,8 +9,42 @@
 <link>https://turinglang.org/news/</link>
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.40</generator>
-<lastBuildDate>Thu, 17 Feb 2022 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.6.42</generator>
+<lastBuildDate>Fri, 28 Feb 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 1</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-02-28-newsletter-1/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Welcome to the inaugural issue of the Turing.jl newsletter!</p>
+<p><strong>What is this?!</strong></p>
+<p>Hi everyone! We (the Turing.jl team) are starting a fortnightly series of updates on what we’ve been up to and what’s in the works. We hope that this will provide you (our users) with some insight into the direction of the Turing ecosystem, and we’d also love for you to chip in with your thoughts if you have any.</p>
+<p>You can keep up with the newsletter either on this website, on the <a href="https://julialang.slack.com/archives/CCYDC34A0">#turing channel in Julia Slack</a>, or by subscribing to <a href="https://github.com/TuringLang/Turing.jl/issues/2498">our issue on GitHub</a>. We might post to other places too (like Discourse), this is still in the works!</p>
+<p><strong>New Turing behaviour, especially <code>.~</code></strong></p>
+<p>Recently we have been focused on reworking a number of internal data structures in DynamicPPL.jl (this is the package that allows you to define models). We haven’t released this yet but you might be interested to see <a href="https://github.com/TuringLang/DynamicPPL.jl/blob/e6a42dd6b410d4ed60d853222c297a391cffe6d1/HISTORY.md">the changelog on GitHub</a>. The main user-facing changes here are the simplification of broadcasted tilde <code>.~</code> , which we previously <a href="https://julialang.slack.com/archives/CCYDC34A0/p1738580415136749">posted about on Slack here</a>. We also fixed a bug where the prefixes of nested submodels were applied in the wrong order.</p>
+<p><strong>DifferentiationInterface migration</strong></p>
+<p>From a developer perspective, we have now fully switched over to DifferentiationInterface.jl for automatic differentiation of models occurs. This work of course couldn’t have been possible without <span class="citation" data-cites="gdalle">@gdalle</span>‘s work on DI itself and also his help with integrating it into DynamicPPL. This also paves the way for a long-standing goal of Turing, which is to expose a series of AD testing utilities that will allow AD package developers to test against a fixed set of models — this will allow us to formalise the idea of Turing being ’compatible’ with a given AD package.</p>
+<p><strong>The plan for submodels</strong></p>
+<p>We have been discussing for a while now about how best to fully implement submodels (i.e.&nbsp;be able to treat submodels like distributions in the sense that we can sample from them, and also condition models on values obtained from submodels). There is currently a proposal which we’ve <a href="https://github.com/TuringLang/Turing.jl/issues/2485">written up on GitHub</a>, and goes into more depth about what we’d like to see and the underlying syntax. If this is a Turing feature that you use, do feel free to let us know what you think.</p>
+<p><strong>Turing.jl is now published (again!)</strong></p>
+<p>We recently published a new paper with a high-level overview of Turing.jl’s features and implementation. Check it out!<br>
+Fjelde, T. E., Xu, K., Widmann, D., Tarek, M., Pfiffer, C., Trapp, M., Axen, S. D., Sun, X., Hauru, M., Yong, P., Tebbutt, W., Ghahramani, Z., &amp; Ge, H. (2024). Turing.jl: A General-Purpose Probabilistic Programming Language. <em>ACM Transactions on Probabilistic Machine Learning</em>, 1(1). (<a href="https://dl.acm.org/doi/10.1145/3711897">link</a>)</p>
+<p>We have also published in the conference proceedings of the workshop on Languages for Inference (LAFI), which was held as part of POPL 2025:<br>
+Tim Hargreaves, Qing Li, Charles Knipp, Frederic Wantiez, Simon J. Godsill, Hong Ge. State Space Model Programming in Turing.jl. <em>The Languages for Inference (LAFI) workshop</em>, 2025. (<a href="https://popl25.sigplan.org/details/lafi-2025/11/State-Space-Model-Programming-in-Turing-jl">link</a>)</p>
+<p><strong>Looking for Google Summer of Code students</strong></p>
+<p>We are keen to take students for <a href="https://julialang.org/jsoc/gsoc/turing/">GSoC in 2025</a>! If you are interested in working on a Python/R interface to <a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS</a>, or making some improvements to <a href="https://github.com/JasonPekos/TuringPosteriorDB.jl">TuringPosteriorDB</a>, do get in touch.</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-02-28-newsletter-1/</guid>
+  <pubDate>Fri, 28 Feb 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Google Summer of Code 2022</title>
   <dc:creator>Kai Xu</dc:creator>
