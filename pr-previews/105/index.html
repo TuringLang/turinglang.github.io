@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,17 +66,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./assets/favicon.ico" rel="icon">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-9a023c9ade86a60361e96e3e3f11bc54.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-faaaf6648fd2accce58e5637ab60b83e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-70f2b9db2a39dbe918e6527f073f7d41.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-cb3c80b9f253503198031c627e1a7e5a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-28e294108b2903db1cb6eac0e6f5dd34.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,13 +105,70 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-news .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-description','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-news'] = new List('listing-news', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="theming/styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -126,54 +219,271 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
+    
 <!-- main -->
+<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
-<div class="hero-banner">
-<div class="grid">
-<div class="g-col-1">
-
+<div class="line-graph">
+  <div class="upper-content">
+    <div class="responsive-heading">Turing.jl</div>
+  </div>
+  <div>
+    <svg viewbox="0 0 2300 498" xmlns="http://www.w3.org/2000/svg">
+      <path class="line line1" d="M0 487 C1155.53 487 1320.502 502.995 1391.761 461.5C1453.584 425.5 1467.657 399 1509.375 344.5C1551.093 290 1586.276 213 1645.586 213C1704.895 213 1776.77 350.5 1806.425 389C1875.39 478.535 1871.263 486.5 2300 487"></path>
+      <path class="line line2" d="M0 486.5 C223.96 486.5 883.72 484.016 977.94 484.016C1163.36 484.016 1183.85 461.682 1249.81 287.031C1283.73 197.222 1311.724 96 1349.948 96C1388.171 96 1418.291 219.36 1447.552 292.5C1536.356 514.469 1548.077 486 1734.55 486C1921.023 486 2087.346 485.5 2300 485.5"></path>
+      <path class="line line3" d="M0 487 C108.32 487 672.77 486.499 783.26 486.499C893.75 486.499 943.04 486.499 1051.36 486.499C1135.3 486.499 1218.74 489.327 1241.95 469.982C1293.57 426.95 1311.015 327.407 1328.845 262.111C1356 162.661 1377.725 8 1409.818 8C1441.911 8 1472.715 193.386 1490.888 262.111C1509.06 330.837 1526.835 423.687 1568.803 460.973C1600.671 489.286 1631.508 486.499 1722.851 486.499C1816.509 486.499 1890.44 486.499 1991.446 486.499C2092.453 486.499 2198.993 486.499 2300 486.499"></path>
+    </svg>
+  </div>
 </div>
-<section id="turing.jl-bayesian-inference-with-probabilistic-programming." class="g-col-8">
-<h1>Turing.jl: Bayesian inference with probabilistic programming.</h1>
-<h3 id="intuitive">Intuitive</h3>
-<p>Turing models are easy to write and communicate — syntax is close to mathematical notations.</p>
-<h3 id="general-purpose">General-purpose</h3>
-<p>Turing supports models with discrete parameters and stochastic control flow.</p>
-<h3 id="modular-and-composable">Modular and composable</h3>
-<p>Turing is modular, written entirely in Julia, and is interoperable with the powerful Julia ecosystem.</p>
-<div class="hero-buttons" style="position: relative; display: flex; justify-content: center;">
-<p><a href="https://turinglang.org/docs/tutorials/docs-00-getting-started/" class="btn-action-primary btn-action btn btn-lg" role="button" style="background-color: #073c44; color: white">Get Started</a></p>
+<span class="display-6 d-block text-center py-5 display-md-5 display-lg-4">
+    Bayesian inference with probabilistic programming
+</span>
+<div class="d-flex flex-column align-items-center gap-0 pb-5">
+  <div class="d-flex flex-row flex-wrap panel-wrapper gap-2">
+    <a href="https://turinglang.org/docs/tutorials/docs-00-getting-started/" class="button--fill btn">
+      Tutorials
+    </a>
+    <a href="https://julialang.slack.com/archives/CCYDC34A0" class="button btn">
+      Slack
+    </a>
+    <a href="https://discourse.julialang.org/c/domain/probprog/48" class="button btn">
+      Discourse
+    </a>
+    <a href="https://github.com/TuringLang" class="button btn">
+      GitHub
+    </a>
+  </div>
 </div>
-<div class="g-col-3">
-
+<div class="d-flex flex-row flex-wrap panel-wrapper gap-4 section-end-space">
+  <div class="panel">
+    <div class="panel-title pb-1">
+      Expressive
+    </div>
+    Turing models are easy to write and communicate — their syntax closely resembles mathematical notation. 
+  </div>
+  <div class="panel">
+    <div class="panel-title pb-1">
+      General-purpose
+    </div>
+    Turing supports models with discrete parameters and stochastic control flow. 
+  </div>
+  <div class="panel">
+    <div class="panel-title pb-1">
+      Composable
+    </div>
+    Turing is written entirely in Julia, and is interoperable with its powerful ecosystem.
+  </div>
+</div>
+<div class="d-flex flex-row flex-wrap panel-wrapper gap-3 pb-2">
+<div class="example-text" style="text-align:right;padding:0.5rem;">
+<div class="fs-4 fw-bold pb-1">
+Hello, World in Turing
+</div>
+<p>Some text about how easy it is to <a href="https://turinglang.org/docs/tutorials/00-introduction/">get going</a>.</p>
+</div>
+<div class="example-code">
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">coinflip</span>(; N<span class="op">::</span><span class="dt">Int</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prior belief about the probability of heads</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">~</span> <span class="fu">Beta</span>(<span class="fl">1</span>, <span class="fl">1</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Heads or tails of a coin are drawn from `N`</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bernoulli distributions with success rate `p`</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    y <span class="op">~</span> <span class="fu">filldist</span>(<span class="fu">Bernoulli</span>(p), N)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="d-flex flex-row-reverse flex-wrap panel-wrapper gap-3 pt-2 section-end-space">
+<div class="example-text" style="padding:0.5rem;">
+<div class="fs-4 fw-bold pb-1">
+Goodbye, World in Turing
+</div>
+<p>Some text about how easy it is to interface with external packages like AbstractGPs. Learn more about modelling <a href="https://turinglang.org/docs/tutorials/15-gaussian-processes/">Gaussian Processes</a> with Turing.jl.</p>
+</div>
+<div class="example-code">
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">putting_model</span>(d, n; jitter<span class="op">=</span><span class="fl">1e-4</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    v <span class="op">~</span> <span class="fu">Gamma</span>(<span class="fl">2</span>, <span class="fl">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    l <span class="op">~</span> <span class="fu">Gamma</span>(<span class="fl">4</span>, <span class="fl">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="fu">GP</span>(v <span class="op">*</span> <span class="fu">with_lengthscale</span>(<span class="fu">SEKernel</span>(), l))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    f_latent <span class="op">~</span> <span class="fu">f</span>(d, jitter)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    binomials <span class="op">=</span> <span class="fu">Binomial</span>.(n, <span class="fu">logistic</span>.(f_latent))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    y <span class="op">~</span> <span class="fu">product_distribution</span>(binomials)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (fx<span class="op">=</span><span class="fu">f</span>(d, jitter), f_latent<span class="op">=</span>f_latent, y<span class="op">=</span>y)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<h3 class="pb-3 anchored">
+  News
+</h3>
+<div id="listing-news" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1645056000000" data-listing-file-modified-sort="1740869864529" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="883">
+<a href="./news/posts/2022-02-17-gsoc/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Google Summer of Code 2022
+</h5>
+<div class="card-text listing-description">
+It is another year of the Google Summer of Code time, and we have compiled an updated list of exciting Turing projects! Projects that the Turing team would be interested in…
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Feb 17, 2022
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1612915200000" data-listing-file-modified-sort="1740869864529" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="565">
+<a href="./news/posts/2021-02-04-gsoc/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Google Summer of Code 2021
+</h5>
+<div class="card-text listing-description">
+It’s about time for us to start thinking about projects we’d like to see at Turing.jl for the Google Summer of Code 2021! Below is a list of projects the Turing team would…
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Feb 10, 2021
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1599782400000" data-listing-file-modified-sort="1740869864529" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="331">
+<a href="./news/posts/2020-09-11-gsoc/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Google Summer of Code 2020
+</h5>
+<div class="card-text listing-description">
+As the 2020 Google Summer of Code comes to a close, the Turing team thought it would be a good opportunity to reflect on the work that was done by our superb students this…
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Sep 11, 2020
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+<p><a href="news/">See all news →</a></p>
+<h3 class="pb-3 section-start-space anchored">
+  Learn more
+</h3>
+<div class="list grid quarto-listing-cols-3">
+  <a class="pseudolisting" href="./library">
+    <div class="card-title h5">
+      Ecosystem
+    </div>
+    <p class="quarto-grid-item">
+      Learn about all the packages that are part of the TuringLang organization.
+    </p>
+  </a>
+  <a class="pseudolisting" href="https://turinglang.org/docs/tutorials/docs-00-getting-started/">
+    <div class="card-title h5">
+      Documentation
+    </div>
+    <p class="quarto-grid-item">
+      Familiarize yourself with the mechanics of Turing.jl.
+    </p>
+  </a>
+  <a class="pseudolisting" href="https://turinglang.org/docs/tutorials/00-introduction/">
+    <div class="card-title h5">
+      Official tutorials
+    </div>
+    <p class="quarto-grid-item">
+      Learn to tackle specific modelling problems with Turing.jl.
+    </p>
+  </a>
+</div>
+<section id="algorithms" class="section-start-space">
+<h3 class="anchored">Algorithms</h3>
+<p>Placeholder text introducing this section on algorithms.</p>
+<table class="table-striped table-borderless caption-top table">
+<caption>Supported MCMC and other learning algorithms</caption>
+<thead>
+<tr class="header">
+<th>Column 1</th>
+<th>Column 2</th>
+<th>Column 3</th>
+<th>Column 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Entry A</td>
+<td>Entry D</td>
+<td>Entry G</td>
+<td>Entry J</td>
+</tr>
+<tr class="even">
+<td>Entry B</td>
+<td>Entry E</td>
+<td>Entry H</td>
+<td>Entry K</td>
+</tr>
+<tr class="odd">
+<td>Entry C</td>
+<td>Entry F</td>
+<td>Entry I</td>
+<td>Entry L</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bayesian-workflow" class="section-start-space">
+<h3 class="anchored">Bayesian Workflow</h3>
+<p>Placeholder text introducing the Bayesian Workflow diagram from the ACM special issue submission.</p>
+<div style="text-align:center;">
+<img src="https://i0.wp.com/www.honeybeesuite.com/wp-content/uploads/2019/09/Multiple-teeth-HBS.jpg?w=400&amp;ssl=1" style="margin:0.5rem 0;border-radius:10pt">
+<p>An example of the Beeysian workflow.</p>
 </div>
 </section>
+<div class="d-flex flex-row panel-wrapper gap-3 section-start-space">
+<div class="flex-grow-1">
+<h3 class="anchored">Talks</h3>
+  <p>Placeholder for intro text on list of talks which are available online</p>
+  <ul>
+    <li>Talk 1
+    </li><li>Talk 2
+    </li><li>Talk 3
+  </li></ul>
+</div>
+<div class="flex-grow-1">
+  <h3 class="anchored">Other resources</h3>
+  <p>This list contains a few other written resources for learning Turing. If you have written something and would like to share it with the community, please <a href="https://github.com/TuringLang/docs/issues/new">get in touch</a>!</p>
+  <ul>
+    <li><a href="https://github.com/StatisticalRethinkingJulia/SR2TuringPluto.jl">Statistical Rethinking</a>
+    </li><li><a href="https://storopoli.github.io/Turing-Workshop/">Jose Storopoli's Turing workshop (outdated in parts)</a>
+    </li><li><a href="https://storopoli.github.io/Bayesian-Julia/">Jose Storopoli's blog on Turing and Bayesian Statistics</a>
+    </li><li>Placeholder for more...
+  </li></ul>
 </div>
 </div>
-<div style="position: relative; display: flex; justify-content: center;">
-<div class="grid">
-<div class="g-col-1">
-
-</div>
-<section id="community-resources" class="g-col-8">
-<h2>Community Resources</h2>
-<p>The Turing.jl <a href="https://discourse.julialang.org/c/domain/probprog">discourse forum</a> provides support and discussion for all user levels. The <a href="https://turinglang.org/docs/tutorials/docs-00-getting-started/">Turing.jl documentation</a> and <a href="https://turinglang.org/docs/tutorials/00-introduction/">official tutorials</a> help users learn and use Turing.jl! There’s also a <a href="https://storopoli.io/Bayesian-Julia">tutorial in Bayesian Statistics using Julia and Turing.jl</a>.</p>
-</section>
-<div class="g-col-3">
-
-</div>
-</div>
-</div>
 
 
 
 
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -739,26 +1049,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Turing is created by <a href="http://mlg.eng.cam.ac.uk/hong/" target="_blank">Hong Ge</a>, and lovingly maintained by the <a href="https://github.com/TuringLang/Turing.jl/graphs/contributors" target="_blank">core team</a> of volunteers. <br> The contents of this website are © 2024 under the terms of the <a href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE" target="_blank">MIT License</a>.</p>
+<p>Turing is created by <a href="http://mlg.eng.cam.ac.uk/hong/" target="_blank">Hong Ge</a>, and maintained by the <a href="./team" target="_blank">core team of developers</a>. <br> © 2024 under the terms of the <a href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE" target="_blank">MIT License</a>.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://x.com/TuringLang">
-      <i class="bi bi-twitter" role="img" aria-label="Turing Twitter">
-</i> 
-    </a>
-  </li>  
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/TuringLang/Turing.jl">
-      <i class="bi bi-github" role="img" aria-label="Turing GitHub">
-</i> 
-    </a>
-  </li>  
-</ul>
+      &nbsp;
     </div>
   </div>
 </footer>
