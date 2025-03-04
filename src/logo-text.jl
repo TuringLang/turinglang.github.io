@@ -49,7 +49,7 @@ Example:
 ```julia
 textlogo("Turing")
 ```
-![](https://github.com/TuringLang/turing-logo-graphics/raw/master/images/logo-text-small.png)
+![](https://github.com/TuringLang/turing-logo-graphics/raw/main/images/logo-text-small.png)
 
 Acknowledgement for https://github.com/JuliaGraphics/Luxor.jl/issues/78#issuecomment-570317514
 """
