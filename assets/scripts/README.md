@@ -5,8 +5,9 @@ This `scripts` folder contains utilities for building Turing language satellite 
 
 ## How to use
 
-Add a new Github Actions workflow, `DocsNav.yml`, in your `main` or `master` branch.
+Add a new Github Actions workflow, `DocsNav.yml`, in your default branch.
 
-You can find `DocsNav.yml` template [here](DocsNav.yml), Update the NAVBAR URL in case you want to use another navigation bar and make sure NAVBAR START AND NAVBAR END comments are there in your new navigation bar.
+You can find `DocsNav.yml` template [here](DocsNav.yml).
+Update the NAVBAR URL in case you want to use another navigation bar and make sure NAVBAR START AND NAVBAR END comments are there in your new navigation bar.
 
-See [AbstractMCMC.jl](https://github.com/TuringLang/AbstractMCMC.jl/blob/master/.github/workflows/DocsNav.yml) for an example. 
+See [AbstractMCMC.jl](https://github.com/TuringLang/AbstractMCMC.jl/blob/main/.github/workflows/DocsNav.yml) for an example. 
