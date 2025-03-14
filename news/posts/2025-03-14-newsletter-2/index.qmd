@@ -1,0 +1,27 @@
+---
+title: Turing.jl Newsletter 2
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-03-14
+---
+
+**DynamicPPL benchmarking**
+
+DynamicPPL.jl now has a set of benchmarks that are run on GitHub Actions! We measure how long it takes to evaluate a small selection of models and also to run AD on them. If you think that there are specific models / features that we should add to the benchmarks, please feel free to [create an issue](https://github.com/TuringLang/DynamicPPL.jl/issues/new) and let us know.
+
+Separately, we are planning to merge the benchmarking utilities in [TuringBenchmarking.jl](https://github.com/TuringLang/TuringBenchmarking.jl) into DynamicPPL itself. There might be a little bit of API shake-up as part of this, but it's for the better as it'll allow the benchmarking code to more easily stay in sync with DynamicPPL — allowing us to catch performance regressions in PRs.
+
+**SSMProblems**
+
+The SSMProblems.jl and GeneralisedFilters.jl packages have now been merged into a single repository: https://github.com/TuringLang/SSMProblems.jl. This won't affect you if you are using the packages from the Julia General registry, but if you're looking to develop off the main branch you may have to use a different URL, or specify a subdirectory in `Pkg.add`.
+
+**Smaller bits**
+
+Other code changes that have been merged:
+- Some old code in AdvancedHMC.jl has been cleaned up quite a bit. See the [0.7.0 release](https://github.com/TuringLang/AdvancedHMC.jl/releases/tag/v0.7.0) for more information.
+- Turing's Gibbs sampler [now supports warmup steps properly](https://github.com/TuringLang/Turing.jl/pull/2502). We're still thinking about how to properly encode the scenario where different sub-samplers have different numbers of warmup steps, if you have any ideas, do get in touch on that PR.
+- We are going to formally remove support for Zygote as an AD backend. We don't test it thoroughly in Turing's test suite. You can of course still use Zygote yourself, simply load `ADTypes.AutoZygote()` — although we can't guarantee that we will fix any bugs that arise.
