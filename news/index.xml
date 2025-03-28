@@ -10,7 +10,31 @@
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.6.42</generator>
-<lastBuildDate>Fri, 14 Mar 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 28 Mar 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 3</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-03-28-newsletter-3/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><strong>Turing v0.37</strong></p>
+<p>We’ve now released v0.37 of Turing. This includes a lot of new functionality from DynamicPPL 0.35, including the new (simplified) <code>.~</code> . It also cleans up the list of exported identifiers, and most notably, if you were using things from DynamicPPL, you will now also need to <code>import DynamicPPL</code> (or <code>using</code>).</p>
+<p>More generally, it’s likely that from now on our releases will involve larger changes because we are aggregating more changes into a single minor version. We are, however, also committed to providing thorough release notes that will help users and library authors upgrade more easily! Release notes will be available on GitHub, and you can see the notes for <a href="https://github.com/TuringLang/Turing.jl/releases/">Turing 0.37</a> and <a href="https://github.com/TuringLang/DynamicPPL.jl/releases">DynamicPPL 0.35</a> here. If you have any trouble upgrading, just drop us a note.</p>
+<p><strong>AD backend testing</strong></p>
+<p>Right now we test a series of DynamicPPL models with several AD backends. It’s rather ad-hoc and we are currently drafting a more formal interface for testing AD backends with Turing models. It’s still early days but if you are an AD package developer and want to know what this means for integration with Turing, get in touch (easiest way: <a href="https://julialang.slack.com/team/U07DBR7C2LD">ping Penny on Slack</a>) 🙂</p>
+<p><strong>Unified interface for optimisation algorithms</strong></p>
+<p>There’s <a href="https://github.com/TuringLang/Turing.jl/issues/2509">an ongoing discussion about unifying the interface</a> for MAP/MLE point estimates and variational inference (and potentially even MCMC). If you use more than one of these methods and have thoughts on what you’d like from an interface, we’d be very happy to hear from you!</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-03-28-newsletter-3/</guid>
+  <pubDate>Fri, 28 Mar 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 2</title>
   <dc:creator>The TuringLang team</dc:creator>
