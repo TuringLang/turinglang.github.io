@@ -23,7 +23,7 @@ If you have any trouble upgrading, just drop us a note.
 
 Right now we test a series of DynamicPPL models with several AD backends.
 It's rather ad-hoc and we are currently drafting a more formal interface for testing AD backends with Turing models.
-It's still early days but if you are an AD package developer and want to know what this means for integration with Turing, get in touch (easiest way: [ping me on Slack](https://julialang.slack.com/team/U07DBR7C2LD)) 🙂
+It's still early days but if you are an AD package developer and want to know what this means for integration with Turing, get in touch (easiest way: [ping Penny on Slack](https://julialang.slack.com/team/U07DBR7C2LD)) 🙂
 
 **Unified interface for optimisation algorithms**
 
