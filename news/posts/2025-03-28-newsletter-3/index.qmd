@@ -1,0 +1,31 @@
+---
+title: Turing.jl Newsletter 3
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-03-28
+---
+
+**Turing v0.37**
+
+We've now released v0.37 of Turing. This includes a lot of new functionality from DynamicPPL 0.35, including the new (simplified) `.~` .
+It also cleans up the list of exported identifiers, and most notably, if you were using things from DynamicPPL, you will now also need to `import DynamicPPL` (or `using`).
+
+More generally, it's likely that from now on our releases will involve larger changes because we are aggregating more changes into a single minor version.
+We are, however, also committed to providing thorough release notes that will help users and library authors upgrade more easily!
+Release notes will be available on GitHub, and you can see the notes for [Turing 0.37](https://github.com/TuringLang/Turing.jl/releases/) and [DynamicPPL 0.35](https://github.com/TuringLang/DynamicPPL.jl/releases) here.
+If you have any trouble upgrading, just drop us a note.
+
+**AD backend testing**
+
+Right now we test a series of DynamicPPL models with several AD backends.
+It's rather ad-hoc and we are currently drafting a more formal interface for testing AD backends with Turing models.
+It's still early days but if you are an AD package developer and want to know what this means for integration with Turing, get in touch (easiest way: [ping Penny on Slack](https://julialang.slack.com/team/U07DBR7C2LD)) 🙂
+
+**Unified interface for optimisation algorithms**
+
+There's [an ongoing discussion about unifying the interface](https://github.com/TuringLang/Turing.jl/issues/2509) for MAP/MLE point estimates and variational inference (and potentially even MCMC).
+If you use more than one of these methods and have thoughts on what you'd like from an interface, we'd be very happy to hear from you!
