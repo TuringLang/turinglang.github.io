@@ -9,8 +9,45 @@
 <link>https://turinglang.org/news/</link>
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.42</generator>
-<lastBuildDate>Fri, 28 Mar 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.6.43</generator>
+<lastBuildDate>Fri, 11 Apr 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 4</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-04-11-newsletter-4/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p><strong>Have you used Turing.jl?</strong></p>
+<p>Given that you’re reading this, we hope so! We’re currently putting together a list of papers and other outputs (e.g.&nbsp;tutorials, presentations, …) which make use of Turing.jl. We’d love to have more examples, if you have any, please do get in touch (feel free to message me and I can forward it). Thank you!</p>
+<p><strong>State of the AD</strong></p>
+<p>Over the last few weeks we’ve been putting together a little project that tabulates the performance of different AD backends on a variety of Turing.jl models, and we’re now quite excited to share it: https://turinglang.org/ADTests/ This will hopefully help to answer the perennial question of whether you should stick with good old ForwardDiff, or whether you should try something else. Do note that (as of the time of writing) this table is still in alpha stage and there are a lot of details that have yet to be ironed out :slightly_smiling_face: However, suggestions are always welcome!</p>
+<p><strong>JuliaBUGS.jl</strong></p>
+<p>The BUGS (Bayesian inference Using Gibbs Sampling) language provides a declarative way to specify complex Bayesian statistical models. For years, implementations like WinBUGS, OpenBUGS, and JAGS have been widely used tools for researchers applying these models. JuliaBUGS.jl is a modern implementation of the BUGS language, aiming for full backwards compatibility with standard BUGS models, while also offering improved interoperability with the Julia ecosystem. (For details and examples of BUGS syntax, check out <a href="https://turinglang.org/JuliaBUGS.jl/dev/example/">the JuliaBUGS documentation</a>.)</p>
+<p><a href="https://github.com/TuringLang/JuliaBUGS.jl/pull/278/">A recent experimental update</a> introduces significant performance improvements in JuliaBUGS: instead of relying solely on the previous graph-based approach, JuliaBUGS can now directly generate Julia code to compute the model’s log-density. This code generation technique can yield &gt;10x speedups compared to the graph-based method. Currently, this provides the most benefit for models with linear or hierarchical structures; support for state space models is planned for a future update.</p>
+<p>To use it, run this after compiling your model:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1">JuliaBUGS.<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set_evaluation_mode</span>(your_model, JuliaBUGS.<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">UseGeneratedLogDensityFunction</span>())</span></code></pre></div>
+<p>We would love for you to test out this new functionality! If you have any feedback, please do feel free to open a GitHub issue or discussion.</p>
+<p><strong>Even more advanced HMC</strong></p>
+<p>Lastly, we have a paper of our own to share on Hamiltonian Monte Carlo methods!</p>
+<ul>
+<li>Xu, K., &amp; Ge, H. (2024). Practical Hamiltonian Monte Carlo on Riemannian Manifolds via Relativity Theory. <em>Forty-First International Conference on Machine Learning.</em> https://openreview.net/pdf?id=Et8Pk97u4u and https://icml.cc/virtual/2024/poster/34558</li>
+</ul>
+<p>We will be looking to integrate these methods into Turing.jl in the future.</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-04-11-newsletter-4/</guid>
+  <pubDate>Fri, 11 Apr 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 3</title>
   <dc:creator>The TuringLang team</dc:creator>
