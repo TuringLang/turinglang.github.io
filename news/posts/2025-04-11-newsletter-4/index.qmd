@@ -1,0 +1,40 @@
+---
+title: Turing.jl Newsletter 4
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-04-11
+---
+
+**Have you used Turing.jl?**
+
+Given that you're reading this, we hope so! We're currently putting together a list of papers and other outputs (e.g. tutorials, presentations, ...) which make use of Turing.jl. We'd love to have more examples, if you have any, please do get in touch (feel free to message me and I can forward it). Thank you!
+
+**State of the AD**
+
+Over the last few weeks we've been putting together a little project that tabulates the performance of different AD backends on a variety of Turing.jl models, and we're now quite excited to share it: https://turinglang.org/ADTests/ This will hopefully help to answer the perennial question of whether you should stick with good old ForwardDiff, or whether you should try something else. Do note that (as of the time of writing) this table is still in alpha stage and there are a lot of details that have yet to be ironed out :slightly_smiling_face: However, suggestions are always welcome!
+
+**JuliaBUGS.jl**
+
+The BUGS (Bayesian inference Using Gibbs Sampling) language provides a declarative way to specify complex Bayesian statistical models. For years, implementations like WinBUGS, OpenBUGS, and JAGS have been widely used tools for researchers applying these models. JuliaBUGS.jl is a modern implementation of the BUGS language, aiming for full backwards compatibility with standard BUGS models, while also offering improved interoperability with the Julia ecosystem. (For details and examples of BUGS syntax, check out [the JuliaBUGS documentation](https://turinglang.org/JuliaBUGS.jl/dev/example/).)
+
+[A recent experimental update](https://github.com/TuringLang/JuliaBUGS.jl/pull/278/) introduces significant performance improvements in JuliaBUGS: instead of relying solely on the previous graph-based approach, JuliaBUGS can now directly generate Julia code to compute the model's log-density. This code generation technique can yield >10x speedups compared to the graph-based method. Currently, this provides the most benefit for models with linear or hierarchical structures; support for state space models is planned for a future update.
+
+To use it, run this after compiling your model:
+
+```julia
+JuliaBUGS.set_evaluation_mode(your_model, JuliaBUGS.UseGeneratedLogDensityFunction())
+```
+
+We would love for you to test out this new functionality! If you have any feedback, please do feel free to open a GitHub issue or discussion.
+
+**Even more advanced HMC**
+
+Lastly, we have a paper of our own to share on Hamiltonian Monte Carlo methods!
+
+- Xu, K., & Ge, H. (2024). Practical Hamiltonian Monte Carlo on Riemannian Manifolds via Relativity Theory. _Forty-First International Conference on Machine Learning._ https://openreview.net/pdf?id=Et8Pk97u4u and https://icml.cc/virtual/2024/poster/34558
+
+We will be looking to integrate these methods into Turing.jl in the future.
