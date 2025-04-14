@@ -1,0 +1,25 @@
+[
+  {
+    "listing": "/library/index.html",
+    "items": []
+  },
+  {
+    "listing": "/news/index.html",
+    "items": [
+      "/news/posts/2025-04-11-newsletter-4/index.html",
+      "/news/posts/2025-03-28-newsletter-3/index.html",
+      "/news/posts/2025-03-14-newsletter-2/index.html",
+      "/news/posts/2025-02-28-newsletter-1/index.html",
+      "/news/posts/2022-02-17-gsoc/index.html",
+      "/news/posts/2021-02-04-gsoc/index.html",
+      "/news/posts/2020-09-11-gsoc/index.html",
+      "/news/posts/2020-05-04-Imperial-Report13-analysis/index.html",
+      "/news/posts/2020-02-12-jsoc/index.html",
+      "/news/posts/2019-12-14-initial-post/index.html"
+    ]
+  },
+  {
+    "listing": "/team/index.html",
+    "items": []
+  }
+]
