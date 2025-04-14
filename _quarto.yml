@@ -1,7 +1,7 @@
 project:
   type: website
   preview:
-    # Change port if it's busy in your system or just remove this line so that It will automatically use any free port
+    # Change port if it's busy in your system or just comment below line so that It will automatically use any free port
     port: 4200
     browser: true
 
@@ -16,7 +16,7 @@ website:
     type: overlay
   navbar:
     logo: "assets/images/turing-logo.svg"
-    logo-href: https://turinglang.org/
+    # logo-href: https://turinglang.org/
     left:
       - text: Get Started
         href: https://turinglang.org/docs/getting-started/
@@ -40,7 +40,7 @@ website:
     #background: "#073c44"
     left: |
       Turing is created by <a href="http://mlg.eng.cam.ac.uk/hong/" target="_blank">Hong Ge</a>, and maintained by the <a href="/team" target="_blank">core team of developers</a>. <br>
-      © 2024 under the terms of the <a href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE" target="_blank">MIT License</a>. 
+      © 2024 under the terms of the <a href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE" target="_blank">MIT License</a>.
 
   back-to-top-navigation: true
   repo-url: https://github.com/TuringLang/turinglang.github.io/
