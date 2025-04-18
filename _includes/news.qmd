@@ -1,0 +1,195 @@
+---
+listing:
+- id: news
+  contents:
+    - "news/posts/*/index.qmd"
+  sort: date desc
+  type: grid
+  grid-columns: 3
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  fields: [title, description, date, reading-time, author]
+  image-height: "200"
+---
+
+### News
+
+::: {#news}
+
+:::
+
+[See all news &rarr;](news/)
+
+
+```{=html}
+<style>
+  /* hide default Quarto grid once JS enhancement is active */
+  #listing-news.enhanced-carousel .list.grid.quarto-listing-cols-3 {
+    display: none !important;
+  }
+
+  /* carousel wrapper */
+  #carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  /* focus outline for accessibility */
+  #carousel-container:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 4px;
+  }
+
+  /* sliding track */
+  #carousel-track {
+    display: flex;
+    align-items: flex-start;
+    transition: transform 0.5s ease;
+    will-change: transform;
+  }
+
+  /* each slide sizing & height animation */
+  #carousel-track > .g-col-1 {
+    flex: 0 0 33.3333%;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: block !important;
+    transition: height 0.3s ease;
+  }
+
+  /* single‑column on mobile */
+  @media (max-width: 768px) {
+    #carousel-track > .g-col-1 {
+      flex: 0 0 100%;
+    }
+  }
+
+  /* remove default card styling */
+  #carousel-track > .g-col-1 .card {
+    background: none;
+    box-shadow: none;
+    border: none;
+  }
+
+  /* trim default listing padding */
+  .quarto-listing {
+    padding-bottom: 0 !important;
+  }
+</style>
+
+<script>
+  // initialize carousel after DOM is ready
+  document.addEventListener('DOMContentLoaded', function () {
+    const listing = document.getElementById('listing-news');
+    if (!listing) return;
+    listing.classList.add('enhanced-carousel'); // flag JS enhancement
+
+    const items = Array.from(
+      listing.querySelectorAll('.list.grid.quarto-listing-cols-3 > .g-col-1')
+    ); // collect slides
+    const N = items.length; // total number of slides
+    if (!N) return;
+
+    // create carousel wrapper with accessibility roles
+    const carouselContainer = document.createElement('div');
+    carouselContainer.id = 'carousel-container';
+    carouselContainer.setAttribute('role', 'region');
+    carouselContainer.setAttribute('aria-live', 'polite');
+    carouselContainer.setAttribute('tabindex', '0');
+
+    // create track element
+    const carouselTrack = document.createElement('div');
+    carouselTrack.id = 'carousel-track';
+
+    items.forEach(i => carouselTrack.appendChild(i)); // move slides into track
+    carouselContainer.appendChild(carouselTrack);
+    listing.parentNode.insertBefore(carouselContainer, listing.nextSibling); // insert carousel
+
+    // determine items per view (responsive)
+    function getItemsPerView() { return window.innerWidth < 768 ? 1 : 3; }
+    let itemsPerView = getItemsPerView();
+    if (N <= itemsPerView) { // handle few slides
+      const h = Math.max(...items.map(i => i.offsetHeight));
+      carouselContainer.style.height = h + 'px';
+      return;
+    }
+
+    let currentIndex = 0;
+    let maxIndex = N - itemsPerView;
+    let shiftPercent = 100 / itemsPerView;
+    const displayDuration = 2000; // slide interval
+
+    // normalize visible slide heights
+    function recalcHeight() {
+      items.forEach(i => i.style.height = 'auto');
+      const vis = items.slice(currentIndex, currentIndex + itemsPerView);
+      const h = Math.max(...vis.map(i => i.offsetHeight));
+      vis.forEach(i => i.style.height = h + 'px');
+      carouselContainer.style.height = h + 'px';
+    }
+
+    // move track and adjust heights
+    function updateSlide(idx) {
+      carouselTrack.style.transform = `translateX(-${idx * shiftPercent}%)`;
+      recalcHeight();
+    }
+
+    // slide controls
+    function nextSlide() {
+      currentIndex = currentIndex < maxIndex ? currentIndex + 1 : 0;
+      updateSlide(currentIndex);
+    }
+    function prevSlide() {
+      currentIndex = currentIndex > 0 ? currentIndex - 1 : maxIndex;
+      updateSlide(currentIndex);
+    }
+
+    // initial render
+    recalcHeight();
+    updateSlide(0);
+
+    // auto-play with pause on hover/focus/visibility
+    let intervalId = setInterval(nextSlide, displayDuration);
+    ['mouseenter','focusin'].forEach(e =>
+      carouselContainer.addEventListener(e, () => clearInterval(intervalId))
+    );
+    ['mouseleave','focusout'].forEach(e =>
+      carouselContainer.addEventListener(e, () => {
+        clearInterval(intervalId);
+        intervalId = setInterval(nextSlide, displayDuration);
+      })
+    );
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) clearInterval(intervalId);
+      else {
+        clearInterval(intervalId);
+        intervalId = setInterval(nextSlide, displayDuration);
+      }
+    });
+
+    // keyboard navigation
+    carouselContainer.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { nextSlide(); e.preventDefault(); }
+      if (e.key === 'ArrowLeft')  { prevSlide(); e.preventDefault(); }
+    });
+
+    // debounce on window resize
+    let resizeTimeout = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        const v = getItemsPerView();
+        if (v !== itemsPerView) {
+          itemsPerView = v;
+          maxIndex = N - itemsPerView;
+          shiftPercent = 100 / itemsPerView;
+          currentIndex = Math.min(currentIndex, maxIndex);
+        }
+        recalcHeight();
+        updateSlide(currentIndex);
+      }, 150);
+    });
+  });
+</script>
+```
