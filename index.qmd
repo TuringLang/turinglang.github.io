@@ -3,19 +3,6 @@ toc: false
 page-layout: full
 section-divs: false
 hide-description: true
-listing:
-- id: news
-  contents:
-    - "news/posts/*/index.qmd"
-  sort: date desc
-  type: grid
-  grid-columns: 3
-  categories: false
-  sort-ui: false
-  filter-ui: false
-  fields: [title, description, date]
-  max-items: 3
-  image-height: "200"
 description: |
   Turing.jl is a probabilistic programming language and Bayesian modelling framework for the Julia programming language.
 ---
@@ -94,13 +81,7 @@ end
 
 :::::
 
-### News {.pb-3}
-
-::: {#news}
-
-:::
-
-[See all news &rarr;](news/)
+{{< include _includes/news.qmd >}}
 
 ```{=html}
 <h3 class="pb-3 section-start-space">
