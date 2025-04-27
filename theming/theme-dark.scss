@@ -137,3 +137,36 @@ p {
     --bs-tooltip-color: $black !important;
     --bs-tooltip-bg: $white !important;
 }
+
+// table background & text
+.packages-table {
+    background-color: $background-body !important;
+    color: $li !important;
+}
+
+// cell borders
+.packages-table th,
+.packages-table td {
+    border-bottom-color: $gray-700 !important;
+}
+
+// header row
+.packages-table thead {
+    background-color: $gray-800 !important;
+}
+
+// zebra stripes
+.packages-table tbody tr:nth-child(odd) {
+    background-color: darken($background-body, 5%) !important;
+}
+
+// hover state
+.packages-table tbody tr:hover {
+    background-color: lighten($background-nav, 5%) !important;
+}
+
+// “Deprecated” badge styling
+.badge.deprecated {
+    color: $white !important;
+    background-color: $red !important;
+}

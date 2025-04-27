@@ -3,8 +3,83 @@ title: "Turing Libraries"
 search: false
 toc: false
 include-in-header:
-    - text: |
-        <style>a {text-decoration: none;}a:hover {text-decoration: underline;}</style>
+  - text: |
+      <style>
+        /* links */
+        a { text-decoration: none; }
+        a:hover { text-decoration: underline; }
+      </style>
+
+      <style>
+        /* responsive wrapper */
+        .table-responsive {
+          overflow-x: auto;
+          margin-bottom: 1rem;
+        }
+
+        /* default (light-mode) table styling */
+        .packages-table {
+          width: 100%;
+          border-collapse: collapse;
+          background-color: #ffffff;
+          color: #212529;
+        }
+        .packages-table th,
+        .packages-table td {
+          padding: 0.75rem 1rem;
+          text-align: left;
+          border-bottom: 1px solid #eee;
+        }
+        .packages-table thead {
+          background-color: #f8f8f8;
+        }
+        .packages-table tbody tr:nth-child(odd) {
+          background-color: #fafafa;
+        }
+        .packages-table tbody tr:hover {
+          background-color: #eef9ff;
+        }
+        .packages-table th {
+          font-weight: 600;
+        }
+
+        /* deprecated badge */
+        .badge.deprecated {
+          display: inline-block;
+          margin-left: 0.5em;
+          padding: 0.2em 0.4em;
+          font-size: 0.75em;
+          font-weight: 600;
+          color: #721c24;
+          background-color: #f8d7da;
+          border-radius: 0.2em;
+        }
+      </style>
+
+      <style>
+        /* dark-mode overrides, tied to Quarto’s theme toggle */
+        html[data-theme="dark"] .packages-table {
+          background-color: #131818;
+          color: #bcbcbc;
+        }
+        html[data-theme="dark"] .packages-table th,
+        html[data-theme="dark"] .packages-table td {
+          border-bottom-color: #495057;
+        }
+        html[data-theme="dark"] .packages-table thead {
+          background-color: #373a3c;
+        }
+        html[data-theme="dark"] .packages-table tbody tr:nth-child(odd) {
+          background-color: #1c1c1c;
+        }
+        html[data-theme="dark"] .packages-table tbody tr:hover {
+          background-color: #25343d;
+        }
+        html[data-theme="dark"] .badge.deprecated {
+          color: #f8d7da;
+          background-color: #721c24;
+        }
+      </style>
 listing:
   - id: libraries-main
     template: table.ejs

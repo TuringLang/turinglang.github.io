@@ -83,10 +83,11 @@
   description: "Convenient callbacks for sampling in Turing.jl"
   category: utilities
 - name: TuringBenchmarking
-  api: https://turinglang.org/TuringBenchmarking.jl/
-  github: https://github.com/TuringLang/TuringBenchmarking.jl
+  api: https://turinglang.org/deprecated/TuringBenchmarking/
+  github: https://github.com/TuringLang/deprecated/tree/main/TuringBenchmarking
   description: "Tools to benchmark and check Turing models"
   category: utilities
+  status: deprecated
 
 - name: MCMCChains
   api: https://turinglang.org/MCMCChains.jl/

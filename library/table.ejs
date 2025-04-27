@@ -1,14 +1,22 @@
-<table width="100%">
+<div class="table-responsive">
+<table class="packages-table">
+<thead>
+<tr>
+<th>Package</th>
+<th>API</th>
+<th>GitHub</th>
+<th>Description</th>
+</tr>
+</thead>
 <tbody>
 <% for (const item of items) { %>
 <tr>
-<td style="padding: 5px 5px 5px 0"><span style="font-weight: bold"><%- item.name %></span></td>
-<% if (item.api !== "") { %>
-<td style="padding: 5px 5px"><a href="<%- item.api %>" target="_blank">API</a></td>
-<% } %>
-<td style="padding: 5px 5px"><a href="<%- item.github %>" target="_blank">GitHub</a></td>
-<td style="padding: 5px 0 5px 5px"><%- item.description %></td>
+<td data-label="Package"><%- item.name %><% if(item.status==="deprecated"){ %><span class="badge deprecated">Deprecated</span><% } %></td>
+<td data-label="API"><% if(item.api){ %><a href="<%- item.api %>" target="_blank">API</a><% } else { %>—<% } %></td>
+<td data-label="GitHub"><a href="<%- item.github %>" target="_blank">GitHub</a></td>
+<td data-label="Description"><%- item.description %></td>
 </tr>
 <% } %>
 </tbody>
 </table>
+</div>
