@@ -1,0 +1,57 @@
+---
+title: Turing.jl Newsletter 5
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-04-25
+---
+
+**DynamicPPL 0.36**
+
+A new minor version of DynamicPPL brings with it a few changes especially to the behaviour of submodels. These have not yet percolated up to Turing.jl, but will soon be. Firstly, prefixing behaviour is changed: consider these models
+
+```julia
+@model function inner()
+    x ~ Normal()
+end
+@model function outer()
+    a = [0.0]
+    a[1] ~ to_submodel(inner())
+end
+```
+
+If you ran this model, you would find that the single random variable was called `a[1].x` — but this isn't the `x` field of the `1`st element of `a`, it's actually a variable whose name is literally just `Symbol("a[1].x")`. DynamicPPL changes this behaviour such that the variable is correctly recognised as the `x` field of the `1`st element of `a`. This means that if you are trying to, for example, condition on the variable, you can do:
+
+```julia
+outer() | (@varname(a[1].x) => 1.0)
+```
+
+On the topic of conditioning, you can now also correctly condition or fix variables in a model before using it as a submodel, as this example demonstrates:
+
+```julia
+@model function inner()
+    x ~ Normal()
+end
+@model function outer()
+    a ~ to_submodel(inner() | (@varname(x) => 1))
+end
+```
+
+Previously, if you wanted to do this, you would have to condition on `@varname(a.x)`, meaning that you'd need to know the prefix before conditioning it. The current system allows for more modular construction of nested models.
+
+For more complete details, please see [the release notes](https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.36.0).
+
+**TuringBenchmarking.jl**
+
+DynamicPPL 0.36 also brings new functionality that can be used for testing and benchmarking automatic differentiation on Turing models. This is what powers the [ADTests table](https://turinglang.org/ADTests/), which we shared last time round. (Psst — there are more examples now than before!)
+
+For more information, see the docstring of `DynamicPPL.TestUtils.AD.run_ad` in [the DynamicPPL docs](https://turinglang.org/DynamicPPL.jl/stable/api/#DynamicPPL.TestUtils.AD.run_ad).
+
+As a corollary of this, the AD benchmarking functionalities in TuringBenchmarking.jl are not really needed anymore. If you are using this package, we recommend that you switch over to use the functionality that's directly built into DynamicPPL.
+
+**AdvancedHMC compatibility with ComponentArrays**
+
+AdvancedHMC had a fairly long-standing issue where it couldn't always be used with ComponentArrays as the position / momentum. This has now been fixed; you can take a look at [the test suite](https://github.com/TuringLang/AdvancedHMC.jl/blob/459ebb8a10cc1bc7dbbc27ed79afa796c607697a/test/hamiltonian.jl#L77-L100) to see examples of how they can be used together.
