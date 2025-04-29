@@ -17,7 +17,7 @@ Separately, we are planning to merge the benchmarking utilities in [TuringBenchm
 
 **SSMProblems**
 
-The SSMProblems.jl and GeneralisedFilters.jl packages have now been merged into a single repository: https://github.com/TuringLang/SSMProblems.jl. This won't affect you if you are using the packages from the Julia General registry, but if you're looking to develop off the main branch you may have to use a different URL, or specify a subdirectory in `Pkg.add`.
+The SSMProblems.jl and GeneralisedFilters.jl packages have now been merged into a single repository: [https://github.com/TuringLang/SSMProblems.jl](https://github.com/TuringLang/SSMProblems.jl). This won't affect you if you are using the packages from the Julia General registry, but if you're looking to develop off the main branch you may have to use a different URL, or specify a subdirectory in `Pkg.add`.
 
 **Smaller bits**
 
