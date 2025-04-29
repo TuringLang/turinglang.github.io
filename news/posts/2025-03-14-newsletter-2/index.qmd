@@ -22,6 +22,7 @@ The SSMProblems.jl and GeneralisedFilters.jl packages have now been merged into 
 **Smaller bits**
 
 Other code changes that have been merged:
+
 - Some old code in AdvancedHMC.jl has been cleaned up quite a bit. See the [0.7.0 release](https://github.com/TuringLang/AdvancedHMC.jl/releases/tag/v0.7.0) for more information.
 - Turing's Gibbs sampler [now supports warmup steps properly](https://github.com/TuringLang/Turing.jl/pull/2502). We're still thinking about how to properly encode the scenario where different sub-samplers have different numbers of warmup steps, if you have any ideas, do get in touch on that PR.
 - We are going to formally remove support for Zygote as an AD backend. We don't test it thoroughly in Turing's test suite. You can of course still use Zygote yourself, simply load `ADTypes.AutoZygote()` — although we can't guarantee that we will fix any bugs that arise.
