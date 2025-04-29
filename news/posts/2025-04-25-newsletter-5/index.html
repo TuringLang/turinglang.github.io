@@ -6,17 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Tor Erlend Fjelde">
-<meta name="author" content="Mohamed Tarek">
-<meta name="author" content="Kai Xu">
-<meta name="author" content="David Widmann">
-<meta name="author" content="Martin Trapp">
-<meta name="author" content="Cameron Pfiffer">
-<meta name="author" content="Hong Ge">
-<meta name="dcterms.date" content="2020-05-14">
-<meta name="description" content="The Turing.jl team is currently exploring possibilities in an attempt to help with the ongoing SARS-CoV-2 crisis. As preparation for this and to get our feet wet, we decided to perform a replication study of the Imperial Report 13…">
+<meta name="author" content="The TuringLang team">
+<meta name="dcterms.date" content="2025-04-25">
+<meta name="description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
 
-<title>Replication study: Estimating number of infections and impact of NPIs on COVID-19 in European countries (Imperial Report 13) – Turing.jl</title>
+<title>Turing.jl Newsletter 5 – Turing.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -28,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -98,7 +127,6 @@ ul.task-list li input[type="checkbox"] {
     text-decoration: underline;
   }
 </style>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 
 <link rel="stylesheet" href="../../../theming/styles.css">
@@ -326,87 +354,32 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Replication study: Estimating number of infections and impact of NPIs on COVID-19 in European countries (Imperial Report 13)</h1>
+<h1 class="title">Turing.jl Newsletter 5</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Research</div>
+    <div class="quarto-category">Newsletter</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>The Turing.jl team is currently exploring possibilities in an attempt to help with the ongoing SARS-CoV-2 crisis. As preparation for this and to get our feet wet, we decided to perform a replication study of the Imperial Report 13…</p>
+    The fortnightly newsletter for the Turing.jl probabilistic programming language
   </div>
 </div>
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Authors</div>
-  <div class="quarto-title-meta-heading">Affiliations</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://retiredparkingguard.com/about.html">Tor Erlend Fjelde</a> <a href="mailto:tef30@cam.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            University of Cambridge
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://mohamed82008.github.io/">Mohamed Tarek</a> <a href="mailto:m.mohamed@student.adfa.edu.au" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            UNSW Canberra
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://xuk.ai/">Kai Xu</a> <a href="mailto:kai.xu@ed.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            University of Edinburgh
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://www.widmann.dev/">David Widmann</a> <a href="mailto:david.widmann@it.uu.se" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Uppsala University
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://trappmartin.github.io/">Martin Trapp</a> <a href="mailto:martin.trapp@aalto.fi" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Graz University of Technology
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://cameron.pfiffer.org/">Cameron Pfiffer</a> <a href="mailto:cpfiffer@uoregon.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            University of Oregon
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="http://mlg.eng.cam.ac.uk/hong/">Hong Ge</a> <a href="mailto:University of Oregon" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            University of Cambridge
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="../../../team/">The TuringLang team</a> </p>
+          </div>
+  </div>
+    
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 14, 2020</p>
+      <p class="date">April 25, 2025</p>
     </div>
   </div>
   
@@ -418,55 +391,32 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The Turing.jl team is currently exploring possibilities in an attempt to help with the ongoing SARS-CoV-2 crisis. As preparation for this and to get our feet wet, we decided to perform a replication study of the <a href="https://www.imperial.ac.uk/mrc-global-infectious-disease-analysis/covid-19/report-13-europe-npi-impact/">Imperial Report 13</a>, which attempts to estimate the real number of infections and impact of non-pharmaceutical interventions on COVID-19. In the report, the inference was performed using the probabilistic programming language (PPL) Stan. We have explicated their model and inference in Turing.jl, a Julia-based PPL. We believe the results and analysis of our study are relevant for the public, and for other researchers who are actively working on epidemiological models. To that end, our implementation and results are available <a href="https://github.com/cambridge-mlg/Covid19">here</a>.</p>
-<p>In summary, we replicated the Imperial COVID-19 model using Turing.jl. Subsequently, we compared the inference results between Turing and Stan, and our comparison indicates that results are reproducible with two different implementations. In particular, we performed 4 sets of simulations using the Imperial COVID-19 model. The resulting estimates of the expected real number of cases, in contrast to the <em>recorded</em> number of cases, the reproduction number \(R_t\), and the expected number of deaths as a function of time and non-pharmaceutical interventions (NPIs) for each Simulation are shown below.</p>
-<!-- {{< include plotly.html >}} -->
-<div id="simulation-1-full" class="plotly">
-
-</div>
-<script>
- Plotly.d3.json("data/full_prior.json", function(err, fig) {
-   Plotly.plot("simulation-1-full", fig.data, fig.layout, {responsive: true});
- });
-</script>
-<p><strong>Simulation (a):</strong> hypothetical Simulation from the model without data (prior predictive) or non-pharmaceutical interventions. Under the prior assumptions of the Imperial Covid-19 model, there is a very wide range of epidemic progressions with expected cases from almost 0 to 100% of the population over time. The black bar corresponds to the date of the last observation. Note that \(R_t\) has a different time-range than the other plots; following the original report, this shows the 100 days following the country-specific <code>epidemic_start</code> which is defined to be 31 days prior to the first date of 10 cumulative deaths, while the other plots show the last 60 days.</p>
-<div id="simulation-2-full" class="plotly">
-
-</div>
-<script>
- Plotly.d3.json("data/full_posterior.json", function(err, fig) {
-   Plotly.plot("simulation-2-full", fig.data, fig.layout, {responsive: true});
- });
-</script>
-<p><strong>Simulation (b):</strong> future Simulation with non-pharmaceutical interventions kept in place (posterior predictive). After incorporating the observed infection data, we can see a substantially more refined range of epidemic progression. The reproduction rate estimate lies in the range of 3.5-5.6 before any intervention is introduced. The dotted lines correspond to observations, and the black bar corresponds to the date of the last observation.</p>
-<div id="simulation-3-full" class="plotly">
-
-</div>
-<script>
- Plotly.d3.json("data/full_counterfactual.json", function(err, fig) {
-   Plotly.plot("simulation-3-full", fig.data, fig.layout, {responsive: true});
- });
-</script>
-<p><strong>Simulation (c):</strong> future Simulation with non-pharmaceutical interventions removed. Now we see the hypothetical scenarios after incorporating infection data, but with non-pharmaceutical interventions removed. This plot looks similar to Simulation (a), but with a more rapid progression of the pandemic since the estimated reproduction rate is bigger than the prior assumptions. The dotted lines correspond to observations, and the black bar corresponds to the date of the last observation.</p>
-<div id="simulation-4-full" class="plotly">
-
-</div>
-<script>
- Plotly.d3.json("data/full_counterfactual2.json", function(err, fig) {
-   Plotly.plot("simulation-4-full", fig.data, fig.layout, {responsive: true});
- });
-</script>
-<p><strong>Simulation (d):</strong> future Simulation with when <code>lockdown</code> is lifted two weeks before the last observation (predictive posterior). As a result there is a clear, rapid rebound of the reproduction rate. Comparing with Simulation (b) we do not observe an <em>immediate</em> increase in the number of expected cases and deaths upon lifting lockdown, but there is a significant difference in the number of cases and deaths in the last few days in the plot: Simulation (d) results in both greater number of cases and deaths, as expected. This demonstrates how the effects of lifting an intervention might not become apparent in the measurable variables, e.g.&nbsp;deaths, until several weeks later. The dotted lines correspond to observations, the black bar corresponds to the date of the last observation, and the red bar indicates when <code>lockdown</code> was lifted.</p>
-<p>Overall, Simulation (a) shows the prior modelling assumptions, and how these prior assumptions determine the predicted number of cases, etc. before seeing any data. Simulation (b) predicts the trend of the number of cases, etc. using estimated parameters and by keeping all the non-pharmaceutical interventions in place. Simulation (c) shows the estimate in the case where none of the intervention measures are ever put in place. Simulation (d) shows the estimates in the case when the lockdown was lifted two weeks prior to the last observation while keeping all the other non-pharmaceutical interventions in place.</p>
-<p>We want to emphasise that we do not provide additional analysis of the Imperial model yet, nor are we aiming to make any claims about the validity or the implications of the model. Instead we refer to Imperial Report 13 for more details and analysis. The purpose of this post is solely to add validation to the <em>inference</em> performed in the paper by obtaining the same results using a different probabilistic programming language (PPL) and by exploring whether or not Turing.jl can be useful for researchers working on these problems.</p>
-<p>For our next steps, we’re looking at collaboration with other researchers and further developments of this and similar models. There are some immediate directions to explore:</p>
-<ol type="1">
-<li>Incorporation of more sources of data, e.g.&nbsp;national mobility, seasonal changes and behavior changes in individuals.</li>
-<li>How the assumptions incorporated into the priors and their parameters change resulting posterior.</li>
-<li>The current model does not directly include recovery as a possibility and assumes that if a person has been infected once then he/she will be infectious until death. Number of recovered cases suffers from the same issues as the number of cases: it cannot be directly observed. But we can also deal with it in a similar manner as is done with number of cases and incorporate this into the model for a potential improvement. This will result in a plethora of different models from which we can select the most realistic one using different model comparison techniques, e.g.&nbsp;leave-one-out cross-validation (loo-cv).</li>
-</ol>
-<p>Such model refinement can be potentially valuable given the high impact of this pandemic and the uncertainty and debates in the potential outcomes.</p>
-<p><strong>Acknowledgement</strong> <em>We would like to thank the Julia community for creating such an excellent platform for scientific computing, and for the continuous feedback that we have received. We also thank researchers from Computational and Biological Laboratory at Cambridge University for their feedback on an early version of the post.</em> <!----- Footnotes -----></p>
+<p><strong>DynamicPPL 0.36</strong></p>
+<p>A new minor version of DynamicPPL brings with it a few changes especially to the behaviour of submodels. These have not yet percolated up to Turing.jl, but will soon be. Firstly, prefixing behaviour is changed: consider these models</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">inner</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">~</span> <span class="fu">Normal</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">outer</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    a[<span class="fl">1</span>] <span class="op">~</span> <span class="fu">to_submodel</span>(<span class="fu">inner</span>())</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you ran this model, you would find that the single random variable was called <code>a[1].x</code> — but this isn’t the <code>x</code> field of the <code>1</code>st element of <code>a</code>, it’s actually a variable whose name is literally just <code>Symbol("a[1].x")</code>. DynamicPPL changes this behaviour such that the variable is correctly recognised as the <code>x</code> field of the <code>1</code>st element of <code>a</code>. This means that if you are trying to, for example, condition on the variable, you can do:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>() <span class="op">|</span> (<span class="pp">@varname</span>(a[<span class="fl">1</span>].x) <span class="op">=&gt;</span> <span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>On the topic of conditioning, you can now also correctly condition or fix variables in a model before using it as a submodel, as this example demonstrates:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">inner</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">~</span> <span class="fu">Normal</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">outer</span>()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    a <span class="op">~</span> <span class="fu">to_submodel</span>(<span class="fu">inner</span>() <span class="op">|</span> (<span class="pp">@varname</span>(x) <span class="op">=&gt;</span> <span class="fl">1</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Previously, if you wanted to do this, you would have to condition on <code>@varname(a.x)</code>, meaning that you’d need to know the prefix before conditioning it. The current system allows for more modular construction of nested models.</p>
+<p>For more complete details, please see <a href="https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.36.0">the release notes</a>.</p>
+<p><strong>TuringBenchmarking.jl</strong></p>
+<p>DynamicPPL 0.36 also brings new functionality that can be used for testing and benchmarking automatic differentiation on Turing models. This is what powers the <a href="https://turinglang.org/ADTests/">ADTests table</a>, which we shared last time round. (Psst — there are more examples now than before!)</p>
+<p>For more information, see the docstring of <code>DynamicPPL.TestUtils.AD.run_ad</code> in <a href="https://turinglang.org/DynamicPPL.jl/stable/api/#DynamicPPL.TestUtils.AD.run_ad">the DynamicPPL docs</a>.</p>
+<p>As a corollary of this, the AD benchmarking functionalities in TuringBenchmarking.jl are not really needed anymore. If you are using this package, we recommend that you switch over to use the functionality that’s directly built into DynamicPPL.</p>
+<p><strong>AdvancedHMC compatibility with ComponentArrays</strong></p>
+<p>AdvancedHMC had a fairly long-standing issue where it couldn’t always be used with ComponentArrays as the position / momentum. This has now been fixed; you can take a look at <a href="https://github.com/TuringLang/AdvancedHMC.jl/blob/459ebb8a10cc1bc7dbbc27ed79afa796c607697a/test/hamiltonian.jl#L77-L100">the test suite</a> to see examples of how they can be used together.</p>
 
 
 
@@ -891,7 +841,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/news/posts/2020-05-04-Imperial-Report13-analysis/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/news/posts/2025-04-25-newsletter-5/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
