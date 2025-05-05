@@ -83,8 +83,8 @@
   description: "Convenient callbacks for sampling in Turing.jl"
   category: utilities
 - name: TuringBenchmarking
-  api: https://turinglang.org/deprecated/TuringBenchmarking/
-  github: https://github.com/TuringLang/deprecated/tree/main/TuringBenchmarking
+  api: https://turinglang.org/Deprecated/TuringBenchmarking/
+  github: https://github.com/TuringLang/Deprecated/tree/main/TuringBenchmarking
   description: "Tools to benchmark and check Turing models"
   category: utilities
   status: deprecated

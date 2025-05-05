@@ -55,31 +55,6 @@ include-in-header:
           border-radius: 0.2em;
         }
       </style>
-
-      <style>
-        /* dark-mode overrides, tied to Quarto’s theme toggle */
-        html[data-theme="dark"] .packages-table {
-          background-color: #131818;
-          color: #bcbcbc;
-        }
-        html[data-theme="dark"] .packages-table th,
-        html[data-theme="dark"] .packages-table td {
-          border-bottom-color: #495057;
-        }
-        html[data-theme="dark"] .packages-table thead {
-          background-color: #373a3c;
-        }
-        html[data-theme="dark"] .packages-table tbody tr:nth-child(odd) {
-          background-color: #1c1c1c;
-        }
-        html[data-theme="dark"] .packages-table tbody tr:hover {
-          background-color: #25343d;
-        }
-        html[data-theme="dark"] .badge.deprecated {
-          color: #f8d7da;
-          background-color: #721c24;
-        }
-      </style>
 listing:
   - id: libraries-main
     template: table.ejs
