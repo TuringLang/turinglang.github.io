@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="The TuringLang team">
-<meta name="dcterms.date" content="2025-03-14">
+<meta name="dcterms.date" content="2025-05-09">
 <meta name="description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
 
-<title>Turing.jl Newsletter 2 – Turing.jl</title>
+<title>Turing.jl Newsletter 6 – Turing.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -320,7 +355,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Turing.jl Newsletter 2</h1>
+<h1 class="title">Turing.jl Newsletter 6</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Newsletter</div>
   </div>
@@ -345,7 +380,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 14, 2025</p>
+      <p class="date">May 9, 2025</p>
     </div>
   </div>
   
@@ -357,18 +392,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>DynamicPPL benchmarking</strong></p>
-<p>DynamicPPL.jl now has a set of benchmarks that are run on GitHub Actions! We measure how long it takes to evaluate a small selection of models and also to run AD on them. If you think that there are specific models / features that we should add to the benchmarks, please feel free to <a href="https://github.com/TuringLang/DynamicPPL.jl/issues/new">create an issue</a> and let us know.</p>
-<p>Separately, we are planning to merge the benchmarking utilities in <a href="https://github.com/TuringLang/TuringBenchmarking.jl">TuringBenchmarking.jl</a> into DynamicPPL itself. There might be a little bit of API shake-up as part of this, but it’s for the better as it’ll allow the benchmarking code to more easily stay in sync with DynamicPPL — allowing us to catch performance regressions in PRs.</p>
-<p><strong>SSMProblems</strong></p>
-<p>The SSMProblems.jl and GeneralisedFilters.jl packages have now been merged into a single repository: <a href="https://github.com/TuringLang/SSMProblems.jl">https://github.com/TuringLang/SSMProblems.jl</a>. This won’t affect you if you are using the packages from the Julia General registry, but if you’re looking to develop off the main branch you may have to use a different URL, or specify a subdirectory in <code>Pkg.add</code>.</p>
-<p><strong>Smaller bits</strong></p>
-<p>Other code changes that have been merged:</p>
-<ul>
-<li>Some old code in AdvancedHMC.jl has been cleaned up quite a bit. See the <a href="https://github.com/TuringLang/AdvancedHMC.jl/releases/tag/v0.7.0">0.7.0 release</a> for more information.</li>
-<li>Turing’s Gibbs sampler <a href="https://github.com/TuringLang/Turing.jl/pull/2502">now supports warmup steps properly</a>. We’re still thinking about how to properly encode the scenario where different sub-samplers have different numbers of warmup steps, if you have any ideas, do get in touch on that PR.</li>
-<li>We are going to formally remove support for Zygote as an AD backend. We don’t test it thoroughly in Turing’s test suite. You can of course still use Zygote yourself, simply load <code>ADTypes.AutoZygote()</code> —&nbsp;although we can’t guarantee that we will fix any bugs that arise.</li>
-</ul>
+<p>Turing v0.38 has just been released and incorporates the changes from DynamicPPL which were mentioned <a href="../../../news/posts/2025-04-25-newsletter-5">in the last newsletter</a>. It also contains a fix for the Gibbs sampler, so that you can now specify arbitrary VarNames for each sampler (previously, you could only specify single-symbol VarNames). For example, you can now specify the <code>a.x</code> and <code>b.x</code> VarNames here:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">inner</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">~</span> <span class="fu">Normal</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">outer</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    a <span class="op">~</span> <span class="fu">to_submodel</span>(<span class="fu">inner</span>())</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    b <span class="op">~</span> <span class="fu">to_submodel</span>(<span class="fu">inner</span>())</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">outer</span>(), <span class="fu">Gibbs</span>(<span class="pp">@varname</span>(a.x) <span class="op">=&gt;</span> <span class="fu">MH</span>(), <span class="pp">@varname</span>(b.x) <span class="op">=&gt;</span> <span class="fu">MH</span>()), <span class="fl">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It is theoretically possible that this will be slow for VarNames that involve indexing (e.g.&nbsp;<code>x[1]</code>), although we don’t have an example of this yet. If you find anything you think should be faster, let us know.</p>
+<p>One other minor point: <a href="https://turinglang.org/ADTests/">on ADTests</a> you can now hover over a model name to see its definition.</p>
 
 
 
@@ -793,7 +827,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/news/posts/2025-03-14-newsletter-2/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/news/posts/2025-05-09-newsletter-6/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

@@ -9,8 +9,93 @@
 <link>https://turinglang.org/news/</link>
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.7.29</generator>
-<lastBuildDate>Fri, 25 Apr 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.7.30</generator>
+<lastBuildDate>Fri, 09 May 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 6</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-05-09-newsletter-6/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Turing v0.38 has just been released and incorporates the changes from DynamicPPL which were mentioned <a href="../../../news/posts/2025-04-25-newsletter-5">in the last newsletter</a>. It also contains a fix for the Gibbs sampler, so that you can now specify arbitrary VarNames for each sampler (previously, you could only specify single-symbol VarNames). For example, you can now specify the <code>a.x</code> and <code>b.x</code> VarNames here:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@model</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">inner</span>()</span>
+<span id="cb1-2">    x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Normal</span>()</span>
+<span id="cb1-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">end</span></span>
+<span id="cb1-4"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@model</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">outer</span>()</span>
+<span id="cb1-5">    a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">to_submodel</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">inner</span>())</span>
+<span id="cb1-6">    b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">to_submodel</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">inner</span>())</span>
+<span id="cb1-7"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">end</span></span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">outer</span>(), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Gibbs</span>(<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@varname</span>(a.x) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">MH</span>(), <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@varname</span>(b.x) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">MH</span>()), <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)</span></code></pre></div>
+<p>It is theoretically possible that this will be slow for VarNames that involve indexing (e.g.&nbsp;<code>x[1]</code>), although we don’t have an example of this yet. If you find anything you think should be faster, let us know.</p>
+<p>One other minor point: <a href="https://turinglang.org/ADTests/">on ADTests</a> you can now hover over a model name to see its definition.</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-05-09-newsletter-6/</guid>
+  <pubDate>Fri, 09 May 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 5</title>
   <dc:creator>The TuringLang team</dc:creator>
