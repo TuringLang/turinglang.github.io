@@ -1,0 +1,27 @@
+---
+title: Turing.jl Newsletter 6
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-05-09
+---
+
+Turing v0.38 has just been released and incorporates the changes from DynamicPPL which were mentioned [in the last newsletter](/news/posts/2025-04-25-newsletter-5). It also contains a fix for the Gibbs sampler, so that you can now specify arbitrary VarNames for each sampler (previously, you could only specify single-symbol VarNames). For example, you can now specify the `a.x` and `b.x` VarNames here:
+
+```julia
+@model function inner()
+    x ~ Normal()
+end
+@model function outer()
+    a ~ to_submodel(inner())
+    b ~ to_submodel(inner())
+end
+sample(outer(), Gibbs(@varname(a.x) => MH(), @varname(b.x) => MH()), 100)
+```
+
+It is theoretically possible that this will be slow for VarNames that involve indexing (e.g. `x[1]`), although we don't have an example of this yet. If you find anything you think should be faster, let us know.
+
+One other minor point: [on ADTests](https://turinglang.org/ADTests/) you can now hover over a model name to see its definition.
