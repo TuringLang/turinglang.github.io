@@ -1,0 +1,32 @@
+---
+title: Turing.jl Newsletter 7
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-05-23
+---
+
+**MCMCChains@7**
+
+There's a new major version of [MCMCChains.jl](https://github.com/TuringLang/MCMCChains.jl).
+From a user point of view, the main difference is that summary statistics and quantiles aren't automatically calculated by default (so, printing a `Chains` object in a REPL will only show the parameter names and sizes).
+To get the summary statistics and quantiles you will have to run `describe(chain)`.
+The main reason for this is because the summary stats would often take quite a while to compute — if you wish to preserve the old behaviour you can stick to MCMCChains@6.
+
+**JuliaBUGS `@model`**
+
+[JuliaBUGS.jl](https://github.com/TuringLang/JuliaBUGS.jl) recently implemented a `@model` macro which, in terms of its syntax, looks somewhat similar to Turing.jl's own macro, but under the hood constructs a BUGS model.
+Perhaps of interest is the way that parameters are initialised using `@parameters struct ... end`; this currently helps to initialise all parameter values to placeholders, and offers an alternative to explicitly specifying this with NamedTuples or arrays.
+This hasn't yet been released but for more information and a demonstration, there's [a documentation page](https://github.com/TuringLang/JuliaBUGS.jl/blob/main/docs/src/julia_syntax.md) that describes the design of this macro.
+The existing `@bugs` macro will still be retained.
+
+**Libtask** 
+
+[Libtask.jl](https://github.com/TuringLang/Libtask.jl), the library that Turing’s particle Gibbs sampler is built on, was recently rewritten for its core parts by Will Tebbutt ([#179](https://github.com/TuringLang/Libtask.jl/pull/179).
+Libtask implements copyable, resumable tasks (coroutines) in pure Julia, and the new version is much faster and better documented.
+The new implementation is based on source code transformations, using tools and techniques from [Mooncake.jl](https://github.com/chalk-lab/Mooncake.jl).
+[Work](https://github.com/TuringLang/AdvancedPS.jl/pull/114) is ongoing to adapt AdvancedPS.jl to work with the new Libtask version, and once that is done we should expect a performance boost for Turing’s particle Gibbs sampler.
+We’ll let you know once that’s out.
