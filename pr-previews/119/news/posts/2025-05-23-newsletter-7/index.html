@@ -6,11 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Cameron Pfiffer">
-<meta name="dcterms.date" content="2019-12-14">
-<meta name="description" content="All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts…">
+<meta name="author" content="The TuringLang team">
+<meta name="dcterms.date" content="2025-05-23">
+<meta name="description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
 
-<title>Turing’s Blog – Turing.jl</title>
+<title>Turing.jl Newsletter 7 – Turing.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -319,39 +319,32 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Turing’s Blog</h1>
+<h1 class="title">Turing.jl Newsletter 7</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Blog</div>
+    <div class="quarto-category">Newsletter</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts…</p>
+    The fortnightly newsletter for the Turing.jl probabilistic programming language
   </div>
 </div>
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://cameron.pfiffer.org/">Cameron Pfiffer</a> <a href="mailto:cpfiffer@uoregon.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            University of Oregon
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="../../../team/">The TuringLang team</a> </p>
+          </div>
+  </div>
+    
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 14, 2019</p>
+      <p class="date">May 23, 2025</p>
     </div>
   </div>
   
@@ -363,15 +356,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts on topics like</p>
-<ul>
-<li>Interesting things you can do with Turing, or interesting things we have seen others do.</li>
-<li>Development updates and major release announcements.</li>
-<li>Research updates.</li>
-<li>Explorations of Turing’s internals.</li>
-<li>Updates to Turing’s satellite projects <a href="https://github.com/TuringLang/AdvancedHMC.jl">AdvancedHMC.jl</a> or <a href="https://github.com/TuringLang/Bijectors.jl">Bijectors.jl</a>.</li>
-</ul>
-<p>Stay tuned!</p>
+<p><strong>MCMCChains@7</strong></p>
+<p>There’s a new major version of <a href="https://github.com/TuringLang/MCMCChains.jl">MCMCChains.jl</a>. From a user point of view, the main difference is that summary statistics and quantiles aren’t automatically calculated by default (so, printing a <code>Chains</code> object in a REPL will only show the parameter names and sizes). To get the summary statistics and quantiles you will have to run <code>describe(chain)</code>. The main reason for this is because the summary stats would often take quite a while to compute — if you wish to preserve the old behaviour you can stick to MCMCChains@6.</p>
+<p><strong>JuliaBUGS <code>@model</code></strong></p>
+<p><a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS.jl</a> recently implemented a <code>@model</code> macro which, in terms of its syntax, looks somewhat similar to Turing.jl’s own macro, but under the hood constructs a BUGS model. Perhaps of interest is the way that parameters are initialised using <code>@parameters struct ... end</code>; this currently helps to initialise all parameter values to placeholders, and offers an alternative to explicitly specifying this with NamedTuples or arrays. This hasn’t yet been released but for more information and a demonstration, there’s <a href="https://github.com/TuringLang/JuliaBUGS.jl/blob/main/docs/src/julia_syntax.md">a documentation page</a> that describes the design of this macro. The existing <code>@bugs</code> macro will still be retained.</p>
+<p><strong>Libtask</strong></p>
+<p><a href="https://github.com/TuringLang/Libtask.jl">Libtask.jl</a>, the library that Turing’s particle Gibbs sampler is built on, was recently rewritten for its core parts by Will Tebbutt (<a href="https://github.com/TuringLang/Libtask.jl/pull/179">#179</a>. Libtask implements copyable, resumable tasks (coroutines) in pure Julia, and the new version is much faster and better documented. The new implementation is based on source code transformations, using tools and techniques from <a href="https://github.com/chalk-lab/Mooncake.jl">Mooncake.jl</a>. <a href="https://github.com/TuringLang/AdvancedPS.jl/pull/114">Work</a> is ongoing to adapt AdvancedPS.jl to work with the new Libtask version, and once that is done we should expect a performance boost for Turing’s particle Gibbs sampler. We’ll let you know once that’s out.</p>
 
 
 
@@ -796,7 +786,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/news/posts/2019-12-14-initial-post/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/news/posts/2025-05-23-newsletter-7/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

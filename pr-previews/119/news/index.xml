@@ -9,13 +9,253 @@
 <link>https://turinglang.org/news/</link>
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.43</generator>
-<lastBuildDate>Fri, 11 Apr 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.7.31</generator>
+<lastBuildDate>Fri, 23 May 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 7</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-05-23-newsletter-7/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><strong>MCMCChains@7</strong></p>
+<p>There’s a new major version of <a href="https://github.com/TuringLang/MCMCChains.jl">MCMCChains.jl</a>. From a user point of view, the main difference is that summary statistics and quantiles aren’t automatically calculated by default (so, printing a <code>Chains</code> object in a REPL will only show the parameter names and sizes). To get the summary statistics and quantiles you will have to run <code>describe(chain)</code>. The main reason for this is because the summary stats would often take quite a while to compute — if you wish to preserve the old behaviour you can stick to MCMCChains@6.</p>
+<p><strong>JuliaBUGS <code>@model</code></strong></p>
+<p><a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS.jl</a> recently implemented a <code>@model</code> macro which, in terms of its syntax, looks somewhat similar to Turing.jl’s own macro, but under the hood constructs a BUGS model. Perhaps of interest is the way that parameters are initialised using <code>@parameters struct ... end</code>; this currently helps to initialise all parameter values to placeholders, and offers an alternative to explicitly specifying this with NamedTuples or arrays. This hasn’t yet been released but for more information and a demonstration, there’s <a href="https://github.com/TuringLang/JuliaBUGS.jl/blob/main/docs/src/julia_syntax.md">a documentation page</a> that describes the design of this macro. The existing <code>@bugs</code> macro will still be retained.</p>
+<p><strong>Libtask</strong></p>
+<p><a href="https://github.com/TuringLang/Libtask.jl">Libtask.jl</a>, the library that Turing’s particle Gibbs sampler is built on, was recently rewritten for its core parts by Will Tebbutt (<a href="https://github.com/TuringLang/Libtask.jl/pull/179">#179</a>. Libtask implements copyable, resumable tasks (coroutines) in pure Julia, and the new version is much faster and better documented. The new implementation is based on source code transformations, using tools and techniques from <a href="https://github.com/chalk-lab/Mooncake.jl">Mooncake.jl</a>. <a href="https://github.com/TuringLang/AdvancedPS.jl/pull/114">Work</a> is ongoing to adapt AdvancedPS.jl to work with the new Libtask version, and once that is done we should expect a performance boost for Turing’s particle Gibbs sampler. We’ll let you know once that’s out.</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-05-23-newsletter-7/</guid>
+  <pubDate>Fri, 23 May 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Turing.jl Newsletter 6</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-05-09-newsletter-6/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Turing v0.38 has just been released and incorporates the changes from DynamicPPL which were mentioned <a href="../../../news/posts/2025-04-25-newsletter-5">in the last newsletter</a>. It also contains a fix for the Gibbs sampler, so that you can now specify arbitrary VarNames for each sampler (previously, you could only specify single-symbol VarNames). For example, you can now specify the <code>a.x</code> and <code>b.x</code> VarNames here:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@model</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">inner</span>()</span>
+<span id="cb1-2">    x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Normal</span>()</span>
+<span id="cb1-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">end</span></span>
+<span id="cb1-4"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@model</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">outer</span>()</span>
+<span id="cb1-5">    a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">to_submodel</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">inner</span>())</span>
+<span id="cb1-6">    b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">to_submodel</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">inner</span>())</span>
+<span id="cb1-7"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">end</span></span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">outer</span>(), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Gibbs</span>(<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@varname</span>(a.x) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">MH</span>(), <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@varname</span>(b.x) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">MH</span>()), <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)</span></code></pre></div>
+<p>It is theoretically possible that this will be slow for VarNames that involve indexing (e.g.&nbsp;<code>x[1]</code>), although we don’t have an example of this yet. If you find anything you think should be faster, let us know.</p>
+<p>One other minor point: <a href="https://turinglang.org/ADTests/">on ADTests</a> you can now hover over a model name to see its definition.</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-05-09-newsletter-6/</guid>
+  <pubDate>Fri, 09 May 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Turing.jl Newsletter 5</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-04-25-newsletter-5/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><strong>DynamicPPL 0.36</strong></p>
+<p>A new minor version of DynamicPPL brings with it a few changes especially to the behaviour of submodels. These have not yet percolated up to Turing.jl, but will soon be. Firstly, prefixing behaviour is changed: consider these models</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@model</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">inner</span>()</span>
+<span id="cb1-2">    x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Normal</span>()</span>
+<span id="cb1-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">end</span></span>
+<span id="cb1-4"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@model</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">outer</span>()</span>
+<span id="cb1-5">    a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>]</span>
+<span id="cb1-6">    a[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">to_submodel</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">inner</span>())</span>
+<span id="cb1-7"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">end</span></span></code></pre></div>
+<p>If you ran this model, you would find that the single random variable was called <code>a[1].x</code> — but this isn’t the <code>x</code> field of the <code>1</code>st element of <code>a</code>, it’s actually a variable whose name is literally just <code>Symbol("a[1].x")</code>. DynamicPPL changes this behaviour such that the variable is correctly recognised as the <code>x</code> field of the <code>1</code>st element of <code>a</code>. This means that if you are trying to, for example, condition on the variable, you can do:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">outer</span>() <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> (<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@varname</span>(a[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>].x) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=&gt;</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>)</span></code></pre></div>
+<p>On the topic of conditioning, you can now also correctly condition or fix variables in a model before using it as a submodel, as this example demonstrates:</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@model</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">inner</span>()</span>
+<span id="cb3-2">    x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Normal</span>()</span>
+<span id="cb3-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">end</span></span>
+<span id="cb3-4"><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@model</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">outer</span>()</span>
+<span id="cb3-5">    a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">to_submodel</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">inner</span>() <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> (<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">@varname</span>(x) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=&gt;</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))</span>
+<span id="cb3-6"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">end</span></span></code></pre></div>
+<p>Previously, if you wanted to do this, you would have to condition on <code>@varname(a.x)</code>, meaning that you’d need to know the prefix before conditioning it. The current system allows for more modular construction of nested models.</p>
+<p>For more complete details, please see <a href="https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.36.0">the release notes</a>.</p>
+<p><strong>TuringBenchmarking.jl</strong></p>
+<p>DynamicPPL 0.36 also brings new functionality that can be used for testing and benchmarking automatic differentiation on Turing models. This is what powers the <a href="https://turinglang.org/ADTests/">ADTests table</a>, which we shared last time round. (Psst — there are more examples now than before!)</p>
+<p>For more information, see the docstring of <code>DynamicPPL.TestUtils.AD.run_ad</code> in <a href="https://turinglang.org/DynamicPPL.jl/stable/api/#DynamicPPL.TestUtils.AD.run_ad">the DynamicPPL docs</a>.</p>
+<p>As a corollary of this, the AD benchmarking functionalities in TuringBenchmarking.jl are not really needed anymore. If you are using this package, we recommend that you switch over to use the functionality that’s directly built into DynamicPPL.</p>
+<p><strong>AdvancedHMC compatibility with ComponentArrays</strong></p>
+<p>AdvancedHMC had a fairly long-standing issue where it couldn’t always be used with ComponentArrays as the position / momentum. This has now been fixed; you can take a look at <a href="https://github.com/TuringLang/AdvancedHMC.jl/blob/459ebb8a10cc1bc7dbbc27ed79afa796c607697a/test/hamiltonian.jl#L77-L100">the test suite</a> to see examples of how they can be used together.</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-04-25-newsletter-5/</guid>
+  <pubDate>Fri, 25 Apr 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 4</title>
   <dc:creator>The TuringLang team</dc:creator>
   <link>https://turinglang.org/news/posts/2025-04-11-newsletter-4/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -57,6 +297,7 @@ font-style: inherit;">UseGeneratedLogDensityFunction</span>())</span></code></pr
 
 
 
+
 <p><strong>Turing v0.37</strong></p>
 <p>We’ve now released v0.37 of Turing. This includes a lot of new functionality from DynamicPPL 0.35, including the new (simplified) <code>.~</code> . It also cleans up the list of exported identifiers, and most notably, if you were using things from DynamicPPL, you will now also need to <code>import DynamicPPL</code> (or <code>using</code>).</p>
 <p>More generally, it’s likely that from now on our releases will involve larger changes because we are aggregating more changes into a single minor version. We are, however, also committed to providing thorough release notes that will help users and library authors upgrade more easily! Release notes will be available on GitHub, and you can see the notes for <a href="https://github.com/TuringLang/Turing.jl/releases/">Turing 0.37</a> and <a href="https://github.com/TuringLang/DynamicPPL.jl/releases">DynamicPPL 0.35</a> here. If you have any trouble upgrading, just drop us a note.</p>
@@ -81,13 +322,19 @@ font-style: inherit;">UseGeneratedLogDensityFunction</span>())</span></code></pr
 
 
 
+
 <p><strong>DynamicPPL benchmarking</strong></p>
 <p>DynamicPPL.jl now has a set of benchmarks that are run on GitHub Actions! We measure how long it takes to evaluate a small selection of models and also to run AD on them. If you think that there are specific models / features that we should add to the benchmarks, please feel free to <a href="https://github.com/TuringLang/DynamicPPL.jl/issues/new">create an issue</a> and let us know.</p>
 <p>Separately, we are planning to merge the benchmarking utilities in <a href="https://github.com/TuringLang/TuringBenchmarking.jl">TuringBenchmarking.jl</a> into DynamicPPL itself. There might be a little bit of API shake-up as part of this, but it’s for the better as it’ll allow the benchmarking code to more easily stay in sync with DynamicPPL — allowing us to catch performance regressions in PRs.</p>
 <p><strong>SSMProblems</strong></p>
-<p>The SSMProblems.jl and GeneralisedFilters.jl packages have now been merged into a single repository: https://github.com/TuringLang/SSMProblems.jl. This won’t affect you if you are using the packages from the Julia General registry, but if you’re looking to develop off the main branch you may have to use a different URL, or specify a subdirectory in <code>Pkg.add</code>.</p>
+<p>The SSMProblems.jl and GeneralisedFilters.jl packages have now been merged into a single repository: <a href="https://github.com/TuringLang/SSMProblems.jl">https://github.com/TuringLang/SSMProblems.jl</a>. This won’t affect you if you are using the packages from the Julia General registry, but if you’re looking to develop off the main branch you may have to use a different URL, or specify a subdirectory in <code>Pkg.add</code>.</p>
 <p><strong>Smaller bits</strong></p>
-<p>Other code changes that have been merged: - Some old code in AdvancedHMC.jl has been cleaned up quite a bit. See the <a href="https://github.com/TuringLang/AdvancedHMC.jl/releases/tag/v0.7.0">0.7.0 release</a> for more information. - Turing’s Gibbs sampler <a href="https://github.com/TuringLang/Turing.jl/pull/2502">now supports warmup steps properly</a>. We’re still thinking about how to properly encode the scenario where different sub-samplers have different numbers of warmup steps, if you have any ideas, do get in touch on that PR. - We are going to formally remove support for Zygote as an AD backend. We don’t test it thoroughly in Turing’s test suite. You can of course still use Zygote yourself, simply load <code>ADTypes.AutoZygote()</code> —&nbsp;although we can’t guarantee that we will fix any bugs that arise.</p>
+<p>Other code changes that have been merged:</p>
+<ul>
+<li>Some old code in AdvancedHMC.jl has been cleaned up quite a bit. See the <a href="https://github.com/TuringLang/AdvancedHMC.jl/releases/tag/v0.7.0">0.7.0 release</a> for more information.</li>
+<li>Turing’s Gibbs sampler <a href="https://github.com/TuringLang/Turing.jl/pull/2502">now supports warmup steps properly</a>. We’re still thinking about how to properly encode the scenario where different sub-samplers have different numbers of warmup steps, if you have any ideas, do get in touch on that PR.</li>
+<li>We are going to formally remove support for Zygote as an AD backend. We don’t test it thoroughly in Turing’s test suite. You can of course still use Zygote yourself, simply load <code>ADTypes.AutoZygote()</code> —&nbsp;although we can’t guarantee that we will fix any bugs that arise.</li>
+</ul>
 
 
 
@@ -101,6 +348,7 @@ font-style: inherit;">UseGeneratedLogDensityFunction</span>())</span></code></pr
   <dc:creator>The TuringLang team</dc:creator>
   <link>https://turinglang.org/news/posts/2025-02-28-newsletter-1/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -136,6 +384,7 @@ Tim Hargreaves, Qing Li, Charles Knipp, Frederic Wantiez, Simon J. Godsill, Hong
   <dc:creator>the TuringLang team</dc:creator>
   <link>https://turinglang.org/news/posts/2022-02-17-gsoc/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -218,6 +467,7 @@ Tim Hargreaves, Qing Li, Charles Knipp, Frederic Wantiez, Simon J. Godsill, Hong
 
 
 
+
 <p>It’s about time for us to start thinking about projects we’d like to see at Turing.jl for the <a href="https://summerofcode.withgoogle.com/">Google Summer of Code 2021</a>! Below is a list of projects the Turing team would be interested in working with students on for the summer.</p>
 <p>If you are interested in exploring any of these projects, please reach out to the listed project mentors. You can find their contact information at <a href="https://turinglang.org/stable/team">turinglang.org/team</a>.</p>
 <section id="mcmcchains-improvements" class="level1">
@@ -283,6 +533,7 @@ Tim Hargreaves, Qing Li, Charles Knipp, Frederic Wantiez, Simon J. Godsill, Hong
 
 
 
+
 <p>As the 2020 <a href="https://summerofcode.withgoogle.com/">Google Summer of Code</a> comes to a close, the Turing team thought it would be a good opportunity to reflect on the work that was done by our superb students this summer.</p>
 <p><a href="https://github.com/SaranjeetKaur">Saranjeet Kaur</a>’s <a href="https://summerofcode.withgoogle.com/projects/#6567464390885376">project</a> focused primarily on expanding <a href="https://github.com/TuringLang/NestedSamplers.jl">NestedSamplers.jl</a>. NestedSamplers.jl now supports <a href="https://arxiv.org/abs/1506.00171">PolyChord-style</a> nested sampling natively, which is an absolute delight. Saranjeet wrote about this <a href="https://nextjournal.com/Saranjeet-Kaur/extending-nestedsamplersjl">here</a>. She also provided a good tutorial on how to use NestedSamplers.jl <a href="https://nextjournal.com/Saranjeet-Kaur/illustrations-of-use-of-nestedsamplersjl">here</a>. The NestedSamplers.jl integration with Turing is still on-going – integrating new samplers with Turing is one of the more difficult tasks. If you are interested to see the progress on this, check out the relevant <a href="https://github.com/TuringLang/Turing.jl/pull/1333">pull request</a>.</p>
 <p><a href="https://github.com/luiarthur">Arthur Lui</a>’s <a href="https://summerofcode.withgoogle.com/projects/#5861616765108224">project</a> was to provide a much-needed set of benchmarks of Bayesian nonparametric models between Turing and other PPLs. Arthur’s work spawned a <a href="https://github.com/luiarthur/TuringBnpBenchmarks">GitHub repository</a> with good practices for benchmarking, as well as three blog posts with some (very cool!) statistics on Turing’s performance:</p>
@@ -319,6 +570,7 @@ Tim Hargreaves, Qing Li, Charles Knipp, Frederic Wantiez, Simon J. Godsill, Hong
   <dc:creator>Hong Ge</dc:creator>
   <link>https://turinglang.org/news/posts/2020-05-04-Imperial-Report13-analysis/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -389,6 +641,7 @@ Tim Hargreaves, Qing Li, Charles Knipp, Frederic Wantiez, Simon J. Godsill, Hong
 
 
 
+
 <p>Last year, Turing participated in the Google Summer of Code (GSoC) through the Julia language organization. It was a fun time, and the project was better for it. Turing plans to participate in the upcoming GSoC, and we wanted to outline some potential projects and expectations we have for applicants.</p>
 <p>If you are not aware, Google provides funds to students around the world to develop a project of their choice over the summer. Students receive funds from Google and spend three months on any open source project.</p>
 <p>The Turing development team has prepared a list of possible projects that we have deemed valuable to the project and easy enough that it could feasibly be created in the three-month limit. This list is not exclusive – if you have a good idea, you can write it up in your proposal, though it is recommend that you reach out to any of the Turing team on Julia’s <a href="https://julialang.slack.com/">Slack</a> (you can get an invite <a href="https://slackinvite.julialang.org/">here</a>) or <a href="https://discourse.julialang.org/c/domain/probprog">Discourse</a>. Messages on Discourse should be posted to the “Probabilistic programming” category – we’ll find you!</p>
@@ -421,6 +674,7 @@ Tim Hargreaves, Qing Li, Charles Knipp, Frederic Wantiez, Simon J. Godsill, Hong
   <dc:creator>Cameron Pfiffer</dc:creator>
   <link>https://turinglang.org/news/posts/2019-12-14-initial-post/</link>
   <description><![CDATA[ 
+
 
 
 

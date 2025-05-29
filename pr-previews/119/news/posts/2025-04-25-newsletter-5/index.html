@@ -6,11 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Cameron Pfiffer">
-<meta name="dcterms.date" content="2019-12-14">
-<meta name="description" content="All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts…">
+<meta name="author" content="The TuringLang team">
+<meta name="dcterms.date" content="2025-04-25">
+<meta name="description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
 
-<title>Turing’s Blog – Turing.jl</title>
+<title>Turing.jl Newsletter 5 – Turing.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -319,39 +354,32 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Turing’s Blog</h1>
+<h1 class="title">Turing.jl Newsletter 5</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Blog</div>
+    <div class="quarto-category">Newsletter</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts…</p>
+    The fortnightly newsletter for the Turing.jl probabilistic programming language
   </div>
 </div>
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://cameron.pfiffer.org/">Cameron Pfiffer</a> <a href="mailto:cpfiffer@uoregon.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            University of Oregon
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="../../../team/">The TuringLang team</a> </p>
+          </div>
+  </div>
+    
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 14, 2019</p>
+      <p class="date">April 25, 2025</p>
     </div>
   </div>
   
@@ -363,15 +391,32 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts on topics like</p>
-<ul>
-<li>Interesting things you can do with Turing, or interesting things we have seen others do.</li>
-<li>Development updates and major release announcements.</li>
-<li>Research updates.</li>
-<li>Explorations of Turing’s internals.</li>
-<li>Updates to Turing’s satellite projects <a href="https://github.com/TuringLang/AdvancedHMC.jl">AdvancedHMC.jl</a> or <a href="https://github.com/TuringLang/Bijectors.jl">Bijectors.jl</a>.</li>
-</ul>
-<p>Stay tuned!</p>
+<p><strong>DynamicPPL 0.36</strong></p>
+<p>A new minor version of DynamicPPL brings with it a few changes especially to the behaviour of submodels. These have not yet percolated up to Turing.jl, but will soon be. Firstly, prefixing behaviour is changed: consider these models</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">inner</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">~</span> <span class="fu">Normal</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">outer</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    a[<span class="fl">1</span>] <span class="op">~</span> <span class="fu">to_submodel</span>(<span class="fu">inner</span>())</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you ran this model, you would find that the single random variable was called <code>a[1].x</code> — but this isn’t the <code>x</code> field of the <code>1</code>st element of <code>a</code>, it’s actually a variable whose name is literally just <code>Symbol("a[1].x")</code>. DynamicPPL changes this behaviour such that the variable is correctly recognised as the <code>x</code> field of the <code>1</code>st element of <code>a</code>. This means that if you are trying to, for example, condition on the variable, you can do:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>() <span class="op">|</span> (<span class="pp">@varname</span>(a[<span class="fl">1</span>].x) <span class="op">=&gt;</span> <span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>On the topic of conditioning, you can now also correctly condition or fix variables in a model before using it as a submodel, as this example demonstrates:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">inner</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">~</span> <span class="fu">Normal</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">outer</span>()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    a <span class="op">~</span> <span class="fu">to_submodel</span>(<span class="fu">inner</span>() <span class="op">|</span> (<span class="pp">@varname</span>(x) <span class="op">=&gt;</span> <span class="fl">1</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Previously, if you wanted to do this, you would have to condition on <code>@varname(a.x)</code>, meaning that you’d need to know the prefix before conditioning it. The current system allows for more modular construction of nested models.</p>
+<p>For more complete details, please see <a href="https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.36.0">the release notes</a>.</p>
+<p><strong>TuringBenchmarking.jl</strong></p>
+<p>DynamicPPL 0.36 also brings new functionality that can be used for testing and benchmarking automatic differentiation on Turing models. This is what powers the <a href="https://turinglang.org/ADTests/">ADTests table</a>, which we shared last time round. (Psst — there are more examples now than before!)</p>
+<p>For more information, see the docstring of <code>DynamicPPL.TestUtils.AD.run_ad</code> in <a href="https://turinglang.org/DynamicPPL.jl/stable/api/#DynamicPPL.TestUtils.AD.run_ad">the DynamicPPL docs</a>.</p>
+<p>As a corollary of this, the AD benchmarking functionalities in TuringBenchmarking.jl are not really needed anymore. If you are using this package, we recommend that you switch over to use the functionality that’s directly built into DynamicPPL.</p>
+<p><strong>AdvancedHMC compatibility with ComponentArrays</strong></p>
+<p>AdvancedHMC had a fairly long-standing issue where it couldn’t always be used with ComponentArrays as the position / momentum. This has now been fixed; you can take a look at <a href="https://github.com/TuringLang/AdvancedHMC.jl/blob/459ebb8a10cc1bc7dbbc27ed79afa796c607697a/test/hamiltonian.jl#L77-L100">the test suite</a> to see examples of how they can be used together.</p>
 
 
 
@@ -796,7 +841,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/news/posts/2019-12-14-initial-post/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/news/posts/2025-04-25-newsletter-5/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
