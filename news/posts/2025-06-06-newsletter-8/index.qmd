@@ -1,0 +1,34 @@
+---
+title: Turing.jl Newsletter 8
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-06-06
+---
+
+The major update this week is the release of Turing.jl v0.39.
+The biggest change is the update to AdvancedVI 0.4, and corresponding changes in Turing's VI interface.
+We're still working on bringing all the docs up to date, but here's what you can expect from the new version:
+
+- location-scale families with dense scale matrices,
+- parameter-free stochastic optimization algorithms like `DoG` and `DoWG`,
+- proximal operators for stable optimization,
+- the sticking-the-landing control variate for faster convergence, and
+- the score gradient estimator for non-differentiable targets.
+
+There are some other small changes to do with imports and exports.
+The brief summary is: `@addlogprob!` is now formally exported.
+There are a bunch of other, unexported, things where you may need to change from `Turing.foo` to `DynamicPPL.foo` – although this probably only applies if you were using DynamicPPL internals.
+If you have any issues with these please feel free to get in touch.
+
+Apart from this, we have also released AdvancedHMC.jl 0.8! Breaking changes include:
+- if you are relying the internal `transition` to make an MCMC transition from phase point `z` using trajectory `τ` (or HMCKernel `κ`) with Hamiltonian `h`, please note the signature has changed.
+  The usage should now always be `transition(h, τ, z)` or `transition(h, κ, z)`.
+- HMC sampling requires appropriate step size for the Leapfrog integration, as the chosen step size directly affects the numerical stability of the integration process.
+  While AdvancedHMC.jl provides `find_good_stepsize` to find a suitable step size during HMC sampling, it didn’t support manual step size specification, which caused unnecessary searching.
+  Now `initial_step_size` can be specified as a keyword in `find_good_stepsize` if you want more control of the step size selection process.
+
+And finally, we have a few new examples of normalising flows in the NormalizingFlows.jl library: https://github.com/TuringLang/NormalizingFlows.jl/tree/main/example
