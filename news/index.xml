@@ -10,7 +10,36 @@
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.31</generator>
-<lastBuildDate>Fri, 23 May 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 06 Jun 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 8</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-06-06-newsletter-8/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>The major update this week is the release of Turing.jl v0.39. The biggest change is the update to AdvancedVI 0.4, and corresponding changes in Turing’s VI interface. We’re still working on bringing all the docs up to date, but here’s what you can expect from the new version:</p>
+<ul>
+<li>location-scale families with dense scale matrices,</li>
+<li>parameter-free stochastic optimization algorithms like <code>DoG</code> and <code>DoWG</code>,</li>
+<li>proximal operators for stable optimization,</li>
+<li>the sticking-the-landing control variate for faster convergence, and</li>
+<li>the score gradient estimator for non-differentiable targets.</li>
+</ul>
+<p>There are some other small changes to do with imports and exports. The brief summary is: <code>@addlogprob!</code> is now formally exported. There are a bunch of other, unexported, things where you may need to change from <code>Turing.foo</code> to <code>DynamicPPL.foo</code> – although this probably only applies if you were using DynamicPPL internals. If you have any issues with these please feel free to get in touch.</p>
+<p>Apart from this, we have also released AdvancedHMC.jl 0.8! Breaking changes include: - if you are relying the internal <code>transition</code> to make an MCMC transition from phase point <code>z</code> using trajectory <code>τ</code> (or HMCKernel <code>κ</code>) with Hamiltonian <code>h</code>, please note the signature has changed. The usage should now always be <code>transition(h, τ, z)</code> or <code>transition(h, κ, z)</code>. - HMC sampling requires appropriate step size for the Leapfrog integration, as the chosen step size directly affects the numerical stability of the integration process. While AdvancedHMC.jl provides <code>find_good_stepsize</code> to find a suitable step size during HMC sampling, it didn’t support manual step size specification, which caused unnecessary searching. Now <code>initial_step_size</code> can be specified as a keyword in <code>find_good_stepsize</code> if you want more control of the step size selection process.</p>
+<p>And finally, we have a few new examples of normalising flows in the NormalizingFlows.jl library: https://github.com/TuringLang/NormalizingFlows.jl/tree/main/example</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-06-06-newsletter-8/</guid>
+  <pubDate>Fri, 06 Jun 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 7</title>
   <dc:creator>The TuringLang team</dc:creator>
