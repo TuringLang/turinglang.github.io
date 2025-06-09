@@ -10,13 +10,11 @@ $theme: "cosmo" !default;
 $background-nav: #22272e;
 $background-body: #1c2128; // Using the darker background from new theme
 $foreground: #ffffff;
-$foreground-dark: #22272e;
 $links: #34b8bf;
 $links-hover: #31dce6;
 
 // Text colors
-$body-color: #cdd9e5; // Using new theme color for better readability
-$text-muted: #848d97;
+$text-muted: #bcbcbc;
 $li-color: #bcbcbc;
 
 // Landing Page specific colors
@@ -57,11 +55,6 @@ $body-bg: $background-body;
 /*-- scss:rules --*/
 
 // --- Global Styles ---
-body {
-    background-color: $background-body;
-    color: $body-color;
-}
-
 p {
     color: $text-muted !important;
 }
@@ -76,29 +69,6 @@ a {
     &:hover {
         color: $links-hover !important;
     }
-}
-
-
-// --- Component Styles ---
-
-// Navbar
-.navbar {
-    background-color: $background-nav !important;
-}
-
-.navbar .nav-link,
-.navbar .navbar-brand {
-    color: $foreground !important;
-
-    &:hover {
-        color: $links-hover !important;
-    }
-}
-
-// Footer
-.footer {
-    background-color: $background-nav !important;
-    color: $foreground !important;
 }
 
 // Landing Page Buttons
@@ -141,7 +111,7 @@ a {
 
 // Misc Quarto and site-specific rules
 .quarto-title-banner {
-    background-color: $foreground-dark !important;
+    background-color: $background-nav !important;
 }
 
 .title {
