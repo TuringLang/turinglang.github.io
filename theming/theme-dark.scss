@@ -217,3 +217,7 @@ code {
         text-decoration: none;
     }
 }
+
+.aa-DetachedOverlay li.aa-Item[aria-selected=true] .search-item * {
+    color: white !important;
+}
