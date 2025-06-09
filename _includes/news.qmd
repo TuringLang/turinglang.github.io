@@ -93,6 +93,13 @@ listing:
     );
     const N_original = originalItems.length;
 
+  originalItems.forEach(item => {
+    const card = item.querySelector('.card');
+    if (card) {
+      card.classList.add('news-item');
+    }
+  });
+
     // Helper to get items per view (cached on first call, recalculated on resize)
     function getItemsPerView() {
       const width = window.innerWidth;

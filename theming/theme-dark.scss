@@ -1,0 +1,249 @@
+/*-- scss:defaults --*/
+// Cosmo 5.3.3
+// Bootswatch
+
+$theme: "cosmo" !default;
+
+// --- Consolidated Variables ---
+
+// Base colors for the entire site
+$background-nav: #22272e;
+$background-body: #1c2128; // Using the darker background from new theme
+$foreground: #ffffff;
+$foreground-dark: #22272e;
+$links: #34b8bf;
+$links-hover: #31dce6;
+
+// Text colors
+$body-color: #cdd9e5; // Using new theme color for better readability
+$text-muted: #848d97;
+$li-color: #bcbcbc;
+
+// Landing Page specific colors
+$lp-cyan: #39d3d7;
+$lp-teal: #4DB6AC;
+
+// Component & Code block colors
+$code-block-bg: #22272e;
+$panel-bg: #22272e;
+$btn-border-color: #444c56;
+
+// Bootstrap color overrides
+$white: #ffffff !default;
+$gray-800: #22272e;
+$gray-900: #1c2128;
+$red: #ff0039 !default;
+$green: #3fb618 !default;
+
+$primary: $links-hover !default;
+$secondary: $gray-800 !default;
+$success: $green !default;
+$danger: $red !default;
+
+// Global settings
+$min-contrast-ratio: 2.6 !default;
+$enable-rounded: false !default;
+$font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$headings-font-weight: 400 !default;
+
+$navbar-bg: $background-nav;
+$navbar-fg: $foreground;
+$footer-bg: $background-nav;
+$footer-fg: $foreground;
+$body-color: $white;
+$body-bg: $background-body;
+
+
+/*-- scss:rules --*/
+
+// --- Global Styles ---
+body {
+    background-color: $background-body;
+    color: $body-color;
+}
+
+p {
+    color: $text-muted !important;
+}
+
+li {
+    color: $li-color !important;
+}
+
+a {
+    color: $links;
+
+    &:hover {
+        color: $links-hover !important;
+    }
+}
+
+
+// --- Component Styles ---
+
+// Navbar
+.navbar {
+    background-color: $background-nav !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: $foreground !important;
+
+    &:hover {
+        color: $links-hover !important;
+    }
+}
+
+// Footer
+.footer {
+    background-color: $background-nav !important;
+    color: $foreground !important;
+}
+
+// Landing Page Buttons
+.button {
+    background-color: transparent !important;
+    border-color: $btn-border-color !important;
+    color: $body-color !important;
+
+    &:hover {
+        background-color: lighten($gray-800, 5%) !important;
+        border-color: $lp-cyan !important;
+    }
+}
+
+.button--fill {
+    background-color: $lp-teal !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+
+    &:hover {
+        background-color: darken($lp-teal, 5%) !important;
+        box-shadow: 0 4px 15px rgba($lp-teal, 0.2) !important;
+    }
+}
+
+// Landing Page Panels
+.panel {
+    background-color: $panel-bg !important;
+    border-top-color: $lp-teal !important;
+    border-left: 1px solid $btn-border-color !important;
+    border-right: 1px solid $btn-border-color !important;
+    border-bottom: 1px solid $btn-border-color !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2) !important;
+    color: $text-muted !important;
+
+    .panel-title {
+        color: $body-color !important;
+    }
+}
+
+// Misc Quarto and site-specific rules
+.quarto-title-banner {
+    background-color: $foreground-dark !important;
+}
+
+.title {
+    color: $white !important;
+}
+
+.team-member,
+.input-group-text {
+    background-color: $background-nav !important;
+}
+
+.level4,
+.listing-category {
+    color: $foreground !important;
+}
+
+.badge.deprecated {
+    color: $white !important;
+    background-color: $red !important;
+}
+
+// table background & text
+.packages-table {
+    color: $text-muted !important;
+    background-color: $background-nav !important;
+}
+
+// cell borders
+.packages-table th,
+.packages-table td {
+    border-bottom-color: $gray-900 !important;
+}
+
+// header row
+.packages-table thead {
+    background-color: $background-nav !important;
+}
+
+// zebra stripes
+.packages-table tbody tr:nth-child(odd) {
+    background-color: darken($gray-900, 5%) !important;
+}
+
+// hover state
+.packages-table tbody tr:hover {
+    background-color: lighten($background-nav, 5%) !important;
+}
+
+// “Deprecated” badge styling
+.badge.deprecated {
+    color: $white !important;
+    background-color: $red !important;
+}
+
+code {
+    background-color: $code-block-bg !important;
+    color: $li-color !important;
+}
+
+.card {
+    background-color: #f8f9fa !important;
+}
+
+// --- Mixins ---
+@mixin raw-card {
+    border-radius: $border-radius-sm;
+    padding: 1rem;
+    --bs-card-spacer-x: 0rem !important;
+    --bs-card-spacer-y: 0rem !important;
+    color: $body-color !important;
+    background-color: $code-block-bg !important;
+    border: solid $code-block-bg 1px !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease !important;
+}
+
+@mixin card($hover-border) {
+    @include raw-card;
+
+    .card-title {
+        color: $body-color !important;
+        font-weight: 700;
+    }
+
+    &:hover {
+        background-color: lighten($code-block-bg, 5%) !important;
+        border-color: $hover-border !important;
+    }
+}
+
+// Card and Pseudolisting styles
+.card {
+    @include card($lp-cyan);
+
+    .card-text {
+        color: $text-muted;
+    }
+}
+
+.pseudolisting {
+    @extend .card;
+
+    &:hover {
+        text-decoration: none;
+    }
+}

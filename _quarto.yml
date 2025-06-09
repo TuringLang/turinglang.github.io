@@ -16,7 +16,7 @@ website:
     type: overlay
   navbar:
     logo: "assets/images/turing-logo.svg"
-    # logo-href: https://turinglang.org/
+    # logo-href: https://turinglang.org/ -- Keep this commented so clicking on logo in dev mode doesn't redirect to the site
     left:
       - text: Get Started
         href: https://turinglang.org/docs/getting-started/
@@ -51,8 +51,9 @@ website:
 format:
   html:
     theme:
-      light: [cosmo, theming/light.scss]
-      dark: [cosmo, theming/dark.scss]
+      light: cosmo
+      dark: [cosmo, theming/theme-dark.scss]
+    css: theming/styles.css
     highlight-style: github
     toc: true
     smooth-scroll: true
