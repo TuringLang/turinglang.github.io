@@ -115,6 +115,8 @@ end
 </div>
 ```
 
+<!-- TODO
+
 ::: {.section-start-space}
 
 ### Algorithms
@@ -146,6 +148,10 @@ Placeholder text introducing the Bayesian Workflow diagram from the ACM special 
 
 :::
 
+-->
+
+<!-- TODO
+
 ```{=html}
 <div class="d-flex flex-row panel-wrapper gap-3 section-start-space">
 <div class="flex-grow-1">
@@ -168,4 +174,9 @@ Placeholder text introducing the Bayesian Workflow diagram from the ACM special 
   </ul>
 </div>
 </div>
-```
+``` 
+-->
+
+<div class="section-start-space">
+
+{{< include _includes//citation/cite.qmd >}}

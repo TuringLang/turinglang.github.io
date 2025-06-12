@@ -1,0 +1,33 @@
+<h3 id="cite" class="pb-1 text-center">Turing.jl is an <a href="https://github.com/TuringLang/Turing.jl/blob/main/LICENCE" data-original-href="https://github.com/TuringLang/Turing.jl/blob/main/LICENCE" class="turing-license-link"><code>MIT</code></a> Licensed Open Source Project</h3>
+
+<p class="text-center">If you use Turing.jl in your research, please consider citing our paper.</p>
+
+::: {.example-code style="max-width: 800px; margin: auto; text-align: left;"}
+
+```{.bibtex .code-overflow-scroll}
+@inproceedings{ge2018t,
+  author    = {Hong Ge and Kai Xu and Zoubin Ghahramani},
+  title     = {Turing: a language for flexible probabilistic inference},
+  booktitle = {International Conference on Artificial Intelligence and Statistics, {AISTATS} 2018, 9-11 April 2018, Playa Blanca, Lanzarote, Canary Islands, Spain},
+  pages     = {1682--1690},
+  year      = {2018},
+  url       = {[http://proceedings.mlr.press/v84/ge18b.html](http://proceedings.mlr.press/v84/ge18b.html)},
+  biburl    = {[https://dblp.org/rec/bib/conf/aistats/GeXG18](https://dblp.org/rec/bib/conf/aistats/GeXG18)},
+}
+```
+
+:::
+
+
+```{=html}
+<style>
+    .turing-license-link code{
+        color: #34b8bf !important;
+        text-decoration: none !important;
+    }
+
+    .turing-license-link code:hover {
+        color: #31dce6 !important;
+    }
+</style>
+```
