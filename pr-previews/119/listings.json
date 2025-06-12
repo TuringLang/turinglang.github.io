@@ -1,13 +1,5 @@
 [
   {
-    "listing": "/team/index.html",
-    "items": []
-  },
-  {
-    "listing": "/library/index.html",
-    "items": []
-  },
-  {
     "listing": "/index.html",
     "items": [
       "/news/posts/2025-06-06-newsletter-8/index.html",
@@ -27,6 +19,10 @@
     ]
   },
   {
+    "listing": "/team/index.html",
+    "items": []
+  },
+  {
     "listing": "/news/index.html",
     "items": [
       "/news/posts/2025-06-06-newsletter-8/index.html",
@@ -44,5 +40,9 @@
       "/news/posts/2020-02-12-jsoc/index.html",
       "/news/posts/2019-12-14-initial-post/index.html"
     ]
+  },
+  {
+    "listing": "/library/index.html",
+    "items": []
   }
 ]
