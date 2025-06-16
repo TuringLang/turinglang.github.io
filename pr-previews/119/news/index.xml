@@ -9,7 +9,7 @@
 <link>https://turinglang.org/news/</link>
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.7.31</generator>
+<generator>quarto-1.7.32</generator>
 <lastBuildDate>Fri, 06 Jun 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Turing.jl Newsletter 8</title>
