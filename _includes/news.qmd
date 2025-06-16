@@ -147,7 +147,7 @@ listing:
         listing.parentNode.insertBefore(carouselContainer, listing.nextSibling);
 
         const slides = Array.from(carouselTrack.children);
-        const displayDuration = 3500;
+        const displayDuration = 2500;
         let isDragging = false,
             startPos = 0,
             currentTranslate = 0,
