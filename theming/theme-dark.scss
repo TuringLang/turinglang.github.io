@@ -222,6 +222,10 @@ code {
     color: white !important;
 }
 
+.aa-List li.aa-Item[aria-selected="true"] * {
+    background-color: $lp-teal !important;
+}
+
 .tooltip-inner {
     color: white;
 }

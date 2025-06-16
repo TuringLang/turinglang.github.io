@@ -39,8 +39,8 @@ Some text about how easy it is to [get going](https://turinglang.org/docs/tutori
 
 :::
 
-::: {.example-code}
-```julia
+::: {.example-code style="overflow-x: scroll;"}
+```{.julia .code-overflow-scroll}
 @model function coinflip(; N::Int)
     # Prior belief about the probability of heads
     p ~ Beta(1, 1)
@@ -65,8 +65,8 @@ Some text about how easy it is to interface with external packages like Abstract
 
 :::
 
-::: {.example-code}
-```julia
+::: {.example-code style="overflow-x: scroll;"}
+```{.julia .code-overflow-scroll}
 @model function putting_model(d, n; jitter=1e-4)
     v ~ Gamma(2, 1)
     l ~ Gamma(4, 1)
