@@ -22,7 +22,7 @@
 </span>
 <div class="d-flex flex-column align-items-center gap-0 pb-5">
   <div class="d-flex flex-row flex-wrap panel-wrapper gap-2">
-    <a href="https://turinglang.org/docs/tutorials/docs-00-getting-started/" class="button--fill btn">
+    <a href="https://turinglang.org/docs/tutorials/docs-00-getting-started/" class="button btn">
       Tutorials
     </a>
     <a href="https://julialang.slack.com/archives/CCYDC34A0" class="button btn">
