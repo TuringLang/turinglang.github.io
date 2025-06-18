@@ -20,11 +20,13 @@
 <span class="display-6 d-block text-center py-5 display-md-5 display-lg-4">
     Bayesian inference with probabilistic programming
 </span>
+<div class="d-flex flex-column align-items-center gap-0 pb-5 fs-4">
+  <a href="https://turinglang.org/docs/tutorials/docs-00-getting-started/" class="button btn">
+    Tutorials
+  </a>
+</div>
 <div class="d-flex flex-column align-items-center gap-0 pb-5">
   <div class="d-flex flex-row flex-wrap panel-wrapper gap-2">
-    <a href="https://turinglang.org/docs/tutorials/docs-00-getting-started/" class="button btn">
-      Tutorials
-    </a>
     <a href="https://julialang.slack.com/archives/CCYDC34A0" class="button btn">
       Slack
     </a>
