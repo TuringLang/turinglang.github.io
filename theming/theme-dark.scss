@@ -4,76 +4,45 @@
 
 $theme: "cosmo" !default;
 
-// Manually-added colors
+// --- Consolidated Variables ---
 
-$background-nav: #192222;
-$background-body: #131818;
-$foreground: #1bb3ac;
-$foreground-dark: #073c44;
-$links:#2aa198;
+// Base colors for the entire site
+$background-nav: #22272e;
+$background-body: #1c2128; // Using the darker background from new theme
+$foreground: #ffffff;
+$links: #34b8bf;
 $links-hover: #31dce6;
-$code-background-color: #172424;
-$li: #bcbcbc;
 
-// Quarto default colors
+// Text colors
+$text-muted: #bcbcbc;
+$li-color: #bcbcbc;
 
-$white:    #ffffff !default;
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #868e96 !default;
-$gray-700: #495057 !default;
-$gray-800: #373a3c !default;
-$gray-900: #212529 !default;
-$black:    #000000 !default;
+// Landing Page specific colors
+$lp-cyan: #39d3d7;
+$lp-teal: #4DB6AC;
 
-$indigo:  #6610f2 !default;
-$purple:  #613d7c !default;
-$pink:    #e83e8c !default;
-$red:     #ff0039 !default;
-$orange:  #f0ad4e !default;
-$yellow:  #ff7518 !default;
-$green:   #3fb618 !default;
-$teal:    #20c997 !default;
-$cyan:    #9954bb !default;
+// Component & Code block colors
+$code-block-bg: #22272e;
+$panel-bg: #22272e;
+$btn-border-color: #444c56;
 
-$primary:       $links-hover !default;
-$secondary:     $gray-800 !default;
-$success:       $green !default;
-$info:          $cyan !default;
-$warning:       $yellow !default;
-$danger:        $red !default;
-$light:         $gray-100 !default;
-$dark:          $gray-800 !default;
+// Bootstrap color overrides
+$white: #ffffff !default;
+$gray-800: #22272e;
+$gray-900: #1c2128;
+$red: #ff0039 !default;
+$green: #3fb618 !default;
 
-$min-contrast-ratio:   2.6 !default;
+$primary: $links-hover !default;
+$secondary: $gray-800 !default;
+$success: $green !default;
+$danger: $red !default;
 
-// Options
-
+// Global settings
+$min-contrast-ratio: 2.6 !default;
 $enable-rounded: false !default;
-
-// Fonts
-
-// stylelint-disable-next-line value-keyword-case
-$font-family-sans-serif:    "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
-$headings-font-weight:      400 !default;
-
-// Tables
-
-$table-color:               initial !default;
-
-// Alerts
-
-$alert-border-width:            0 !default;
-
-// Progress bars
-
-$progress-height:               .5rem !default;
-
-
-// Custom tweaks for Quarto-Cosmo 
+$font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$headings-font-weight: 400 !default;
 
 $navbar-bg: $background-nav;
 $navbar-fg: $foreground;
@@ -82,66 +51,92 @@ $footer-fg: $foreground;
 $body-color: $white;
 $body-bg: $background-body;
 
-a {
-    color: $links !important;
-}
 
-a:hover {
-    color: $links-hover !important;
-}
+/*-- scss:rules --*/
 
-code, p code, li code {
-    background-color: $code-background-color !important;
-    color: $links;
+// --- Global Styles ---
+p {
+    color: $text-muted !important;
 }
 
 li {
-    color: $li !important;
+    color: $li-color !important;
 }
 
-.menu-text:hover {   
-    color: $links-hover !important;
+a {
+    color: $links;
+
+    &:hover {
+        color: $links-hover !important;
+    }
 }
 
+// Landing Page Buttons
+.button {
+    background-color: transparent !important;
+    border-color: $btn-border-color !important;
+    color: $body-color !important;
+
+    &:hover {
+        background-color: lighten($gray-800, 5%) !important;
+        border-color: $lp-cyan !important;
+    }
+}
+
+.button--fill {
+    background-color: $lp-teal !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+
+    &:hover {
+        background-color: darken($lp-teal, 5%) !important;
+        box-shadow: 0 4px 15px rgba($lp-teal, 0.2) !important;
+    }
+}
+
+// Landing Page Panels
+.panel {
+    background-color: $panel-bg !important;
+    border-top-color: $lp-teal !important;
+    border-left: 1px solid $btn-border-color !important;
+    border-right: 1px solid $btn-border-color !important;
+    border-bottom: 1px solid $btn-border-color !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2) !important;
+    color: $text-muted !important;
+
+    .panel-title {
+        color: $body-color !important;
+    }
+}
+
+// Misc Quarto and site-specific rules
 .quarto-title-banner {
-    background-color: $foreground-dark !important;
+    background-color: $background-nav !important;
 }
 
 .title {
     color: $white !important;
 }
 
-.listing-description a {
-    color: $li !important;
+.team-member,
+.input-group-text {
+    background-color: $background-nav !important;
 }
 
-p {
-    color: $li !important;
-}
-
-
-.team-member, .input-group-text {
-    background-color: $background-nav !important;   
-}
-
-.level4, .listing-category {
+.level4,
+.listing-category {
     color: $foreground !important;
 }
 
-::selection {
-    color: $links-hover;
-    background: $background-nav;
-}
-
-.tooltip {
-    --bs-tooltip-color: $black !important;
-    --bs-tooltip-bg: $white !important;
+.badge.deprecated {
+    color: $white !important;
+    background-color: $red !important;
 }
 
 // table background & text
 .packages-table {
-    background-color: $background-body !important;
-    color: $li !important;
+    color: $text-muted !important;
+    background-color: $background-nav !important;
 }
 
 // cell borders
@@ -152,7 +147,7 @@ p {
 
 // header row
 .packages-table thead {
-    background-color: $gray-900 !important;
+    background-color: $background-nav !important;
 }
 
 // zebra stripes
@@ -169,4 +164,68 @@ p {
 .badge.deprecated {
     color: $white !important;
     background-color: $red !important;
+}
+
+code {
+    background-color: $code-block-bg !important;
+    color: $li-color !important;
+}
+
+.card {
+    background-color: #f8f9fa !important;
+}
+
+// --- Mixins ---
+@mixin raw-card {
+    border-radius: $border-radius-sm;
+    padding: 1rem;
+    --bs-card-spacer-x: 0rem !important;
+    --bs-card-spacer-y: 0rem !important;
+    color: $body-color !important;
+    background-color: $code-block-bg !important;
+    border: solid $code-block-bg 1px !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease !important;
+}
+
+@mixin card($hover-border) {
+    @include raw-card;
+
+    .card-title {
+        color: $body-color !important;
+        font-weight: 700;
+    }
+
+    &:hover {
+        background-color: lighten($code-block-bg, 5%) !important;
+        border-color: $hover-border !important;
+    }
+}
+
+// Card and Pseudolisting styles
+.card {
+    @include card($lp-cyan);
+
+    .card-text {
+        color: $text-muted;
+    }
+}
+
+.pseudolisting {
+    @extend .card;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.aa-DetachedOverlay li.aa-Item[aria-selected=true] .search-item * {
+    color: white !important;
+}
+
+.aa-List li.aa-Item[aria-selected="true"] * {
+    background-color: $lp-teal !important;
+}
+
+.tooltip-inner {
+    color: white;
 }
