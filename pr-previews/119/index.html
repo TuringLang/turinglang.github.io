@@ -442,7 +442,7 @@ window.Quarto = {
 <div class="d-flex flex-row flex-wrap panel-wrapper gap-4 section-end-space">
 <section id="expressive" class="panel-title pb-1 panel">
 <h5 class="panel-title pb-1 anchored">Expressive</h5>
-<p>Turing models are easy to write and communicate — their syntax closely resembles mathematical notation.</p>
+<p>Turing models are easy to write and communicate.</p>
 </section>
 <section id="general-purpose" class="panel-title pb-1 panel">
 <h5 class="panel-title pb-1 anchored">General-purpose</h5>
@@ -519,39 +519,35 @@ MCMC sampling algorithms
 <div class="fs-4 fw-bold pb-1">
 Composability with Julia
 </div>
-<p>As Turing.jl models are simply Julia functions under the hood, they can contain arbitrary Julia code.</p>
-<p>For example, <a href="https://turinglang.org/docs/tutorials/bayesian-differential-equations/">differential equations</a> can be added to a model using the <code>DifferentialEquations.jl</code> Julia package.</p>
+<p>As Turing.jl models are simply Julia functions under the hood, they can contain arbitrary Julia code. This allows users to draw on the rich numerical and scientific computing ecosystem of Julia.</p>
+<p>In the example here, we define an <a href="https://turinglang.org/docs/tutorials/bayesian-differential-equations/">ordinary differential equations</a> using the <code>DifferentialEquations.jl</code> Julia package and use it in a Turing.jl model.</p>
 </div>
 <div class="example-code" style="overflow-x: scroll;">
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-overflow-scroll code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DifferentialEquations</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the system of equations</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">lotka_volterra</span>(du, u, params, t)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    α, β, δ, γ <span class="op">=</span> params</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    x, y <span class="op">=</span> u</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    du[<span class="fl">1</span>] <span class="op">=</span> (α <span class="op">*</span> x) <span class="op">-</span> (β <span class="op">*</span> x <span class="op">*</span> y)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    du[<span class="fl">2</span>] <span class="op">=</span> (δ <span class="op">*</span> x <span class="op">*</span> y) <span class="op">-</span> (γ <span class="op">*</span> y)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> <span class="fu">ODEProblem</span>(lotka_volterra, <span class="op">...</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Use it in a model</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">fit_lotka_volterra</span>()</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Priors</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    α <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Solve the ODE</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> <span class="fu">solve</span>(prob, <span class="fu">Tsit5</span>(); p<span class="op">=</span>p)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Likelihood</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    data <span class="op">~</span> <span class="fu">Poisson</span>.(predictions, <span class="op">...</span>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-overflow-scroll code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the system of equations</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DifferentialEquations</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">lotka_volterra</span>(du, u, params, t)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    α, β, δ, γ <span class="op">=</span> params</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    x, y <span class="op">=</span> u</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    du[<span class="fl">1</span>] <span class="op">=</span> (α <span class="op">*</span> x) <span class="op">-</span> (β <span class="op">*</span> x <span class="op">*</span> y)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    du[<span class="fl">2</span>] <span class="op">=</span> (δ <span class="op">*</span> x <span class="op">*</span> y) <span class="op">-</span> (γ <span class="op">*</span> y)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> <span class="fu">ODEProblem</span>(lotka_volterra, <span class="op">...</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Use it in a model</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">fit_lotka_volterra</span>()</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Priors on ODE parameters</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    α <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>) <span class="co"># and others...</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Solve the ODE</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> <span class="fu">solve</span>(prob, <span class="fu">Tsit5</span>(); params<span class="op">=</span>(α, <span class="op">...</span>))</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate likelihood</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    data <span class="op">~</span> <span class="fu">Poisson</span>.(predictions, <span class="op">...</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <h3 id="news" class="anchored">News</h3>
 <div id="listing-news" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1750246574020" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="283">
+<div class="g-col-1" data-index="0" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="283">
 <a href="./news/posts/2025-06-06-newsletter-8/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -573,7 +569,7 @@ Jun 6, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1747958400000" data-listing-file-modified-sort="1750246574020" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="265">
+<div class="g-col-1" data-index="1" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1747958400000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="265">
 <a href="./news/posts/2025-05-23-newsletter-7/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -595,7 +591,7 @@ May 23, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1746748800000" data-listing-file-modified-sort="1750246574020" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="140">
+<div class="g-col-1" data-index="2" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1746748800000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="140">
 <a href="./news/posts/2025-05-09-newsletter-6/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -617,7 +613,7 @@ May 9, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1745539200000" data-listing-file-modified-sort="1750246574020" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="362">
+<div class="g-col-1" data-index="3" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1745539200000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="362">
 <a href="./news/posts/2025-04-25-newsletter-5/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -639,7 +635,7 @@ Apr 25, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1744329600000" data-listing-file-modified-sort="1750246574020" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386">
+<div class="g-col-1" data-index="4" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1744329600000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386">
 <a href="./news/posts/2025-04-11-newsletter-4/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -661,7 +657,7 @@ Apr 11, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1743120000000" data-listing-file-modified-sort="1750246574020" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="235">
+<div class="g-col-1" data-index="5" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1743120000000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="235">
 <a href="./news/posts/2025-03-28-newsletter-3/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -683,7 +679,7 @@ Mar 28, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1741910400000" data-listing-file-modified-sort="1750246574020" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="278">
+<div class="g-col-1" data-index="6" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1741910400000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="278">
 <a href="./news/posts/2025-03-14-newsletter-2/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -705,7 +701,7 @@ Mar 14, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1740700800000" data-listing-file-modified-sort="1750246574020" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="526">
+<div class="g-col-1" data-index="7" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1740700800000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="526">
 <a href="./news/posts/2025-02-28-newsletter-1/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -727,7 +723,7 @@ Feb 28, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="8" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1645056000000" data-listing-file-modified-sort="1750246574019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="883">
+<div class="g-col-1" data-index="8" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1645056000000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="883">
 <a href="./news/posts/2022-02-17-gsoc/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -749,7 +745,7 @@ Feb 17, 2022
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="9" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1612915200000" data-listing-file-modified-sort="1750246574019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="565">
+<div class="g-col-1" data-index="9" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1612915200000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="565">
 <a href="./news/posts/2021-02-04-gsoc/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -771,7 +767,7 @@ Feb 10, 2021
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="10" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1599782400000" data-listing-file-modified-sort="1750246574019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="331">
+<div class="g-col-1" data-index="10" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1599782400000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="331">
 <a href="./news/posts/2020-09-11-gsoc/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -793,7 +789,7 @@ Sep 11, 2020
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="11" data-categories="UmVzZWFyY2g=" data-listing-date-sort="1589414400000" data-listing-file-modified-sort="1750246574019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1041">
+<div class="g-col-1" data-index="11" data-categories="UmVzZWFyY2g=" data-listing-date-sort="1589414400000" data-listing-file-modified-sort="1750246861630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1041">
 <a href="./news/posts/2020-05-04-Imperial-Report13-analysis/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -815,7 +811,7 @@ May 14, 2020
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="12" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1581465600000" data-listing-file-modified-sort="1750246574017" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="945">
+<div class="g-col-1" data-index="12" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1581465600000" data-listing-file-modified-sort="1750246861627" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="945">
 <a href="./news/posts/2020-02-12-jsoc/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -837,7 +833,7 @@ Feb 12, 2020
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="13" data-categories="QmxvZw==" data-listing-date-sort="1576281600000" data-listing-file-modified-sort="1750246574016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="68">
+<div class="g-col-1" data-index="13" data-categories="QmxvZw==" data-listing-date-sort="1576281600000" data-listing-file-modified-sort="1750246861627" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="68">
 <a href="./news/posts/2019-12-14-initial-post/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
