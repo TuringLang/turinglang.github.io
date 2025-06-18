@@ -36,13 +36,15 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 <div class="fs-4 fw-bold pb-1">Intuitive syntax</div>
 
 The [modelling syntax of Turing.jl](https://turinglang.org/docs/core-functionality) closely resembles the mathematical specification of a probabilistic model.
+
 For example, the following model describes a coin flip experiment with `N` flips, where `p` is the probability of heads.
 
-```math
+$$
 \begin{align*}
 p &\sim \text{Beta}(1, 1) \\
 y_i &\sim \text{Bernoulli}(p) \quad \text{for } i = 1, \ldots, N
-```
+\end{align*}
+$$
 
 :::
 
@@ -122,7 +124,7 @@ sample(model, externalsampler(SliceSteppingOut(2.0)), 1000)
 
 As Turing.jl models are simply Julia functions under the hood, they can contain arbitrary Julia code.
 
-For example, [differential equations](https://turinglang.org/docs/tutorials/bayesian-differential-equations/) can be added to a model using `DifferentialEquations.jl`, which is a completely independent package.
+For example, [differential equations](https://turinglang.org/docs/tutorials/bayesian-differential-equations/) can be added to a model using the `DifferentialEquations.jl` Julia package.
 
 :::
 
