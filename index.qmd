@@ -26,12 +26,13 @@ Turing supports models with discrete parameters and stochastic control flow.
 Turing is written entirely in Julia, and is interoperable with its powerful ecosystem.
 :::
 
+:::::
+
 {{< include _includes/news.qmd >}}
 
+### Learn more
+
 ```{=html}
-<h3 class="pb-3 section-start-space">
-  Learn more
-</h3>
 <div class="list grid quarto-listing-cols-3">
   <a class="pseudolisting" href="/library">
     <div class="card-title h5">
