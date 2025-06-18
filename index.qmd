@@ -255,3 +255,5 @@ Placeholder text introducing the Bayesian Workflow diagram from the ACM special 
 <div class="section-start-space">
 
 {{< include _includes//citation/cite.qmd >}}
+
+</div>
