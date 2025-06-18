@@ -454,45 +454,98 @@ window.Quarto = {
 <div class="d-flex flex-row flex-wrap panel-wrapper gap-3 pb-2">
 <div class="example-text" style="text-align:right;padding:0.5rem;">
 <div class="fs-4 fw-bold pb-1">
-Hello, World in Turing
+Intuitive syntax
 </div>
-<p>Some text about how easy it is to <a href="https://turinglang.org/docs/tutorials/00-introduction/">get going</a>.</p>
+<p>The <a href="https://turinglang.org/docs/core-functionality">modelling syntax of Turing.jl</a> closely resembles the mathematical specification of a probabilistic model. For example, the following model describes a coin flip experiment with <code>N</code> flips, where <code>p</code> is the probability of heads.</p>
+<pre class="math"><code>\begin{align*}
+p &amp;\sim \text{Beta}(1, 1) \\
+y_i &amp;\sim \text{Bernoulli}(p) \quad \text{for } i = 1, \ldots, N</code></pre>
 </div>
 <div class="example-code" style="overflow-x: scroll;">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-overflow-scroll code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">coinflip</span>(; N<span class="op">::</span><span class="dt">Int</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prior belief about the probability of heads</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">~</span> <span class="fu">Beta</span>(<span class="fl">1</span>, <span class="fl">1</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Heads or tails of a coin are drawn from `N`</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bernoulli distributions with success rate `p`</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    y <span class="op">~</span> <span class="fu">filldist</span>(<span class="fu">Bernoulli</span>(p), N)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-overflow-scroll code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the model</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">coinflip</span>(; N<span class="op">::</span><span class="dt">Int</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">~</span> <span class="fu">Beta</span>(<span class="fl">1</span>, <span class="fl">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    y <span class="op">~</span> <span class="fu">filldist</span>(<span class="fu">Bernoulli</span>(p), N)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Condition on data</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">coinflip</span>(; N <span class="op">=</span> <span class="fu">length</span>(data)) <span class="op">|</span> (; y <span class="op">=</span> data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="d-flex flex-row-reverse flex-wrap panel-wrapper gap-3 pt-2 section-end-space">
 <div class="example-text" style="padding:0.5rem;">
 <div class="fs-4 fw-bold pb-1">
-Goodbye, World in Turing
+Flexible parameter inference
 </div>
-<p>Some text about how easy it is to interface with external packages like AbstractGPs. Learn more about modelling <a href="https://turinglang.org/docs/tutorials/15-gaussian-processes/">Gaussian Processes</a> with Turing.jl.</p>
+<p>Turing.jl provides full support for sampling one or more MCMC chains from the posterior distribution, including options for parallel sampling.</p>
+<p>Variational inference and point estimation methods are also available.</p>
 </div>
 <div class="example-code" style="overflow-x: scroll;">
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-overflow-scroll code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">putting_model</span>(d, n; jitter<span class="op">=</span><span class="fl">1e-4</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    v <span class="op">~</span> <span class="fu">Gamma</span>(<span class="fl">2</span>, <span class="fl">1</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    l <span class="op">~</span> <span class="fu">Gamma</span>(<span class="fl">4</span>, <span class="fl">1</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="fu">GP</span>(v <span class="op">*</span> <span class="fu">with_lengthscale</span>(<span class="fu">SEKernel</span>(), l))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    f_latent <span class="op">~</span> <span class="fu">f</span>(d, jitter)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    binomials <span class="op">=</span> <span class="fu">Binomial</span>.(n, <span class="fu">logistic</span>.(f_latent))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    y <span class="op">~</span> <span class="fu">product_distribution</span>(binomials)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (fx<span class="op">=</span><span class="fu">f</span>(d, jitter), f_latent<span class="op">=</span>f_latent, y<span class="op">=</span>y)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-overflow-scroll code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample one chain</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> <span class="fu">sample</span>(model, <span class="fu">NUTS</span>(), <span class="fl">1000</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample four chains, one per thread</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: to obtain speedups, Julia must be started</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># with multiple threads enabled, e.g. `julia -t 4`</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>chains <span class="op">=</span> <span class="fu">sample</span>(model, <span class="fu">NUTS</span>(), <span class="fu">MCMCThreads</span>(), <span class="fl">1000</span>, <span class="fl">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="d-flex flex-row flex-wrap panel-wrapper gap-3 pb-2">
+<div class="example-text" style="text-align:right;padding:0.5rem;">
+<div class="fs-4 fw-bold pb-1">
+MCMC sampling algorithms
+</div>
+<p>A number of MCMC sampling algorithms are available in Turing.jl, including (but not limited to) HMC, NUTS, Metropolis–Hastings, particle samplers, and Gibbs.</p>
+<p>Turing.jl also supports <a href="https://turinglang.org/docs/usage/external-samplers/">‘external samplers’</a> which conform to the AbstractMCMC.jl interface, meaning that users can implement their own algorithms.</p>
+</div>
+<div class="example-code" style="overflow-x: scroll;">
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-overflow-scroll code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(model, <span class="fu">NUTS</span>(), <span class="fl">1000</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(model, <span class="fu">MH</span>(), <span class="fl">1000</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SliceSampling</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(model, <span class="fu">externalsampler</span>(<span class="fu">SliceSteppingOut</span>(<span class="fl">2.0</span>)), <span class="fl">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="d-flex flex-row-reverse flex-wrap panel-wrapper gap-3 pt-2 section-end-space">
+<div class="example-text" style="padding:0.5rem;">
+<div class="fs-4 fw-bold pb-1">
+Composability with Julia
+</div>
+<p>As Turing.jl models are simply Julia functions under the hood, they can contain arbitrary Julia code.</p>
+<p>For example, <a href="https://turinglang.org/docs/tutorials/bayesian-differential-equations/">differential equations</a> can be added to a model using <code>DifferentialEquations.jl</code>, which is a completely independent package.</p>
+</div>
+<div class="example-code" style="overflow-x: scroll;">
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-overflow-scroll code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DifferentialEquations</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the system of equations</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">lotka_volterra</span>(du, u, params, t)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    α, β, δ, γ <span class="op">=</span> params</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    x, y <span class="op">=</span> u</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    du[<span class="fl">1</span>] <span class="op">=</span> (α <span class="op">*</span> x) <span class="op">-</span> (β <span class="op">*</span> x <span class="op">*</span> y)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    du[<span class="fl">2</span>] <span class="op">=</span> (δ <span class="op">*</span> x <span class="op">*</span> y) <span class="op">-</span> (γ <span class="op">*</span> y)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> <span class="fu">ODEProblem</span>(lotka_volterra, <span class="op">...</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Use it in a model</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">fit_lotka_volterra</span>()</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Priors</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    α <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Solve the ODE</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> <span class="fu">solve</span>(prob, <span class="fu">Tsit5</span>(); p<span class="op">=</span>p)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Likelihood</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    data <span class="op">~</span> <span class="fu">Poisson</span>.(predictions, <span class="op">...</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <h3 id="news" class="anchored">News</h3>
 <div id="listing-news" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1750243363234" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="283">
+<div class="g-col-1" data-index="0" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="283">
 <a href="./news/posts/2025-06-06-newsletter-8/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -514,7 +567,7 @@ Jun 6, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1747958400000" data-listing-file-modified-sort="1750243363234" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="265">
+<div class="g-col-1" data-index="1" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1747958400000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="265">
 <a href="./news/posts/2025-05-23-newsletter-7/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -536,7 +589,7 @@ May 23, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1746748800000" data-listing-file-modified-sort="1750243363234" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="140">
+<div class="g-col-1" data-index="2" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1746748800000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="140">
 <a href="./news/posts/2025-05-09-newsletter-6/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -558,7 +611,7 @@ May 9, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1745539200000" data-listing-file-modified-sort="1750243363234" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="362">
+<div class="g-col-1" data-index="3" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1745539200000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="362">
 <a href="./news/posts/2025-04-25-newsletter-5/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -580,7 +633,7 @@ Apr 25, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1744329600000" data-listing-file-modified-sort="1750243363233" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386">
+<div class="g-col-1" data-index="4" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1744329600000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386">
 <a href="./news/posts/2025-04-11-newsletter-4/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -602,7 +655,7 @@ Apr 11, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1743120000000" data-listing-file-modified-sort="1750243363233" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="235">
+<div class="g-col-1" data-index="5" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1743120000000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="235">
 <a href="./news/posts/2025-03-28-newsletter-3/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -624,7 +677,7 @@ Mar 28, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1741910400000" data-listing-file-modified-sort="1750243363233" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="278">
+<div class="g-col-1" data-index="6" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1741910400000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="278">
 <a href="./news/posts/2025-03-14-newsletter-2/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -646,7 +699,7 @@ Mar 14, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1740700800000" data-listing-file-modified-sort="1750243363233" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="526">
+<div class="g-col-1" data-index="7" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1740700800000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="526">
 <a href="./news/posts/2025-02-28-newsletter-1/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -668,7 +721,7 @@ Feb 28, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="8" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1645056000000" data-listing-file-modified-sort="1750243363233" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="883">
+<div class="g-col-1" data-index="8" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1645056000000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="883">
 <a href="./news/posts/2022-02-17-gsoc/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -690,7 +743,7 @@ Feb 17, 2022
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="9" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1612915200000" data-listing-file-modified-sort="1750243363233" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="565">
+<div class="g-col-1" data-index="9" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1612915200000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="565">
 <a href="./news/posts/2021-02-04-gsoc/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -712,7 +765,7 @@ Feb 10, 2021
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="10" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1599782400000" data-listing-file-modified-sort="1750243363233" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="331">
+<div class="g-col-1" data-index="10" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1599782400000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="331">
 <a href="./news/posts/2020-09-11-gsoc/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -734,7 +787,7 @@ Sep 11, 2020
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="11" data-categories="UmVzZWFyY2g=" data-listing-date-sort="1589414400000" data-listing-file-modified-sort="1750243363233" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1041">
+<div class="g-col-1" data-index="11" data-categories="UmVzZWFyY2g=" data-listing-date-sort="1589414400000" data-listing-file-modified-sort="1750245610659" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1041">
 <a href="./news/posts/2020-05-04-Imperial-Report13-analysis/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -756,7 +809,7 @@ May 14, 2020
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="12" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1581465600000" data-listing-file-modified-sort="1750243363230" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="945">
+<div class="g-col-1" data-index="12" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1581465600000" data-listing-file-modified-sort="1750245610656" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="945">
 <a href="./news/posts/2020-02-12-jsoc/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -778,7 +831,7 @@ Feb 12, 2020
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="13" data-categories="QmxvZw==" data-listing-date-sort="1576281600000" data-listing-file-modified-sort="1750243363230" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="68">
+<div class="g-col-1" data-index="13" data-categories="QmxvZw==" data-listing-date-sort="1576281600000" data-listing-file-modified-sort="1750245610656" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="68">
 <a href="./news/posts/2019-12-14-initial-post/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -1129,15 +1182,15 @@ Turing.jl is an <a href="https://github.com/TuringLang/Turing.jl/blob/main/LICEN
 If you use Turing.jl in your research, please consider citing our paper.
 </p>
 <div class="example-code" style="max-width: 800px; margin: auto; text-align: left;">
-<div class="sourceCode" id="cb3"><pre class="sourceCode bibtex code-overflow-scroll code-with-copy"><code class="sourceCode bibtex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">@inproceedings</span>{<span class="ot">ge2018t</span>,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Hong Ge and Kai Xu and Zoubin Ghahramani},</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {Turing: a language for flexible probabilistic inference},</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">booktitle</span> = {International Conference on Artificial Intelligence and Statistics, {AISTATS} 2018, 9-11 April 2018, Playa Blanca, Lanzarote, Canary Islands, Spain},</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span>     = {1682--1690},</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2018},</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>       = {[http://proceedings.mlr.press/v84/ge18b.html](http://proceedings.mlr.press/v84/ge18b.html)},</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">biburl</span>    = {[https://dblp.org/rec/bib/conf/aistats/GeXG18](https://dblp.org/rec/bib/conf/aistats/GeXG18)},</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bibtex code-overflow-scroll code-with-copy"><code class="sourceCode bibtex"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">@inproceedings</span>{<span class="ot">ge2018t</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Hong Ge and Kai Xu and Zoubin Ghahramani},</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {Turing: a language for flexible probabilistic inference},</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">booktitle</span> = {International Conference on Artificial Intelligence and Statistics, {AISTATS} 2018, 9-11 April 2018, Playa Blanca, Lanzarote, Canary Islands, Spain},</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span>     = {1682--1690},</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2018},</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>       = {[http://proceedings.mlr.press/v84/ge18b.html](http://proceedings.mlr.press/v84/ge18b.html)},</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">biburl</span>    = {[https://dblp.org/rec/bib/conf/aistats/GeXG18](https://dblp.org/rec/bib/conf/aistats/GeXG18)},</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <style>
     .turing-license-link code{
