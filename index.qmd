@@ -13,7 +13,7 @@ description: |
 
 ::: {.panel}
 ##### Expressive {.panel-title .pb-1}
-Turing models are easy to write and communicate.
+Turing models are easy to write and communicate, with syntax that is close to the mathematical specification of the model.
 :::
 
 ::: {.panel}
@@ -25,135 +25,6 @@ Turing supports models with discrete parameters and stochastic control flow.
 ##### Composable {.panel-title .pb-1}
 Turing is written entirely in Julia, and is interoperable with its powerful ecosystem.
 :::
-
-:::::
-
-
-::::: {.d-flex .flex-row .flex-wrap .panel-wrapper .gap-3 .pb-2}
-
-::: {.example-text style="text-align:right;padding:0.5rem;"}
-
-<div class="fs-4 fw-bold pb-1">Intuitive syntax</div>
-
-The [modelling syntax of Turing.jl](https://turinglang.org/docs/core-functionality) closely resembles the mathematical specification of a probabilistic model.
-
-For example, the following model describes a coin flip experiment with `N` flips, where `p` is the probability of heads.
-
-$$
-\begin{align*}
-p &\sim \text{Beta}(1, 1) \\
-y_i &\sim \text{Bernoulli}(p) \quad \text{for } i = 1, \ldots, N
-\end{align*}
-$$
-
-:::
-
-::: {.example-code style="overflow-x: scroll;"}
-```{.julia .code-overflow-scroll}
-# Define the model
-@model function coinflip(; N::Int)
-    p ~ Beta(1, 1)
-    y ~ filldist(Bernoulli(p), N)
-end
-
-# Condition on data
-data = [0, 1, 1, 0, 1]
-model = coinflip(; N = length(data)) | (; y = data)
-```
-:::
-
-:::::
-
-::::: {.d-flex .flex-row-reverse .flex-wrap .panel-wrapper .gap-3 .pt-2 .section-end-space}
-
-::: {.example-text style="padding:0.5rem;"}
-
-<div class="fs-4 fw-bold pb-1">Flexible parameter inference</div>
-
-Turing.jl provides full support for sampling one or more MCMC chains from the posterior distribution, including options for parallel sampling.
-
-Variational inference and point estimation methods are also available.
-
-:::
-
-::: {.example-code style="overflow-x: scroll;"}
-```{.julia .code-overflow-scroll}
-# Sample one chain
-chain = sample(model, NUTS(), 1000)
-
-# Sample four chains, one per thread
-# Note: to obtain speedups, Julia must be started
-# with multiple threads enabled, e.g. `julia -t 4`
-chains = sample(model, NUTS(), MCMCThreads(), 1000, 4)
-```
-:::
-
-:::::
-
-
-::::: {.d-flex .flex-row .flex-wrap .panel-wrapper .gap-3 .pb-2}
-
-::: {.example-text style="text-align:right;padding:0.5rem;"}
-
-<div class="fs-4 fw-bold pb-1">MCMC sampling algorithms</div>
-
-A number of MCMC sampling algorithms are available in Turing.jl, including (but not limited to) HMC, NUTS, Metropolis–Hastings, particle samplers, and Gibbs.
-
-Turing.jl also supports ['external samplers'](https://turinglang.org/docs/usage/external-samplers/) which conform to the AbstractMCMC.jl interface, meaning that users can implement their own algorithms.
-
-:::
-
-::: {.example-code style="overflow-x: scroll;"}
-```{.julia .code-overflow-scroll}
-sample(model, NUTS(), 1000)
-
-sample(model, MH(), 1000)
-
-using SliceSampling
-sample(model, externalsampler(SliceSteppingOut(2.0)), 1000)
-```
-:::
-
-:::::
-
-::::: {.d-flex .flex-row-reverse .flex-wrap .panel-wrapper .gap-3 .pt-2 .section-end-space}
-
-::: {.example-text style="padding:0.5rem;"}
-
-<div class="fs-4 fw-bold pb-1">Composability with Julia</div>
-
-As Turing.jl models are simply Julia functions under the hood, they can contain arbitrary Julia code.
-This allows users to draw on the rich numerical and scientific computing ecosystem of Julia.
-
-In the example here, we define an [ordinary differential equations](https://turinglang.org/docs/tutorials/bayesian-differential-equations/) using the `DifferentialEquations.jl` Julia package and use it in a Turing.jl model.
-
-:::
-
-::: {.example-code style="overflow-x: scroll;"}
-```{.julia .code-overflow-scroll}
-# Define the system of equations
-using DifferentialEquations
-function lotka_volterra(du, u, params, t)
-    α, β, δ, γ = params
-    x, y = u
-    du[1] = (α * x) - (β * x * y)
-    du[2] = (δ * x * y) - (γ * y)
-end
-prob = ODEProblem(lotka_volterra, ...)
-
-# Use it in a model
-@model function fit_lotka_volterra()
-    # Priors on ODE parameters
-    α ~ Normal(0, 1) # and others...
-    # Solve the ODE
-    predictions = solve(prob, Tsit5(); params=(α, ...))
-    # Calculate likelihood
-    data ~ Poisson.(predictions, ...)
-end
-```
-:::
-
-:::::
 
 {{< include _includes/news.qmd >}}
 
