@@ -6,9 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Turing.jl is a probabilistic programming language and Bayesian modelling framework for the Julia programming language.">
+<meta name="author" content="The TuringLang team">
+<meta name="dcterms.date" content="2025-06-20">
+<meta name="description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
 
-<title>Turing.jl</title>
+<title>Turing.jl Newsletter 9 – Turing.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,28 +26,28 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-34f10f09218b5f824079fe87ab110c93.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-7feb73cbf033c84a6900c4bdc37aabc8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-34f10f09218b5f824079fe87ab110c93.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../assets/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-34f10f09218b5f824079fe87ab110c93.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-7feb73cbf033c84a6900c4bdc37aabc8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-34f10f09218b5f824079fe87ab110c93.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -82,9 +84,17 @@ ul.task-list li input[type="checkbox"] {
   "url" : "https://turinglang.org/",
 }
 </script>
+<style>
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
 
 
-<link rel="stylesheet" href="theming/styles.css">
+<link rel="stylesheet" href="../../../theming/styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -257,7 +267,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="https://turinglang.org/" class="navbar-brand navbar-brand-logo">
-    <img src="./assets/images/turing-logo.svg" alt="" class="navbar-logo">
+    <img src="../../../assets/images/turing-logo.svg" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="https://turinglang.org/">
     <span class="navbar-title">Turing.jl</span>
@@ -278,15 +288,15 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./library/"> 
+    <a class="nav-link" href="../../../library/"> 
 <span class="menu-text">Libraries</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./news/"> 
+    <a class="nav-link" href="../../../news/"> 
 <span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./team/"> 
+    <a class="nav-link" href="../../../team/"> 
 <span class="menu-text">Team</span></a>
   </li>  
 </ul>
@@ -300,55 +310,61 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
+    
 <!-- main -->
+<main class="content" id="quarto-document-content">
 
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Turing.jl Newsletter 9</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Newsletter</div>
+  </div>
+  </div>
 
-
-
-<div class="hero-banner">
-<div class="grid">
-<div class="g-col-1">
-
-</div>
-<section id="turing.jl-bayesian-inference-with-probabilistic-programming." class="g-col-8">
-<h1>Turing.jl: Bayesian inference with probabilistic programming.</h1>
-<h3 id="intuitive">Intuitive</h3>
-<p>Turing models are easy to write and communicate — syntax is close to mathematical notations.</p>
-<h3 id="general-purpose">General-purpose</h3>
-<p>Turing supports models with discrete parameters and stochastic control flow.</p>
-<h3 id="modular-and-composable">Modular and composable</h3>
-<p>Turing is modular, written entirely in Julia, and is interoperable with the powerful Julia ecosystem.</p>
-<div class="hero-buttons" style="position: relative; display: flex; justify-content: center;">
-<p><a href="https://turinglang.org/docs/getting-started/" class="btn-action-primary btn-action btn btn-lg" role="button" style="background-color: #073c44; color: white">Get Started</a></p>
-</div>
-<div class="g-col-3">
-
-</div>
-</section>
-</div>
-</div>
-<div style="position: relative; display: flex; justify-content: center;">
-<div class="grid">
-<div class="g-col-1">
-
-</div>
-<section id="community-resources" class="g-col-8">
-<h2>Community Resources</h2>
-<p>The Turing.jl <a href="https://discourse.julialang.org/c/domain/probprog">discourse forum</a> provides support and discussion for all user levels. The <a href="https://turinglang.org/docs/getting-started/">Turing.jl documentation</a> and <a href="https://turinglang.org/docs/tutorials/">official tutorials</a> help users learn and use Turing.jl! There’s also a <a href="https://storopoli.io/Bayesian-Julia">tutorial in Bayesian Statistics using Julia and Turing.jl</a>.</p>
-</section>
-<div class="g-col-3">
-
-</div>
-</div>
+<div>
+  <div class="description">
+    The fortnightly newsletter for the Turing.jl probabilistic programming language
+  </div>
 </div>
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="../../../team/">The TuringLang team</a> </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 20, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p><strong>Google Summer of Code</strong></p>
+<p>We will have two GSoC students this year working with us: their projects are both focused on JuliaBUGS.jl, one on developing a graphical interface in a web browser, and another on an R interface. We (re?-)welcome Mateus and Shravan — if you see them around do say hi 🙂</p>
+<p><strong>TuringGLM.jl</strong></p>
+<p>We’ve been thinking about putting in some work on <a href="https://github.com/TuringLang/TuringGLM.jl">TuringGLM.jl</a>, which allows one to create Turing models using formula syntax (similar to that in brms, lme4 or bambi). There are (as always) plenty of things for us to work through, but if you’ve used this and would like to let us know about what you’d like to see in it, feel free to message or open an issue on the repository!</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -769,7 +785,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/TuringLang/turinglang.github.io/edit/main/news/posts/2025-06-20-newsletter-9/index.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/TuringLang/turinglang.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -792,5 +808,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

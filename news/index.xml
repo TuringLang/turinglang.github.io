@@ -9,8 +9,30 @@
 <link>https://turinglang.org/news/</link>
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.7.31</generator>
-<lastBuildDate>Fri, 06 Jun 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.7.32</generator>
+<lastBuildDate>Fri, 20 Jun 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 9</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-06-20-newsletter-9/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><strong>Google Summer of Code</strong></p>
+<p>We will have two GSoC students this year working with us: their projects are both focused on JuliaBUGS.jl, one on developing a graphical interface in a web browser, and another on an R interface. We (re?-)welcome Mateus and Shravan — if you see them around do say hi 🙂</p>
+<p><strong>TuringGLM.jl</strong></p>
+<p>We’ve been thinking about putting in some work on <a href="https://github.com/TuringLang/TuringGLM.jl">TuringGLM.jl</a>, which allows one to create Turing models using formula syntax (similar to that in brms, lme4 or bambi). There are (as always) plenty of things for us to work through, but if you’ve used this and would like to let us know about what you’d like to see in it, feel free to message or open an issue on the repository!</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-06-20-newsletter-9/</guid>
+  <pubDate>Fri, 20 Jun 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 8</title>
   <dc:creator>The TuringLang team</dc:creator>
