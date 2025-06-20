@@ -1,0 +1,20 @@
+---
+title: Turing.jl Newsletter 9
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-06-20
+---
+
+**Google Summer of Code**
+
+We will have two GSoC students this year working with us: their projects are both focused on JuliaBUGS.jl, one on developing a graphical interface in a web browser, and another on an R interface.
+We (re?-)welcome Mateus and Shravan — if you see them around do say hi 🙂
+
+**TuringGLM.jl**
+
+We've been thinking about putting in some work on [TuringGLM.jl](https://github.com/TuringLang/TuringGLM.jl), which allows one to create Turing models using formula syntax (similar to that in brms, lme4 or bambi).
+There are (as always) plenty of things for us to work through, but if you've used this and would like to let us know about what you'd like to see in it, feel free to message or open an issue on the repository!
