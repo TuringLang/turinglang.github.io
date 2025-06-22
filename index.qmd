@@ -30,104 +30,49 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 {{< include _includes/news/news.qmd >}}
 
-### Learn more
-
 ```{=html}
-<div class="list grid quarto-listing-cols-3">
-  <a class="pseudolisting" href="/library">
-    <div class="card-title h5">
-      Ecosystem
+<div class="text-center section-start-space">
+  <p class="responsive-heading" style="font-weight: 600; margin-bottom: 0;">Start Your Journey</p>
+  <p class="fs-5 text-muted">Whether you're new to Bayesian modeling or an experienced researcher, find the resources you need.</p>
+</div>
+
+<div class="d-flex flex-row flex-wrap panel-wrapper gap-4 section-end-space">
+
+  <div class="panel">
+    <div style="font-size: 2.5rem; text-align: center;">🚀</div>
+    <h5 class="panel-title pb-1 text-center">New to Turing?</h5>
+    <p>Begin with the basics. Our step-by-step tutorials will guide you from installation to your first probabilistic models.</p>
+    <div class="d-flex flex-column align-items-center gap-2 pt-3">
+        <a href="https://turinglang.org/docs/getting-started/" class="button btn">Get Started</a>
+        <a href="https://turinglang.org/docs/tutorials/coin-flipping/" class="text-muted" style="font-size: 0.9em;">View Introductory Concepts</a>
     </div>
-    <p class="quarto-grid-item">
-      Learn about all the packages that are part of the TuringLang organization.
-    </p>
-  </a>
-  <a class="pseudolisting" href="https://turinglang.org/docs/tutorials/docs-00-getting-started/">
-    <div class="card-title h5">
-      Documentation
+  </div>
+
+  <div class="panel">
+    <div style="font-size: 2.5rem; text-align: center;">🔬</div>
+    <h5 class="panel-title pb-1 text-center">For Researchers</h5>
+    <p>Dive into advanced models, explore the rich package ecosystem, and learn how to cite Turing.jl in your work.</p>
+      <div class="d-flex flex-column align-items-center gap-2 pt-3">
+        <a href="/library" class="button btn">Explore Ecosystem</a>
+        <a href="#cite" class="text-muted" style="font-size: 0.9em;">How to Cite Turing.jl</a>
     </div>
-    <p class="quarto-grid-item">
-      Familiarize yourself with the mechanics of Turing.jl.
-    </p>
-  </a>
-  <a class="pseudolisting" href="https://turinglang.org/docs/tutorials/00-introduction/">
-    <div class="card-title h5">
-      Official tutorials
+  </div>
+
+  <div class="panel">
+    <div style="font-size: 2.5rem; text-align: center;">💻</div>
+    <h5 class="panel-title pb-1 text-center">For Developers</h5>
+    <p>Join our community, contribute to the project on GitHub, and connect with fellow developers on Slack.</p>
+    <div class="d-flex flex-column align-items-center gap-2 pt-3">
+        <a href="https://github.com/TuringLang" class="button btn">View on GitHub</a>
+        <a href="https://julialang.slack.com/archives/CCYDC34A0" class="text-muted" style="font-size: 0.9em;">Join the Slack Channel</a>
     </div>
-    <p class="quarto-grid-item">
-      Learn to tackle specific modelling problems with Turing.jl.
-    </p>
-  </a>
+  </div>
+
 </div>
 ```
-
-<!-- TODO
-
-::: {.section-start-space}
-
-### Algorithms
-
-Placeholder text introducing this section on algorithms.
-
-| Column 1 | Column 2 | Column 3 | Column 4 |
-|----------|----------|----------|----------|
-|  Entry A |  Entry D |  Entry G |  Entry J |
-|  Entry B |  Entry E |  Entry H |  Entry K |
-|  Entry C |  Entry F |  Entry I |  Entry L |
-
-: Supported MCMC and other learning algorithms {.striped .borderless}
-
-:::
-
-::: {.section-start-space}
-
-### Bayesian Workflow
-
-Placeholder text introducing the Bayesian Workflow diagram from the ACM special issue submission.
-
-```{=html}
-<div style="text-align:center;">
-<img src="https://i0.wp.com/www.honeybeesuite.com/wp-content/uploads/2019/09/Multiple-teeth-HBS.jpg?w=400&ssl=1" style="margin:0.5rem 0;border-radius:10pt">
-<p>An example of the Beeysian workflow.</p>
-</div>
-```
-
-:::
-
--->
-
-<!-- TODO
-
-```{=html}
-<div class="d-flex flex-row panel-wrapper gap-3 section-start-space">
-<div class="flex-grow-1">
-<h3>Talks</h3>
-  <p>Placeholder for intro text on list of talks which are available online</p>
-  <ul>
-    <li>Talk 1
-    <li>Talk 2
-    <li>Talk 3
-  </ul>
-</div>
-<div class="flex-grow-1">
-  <h3>Other resources</h3>
-  <p>This list contains a few other written resources for learning Turing. If you have written something and would like to share it with the community, please <a href="https://github.com/TuringLang/docs/issues/new">get in touch</a>!</p>
-  <ul>
-    <li><a href="https://github.com/StatisticalRethinkingJulia/SR2TuringPluto.jl">Statistical Rethinking</a>
-    <li><a href="https://storopoli.github.io/Turing-Workshop/">Jose Storopoli's Turing workshop (outdated in parts)</a>
-    <li><a href="https://storopoli.github.io/Bayesian-Julia/">Jose Storopoli's blog on Turing and Bayesian Statistics</a>
-    <li>Placeholder for more...
-  </ul>
-</div>
-</div>
-``` 
--->
 
 <div class="section-start-space">
 
-{{< include _includes//citation/cite.qmd >}}
+{{< include _includes/citation/cite.qmd >}}
 
 </div>
-
-
-

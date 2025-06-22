@@ -12,9 +12,13 @@ listing:
 ::: {#news-carousel}
 :::
 
-[See all news &rarr;](news/)
-
 ```{=html}
+<div class="d-flex flex-column align-items-center gap-0">
+  <a href="news/" class="button btn">
+    See all news &rarr;
+  </a>
+</div>
+
 <style>
 /* Scoped styles for the news carousel to avoid conflicts with global themes */
 #news-carousel-container {
@@ -60,7 +64,7 @@ listing:
   text-decoration: none;
   border-radius: 0.5rem;
   transition: background-color 0.3s ease, border-color 0.3s ease;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   border: 1px solid #e9ecef;
   color: #212529;
 }

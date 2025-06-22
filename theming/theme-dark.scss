@@ -55,6 +55,14 @@ $body-bg: $background-body;
 /*-- scss:rules --*/
 
 // --- Global Styles ---
+.quarto-container {
+  background-color: $background-body !important;
+}
+
+.navbar {
+  background-color: $navbar-bg !important;
+}
+
 p {
     color: $text-muted !important;
 }
@@ -253,4 +261,28 @@ code {
   .news-carousel-attribution {
     color: $text-muted !important;
   }
+}
+
+
+// Dark mode styles for the citation section
+.citation-entry {
+    background-color: $panel-bg !important;
+    border-color: $btn-border-color !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2) !important;
+}
+.citation-text {
+    color: $text-muted !important;
+}
+.citation-title {
+    color: $body-color !important;
+}
+.button--primary {
+    background-color: transparent !important;
+    color: $links !important;
+    border-color: $links !important;
+
+    &:hover {
+        background-color: $links !important;
+        color: $panel-bg !important;
+    }
 }
