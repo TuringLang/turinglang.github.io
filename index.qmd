@@ -28,7 +28,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 :::::
 
-{{< include _includes/news.qmd >}}
+{{< include _includes/news/news.qmd >}}
 
 ### Learn more
 
@@ -128,3 +128,6 @@ Placeholder text introducing the Bayesian Workflow diagram from the ACM special 
 {{< include _includes//citation/cite.qmd >}}
 
 </div>
+
+
+

@@ -1,0 +1,15 @@
+---
+listing:
+  - id: news-carousel
+    contents: 
+      - "news/posts/*/index.qmd"
+    template: _includes/news/_news-carousel.ejs
+    sort: "date desc"
+---
+
+### News
+
+::: {#news-carousel}
+:::
+
+[See all news &rarr;](news/)
