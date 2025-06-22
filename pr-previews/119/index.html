@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-b3bbcf82d66833753621706898a5f7a2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-90a1b9855305fa593c7dfc134f3f2e20.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-dark-a94c7accbcda206655252593bab5ee3f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-b3bbcf82d66833753621706898a5f7a2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -112,20 +112,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-news .list');
+    const listingTargetEl = window.document.querySelector('#listing-news-carousel .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title','listing-description','listing-date','listing-reading-time','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-project','listing-website','listing-format','listing-site-url','listing-get-started','listing-tutorials-intro','listing-language','listing-toc','listing-sidebar','listing-include-in-header','listing-title','listing-description','listing-categories','listing-author','listing-date','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-resources',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+      searchColumns: ["listing-project","listing-website","listing-format","listing-site-url","listing-get-started","listing-tutorials-intro","listing-language","listing-toc","listing-sidebar","listing-include-in-header","listing-title","listing-description","listing-categories","listing-author","listing-date","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-resources"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-news'] = new List('listing-news', options);
+    window['quarto-listings']['listing-news-carousel'] = new List('listing-news-carousel', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -454,547 +454,539 @@ window.Quarto = {
 </section>
 </div>
 <h3 id="news" class="anchored">News</h3>
-<div id="listing-news" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1750247758049" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="283">
-<a href="./news/posts/2025-06-06-newsletter-8/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Turing.jl Newsletter 8
-</h5>
-<div class="listing-reading-time card-text text-muted">2 min</div>
-<div class="card-text listing-description delink">
-<p>The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-The TuringLang team
-</div>
-<div class="listing-date">
-Jun 6, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1747958400000" data-listing-file-modified-sort="1750247758049" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="265">
-<a href="./news/posts/2025-05-23-newsletter-7/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Turing.jl Newsletter 7
-</h5>
-<div class="listing-reading-time card-text text-muted">2 min</div>
-<div class="card-text listing-description delink">
-<p>The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-The TuringLang team
-</div>
-<div class="listing-date">
-May 23, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1746748800000" data-listing-file-modified-sort="1750247758049" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="140">
-<a href="./news/posts/2025-05-09-newsletter-6/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Turing.jl Newsletter 6
-</h5>
-<div class="listing-reading-time card-text text-muted">1 min</div>
-<div class="card-text listing-description delink">
-<p>The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-The TuringLang team
-</div>
-<div class="listing-date">
-May 9, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1745539200000" data-listing-file-modified-sort="1750247758049" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="362">
-<a href="./news/posts/2025-04-25-newsletter-5/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Turing.jl Newsletter 5
-</h5>
-<div class="listing-reading-time card-text text-muted">2 min</div>
-<div class="card-text listing-description delink">
-<p>The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-The TuringLang team
-</div>
-<div class="listing-date">
-Apr 25, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1744329600000" data-listing-file-modified-sort="1750247758049" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386">
-<a href="./news/posts/2025-04-11-newsletter-4/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Turing.jl Newsletter 4
-</h5>
-<div class="listing-reading-time card-text text-muted">2 min</div>
-<div class="card-text listing-description delink">
-<p>The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-The TuringLang team
-</div>
-<div class="listing-date">
-Apr 11, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1743120000000" data-listing-file-modified-sort="1750247758049" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="235">
-<a href="./news/posts/2025-03-28-newsletter-3/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Turing.jl Newsletter 3
-</h5>
-<div class="listing-reading-time card-text text-muted">2 min</div>
-<div class="card-text listing-description delink">
-<p>The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-The TuringLang team
-</div>
-<div class="listing-date">
-Mar 28, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="6" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1741910400000" data-listing-file-modified-sort="1750247758049" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="278">
-<a href="./news/posts/2025-03-14-newsletter-2/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Turing.jl Newsletter 2
-</h5>
-<div class="listing-reading-time card-text text-muted">2 min</div>
-<div class="card-text listing-description delink">
-<p>The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-The TuringLang team
-</div>
-<div class="listing-date">
-Mar 14, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="7" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1740700800000" data-listing-file-modified-sort="1750247758049" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="526">
-<a href="./news/posts/2025-02-28-newsletter-1/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Turing.jl Newsletter 1
-</h5>
-<div class="listing-reading-time card-text text-muted">3 min</div>
-<div class="card-text listing-description delink">
-<p>The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-The TuringLang team
-</div>
-<div class="listing-date">
-Feb 28, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="8" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1645056000000" data-listing-file-modified-sort="1750247758048" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="883">
-<a href="./news/posts/2022-02-17-gsoc/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Google Summer of Code 2022
-</h5>
-<div class="listing-reading-time card-text text-muted">5 min</div>
-<div class="card-text listing-description delink">
-<p>It is another year of the Google Summer of Code time, and we have compiled an updated list of…</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Kai Xu, the TuringLang team
-</div>
-<div class="listing-date">
-Feb 17, 2022
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="9" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1612915200000" data-listing-file-modified-sort="1750247758048" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="565">
-<a href="./news/posts/2021-02-04-gsoc/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Google Summer of Code 2021
-</h5>
-<div class="listing-reading-time card-text text-muted">3 min</div>
-<div class="card-text listing-description delink">
-<p>It’s about time for us to start thinking about projects we’d like to see at Turing.jl for the…</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Cameron Pfiffer
-</div>
-<div class="listing-date">
-Feb 10, 2021
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="10" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1599782400000" data-listing-file-modified-sort="1750247758048" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="331">
-<a href="./news/posts/2020-09-11-gsoc/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Google Summer of Code 2020
-</h5>
-<div class="listing-reading-time card-text text-muted">2 min</div>
-<div class="card-text listing-description delink">
-<p>As the 2020 Google Summer of Code comes to a close, the Turing team thought it would be a good…</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Cameron Pfiffer
-</div>
-<div class="listing-date">
-Sep 11, 2020
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="11" data-categories="UmVzZWFyY2g=" data-listing-date-sort="1589414400000" data-listing-file-modified-sort="1750247758048" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1041">
-<a href="./news/posts/2020-05-04-Imperial-Report13-analysis/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Replication study: Estimating number of infections and impact of NPIs on COVID-19 in European countries (Imperial Report 13)
-</h5>
-<div class="listing-reading-time card-text text-muted">6 min</div>
-<div class="card-text listing-description delink">
-<p>The Turing.jl team is currently exploring possibilities in an attempt to help with the ongoing…</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Tor Erlend Fjelde, Mohamed Tarek, Kai Xu, David Widmann, Martin Trapp, Cameron Pfiffer, Hong Ge
-</div>
-<div class="listing-date">
-May 14, 2020
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="12" data-categories="QmxvZyUyQ0dTb0M=" data-listing-date-sort="1581465600000" data-listing-file-modified-sort="1750247758045" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="945">
-<a href="./news/posts/2020-02-12-jsoc/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Google Summer of Code/Julia Summer of Code
-</h5>
-<div class="listing-reading-time card-text text-muted">5 min</div>
-<div class="card-text listing-description delink">
-<p>Turing plans to participate in the upcoming GSoC, and we wanted to outline some potential projects…</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Cameron Pfiffer
-</div>
-<div class="listing-date">
-Feb 12, 2020
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="13" data-categories="QmxvZw==" data-listing-date-sort="1576281600000" data-listing-file-modified-sort="1750247758045" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="68">
-<a href="./news/posts/2019-12-14-initial-post/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Turing’s Blog
-</h5>
-<div class="listing-reading-time card-text text-muted">1 min</div>
-<div class="card-text listing-description delink">
-<p>All good open source projects should have a blog, and Turing is one such project. Later on…</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Cameron Pfiffer
-</div>
-<div class="listing-date">
-Dec 14, 2019
-</div>
-</div>
-</div>
-</div></a>
-</div>
+<div id="listing-news-carousel" class="quarto-listing quarto-listing-container-custom">
+<div id="news-carousel-container">
+    <div id="news-carousel-track">
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2025-06-20-newsletter-9/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Turing.jl Newsletter 9</h5>
+                        <p class="news-carousel-reading-time">1 min read</p>
+                        
+                        <p class="news-carousel-description">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">The TuringLang team</span>
+                            <span class="news-carousel-date">Jun 20, 2025</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2025-06-06-newsletter-8/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Turing.jl Newsletter 8</h5>
+                        <p class="news-carousel-reading-time">2 min read</p>
+                        
+                        <p class="news-carousel-description">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">The TuringLang team</span>
+                            <span class="news-carousel-date">Jun 6, 2025</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2025-05-23-newsletter-7/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Turing.jl Newsletter 7</h5>
+                        <p class="news-carousel-reading-time">2 min read</p>
+                        
+                        <p class="news-carousel-description">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">The TuringLang team</span>
+                            <span class="news-carousel-date">May 23, 2025</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2025-05-09-newsletter-6/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Turing.jl Newsletter 6</h5>
+                        <p class="news-carousel-reading-time">1 min read</p>
+                        
+                        <p class="news-carousel-description">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">The TuringLang team</span>
+                            <span class="news-carousel-date">May 9, 2025</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2025-04-25-newsletter-5/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Turing.jl Newsletter 5</h5>
+                        <p class="news-carousel-reading-time">2 min read</p>
+                        
+                        <p class="news-carousel-description">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">The TuringLang team</span>
+                            <span class="news-carousel-date">Apr 25, 2025</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2025-04-11-newsletter-4/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Turing.jl Newsletter 4</h5>
+                        <p class="news-carousel-reading-time">2 min read</p>
+                        
+                        <p class="news-carousel-description">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">The TuringLang team</span>
+                            <span class="news-carousel-date">Apr 11, 2025</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2025-03-28-newsletter-3/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Turing.jl Newsletter 3</h5>
+                        <p class="news-carousel-reading-time">2 min read</p>
+                        
+                        <p class="news-carousel-description">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">The TuringLang team</span>
+                            <span class="news-carousel-date">Mar 28, 2025</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2025-03-14-newsletter-2/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Turing.jl Newsletter 2</h5>
+                        <p class="news-carousel-reading-time">2 min read</p>
+                        
+                        <p class="news-carousel-description">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">The TuringLang team</span>
+                            <span class="news-carousel-date">Mar 14, 2025</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2025-02-28-newsletter-1/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Turing.jl Newsletter 1</h5>
+                        <p class="news-carousel-reading-time">3 min read</p>
+                        
+                        <p class="news-carousel-description">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">The TuringLang team</span>
+                            <span class="news-carousel-date">Feb 28, 2025</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2022-02-17-gsoc/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Google Summer of Code 2022</h5>
+                        <p class="news-carousel-reading-time">5 min read</p>
+                        
+                        <p class="news-carousel-description">It is another year of the Google Summer of Code time, and we have compiled an updated list of exciting Turing projects! Projects that the Turing team would be interested in working with students on over the summer are listed below. This information is also cross-posted at Julia's Turing project page.
+</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">Kai Xu, the TuringLang team</span>
+                            <span class="news-carousel-date">Feb 17, 2022</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2021-02-04-gsoc/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Google Summer of Code 2021</h5>
+                        <p class="news-carousel-reading-time">3 min read</p>
+                        
+                        <p class="news-carousel-description">It's about time for us to start thinking about projects we'd like to see at Turing.jl for the Google Summer of Code 2021! Below is a list of projects the Turing team would be interested in working with students on for the summer.
+</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">Cameron Pfiffer</span>
+                            <span class="news-carousel-date">Feb 10, 2021</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2020-09-11-gsoc/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Google Summer of Code 2020</h5>
+                        <p class="news-carousel-reading-time">2 min read</p>
+                        
+                        <p class="news-carousel-description">As the 2020 Google Summer of Code comes to a close, the Turing team thought it would be a good opportunity to reflect on the work that was done by our superb students this summer.
+</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">Cameron Pfiffer</span>
+                            <span class="news-carousel-date">Sep 11, 2020</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2020-05-04-Imperial-Report13-analysis/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Replication study: Estimating number of infections and impact of NPIs on COVID-19 in European countries (Imperial Report 13)</h5>
+                        <p class="news-carousel-reading-time">6 min read</p>
+                        
+                        <p class="news-carousel-description">The Turing.jl team is currently exploring possibilities in an attempt to help with the ongoing SARS-CoV-2 crisis. As preparation for this and to get our feet wet, we decided to perform a replication study of the Imperial Report 13...
+</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">Tor Erlend Fjelde, Mohamed Tarek, Kai Xu, David Widmann, Martin Trapp, Cameron Pfiffer, Hong Ge</span>
+                            <span class="news-carousel-date">May 14, 2020</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2020-02-12-jsoc/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Google Summer of Code/Julia Summer of Code</h5>
+                        <p class="news-carousel-reading-time">5 min read</p>
+                        
+                        <p class="news-carousel-description">Turing plans to participate in the upcoming GSoC, and we wanted to outline some potential projects and expectations we have for applicants.
+</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">Cameron Pfiffer</span>
+                            <span class="news-carousel-date">Feb 12, 2020</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="news-carousel-slide">
+                <a href="./news/posts/2019-12-14-initial-post/index.html" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title anchored">Turing's Blog</h5>
+                        <p class="news-carousel-reading-time">1 min read</p>
+                        
+                        <p class="news-carousel-description">All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts...
+</p>
+                        
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author">Cameron Pfiffer</span>
+                            <span class="news-carousel-date">Dec 14, 2019</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+    </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
 <p><a href="news/">See all news →</a></p>
 <style>
-/* hide default Quarto grid once JS enhancement is active */
-#listing-news.enhanced-carousel .list.grid.quarto-listing-cols-3 {
-  display: none !important;
-}
-
-#carousel-container {
+/* Scoped styles for the news carousel to avoid conflicts with global themes */
+#news-carousel-container {
   overflow: hidden;
+  position: relative;
+  width: 100%;
   cursor: grab;
 }
 
-#carousel-container.grabbing {
+#news-carousel-container.grabbing {
   cursor: grabbing;
 }
 
-#carousel-track {
+#news-carousel-container #news-carousel-track {
   display: flex;
   align-items: stretch;
 }
 
-#carousel-track>.g-col-1 {
-  flex: 0 0 33.3333%;
-  padding: 1rem;
+#news-carousel-container .news-carousel-slide {
+  flex-shrink: 0;
+  width: 33.3333%;
+  padding: 0.5rem;
   box-sizing: border-box;
-  display: block !important;
-  min-width: 0;
 }
 
-#carousel-container.grabbing a {
-  pointer-events: none;
-}
-
-@media (max-width: 1024px) and (min-width: 769px) {
-  #carousel-track>.g-col-1 {
-    flex: 0 0 50%;
+@media (max-width: 1024px) {
+  #news-carousel-container .news-carousel-slide {
+    width: 50%;
   }
 }
 
 @media (max-width: 768px) {
-  #carousel-track>.g-col-1 {
-    flex: 0 0 100%;
+  #news-carousel-container .news-carousel-slide {
+    width: 100%;
   }
 }
 
-.quarto-listing {
-  padding-bottom: 0 !important;
-}
-
-#carousel-track>.g-col-1 .card.news-item {
+#news-carousel-container .news-carousel-card {
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  color: #212529;
 }
 
-#carousel-track>.g-col-1 .card-body {
+#news-carousel-container .news-carousel-card:hover {
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+#news-carousel-container .news-carousel-card-body {
   flex-grow: 1;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding: 1rem;
 }
 
-#carousel-track>.g-col-1 .card-img-top {
-  max-height: 150px;
-  object-fit: cover;
-}
-
-#carousel-track .listing-title {
+#news-carousel-container .news-carousel-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 0.25rem;
+  color: #212529;
+  font-weight: 700;
 }
 
-#carousel-track .listing-description {
+#news-carousel-container .news-carousel-reading-time,
+#news-carousel-container .news-carousel-description,
+#news-carousel-container .news-carousel-attribution {
+  color: #6c757d;
+}
+
+#news-carousel-container .news-carousel-reading-time {
+  font-size: 0.9em;
+  margin-bottom: 0.75rem;
+}
+
+#news-carousel-container .news-carousel-description {
+  flex-grow: 1;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 1rem;
 }
 
-#carousel-track .card-attribution {
-  margin-top: auto;
-  padding-top: 1rem;
+#news-carousel-container .news-carousel-attribution {
   display: flex;
+  justify-content: space-between;
   align-items: flex-end;
   gap: 1em;
+  font-size: 0.85em;
+  margin-top: auto;
 }
 
-#carousel-track .listing-author {
+#news-carousel-container .news-carousel-author {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
 }
 
-#carousel-track .listing-date {
+#news-carousel-container .news-carousel-date {
   white-space: nowrap;
   flex-shrink: 0;
 }
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const listing = document.getElementById('listing-news');
-        if (!listing) return;
+document.addEventListener('DOMContentLoaded', function () {
+    const carouselContainer = document.getElementById('news-carousel-container');
+    const carouselTrack = document.getElementById('news-carousel-track');
+    
+    if (!carouselContainer || !carouselTrack || !carouselTrack.children.length) {
+        return;
+    }
+    
+    const slides = Array.from(carouselTrack.children);
+    const displayDuration = 2000;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let currentIndex = 0;
+    let intervalId;
+    
+    // Interaction state variables
+    let isDragging = false;
+    let startPos = 0;
+    let hasDragged = false;
+    let wheelTimeout;
+    let isWheeling = false;
 
-        const originalItems = Array.from(listing.querySelectorAll('.list.grid.quarto-listing-cols-3 > .g-col-1'));
-        if (originalItems.length === 0) return;
+    const getItemsPerView = () => {
+        const width = window.innerWidth;
+        if (width <= 768) return 1;
+        if (width > 768 && width <= 1024) return 2;
+        return 3;
+    }
 
-        listing.classList.add('enhanced-carousel');
+    const getPositionX = (event) => {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    }
+    
+    const startAutoplay = () => {
+        stopAutoplay();
+        intervalId = setInterval(autoplayNext, displayDuration);
+    }
 
-        const carouselContainer = document.createElement('div');
-        carouselContainer.id = 'carousel-container';
+    const stopAutoplay = () => {
+        clearInterval(intervalId);
+    }
 
-        const carouselTrack = document.createElement('div');
-        carouselTrack.id = 'carousel-track';
+    const setSliderPosition = () => {
+        carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
+    }
 
-        carouselTrack.append(...originalItems);
-        carouselContainer.append(carouselTrack);
-        listing.parentNode.insertBefore(carouselContainer, listing.nextSibling);
+    const setPositionByIndex = () => {
+        if (slides.length === 0) return;
 
-        const slides = Array.from(carouselTrack.children);
-        const displayDuration = 2500;
-        let isDragging = false,
-            startPos = 0,
-            currentTranslate = 0,
-            prevTranslate = 0,
-            currentIndex = 0,
-            hasDragged = false,
-            intervalId;
+        const itemsPerView = getItemsPerView();
+        const maxIndex = slides.length > itemsPerView ? slides.length - itemsPerView : 0;
+        
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
+        if (currentIndex < 0) currentIndex = 0;
+        
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        currentTranslate = currentIndex * -slideWidth;
+        
+        carouselTrack.style.transition = 'transform 0.4s ease-out';
+        setSliderPosition();
+    }
 
-        const getPositionX = (event) => event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-        const getItemsPerView = () => {
-            const width = window.innerWidth;
-            if (width <= 768) return 1;
-            if (width > 768 && width <= 1024) return 2;
-            return 3;
+    const autoplayNext = () => {
+        if (document.hidden || isDragging) return;
+        const itemsPerView = getItemsPerView();
+        const maxIndex = slides.length > itemsPerView ? slides.length - itemsPerView : 0;
+        
+        currentIndex++;
+        if (currentIndex > maxIndex) {
+            currentIndex = 0;
         }
-        const stopAutoplay = () => clearInterval(intervalId);
-        const startAutoplay = () => {
-            stopAutoplay();
-            intervalId = setInterval(autoplayNext, displayDuration);
-        };
+        setPositionByIndex();
+    }
 
-        const dragStart = (event) => {
-            isDragging = true;
-            hasDragged = false;
-            startPos = getPositionX(event);
-            const style = window.getComputedStyle(carouselTrack);
-            const matrix = new DOMMatrix(style.transform);
-            prevTranslate = matrix.m41;
-            carouselContainer.classList.add('grabbing');
-            carouselTrack.style.transition = 'none';
-            stopAutoplay();
-        };
+    function handleDragStart(event) {
+        isDragging = true;
+        hasDragged = false;
+        startPos = getPositionX(event);
+        const style = window.getComputedStyle(carouselTrack);
+        const matrix = new DOMMatrix(style.transform);
+        prevTranslate = matrix.m41;
+        carouselContainer.classList.add('grabbing');
+        carouselTrack.style.transition = 'none';
+        stopAutoplay();
+    }
 
-        const dragMove = (event) => {
-            if (!isDragging) return;
+    function handleDragMove(event) {
+        if (!isDragging) return;
+        const currentPosition = getPositionX(event);
+        currentTranslate = prevTranslate + currentPosition - startPos;
+        setSliderPosition();
+        if (Math.abs(currentPosition - startPos) > 10) {
             hasDragged = true;
-            const currentPosition = getPositionX(event);
-            currentTranslate = prevTranslate + currentPosition - startPos;
-            setSliderPosition();
-        };
+        }
+    }
 
-        const dragEnd = () => {
-            if (!isDragging) return;
-            isDragging = false;
-            carouselContainer.classList.remove('grabbing');
+    function handleDragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        carouselContainer.classList.remove('grabbing');
+        const movedBy = currentTranslate - prevTranslate;
+        const itemsPerView = getItemsPerView();
+        const maxIndex = slides.length > itemsPerView ? slides.length - itemsPerView : 0;
 
-            const slideWidth = slides[0].getBoundingClientRect().width;
-            const movedBy = currentTranslate - prevTranslate;
+        if (movedBy < -50 && currentIndex < maxIndex) {
+            currentIndex++;
+        }
+        if (movedBy > 50 && currentIndex > 0) {
+            currentIndex--;
+        }
 
-            if (movedBy < -50 && currentIndex < slides.length - getItemsPerView()) {
-                currentIndex++;
-            }
-            if (movedBy > 50 && currentIndex > 0) {
-                currentIndex--;
-            }
-
-            setPositionByIndex();
-        };
-
-        const setSliderPosition = () => {
-            const maxScroll = -(carouselTrack.scrollWidth - carouselContainer.clientWidth);
-            currentTranslate = Math.max(maxScroll, Math.min(0, currentTranslate));
-            carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
-        };
-
-        const setPositionByIndex = () => {
-            const slideWidth = slides[0].getBoundingClientRect().width;
-            currentTranslate = currentIndex * -slideWidth;
-            carouselTrack.style.transition = 'transform 0.4s ease-out';
-            setSliderPosition();
-        };
-
-        const autoplayNext = () => {
-            const itemsPerView = getItemsPerView();
-            const maxIndex = slides.length - itemsPerView;
-            currentIndex = (currentIndex >= maxIndex) ? 0 : currentIndex + 1;
-            setPositionByIndex();
-        };
-
-        carouselTrack.addEventListener('click', (e) => {
-            if (hasDragged) {
-                e.preventDefault();
-            }
-        }, true);
-
-        carouselContainer.addEventListener('mousedown', dragStart);
-        carouselContainer.addEventListener('touchstart', dragStart, { passive: true });
-
-        window.addEventListener('mousemove', dragMove);
-        window.addEventListener('touchmove', dragMove, { passive: true });
-
-        window.addEventListener('mouseup', dragEnd);
-        window.addEventListener('touchend', dragEnd);
-
-        carouselContainer.addEventListener('mouseenter', stopAutoplay);
-        carouselContainer.addEventListener('mouseleave', startAutoplay);
-
-        document.addEventListener('visibilitychange', () => document.hidden ? stopAutoplay() : startAutoplay());
-        window.addEventListener('resize', () => window.location.reload());
-
+        setPositionByIndex();
         startAutoplay();
-    });
+    }
+    
+    function handleWheel(event) {
+        event.preventDefault();
+        if (isWheeling) return;
+        isWheeling = true;
+        stopAutoplay();
+
+        const itemsPerView = getItemsPerView();
+        const maxIndex = slides.length > itemsPerView ? slides.length - itemsPerView : 0;
+        const delta = event.deltaY;
+
+        if (delta > 0) {
+            if (currentIndex < maxIndex) currentIndex++;
+        } else if (delta < 0) {
+            if (currentIndex > 0) currentIndex--;
+        }
+        setPositionByIndex();
+
+        clearTimeout(wheelTimeout);
+        wheelTimeout = setTimeout(startAutoplay, 500);
+        setTimeout(() => { isWheeling = false; }, 100);
+    }
+        
+    carouselContainer.addEventListener('mousedown', handleDragStart);
+    window.addEventListener('mouseup', handleDragEnd);
+    window.addEventListener('mousemove', handleDragMove);
+    
+    carouselContainer.addEventListener('touchstart', handleDragStart, { passive: true });
+    window.addEventListener('touchend', handleDragEnd);
+    window.addEventListener('touchmove', handleDragMove, { passive: true });
+
+    carouselContainer.addEventListener('click', (e) => {
+        if (hasDragged) {
+            e.preventDefault();
+        }
+    }, true);
+
+    carouselContainer.addEventListener('wheel', handleWheel, { passive: false });
+    
+    carouselContainer.addEventListener('mouseenter', stopAutoplay);
+    carouselContainer.addEventListener('mouseleave', startAutoplay);
+    document.addEventListener('visibilitychange', () => document.hidden ? stopAutoplay() : startAutoplay());
+    
+    window.addEventListener('resize', setPositionByIndex);
+
+    setPositionByIndex();
+    startAutoplay();
+});
 </script>
 <h3 id="learn-more" class="anchored">Learn more</h3>
 <div class="list grid quarto-listing-cols-3">
