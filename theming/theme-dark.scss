@@ -229,3 +229,28 @@ code {
 .tooltip-inner {
     color: white;
 }
+
+// Dark mode styles for the news carousel
+#news-carousel-container {
+
+  .news-carousel-card {
+    background-color: $code-block-bg !important;
+    border: 1px solid transparent !important;
+    color: $body-color !important;
+
+    &:hover {
+      background-color: lighten($code-block-bg, 5%) !important;
+      border-color: $lp-cyan !important;
+    }
+  }
+
+  .news-carousel-title {
+    color: $body-color !important;
+  }
+
+  .news-carousel-reading-time,
+  .news-carousel-description,
+  .news-carousel-attribution {
+    color: $text-muted !important;
+  }
+}

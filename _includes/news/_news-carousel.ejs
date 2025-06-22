@@ -1,15 +1,23 @@
 ```{=html}
-<% for (const item of items) { %>
-<a href="<%- item.path %>">
-<h5><%- item.title %></h5>
-<p><%- item['reading-time'] %> min</p>
-<% if (item.description) { %>
-<p><%- item.description %></p>
-<% } %>
-<span>
-<span><%- item.author %></span>
-<span><%- item.date %></span>
-</span>
-</a>
-<% } %>
+<div id="news-carousel-container">
+    <div id="news-carousel-track">
+        <% for (const item of items) { %>
+            <div class="news-carousel-slide">
+                <a href="<%- item.path %>" class="news-carousel-card">
+                    <div class="news-carousel-card-body">
+                        <h5 class="news-carousel-title"><%- item.title %></h5>
+                        <p class="news-carousel-reading-time"><%- item['reading-time'] %> read</p>
+                        <% if (item.description) { %>
+                        <p class="news-carousel-description"><%- item.description %></p>
+                        <% } %>
+                        <div class="news-carousel-attribution">
+                            <span class="news-carousel-author"><%- item.author %></span>
+                            <span class="news-carousel-date"><%- item.date %></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <% } %>
+    </div>
+</div>
 ```
