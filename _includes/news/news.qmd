@@ -21,6 +21,11 @@ listing:
   overflow: hidden;
   position: relative;
   width: 100%;
+  cursor: grab;
+}
+
+#news-carousel-container.grabbing {
+  cursor: grabbing;
 }
 
 #news-carousel-container #news-carousel-track {
@@ -135,10 +140,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     const slides = Array.from(carouselTrack.children);
-    const displayDuration = 2500;
+    const displayDuration = 2000;
     let currentTranslate = 0;
+    let prevTranslate = 0;
     let currentIndex = 0;
     let intervalId;
+    
+    // Interaction state variables
+    let isDragging = false;
+    let startPos = 0;
+    let hasDragged = false;
     let wheelTimeout;
     let isWheeling = false;
 
@@ -147,6 +158,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (width <= 768) return 1;
         if (width > 768 && width <= 1024) return 2;
         return 3;
+    }
+
+    const getPositionX = (event) => {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
     }
     
     const startAutoplay = () => {
@@ -179,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const autoplayNext = () => {
-        if (document.hidden) return;
+        if (document.hidden || isDragging) return;
         const itemsPerView = getItemsPerView();
         const maxIndex = slides.length > itemsPerView ? slides.length - itemsPerView : 0;
         
@@ -189,13 +204,52 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         setPositionByIndex();
     }
-    
-    const handleWheel = (event) => {
-        event.preventDefault();
 
+    function handleDragStart(event) {
+        isDragging = true;
+        hasDragged = false;
+        startPos = getPositionX(event);
+        const style = window.getComputedStyle(carouselTrack);
+        const matrix = new DOMMatrix(style.transform);
+        prevTranslate = matrix.m41;
+        carouselContainer.classList.add('grabbing');
+        carouselTrack.style.transition = 'none';
+        stopAutoplay();
+    }
+
+    function handleDragMove(event) {
+        if (!isDragging) return;
+        const currentPosition = getPositionX(event);
+        currentTranslate = prevTranslate + currentPosition - startPos;
+        setSliderPosition();
+        if (Math.abs(currentPosition - startPos) > 10) {
+            hasDragged = true;
+        }
+    }
+
+    function handleDragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        carouselContainer.classList.remove('grabbing');
+        const movedBy = currentTranslate - prevTranslate;
+        const itemsPerView = getItemsPerView();
+        const maxIndex = slides.length > itemsPerView ? slides.length - itemsPerView : 0;
+
+        if (movedBy < -50 && currentIndex < maxIndex) {
+            currentIndex++;
+        }
+        if (movedBy > 50 && currentIndex > 0) {
+            currentIndex--;
+        }
+
+        setPositionByIndex();
+        startAutoplay();
+    }
+    
+    function handleWheel(event) {
+        event.preventDefault();
         if (isWheeling) return;
         isWheeling = true;
-        
         stopAutoplay();
 
         const itemsPerView = getItemsPerView();
@@ -210,15 +264,30 @@ document.addEventListener('DOMContentLoaded', function () {
         setPositionByIndex();
 
         clearTimeout(wheelTimeout);
-        wheelTimeout = setTimeout(startAutoplay, 300);
-
+        wheelTimeout = setTimeout(startAutoplay, 500);
         setTimeout(() => { isWheeling = false; }, 100);
     }
+        
+    carouselContainer.addEventListener('mousedown', handleDragStart);
+    window.addEventListener('mouseup', handleDragEnd);
+    window.addEventListener('mousemove', handleDragMove);
     
+    carouselContainer.addEventListener('touchstart', handleDragStart, { passive: true });
+    window.addEventListener('touchend', handleDragEnd);
+    window.addEventListener('touchmove', handleDragMove, { passive: true });
+
+    carouselContainer.addEventListener('click', (e) => {
+        if (hasDragged) {
+            e.preventDefault();
+        }
+    }, true);
+
     carouselContainer.addEventListener('wheel', handleWheel, { passive: false });
+    
     carouselContainer.addEventListener('mouseenter', stopAutoplay);
     carouselContainer.addEventListener('mouseleave', startAutoplay);
     document.addEventListener('visibilitychange', () => document.hidden ? stopAutoplay() : startAutoplay());
+    
     window.addEventListener('resize', setPositionByIndex);
 
     setPositionByIndex();
