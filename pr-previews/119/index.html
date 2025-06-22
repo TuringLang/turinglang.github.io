@@ -21,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -81,7 +46,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-b3bbcf82d66833753621706898a5f7a2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-a94c7accbcda206655252593bab5ee3f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-dark-2d9a4076677246ee5d3947e3d2f7d787.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-b3bbcf82d66833753621706898a5f7a2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -708,7 +673,12 @@ window.Quarto = {
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
-<p><a href="news/">See all news →</a></p>
+<div class="d-flex flex-column align-items-center gap-0">
+  <a href="news/" class="button btn">
+    See all news →
+  </a>
+</div>
+
 <style>
 /* Scoped styles for the news carousel to avoid conflicts with global themes */
 #news-carousel-container {
@@ -754,7 +724,7 @@ window.Quarto = {
   text-decoration: none;
   border-radius: 0.5rem;
   transition: background-color 0.3s ease, border-color 0.3s ease;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   border: 1px solid #e9ecef;
   color: #212529;
 }
@@ -988,121 +958,115 @@ document.addEventListener('DOMContentLoaded', function () {
     startAutoplay();
 });
 </script>
-<h3 id="learn-more" class="anchored">Learn more</h3>
-<div class="list grid quarto-listing-cols-3">
-  <a class="pseudolisting" href="./library">
-    <div class="card-title h5">
-      Ecosystem
+<div class="text-center section-start-space">
+  <p class="responsive-heading" style="font-weight: 600; margin-bottom: 0;">Start Your Journey</p>
+  <p class="fs-5 text-muted">Whether you're new to Bayesian modeling or an experienced researcher, find the resources you need.</p>
+</div>
+
+<div class="d-flex flex-row flex-wrap panel-wrapper gap-4 section-end-space">
+
+  <div class="panel">
+    <div style="font-size: 2.5rem; text-align: center;">🚀</div>
+    <h5 class="panel-title pb-1 text-center anchored">New to Turing?</h5>
+    <p>Begin with the basics. Our step-by-step tutorials will guide you from installation to your first probabilistic models.</p>
+    <div class="d-flex flex-column align-items-center gap-2 pt-3">
+        <a href="https://turinglang.org/docs/getting-started/" class="button btn">Get Started</a>
+        <a href="https://turinglang.org/docs/tutorials/coin-flipping/" class="text-muted" style="font-size: 0.9em;">View Introductory Concepts</a>
     </div>
-    <p class="quarto-grid-item">
-      Learn about all the packages that are part of the TuringLang organization.
-    </p>
-  </a>
-  <a class="pseudolisting" href="https://turinglang.org/docs/tutorials/docs-00-getting-started/">
-    <div class="card-title h5">
-      Documentation
+  </div>
+
+  <div class="panel">
+    <div style="font-size: 2.5rem; text-align: center;">🔬</div>
+    <h5 class="panel-title pb-1 text-center anchored">For Researchers</h5>
+    <p>Dive into advanced models, explore the rich package ecosystem, and learn how to cite Turing.jl in your work.</p>
+      <div class="d-flex flex-column align-items-center gap-2 pt-3">
+        <a href="./library" class="button btn">Explore Ecosystem</a>
+        <a href="#cite" class="text-muted" style="font-size: 0.9em;">How to Cite Turing.jl</a>
     </div>
-    <p class="quarto-grid-item">
-      Familiarize yourself with the mechanics of Turing.jl.
-    </p>
-  </a>
-  <a class="pseudolisting" href="https://turinglang.org/docs/tutorials/00-introduction/">
-    <div class="card-title h5">
-      Official tutorials
+  </div>
+
+  <div class="panel">
+    <div style="font-size: 2.5rem; text-align: center;">💻</div>
+    <h5 class="panel-title pb-1 text-center anchored">For Developers</h5>
+    <p>Join our community, contribute to the project on GitHub, and connect with fellow developers on Slack.</p>
+    <div class="d-flex flex-column align-items-center gap-2 pt-3">
+        <a href="https://github.com/TuringLang" class="button btn">View on GitHub</a>
+        <a href="https://julialang.slack.com/archives/CCYDC34A0" class="text-muted" style="font-size: 0.9em;">Join the Slack Channel</a>
     </div>
-    <p class="quarto-grid-item">
-      Learn to tackle specific modelling problems with Turing.jl.
-    </p>
-  </a>
+  </div>
+
 </div>
-<!-- TODO
-
-::: {.section-start-space}
-
-### Algorithms
-
-Placeholder text introducing this section on algorithms.
-
-| Column 1 | Column 2 | Column 3 | Column 4 |
-|----------|----------|----------|----------|
-|  Entry A |  Entry D |  Entry G |  Entry J |
-|  Entry B |  Entry E |  Entry H |  Entry K |
-|  Entry C |  Entry F |  Entry I |  Entry L |
-
-: Supported MCMC and other learning algorithms {.striped .borderless}
-
-:::
-
-::: {.section-start-space}
-
-### Bayesian Workflow
-
-Placeholder text introducing the Bayesian Workflow diagram from the ACM special issue submission.
-
-```{=html}
-<div style="text-align:center;">
-<img src="https://i0.wp.com/www.honeybeesuite.com/wp-content/uploads/2019/09/Multiple-teeth-HBS.jpg?w=400&ssl=1" style="margin:0.5rem 0;border-radius:10pt">
-<p>An example of the Beeysian workflow.</p>
-</div>
-```
-
-:::
-
--->
-<!-- TODO
-
-```{=html}
-<div class="d-flex flex-row panel-wrapper gap-3 section-start-space">
-<div class="flex-grow-1">
-<h3>Talks</h3>
-  <p>Placeholder for intro text on list of talks which are available online</p>
-  <ul>
-    <li>Talk 1
-    <li>Talk 2
-    <li>Talk 3
-  </ul>
-</div>
-<div class="flex-grow-1">
-  <h3>Other resources</h3>
-  <p>This list contains a few other written resources for learning Turing. If you have written something and would like to share it with the community, please <a href="https://github.com/TuringLang/docs/issues/new">get in touch</a>!</p>
-  <ul>
-    <li><a href="https://github.com/StatisticalRethinkingJulia/SR2TuringPluto.jl">Statistical Rethinking</a>
-    <li><a href="https://storopoli.github.io/Turing-Workshop/">Jose Storopoli's Turing workshop (outdated in parts)</a>
-    <li><a href="https://storopoli.github.io/Bayesian-Julia/">Jose Storopoli's blog on Turing and Bayesian Statistics</a>
-    <li>Placeholder for more...
-  </ul>
-</div>
-</div>
-``` 
--->
 <div class="section-start-space">
+<div class="citation-container">
 <h3 id="cite" class="pb-1 text-center anchored">
-Turing.jl is an <a href="https://github.com/TuringLang/Turing.jl/blob/main/LICENCE" data-original-href="https://github.com/TuringLang/Turing.jl/blob/main/LICENCE" class="turing-license-link"><code>MIT</code></a> Licensed Open Source Project
+Turing.jl is an <a href="[https://github.com/TuringLang/Turing.jl/blob/main/LICENCE](https://github.com/TuringLang/Turing.jl/blob/main/LICENCE)" class="turing-license-link"><code>MIT</code></a> Licensed Open Source Project
 </h3>
 <p class="text-center">
-If you use Turing.jl in your research, please consider citing our paper.
+If you use Turing.jl in your research, please consider citing our papers.
 </p>
-<div class="example-code" style="max-width: 800px; margin: auto; text-align: left;">
-<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-overflow-scroll code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@inproceedings</span>{<span class="ot">ge2018t</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Hong Ge and Kai Xu and Zoubin Ghahramani},</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {Turing: a language for flexible probabilistic inference},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">booktitle</span> = {International Conference on Artificial Intelligence and Statistics, {AISTATS} 2018, 9-11 April 2018, Playa Blanca, Lanzarote, Canary Islands, Spain},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span>     = {1682--1690},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2018},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>       = {[http://proceedings.mlr.press/v84/ge18b.html](http://proceedings.mlr.press/v84/ge18b.html)},</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">biburl</span>    = {[https://dblp.org/rec/bib/conf/aistats/GeXG18](https://dblp.org/rec/bib/conf/aistats/GeXG18)},</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="citation-entry">
+<p class="citation-text">
+Fjelde, T. E., Xu, K., Widmann, D., Tarek, M., Pfiffer, C., Trapp, M., Axen, S. D., Sun, X., Hauru, M., Yong, P., Tebbutt, W., Ghahramani, Z., &amp; Ge, H. (2025). <span class="citation-title">Turing.jl: a general-purpose probabilistic programming language.</span> <em>ACM Transactions on Probabilistic Machine Learning</em>. Just Accepted.
+</p>
+<div class="citation-actions">
+<p><a href="[https://doi.org/10.1145/3711897](https://doi.org/10.1145/3711897)" target="_blank" rel="noopener noreferrer" class="button">View Paper</a> <button class="button button--primary" onclick="copyCitationBibtex('bibtex-jmlr-2025', this)">Copy BibTeX</button></p>
 </div>
-<style>
-    .turing-license-link code{
-        color: #34b8bf !important;
-        text-decoration: none !important;
-    }
-
-    .turing-license-link code:hover {
-        color: #31dce6 !important;
-    }
-</style>
+<pre id="bibtex-jmlr-2025" class="citation-bibtex-data">@article{10.1145/3711897,
+author = {Fjelde, Tor Erlend and Xu, Kai and Widmann, David and Tarek, Mohamed and Pfiffer, Cameron and Trapp, Martin and Axen, Seth D. and Sun, Xianda and Hauru, Markus and Yong, Penelope and Tebbutt, Will and Ghahramani, Zoubin and Ge, Hong},
+title = {Turing.jl: a general-purpose probabilistic programming language},
+year = {2025},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {[https://doi.org/10.1145/3711897](https://doi.org/10.1145/3711897)},
+doi = {10.1145/3711897},
+note = {Just Accepted},
+journal = {ACM Trans. Probab. Mach. Learn.},
+month = feb
+}
+</pre>
+</div>
+<div class="citation-entry">
+<p class="citation-text">
+Ge, H., Xu, K., &amp; Ghahramani, Z. (2018). <span class="citation-title">Turing: a language for flexible probabilistic inference.</span> In <em>Proceedings of the 21st International Conference on Artificial Intelligence and Statistics (AISTATS)</em> (Vol. 84, pp.&nbsp;1682-1690). PMLR.
+</p>
+<div class="citation-actions">
+<p><a href="[http://proceedings.mlr.press/v84/ge18b.html](http://proceedings.mlr.press/v84/ge18b.html)" target="_blank" rel="noopener noreferrer" class="button">View Paper</a> <button class="button button--primary" onclick="copyCitationBibtex('bibtex-aistats-2018', this)">Copy BibTeX</button></p>
+</div>
+<pre id="bibtex-aistats-2018" class="citation-bibtex-data">@inproceedings{ge2018t,
+author    = {Hong Ge and Kai Xu and Zoubin Ghahramani},
+title     = {Turing: a language for flexible probabilistic inference},
+booktitle = {International Conference on Artificial Intelligence and Statistics, {AISTATS} 2018, 9-11 April 2018, Playa Blanca, Lanzarote, Canary Islands, Spain},
+pages     = {1682--1690},
+year      = {2018},
+url       = {[http://proceedings.mlr.press/v84/ge18b.html](http://proceedings.mlr.press/v84/ge18b.html)},
+biburl    = {[https://dblp.org/rec/bib/conf/aistats/GeXG18](https://dblp.org/rec/bib/conf/aistats/GeXG18)},
+}
+</pre>
+</div>
+</div>
+<script>
+function copyCitationBibtex(elementId, buttonElement) {
+const bibtexElement = document.getElementById(elementId);
+const bibtexText = bibtexElement.textContent.trim();
+navigator.clipboard.writeText(bibtexText).then(() => {
+const originalText = buttonElement.innerHTML;
+buttonElement.innerHTML = '✅ Copied!';
+buttonElement.classList.add('citation-copied');
+buttonElement.disabled = true;
+setTimeout(() => {
+buttonElement.innerHTML = originalText;
+buttonElement.classList.remove('citation-copied');
+buttonElement.disabled = false;
+}, 2000);
+}).catch(err => {
+console.error('Failed to copy BibTeX: ', err);
+buttonElement.innerHTML = 'Error!';
+setTimeout(() => {
+buttonElement.innerHTML = 'Copy BibTeX';
+}, 2000);
+});
+}
+</script>
 </div>
 
 

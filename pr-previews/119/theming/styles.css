@@ -1,3 +1,11 @@
+.quarto-container {
+  background-color: #f8f9fa;
+}
+
+.navbar {
+  background-color: #ffffff;
+}
+
 .navbar a:hover {
   text-decoration: none;
 }
@@ -292,4 +300,68 @@ a:hover {
 code {
   color: #212529;
   border-radius: 0.5rem;
+}
+
+/* === Citation Styles === */
+.citation-container {
+  max-width: 800px;
+  margin: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.citation-entry {
+  background-color: #ffffff; /* White box */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+.citation-entry:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+.citation-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #555;
+  margin: 0;
+}
+.citation-text em {
+  font-style: italic;
+}
+.citation-title {
+  font-weight: 600;
+  color: #222;
+}
+.citation-actions {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+.citation-bibtex-data {
+  display: none;
+}
+.button--primary {
+  color: #34b8bf;
+  border-color: #34b8bf;
+  background-color: #fff;
+}
+.button--primary:hover {
+  background-color: #34b8bf;
+  color: #fff;
+}
+.button.citation-copied {
+  background-color: #229954;
+  border-color: #229954;
+  color: #fff;
+  transform: translateY(0);
+  box-shadow: none;
+}
+.turing-license-link code {
+  color: #34b8bf !important;
+  text-decoration: none !important;
+}
+.turing-license-link code:hover {
+  color: #31dce6 !important;
 }
