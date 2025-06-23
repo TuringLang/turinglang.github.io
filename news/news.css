@@ -10,6 +10,10 @@
     max-height:fit-content;
 }
 
+.quarto-title-banner {
+    background-color: #ffffff;
+}
+
 /* @media (max-width: 768px) {
     .quarto-post {
         max-height: 200px;

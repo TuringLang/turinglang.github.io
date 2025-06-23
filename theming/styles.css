@@ -191,54 +191,39 @@ a:hover {
   text-decoration: none;
 }
 
-.panel {
+/* === Universal Box Styling === */
+.box {
   border-radius: 12px;
   padding: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+}
+
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.box--splash {
+  background-color: #eef7f7; /* Keeping this for use in future */
+}
+
+.panel {
   min-height: 150px;
   min-width: 300px;
   max-width: 31%;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-top: 4px solid;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 .panel:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transform: none;
+  box-shadow: none;
 }
 
 .panel-title {
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 1rem;
-}
-
-.panel--nopad {
-  padding: 0rem;
-}
-
-.card,
-.pseudolisting {
-  border-radius: 0.5rem;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.pseudolisting {
-  padding: 1rem;
-}
-
-.card .card-title,
-.pseudolisting .h5 {
-  font-weight: 700;
-}
-
-.pseudolisting {
-  display: block;
-  text-decoration: none;
-}
-
-.pseudolisting:hover {
-  text-decoration: none;
 }
 
 .button {
@@ -257,11 +242,6 @@ a:hover {
   background-color: #26A69A;
 }
 
-.panel {
-  background-color: #ffffff;
-  border-top-color: #4DB6AC;
-}
-
 .panel-title {
   color: #212529;
 }
@@ -273,17 +253,12 @@ a:hover {
   font-weight: 400;
 }
 
-.card,
-.pseudolisting,
-#carousel-container .quarto-grid-item.card.news-item {
-  background-color: #f8f9fa;
+.card {
   border: 1px solid #e9ecef;
   color: #212529;
 }
 
-.card:hover,
-.pseudolisting:hover,
-#carousel-container .quarto-grid-item.card.news-item:hover {
+.card:hover {
   background-color: #e9ecef;
   border-color: #dee2e6;
 }
@@ -302,24 +277,20 @@ code {
   border-radius: 0.5rem;
 }
 
-/* === Citation Styles === */
+/* Citation Styles */
 .citation-container {
-  max-width: 800px;
   margin: auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+.citation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 .citation-entry {
-  background-color: #ffffff; /* White box */
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  transition: box-shadow 0.3s ease;
 }
-.citation-entry:hover {
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-}
+
 .citation-text {
   font-size: 1rem;
   line-height: 1.7;

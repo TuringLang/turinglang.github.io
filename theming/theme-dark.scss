@@ -56,11 +56,11 @@ $body-bg: $background-body;
 
 // --- Global Styles ---
 .quarto-container {
-  background-color: $background-body !important;
+    background-color: $background-body !important;
 }
 
 .navbar {
-  background-color: $navbar-bg !important;
+    background-color: $navbar-bg !important;
 }
 
 p {
@@ -77,6 +77,20 @@ a {
     &:hover {
         color: $links-hover !important;
     }
+}
+
+// Universal Box Styling for Dark Mode
+.box {
+    background-color: $panel-bg !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2) !important;
+
+    &:hover {
+        background-color: lighten($panel-bg, 3%) !important;
+    }
+}
+
+.box--splash {
+    background-color: lighten($panel-bg, 2%) !important; // Keeping this for use in future
 }
 
 // Landing Page Buttons
@@ -104,12 +118,6 @@ a {
 
 // Landing Page Panels
 .panel {
-    background-color: $panel-bg !important;
-    border-top-color: $lp-teal !important;
-    border-left: 1px solid $btn-border-color !important;
-    border-right: 1px solid $btn-border-color !important;
-    border-bottom: 1px solid $btn-border-color !important;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2) !important;
     color: $text-muted !important;
 
     .panel-title {
@@ -126,156 +134,24 @@ a {
     color: $white !important;
 }
 
-.team-member,
-.input-group-text {
-    background-color: $background-nav !important;
-}
-
-.level4,
-.listing-category {
-    color: $foreground !important;
-}
-
-.badge.deprecated {
-    color: $white !important;
-    background-color: $red !important;
-}
-
-// table background & text
-.packages-table {
-    color: $text-muted !important;
-    background-color: $background-nav !important;
-}
-
-// cell borders
-.packages-table th,
-.packages-table td {
-    border-bottom-color: $gray-900 !important;
-}
-
-// header row
-.packages-table thead {
-    background-color: $background-nav !important;
-}
-
-// zebra stripes
-.packages-table tbody tr:nth-child(odd) {
-    background-color: darken($gray-900, 5%) !important;
-}
-
-// hover state
-.packages-table tbody tr:hover {
-    background-color: lighten($background-nav, 5%) !important;
-}
-
-// “Deprecated” badge styling
-.badge.deprecated {
-    color: $white !important;
-    background-color: $red !important;
-}
-
 code {
     background-color: $code-block-bg !important;
     color: $li-color !important;
 }
 
-.card {
-    background-color: #f8f9fa !important;
-}
-
-// --- Mixins ---
-@mixin raw-card {
-    border-radius: $border-radius-sm;
-    padding: 1rem;
-    --bs-card-spacer-x: 0rem !important;
-    --bs-card-spacer-y: 0rem !important;
-    color: $body-color !important;
-    background-color: $code-block-bg !important;
-    border: solid $code-block-bg 1px !important;
-    transition: background-color 0.3s ease, border-color 0.3s ease !important;
-}
-
-@mixin card($hover-border) {
-    @include raw-card;
-
-    .card-title {
-        color: $body-color !important;
-        font-weight: 700;
-    }
-
-    &:hover {
-        background-color: lighten($code-block-bg, 5%) !important;
-        border-color: $hover-border !important;
-    }
-}
-
-// Card and Pseudolisting styles
-.card {
-    @include card($lp-cyan);
-
-    .card-text {
-        color: $text-muted;
-    }
-}
-
-.pseudolisting {
-    @extend .card;
-
-    &:hover {
-        text-decoration: none;
-    }
-}
-
-.aa-DetachedOverlay li.aa-Item[aria-selected=true] .search-item * {
-    color: white !important;
-}
-
-.aa-List li.aa-Item[aria-selected="true"] * {
-    background-color: $lp-teal !important;
-}
-
-.tooltip-inner {
-    color: white;
-}
-
-// Dark mode styles for the news carousel
-#news-carousel-container {
-
-  .news-carousel-card {
-    background-color: $code-block-bg !important;
-    border: 1px solid transparent !important;
-    color: $body-color !important;
-
-    &:hover {
-      background-color: lighten($code-block-bg, 5%) !important;
-      border-color: $lp-cyan !important;
-    }
-  }
-
-  .news-carousel-title {
-    color: $body-color !important;
-  }
-
-  .news-carousel-reading-time,
-  .news-carousel-description,
-  .news-carousel-attribution {
-    color: $text-muted !important;
-  }
-}
-
-
 // Dark mode styles for the citation section
 .citation-entry {
-    background-color: $panel-bg !important;
     border-color: $btn-border-color !important;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2) !important;
 }
+
 .citation-text {
     color: $text-muted !important;
 }
+
 .citation-title {
     color: $body-color !important;
 }
+
 .button--primary {
     background-color: transparent !important;
     color: $links !important;
@@ -285,4 +161,13 @@ code {
         background-color: $links !important;
         color: $panel-bg !important;
     }
+}
+
+// Brands Logo Switch
+.brands-light-mode-logo {
+    display: none !important;
+}
+
+.brands-dark-mode-logo {
+    display: inline !important;
 }

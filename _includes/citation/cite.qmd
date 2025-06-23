@@ -1,70 +1,120 @@
+```{=html}
 <div class="citation-container">
-<h3 id="cite" class="pb-1 text-center">Turing.jl is an <a href="https://github.com/TuringLang/Turing.jl/blob/main/LICENCE" class="turing-license-link"><code>MIT</code></a> Licensed Open Source Project</h3>
-<p class="text-center">If you use Turing.jl in your research, please consider citing our papers.</p>
-<div class="citation-entry">
-<p class="citation-text">
-Fjelde, T. E., Xu, K., Widmann, D., Tarek, M., Pfiffer, C., Trapp, M., Axen, S. D., Sun, X., Hauru, M., Yong, P., Tebbutt, W., Ghahramani, Z., & Ge, H. (2025). <span class="citation-title">Turing.jl: a general-purpose probabilistic programming language.</span> <em>ACM Transactions on Probabilistic Machine Learning</em>. Just Accepted.
-</p>
-<div class="citation-actions">
-<a href="https://doi.org/10.1145/3711897" target="_blank" rel="noopener noreferrer" class="button">View Paper</a>
-<button class="button button--primary" onclick="copyCitationBibtex('bibtex-jmlr-2025', this)">Copy BibTeX</button>
-</div>
-<pre id="bibtex-jmlr-2025" class="citation-bibtex-data">
-@article{10.1145/3711897,
-author = {Fjelde, Tor Erlend and Xu, Kai and Widmann, David and Tarek, Mohamed and Pfiffer, Cameron and Trapp, Martin and Axen, Seth D. and Sun, Xianda and Hauru, Markus and Yong, Penelope and Tebbutt, Will and Ghahramani, Zoubin and Ge, Hong},
-title = {Turing.jl: a general-purpose probabilistic programming language},
-year = {2025},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/3711897},
-doi = {10.1145/3711897},
-note = {Just Accepted},
-journal = {ACM Trans. Probab. Mach. Learn.},
-month = feb
+  <h3 id="cite" class="pb-1 text-center">Turing.jl is an <a href="https://github.com/TuringLang/Turing.jl/blob/main/LICENCE" class="turing-license-link"><code>MIT</code></a> Licensed Open Source Project</h3>
+  <p class="text-center">If you use Turing.jl in your research, please consider citing our papers.</p>
+ 
+  <ul class="citation-list"> 
+    <li class="citation-entry box">
+      <p class="citation-text">
+        Fjelde, T. E., Xu, K., Widmann, D., Tarek, M., Pfiffer, C., Trapp, M., Axen, S. D., Sun, X., Hauru, M., Yong, P., Tebbutt, W., Ghahramani, Z., & Ge, H. (2025). <span class="citation-title">Turing.jl: a general-purpose probabilistic programming language.</span> <em>ACM Transactions on Probabilistic Machine Learning</em>. Just Accepted.
+      </p>
+      <div class="citation-actions">
+        <a href="https://doi.org/10.1145/3711897" target="_blank" rel="noopener noreferrer" class="button">View Paper</a>
+        <button class="button button--primary" onclick="copyBibtex(this)" aria-label="Copy BibTeX for the 2025 Turing.jl paper">Copy BibTeX</button>
+      </div>
+      <pre class="citation-bibtex-data">
+@article{Fjelde2025Turing,
+  author    = {Fjelde, Tor Erlend and Xu, Kai and Widmann, David and Tarek, Mohamed and Pfiffer, Cameron and Trapp, Martin and Axen, Seth D. and Sun, Xianda and Hauru, Markus and Yong, Penelope and Tebbutt, Will and Ghahramani, Zoubin and Ge, Hong},
+  title     = {Turing.jl: a general-purpose probabilistic programming language},
+  journal   = {ACM Transactions on Probabilistic Machine Learning},
+  year      = {2025},
+  publisher = {Association for Computing Machinery},
+  doi       = {10.1145/3711897},
+  note      = {Just Accepted},
+  url       = {https://doi.org/10.1145/3711897}
 }
-</pre>
-</div>
-<div class="citation-entry">
-<p class="citation-text">
-Ge, H., Xu, K., & Ghahramani, Z. (2018). <span class="citation-title">Turing: a language for flexible probabilistic inference.</span> In <em>Proceedings of the 21st International Conference on Artificial Intelligence and Statistics (AISTATS)</em> (Vol. 84, pp. 1682-1690). PMLR.
-</p>
-<div class="citation-actions">
-<a href="http://proceedings.mlr.press/v84/ge18b.html" target="_blank" rel="noopener noreferrer" class="button">View Paper</a>
-<button class="button button--primary" onclick="copyCitationBibtex('bibtex-aistats-2018', this)">Copy BibTeX</button>
-</div>
-<pre id="bibtex-aistats-2018" class="citation-bibtex-data">
-@inproceedings{ge2018t,
-author    = {Hong Ge and Kai Xu and Zoubin Ghahramani},
-title     = {Turing: a language for flexible probabilistic inference},
-booktitle = {International Conference on Artificial Intelligence and Statistics, {AISTATS} 2018, 9-11 April 2018, Playa Blanca, Lanzarote, Canary Islands, Spain},
-pages     = {1682--1690},
-year      = {2018},
-url       = {http://proceedings.mlr.press/v84/ge18b.html},
-biburl    = {https://dblp.org/rec/bib/conf/aistats/GeXG18},
+      </pre>
+    </li>
+    <li class="citation-entry box">
+      <p class="citation-text">
+        Ge, H., Xu, K., & Ghahramani, Z. (2018). <span class="citation-title">Turing: a language for flexible probabilistic inference.</span> In <em>Proceedings of the 21st International Conference on Artificial Intelligence and Statistics (AISTATS)</em> (Vol. 84, pp. 1682-1690). PMLR.
+      </p>
+      <div class="citation-actions">
+        <a href="http://proceedings.mlr.press/v84/ge18b.html" target="_blank" rel="noopener noreferrer" class="button">View Paper</a>
+        <button class="button button--primary" onclick="copyBibtex(this)" aria-label="Copy BibTeX for the 2018 Turing paper">Copy BibTeX</button>
+      </div>
+      <pre class="citation-bibtex-data">
+@inproceedings{Ge2018Turing,
+  author    = {Ge, Hong and Xu, Kai and Ghahramani, Zoubin},
+  title     = {Turing: a language for flexible probabilistic inference},
+  booktitle = {Proceedings of the 21st International Conference on Artificial Intelligence and Statistics (AISTATS)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {84},
+  pages     = {1682--1690},
+  year      = {2018},
+  publisher = {PMLR},
+  url       = {http://proceedings.mlr.press/v84/ge18b.html}
 }
-</pre>
+      </pre>
+    </li>
+  </ul>
 </div>
-</div>
+
 <script>
-function copyCitationBibtex(elementId, buttonElement) {
-const bibtexElement = document.getElementById(elementId);
-const bibtexText = bibtexElement.textContent.trim();
-navigator.clipboard.writeText(bibtexText).then(() => {
-const originalText = buttonElement.innerHTML;
-buttonElement.innerHTML = '✅ Copied!';
-buttonElement.classList.add('citation-copied');
-buttonElement.disabled = true;
-setTimeout(() => {
-buttonElement.innerHTML = originalText;
-buttonElement.classList.remove('citation-copied');
-buttonElement.disabled = false;
-}, 2000);
-}).catch(err => {
-console.error('Failed to copy BibTeX: ', err);
-buttonElement.innerHTML = 'Error!';
-setTimeout(() => {
-buttonElement.innerHTML = 'Copy BibTeX';
-}, 2000);
-});
+function copyBibtex(buttonElement) {
+  // Find the <pre> element which is the next sibling of the button's parent container
+  const bibtexPreElement = buttonElement.parentElement.nextElementSibling;
+  const bibtexText = bibtexPreElement.textContent.trim();
+
+  // Robust Clipboard Copy Logic
+  if (navigator.clipboard && window.isSecureContext) {
+    // Modern async clipboard API
+    navigator.clipboard.writeText(bibtexText)
+      .then(() => showSuccess(buttonElement))
+      .catch(err => {
+        console.error('Async copy failed, falling back:', err);
+        fallbackCopy(bibtexText, buttonElement);
+      });
+  } else {
+    // Fallback for older browsers or non-secure contexts
+    fallbackCopy(bibtexText, buttonElement);
+  }
+}
+
+function fallbackCopy(text, buttonElement) {
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  textArea.style.position = 'absolute';
+  textArea.style.left = '-9999px';
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  try {
+    const successful = document.execCommand('copy');
+    if (successful) {
+      showSuccess(buttonElement);
+    } else {
+      showError(buttonElement);
+    }
+  } catch (err) {
+    console.error('Fallback copy failed:', err);
+    showError(buttonElement);
+  }
+  document.body.removeChild(textArea);
+}
+
+function showSuccess(buttonElement) {
+  const originalText = buttonElement.innerHTML;
+  buttonElement.innerHTML = '✅ Copied!';
+  // Use your existing class for styling the copied state
+  buttonElement.classList.add('citation-copied');
+  buttonElement.disabled = true;
+
+  setTimeout(() => {
+    buttonElement.innerHTML = originalText;
+    buttonElement.classList.remove('citation-copied');
+    buttonElement.disabled = false;
+  }, 2000);
+}
+
+function showError(buttonElement) {
+    const originalText = buttonElement.innerHTML;
+    buttonElement.innerHTML = 'Error!';
+    buttonElement.disabled = true;
+    setTimeout(() => {
+        buttonElement.innerHTML = originalText;
+        buttonElement.disabled = false;
+    }, 2000);
 }
 </script>
+```

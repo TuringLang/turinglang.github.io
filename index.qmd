@@ -11,24 +11,22 @@ description: |
 
 ::::: {.d-flex .flex-row .flex-wrap .panel-wrapper .gap-4 .section-end-space}
 
-::: {.panel}
+::: {.panel .box}
 ##### Expressive {.panel-title .pb-1}
 Turing models are easy to write and communicate, with syntax that is close to the mathematical specification of the model.
 :::
 
-::: {.panel}
+::: {.panel .box}
 ##### General-purpose {.panel-title .pb-1}
 Turing supports models with discrete parameters and stochastic control flow.
 :::
 
-::: {.panel}
+::: {.panel .box}
 ##### Composable {.panel-title .pb-1}
 Turing is written entirely in Julia, and is interoperable with its powerful ecosystem.
 :::
 
 :::::
-
-{{< include _includes/news/news.qmd >}}
 
 ```{=html}
 <div class="text-center section-start-space">
@@ -38,7 +36,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 <div class="d-flex flex-row flex-wrap panel-wrapper gap-4 section-end-space">
 
-  <div class="panel">
+  <div class="panel box">
     <div style="font-size: 2.5rem; text-align: center;">🚀</div>
     <h5 class="panel-title pb-1 text-center">New to Turing?</h5>
     <p>Begin with the basics. Our step-by-step tutorials will guide you from installation to your first probabilistic models.</p>
@@ -48,7 +46,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
     </div>
   </div>
 
-  <div class="panel">
+  <div class="panel box">
     <div style="font-size: 2.5rem; text-align: center;">🔬</div>
     <h5 class="panel-title pb-1 text-center">For Researchers</h5>
     <p>Dive into advanced models, explore the rich package ecosystem, and learn how to cite Turing.jl in your work.</p>
@@ -58,7 +56,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
     </div>
   </div>
 
-  <div class="panel">
+  <div class="panel box">
     <div style="font-size: 2.5rem; text-align: center;">💻</div>
     <h5 class="panel-title pb-1 text-center">For Developers</h5>
     <p>Join our community, contribute to the project on GitHub, and connect with fellow developers on Slack.</p>
@@ -70,6 +68,12 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 </div>
 ```
+
+<div class="section-start-space">
+
+{{< include _includes/brands.qmd >}}
+
+</div>
 
 <div class="section-start-space">
 
