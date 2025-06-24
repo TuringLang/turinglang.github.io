@@ -87,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="theming/styles.css">
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -300,12 +300,10 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
 <!-- main -->
-<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
@@ -344,17 +342,18 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
 </div>
+<div class="container">
 <div class="d-flex flex-row flex-wrap panel-wrapper gap-4 section-end-space">
 <section id="expressive" class="panel-title pb-1 panel box">
-<h5 class="panel-title pb-1 anchored">Expressive</h5>
+<h5 class="panel-title pb-1">Expressive</h5>
 <p>Turing models are easy to write and communicate, with syntax that is close to the mathematical specification of the model.</p>
 </section>
 <section id="general-purpose" class="panel-title pb-1 panel box">
-<h5 class="panel-title pb-1 anchored">General-purpose</h5>
+<h5 class="panel-title pb-1">General-purpose</h5>
 <p>Turing supports models with discrete parameters and stochastic control flow.</p>
 </section>
 <section id="composable" class="panel-title pb-1 panel box">
-<h5 class="panel-title pb-1 anchored">Composable</h5>
+<h5 class="panel-title pb-1">Composable</h5>
 <p>Turing is written entirely in Julia, and is interoperable with its powerful ecosystem.</p>
 </section>
 </div>
@@ -367,7 +366,7 @@ ul.task-list li input[type="checkbox"] {
 
   <div class="panel box">
     <div style="font-size: 2.5rem; text-align: center;">🚀</div>
-    <h5 class="panel-title pb-1 text-center anchored">New to Turing?</h5>
+    <h5 class="panel-title pb-1 text-center">New to Turing?</h5>
     <p>Begin with the basics. Our step-by-step tutorials will guide you from installation to your first probabilistic models.</p>
     <div class="d-flex flex-column align-items-center gap-2 pt-3">
         <a href="https://turinglang.org/docs/getting-started/" class="button btn">Get Started</a>
@@ -377,7 +376,7 @@ ul.task-list li input[type="checkbox"] {
 
   <div class="panel box">
     <div style="font-size: 2.5rem; text-align: center;">🔬</div>
-    <h5 class="panel-title pb-1 text-center anchored">For Researchers</h5>
+    <h5 class="panel-title pb-1 text-center">For Researchers</h5>
     <p>Dive into advanced models, explore the rich package ecosystem, and learn how to cite Turing.jl in your work.</p>
       <div class="d-flex flex-column align-items-center gap-2 pt-3">
         <a href="./library" class="button btn">Explore Ecosystem</a>
@@ -387,7 +386,7 @@ ul.task-list li input[type="checkbox"] {
 
   <div class="panel box">
     <div style="font-size: 2.5rem; text-align: center;">💻</div>
-    <h5 class="panel-title pb-1 text-center anchored">For Developers</h5>
+    <h5 class="panel-title pb-1 text-center">For Developers</h5>
     <p>Join our community, contribute to the project on GitHub, and connect with fellow developers on Slack.</p>
     <div class="d-flex flex-column align-items-center gap-2 pt-3">
         <a href="https://github.com/TuringLang" class="button btn">View on GitHub</a>
@@ -448,7 +447,7 @@ ul.task-list li input[type="checkbox"] {
   </style>
 
   <div class="text-center">
-    <h3 id="brands" class="anchored">Trusted by World-Class Institutions</h3>
+    <h3 id="brands">Trusted by World-Class Institutions</h3>
     <p class="text-muted">
       We are proud to collaborate with leading organizations and universities at the forefront of research and innovation.
     </p>
@@ -469,9 +468,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </div>
 </div>
-<div class="section-start-space">
+<div class="section-start-space section-end-space">
 <div class="citation-container">
-  <h3 id="cite" class="pb-1 text-center anchored">Turing.jl is an <a href="https://github.com/TuringLang/Turing.jl/blob/main/LICENCE" class="turing-license-link"><code>MIT</code></a> Licensed Open Source Project</h3>
+  <h3 id="cite" class="pb-1 text-center">Turing.jl is an <a href="https://github.com/TuringLang/Turing.jl/blob/main/LICENCE" class="turing-license-link"><code>MIT</code></a> Licensed Open Source Project</h3>
   <p class="text-center">If you use Turing.jl in your research, please consider citing our papers.</p>
  
   <ul class="citation-list"> 
@@ -587,10 +586,11 @@ function showError(buttonElement) {
 }
 </script>
 </div>
+</div>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
