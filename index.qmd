@@ -7,9 +7,13 @@ description: |
   Turing.jl is a probabilistic programming language and Bayesian modelling framework for the Julia programming language.
 ---
 
+::: {.section-start-space}
+
 {{< include _includes/header.qmd >}}
 
-:::::: {.container}
+:::
+
+:::::: {.side-space}
 
 ::::: {.d-flex .flex-row .flex-wrap .panel-wrapper .gap-4 .section-end-space}
 

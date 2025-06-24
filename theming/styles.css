@@ -336,3 +336,8 @@ code {
 .turing-license-link code:hover {
   color: #31dce6 !important;
 }
+
+.side-space {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
