@@ -1,6 +1,6 @@
 ---
 toc: false
-page-layout: full
+page-layout: custom
 section-divs: false
 hide-description: true
 description: |
@@ -8,6 +8,8 @@ description: |
 ---
 
 {{< include _includes/header.qmd >}}
+
+:::::: {.container}
 
 ::::: {.d-flex .flex-row .flex-wrap .panel-wrapper .gap-4 .section-end-space}
 
@@ -75,8 +77,10 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 </div>
 
-<div class="section-start-space">
+<div class="section-start-space section-end-space">
 
 {{< include _includes/citation/cite.qmd >}}
 
 </div>
+
+::::::
