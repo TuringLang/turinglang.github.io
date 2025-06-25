@@ -37,7 +37,7 @@
 
 .line-graph {
   width: 100%;
-  padding-top: 5%;
+  padding-top: 3%;
   position: relative;
 }
 
@@ -115,10 +115,16 @@ svg {
 @media screen and (max-width: 768px) {
   .upper-content {
     width: 100%;
-    padding-top: 0%;
+    padding-top: 1.5rem;
     padding-right: 0%;
     text-align: center;
   }
+}
+
+.logo-header {
+  padding: 0%;
+  margin-bottom: 0%;
+  /* background-color: #eef7f7; */
 }
 
 .content-panel {
@@ -138,7 +144,7 @@ svg {
 }
 
 .panel-wrapper {
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .example-code {
