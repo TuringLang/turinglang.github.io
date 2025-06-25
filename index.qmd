@@ -7,7 +7,7 @@ description: |
   Turing.jl is a probabilistic programming language and Bayesian modelling framework for the Julia programming language.
 ---
 
-::: {.section-start-space}
+::: {.logo-header}
 
 {{< include _includes/header.qmd >}}
 
@@ -58,7 +58,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
     <p>Dive into advanced models, explore the rich package ecosystem, and learn how to cite Turing.jl in your work.</p>
       <div class="d-flex flex-column align-items-center gap-2 pt-3">
         <a href="/library" class="button btn">Explore Ecosystem</a>
-        <a href="#cite" class="text-muted" style="font-size: 0.9em;">How to Cite Turing.jl</a>
+        <a href="#cite" class="text-muted" style="font-size: 0.9em;">Cite Turing.jl</a>
     </div>
   </div>
 
