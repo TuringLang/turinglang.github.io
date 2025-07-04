@@ -63,10 +63,10 @@
       <img src="https://www.cam.ac.uk/sites/default/files/university-cambridge-logo-white-example-640x133.png" alt="University of Cambridge Logo Dark" class="brands-dark-mode-logo">
     </a>
 
-    <!-- The Alan Turing Institute Placeholder Logo -->
+    <!-- The Alan Turing Institute Logo -->
     <a href="#" class="partner-logo box" target="_blank" rel="noopener">
-      <img src="https://placehold.co/1000x400.png" alt="The Alan Turing Institute Logo" class="brands-light-mode-logo">
-      <img src="https://placehold.co/1000x400.png" alt="The Alan Turing Institute Logo Dark" class="brands-dark-mode-logo">
+      <img src="\assets\images\brands\Turing_Logo_1000x400px_Black.webp" alt="The Alan Turing Institute Logo" class="brands-light-mode-logo">
+      <img src="\assets\images\brands\Turing_Logo_1000x400px_White.webp" alt="The Alan Turing Institute Logo Dark" class="brands-dark-mode-logo">
     </a>
   </div>
 </div>
