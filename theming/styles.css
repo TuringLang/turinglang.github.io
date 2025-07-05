@@ -344,6 +344,9 @@ code {
 }
 
 .side-space {
-  padding-left: 4rem;
-  padding-right: 4rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
