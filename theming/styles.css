@@ -344,9 +344,253 @@ code {
 }
 
 .side-space {
-  max-width: 1200px;
+  max-width: 1350px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+.side-space-news {
+  max-width: 1350px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.section-header h3 {
+  margin-bottom: 0;
+}
+
+/* === UNIFIED CARD GRID SYSTEM === */
+.unified-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 0;
+}
+
+.unified-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  min-height: 200px;
+}
+
+.unified-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  border-color: #4DB6AC;
+}
+
+.unified-card-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.unified-card-title {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.unified-card-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #6c757d;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.unified-card-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.category-tag {
+  background-color: #e9ecef;
+  color: #495057;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.unified-card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #6c757d;
+  background-color: #f8f9fa;
+}
+
+.unified-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.unified-card-author {
+  font-weight: 600;
+  color: #495057;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.unified-card-date {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.unified-card-reading-time {
+  font-weight: 600;
+  color: #4DB6AC;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+/* === RESPONSIVE DESIGN === */
+
+/* Tablet view (iPad size) - 2 columns */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .unified-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  
+  .side-space,
+  .side-space-news {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Mobile view - horizontal scroll */
+@media (max-width: 768px) {
+  .side-space,
+  .side-space-news {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .unified-card-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .unified-card-grid::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .unified-card {
+    flex: 0 0 calc(85% - 0.5rem);
+    scroll-snap-align: start;
+    min-width: 280px;
+    max-width: 300px;
+  }
+  
+  /* Show preview of next card */
+  .unified-card:last-child {
+    margin-right: 1.5rem;
+  }
+  
+  .unified-card-title {
+    font-size: 1.1rem;
+    -webkit-line-clamp: 2;
+  }
+  
+  .unified-card-text {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2;
+  }
+  
+  .unified-card-body {
+    padding: 1.25rem;
+  }
+  
+  .unified-card-footer {
+    padding: 0.75rem 1.25rem;
+  }
+  
+  .unified-card-meta {
+    gap: 0.15rem;
+  }
+}
+
+/* Very small mobile devices */
+@media (max-width: 480px) {
+  .unified-card {
+    flex: 0 0 calc(90% - 0.5rem);
+    min-width: 260px;
+  }
+  
+  .unified-card-title {
+    font-size: 1rem;
+  }
+  
+  .unified-card-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* Remove old card grid styles to avoid conflicts */
+.card-grid,
+.news-card-grid {
+  display: none;
+}
+
+/* Ensure smooth scrolling on mobile */
+@media (max-width: 768px) {
+  .unified-card-grid {
+    scroll-behavior: smooth;
+  }
 }

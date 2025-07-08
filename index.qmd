@@ -5,6 +5,19 @@ section-divs: false
 hide-description: true
 description: |
   Turing.jl is a probabilistic programming language and Bayesian modelling framework for the Julia programming language.
+listing:
+  - id: news-and-updates
+    contents: "news/posts/*/index.qmd"
+    template: _includes/card-listing.ejs
+    sort: "date desc"
+    max-items: 5
+    include:
+      on_landing: true
+  - id: featured-tutorials
+    contents: 
+      - "./_includes/featured-tutorials.yml"
+    template: _includes/card-listing.ejs
+    max-items: 3
 ---
 
 ::: {.logo-header}
@@ -74,6 +87,40 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 </div>
 ```
+
+<div class="side-space-news section-start-space">
+
+```{=html}
+  <!-- News & Updates Section -->
+  <div class="section-header">
+    <div>
+      <h3 id="news-updates">News & Updates</h3>
+      <p class="text-muted">Read the latest from the Turing team.</p>
+    </div>
+    <a href="news/" class="button">View more &rarr;</a>
+  </div>
+```
+
+::: {#news-and-updates}
+:::
+
+
+```{=html}
+  <!-- Featured Tutorials Section -->
+  <div class="section-header section-start-space">
+    <div>
+      <h3 id="featured-tutorials">Featured Tutorials</h3>
+      <p class="text-muted">A selection of tutorials to get you started.</p>
+    </div>
+    <a href="https://turinglang.org/docs/tutorials/" class="button">View all tutorials &rarr;</a>
+  </div>
+```
+
+::: {#featured-tutorials}
+:::
+
+
+</div>
 
 <div class="section-start-space">
 

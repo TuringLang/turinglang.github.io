@@ -11,6 +11,7 @@ author:
     email: cpfiffer@uoregon.edu
     affiliation: University of Oregon
 date: 02/12/2020
+on_landing: true
 ---
 
 Last year, Turing participated in the Google Summer of Code (GSoC) through the Julia language organization. It was a fun time, and the project was better for it. Turing plans to participate in the upcoming GSoC, and we wanted to outline some potential projects and expectations we have for applicants.

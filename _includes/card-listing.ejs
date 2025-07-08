@@ -1,0 +1,52 @@
+```{=html}
+<div class="unified-card-grid">
+<% for (const item of items) { %>
+  <a href="<%- item.href ? item.href : item.path %>" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title"><%- item.title %></h5>
+      <p class="unified-card-text"><%- item.description %></p>
+      
+      <% if (item.category) { %>
+        <div class="unified-card-categories">
+          <% if (Array.isArray(item.category)) { %>
+            <% item.category.forEach(function(cat) { %>
+              <span class="category-tag"><%- cat %></span>
+            <% }); %>
+          <% } else { %>
+            <span class="category-tag"><%- item.category %></span>
+          <% } %>
+        </div>
+      <% } %>
+    </div>
+    
+    <% if (item.author || item.date || item['reading-time']) { %>
+    <div class="unified-card-footer">
+      <div class="unified-card-meta">
+        <% if (item.author) { %>
+          <span class="unified-card-author">
+            <% if (Array.isArray(item.author)) { %>
+              <%= item.author.map(a => a.name || a).join(', ') %>
+            <% } else { %>
+              <%= item.author %>
+            <% } %>
+          </span>
+        <% } %>
+        <% if (item.date) { %>
+          <span class="unified-card-date">
+            <%= new Date(item.date).toLocaleDateString('en-US', { 
+              year: 'numeric', 
+              month: 'short', 
+              day: 'numeric' 
+            }) %>
+          </span>
+        <% } %>
+      </div>
+      <% if (item['reading-time']) { %>
+        <span class="unified-card-reading-time"><%- item['reading-time'] %></span>
+      <% } %>
+    </div>
+    <% } %>
+  </a>
+<% } %>
+</div>
+```

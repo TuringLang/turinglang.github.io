@@ -11,6 +11,7 @@ author:
     email: cpfiffer@uoregon.edu
     affiliation: University of Oregon
 date: 09/11/2020
+on_landing: true
 ---
 
 As the 2020 [Google Summer of Code](https://summerofcode.withgoogle.com/) comes to a close, the Turing team thought it would be a good opportunity to reflect on the work that was done by our superb students this summer.
