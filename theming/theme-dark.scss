@@ -54,6 +54,57 @@ $body-bg: $background-body;
 
 /*-- scss:rules --*/
 
+// --- General Heading Styles for Dark Mode ---
+h1, h2, h3, h4, h5, h6 {
+    color: $foreground !important;
+}
+
+// --- Hero Section Dark Mode Styles ---
+.hero-section {
+  background: none !important;
+}
+
+.hero-subtitle {
+  color: #bdc3c7 !important;
+}
+
+// --- Unified Card System Dark Mode ---
+.unified-card {
+    background-color: $panel-bg !important;
+    border-color: $btn-border-color !important;
+
+    &:hover {
+        border-color: $lp-cyan !important;
+    }
+}
+
+.unified-card-text {
+    color: $text-muted !important;
+}
+
+.category-tag {
+    background-color: lighten($panel-bg, 10%) !important;
+    color: $text-muted !important;
+}
+
+.unified-card-footer {
+    background-color: lighten($panel-bg, 3%) !important;
+    border-top-color: $btn-border-color !important;
+    color: $text-muted !important;
+}
+
+.unified-card-author {
+    color: $foreground !important;
+}
+
+.unified-card-date {
+    color: $text-muted !important;
+}
+
+.unified-card-reading-time {
+    color: $lp-cyan !important;
+}
+
 // --- Global Styles ---
 .quarto-container {
     background-color: $background-body !important;
@@ -170,19 +221,11 @@ a {
 // Landing Page Panels
 .panel {
     color: $text-muted !important;
-
-    .panel-title {
-        color: $body-color !important;
-    }
 }
 
 // Misc Quarto and site-specific rules
 .quarto-title-banner {
     background-color: $background-nav !important;
-}
-
-.title {
-    color: $white !important;
 }
 
 code {
@@ -197,10 +240,6 @@ code {
 
 .citation-text {
     color: $text-muted !important;
-}
-
-.citation-title {
-    color: $body-color !important;
 }
 
 .button--primary {

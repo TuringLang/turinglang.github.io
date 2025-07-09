@@ -88,21 +88,58 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 </div>
 ```
 
-<div class="side-space-news section-start-space">
+```{=html}
+<!-- Core Packages Section -->
+<div class="section-header section-start-space">
+  <div>
+    <h3 id="core-packages">Core Packages</h3>
+    <p class="text-muted">The Turing ecosystem is built on a foundation of powerful, composable packages.</p>
+  </div>
+  <a href="/library" class="button btn desktop-only-button">Explore Ecosystem &rarr;</a>
+</div>
+
+<div class="core-packages-grid section-end-space">
+  <div class="package-card box">
+    <h5 class="panel-title">DynamicPPL.jl</h5>
+    <p>The backend for model specification and inference.</p>
+  </div>
+  <div class="package-card box">
+    <h5 class="panel-title">JuliaBUGS.jl</h5>
+    <p>A BUGS-like DSL for defining and fitting Bayesian models.</p>
+  </div>
+  <div class="package-card box">
+    <h5 class="panel-title">TuringGLM.jl</h5>
+    <p>Bayesian generalized linear models (GLMs) with Turing.</p>
+  </div>
+  <div class="package-card box">
+    <h5 class="panel-title">AdvancedHMC.jl</h5>
+    <p>An efficient implementation of Hamiltonian Monte Carlo.</p>
+  </div>
+</div>
+<div class="mobile-only-button-container">
+  <a href="/library" class="button btn">Explore Ecosystem &rarr;</a>
+</div>
+```
 
 ```{=html}
   <!-- News & Updates Section -->
-  <div class="section-header">
+  <div class="section-header section-start-space">
     <div>
       <h3 id="news-updates">News & Updates</h3>
       <p class="text-muted">Read the latest from the Turing team.</p>
     </div>
-    <a href="news/" class="button">View more &rarr;</a>
+    <a href="news/" class="button desktop-only-button">View more &rarr;</a>
   </div>
 ```
 
 ::: {#news-and-updates}
 :::
+
+```{=html}
+<div class="mobile-only-button-container">
+    <a href="news/" class="button">View more &rarr;</a>
+</div>
+```
 
 
 ```{=html}
@@ -112,15 +149,18 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
       <h3 id="featured-tutorials">Featured Tutorials</h3>
       <p class="text-muted">A selection of tutorials to get you started.</p>
     </div>
-    <a href="https://turinglang.org/docs/tutorials/" class="button">View all tutorials &rarr;</a>
+    <a href="https://turinglang.org/docs/tutorials/" class="button desktop-only-button">View all tutorials &rarr;</a>
   </div>
 ```
 
 ::: {#featured-tutorials}
 :::
 
-
+```{=html}
+<div class="mobile-only-button-container">
+    <a href="https://turinglang.org/docs/tutorials/" class="button">View all tutorials &rarr;</a>
 </div>
+```
 
 <div class="section-start-space">
 
