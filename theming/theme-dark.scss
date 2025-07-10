@@ -193,9 +193,11 @@ a {
 .box {
     background-color: $panel-bg !important;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2) !important;
+    border-color: $btn-border-color !important;
 
     &:hover {
         background-color: lighten($panel-bg, 3%) !important;
+        border-color: $lp-cyan !important;
     }
 }
 
@@ -248,6 +250,10 @@ code {
 
 .citation-text {
     color: $text-muted !important;
+}
+
+.citation-title {
+    color: $foreground !important;
 }
 
 .button--primary {
