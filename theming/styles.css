@@ -180,14 +180,16 @@ a:hover {
 .box {
   border-radius: 12px;
   padding: 2rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   background-color: #ffffff;
+  border: 1px solid #e9ecef;
 }
 
 .box:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border-color: #4DB6AC;
 }
 
 .box--splash {
@@ -198,11 +200,6 @@ a:hover {
   min-height: 150px;
   min-width: 300px;
   max-width: 31%;
-}
-
-.panel:hover {
-  transform: none;
-  box-shadow: none;
 }
 
 .panel-title {
@@ -361,7 +358,6 @@ code {
   flex-direction: column;
   text-decoration: none;
   background-color: #ffffff;
-  border: 1px solid #e9ecef;
   border-radius: 12px;
   padding: 0;
   overflow: hidden;
