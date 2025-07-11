@@ -1,0 +1,23 @@
+---
+title: Turing.jl Newsletter 10
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-07-11
+---
+
+**LKJCholesky**
+
+Sampling `LKJCholesky` with HMC/NUTS has, until now, failed because of numerical instabilities (you'd usually get a `DomainError` somewhere).
+Bijectors.jl has gotten a couple of fixes ([here](https://github.com/TuringLang/Bijectors.jl/pull/356) and [here](https://github.com/TuringLang/Bijectors.jl/pull/357), just released v0.15.8 today that contains both of these) that should fix this, hopefully once and for all!
+(There are still some issues with `LKJ` itself, see [this PR](https://github.com/TuringLang/Bijectors.jl/pull/395).
+But now with `LKJCholesky` working there is less need for `LKJ` :))
+
+**Multiple-chain progress bars**
+
+Not released yet, but you might like to see [this PR (and the videos therein!)](https://github.com/TuringLang/AbstractMCMC.jl/pull/168) which, if merged, will provide more detailed progress bars when sampling with `MCMCThreads()` or `MCMCDistributed()`.
+Currently, the default is that for 10 chains or fewer you'll get one progress bar per chain; above that there'll just be one overall progress bar, but it'll update more than once per chain.
+That's customisable, and if you think the default should be different feel free to drop a line!
