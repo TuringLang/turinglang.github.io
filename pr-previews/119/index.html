@@ -796,24 +796,28 @@ A selection of tutorials to get you started.
 .citation-icon-btn[data-tooltip]:hover::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: 100%;
+    bottom: 108%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.85);
     color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     white-space: nowrap;
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.2s, visibility 0.2s;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    transform: translateX(-50%) translateY(5px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .citation-icon-btn[data-tooltip]:hover::after {
     opacity: 1;
     visibility: visible;
+    transform: translateX(-50%) translateY(0);
 }
 
 .citation-icon-btn {
