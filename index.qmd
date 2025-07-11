@@ -1,4 +1,5 @@
 ---
+pagetitle: The Turing Language
 toc: false
 page-layout: custom
 section-divs: false
@@ -10,14 +11,14 @@ listing:
     contents: "news/posts/*/index.qmd"
     template: _includes/card-listing.ejs
     sort: "date desc"
-    max-items: 5
+    max-items: 6
     include:
       on_landing: true
   - id: featured-tutorials
     contents: 
       - "./_includes/featured-tutorials.yml"
     template: _includes/card-listing.ejs
-    max-items: 3
+    max-items: 6
 ---
 
 ::: {.logo-header}
@@ -105,11 +106,11 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
   </div>
   <div class="package-card box">
     <h5 class="panel-title">JuliaBUGS.jl</h5>
-    <p>A BUGS-like DSL for defining and fitting Bayesian models.</p>
+    <p>A modern implementation of the BUGS probabilistic programming language in Julia.</p>
   </div>
   <div class="package-card box">
     <h5 class="panel-title">TuringGLM.jl</h5>
-    <p>Bayesian generalized linear models (GLMs) with Turing.</p>
+    <p>Bayesian Generalized Linear models using `@formula` syntax and returns an instantiated <a href="https://github.com/TuringLang/Turing.jl">Turing</a> model.</p>
   </div>
   <div class="package-card box">
     <h5 class="panel-title">AdvancedHMC.jl</h5>
@@ -161,12 +162,6 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
     <a href="https://turinglang.org/docs/tutorials/" class="button">View all tutorials &rarr;</a>
 </div>
 ```
-
-<div class="section-start-space">
-
-{{< include _includes/brands.qmd >}}
-
-</div>
 
 <div class="section-start-space section-end-space">
 

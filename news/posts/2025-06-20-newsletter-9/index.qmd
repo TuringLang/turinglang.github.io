@@ -7,6 +7,7 @@ author:
   - name: The TuringLang team
     url: /team/
 date: 2025-06-20
+on_landing: true
 ---
 
 **Google Summer of Code**

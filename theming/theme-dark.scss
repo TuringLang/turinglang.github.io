@@ -202,7 +202,7 @@ a {
 }
 
 .box--splash {
-    background-color: lighten($panel-bg, 2%) !important; // Keeping this for use in future
+    background-color: lighten($panel-bg, 2%) !important;
 }
 
 // Landing Page Buttons
@@ -256,22 +256,76 @@ code {
     color: $foreground !important;
 }
 
-.button--primary {
-    background-color: transparent !important;
-    color: $links !important;
-    border-color: $links !important;
+.citation-icon-btn {
+    background-color: lighten($panel-bg, 5%) !important;
+    border-color: $btn-border-color !important;
+    color: $text-muted !important;
 
     &:hover {
-        background-color: $links !important;
-        color: $panel-bg !important;
+        background-color: lighten($panel-bg, 10%) !important;
+        border-color: $lp-cyan !important;
+        color: $lp-cyan !important;
     }
 }
 
-// Brands Logo Switch
-.brands-light-mode-logo {
+.citation-icon-btn.citation-copied {
+    background-color: $green !important;
+    border-color: $green !important;
+    color: $white !important;
+}
+
+.citation-icon-btn.citation-copied:hover {
+    background-color: $green !important;
+    border-color: $green !important;
+    color: $white !important;
+}
+
+// Custom Footer Dark Mode
+.custom-footer {
+    background-color: $background-nav !important;
+    border-top-color: $btn-border-color !important;
+    color: $text-muted !important;
+}
+
+.custom-footer .footer-grid {
+    border-bottom-color: $btn-border-color !important;
+}
+
+.custom-footer .footer-column h5 {
+    color: $foreground !important;
+}
+
+.custom-footer .footer-column a {
+    color: $text-muted !important;
+    &:hover {
+        color: $links-hover !important;
+    }
+}
+
+.custom-footer .footer-bottom p {
+    color: $text-muted !important;
+}
+
+.custom-footer .footer-bottom a {
+    color: $links !important;
+    border-bottom-color: $btn-border-color !important;
+    &:hover {
+        color: $links-hover !important;
+        border-bottom-color: $links-hover !important;
+    }
+}
+
+.custom-footer .brands-light-mode-logo {
     display: none !important;
 }
 
-.brands-dark-mode-logo {
+.custom-footer .brands-dark-mode-logo {
     display: inline !important;
+}
+
+.footer-source-link {
+  color: $text-muted !important;
+  &:hover {
+    color: $links-hover !important;
+  }
 }

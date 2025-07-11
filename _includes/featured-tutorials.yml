@@ -5,16 +5,16 @@
     - "Basics"
     - "Getting Started"
 
-- title: "Introductory Concepts: Coin Flipping"
+- title: "Introductory Concepts"
   href: "https://turinglang.org/docs/tutorials/coin-flipping/"
   description: "Learn the basic concepts of Bayesian modeling by working through a simple coin-flipping example."
   category:
     - "Basics"
     - "Modeling"
 
-- title: "Bayesian Regression"
-  href: "https://turinglang.org/docs/tutorials/02-bayesian-regression/"
-  description: "Explore how to perform Bayesian linear and logistic regression using Turing.jl."
+- title: "Core Functionality"
+  href: "https://turinglang.org/docs/core-functionality/"
+  description: "This article provides an overview of the core functionality in Turing.jl, which are likely to be used across a wide range of models."
   category:
-    - "Modeling"
-    - "Regression"
+    - "Basics"
+    - "Features"

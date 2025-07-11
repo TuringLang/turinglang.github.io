@@ -11,8 +11,6 @@ author:
     email: cpfiffer@uoregon.edu
     affiliation: University of Oregon
 date: 02/10/2021
-on_landing: true
-landing_sort_order: 5
 ---
 
 It's about time for us to start thinking about projects we'd like to see at Turing.jl for the [Google Summer of Code 2021](https://summerofcode.withgoogle.com/)! Below is a list of projects the Turing team would be interested in working with students on for the summer.

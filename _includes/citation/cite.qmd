@@ -3,17 +3,15 @@
   <h3 id="cite" class="pb-1 text-center">Turing.jl is an <a href="https://github.com/TuringLang/Turing.jl/blob/main/LICENCE" class="turing-license-link"><code>MIT</code></a> Licensed Open Source Project</h3>
   <p class="text-center">If you use Turing.jl in your research, please consider citing our papers.</p>
  
-  <ul class="citation-list"> 
-    <li class="citation-entry box">
-      <p class="citation-text">
-        Fjelde, T. E., Xu, K., Widmann, D., Tarek, M., Pfiffer, C., Trapp, M., Axen, S. D., Sun, X., Hauru, M., Yong, P., Tebbutt, W., Ghahramani, Z., & Ge, H. (2025). <span class="citation-title">Turing.jl: a general-purpose probabilistic programming language.</span> <em>ACM Transactions on Probabilistic Machine Learning</em>. Just Accepted.
-      </p>
-      <div class="citation-actions">
-        <a href="https://doi.org/10.1145/3711897" target="_blank" rel="noopener noreferrer" class="button">View Paper</a>
-        <button class="button button--primary" onclick="copyBibtex(this)" aria-label="Copy BibTeX for the 2025 Turing.jl paper">Copy BibTeX</button>
-      </div>
-      <pre class="citation-bibtex-data">
-@article{Fjelde2025Turing,
+  <ul id="citation-list" class="citation-list"> 
+    <!-- Citations will be dynamically injected here -->
+  </ul>
+</div>
+
+<script>
+// DATA: Add new BibTeX entries here
+const bibtexData = [
+`@article{Fjelde2025Turing,
   author    = {Fjelde, Tor Erlend and Xu, Kai and Widmann, David and Tarek, Mohamed and Pfiffer, Cameron and Trapp, Martin and Axen, Seth D. and Sun, Xianda and Hauru, Markus and Yong, Penelope and Tebbutt, Will and Ghahramani, Zoubin and Ge, Hong},
   title     = {Turing.jl: a general-purpose probabilistic programming language},
   journal   = {ACM Transactions on Probabilistic Machine Learning},
@@ -22,19 +20,8 @@
   doi       = {10.1145/3711897},
   note      = {Just Accepted},
   url       = {https://doi.org/10.1145/3711897}
-}
-      </pre>
-    </li>
-    <li class="citation-entry box">
-      <p class="citation-text">
-        Ge, H., Xu, K., & Ghahramani, Z. (2018). <span class="citation-title">Turing: a language for flexible probabilistic inference.</span> In <em>Proceedings of the 21st International Conference on Artificial Intelligence and Statistics (AISTATS)</em> (Vol. 84, pp. 1682-1690). PMLR.
-      </p>
-      <div class="citation-actions">
-        <a href="http://proceedings.mlr.press/v84/ge18b.html" target="_blank" rel="noopener noreferrer" class="button">View Paper</a>
-        <button class="button button--primary" onclick="copyBibtex(this)" aria-label="Copy BibTeX for the 2018 Turing paper">Copy BibTeX</button>
-      </div>
-      <pre class="citation-bibtex-data">
-@inproceedings{Ge2018Turing,
+}`,
+`@inproceedings{Ge2018Turing,
   author    = {Ge, Hong and Xu, Kai and Ghahramani, Zoubin},
   title     = {Turing: a language for flexible probabilistic inference},
   booktitle = {Proceedings of the 21st International Conference on Artificial Intelligence and Statistics (AISTATS)},
@@ -44,21 +31,78 @@
   year      = {2018},
   publisher = {PMLR},
   url       = {http://proceedings.mlr.press/v84/ge18b.html}
-}
-      </pre>
-    </li>
-  </ul>
-</div>
+}`
+];
 
-<script>
+/**
+ * A BibTeX parser.
+ * Extracts key-value pairs from a BibTeX string.
+ * @param {string} bibtex - The raw BibTeX string.
+ * @returns {object} - An object with parsed data.
+ */
+function parseBibtex(bibtex) {
+    const data = { raw: bibtex };
+    const regex = /(\w+)\s*=\s*[\{"']([^"'}]+)[\}"']/g;
+    let match;
+    while ((match = regex.exec(bibtex)) !== null) {
+        data[match[1].toLowerCase()] = match[2];
+    }
+    return data;
+}
+
+/**
+ * Creates an HTML string for a single citation entry.
+ * @param {object} bibData - The parsed BibTeX data.
+ * @returns {string} - The HTML string for the list item.
+ */
+function generateCitationHTML(bibData) {
+    const { author, title, journal, booktitle, year, note, url, doi, raw } = bibData;
+
+    let publicationInfo = '';
+    if (journal) {
+        publicationInfo += `<em>${journal}</em>.`;
+    } else if (booktitle) {
+        publicationInfo += `In <em>${booktitle}</em>.`;
+    }
+    if (note) {
+        publicationInfo += ` ${note}.`;
+    }
+    
+    const viewUrl = url || (doi ? `https://doi.org/${doi}` : '#');
+    
+    // The author string is now used directly from the bibtex data without formatting.
+    const authorsFormatted = author || 'N/A';
+
+    return `
+    <li class="citation-entry box">
+      <div class="citation-content">
+        <p class="citation-text">
+          ${authorsFormatted} (${year}). <span class="citation-title">${title}.</span> ${publicationInfo}
+        </p>
+      </div>
+      <div class="citation-actions">
+        <a href="${viewUrl}" target="_blank" rel="noopener noreferrer" class="citation-icon-btn" aria-label="View Paper: ${title}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+        </a>
+        <button class="citation-icon-btn copy-bibtex-btn" aria-label="Copy BibTeX for ${title}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
+        </button>
+      </div>
+      <pre class="citation-bibtex-data" style="display:none;">${raw}</pre>
+    </li>
+    `;
+}
+
 function copyBibtex(buttonElement) {
-  // Find the <pre> element which is the next sibling of the button's parent container
-  const bibtexPreElement = buttonElement.parentElement.nextElementSibling;
+  const citationEntry = buttonElement.closest('.citation-entry');
+  if (!citationEntry) return;
+
+  const bibtexPreElement = citationEntry.querySelector('.citation-bibtex-data');
+  if (!bibtexPreElement) return;
+  
   const bibtexText = bibtexPreElement.textContent.trim();
 
-  // Robust Clipboard Copy Logic
   if (navigator.clipboard && window.isSecureContext) {
-    // Modern async clipboard API
     navigator.clipboard.writeText(bibtexText)
       .then(() => showSuccess(buttonElement))
       .catch(err => {
@@ -66,7 +110,6 @@ function copyBibtex(buttonElement) {
         fallbackCopy(bibtexText, buttonElement);
       });
   } else {
-    // Fallback for older browsers or non-secure contexts
     fallbackCopy(bibtexText, buttonElement);
   }
 }
@@ -74,7 +117,8 @@ function copyBibtex(buttonElement) {
 function fallbackCopy(text, buttonElement) {
   const textArea = document.createElement('textarea');
   textArea.value = text;
-  textArea.style.position = 'absolute';
+  textArea.style.position = 'fixed';
+  textArea.style.top = '-9999px';
   textArea.style.left = '-9999px';
   document.body.appendChild(textArea);
   textArea.focus();
@@ -94,27 +138,42 @@ function fallbackCopy(text, buttonElement) {
 }
 
 function showSuccess(buttonElement) {
-  const originalText = buttonElement.innerHTML;
-  buttonElement.innerHTML = '✅ Copied!';
-  // Use your existing class for styling the copied state
-  buttonElement.classList.add('citation-copied');
-  buttonElement.disabled = true;
-
-  setTimeout(() => {
-    buttonElement.innerHTML = originalText;
-    buttonElement.classList.remove('citation-copied');
-    buttonElement.disabled = false;
-  }, 2000);
-}
-
-function showError(buttonElement) {
-    const originalText = buttonElement.innerHTML;
-    buttonElement.innerHTML = 'Error!';
+    const originalIcon = buttonElement.innerHTML;
+    buttonElement.innerHTML = '✓';
+    buttonElement.classList.add('citation-copied');
     buttonElement.disabled = true;
+
     setTimeout(() => {
-        buttonElement.innerHTML = originalText;
+        buttonElement.innerHTML = originalIcon;
+        buttonElement.classList.remove('citation-copied');
         buttonElement.disabled = false;
     }, 2000);
 }
+
+function showError(buttonElement) {
+    const originalIcon = buttonElement.innerHTML;
+    buttonElement.innerHTML = 'X';
+    buttonElement.disabled = true;
+    setTimeout(() => {
+        buttonElement.innerHTML = originalIcon;
+        buttonElement.disabled = false;
+    }, 2000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('citation-list');
+    if (!container) return;
+
+    // Generate and inject HTML
+    const allCitationsHTML = bibtexData.map(bib => generateCitationHTML(parseBibtex(bib))).join('');
+    container.innerHTML = allCitationsHTML;
+    
+    container.addEventListener('click', function(event) {
+        const button = event.target.closest('.copy-bibtex-btn');
+        if (button) {
+            copyBibtex(button);
+        }
+    });
+});
 </script>
 ```
