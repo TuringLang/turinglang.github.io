@@ -233,6 +233,10 @@ a {
     color: $text-muted !important;
 }
 
+.panel-title {
+    color: $foreground !important;
+}
+
 // Misc Quarto and site-specific rules
 .quarto-title-banner {
     background-color: $background-nav !important;

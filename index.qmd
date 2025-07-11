@@ -198,7 +198,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 ##### [AdvancedHMC.jl <i class="bi bi-box-arrow-up-right" style="font-size: 0.4em;"></i>](https://turinglang.org/AdvancedHMC.jl/){.panel-title}
 
-<p>Robust, modular, and efficient implementation of advanced Hamiltonian Monte Carlo(HMC) algorithms.</p>
+<p>A robust, modular and efficient implementation of advanced HMC algorithms. ([abs](https://proceedings.mlr.press/v118/xu20a.html), [pdf](https://proceedings.mlr.press/v118/xu20a/xu20a.pdf))</p>
 
 :::
 
