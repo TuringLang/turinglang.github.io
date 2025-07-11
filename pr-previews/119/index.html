@@ -792,6 +792,35 @@ A selection of tutorials to get you started.
   </ul>
 </div>
 
+<style>
+.citation-icon-btn[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+.citation-icon-btn[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.citation-icon-btn {
+    position: relative;
+}
+</style>
+
 <script>
 // DATA: Add new BibTeX entries here
 const bibtexData = [
@@ -873,11 +902,10 @@ function generateCitationHTML(bibData) {
         </p>
       </div>
       <div class="citation-actions">
-        <a href="${viewUrl}" target="_blank" rel="noopener noreferrer" class="citation-icon-btn" aria-label="View Paper: ${title}" title="View Paper">
-          <!-- Bootstrap redirection icon -->
-          <i class="bi bi-box-arrow-up-right"></i>
-        </a>
-        <button class="citation-icon-btn copy-bibtex-btn" aria-label="Copy BibTeX for ${title}" title="Copy BibTeX">
+          <a href="${viewUrl}" target="_blank" rel="noopener noreferrer" class="citation-icon-btn" aria-label="View Paper: ${title}" title="View Paper" data-tooltip="View Paper">
+            <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+          <button class="citation-icon-btn copy-bibtex-btn" aria-label="Copy BibTeX for ${title}" title="Copy BibTeX" data-tooltip="Copy BibTeX">
           <!-- Custom SVG for citation icon -->
           <svg fill="currentColor" height="135px" width="135px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 191.029 191.029" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M44.33,88.474v15.377h38.417v82.745H0v-82.745h0.002V88.474c0-31.225,8.984-54.411,26.704-68.918 C38.964,9.521,54.48,4.433,72.824,4.433v44.326C62.866,48.759,44.33,48.759,44.33,88.474z M181.107,48.759V4.433 c-18.343,0-33.859,5.088-46.117,15.123c-17.72,14.507-26.705,37.694-26.705,68.918v15.377h0v82.745h82.744v-82.745h-38.417V88.474 C152.613,48.759,171.149,48.759,181.107,48.759z"></path> </g></svg>
         </button>
