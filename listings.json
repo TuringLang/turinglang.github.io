@@ -1,11 +1,8 @@
 [
   {
-    "listing": "/team/index.html",
-    "items": []
-  },
-  {
     "listing": "/news/index.html",
     "items": [
+      "/news/posts/2025-07-11-newsletter-10/index.html",
       "/news/posts/2025-06-20-newsletter-9/index.html",
       "/news/posts/2025-06-06-newsletter-8/index.html",
       "/news/posts/2025-05-23-newsletter-7/index.html",
@@ -25,6 +22,10 @@
   },
   {
     "listing": "/library/index.html",
+    "items": []
+  },
+  {
+    "listing": "/team/index.html",
     "items": []
   }
 ]
