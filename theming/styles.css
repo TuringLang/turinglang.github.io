@@ -402,10 +402,11 @@ code {
 }
 
 .unified-card-body {
-  padding: 1.5rem;
+  padding: 1rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  padding-bottom: 0%;
 }
 
 .unified-card-title {
@@ -701,6 +702,7 @@ code {
 
   .unified-card-body {
     padding: 1.25rem;
+    padding-bottom: 0%;
   }
 
   .unified-card-footer {
