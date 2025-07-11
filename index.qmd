@@ -76,7 +76,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 ::: {.d-flex .flex-column .align-items-center .gap-2 .pt-3}
 ```{=html}
 <a href="https://turinglang.org/docs/getting-started/" class="button btn">Get Started</a>
-<a href="https://turinglang.org/docs/tutorials/coin-flipping/" class="text-muted" style="font-size: 0.9em;">View Introductory Concepts</a>
+<a href="https://turinglang.org/docs/tutorials/coin-flipping/" class="text-muted" style="font-size: 0.9em;">Beginner's Walkthrough</a>
 ```
 :::
 

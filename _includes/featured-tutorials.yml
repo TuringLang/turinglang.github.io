@@ -5,7 +5,7 @@
     - "Basics"
     - "Getting Started"
 
-- title: "Introductory Concepts"
+- title: "Introduction: Coin Flipping"
   href: "https://turinglang.org/docs/tutorials/coin-flipping/"
   description: "Learn the basic concepts of Bayesian modeling by working through a simple coin-flipping example."
   category:
