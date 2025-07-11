@@ -32,6 +32,13 @@ listing:
 <!-- Header End Here -->
 
 <!-- Feature Boxes -->
+:::: {.section-start-space}
+
+### What is Turing.jl?
+<p class="text-muted">Turing.jl is a Julia library for general-purpose probabilistic programming.</p>
+
+::::
+
 ::::: {.d-flex .flex-row .flex-wrap .panel-wrapper .gap-4 .section-end-space}
 
 ::: {.panel .box}
@@ -50,13 +57,21 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 :::
 
 :::::
-<!-- Feature BoxesEnds Here -->
+<!-- Feature Boxes Ends Here -->
 
 <!-- Start Your Journey Section -->
-:::: {.text-center .section-start-space}
+:::: {.section-header .section-start-space}
 
-<p class="responsive-heading" style="font-weight: 600; margin-bottom: 0;">Start Your Journey</p>
-<p class="fs-5 text-muted">Whether you're new to Bayesian modeling or an experienced researcher, find the resources you need.</p>
+::: {#start}
+
+### Start Your Journey
+<p class="text-muted">Whether you're new to Bayesian modeling or an experienced researcher, find the resources you need.</p>
+
+:::
+
+```{=html}
+<a href="#cite" class="button btn desktop-only-button">Research Papers on Turing.jl &rarr;</a>
+```
 
 ::::
 
@@ -128,6 +143,12 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 ::::
 
 :::::
+
+::: {.mobile-only-button-container}
+```{=html}
+<a href="#cite" class="button btn">Research Papers on Turing.jl &rarr;</a>
+```
+:::
 <!-- Start Your Journey Section Ends Here-->
 
 <!-- Core Packages Section -->

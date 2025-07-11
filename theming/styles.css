@@ -1,6 +1,7 @@
 /* Hero Section Styles */
 .hero-section {
   padding: 4rem 1rem;
+  padding-bottom: 0%;
   text-align: center;
 }
 
@@ -113,9 +114,9 @@
   padding-top: 2rem;
 }
 
-.responsive-heading {
+/* .responsive-heading {
   font-size: clamp(1.8rem, 5vw, 2.2rem);
-}
+} */
 
 .panel-wrapper {
   justify-content: center;
