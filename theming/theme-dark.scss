@@ -4,76 +4,45 @@
 
 $theme: "cosmo" !default;
 
-// Manually-added colors
+// --- Consolidated Variables ---
 
-$background-nav: #192222;
-$background-body: #131818;
-$foreground: #1bb3ac;
-$foreground-dark: #073c44;
-$links:#2aa198;
+// Base colors for the entire site
+$background-nav: #22272e;
+$background-body: #1c2128; // Using the darker background from new theme
+$foreground: #ffffff;
+$links: #34b8bf;
 $links-hover: #31dce6;
-$code-background-color: #172424;
-$li: #bcbcbc;
 
-// Quarto default colors
+// Text colors
+$text-muted: #bcbcbc;
+$li-color: #bcbcbc;
 
-$white:    #ffffff !default;
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #868e96 !default;
-$gray-700: #495057 !default;
-$gray-800: #373a3c !default;
-$gray-900: #212529 !default;
-$black:    #000000 !default;
+// Landing Page specific colors
+$lp-cyan: #39d3d7;
+$lp-teal: #4DB6AC;
 
-$indigo:  #6610f2 !default;
-$purple:  #613d7c !default;
-$pink:    #e83e8c !default;
-$red:     #ff0039 !default;
-$orange:  #f0ad4e !default;
-$yellow:  #ff7518 !default;
-$green:   #3fb618 !default;
-$teal:    #20c997 !default;
-$cyan:    #9954bb !default;
+// Component & Code block colors
+$code-block-bg: #22272e;
+$panel-bg: #22272e;
+$btn-border-color: #444c56;
 
-$primary:       $links-hover !default;
-$secondary:     $gray-800 !default;
-$success:       $green !default;
-$info:          $cyan !default;
-$warning:       $yellow !default;
-$danger:        $red !default;
-$light:         $gray-100 !default;
-$dark:          $gray-800 !default;
+// Bootstrap color overrides
+$white: #ffffff !default;
+$gray-800: #22272e;
+$gray-900: #1c2128;
+$red: #ff0039 !default;
+$green: #3fb618 !default;
 
-$min-contrast-ratio:   2.6 !default;
+$primary: $links-hover !default;
+$secondary: $gray-800 !default;
+$success: $green !default;
+$danger: $red !default;
 
-// Options
-
+// Global settings
+$min-contrast-ratio: 2.6 !default;
 $enable-rounded: false !default;
-
-// Fonts
-
-// stylelint-disable-next-line value-keyword-case
-$font-family-sans-serif:    "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
-$headings-font-weight:      400 !default;
-
-// Tables
-
-$table-color:               initial !default;
-
-// Alerts
-
-$alert-border-width:            0 !default;
-
-// Progress bars
-
-$progress-height:               .5rem !default;
-
-
-// Custom tweaks for Quarto-Cosmo 
+$font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$headings-font-weight: 400 !default;
 
 $navbar-bg: $background-nav;
 $navbar-fg: $foreground;
@@ -82,46 +51,95 @@ $footer-fg: $foreground;
 $body-color: $white;
 $body-bg: $background-body;
 
-a {
-    color: $links !important;
+
+/*-- scss:rules --*/
+
+// --- General Heading Styles for Dark Mode ---
+h1, h2, h3, h4, h5, h6 {
+    color: $foreground !important;
 }
 
-a:hover {
-    color: $links-hover !important;
+// --- Hero Section Dark Mode Styles ---
+.hero-section {
+  background: none !important;
 }
 
-code, p code, li code {
-    background-color: $code-background-color !important;
-    color: $links;
+.hero-logo-light {
+  display: none !important;
 }
 
-li {
-    color: $li !important;
+.hero-logo-dark {
+  display: block !important;
 }
 
-.menu-text:hover {   
-    color: $links-hover !important;
+.hero-subtitle {
+  color: #bdc3c7 !important;
 }
 
-.quarto-title-banner {
-    background-color: $foreground-dark !important;
+// --- Unified Card System Dark Mode ---
+.unified-card {
+    background-color: $panel-bg !important;
+    border-color: $btn-border-color !important;
+
+    &:hover {
+        border-color: $lp-cyan !important;
+    }
 }
 
-.title {
-    color: $white !important;
+.unified-card-text {
+    color: $text-muted !important;
 }
 
-.listing-description a {
-    color: $li !important;
+.category-tag {
+    background-color: lighten($panel-bg, 10%) !important;
+    color: $text-muted !important;
+}
+
+.unified-card-footer {
+    background-color: lighten($panel-bg, 3%) !important;
+    border-top-color: $btn-border-color !important;
+    color: $text-muted !important;
+}
+
+.unified-card-author {
+    color: $foreground !important;
+}
+
+.unified-card-date {
+    color: $text-muted !important;
+}
+
+.unified-card-reading-time {
+    color: $lp-cyan !important;
+}
+
+// --- Global Styles ---
+.quarto-container {
+    background-color: $background-body !important;
+}
+
+.navbar {
+    background-color: $navbar-bg !important;
 }
 
 p {
-    color: $li !important;
+    color: $text-muted !important;
 }
 
+li {
+    color: $li-color !important;
+}
+
+a {
+    color: $links;
+
+    &:hover {
+        color: $links-hover !important;
+    }
+}
 
 .team-member, .input-group-text {
-    background-color: $background-nav !important;   
+    background-color: $background-nav !important;
 }
 
 .level4, .listing-category {
@@ -141,7 +159,7 @@ p {
 // table background & text
 .packages-table {
     background-color: $background-body !important;
-    color: $li !important;
+    color: $li-color !important;
 }
 
 // cell borders
@@ -157,7 +175,7 @@ p {
 
 // zebra stripes
 .packages-table tbody tr:nth-child(odd) {
-    background-color: darken($gray-900, 5%) !important;
+    background-color: darken($background-nav, 5%) !important;
 }
 
 // hover state
@@ -169,4 +187,153 @@ p {
 .badge.deprecated {
     color: $white !important;
     background-color: $red !important;
+}
+
+// Universal Box Styling for Dark Mode
+.box {
+    background-color: $panel-bg !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2) !important;
+    border-color: $btn-border-color !important;
+
+    &:hover {
+        background-color: lighten($panel-bg, 3%) !important;
+        border-color: $lp-cyan !important;
+    }
+}
+
+.box--splash {
+    background-color: lighten($panel-bg, 2%) !important;
+}
+
+// Landing Page Buttons
+.button {
+    background-color: transparent !important;
+    border-color: $btn-border-color !important;
+    color: $body-color !important;
+
+    &:hover {
+        background-color: lighten($gray-800, 5%) !important;
+        border-color: $lp-cyan !important;
+    }
+}
+
+.button--fill {
+    background-color: $lp-teal !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+
+    &:hover {
+        background-color: darken($lp-teal, 5%) !important;
+        box-shadow: 0 4px 15px rgba($lp-teal, 0.2) !important;
+    }
+}
+
+// Landing Page Panels
+.panel {
+    color: $text-muted !important;
+}
+
+.panel-title {
+    color: $foreground !important;
+}
+
+// Misc Quarto and site-specific rules
+.quarto-title-banner {
+    background-color: $background-nav !important;
+}
+
+.quarto-post {
+    border-bottom: 1px solid #383838 !important;
+}
+
+code {
+    background-color: $code-block-bg !important;
+    color: $li-color !important;
+}
+
+// Dark mode styles for the citation section
+.citation-entry {
+    border-color: $btn-border-color !important;
+}
+
+.citation-text {
+    color: $text-muted !important;
+}
+
+.citation-title {
+    color: $foreground !important;
+}
+
+.citation-icon-btn {
+    background-color: lighten($panel-bg, 5%) !important;
+    border-color: $btn-border-color !important;
+    color: $text-muted !important;
+
+    &:hover {
+        background-color: lighten($panel-bg, 10%) !important;
+        border-color: $lp-cyan !important;
+        color: $lp-cyan !important;
+    }
+}
+
+.citation-icon-btn.citation-copied {
+    background-color: $green !important;
+    border-color: $green !important;
+    color: $white !important;
+}
+
+.citation-icon-btn.citation-copied:hover {
+    background-color: $green !important;
+    border-color: $green !important;
+    color: $white !important;
+}
+
+// Custom Footer Dark Mode
+.custom-footer {
+    background-color: $background-nav !important;
+    border-top-color: $btn-border-color !important;
+    color: $text-muted !important;
+}
+
+.custom-footer .footer-grid {
+    border-bottom-color: $btn-border-color !important;
+}
+
+.custom-footer .footer-column h5 {
+    color: $foreground !important;
+}
+
+.custom-footer .footer-column a {
+    color: $text-muted !important;
+    &:hover {
+        color: $links-hover !important;
+    }
+}
+
+.custom-footer .footer-bottom p {
+    color: $text-muted !important;
+}
+
+.custom-footer .footer-bottom a {
+    color: $links !important;
+    border-bottom-color: $btn-border-color !important;
+    &:hover {
+        color: $links-hover !important;
+        border-bottom-color: $links-hover !important;
+    }
+}
+
+.custom-footer .brands-light-mode-logo {
+    display: none !important;
+}
+
+.custom-footer .brands-dark-mode-logo {
+    display: inline !important;
+}
+
+.footer-source-link {
+  color: $text-muted !important;
+  &:hover {
+    color: $links-hover !important;
+  }
 }

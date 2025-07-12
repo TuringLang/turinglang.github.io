@@ -11,6 +11,7 @@ author:
     affiliation: 
       - name: University of Oregon
 date: 12/14/2019
+on_landing: true
 ---
 
 All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts on topics like
