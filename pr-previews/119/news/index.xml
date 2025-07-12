@@ -10,7 +10,29 @@
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Fri, 20 Jun 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 11 Jul 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 10</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-07-11-newsletter-10/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><strong>LKJCholesky</strong></p>
+<p>Sampling <code>LKJCholesky</code> with HMC/NUTS has, until now, failed because of numerical instabilities (you’d usually get a <code>DomainError</code> somewhere). Bijectors.jl has gotten a couple of fixes (<a href="https://github.com/TuringLang/Bijectors.jl/pull/356">here</a> and <a href="https://github.com/TuringLang/Bijectors.jl/pull/357">here</a>, just released v0.15.8 today that contains both of these) that should fix this, hopefully once and for all! (There are still some issues with <code>LKJ</code> itself, see <a href="https://github.com/TuringLang/Bijectors.jl/pull/395">this PR</a>. But now with <code>LKJCholesky</code> working there is less need for <code>LKJ</code> :))</p>
+<p><strong>Multiple-chain progress bars</strong></p>
+<p>Not released yet, but you might like to see <a href="https://github.com/TuringLang/AbstractMCMC.jl/pull/168">this PR (and the videos therein!)</a> which, if merged, will provide more detailed progress bars when sampling with <code>MCMCThreads()</code> or <code>MCMCDistributed()</code>. Currently, the default is that for 10 chains or fewer you’ll get one progress bar per chain; above that there’ll just be one overall progress bar, but it’ll update more than once per chain. That’s customisable, and if you think the default should be different feel free to drop a line!</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-07-11-newsletter-10/</guid>
+  <pubDate>Fri, 11 Jul 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 9</title>
   <dc:creator>The TuringLang team</dc:creator>
