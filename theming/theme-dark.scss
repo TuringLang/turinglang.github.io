@@ -122,6 +122,14 @@ h1, h2, h3, h4, h5, h6 {
     background-color: $navbar-bg !important;
 }
 
+.aa-DetachedOverlay li.aa-Item[aria-selected=true] .search-item * {
+    color: white !important;
+}
+
+.aa-List li.aa-Item[aria-selected="true"] * {
+    background-color: #4DB6AC !important;
+}
+
 p {
     color: $text-muted !important;
 }
