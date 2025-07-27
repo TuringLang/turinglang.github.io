@@ -9,31 +9,3 @@
 .quarto-post {
     max-height:fit-content;
 }
-
-.quarto-title-banner {
-    background-color: #ffffff;
-}
-
-/* @media (max-width: 768px) {
-    .quarto-post {
-        max-height: 200px;
-    }
-}
-
-@media (max-width: 566px) {
-    .quarto-post {
-        max-height: 240px;
-    }
-}
-
-@media (max-width: 512px) and (min-width: 310px) {
-    .quarto-post {
-        max-height: 260px;
-    }
-}
-
-@media (max-width: 310px) {
-    .quarto-post {
-        max-height: 300px;
-    }
-} */
