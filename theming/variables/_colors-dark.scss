@@ -1,0 +1,29 @@
+$teal: #4db6ac;
+$green: #229954;
+
+// This is very similar to the "normal" teal. Can we collapse those into the same?
+$teal-license: #34b8bf;
+
+$links: $teal-license;
+$links-hover: lighten($links, 10%);
+
+$box-shadow-color: rgba(0, 0, 0, 0.4);
+
+$code-block-bg: #212529;
+
+$panel-bg: $gray-900;
+
+$background-body: #1c2128;
+
+$body-bg: $background-body;
+$navbar-bg: lighten($background-body, 2%);
+$navbar-color: $white;
+
+$btn-border-color: $gray-700;
+
+$text-color: $white;
+$text-muted: $gray-500;
+
+$body-color: $white;
+$navbar-fg: $white;
+$footer-fg: $white;

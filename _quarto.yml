@@ -45,9 +45,8 @@ website:
 format:
   html:
     theme:
-      light: cosmo
+      light: [cosmo, theming/theme-light.scss]
       dark: [cosmo, theming/theme-dark.scss]
-    css: theming/styles.css
     highlight-style: github
     toc: true
     smooth-scroll: true

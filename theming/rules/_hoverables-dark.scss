@@ -1,0 +1,182 @@
+.box {
+    border-radius: 12px;
+    padding: 2rem;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.3s ease,
+        border-color 0.3s ease;
+    box-shadow: 0 5px 20px darken($box-shadow-color, 30%);
+    background-color: $panel-bg;
+    border: 2px solid $btn-border-color;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px darken($box-shadow-color, 50%); // intended is rgba(0, 0, 0, 0.08)
+        border-color: transparent;
+    }
+
+    &--splash {
+        background-color: lighten($teal, 15%); // #eef7f7 intended
+    }
+
+    code {
+        background-color: lighten($code-block-bg, 5%) !important;
+    }
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    text-decoration: none;
+    border-style: solid;
+    border-width: 2px;
+    background-color: $panel-bg;
+    border-color: $btn-border-color;
+    color: $text-color;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px darken($box-shadow-color, 50%);
+        text-decoration: none;
+        color: $white !important;
+        border-color: transparent;
+    }
+
+    &--fill {
+        background-color: $teal;
+        border-color: transparent;
+        color: $white !important;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px darken($box-shadow-color, 50%);
+            text-decoration: none;
+            border-color: lighten($teal, 15%);
+            background-color: darken($teal, 5%);
+        }
+    }
+}
+
+.card {
+    border: 2px solid $btn-border-color;
+    color: $text-color;
+
+    &:hover {
+        background-color: lighten($panel-bg, 10%);
+        border-color: transparent;
+    }
+
+    .card-title {
+        color: $text-color;
+    }
+
+    .card-text {
+        color: $text-muted;
+    }
+}
+
+/* UNIFIED CARD GRID */
+
+.unified-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background-color: $panel-bg;
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    flex: 1 1 320px;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px darken($box-shadow-color, 5%);
+        text-decoration: none;
+        border-color: transparent;
+        position: relative;
+        z-index: 10;
+    }
+}
+
+.turing-license-link code {
+    color: $teal-license !important;
+    text-decoration: none !important;
+
+    &:hover {
+        color: lighten($teal-license, 5%) !important;
+    }
+}
+
+.citation-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid $btn-border-color;
+    background-color: lighten($panel-bg, 7%);
+    color: $text-muted;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    text-decoration: none;
+
+    svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+    }
+
+    &:hover {
+        background-color: lighten($panel-bg, 7%);
+        border-color: transparent;
+        color: $teal;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px $box-shadow-color;
+        text-decoration: none;
+    }
+
+    .citation-copied {
+        background-color: $green;
+        border-color: $green;
+        color: $panel-bg;
+        font-size: 1.2rem;
+        font-weight: bold;
+
+        &:hover {
+            background-color: $green;
+            border-color: $green;
+            color: $panel-bg;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+    }
+}
+
+.link-muted {
+    color: $text-muted;
+
+    &:hover {
+        color: $links-hover;
+        text-decoration: underline;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $links;
+
+    &:hover {
+        text-decoration: underline;
+        color: $links-hover;
+    }
+}

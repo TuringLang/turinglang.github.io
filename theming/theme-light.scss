@@ -1,31 +1,31 @@
 /*-- scss:defaults --*/
 
 @import "variables/grays";
-@import "variables/colors-dark";
+@import "variables/colors-light";
 @import "variables/borders";
 
 /*-- scss:rules --*/
 @import "rules/layouts";
+@import "rules/footer";
 @import "rules/news";
 @import "rules/team";
-@import "rules/footer";
 @import "rules/citations";
-@import "rules/quarto-tweaks";
 @import "rules/responsive";
-@import "rules/hoverables-dark";
+@import "rules/quarto-tweaks";
+@import "rules/hoverables-light";
 
 .hero-logo-light {
-    display: none;
-}
-
-.hero-logo-dark {
     display: block;
 }
 
+.hero-logo-dark {
+    display: none;
+}
+
 .custom-footer .brands-light-mode-logo {
-    display: none !important;
+    display: inline !important;
 }
 
 .custom-footer .brands-dark-mode-logo {
-    display: inline !important;
+    display: none !important;
 }

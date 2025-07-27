@@ -35,7 +35,7 @@ listing:
 :::: {.section-start-space}
 
 ### What is Turing.jl?
-<p class="text-muted">Turing.jl is a Julia library for general-purpose probabilistic programming.</p>
+<p>Turing.jl is a Julia library for general-purpose probabilistic programming.</p>
 
 ::::
 
@@ -65,12 +65,12 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 ::: {#start}
 
 ### Start Your Journey
-<p class="text-muted">Whether you're new to Bayesian modeling or an experienced researcher, find the resources you need.</p>
+<p>Whether you're new to Bayesian modeling or an experienced researcher, find the resources you need.</p>
 
 :::
 
 ```{=html}
-<a href="#cite" class="button btn desktop-only-button">Research Papers on Turing.jl &rarr;</a>
+<a href="#cite" class="button desktop-only-button">Research Papers on Turing.jl &rarr;</a>
 ```
 
 ::::
@@ -90,8 +90,8 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 ::: {.d-flex .flex-column .align-items-center .gap-2 .pt-3}
 ```{=html}
-<a href="https://turinglang.org/docs/getting-started/" class="button btn">Get Started</a>
-<a href="https://turinglang.org/docs/tutorials/coin-flipping/" class="text-muted" style="font-size: 0.9em;">Beginner's Walkthrough</a>
+<a href="https://turinglang.org/docs/getting-started/" class="button">Get Started</a>
+<a href="https://turinglang.org/docs/tutorials/coin-flipping/" class="link-muted" style="font-size: 0.9em;">Beginner's Walkthrough</a>
 ```
 :::
 
@@ -112,8 +112,8 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 ::: {.d-flex .flex-column .align-items-center .gap-2 .pt-3}
 
 ```{=html}
-<a href="/library" class="button btn">Explore Ecosystem</a>
-<a href="#cite" class="text-muted" style="font-size: 0.9em;">Cite Turing.jl</a>
+<a href="/library" class="button">Explore Ecosystem</a>
+<a href="#cite" class="link-muted" style="font-size: 0.9em;">Cite Turing.jl</a>
 ```
 
 :::
@@ -135,8 +135,8 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 ::: {.d-flex .flex-column .align-items-center .gap-2 .pt-3}
 
 ```{=html}
-<a href="https://github.com/TuringLang" class="button btn">View on GitHub</a>
-<a href="https://julialang.slack.com/archives/CCYDC34A0" class="text-muted" style="font-size: 0.9em;">Join the Slack Channel</a>
+<a href="https://github.com/TuringLang" class="button">View on GitHub</a>
+<a href="https://julialang.slack.com/archives/CCYDC34A0" class="link-muted" style="font-size: 0.9em;">Join the Slack Channel</a>
 ```
 :::
 
@@ -146,7 +146,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 ::: {.mobile-only-button-container}
 ```{=html}
-<a href="#cite" class="button btn">Research Papers on Turing.jl &rarr;</a>
+<a href="#cite" class="button">Research Papers on Turing.jl &rarr;</a>
 ```
 :::
 <!-- Start Your Journey Section Ends Here-->
@@ -157,12 +157,12 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 ::: {#core-packages-header-content}
 
 ### Core Packages {#core-packages}
-<p class="text-muted">The Turing ecosystem is built on a foundation of powerful, composable packages.</p>
+<p>The Turing ecosystem is built on a foundation of powerful, composable packages.</p>
 
 :::
 
 ```{=html}
-<a href="/library" class="button btn desktop-only-button">Explore Ecosystem &rarr;</a>
+<a href="/library" class="button desktop-only-button">Explore Ecosystem &rarr;</a>
 ```
 
 ::::
@@ -219,7 +219,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 ### News & Updates {#news-updates}
 
-<p class="text-muted">Read the latest from the Turing team.</p>
+<p>Read the latest from the Turing team.</p>
 
 :::
 
@@ -246,7 +246,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 ### Featured Tutorials {#featured-tutorials}
 
-<p class="text-muted">A selection of tutorials to get you started.</p>
+<p>A selection of tutorials to get you started.</p>
 
 :::
 ```{=html}

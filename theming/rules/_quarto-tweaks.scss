@@ -1,0 +1,49 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $text-color !important;
+}
+
+p {
+    color: $text-muted !important;
+}
+
+.sourceCode,
+code {
+    background-color: $code-block-bg !important;
+    color: $text-muted !important;
+    border-radius: $border-radius-sm;
+}
+
+.quarto-container {
+    background-color: $background-body;
+}
+
+.cell-output {
+    border: $border-width dashed;
+}
+
+.cell-output-stdout code {
+    word-break: break-word !important;
+    white-space: pre-wrap !important;
+}
+
+.cell-output-display {
+    svg {
+        height: fit-content;
+        width: fit-content;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+}
+
+.quarto-title-banner {
+    background-color: $navbar-bg !important;
+}
