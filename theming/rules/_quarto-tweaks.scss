@@ -5,6 +5,7 @@ h4,
 h5,
 h6 {
     color: $text-color !important;
+    border-bottom-color: $btn-border-color;
 }
 
 p {
@@ -42,6 +43,10 @@ code {
         max-height: 100%;
         object-fit: contain;
     }
+}
+
+.quarto-post {
+    border-bottom: 1px solid $btn-border-color !important
 }
 
 .quarto-title-banner {
