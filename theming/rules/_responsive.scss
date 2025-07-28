@@ -1,0 +1,142 @@
+@media (max-width: 1200px) {
+    .core-packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .custom-footer {
+        .footer-links-wrapper {
+            flex-basis: 100%;
+            justify-content: center;
+        }
+
+        .footer-grid {
+            justify-content: center;
+        }
+
+        .footer-brands {
+            flex-grow: 0;
+            text-align: center;
+
+            .logo-grid {
+                justify-content: center;
+            }
+        }
+
+        .footer-column {
+            flex-grow: 0;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .side-space {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .section-header .desktop-only-button {
+        display: none;
+    }
+
+    .mobile-only-button-container {
+        display: block;
+        margin-top: 0.3rem;
+        text-align: center;
+
+        .button {
+            display: inline-block;
+            width: auto;
+        }
+    }
+
+    .core-packages-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .unified-card {
+        flex-basis: 90%;
+    }
+
+    .unified-card-title {
+        font-size: 1.1rem;
+    }
+
+    .unified-card-text {
+        font-size: 0.9rem;
+    }
+
+    .unified-card-body {
+        padding: 1.25rem;
+        padding-bottom: 0%;
+    }
+
+    .unified-card-footer {
+        padding: 0.75rem 1.25rem;
+    }
+
+    .unified-card-meta {
+        gap: 0.15rem;
+    }
+
+    .citation-entry {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .citation-actions {
+        margin-top: 1rem;
+        align-self: flex-end;
+    }
+
+    .custom-footer .footer-bottom {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .unified-card-title {
+        font-size: 1rem;
+    }
+
+    .unified-card-text {
+        font-size: 0.85rem;
+    }
+
+    .custom-footer {
+        .footer-links-wrapper {
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        }
+
+        .footer-column {
+            width: 100%;
+            max-width: 350px;
+
+            a {
+                justify-content: center;
+            }
+        }
+        .partner-logo {
+            flex-basis: auto;
+            width: 100%;
+            max-width: 220px;
+        }
+
+        .footer-brands .logo-grid {
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+    }
+}

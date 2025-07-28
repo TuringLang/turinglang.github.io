@@ -1,0 +1,10 @@
+.team-member, .input-group-text {
+    background-color: $navbar-bg !important;
+}
+
+a.gsoc-report svg {
+    width: .6em;
+    height: .6em;
+    margin-left: 3px;
+    transform: translateY(0px)
+}

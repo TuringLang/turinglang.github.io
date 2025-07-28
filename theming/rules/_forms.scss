@@ -1,0 +1,24 @@
+.quarto-listing-sort, .quarto-listing-filter {
+  .input-group-text {
+    background-color: $background-body;
+    border-color: $btn-border-color;
+    color: $text-muted;
+  }
+
+  .form-select, .form-control {
+    background-color: $background-body;
+    border-color: $btn-border-color;
+    color: $text-color;
+
+    &:focus {
+      border-color: $links;
+      box-shadow: 0 0 0 0.25rem rgba($links, 0.25);
+      background-color: $background-body;
+      color: $text-color;
+    }
+  }
+
+  .form-select {
+    background-image: $form-select-bg-image;
+  }
+}
