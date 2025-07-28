@@ -10,7 +10,40 @@
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Fri, 11 Jul 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 25 Jul 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 11</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-07-25-newsletter-11/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><strong>Libtask and Turing.jl</strong></p>
+<p>The new versions of Libtask and AdvancedPS have now been integrated into Turing.jl proper. You shouldn’t see any changes, except that particle MCMC methods will now run a lot faster!</p>
+<p>(Do note that these won’t work on Julia 1.12 just yet as it is somewhat tightly coupled to Julia internals; we’re working on a fix but if you really want to use Turing on 1.12 right now you will have to stick to Turing ≤ 0.39.6.)</p>
+<p><strong>Progress bars</strong></p>
+<p>AbstractMCMC 5.7 is released with the new progress bars! By default you get a single progress bar (but with more frequent updates). You need to opt-in to per-chain progress bars with <code>sample(...; progress=:perchain)</code></p>
+<p><strong>ADTests categories</strong></p>
+<p><a href="https://turinglang.org/ADTests/">The list of models has been split up</a> into different sections to make it a bit easier to read. I’m keen to add more examples of integrations with other packages — if you have a Turing model that uses functionality from a different package inside it, please do get in touch with an example! (I’ll be adding things like DifferentialEquations, HiddenMarkovModels, and AbstractGPs soon, since those are already in our docs)</p>
+<p><strong>Community meetings</strong></p>
+<p>The Turing.jl developer team usually meet once every week; we’re thinking of opening some of these meetings to be public (perhaps once a month) and would like to gauge whether there’s any interest in this. Our current thinking is that these meetings would be something along the lines of:</p>
+<ul>
+<li>3 guests with 1 topic each, 10 minutes each: these would be user-submitted and could really be anything you wanted to talk about, e.g.&nbsp;how to write a model, what samplers to use, … And basic stuff is totally fine as that means more people get to learn how to do Bayesian modelling :)</li>
+<li>10 minutes from us on “where Turing is going”</li>
+<li>20 minutes free Q&amp;A</li>
+</ul>
+<p>If you would be interested in attending such a meeting or bringing along a topic, do <a href="https://julialang.slack.com/archives/CCYDC34A0/p1753712389947349">let us know on Slack</a>!</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-07-25-newsletter-11/</guid>
+  <pubDate>Fri, 25 Jul 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 10</title>
   <dc:creator>The TuringLang team</dc:creator>

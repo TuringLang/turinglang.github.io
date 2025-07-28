@@ -1,7 +1,12 @@
 [
   {
+    "listing": "/library/index.html",
+    "items": []
+  },
+  {
     "listing": "/news/index.html",
     "items": [
+      "/news/posts/2025-07-25-newsletter-11/index.html",
       "/news/posts/2025-07-11-newsletter-10/index.html",
       "/news/posts/2025-06-20-newsletter-9/index.html",
       "/news/posts/2025-06-06-newsletter-8/index.html",
@@ -19,10 +24,6 @@
       "/news/posts/2020-02-12-jsoc/index.html",
       "/news/posts/2019-12-14-initial-post/index.html"
     ]
-  },
-  {
-    "listing": "/library/index.html",
-    "items": []
   },
   {
     "listing": "/team/index.html",
