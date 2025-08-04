@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -45,9 +80,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-07466073a418ef3d6405af0322251624.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-2f3aa3b13ec983493c5cad3f360233b7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-07466073a418ef3d6405af0322251624.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-66f5f5b28ad12695aa8341caf6e58783.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-d2aaaceff48a4bbd3f5b150073c832ec.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-66f5f5b28ad12695aa8341caf6e58783.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -412,28 +447,66 @@ window.Quarto = {
 </div>
 </div>
 <!-- Header End Here -->
-<!-- Feature Boxes -->
-<section id="what-is-turing.jl" class="section-start-space">
+<!-- What is Turing.jl Section -->
+<div class="section-start-space section-end-space">
+<section id="what-is-turing.jl" class="text-center">
 <h3>What is Turing.jl?</h3>
-<p>
-Turing.jl is a Julia library for general-purpose probabilistic programming.
-</p>
+<p>Turing.jl is a Julia library for general-purpose probabilistic programming.</p>
 </section>
-<div class="d-flex flex-row flex-wrap panel-wrapper gap-4 section-end-space">
-<section id="expressive" class="panel-title pb-1 panel box">
-<h5 class="panel-title pb-1">Expressive</h5>
-<p>Turing models are easy to write and communicate, with syntax that is close to the mathematical specification of the model.</p>
-</section>
-<section id="general-purpose" class="panel-title pb-1 panel box">
-<h5 class="panel-title pb-1">General-purpose</h5>
-<p>Turing supports models with discrete parameters and stochastic control flow.</p>
-</section>
-<section id="composable" class="panel-title pb-1 panel box">
-<h5 class="panel-title pb-1">Composable</h5>
-<p>Turing is written entirely in Julia, and is interoperable with its powerful ecosystem.</p>
-</section>
+<div class="what-is-turing-grid section-start-space">
+<div class="feature-text-column">
+<div class="feature-item">
+<div class="feature-item-header">
+<span class="feature-icon icon-expressive"></span>
+<h5 id="expressive">Expressive</h5>
 </div>
-<!-- Feature Boxes Ends Here -->
+<p>Turing models are easy to write and communicate, with syntax that is close to the mathematical specification of the model.</p>
+</div>
+<div class="feature-item">
+<div class="feature-item-header">
+<span class="feature-icon icon-general-purpose"></span>
+<h5 id="general-purpose">General-purpose</h5>
+</div>
+<p>Turing supports models with discrete parameters and stochastic control flow.</p>
+</div>
+<div class="feature-item">
+<div class="feature-item-header">
+<span class="feature-icon icon-composable"></span>
+<h5 id="composable">Composable</h5>
+</div>
+<p>Turing is written entirely in Julia, and is interoperable with its powerful ecosystem.</p>
+</div>
+</div>
+<div class="code-example-column">
+<div class="code-window box">
+<div class="code-window-header">
+<div class="code-window-dots">
+<span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+</div>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-overflow-scroll code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Turing</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">linear_regression</span>(x)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Priors</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    α <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    β <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    σ² <span class="op">~</span> <span class="fu">truncated</span>(<span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>), lower<span class="op">=</span><span class="fl">0</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Likelihood</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    μ <span class="op">=</span> α <span class="op">.+</span> β <span class="op">.*</span> x</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    y <span class="op">~</span> <span class="fu">MvNormal</span>(μ, σ² <span class="op">*</span> I)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (; y, α, β, σ², μ)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">10</span>), <span class="fu">rand</span>(<span class="fl">10</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> <span class="fu">linear_regression</span>(x) <span class="op">|</span> (;y <span class="op">=</span> y)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>chains <span class="op">=</span> <span class="fu">sample</span>(posterior, <span class="fu">NUTS</span>(), <span class="fl">1000</span>, progress<span class="op">=</span><span class="cn">false</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<!-- What is Turing.jl Section Ends Here -->
 <!-- Start Your Journey Section -->
 <div class="section-header section-start-space">
 <div id="start">
