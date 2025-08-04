@@ -32,14 +32,7 @@ listing:
 <!-- Header End Here -->
 
 <!-- What is Turing.jl Section -->
-:::: {.section-start-space .section-end-space}
-
-::: {.text-center}
-### What is Turing.jl?
-Turing.jl is a Julia library for general-purpose probabilistic programming.
-:::
-
-::: {.what-is-turing-grid .section-start-space}
+::: {.what-is-turing-grid .section-start-space .section-end-space}
 
 ::: {.feature-text-column}
 
@@ -88,6 +81,14 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 :::
 
+::: {.feature-cta-button}
+
+```{=html}
+<a href="https://turinglang.org/docs/getting-started/" class="button btn-lg button--fill">Get Started</a>
+```
+
+:::
+
 :::
 
 ::: {.code-example-column}
@@ -127,7 +128,6 @@ chains = sample(posterior, NUTS(), 1000, progress=false)
 :::
 
 :::
-::::
 <!-- What is Turing.jl Section Ends Here -->
 
 

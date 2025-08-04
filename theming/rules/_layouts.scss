@@ -26,13 +26,6 @@
     margin-right: auto;
 }
 
-.hero-cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
 /* General Layout Styles */
 .btn-lg {
     padding: 14px 32px;
@@ -165,6 +158,11 @@
         line-height: 1.6;
         margin-bottom: 0;
     }
+}
+
+.feature-cta-button {
+  margin-top: 2rem;
+  text-align: center;
 }
 
 .code-example-column {
