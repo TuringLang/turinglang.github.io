@@ -80,9 +80,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-234273d1456647dabc34a594ac50e507.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-66f5f5b28ad12695aa8341caf6e58783.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-d2aaaceff48a4bbd3f5b150073c832ec.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-66f5f5b28ad12695aa8341caf6e58783.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bc4a2bc48e4d88d38498e4b4dfd44ee5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-522f6797307a2973e8d8636db3313b33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-bc4a2bc48e4d88d38498e4b4dfd44ee5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -439,21 +439,12 @@ window.Quarto = {
     <img src="./assets/logo/turing-logo-light.svg" alt="Turing Logo" class="hero-logo hero-logo-light">
     <img src="./assets/logo/turing-logo-dark.svg" alt="Turing Logo" class="hero-logo hero-logo-dark">
     <p class="hero-subtitle">Bayesian inference with probabilistic programming</p>
-    <div class="hero-cta-buttons">
-      <a href="https://turinglang.org/docs/getting-started/" class="button btn-lg button--fill">Get Started</a>
-      <a href="https://github.com/TuringLang/Turing.jl" class="button btn-lg">View on GitHub</a>
-    </div>
   </div>
 </div>
 </div>
 <!-- Header End Here -->
 <!-- What is Turing.jl Section -->
-<div class="section-start-space section-end-space">
-<section id="what-is-turing.jl" class="text-center">
-<h3>What is Turing.jl?</h3>
-<p>Turing.jl is a Julia library for general-purpose probabilistic programming.</p>
-</section>
-<div class="what-is-turing-grid section-start-space">
+<div class="what-is-turing-grid section-start-space section-end-space">
 <div class="feature-text-column">
 <div class="feature-item">
 <div class="feature-item-header">
@@ -475,6 +466,9 @@ window.Quarto = {
 <h5 id="composable">Composable</h5>
 </div>
 <p>Turing is written entirely in Julia, and is interoperable with its powerful ecosystem.</p>
+</div>
+<div class="feature-cta-button">
+<a href="https://turinglang.org/docs/getting-started/" class="button btn-lg button--fill">Get Started</a>
 </div>
 </div>
 <div class="code-example-column">
@@ -502,7 +496,6 @@ window.Quarto = {
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">10</span>), <span class="fu">rand</span>(<span class="fl">10</span>)</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> <span class="fu">linear_regression</span>(x) <span class="op">|</span> (;y <span class="op">=</span> y)</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>chains <span class="op">=</span> <span class="fu">sample</span>(posterior, <span class="fu">NUTS</span>(), <span class="fl">1000</span>, progress<span class="op">=</span><span class="cn">false</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </div>
 </div>
 </div>
