@@ -5,6 +5,16 @@
 }
 
 @media (max-width: 992px) {
+    .what-is-turing-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    /* This prevents the code block's column from overflowing the page on mobile */
+    .code-example-column {
+        min-width: 0;
+    }
+
     .custom-footer {
         .footer-links-wrapper {
             flex-basis: 100%;
@@ -50,7 +60,6 @@
         display: block;
         margin-top: 0.3rem;
         text-align: center;
-
         .button {
             display: inline-block;
             width: auto;

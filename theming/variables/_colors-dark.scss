@@ -1,7 +1,5 @@
 $teal: #4db6ac;
 $green: #229954;
-
-// This is very similar to the "normal" teal. Can we collapse those into the same?
 $teal-license: #34b8bf;
 
 $links: $teal-license;
@@ -9,11 +7,14 @@ $links-hover: lighten($links, 10%);
 
 $box-shadow-color: rgba(0, 0, 0, 0.4);
 
-$code-block-bg: #212529;
-
-$panel-bg: $gray-900;
-
+// Set the main page background color
 $background-body: #1c2128;
+
+// Use the main page background for code blocks to ensure consistency
+$code-block-bg: $background-body;
+
+// Define the background for panels, making them stand out slightly
+$panel-bg: $gray-900;
 
 $body-bg: $background-body;
 $navbar-bg: lighten($background-body, 2%);

@@ -31,33 +31,105 @@ listing:
 :::
 <!-- Header End Here -->
 
-<!-- Feature Boxes -->
-:::: {.section-start-space}
+<!-- What is Turing.jl Section -->
+:::: {.section-start-space .section-end-space}
 
+::: {.text-center}
 ### What is Turing.jl?
-<p>Turing.jl is a Julia library for general-purpose probabilistic programming.</p>
+Turing.jl is a Julia library for general-purpose probabilistic programming.
+:::
 
-::::
+::: {.what-is-turing-grid .section-start-space}
 
-::::: {.d-flex .flex-row .flex-wrap .panel-wrapper .gap-4 .section-end-space}
+::: {.feature-text-column}
 
-::: {.panel .box}
-##### Expressive {.panel-title .pb-1}
+::: {.feature-item}
+::: {.feature-item-header}
+
+```{=html}
+<span class="feature-icon icon-expressive"></span>
+```
+
+##### Expressive
+
+:::
+
 Turing models are easy to write and communicate, with syntax that is close to the mathematical specification of the model.
+
 :::
 
-::: {.panel .box}
-##### General-purpose {.panel-title .pb-1}
+::: {.feature-item}
+::: {.feature-item-header}
+
+```{=html}
+<span class="feature-icon icon-general-purpose"></span>
+```
+
+##### General-purpose
+
+:::
+
 Turing supports models with discrete parameters and stochastic control flow.
+
 :::
 
-::: {.panel .box}
-##### Composable {.panel-title .pb-1}
+::: {.feature-item}
+::: {.feature-item-header}
+
+```{=html}
+<span class="feature-icon icon-composable"></span>
+```
+
+##### Composable
+
+:::
+
 Turing is written entirely in Julia, and is interoperable with its powerful ecosystem.
+
 :::
 
-:::::
-<!-- Feature Boxes Ends Here -->
+:::
+
+::: {.code-example-column}
+::: {.code-window .box}
+::: {.code-window-header}
+::: {.code-window-dots}
+
+```{=html}
+<span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+```
+
+:::
+:::
+
+```{.julia .code-overflow-scroll}
+using Turing
+
+@model function linear_regression(x)
+    # Priors
+    α ~ Normal(0, 1)
+    β ~ Normal(0, 1)
+    σ² ~ truncated(Normal(0, 1), lower=0)
+
+    # Likelihood
+    μ = α .+ β .* x
+    y ~ MvNormal(μ, σ² * I)
+
+    return (; y, α, β, σ², μ)
+end
+
+x, y = rand(10), rand(10)
+posterior = linear_regression(x) | (;y = y)
+chains = sample(posterior, NUTS(), 1000, progress=false)
+```
+
+:::
+:::
+
+:::
+::::
+<!-- What is Turing.jl Section Ends Here -->
+
 
 <!-- Start Your Journey Section -->
 :::: {.section-header .section-start-space}
