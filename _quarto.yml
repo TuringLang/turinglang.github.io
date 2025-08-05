@@ -16,6 +16,7 @@ website:
   open-graph:
     title: "The Turing Language"
     locale: en_GB
+    image: pr-previews/119/assets/logo/turing-text-logo.jpg
   twitter-card:
     creator: "@Hong_Ge2"
     site: "@TuringLang"
