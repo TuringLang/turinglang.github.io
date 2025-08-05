@@ -191,6 +191,15 @@
     gap: 0.55rem;
   }
   
+  .code-window-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: $text-muted;
+    font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+    font-size: 0.8rem;
+  }
+
   .dot {
     width: 13px;
     height: 13px;
