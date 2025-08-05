@@ -104,7 +104,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 ::: {.code-window-title}
 ```{=html}
-<span>~/linear_regression.jl</span>
+<span>linear_regression.jl</span>
 ```
 :::
 
