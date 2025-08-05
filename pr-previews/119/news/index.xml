@@ -9,6 +9,11 @@
 <link>https://turinglang.org/news/</link>
 <atom:link href="https://turinglang.org/news/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
+<image>
+<url>https://turinglang.org/assets/logo/turing-text-logo.svg</url>
+<title>Turing.jl</title>
+<link>https://turinglang.org/news/</link>
+</image>
 <generator>quarto-1.7.32</generator>
 <lastBuildDate>Fri, 11 Jul 2025 00:00:00 GMT</lastBuildDate>
 <item>
