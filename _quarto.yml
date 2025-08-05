@@ -10,7 +10,7 @@ website:
   title: "Turing.jl"
   site-url: https://turinglang.org
   description: "Turing.jl is a probabilistic programming language and Bayesian modelling framework for the Julia programming language."
-  image: assets/logo/turing-text-logo.svg
+  image: pr-previews/119/assets/logo/turing-text-logo.jpg
   favicon: "assets/favicon.ico"
 
   open-graph:
