@@ -10,6 +10,7 @@ website:
   title: "Turing.jl"
   site-url: https://turinglang.org
   site-path: "/"
+  image: assets/logo/turing-text-logo.svg
   favicon: "assets/favicon.ico"
   search: 
     location: navbar
