@@ -13,7 +13,6 @@ website:
   image: assets/logo/turing-text-logo.svg
   favicon: "assets/favicon.ico"
 
-  # Enable Open Graph and Twitter Cards for better social sharing
   open-graph:
     title: "The Turing Language"
     locale: en_GB
