@@ -104,7 +104,7 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 ::: {.code-window-title}
 ```{=html}
-<span>~/linear_regression.jl</span>
+<span>linear_regression.jl</span>
 ```
 :::
 
@@ -124,12 +124,11 @@ using Turing
     μ = α .+ β .* x
     y ~ MvNormal(μ, σ² * I)
 
-    return (; y, α, β, σ², μ)
 end
 
 x, y = rand(10), rand(10)
-posterior = linear_regression(x) | (;y = y)
-chains = sample(posterior, NUTS(), 1000, progress=false)
+posterior = linear_regression(x) | (; y = y)
+chain = sample(posterior, NUTS(), 1000)
 ```
 
 :::
