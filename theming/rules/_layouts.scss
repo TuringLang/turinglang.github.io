@@ -171,7 +171,7 @@
     overflow: hidden; 
     
     &:hover {
-        transform: translateY(-2px);
+        transform: none;
         box-shadow: 0 6px 22px darken($box-shadow-color, 40%);
         border: 1px solid $btn-border-color;
     }
