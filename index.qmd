@@ -123,7 +123,6 @@ using Turing
     # Likelihood
     μ = α .+ β .* x
     y ~ MvNormal(μ, σ² * I)
-
 end
 
 x, y = rand(10), rand(10)
