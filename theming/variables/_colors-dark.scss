@@ -1,0 +1,35 @@
+$teal: #4db6ac;
+$green: #229954;
+$teal-license: #34b8bf;
+
+$links: $teal-license;
+$links-hover: lighten($links, 10%);
+
+$box-shadow-color: rgba(0, 0, 0, 0.4);
+
+// Set the main page background color
+$background-body: #1c2128;
+
+// Use the main page background for code blocks to ensure consistency
+$code-block-bg: $background-body;
+
+// Define the background for panels, making them stand out slightly
+$panel-bg: $gray-900;
+
+$body-bg: $background-body;
+$navbar-bg: lighten($background-body, 2%);
+$navbar-color: $white;
+
+$btn-border-color: $gray-700;
+
+$text-color: $white;
+$text-muted: $gray-500;
+
+$body-color: $white;
+$navbar-fg: $white;
+$footer-fg: $white;
+
+$deprecated-fg: #f5c6cb;
+$deprecated-bg: #491217;
+
+$form-select-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23adb5bd' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");

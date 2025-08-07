@@ -1,0 +1,59 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $text-color !important;
+    border-bottom-color: $btn-border-color;
+}
+
+p {
+    color: $text-muted !important;
+}
+
+.sourceCode,
+code {
+    background-color: $code-block-bg !important;
+    color: $text-muted !important;
+    border-radius: $border-radius-sm;
+}
+
+.quarto-container {
+    background-color: $background-body;
+}
+
+.cell-output {
+    border: $border-width dashed;
+}
+
+.cell-output-stdout code {
+    word-break: break-word !important;
+    white-space: pre-wrap !important;
+}
+
+.cell-output-display {
+    svg {
+        height: fit-content;
+        width: fit-content;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+}
+
+.quarto-post {
+    border-bottom: 1px solid $btn-border-color !important
+}
+
+.quarto-title-banner {
+    background-color: $navbar-bg !important;
+}
+
+.tooltip {
+    --bs-tooltip-color: $black !important;
+    --bs-tooltip-bg: $white !important;
+}

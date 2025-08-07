@@ -1,0 +1,51 @@
+.quarto-post {
+  padding: 1.25rem 0.5rem;
+  border: none;
+  border-bottom: 1px solid $btn-border-color;
+  border-radius: 0;
+  transition: none;
+
+  &:hover {
+    .listing-title a {
+      color: $links-hover;
+    }
+  }
+}
+
+.listing-title a {
+  text-decoration: none;
+  color: $text-color;
+  transition: color 0.2s ease;
+}
+
+.listing-description p {
+  color: $text-muted;
+}
+
+.metadata a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.listing-category {
+  background-color: $btn-border-color !important;
+  color: $text-muted !important;
+  margin-top: 0.25rem !important;
+  border: none !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: $links !important;
+    color: $panel-bg !important;
+  }
+}
+
+.quarto-listing-category .category.active {
+    font-weight: bold;
+    color: $links;
+}
+
+.quarto-listing-category .category:not(.active):hover {
+    color: $links-hover;
+    cursor: pointer;
+}

@@ -1,55 +1,336 @@
 ---
-# pagetitle: "Turing"
+pagetitle: The Turing Language
 toc: false
 page-layout: custom
 section-divs: false
 hide-description: true
 description: |
   Turing.jl is a probabilistic programming language and Bayesian modelling framework for the Julia programming language.
+listing:
+  - id: news-and-updates
+    contents: "news/posts/*/index.qmd"
+    template: _includes/card-listing.ejs
+    sort: "date desc"
+    max-items: 6
+    include:
+      on_landing: true
+  - id: featured-tutorials
+    contents: 
+      - "./_includes/featured-tutorials.yml"
+    template: _includes/card-listing.ejs
+    max-items: 6
 ---
 
-::: {.hero-banner}
-::: {.grid}
-::: {.g-col-1}
+:::::: {.side-space}
+
+<!-- Header -->
+::: {.logo-header}
+
+{{< include _includes/header.qmd >}}
+
 :::
-::: {.g-col-8}
+<!-- Header End Here -->
 
-# Turing.jl: Bayesian inference with probabilistic programming. 
+<!-- What is Turing.jl Section -->
+::: {.what-is-turing-grid .section-start-space .section-end-space}
 
-### Intuitive
-Turing models are easy to write and communicate — syntax is close to mathematical notations. 
+::: {.feature-text-column}
 
-### General-purpose
-Turing supports models with discrete parameters and stochastic control flow. 
+::: {.feature-item}
+::: {.feature-item-header}
 
-### Modular and composable 
-Turing is modular, written entirely in Julia, and is interoperable with the powerful Julia ecosystem. 
+```{=html}
+<span class="feature-icon icon-expressive"></span>
+```
 
-
-::: {.hero-buttons style="position: relative; display: flex; justify-content: center;"}
-[Get Started]({{< meta get-started >}}){.btn-action-primary .btn-action .btn .btn-lg role="button" style="background-color: #073c44; color: white"}
-:::
-
-::: {.g-col-3}
-:::
-:::
-:::
+##### Expressive
 
 :::
 
-::: {style="position: relative; display: flex; justify-content: center;"}
-::: {.grid}
-::: {.g-col-1}
-:::
-::: {.g-col-8}
-## Community Resources
-
-The Turing.jl [discourse forum](https://discourse.julialang.org/c/domain/probprog) provides support and discussion for all user levels.
-The [Turing.jl documentation]({{< meta get-started >}}) and [official tutorials]({{< meta tutorials-intro >}}) help users learn and use Turing.jl!
-There's also a [tutorial in Bayesian Statistics using Julia and Turing.jl](https://storopoli.io/Bayesian-Julia).
+Turing models are easy to write and communicate, with syntax that is close to the mathematical specification of the model.
 
 :::
-::: {.g-col-3}
+
+::: {.feature-item}
+::: {.feature-item-header}
+
+```{=html}
+<span class="feature-icon icon-general-purpose"></span>
+```
+
+##### General-purpose
+
+:::
+
+Turing supports models with discrete parameters and stochastic control flow.
+
+:::
+
+::: {.feature-item}
+::: {.feature-item-header}
+
+```{=html}
+<span class="feature-icon icon-composable"></span>
+```
+
+##### Composable
+
+:::
+
+Turing is written entirely in Julia, and is interoperable with its powerful ecosystem.
+
+:::
+
+::: {.feature-cta-button}
+
+```{=html}
+<a href="https://turinglang.org/docs/getting-started/" class="button btn-lg button--fill">Get Started</a>
+```
+
+:::
+
+:::
+
+::: {.code-example-column}
+::: {.code-window .box}
+::: {.code-window-header}
+::: {.code-window-dots}
+
+```{=html}
+<span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+```
+
+:::
+
+::: {.code-window-title}
+```{=html}
+<span>linear_regression.jl</span>
+```
+:::
+
+
+:::
+
+```{.julia .code-overflow-scroll}
+using Turing
+
+@model function linear_regression(x)
+    # Priors
+    α ~ Normal(0, 1)
+    β ~ Normal(0, 1)
+    σ² ~ truncated(Normal(0, 1), lower=0)
+
+    # Likelihood
+    μ = α .+ β .* x
+    y ~ MvNormal(μ, σ² * I)
+
+end
+
+x, y = rand(10), rand(10)
+posterior = linear_regression(x) | (; y = y)
+chain = sample(posterior, NUTS(), 1000)
+```
+
 :::
 :::
+
 :::
+<!-- What is Turing.jl Section Ends Here -->
+
+
+<!-- Start Your Journey Section -->
+:::: {.section-header .section-start-space}
+
+::: {#start}
+
+### Start Your Journey
+<p>Whether you're new to Bayesian modeling or an experienced researcher, find the resources you need.</p>
+
+:::
+
+```{=html}
+<a href="#cite" class="button desktop-only-button">Research Papers on Turing.jl &rarr;</a>
+```
+
+::::
+
+::::: {.d-flex .flex-row .flex-wrap .panel-wrapper .gap-4 .section-end-space}
+
+:::: {.panel .box}
+
+##### New to Turing? {.panel-title .text-center}
+<p>Begin with the basics. Our step-by-step tutorials will guide you from installation to your first probabilistic models.</p>
+
+::: {.d-flex .flex-column .align-items-center .gap-2 .pt-3}
+```{=html}
+<a href="https://turinglang.org/docs/getting-started/" class="button">Get Started</a>
+<a href="https://turinglang.org/docs/tutorials/coin-flipping/" class="link-muted" style="font-size: 0.9em;">Beginner's Walkthrough</a>
+```
+:::
+
+::::
+
+:::: {.panel .box}
+
+##### For Researchers {.panel-title .text-center}
+
+<p>Dive into advanced models, explore the rich package ecosystem, and learn how to cite Turing.jl in your work.</p>
+
+::: {.d-flex .flex-column .align-items-center .gap-2 .pt-3}
+
+```{=html}
+<a href="/library" class="button">Explore Ecosystem</a>
+<a href="#cite" class="link-muted" style="font-size: 0.9em;">Cite Turing.jl</a>
+```
+
+:::
+
+::::
+
+:::: {.panel .box}
+
+##### For Developers {.panel-title .text-center}
+
+<p>Join our community, contribute to the project on GitHub, and connect with fellow developers on Slack.</p>
+
+::: {.d-flex .flex-column .align-items-center .gap-2 .pt-3}
+
+```{=html}
+<a href="https://github.com/TuringLang" class="button">View on GitHub</a>
+<a href="https://julialang.slack.com/archives/CCYDC34A0" class="link-muted" style="font-size: 0.9em;">Join the Slack Channel</a>
+```
+:::
+
+::::
+
+:::::
+
+::: {.mobile-only-button-container}
+```{=html}
+<a href="#cite" class="button">Research Papers on Turing.jl &rarr;</a>
+```
+:::
+<!-- Start Your Journey Section Ends Here-->
+
+<!-- Core Packages Section -->
+:::: {.section-header .section-start-space}
+
+::: {#core-packages-header-content}
+
+### Core Packages {#core-packages}
+<p>The Turing ecosystem is built on a foundation of powerful, composable packages.</p>
+
+:::
+
+```{=html}
+<a href="/library" class="button desktop-only-button">Explore Ecosystem &rarr;</a>
+```
+
+::::
+
+::::: {.core-packages-grid .section-end-space}
+
+::: {.package-card .box #core-card}
+
+##### [DynamicPPL.jl <i class="bi bi-box-arrow-up-right" style="font-size: 0.4em;"></i>](https://turinglang.org/DynamicPPL.jl/){.panel-title}
+
+<p>A domain-specific language and backend for probabilistic programming languages, used by [Turing.jl.](https://github.com/TuringLang/Turing.jl)</p>
+
+:::
+
+::: {.package-card .box #core-card}
+
+##### [JuliaBUGS.jl <i class="bi bi-box-arrow-up-right" style="font-size: 0.4em;"></i>](https://turinglang.org/JuliaBUGS.jl/){.panel-title}
+
+<p>A modern implementation of the [BUGS](https://en.wikipedia.org/wiki/Bayesian_inference_using_Gibbs_sampling) probabilistic programming language in Julia.</p>
+
+:::
+
+::: {.package-card .box #core-card}
+
+##### [TuringGLM.jl <i class="bi bi-box-arrow-up-right" style="font-size: 0.4em;"></i>](https://turinglang.org/TuringGLM.jl/){.panel-title}
+
+<p>Bayesian Generalized Linear models using [`@formula`](https://turinglang.org/TuringGLM.jl/stable/#@formula) syntax and returns an instantiated [Turing](https://github.com/TuringLang/Turing.jl) model.</p>
+
+:::
+
+
+::: {.package-card .box #core-card}
+
+##### [AdvancedHMC.jl <i class="bi bi-box-arrow-up-right" style="font-size: 0.4em;"></i>](https://turinglang.org/AdvancedHMC.jl/){.panel-title}
+
+<p>A robust, modular and efficient implementation of advanced HMC algorithms. ([abs](https://proceedings.mlr.press/v118/xu20a.html), [pdf](https://proceedings.mlr.press/v118/xu20a/xu20a.pdf))</p>
+
+:::
+
+:::::
+
+::: {.mobile-only-button-container}
+```{=html}
+<a href="/library" class="button btn">Explore Ecosystem &rarr;</a>
+```
+:::
+<!-- Core Packages Section Ends Here-->
+
+
+<!-- News & Updates Section -->
+:::: {.section-header .section-start-space}
+
+::: {#news}
+
+### News & Updates {#news-updates}
+
+<p>Read the latest from the Turing team.</p>
+
+:::
+
+```{=html}
+<a href="news/" class="button desktop-only-button">View more &rarr;</a>
+```
+::::
+
+::: {#news-and-updates}
+:::
+
+::: {.mobile-only-button-container}
+```{=html}
+<a href="news/" class="button">View more &rarr;</a>
+```
+:::
+<!-- News & Updates Section Ends Here-->
+
+
+<!-- Featured Tutorials Section -->
+::: {.section-header .section-start-space}
+
+::: {#tutorials}
+
+### Featured Tutorials {#featured-tutorials}
+
+<p>A selection of tutorials to get you started.</p>
+
+:::
+```{=html}
+<a href="https://turinglang.org/docs/tutorials/" class="button desktop-only-button">View all tutorials &rarr;</a>
+```
+:::
+
+::: {#featured-tutorials}
+:::
+
+::: {.mobile-only-button-container}
+```{=html}
+<a href="https://turinglang.org/docs/tutorials/" class="button">View all tutorials &rarr;</a>
+```
+:::
+<!-- Featured Tutorials Section End Here -->
+
+<!-- Citations Section -->
+<div class="section-start-space section-end-space">
+
+{{< include _includes/citation/cite.qmd >}}
+
+</div>
+<!-- Citations Section Ends Here-->
+
+::::::

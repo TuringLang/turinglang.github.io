@@ -1,0 +1,223 @@
+<!-- TODO: Add a better citations (maybe publication system) to list research work of all Turing ecosystem packages ) -->
+
+```{=html}
+<div class="citation-container">
+  <h3 id="cite" class="pb-1 text-center">Turing.jl is an <a href="https://github.com/TuringLang/Turing.jl/blob/main/LICENCE" class="turing-license-link"><code>MIT</code></a> Licensed Open Source Project</h3>
+  <p class="text-center">If you use Turing.jl in your research, please consider citing our papers.</p>
+
+  <ul id="citation-list" class="citation-list">
+    <!-- Citations will be dynamically injected here -->
+  </ul>
+</div>
+
+<style>
+.citation-icon-btn[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 108%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    white-space: nowrap;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    transform: translateX(-50%) translateY(5px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.citation-icon-btn[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.citation-icon-btn {
+    position: relative;
+}
+</style>
+
+<script>
+// DATA: Add new BibTeX entries here
+const bibtexData = [
+`@article{10.1145/3711897,
+  author = {Fjelde, Tor Erlend and Xu, Kai and Widmann, David and Tarek, Mohamed and Pfiffer, Cameron and Trapp, Martin and Axen, Seth D. and Sun, Xianda and Hauru, Markus and Yong, Penelope and Tebbutt, Will and Ghahramani, Zoubin and Ge, Hong},
+  title = {Turing.jl: a general-purpose probabilistic programming language},
+  year = {2025},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/3711897},
+  doi = {10.1145/3711897},
+  abstract = {Probabilistic programming languages (PPLs) are becoming increasingly important in many scientific disciplines, such as economics, epidemiology, and biology, to extract meaning from sources of data while accounting for one's uncertainty. The key idea of probabilistic programming is to decouple inference and model specification, thus allowing the practitioner to approach their task at hand using Bayesian inference, without requiring extensive knowledge in programming or computational statistics. At the same time, the complexity of problem settings in which PPLs are employed is steadily increasing, both in terms of project size and model complexity, calling for more flexible and efficient systems. In this work, we describe Turing.jl, a general-purpose PPL, which is designed to be flexible, efficient, and easy to use. Turing.jl is built on top of the Julia programming language, which is known for its high performance and ease-of-use. We describe the design of Turing.jl, contextualizing it within different types of users and use cases, its key features, and how it can be used to solve a wide range of problems. We also provide a brief overview of the ecosystem around Turing.jl, including the different libraries and tools that can be used in conjunction with it. Finally, we provide a few examples of how Turing.jl can be used in practice.},
+  note = {Just Accepted},
+  journal = {ACM Trans. Probab. Mach. Learn.},
+  month = feb,
+  keywords = {Probabilistic Programming, Probabilistic Programming Languages, Probabilistic Inference, Bayesian Inference, Markov Chain Monte Carlo, Variational Inference, Sequential Monte Carlo, Uncertainty Quantification, Modeling Methodologies, Latent Variable Models, Maximum a Posteriori Modeling, Software Libraries and Repositories, Bayesian Computation, Variational Methods, Sequential Monte Carlo Methods}
+}`,
+`@InProceedings{pmlr-v84-ge18b,
+  title = {Turing: A Language for Flexible Probabilistic Inference},
+  author = {Ge, Hong and Xu, Kai and Ghahramani, Zoubin},
+  booktitle = {Proceedings of the Twenty-First International Conference on Artificial Intelligence and Statistics},
+  pages = {1682--1690},
+  year = {2018},
+  editor = {Storkey, Amos and Perez-Cruz, Fernando},
+  volume = {84},
+  series = {Proceedings of Machine Learning Research},
+  month = {09--11 Apr},
+  publisher = {PMLR},
+  pdf = {http://proceedings.mlr.press/v84/ge18b/ge18b.pdf},
+  url = {https://proceedings.mlr.press/v84/ge18b.html},
+  abstract = {Probabilistic programming promises to simplify and democratize probabilistic machine learning, but successful probabilistic programming systems require flexible, generic and efficient inference engines. In this work, we present a system called Turing for building MCMC algorithms for probabilistic programming inference. Turing has a very simple syntax and makes full use of the numerical capabilities in the Julia programming language, including all implemented probability distributions, and automatic differentiation. Turing supports a wide range of popular Monte Carlo algorithms, including Hamiltonian Monte Carlo (HMC), HMC with No-U-Turns (NUTS), Gibbs sampling, sequential Monte Carlo (SMC), and several particle MCMC (PMCMC) samplers. Most importantly, Turing inference is composable: it combines MCMC operations on subsets of variables, for example using a combination of an HMC engine and a particle Gibbs (PG) engine. We explore several combinations of inference methods with the aim of finding approaches that are both efficient and universal, i.e. applicable to arbitrary probabilistic models. NUTS—a popular variant of HMC that adapts Hamiltonian simulation path length automatically, although quite powerful for exploring differentiable target distributions, is however not universal. We identify some failure modes for the NUTS engine, and demonstrate that composition of PG (for discrete variables) and NUTS (for continuous variables) can be useful when the NUTS engine is either not applicable, or simply does not work well. Our aim is to present Turing and its composable inference engines to the world and encourage other researchers to build on this system to help advance the field of probabilistic machine learning.}
+}`
+];
+
+/**
+ * A BibTeX parser.
+ * Extracts key-value pairs from a BibTeX string.
+ * @param {string} bibtex - The raw BibTeX string.
+ * @returns {object} - An object with parsed data.
+ */
+function parseBibtex(bibtex) {
+    const data = { raw: bibtex };
+    const regex = /(\w+)\s*=\s*[\{"']([^"'}]+)[\}"']/g;
+    let match;
+    while ((match = regex.exec(bibtex)) !== null) {
+        data[match[1].toLowerCase()] = match[2];
+    }
+    return data;
+}
+
+/**
+ * Creates an HTML string for a single citation entry.
+ * @param {object} bibData - The parsed BibTeX data.
+ * @returns {string} - The HTML string for the list item.
+ */
+function generateCitationHTML(bibData) {
+    const { author, title, journal, booktitle, year, note, url, doi, raw } = bibData;
+
+    let publicationInfo = '';
+    if (journal) {
+        publicationInfo += `<em>${journal}</em>.`;
+    } else if (booktitle) {
+        publicationInfo += `In <em>${booktitle}</em>.`;
+    }
+    if (note) {
+        publicationInfo += ` ${note}.`;
+    }
+
+    const viewUrl = url || (doi ? `https://doi.org/${doi}` : '#');
+
+    // The author string is now used directly from the bibtex data without formatting.
+    const authorsFormatted = author || 'N/A';
+
+    return `
+    <li class="citation-entry box">
+      <div class="citation-content">
+        <p class="citation-text">
+          ${authorsFormatted} (${year}). <span class="citation-title">${title}.</span> ${publicationInfo}
+        </p>
+      </div>
+      <div class="citation-actions">
+          <a href="${viewUrl}" target="_blank" rel="noopener noreferrer" class="citation-icon-btn" aria-label="View Paper: ${title}" title="View Paper" data-tooltip="View Paper">
+            <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+          <button class="citation-icon-btn copy-bibtex-btn" aria-label="Copy BibTeX for ${title}" title="Copy BibTeX" data-tooltip="Copy BibTeX">
+          <!-- Custom SVG for citation icon -->
+          <svg fill="currentColor" height="135px" width="135px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 191.029 191.029" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M44.33,88.474v15.377h38.417v82.745H0v-82.745h0.002V88.474c0-31.225,8.984-54.411,26.704-68.918 C38.964,9.521,54.48,4.433,72.824,4.433v44.326C62.866,48.759,44.33,48.759,44.33,88.474z M181.107,48.759V4.433 c-18.343,0-33.859,5.088-46.117,15.123c-17.72,14.507-26.705,37.694-26.705,68.918v15.377h0v82.745h82.744v-82.745h-38.417V88.474 C152.613,48.759,171.149,48.759,181.107,48.759z"></path> </g></svg>
+        </button>
+      </div>
+      <pre class="citation-bibtex-data" style="display:none;">${raw}</pre>
+    </li>
+    `;
+}
+
+function copyBibtex(buttonElement) {
+  const citationEntry = buttonElement.closest('.citation-entry');
+  if (!citationEntry) return;
+
+  const bibtexPreElement = citationEntry.querySelector('.citation-bibtex-data');
+  if (!bibtexPreElement) return;
+
+  const bibtexText = bibtexPreElement.textContent.trim();
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(bibtexText)
+      .then(() => showSuccess(buttonElement))
+      .catch(err => {
+        console.error('Async copy failed, falling back:', err);
+        fallbackCopy(bibtexText, buttonElement);
+      });
+  } else {
+    fallbackCopy(bibtexText, buttonElement);
+  }
+}
+
+function fallbackCopy(text, buttonElement) {
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  textArea.style.position = 'fixed';
+  textArea.style.top = '-9999px';
+  textArea.style.left = '-9999px';
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  try {
+    const successful = document.execCommand('copy');
+    if (successful) {
+      showSuccess(buttonElement);
+    } else {
+      showError(buttonElement);
+    }
+  } catch (err) {
+    console.error('Fallback copy failed:', err);
+    showError(buttonElement);
+  }
+  document.body.removeChild(textArea);
+}
+
+function showSuccess(buttonElement) {
+    const originalIcon = buttonElement.innerHTML;
+    buttonElement.innerHTML = '✓';
+    buttonElement.classList.add('citation-copied');
+    buttonElement.disabled = true;
+
+    setTimeout(() => {
+        buttonElement.innerHTML = originalIcon;
+        buttonElement.classList.remove('citation-copied');
+        buttonElement.disabled = false;
+    }, 2000);
+}
+
+function showError(buttonElement) {
+    const originalIcon = buttonElement.innerHTML;
+    buttonElement.innerHTML = 'X';
+    buttonElement.disabled = true;
+    setTimeout(() => {
+        buttonElement.innerHTML = originalIcon;
+        buttonElement.disabled = false;
+    }, 2000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('citation-list');
+    if (!container) return;
+
+    // Generate and inject HTML
+    const allCitationsHTML = bibtexData.map(bib => generateCitationHTML(parseBibtex(bib))).join('');
+    container.innerHTML = allCitationsHTML;
+
+    container.addEventListener('click', function(event) {
+        const button = event.target.closest('.copy-bibtex-btn');
+        if (button) {
+            copyBibtex(button);
+        }
+    });
+});
+</script>
+```

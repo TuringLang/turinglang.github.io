@@ -1,0 +1,9 @@
+```{=html}
+<div class="hero-section">
+  <div class="hero-content text-center">
+    <img src="./assets/logo/turing-logo-light.svg" alt="Turing Logo" class="hero-logo hero-logo-light">
+    <img src="./assets/logo/turing-logo-dark.svg" alt="Turing Logo" class="hero-logo hero-logo-dark">
+    <p class="hero-subtitle">Bayesian inference with probabilistic programming</p>
+  </div>
+</div>
+```
