@@ -158,13 +158,7 @@ chain = sample(posterior, NUTS(), 1000)
 
 :::: {.panel .box}
 
-::: {style="font-size: 2.5rem; text-align: center;"}
-```{=html}
-🚀
-```
-:::
-
-##### New to Turing? {.panel-title .pb-1 .text-center}
+##### New to Turing? {.panel-title .text-center}
 <p>Begin with the basics. Our step-by-step tutorials will guide you from installation to your first probabilistic models.</p>
 
 ::: {.d-flex .flex-column .align-items-center .gap-2 .pt-3}
@@ -178,13 +172,7 @@ chain = sample(posterior, NUTS(), 1000)
 
 :::: {.panel .box}
 
-::: {style="font-size: 2.5rem; text-align: center;"}
-```{=html}
-🔬
-```
-:::
-
-##### For Researchers {.panel-title .pb-1 .text-center}
+##### For Researchers {.panel-title .text-center}
 
 <p>Dive into advanced models, explore the rich package ecosystem, and learn how to cite Turing.jl in your work.</p>
 
@@ -201,13 +189,7 @@ chain = sample(posterior, NUTS(), 1000)
 
 :::: {.panel .box}
 
-::: {style="font-size: 2.5rem; text-align: center;"}
-```{=html}
-💻
-```
-:::
-
-##### For Developers {.panel-title .pb-1 .text-center}
+##### For Developers {.panel-title .text-center}
 
 <p>Join our community, contribute to the project on GitHub, and connect with fellow developers on Slack.</p>
 
