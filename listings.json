@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/library/index.html",
+    "listing": "/team/index.html",
     "items": []
   },
   {
@@ -12,6 +12,10 @@
       "/news/posts/2020-05-04-Imperial-Report13-analysis/index.html",
       "/news/posts/2019-12-14-initial-post/index.html"
     ]
+  },
+  {
+    "listing": "/library/index.html",
+    "items": []
   },
   {
     "listing": "/news/index.html",
@@ -34,9 +38,5 @@
       "/news/posts/2020-02-12-jsoc/index.html",
       "/news/posts/2019-12-14-initial-post/index.html"
     ]
-  },
-  {
-    "listing": "/team/index.html",
-    "items": []
   }
 ]
