@@ -25,7 +25,7 @@ nocite: |
 
 ## TL;DR
 
-- DoodleBUGS is a browser-based graphical editor for Bayesian models that targets JuliaBUGS for BUGS model compilation and connects to Julia inference backends (e.g., AdvancedHMC via AbstractMCMC).
+- DoodleBUGS is a browser-based graphical editor for Bayesian models that utilize JuliaBUGS for BUGS model compilation and connect to Julia inference backends (e.g., AdvancedHMC via AbstractMCMC).
 - Implemented: visual editor (nodes, edges, nested plates), legacy BUGS code generation that compiles with [JuliaBUGS](https://github.com/TuringLang/JuliaBUGS.jl) [@JuliaBUGS; @bugs-book], local execution via a Julia backend, unified standalone script generation (frontend), timeouts, multiple layouts, and extensive cleanup/typing.
 - Changed from proposal: frontend implemented in Vue 3 (instead of React); backend simplified (frontend is the single source of truth for standalone scripts).
 - Status: Working application. Live demo (static UI) available; for running inference locally, use the backend server.
@@ -63,7 +63,7 @@ nocite: |
 [JuliaBUGS](https://github.com/TuringLang/JuliaBUGS.jl) is a modern Julia implementation of the BUGS language [@bugs-rjournal; @bugs-book; @bugs-project]. DoodleBUGS revives the original visual modeling concept with a modern stack so users can:
 
 - Construct probabilistic graphical models visually (nodes, edges, plates).
-- Export readable legacy BUGS code that compiles with JuliaBUGS [@bugs-rjournal; @bugs-book].
+- Export readable legacy BUGS code that compiles with JuliaBUGS [@JuliaBUGS; @bugs-rjournal; @bugs-book].
 - Run inference and inspect results from the UI. Common BUGS applications include parallel MCMC [@multibugs], survival analysis [@bugs-survival], and Gibbs-style samplers [@albert-chib-1993; @informs-gibbs].
 
 ## What Was Built
