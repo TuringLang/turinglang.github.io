@@ -37,26 +37,31 @@ nocite: |
 
 ## DoodleBUGS Project Structure
 
-- `DoodleBUGS/` — Vite + Vue 3 app (UI editor)
-  - `public/` — static assets served by Vite; example projects under `public/examples/`
-  - `experiments/` — prototypes and exploratory work
-  - `runtime/` — Julia HTTP backend for local runs (API endpoints and Julia dependencies)
-  - `src/` — application source
-    - `assets/` — styles and static assets
-    - `components/` — Vue components composing the UI
-      - `canvas/` — graph canvas and toolbars
-      - `common/` — shared UI primitives
-      - `layouts/` — app layout and modals
-      - `left-sidebar/` — palette, project manager, execution settings
-      - `panels/` — code preview and data input panels
-      - `right-sidebar/` — execution, JSON editor, node properties
-      - `ui/` — base UI elements (buttons, inputs, selects)
-    - `composables/` — reusable logic (code generation, drag & drop, graph instance, validator, grid snapping)
-    - `config/` — configuration and node definitions
-    - `stores/` — Pinia state stores (graph, data, execution, project, UI)
-    - `types/` — TypeScript types and ambient declarations
-  - `tmp/` — local temporary outputs (ignored in builds)
-  - `ztest/` — scratch/test artifacts
+```{.bash}
+DoodleBUGS/                # Vite + Vue 3 app (UI editor)
+├── README.md              # project documentation
+├── public/                # static assets served by Vite
+│   └── examples/          # example projects
+├── experiments/           # prototypes and exploratory work
+├── runtime/               # Julia HTTP backend (API endpoints & dependencies)
+├── src/                   # application source
+│   ├── assets/            # styles and static assets
+│   ├── components/        # Vue components composing the UI
+│   │   ├── canvas/        # graph canvas and toolbars
+│   │   ├── common/        # shared UI primitives
+│   │   ├── layouts/       # app layout and modals
+│   │   │   └── MainLayout.vue   # main application layout
+│   │   ├── left-sidebar/  # palette, project manager, execution settings
+│   │   ├── panels/        # code preview and data input panels
+│   │   ├── right-sidebar/ # execution, JSON editor, node properties
+│   │   └── ui/            # base UI elements (buttons, inputs, selects)
+│   ├── composables/       # reusable logic (codegen, drag & drop, graph, validator, grid)
+│   ├── config/            # configuration and node definitions
+│   ├── stores/            # Pinia state stores (graph, data, execution, project, UI)
+│   └── types/             # TypeScript types and ambient declarations
+├── tmp/                   # local temporary outputs (ignored in builds)
+└── ztest/                 # scratch/test artifacts
+```
 
 ## Motivation
 
@@ -178,7 +183,7 @@ The legacy tool was a desktop application driving WinBUGS [@winbugs]; the new Do
   - Multiple layouts and interactions
   - Extensive cleanup/typing
   - Execution timeout (end-to-end)
-  - Layout options (Cola, Klay) and interactions
+  - Layout options (Dagre (Hierarchical), fCoSE (Force-Directed), Cola (Physics Simulation), KLay (Layered)) and interactions
   - Cleanup and stronger typing
 - Changed
   - Vue 3 instead of React
