@@ -14,7 +14,7 @@
 <title>Turing.jl</title>
 <link>https://turinglang.org/news/</link>
 </image>
-<generator>quarto-1.7.33</generator>
+<generator>quarto-1.7.34</generator>
 <lastBuildDate>Thu, 28 Aug 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Introducing DoodleBUGS: a Browser-Based Graphical Interface for JuliaBUGS</title>
@@ -44,34 +44,121 @@
 </section>
 <section id="doodlebugs-project-structure" class="level2">
 <h2 class="anchored" data-anchor-id="doodlebugs-project-structure">DoodleBUGS Project Structure</h2>
-<ul>
-<li><code>DoodleBUGS/</code> — Vite + Vue 3 app (UI editor)
-<ul>
-<li><code>public/</code> — static assets served by Vite; example projects under <code>public/examples/</code></li>
-<li><code>experiments/</code> — prototypes and exploratory work</li>
-<li><code>runtime/</code> — Julia HTTP backend for local runs (API endpoints and Julia dependencies)</li>
-<li><code>src/</code> — application source
-<ul>
-<li><code>assets/</code> — styles and static assets</li>
-<li><code>components/</code> — Vue components composing the UI
-<ul>
-<li><code>canvas/</code> — graph canvas and toolbars</li>
-<li><code>common/</code> — shared UI primitives</li>
-<li><code>layouts/</code> — app layout and modals</li>
-<li><code>left-sidebar/</code> — palette, project manager, execution settings</li>
-<li><code>panels/</code> — code preview and data input panels</li>
-<li><code>right-sidebar/</code> — execution, JSON editor, node properties</li>
-<li><code>ui/</code> — base UI elements (buttons, inputs, selects)</li>
-</ul></li>
-<li><code>composables/</code> — reusable logic (code generation, drag &amp; drop, graph instance, validator, grid snapping)</li>
-<li><code>config/</code> — configuration and node definitions</li>
-<li><code>stores/</code> — Pinia state stores (graph, data, execution, project, UI)</li>
-<li><code>types/</code> — TypeScript types and ambient declarations</li>
-</ul></li>
-<li><code>tmp/</code> — local temporary outputs (ignored in builds)</li>
-<li><code>ztest/</code> — scratch/test artifacts</li>
-</ul></li>
-</ul>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">DoodleBUGS/</span>                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Vite + Vue 3 app (UI editor)</span></span>
+<span id="cb1-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">├──</span> README.md              <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># project documentation</span></span>
+<span id="cb1-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">├──</span> public/                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># static assets served by Vite</span></span>
+<span id="cb1-4"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   └── examples/          <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># example projects</span></span>
+<span id="cb1-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">├──</span> experiments/           <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># prototypes and exploratory work</span></span>
+<span id="cb1-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">├──</span> runtime/               <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Julia HTTP backend (API endpoints &amp; dependencies)</span></span>
+<span id="cb1-7"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">├──</span> src/                   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># application source</span></span>
+<span id="cb1-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   ├── assets/            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># styles and static assets</span></span>
+<span id="cb1-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   ├── components/        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Vue components composing the UI</span></span>
+<span id="cb1-10"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   │   ├── canvas/        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># graph canvas and toolbars</span></span>
+<span id="cb1-11"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   │   ├── common/        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># shared UI primitives</span></span>
+<span id="cb1-12"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   │   ├── layouts/       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># app layout and modals</span></span>
+<span id="cb1-13"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   │   │   └── MainLayout.vue   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># main application layout</span></span>
+<span id="cb1-14"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   │   ├── left-sidebar/  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># palette, project manager, execution settings</span></span>
+<span id="cb1-15"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   │   ├── panels/        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># code preview and data input panels</span></span>
+<span id="cb1-16"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   │   ├── right-sidebar/ <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># execution, JSON editor, node properties</span></span>
+<span id="cb1-17"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   │   └── ui/            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># base UI elements (buttons, inputs, selects)</span></span>
+<span id="cb1-18"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   ├── composables/       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># reusable logic (codegen, drag &amp; drop, graph, validator, grid)</span></span>
+<span id="cb1-19"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   ├── config/            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># configuration and node definitions</span></span>
+<span id="cb1-20"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   ├── stores/            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pinia state stores (graph, data, execution, project, UI)</span></span>
+<span id="cb1-21"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">│</span>   └── types/             <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># TypeScript types and ambient declarations</span></span>
+<span id="cb1-22"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">├──</span> tmp/                   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># local temporary outputs (ignored in builds)</span></span>
+<span id="cb1-23"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">└──</span> ztest/                 <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># scratch/test artifacts</span></span></code></pre></div>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -236,7 +323,7 @@
 <li>Multiple layouts and interactions</li>
 <li>Extensive cleanup/typing</li>
 <li>Execution timeout (end-to-end)</li>
-<li>Layout options (Cola, Klay) and interactions</li>
+<li>Layout options (Dagre (Hierarchical), fCoSE (Force-Directed), Cola (Physics Simulation), KLay (Layered)) and interactions</li>
 <li>Cleanup and stronger typing</li>
 </ul></li>
 <li>Changed
@@ -255,30 +342,30 @@
 <section id="how-to-run-locally" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-run-locally">How to Run Locally</h2>
 <p>Frontend (Vite):</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># from repo root</span></span>
-<span id="cb1-2"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">cd</span> DoodleBUGS</span>
-<span id="cb1-3"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">npm</span> install</span>
-<span id="cb1-4"><span class="ex" style="color: null;
-background-color: null;
-font-style: inherit;">npm</span> run dev</span></code></pre></div>
-<p>Backend (Julia):</p>
 <div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># from repo root</span></span>
-<span id="cb2-2"><span class="ex" style="color: null;
+<span id="cb2-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> DoodleBUGS</span>
+<span id="cb2-3"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">npm</span> install</span>
+<span id="cb2-4"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">npm</span> run dev</span></code></pre></div>
+<p>Backend (Julia):</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># from repo root</span></span>
+<span id="cb3-2"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">julia</span> <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">--project</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>DoodleBUGS/runtime DoodleBUGS/runtime/server.jl</span>
-<span id="cb2-3"><span class="co" style="color: #5E5E5E;
+<span id="cb3-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># server listens on http://localhost:8081</span></span></code></pre></div>
 <p>Notes:</p>
