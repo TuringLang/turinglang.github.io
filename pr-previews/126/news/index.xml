@@ -19,7 +19,7 @@
 <item>
   <title>Introducing DoodleBUGS: a Browser-Based Graphical Interface for JuliaBUGS</title>
   <dc:creator>Shravan Goswami</dc:creator>
-  <link>https://turinglang.org/news/posts/2025-08-28-DoodleBUGS-Introduction/</link>
+  <link>https://turinglang.org/news/posts/DoodleBUGS-Introduction/</link>
   <description><![CDATA[ 
 
 
@@ -230,7 +230,7 @@ font-style: inherit;"># scratch/test artifacts</span></span></code></pre></div>
 </ul>
 <p><strong>Frontend architecture (Vue 3 + Cytoscape.js)</strong></p>
 <ul>
-<li>Core graph state is managed in Vue; Cytoscape.js handles layout, hit-testing, and interaction semantics (including compound nodes for plates) <span class="citation" data-cites="cytoscapejs">[9]</span>.</li>
+<li>Core graph state is managed in Vue; <a href="https://js.cytoscape.org/">Cytoscape.js</a> handles layout, hit-testing, and interaction semantics (including compound nodes for plates) <span class="citation" data-cites="cytoscapejs">[9]</span>.</li>
 <li>Code generation lives in <code>DoodleBUGS/src/composables/useBugsCodeGenerator.ts</code> and maps <code>GraphNode</code>/<code>GraphEdge</code> to BUGS:
 <ul>
 <li>Kahn topological sort for definition order</li>
@@ -253,18 +253,18 @@ font-style: inherit;"># scratch/test artifacts</span></span></code></pre></div>
 </ul>
 </section>
 <section id="why-vue-not-react" class="level2">
-<h2 class="anchored" data-anchor-id="why-vue-not-react">Why Vue (not React)</h2>
+<h2 class="anchored" data-anchor-id="why-vue-not-react">Why Vue (not React)?</h2>
 <p>The proposal planned React; we chose Vue 3 after evaluating the graph layer and developer velocity for this app.</p>
 <ul>
-<li>Tried Konva (canvas) for custom graph editing: powerful drawing primitives, but required bespoke graph semantics (hit testing, edge routing, compound nodes) that Cytoscape.js provides out of the box.</li>
+<li>Tried Konva (canvas) for custom graph editing: powerful drawing primitives, but required bespoke graph semantics (hit testing, edge routing, compound nodes) that <a href="https://js.cytoscape.org/">Cytoscape.js</a> provides out of the box.</li>
 <li>Tried D3 force/layouts: flexible, but compound nodes (plates), nesting, and drag constraints became a significant amount of custom code to maintain.</li>
-<li>Cytoscape.js offered:
+<li><a href="https://js.cytoscape.org/">Cytoscape.js</a> offered:
 <ul>
 <li>Native graph model with compound nodes (great for plates)</li>
 <li>Integrated layouts (WebCola, KLay) and rich interaction APIs <span class="citation" data-cites="webcola elk">[16], [17]</span></li>
 <li>Mature ecosystem and performance characteristics for medium-sized graphs</li>
 </ul></li>
-<li>Vue 3 (vs React) for this project:
+<li><a href="https://vuejs.org/">Vue 3</a> (vs React) for this project:
 <ul>
 <li>Composition API made integrating an imperative graph library (Cytoscape) straightforward via composables and lifecycle hooks</li>
 <li>SFC ergonomics and Pinia stores enabled quick iteration with strong TypeScript support</li>
@@ -287,7 +287,7 @@ font-style: inherit;"># scratch/test artifacts</span></span></code></pre></div>
 <li>Graph engine and plates
 <ul>
 <li>Legacy: Bespoke graph handling with limited nesting semantics</li>
-<li>New: Cytoscape.js with compound nodes for robust nested plates; custom DnD for drag-in/out and creating inside plates</li>
+<li>New: <a href="https://js.cytoscape.org/">Cytoscape.js</a> with compound nodes for robust nested plates; custom DnD for drag-in/out and creating inside plates</li>
 </ul></li>
 <li>Layouts and interactions
 <ul>
@@ -397,6 +397,7 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 <section id="future-work" class="level2">
 <h2 class="anchored" data-anchor-id="future-work">Future Work</h2>
 <ul>
+<li>Backend: Add Pluto.jl as a backend for supporting compound documents and QuartoNotebookRunner.jl for running notebooks.</li>
 <li>Diagnostics/visualization: R-hat, ESS, trace plots, PPC, posterior densities</li>
 <li>UX: richer node templates, validation, distribution hints</li>
 <li>Persistence/sharing: save/load and shareable links</li>
@@ -408,8 +409,7 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 <h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
 <p>Much appreciation goes to my mentors Xianda Sun and Hong Ge. The work is impossible without your help and support.</p>
 <ul>
-<li>Mentor: Xianda Sun (<a href="https://github.com/sunxd3">@sunxd3</a>)</li>
-<li>Advisor: Hong Ge (<a href="https://github.com/yebai">@yebai</a>)</li>
+<li>Mentors: Xianda Sun (<a href="https://github.com/sunxd3">@sunxd3</a>) and Hong Ge (<a href="https://github.com/yebai">@yebai</a>)</li>
 <li>TuringLang/JuliaBUGS community and contributors</li>
 </ul>
 
@@ -480,7 +480,8 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 </div>
 </div></section></div> ]]></description>
   <category>GSoC</category>
-  <guid>https://turinglang.org/news/posts/2025-08-28-DoodleBUGS-Introduction/</guid>
+  <category>Blog</category>
+  <guid>https://turinglang.org/news/posts/DoodleBUGS-Introduction/</guid>
   <pubDate>Thu, 28 Aug 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
