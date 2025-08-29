@@ -3,19 +3,22 @@ title: "Introducing DoodleBUGS: a Browser-Based Graphical Interface for JuliaBUG
 description: "Shravan Goswami's GSoC 2025 final report: goals, architecture, progress vs proposal, and how to try it."
 categories:
   - GSoC
+  - Blog
 author:
   - name: Shravan Goswami
     url: https://shravangoswami.com/
 date: 2025-08-28
 aliases:
-  - /news/doodlebugs-gsoc-2025-final-report
-  - /news/doodlebugs-gsoc-2025
-  - /news/doodlebugs-introduction
-  - /news/shravan-gsoc-2025-doodlebugs
+  - /news/posts/doodlebugs-gsoc-2025-final-report
+  - /news/posts/doodlebugs-gsoc-2025
+  - /news/posts/doodlebugs-introduction
+  - /news/posts/shravan-gsoc-2025-doodlebugs
   - /doodlebugs-gsoc-2025-final-report
   - /doodlebugs-gsoc-2025
   - /doodlebugs-introduction
   - /shravan-gsoc-2025-doodlebugs
+  - /news/posts/2025-08-28-DoodleBUGS-Introduction
+  - /DoodleBUGS
 bibliography: references.bib
 csl: university-of-york-ieee.csl
 link-citations: true
