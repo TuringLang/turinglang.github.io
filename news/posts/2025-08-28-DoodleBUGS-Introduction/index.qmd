@@ -114,7 +114,7 @@ DoodleBUGS/                # Vite + Vue 3 app (UI editor)
 
 **Frontend architecture (Vue 3 + Cytoscape.js)**
 
-- Core graph state is managed in Vue; Cytoscape.js handles layout, hit-testing, and interaction semantics (including compound nodes for plates) [@cytoscapejs].
+- Core graph state is managed in Vue; [Cytoscape.js](https://js.cytoscape.org/) handles layout, hit-testing, and interaction semantics (including compound nodes for plates) [@cytoscapejs].
 - Code generation lives in `DoodleBUGS/src/composables/useBugsCodeGenerator.ts` and maps `GraphNode`/`GraphEdge` to BUGS:
   - Kahn topological sort for definition order
   - Plate-aware recursion for `for (...) { ... }` blocks
@@ -132,17 +132,17 @@ DoodleBUGS/                # Vite + Vue 3 app (UI editor)
 - Timeout: worker process is killed if exceeding `timeout_s`.
 - Cleanup: `safe_rmdir()` retries with GC to avoid EBUSY on Windows.
 
-## Why Vue (not React)
+## Why Vue (not React)?
 
 The proposal planned React; we chose Vue 3 after evaluating the graph layer and developer velocity for this app.
 
-- Tried Konva (canvas) for custom graph editing: powerful drawing primitives, but required bespoke graph semantics (hit testing, edge routing, compound nodes) that Cytoscape.js provides out of the box.
+- Tried Konva (canvas) for custom graph editing: powerful drawing primitives, but required bespoke graph semantics (hit testing, edge routing, compound nodes) that [Cytoscape.js](https://js.cytoscape.org/) provides out of the box.
 - Tried D3 force/layouts: flexible, but compound nodes (plates), nesting, and drag constraints became a significant amount of custom code to maintain.
-- Cytoscape.js offered:
+- [Cytoscape.js](https://js.cytoscape.org/) offered:
   - Native graph model with compound nodes (great for plates)
   - Integrated layouts (WebCola, KLay) and rich interaction APIs [@webcola; @elk]
   - Mature ecosystem and performance characteristics for medium-sized graphs
-- Vue 3 (vs React) for this project:
+- [Vue 3](https://vuejs.org/) (vs React) for this project:
   - Composition API made integrating an imperative graph library (Cytoscape) straightforward via composables and lifecycle hooks
   - SFC ergonomics and Pinia stores enabled quick iteration with strong TypeScript support
   - Template reactivity + refs reduced reconciliation overhead when bridging to Cytoscape’s imperative API
@@ -159,7 +159,7 @@ The legacy tool was a desktop application driving WinBUGS [@winbugs]; the new Do
   - New: Web UI, Julia backend via `JuliaBUGS.@bugs`, sampling with `AdvancedHMC.NUTS` through `AbstractMCMC`
 - Graph engine and plates
   - Legacy: Bespoke graph handling with limited nesting semantics
-  - New: Cytoscape.js with compound nodes for robust nested plates; custom DnD for drag-in/out and creating inside plates
+  - New: [Cytoscape.js](https://js.cytoscape.org/) with compound nodes for robust nested plates; custom DnD for drag-in/out and creating inside plates
 - Layouts and interactions
   - Legacy: Limited auto-layout support
   - New: Multiple layout engines (Cola, Klay) and stable interactions; positions updated after `layoutstop` [@webcola; @elk]
@@ -234,6 +234,7 @@ See `DoodleBUGS/runtime/server.jl`.
 
 ## Future Work
 
+- Backend: Add Pluto.jl as a backend for supporting compound documents and QuartoNotebookRunner.jl for running notebooks.
 - Diagnostics/visualization: R-hat, ESS, trace plots, PPC, posterior densities
 - UX: richer node templates, validation, distribution hints
 - Persistence/sharing: save/load and shareable links
@@ -244,6 +245,5 @@ See `DoodleBUGS/runtime/server.jl`.
 
 Much appreciation goes to my mentors Xianda Sun and Hong Ge. The work is impossible without your help and support.
 
-- Mentor: Xianda Sun ([\@sunxd3](https://github.com/sunxd3))
-- Advisor: Hong Ge ([\@yebai](https://github.com/yebai))
+- Mentors: Xianda Sun ([\@sunxd3](https://github.com/sunxd3)) and Hong Ge ([\@yebai](https://github.com/yebai))
 - TuringLang/JuliaBUGS community and contributors
