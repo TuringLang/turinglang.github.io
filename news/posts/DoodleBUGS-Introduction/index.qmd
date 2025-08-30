@@ -140,13 +140,13 @@ See `DoodleBUGS/runtime/server.jl`.
 
 - WebKit/Safari/iOS: unsupported at this time (see `DoodleBUGS/README.md`).
 - Limited visualization beyond summary/quantiles.
-- No persisted projects; session-based.
+- Local storage persistence only (browser); no cloud sync or shareable links yet.
 - Overlapped plates (multiple parents) are not supported; tracked here: https://github.com/TuringLang/JuliaBUGS.jl/issues/362
 
 ## Future Work
 
 - Backend: Add Pluto.jl as a backend for supporting compound documents and QuartoNotebookRunner.jl for running notebooks.
-- Visualization: trace plots, density plots, PPC, posterior densities (R-hat and ESS are already included in summary statistics)
+- Visualization: integrate with MCMCChains.jl for plotting. R-hat and ESS are already included in summary statistics.
 - UX: richer node templates, validation, distribution hints
 - Persistence/sharing: save/load and shareable links
 - Browser compatibility: WebKit/Safari and iOS/iPadOS

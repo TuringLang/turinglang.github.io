@@ -106,7 +106,7 @@ The legacy tool was a desktop application driving WinBUGS [@winbugs]; the new Do
   - Vue 3 instead of React
   - Backend responses smaller; no standalone script attachment
 - Deferred/Partial
-  - Rich visualization (PPC, trace/density plots). R-hat and ESS are already included in the summary statistics.
+  - Visualization: integrate with MCMCChains.jl for plotting. R-hat and ESS are already included in the summary statistics.
   - WebKit/Safari support
   - UX polish for large graphs
 
