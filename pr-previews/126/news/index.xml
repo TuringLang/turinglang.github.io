@@ -15,9 +15,247 @@
 <link>https://turinglang.org/news/</link>
 </image>
 <generator>quarto-1.7.34</generator>
-<lastBuildDate>Thu, 28 Aug 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 30 Aug 2025 00:00:00 GMT</lastBuildDate>
 <item>
-  <title>Introducing DoodleBUGS: a Browser-Based Graphical Interface for JuliaBUGS</title>
+  <title>DoodleBUGS: GSoC 2025 Report</title>
+  <dc:creator>Shravan Goswami</dc:creator>
+  <link>https://turinglang.org/news/posts/DoodleBUGS-GSoC-2025-Report/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="tldr" class="level2">
+<h2 class="anchored" data-anchor-id="tldr">TL;DR</h2>
+<ul>
+<li>BUGS is a domain-specific language for Bayesian models; JuliaBUGS is its modern Julia implementation. DoodleBUGS is a browser-based graphical interface for JuliaBUGS.</li>
+<li>Outcomes: working visual editor, legacy BUGS export that compiles with JuliaBUGS, local execution via a Julia backend, unified standalone script generation, timeouts, multiple layouts (Dagre [default], fCoSE, Cola, Klay), and a cleaned-up, typed codebase.</li>
+<li>For architecture, execution, and API details, see the companion technical post: <a href="../../../DoodleBUGS-Introduction/">DoodleBUGS: Introduction</a>.</li>
+<li>Try it here (static UI): <a href="https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/">https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/</a></li>
+<li>Default timeout is 0 (disabled); configurable in Execution Settings.</li>
+</ul>
+</section>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p><a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS</a> is a modern Julia implementation of the BUGS language <span class="citation" data-cites="bugs-rjournal bugs-book bugs-project">[1], [2], [3]</span>. DoodleBUGS revives the original visual modeling concept with a modern browser-based stack so users can:</p>
+<ul>
+<li>Construct probabilistic graphical models visually (nodes, edges, plates).</li>
+<li>Export readable legacy BUGS code that compiles with JuliaBUGS <span class="citation" data-cites="JuliaBUGS bugs-rjournal bugs-book">[1], [2], [4]</span>.</li>
+<li>Run inference and inspect results from the UI. Common BUGS applications include parallel MCMC <span class="citation" data-cites="multibugs">[5]</span>, survival analysis <span class="citation" data-cites="bugs-survival">[6]</span>, and Gibbs-style samplers <span class="citation" data-cites="albert-chib-1993 informs-gibbs">[7], [8]</span>.</li>
+</ul>
+</section>
+<section id="what-was-built" class="level2">
+<h2 class="anchored" data-anchor-id="what-was-built">What Was Built</h2>
+<ul>
+<li>Visual editor
+<ul>
+<li>Node types: stochastic, observed, deterministic</li>
+<li>Plates with arbitrary nesting; robust drag-in/out and creation inside plates</li>
+<li>Graph layouts:
+<ul>
+<li>Dagre (Hierarchical) [default]</li>
+<li>fCoSE (Force-Directed)</li>
+<li>Cola (Physics Simulation)</li>
+<li>Klay (Layered)</li>
+</ul></li>
+</ul></li>
+<li>Legacy BUGS code generation <span class="citation" data-cites="bugs-rjournal bugs-book">[1], [2]</span>
+<ul>
+<li>Topological ordering and plate-aware traversal</li>
+<li>Parameter formatting and safe index expansion</li>
+</ul></li>
+<li>Execution flow (high-level)
+<ul>
+<li>Frontend generates legacy BUGS <code>model_code</code> plus <code>data</code>, <code>inits</code>, <code>settings</code> and can generate a standalone Julia script.</li>
+<li>When connected, it sends a JSON payload to the Julia backend at <code>/api/run</code> (alias: <code>/api/run_model</code>).</li>
+<li>Backend compiles via <code>JuliaBUGS.@bugs</code> and runs sampling with <code>AdvancedHMC.NUTS</code> through <code>AbstractMCMC</code>; returns summaries/quantiles as JSON.</li>
+</ul></li>
+<li>Resilience and ergonomics
+<ul>
+<li>Configurable timeouts (default 0 = disabled); safe temp cleanup on Windows</li>
+<li>Unified standalone script generation lives in the frontend</li>
+</ul></li>
+</ul>
+</section>
+<section id="why-vue-not-react" class="level2">
+<h2 class="anchored" data-anchor-id="why-vue-not-react">Why Vue (not React)?</h2>
+<p>The proposal planned React; we chose Vue 3 after evaluating the graph layer and developer velocity for this app.</p>
+<ul>
+<li>Konva (canvas) required bespoke graph semantics (hit testing, edge routing, compound nodes) that <a href="https://js.cytoscape.org/">Cytoscape.js</a> already provides.</li>
+<li>D3 layouts are flexible, but compound nodes (plates), nesting, and drag constraints became significant custom work.</li>
+<li><a href="https://js.cytoscape.org/">Cytoscape.js</a> offered native compound nodes (great for plates), integrated layouts (Dagre [default], fCoSE, Cola, Klay), and mature performance <span class="citation" data-cites="webcola elk">[9], [10]</span>.</li>
+<li><a href="https://vuejs.org/">Vue 3</a> with the Composition API made integrating Cytoscape straightforward via composables and lifecycle hooks; Pinia stores + SFC ergonomics improved iteration speed.</li>
+</ul>
+</section>
+<section id="comparison-to-legacy-doodlebugs" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-to-legacy-doodlebugs">Comparison to Legacy DoodleBUGS</h2>
+<p>The legacy tool was a desktop application driving WinBUGS <span class="citation" data-cites="winbugs">[11]</span>; the new DoodleBUGS is a browser-based editor targeting JuliaBUGS <span class="citation" data-cites="JuliaBUGS">[4]</span>. Key differences:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://turinglang.org/news/posts/DoodleBUGS-GSoC-2025-Report/Legacy-DoodleBUGS.png" class="img-fluid figure-img"></p>
+<figcaption>Legacy DoodleBUGS</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://turinglang.org/news/posts/DoodleBUGS-GSoC-2025-Report/Modern-DoodleBUGS.png" class="img-fluid figure-img"></p>
+<figcaption>New DoodleBUGS</figcaption>
+</figure>
+</div>
+<ul>
+<li>Platform and backend
+<ul>
+<li>Legacy: Desktop UI, WinBUGS execution pipeline</li>
+<li>New: Web UI, Julia backend via <code>JuliaBUGS.@bugs</code>, sampling with <code>AdvancedHMC.NUTS</code> through <code>AbstractMCMC</code></li>
+</ul></li>
+<li>Graph engine and plates
+<ul>
+<li>Legacy: Bespoke graph handling with limited nesting semantics</li>
+<li>New: <a href="https://js.cytoscape.org/">Cytoscape.js</a> with compound nodes for robust nested plates; custom Drag and Drop for drag-in/out and creating inside plates. Overlapped plates (multiple parents) are not supported; tracked here: <a href="https://github.com/TuringLang/JuliaBUGS.jl/issues/362">https://github.com/TuringLang/JuliaBUGS.jl/issues/362</a></li>
+</ul></li>
+<li>Layouts and interactions
+<ul>
+<li>Legacy: Limited auto-layout support</li>
+<li>New: Multiple layout engines and stable interactions:
+<ul>
+<li>Dagre (Hierarchical) [default]</li>
+<li>fCoSE (Force-Directed)</li>
+<li>Cola (Physics Simulation)</li>
+<li>Klay (Layered)</li>
+</ul></li>
+</ul></li>
+<li>Code generation
+<ul>
+<li>Legacy: Export to BUGS without strong ordering guarantees</li>
+<li>New: Deterministic topological + plate-aware traversal; parameter canonicalization and safe index expansion</li>
+</ul></li>
+<li>DevX and maintainability
+<ul>
+<li>New: Vue 3 + TypeScript + Pinia; unified standalone script generation on the frontend; leaner backend responses</li>
+</ul></li>
+</ul>
+</section>
+<section id="progress-vs-proposal" class="level2">
+<h2 class="anchored" data-anchor-id="progress-vs-proposal">Progress vs Proposal</h2>
+<ul>
+<li>Implemented
+<ul>
+<li>Visual editor with nested plates and robust Drag and Drop</li>
+<li>BUGS code generator (topological + plate-aware)</li>
+<li>Local execution + summaries/quantiles (summary includes mean, std, mcse, ess_bulk, ess_tail, rhat, etc.)</li>
+<li>Unified standalone script generation (frontend)</li>
+<li>Timeouts/resilience</li>
+<li>Multiple layouts and interactions (Dagre [default], fCoSE, Cola, Klay)</li>
+<li>Extensive cleanup/typing</li>
+</ul></li>
+<li>Changed
+<ul>
+<li>Vue 3 instead of React</li>
+<li>Backend responses smaller; no standalone script attachment</li>
+</ul></li>
+<li>Deferred/Partial
+<ul>
+<li>Rich visualization (PPC, trace/density plots). R-hat and ESS are already included in the summary statistics.</li>
+<li>WebKit/Safari support</li>
+<li>UX polish for large graphs</li>
+</ul></li>
+</ul>
+</section>
+<section id="cross-links" class="level2">
+<h2 class="anchored" data-anchor-id="cross-links">Cross-links</h2>
+<ul>
+<li>For architecture, execution, API, and how-to-run details, see the companion technical post: <a href="../../../DoodleBUGS-Introduction/">DoodleBUGS: Introduction</a>.</li>
+</ul>
+</section>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<p>Much appreciation goes to my mentors Xianda Sun and Hong Ge. The work is impossible without your help and support.</p>
+<ul>
+<li>Mentors: Xianda Sun (<a href="https://github.com/sunxd3">@sunxd3</a>) and Hong Ge (<a href="https://github.com/yebai">@yebai</a>)</li>
+<li>TuringLang/JuliaBUGS community and contributors</li>
+</ul>
+</section>
+<section id="appendix-links" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-links">Appendix: Links</h2>
+<ul>
+<li>Repo: <a href="https://github.com/TuringLang/JuliaBUGS.jl">https://github.com/TuringLang/JuliaBUGS.jl</a></li>
+<li>Try it here (static UI): <a href="https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/">https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/</a></li>
+</ul>
+
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0">
+<div id="ref-bugs-rjournal" class="csl-entry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline"><span>“The BUGS language.”</span> Available: <a href="https://journal.r-project.org/articles/RN-2006-005/RN-2006-005.pdf">https://journal.r-project.org/articles/RN-2006-005/RN-2006-005.pdf</a></div>
+</div>
+<div id="ref-bugs-book" class="csl-entry">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline"><span>“The BUGS book: A practical introduction to bayesian analysis.”</span> Wiley. Available: <a href="https://onlinelibrary.wiley.com/doi/10.1111/anzs.12058">https://onlinelibrary.wiley.com/doi/10.1111/anzs.12058</a></div>
+</div>
+<div id="ref-bugs-project" class="csl-entry">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline"><span>“The BUGS project.”</span> Available: <a href="https://www.mrc-bsu.cam.ac.uk/software/bugs/">https://www.mrc-bsu.cam.ac.uk/software/bugs/</a></div>
+</div>
+<div id="ref-JuliaBUGS" class="csl-entry">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline"><span>“JuliaBUGS.jl.”</span> Available: <a href="https://github.com/TuringLang/JuliaBUGS.jl">https://github.com/TuringLang/JuliaBUGS.jl</a></div>
+</div>
+<div id="ref-multibugs" class="csl-entry">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline"><span>“MultiBUGS: Parallel BUGS modeling.”</span> Available: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7116196/">https://pmc.ncbi.nlm.nih.gov/articles/PMC7116196/</a></div>
+</div>
+<div id="ref-bugs-survival" class="csl-entry">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline"><span>“Bayesian survival analysis with BUGS.”</span> Available: <a href="https://onlinelibrary.wiley.com/doi/10.1002/sim.8933">https://onlinelibrary.wiley.com/doi/10.1002/sim.8933</a></div>
+</div>
+<div id="ref-albert-chib-1993" class="csl-entry">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline"><span>“Inference via gibbs (albert &amp; chib).”</span> Available: <a href="https://apps.olin.wustl.edu/faculty/chib/papers/albertchibjb93.pdf">https://apps.olin.wustl.edu/faculty/chib/papers/albertchibjb93.pdf</a></div>
+</div>
+<div id="ref-informs-gibbs" class="csl-entry">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline"><span>“Bayesian inference using gibbs sampling.”</span> Available: <a href="https://pubsonline.informs.org/doi/10.1287/ited.2013.0120">https://pubsonline.informs.org/doi/10.1287/ited.2013.0120</a></div>
+</div>
+<div id="ref-webcola" class="csl-entry">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline"><span>“WebCola.”</span> Available: <a href="https://ialab.it.monash.edu/webcola/">https://ialab.it.monash.edu/webcola/</a></div>
+</div>
+<div id="ref-elk" class="csl-entry">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline"><span>“Eclipse layout kernel (ELK / KLay).”</span> Available: <a href="https://www.eclipse.org/elk/">https://www.eclipse.org/elk/</a></div>
+</div>
+<div id="ref-winbugs" class="csl-entry">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline"><span>“WinBUGS.”</span> Available: <a href="http://www.openbugs.net/w/FrontPage">http://www.openbugs.net/w/FrontPage</a></div>
+</div>
+<div id="ref-HoffmanGelman2014" class="csl-entry">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">M. D. Hoffman and A. Gelman, <span>“The no-u-turn sampler: Adaptively setting path lengths in hamiltonian monte carlo,”</span> <em>arXiv preprint arXiv:1111.4246</em>, 2014, Available: <a href="https://arxiv.org/abs/1111.4246">https://arxiv.org/abs/1111.4246</a></div>
+</div>
+<div id="ref-AbstractMCMC" class="csl-entry">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline"><span>“AbstractMCMC.jl.”</span> Available: <a href="https://github.com/TuringLang/AbstractMCMC.jl">https://github.com/TuringLang/AbstractMCMC.jl</a></div>
+</div>
+<div id="ref-AdvancedHMC" class="csl-entry">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline"><span>“AdvancedHMC.jl.”</span> Available: <a href="https://github.com/TuringLang/AdvancedHMC.jl">https://github.com/TuringLang/AdvancedHMC.jl</a></div>
+</div>
+<div id="ref-ReverseDiff" class="csl-entry">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline"><span>“ReverseDiff.jl.”</span> Available: <a href="https://github.com/JuliaDiff/ReverseDiff.jl">https://github.com/JuliaDiff/ReverseDiff.jl</a></div>
+</div>
+<div id="ref-MCMCChains" class="csl-entry">
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline"><span>“MCMCChains.jl.”</span> Available: <a href="https://github.com/TuringLang/MCMCChains.jl">https://github.com/TuringLang/MCMCChains.jl</a></div>
+</div>
+<div id="ref-DataFrames" class="csl-entry">
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline"><span>“DataFrames.jl.”</span> Available: <a href="https://dataframes.juliadata.org/">https://dataframes.juliadata.org/</a></div>
+</div>
+<div id="ref-cytoscapejs" class="csl-entry">
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline"><span>“Cytoscape.js.”</span> Available: <a href="https://js.cytoscape.org/">https://js.cytoscape.org/</a></div>
+</div>
+<div id="ref-drawio" class="csl-entry">
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline"><span>“Draw.io (diagrams.net).”</span> Available: <a href="https://www.diagrams.net/">https://www.diagrams.net/</a></div>
+</div>
+<div id="ref-stan-playground" class="csl-entry">
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline"><span>“Stan playground.”</span> Available: <a href="https://stan-playground.flatironinstitute.org/">https://stan-playground.flatironinstitute.org/</a></div>
+</div>
+</div></section></div> ]]></description>
+  <category>GSoC</category>
+  <category>Blog</category>
+  <guid>https://turinglang.org/news/posts/DoodleBUGS-GSoC-2025-Report/</guid>
+  <pubDate>Sat, 30 Aug 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>DoodleBUGS: Graphical Interface for JuliaBUGS</title>
   <dc:creator>Shravan Goswami</dc:creator>
   <link>https://turinglang.org/news/posts/DoodleBUGS-Introduction/</link>
   <description><![CDATA[ 
@@ -29,17 +267,8 @@
 <section id="tldr" class="level2">
 <h2 class="anchored" data-anchor-id="tldr">TL;DR</h2>
 <ul>
-<li>DoodleBUGS is a browser-based graphical editor for Bayesian models that utilize JuliaBUGS for BUGS model compilation and connect to Julia inference backends (e.g., AdvancedHMC via AbstractMCMC).</li>
-<li>Implemented: visual editor (nodes, edges, nested plates), legacy BUGS code generation that compiles with <a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS</a> <span class="citation" data-cites="JuliaBUGS bugs-book">[1], [2]</span>, local execution via a Julia backend, unified standalone script generation (frontend), timeouts, multiple layouts, and extensive cleanup/typing.</li>
-<li>Changed from proposal: frontend implemented in Vue 3 (instead of React); backend simplified (frontend is the single source of truth for standalone scripts).</li>
-<li>Status: Working application. Live demo (static UI) available; for running inference locally, use the backend server.</li>
-</ul>
-</section>
-<section id="project-links" class="level2">
-<h2 class="anchored" data-anchor-id="project-links">Project Links</h2>
-<ul>
-<li>Repo: <a href="https://github.com/TuringLang/JuliaBUGS.jl">https://github.com/TuringLang/JuliaBUGS.jl</a></li>
-<li>Live demo: <a href="https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/">https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/</a></li>
+<li>This page is the technical companion to the GSoC report. For the high-level story and outcomes, see: <a href="../../../DoodleBUGS-GSoC-2025-Report/">DoodleBUGS: GSoC 2025 Report</a>.</li>
+<li>Contents here: project structure, frontend/backend architecture, execution flow, how to run locally, API summary, current limitations, and future work.</li>
 </ul>
 </section>
 <section id="doodlebugs-project-structure" class="level2">
@@ -160,55 +389,29 @@ font-style: inherit;">└──</span> ztest/                 <span class="co" s
 background-color: null;
 font-style: inherit;"># scratch/test artifacts</span></span></code></pre></div>
 </section>
-<section id="motivation" class="level2">
-<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p><a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS</a> is a modern Julia implementation of the BUGS language <span class="citation" data-cites="bugs-rjournal bugs-book bugs-project">[2], [3], [4]</span>. DoodleBUGS revives the original visual modeling concept with a modern stack so users can:</p>
-<ul>
-<li>Construct probabilistic graphical models visually (nodes, edges, plates).</li>
-<li>Export readable legacy BUGS code that compiles with JuliaBUGS <span class="citation" data-cites="JuliaBUGS bugs-rjournal bugs-book">[1], [2], [3]</span>.</li>
-<li>Run inference and inspect results from the UI. Common BUGS applications include parallel MCMC <span class="citation" data-cites="multibugs">[5]</span>, survival analysis <span class="citation" data-cites="bugs-survival">[6]</span>, and Gibbs-style samplers <span class="citation" data-cites="albert-chib-1993 informs-gibbs">[7], [8]</span>.</li>
-</ul>
-</section>
-<section id="what-was-built" class="level2">
-<h2 class="anchored" data-anchor-id="what-was-built">What Was Built</h2>
-<ul>
-<li>Visual editor
-<ul>
-<li>Node types: stochastic, observed, deterministic</li>
-<li>Plates with arbitrary nesting; robust drag-in/out and creation inside plates</li>
-<li>Graph layouts: <a href="https://ialab.it.monash.edu/webcola/">WebCola</a> and <a href="https://www.eclipse.org/elk/">ELK/KLay</a>; stable drag interactions</li>
-</ul></li>
-<li>Legacy BUGS code generation <span class="citation" data-cites="bugs-rjournal bugs-book">[2], [3]</span>
-<ul>
-<li>Topological ordering and plate-aware traversal</li>
-<li>Parameter formatting and safe index expansion</li>
-<li>Implemented in <code>DoodleBUGS/src/composables/useBugsCodeGenerator.ts</code></li>
-</ul></li>
-<li>Execution flow
-<ul>
-<li>Frontend sends <code>model_code</code>, <code>data</code>, <code>inits</code>, <code>settings</code> to backend</li>
-<li>Backend compiles/samples and returns summaries and quantiles</li>
-<li>Frontend unifies standalone script generation; backend no longer attaches duplicates</li>
-</ul></li>
-<li>Timeouts/resilience
-<ul>
-<li>Configurable timeout (frontend); enforced in backend worker</li>
-<li>Safe temp directory cleanup on Windows with retries</li>
-</ul></li>
-<li>Cleanup/typing
-<ul>
-<li>TypeScript fixes in <code>DoodleBUGS/src/components/right-sidebar/ExecutionPanel.vue</code></li>
-<li>Removal of unused backend code; consistent naming and logs</li>
-</ul></li>
-</ul>
+<section id="doodlebugs-preview" class="level2">
+<h2 class="anchored" data-anchor-id="doodlebugs-preview">DoodleBUGS Preview</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://turinglang.org/news/posts/DoodleBUGS-Introduction/DoodleBUGS.png" class="img-fluid figure-img"></p>
+<figcaption>DoodleBUGS Preview</figcaption>
+</figure>
+</div>
 </section>
 <section id="architecture-overview" class="level2">
 <h2 class="anchored" data-anchor-id="architecture-overview">Architecture Overview</h2>
 <ul>
-<li>Frontend: <a href="https://vuejs.org/">Vue 3</a>, <a href="https://pinia.vuejs.org/">Pinia</a>, <a href="https://js.cytoscape.org/">Cytoscape.js</a> <span class="citation" data-cites="cytoscapejs">[9]</span>, <a href="https://codemirror.net/">CodeMirror</a>
+<li>Frontend: <a href="https://vuejs.org/">Vue 3</a>, <a href="https://pinia.vuejs.org/">Pinia</a>, <a href="https://js.cytoscape.org/">Cytoscape.js</a> <span class="citation" data-cites="cytoscapejs">[1]</span>, <a href="https://codemirror.net/">CodeMirror</a>
 <ul>
 <li>Code generation: <code>DoodleBUGS/src/composables/useBugsCodeGenerator.ts</code></li>
 <li>Execution panel: <code>DoodleBUGS/src/components/right-sidebar/ExecutionPanel.vue</code></li>
+<li>Layouts:
+<ul>
+<li>Dagre (Hierarchical) [default]</li>
+<li>fCoSE (Force-Directed)</li>
+<li>Cola (Physics Simulation)</li>
+<li>Klay (Layered)</li>
+</ul></li>
 </ul></li>
 <li>Backend (Julia) HTTP server
 <ul>
@@ -226,11 +429,11 @@ font-style: inherit;"># scratch/test artifacts</span></span></code></pre></div>
 <li>Visual-first modeling with deterministic export to legacy BUGS <span class="citation" data-cites="bugs-rjournal bugs-book">[2], [3]</span>.</li>
 <li>Separation of concerns: editing (graph), generation (BUGS), execution (backend), and results (summary/quantiles) are modular.</li>
 <li>Deterministic ordering: topological sort + plate-aware traversal ensures readable, stable code output.</li>
-<li>Robustness: cancellable frontend fetch, backend-enforced timeout, and resilient temp cleanup on Windows (<code>safe_rmdir()</code>).</li>
+<li>Robustness: cancellable frontend fetch, backend-enforced timeout (default 0 = disabled, meaning no timeout), and resilient temp cleanup on Windows (<code>safe_rmdir()</code>).</li>
 </ul>
 <p><strong>Frontend architecture (Vue 3 + Cytoscape.js)</strong></p>
 <ul>
-<li>Core graph state is managed in Vue; <a href="https://js.cytoscape.org/">Cytoscape.js</a> handles layout, hit-testing, and interaction semantics (including compound nodes for plates) <span class="citation" data-cites="cytoscapejs">[9]</span>.</li>
+<li>Core graph state is managed in Vue; <a href="https://js.cytoscape.org/">Cytoscape.js</a> handles layout, hit-testing, and interaction semantics (including compound nodes for plates) <span class="citation" data-cites="cytoscapejs">[1]</span>.</li>
 <li>Code generation lives in <code>DoodleBUGS/src/composables/useBugsCodeGenerator.ts</code> and maps <code>GraphNode</code>/<code>GraphEdge</code> to BUGS:
 <ul>
 <li>Kahn topological sort for definition order</li>
@@ -244,99 +447,12 @@ font-style: inherit;"># scratch/test artifacts</span></span></code></pre></div>
 <li><code>run_model_handler()</code> in <code>DoodleBUGS/runtime/server.jl</code> materializes <code>model.bugs</code>, <code>payload.json</code>, and a transient <code>run_script.jl</code> that:
 <ul>
 <li>Builds <code>NamedTuple</code>s from JSON or string-literal data/inits</li>
-<li>Compiles via <code>JuliaBUGS.@bugs</code>, wraps with <code>ADgradient(:ReverseDiff)</code> <span class="citation" data-cites="ReverseDiff">[10]</span></li>
-<li>Samples with <code>AdvancedHMC.NUTS</code> through <code>AbstractMCMC</code> (Threads or Serial) <span class="citation" data-cites="AdvancedHMC AbstractMCMC HoffmanGelman2014">[11], [12], [13]</span></li>
-<li>Emits summaries (<code>MCMCChains</code>, <code>DataFrames</code>) and quantiles to JSON <span class="citation" data-cites="MCMCChains DataFrames">[14], [15]</span></li>
+<li>Compiles via <code>JuliaBUGS.@bugs</code>, wraps with <code>ADgradient(:ReverseDiff)</code> <span class="citation" data-cites="ReverseDiff">[4]</span></li>
+<li>Samples with <code>AdvancedHMC.NUTS</code> through <code>AbstractMCMC</code> (Threads or Serial) <span class="citation" data-cites="AdvancedHMC AbstractMCMC HoffmanGelman2014">[5], [6], [7]</span></li>
+<li>Emits summaries (<code>MCMCChains</code>, <code>DataFrames</code>) and quantiles to JSON <span class="citation" data-cites="MCMCChains DataFrames">[8], [9]</span></li>
 </ul></li>
 <li>Timeout: worker process is killed if exceeding <code>timeout_s</code>.</li>
 <li>Cleanup: <code>safe_rmdir()</code> retries with GC to avoid EBUSY on Windows.</li>
-</ul>
-</section>
-<section id="why-vue-not-react" class="level2">
-<h2 class="anchored" data-anchor-id="why-vue-not-react">Why Vue (not React)?</h2>
-<p>The proposal planned React; we chose Vue 3 after evaluating the graph layer and developer velocity for this app.</p>
-<ul>
-<li>Tried Konva (canvas) for custom graph editing: powerful drawing primitives, but required bespoke graph semantics (hit testing, edge routing, compound nodes) that <a href="https://js.cytoscape.org/">Cytoscape.js</a> provides out of the box.</li>
-<li>Tried D3 force/layouts: flexible, but compound nodes (plates), nesting, and drag constraints became a significant amount of custom code to maintain.</li>
-<li><a href="https://js.cytoscape.org/">Cytoscape.js</a> offered:
-<ul>
-<li>Native graph model with compound nodes (great for plates)</li>
-<li>Integrated layouts (WebCola, KLay) and rich interaction APIs <span class="citation" data-cites="webcola elk">[16], [17]</span></li>
-<li>Mature ecosystem and performance characteristics for medium-sized graphs</li>
-</ul></li>
-<li><a href="https://vuejs.org/">Vue 3</a> (vs React) for this project:
-<ul>
-<li>Composition API made integrating an imperative graph library (Cytoscape) straightforward via composables and lifecycle hooks</li>
-<li>SFC ergonomics and Pinia stores enabled quick iteration with strong TypeScript support</li>
-<li>Template reactivity + refs reduced reconciliation overhead when bridging to Cytoscape’s imperative API</li>
-<li>Minimal glue code for state management (Pinia) vs setting up reducers/selectors; enabled rapid iteration</li>
-<li>Vite + Vue tooling yielded fast HMR for UI-heavy iterations</li>
-</ul></li>
-<li>Design inspirations: draw.io for interaction affordances; Stan Playground for model/run UX <span class="citation" data-cites="drawio stan-playground">[18], [19]</span>.</li>
-</ul>
-</section>
-<section id="comparison-to-legacy-doodlebugs" class="level2">
-<h2 class="anchored" data-anchor-id="comparison-to-legacy-doodlebugs">Comparison to Legacy DoodleBUGS</h2>
-<p>The legacy tool was a desktop application driving WinBUGS <span class="citation" data-cites="winbugs">[20]</span>; the new DoodleBUGS is a browser-based editor targeting JuliaBUGS <span class="citation" data-cites="JuliaBUGS">[1]</span>. Key differences:</p>
-<ul>
-<li>Platform and backend
-<ul>
-<li>Legacy: Desktop UI, WinBUGS execution pipeline</li>
-<li>New: Web UI, Julia backend via <code>JuliaBUGS.@bugs</code>, sampling with <code>AdvancedHMC.NUTS</code> through <code>AbstractMCMC</code></li>
-</ul></li>
-<li>Graph engine and plates
-<ul>
-<li>Legacy: Bespoke graph handling with limited nesting semantics</li>
-<li>New: <a href="https://js.cytoscape.org/">Cytoscape.js</a> with compound nodes for robust nested plates; custom DnD for drag-in/out and creating inside plates</li>
-</ul></li>
-<li>Layouts and interactions
-<ul>
-<li>Legacy: Limited auto-layout support</li>
-<li>New: Multiple layout engines (Cola, Klay) and stable interactions; positions updated after <code>layoutstop</code> <span class="citation" data-cites="webcola elk">[16], [17]</span></li>
-</ul></li>
-<li>Code generation
-<ul>
-<li>Legacy: Export to BUGS without strong ordering guarantees</li>
-<li>New: Deterministic topological + plate-aware traversal; parameter canonicalization and safe index expansion</li>
-</ul></li>
-<li>Execution and tooling
-<ul>
-<li>Legacy: WinBUGS-managed runs</li>
-<li>New: Lightweight Julia HTTP backend, configurable timeouts, resilient temp cleanup, JSON summaries via <code>MCMCChains</code></li>
-</ul></li>
-<li>DevX and maintainability
-<ul>
-<li>New: Vue 3 + TypeScript + Pinia; unified standalone script generation on the frontend; leaner backend responses</li>
-</ul></li>
-</ul>
-</section>
-<section id="progress-vs-proposal" class="level2">
-<h2 class="anchored" data-anchor-id="progress-vs-proposal">Progress vs Proposal</h2>
-<ul>
-<li>Implemented
-<ul>
-<li>Visual editor with nested plates and robust DnD</li>
-<li>BUGS code generator (topological + plate-aware)</li>
-<li>Local execution + summaries/quantiles</li>
-<li>Unified standalone script generation (frontend)</li>
-<li>Timeouts/resilience</li>
-<li>Multiple layouts and interactions</li>
-<li>Extensive cleanup/typing</li>
-<li>Execution timeout (end-to-end)</li>
-<li>Layout options (Dagre (Hierarchical), fCoSE (Force-Directed), Cola (Physics Simulation), KLay (Layered)) and interactions</li>
-<li>Cleanup and stronger typing</li>
-</ul></li>
-<li>Changed
-<ul>
-<li>Vue 3 instead of React</li>
-<li>Backend responses smaller; no standalone script attachment</li>
-</ul></li>
-<li>Deferred/Partial
-<ul>
-<li>Rich diagnostics (R-hat, ESS, PPC, trace/density plots)</li>
-<li>WebKit/Safari support</li>
-<li>UX polish for large graphs</li>
-</ul></li>
 </ul>
 </section>
 <section id="how-to-run-locally" class="level2">
@@ -371,7 +487,7 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 <p>Notes:</p>
 <ul>
 <li>CORS is enabled in the backend so the dev UI can call <code>http://localhost:8081</code>.</li>
-<li>Live demo (static UI): https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/</li>
+<li>Try it here (static UI): <a href="https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/">https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/</a></li>
 </ul>
 </section>
 <section id="api-summary" class="level2">
@@ -382,6 +498,7 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 <ul>
 <li>Body: <code>model_code</code>, <code>data</code>/<code>data_string</code>, <code>inits</code>/<code>inits_string</code>, <code>settings</code> <code>{ n_samples, n_adapts, n_chains, seed, timeout_s }</code></li>
 <li>Response: <code>{ success, summary, quantiles, logs, files[] }</code></li>
+<li>Note: <code>timeout_s = 0</code> disables timeout (default)</li>
 </ul></li>
 </ul>
 <p>See <code>DoodleBUGS/runtime/server.jl</code>.</p>
@@ -392,25 +509,25 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 <li>WebKit/Safari/iOS: unsupported at this time (see <code>DoodleBUGS/README.md</code>).</li>
 <li>Limited visualization beyond summary/quantiles.</li>
 <li>No persisted projects; session-based.</li>
+<li>Overlapped plates (multiple parents) are not supported; tracked here: https://github.com/TuringLang/JuliaBUGS.jl/issues/362</li>
 </ul>
 </section>
 <section id="future-work" class="level2">
 <h2 class="anchored" data-anchor-id="future-work">Future Work</h2>
 <ul>
 <li>Backend: Add Pluto.jl as a backend for supporting compound documents and QuartoNotebookRunner.jl for running notebooks.</li>
-<li>Diagnostics/visualization: R-hat, ESS, trace plots, PPC, posterior densities</li>
+<li>Visualization: trace plots, density plots, PPC, posterior densities (R-hat and ESS are already included in summary statistics)</li>
 <li>UX: richer node templates, validation, distribution hints</li>
 <li>Persistence/sharing: save/load and shareable links</li>
 <li>Browser compatibility: WebKit/Safari and iOS/iPadOS</li>
 <li>Performance: virtualization for large graphs</li>
 </ul>
 </section>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p>Much appreciation goes to my mentors Xianda Sun and Hong Ge. The work is impossible without your help and support.</p>
+<section id="appendix-links" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-links">Appendix: Links</h2>
 <ul>
-<li>Mentors: Xianda Sun (<a href="https://github.com/sunxd3">@sunxd3</a>) and Hong Ge (<a href="https://github.com/yebai">@yebai</a>)</li>
-<li>TuringLang/JuliaBUGS community and contributors</li>
+<li>Repo: <a href="https://github.com/TuringLang/JuliaBUGS.jl">https://github.com/TuringLang/JuliaBUGS.jl</a></li>
+<li>Try it here (static UI): <a href="https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/">https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/</a></li>
 </ul>
 
 
@@ -418,71 +535,72 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0">
-<div id="ref-JuliaBUGS" class="csl-entry">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline"><span>“JuliaBUGS.jl.”</span> Available: <a href="https://github.com/TuringLang/JuliaBUGS.jl">https://github.com/TuringLang/JuliaBUGS.jl</a></div>
-</div>
-<div id="ref-bugs-book" class="csl-entry">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline"><span>“The BUGS book: A practical introduction to bayesian analysis.”</span> Wiley. Available: <a href="https://onlinelibrary.wiley.com/doi/10.1111/anzs.12058">https://onlinelibrary.wiley.com/doi/10.1111/anzs.12058</a></div>
+<div id="ref-cytoscapejs" class="csl-entry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline"><span>“Cytoscape.js.”</span> Available: <a href="https://js.cytoscape.org/">https://js.cytoscape.org/</a></div>
 </div>
 <div id="ref-bugs-rjournal" class="csl-entry">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline"><span>“The BUGS language.”</span> Available: <a href="https://journal.r-project.org/articles/RN-2006-005/RN-2006-005.pdf">https://journal.r-project.org/articles/RN-2006-005/RN-2006-005.pdf</a></div>
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline"><span>“The BUGS language.”</span> Available: <a href="https://journal.r-project.org/articles/RN-2006-005/RN-2006-005.pdf">https://journal.r-project.org/articles/RN-2006-005/RN-2006-005.pdf</a></div>
 </div>
-<div id="ref-bugs-project" class="csl-entry">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline"><span>“The BUGS project.”</span> Available: <a href="https://www.mrc-bsu.cam.ac.uk/software/bugs/">https://www.mrc-bsu.cam.ac.uk/software/bugs/</a></div>
-</div>
-<div id="ref-multibugs" class="csl-entry">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline"><span>“MultiBUGS: Parallel BUGS modeling.”</span> Available: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7116196/">https://pmc.ncbi.nlm.nih.gov/articles/PMC7116196/</a></div>
-</div>
-<div id="ref-bugs-survival" class="csl-entry">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline"><span>“Bayesian survival analysis with BUGS.”</span> Available: <a href="https://onlinelibrary.wiley.com/doi/10.1002/sim.8933">https://onlinelibrary.wiley.com/doi/10.1002/sim.8933</a></div>
-</div>
-<div id="ref-albert-chib-1993" class="csl-entry">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline"><span>“Inference via gibbs (albert &amp; chib).”</span> Available: <a href="https://apps.olin.wustl.edu/faculty/chib/papers/albertchibjb93.pdf">https://apps.olin.wustl.edu/faculty/chib/papers/albertchibjb93.pdf</a></div>
-</div>
-<div id="ref-informs-gibbs" class="csl-entry">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline"><span>“Bayesian inference using gibbs sampling.”</span> Available: <a href="https://pubsonline.informs.org/doi/10.1287/ited.2013.0120">https://pubsonline.informs.org/doi/10.1287/ited.2013.0120</a></div>
-</div>
-<div id="ref-cytoscapejs" class="csl-entry">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline"><span>“Cytoscape.js.”</span> Available: <a href="https://js.cytoscape.org/">https://js.cytoscape.org/</a></div>
+<div id="ref-bugs-book" class="csl-entry">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline"><span>“The BUGS book: A practical introduction to bayesian analysis.”</span> Wiley. Available: <a href="https://onlinelibrary.wiley.com/doi/10.1111/anzs.12058">https://onlinelibrary.wiley.com/doi/10.1111/anzs.12058</a></div>
 </div>
 <div id="ref-ReverseDiff" class="csl-entry">
-<div class="csl-left-margin">[10] </div><div class="csl-right-inline"><span>“ReverseDiff.jl.”</span> Available: <a href="https://github.com/JuliaDiff/ReverseDiff.jl">https://github.com/JuliaDiff/ReverseDiff.jl</a></div>
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline"><span>“ReverseDiff.jl.”</span> Available: <a href="https://github.com/JuliaDiff/ReverseDiff.jl">https://github.com/JuliaDiff/ReverseDiff.jl</a></div>
 </div>
 <div id="ref-AdvancedHMC" class="csl-entry">
-<div class="csl-left-margin">[11] </div><div class="csl-right-inline"><span>“AdvancedHMC.jl.”</span> Available: <a href="https://github.com/TuringLang/AdvancedHMC.jl">https://github.com/TuringLang/AdvancedHMC.jl</a></div>
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline"><span>“AdvancedHMC.jl.”</span> Available: <a href="https://github.com/TuringLang/AdvancedHMC.jl">https://github.com/TuringLang/AdvancedHMC.jl</a></div>
 </div>
 <div id="ref-AbstractMCMC" class="csl-entry">
-<div class="csl-left-margin">[12] </div><div class="csl-right-inline"><span>“AbstractMCMC.jl.”</span> Available: <a href="https://github.com/TuringLang/AbstractMCMC.jl">https://github.com/TuringLang/AbstractMCMC.jl</a></div>
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline"><span>“AbstractMCMC.jl.”</span> Available: <a href="https://github.com/TuringLang/AbstractMCMC.jl">https://github.com/TuringLang/AbstractMCMC.jl</a></div>
 </div>
 <div id="ref-HoffmanGelman2014" class="csl-entry">
-<div class="csl-left-margin">[13] </div><div class="csl-right-inline">M. D. Hoffman and A. Gelman, <span>“The no-u-turn sampler: Adaptively setting path lengths in hamiltonian monte carlo,”</span> <em>arXiv preprint arXiv:1111.4246</em>, 2014, Available: <a href="https://arxiv.org/abs/1111.4246">https://arxiv.org/abs/1111.4246</a></div>
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">M. D. Hoffman and A. Gelman, <span>“The no-u-turn sampler: Adaptively setting path lengths in hamiltonian monte carlo,”</span> <em>arXiv preprint arXiv:1111.4246</em>, 2014, Available: <a href="https://arxiv.org/abs/1111.4246">https://arxiv.org/abs/1111.4246</a></div>
 </div>
 <div id="ref-MCMCChains" class="csl-entry">
-<div class="csl-left-margin">[14] </div><div class="csl-right-inline"><span>“MCMCChains.jl.”</span> Available: <a href="https://github.com/TuringLang/MCMCChains.jl">https://github.com/TuringLang/MCMCChains.jl</a></div>
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline"><span>“MCMCChains.jl.”</span> Available: <a href="https://github.com/TuringLang/MCMCChains.jl">https://github.com/TuringLang/MCMCChains.jl</a></div>
 </div>
 <div id="ref-DataFrames" class="csl-entry">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline"><span>“DataFrames.jl.”</span> Available: <a href="https://dataframes.juliadata.org/">https://dataframes.juliadata.org/</a></div>
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline"><span>“DataFrames.jl.”</span> Available: <a href="https://dataframes.juliadata.org/">https://dataframes.juliadata.org/</a></div>
+</div>
+<div id="ref-bugs-project" class="csl-entry">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline"><span>“The BUGS project.”</span> Available: <a href="https://www.mrc-bsu.cam.ac.uk/software/bugs/">https://www.mrc-bsu.cam.ac.uk/software/bugs/</a></div>
+</div>
+<div id="ref-multibugs" class="csl-entry">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline"><span>“MultiBUGS: Parallel BUGS modeling.”</span> Available: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7116196/">https://pmc.ncbi.nlm.nih.gov/articles/PMC7116196/</a></div>
+</div>
+<div id="ref-bugs-survival" class="csl-entry">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline"><span>“Bayesian survival analysis with BUGS.”</span> Available: <a href="https://onlinelibrary.wiley.com/doi/10.1002/sim.8933">https://onlinelibrary.wiley.com/doi/10.1002/sim.8933</a></div>
+</div>
+<div id="ref-albert-chib-1993" class="csl-entry">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline"><span>“Inference via gibbs (albert &amp; chib).”</span> Available: <a href="https://apps.olin.wustl.edu/faculty/chib/papers/albertchibjb93.pdf">https://apps.olin.wustl.edu/faculty/chib/papers/albertchibjb93.pdf</a></div>
+</div>
+<div id="ref-informs-gibbs" class="csl-entry">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline"><span>“Bayesian inference using gibbs sampling.”</span> Available: <a href="https://pubsonline.informs.org/doi/10.1287/ited.2013.0120">https://pubsonline.informs.org/doi/10.1287/ited.2013.0120</a></div>
 </div>
 <div id="ref-webcola" class="csl-entry">
-<div class="csl-left-margin">[16] </div><div class="csl-right-inline"><span>“WebCola.”</span> Available: <a href="https://ialab.it.monash.edu/webcola/">https://ialab.it.monash.edu/webcola/</a></div>
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline"><span>“WebCola.”</span> Available: <a href="https://ialab.it.monash.edu/webcola/">https://ialab.it.monash.edu/webcola/</a></div>
 </div>
 <div id="ref-elk" class="csl-entry">
-<div class="csl-left-margin">[17] </div><div class="csl-right-inline"><span>“Eclipse layout kernel (ELK / KLay).”</span> Available: <a href="https://www.eclipse.org/elk/">https://www.eclipse.org/elk/</a></div>
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline"><span>“Eclipse layout kernel (ELK / KLay).”</span> Available: <a href="https://www.eclipse.org/elk/">https://www.eclipse.org/elk/</a></div>
 </div>
 <div id="ref-drawio" class="csl-entry">
-<div class="csl-left-margin">[18] </div><div class="csl-right-inline"><span>“Draw.io (diagrams.net).”</span> Available: <a href="https://www.diagrams.net/">https://www.diagrams.net/</a></div>
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline"><span>“Draw.io (diagrams.net).”</span> Available: <a href="https://www.diagrams.net/">https://www.diagrams.net/</a></div>
 </div>
 <div id="ref-stan-playground" class="csl-entry">
-<div class="csl-left-margin">[19] </div><div class="csl-right-inline"><span>“Stan playground.”</span> Available: <a href="https://stan-playground.flatironinstitute.org/">https://stan-playground.flatironinstitute.org/</a></div>
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline"><span>“Stan playground.”</span> Available: <a href="https://stan-playground.flatironinstitute.org/">https://stan-playground.flatironinstitute.org/</a></div>
 </div>
 <div id="ref-winbugs" class="csl-entry">
-<div class="csl-left-margin">[20] </div><div class="csl-right-inline"><span>“WinBUGS.”</span> Available: <a href="http://www.openbugs.net/w/FrontPage">http://www.openbugs.net/w/FrontPage</a></div>
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline"><span>“WinBUGS.”</span> Available: <a href="http://www.openbugs.net/w/FrontPage">http://www.openbugs.net/w/FrontPage</a></div>
+</div>
+<div id="ref-JuliaBUGS" class="csl-entry">
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline"><span>“JuliaBUGS.jl.”</span> Available: <a href="https://github.com/TuringLang/JuliaBUGS.jl">https://github.com/TuringLang/JuliaBUGS.jl</a></div>
 </div>
 </div></section></div> ]]></description>
-  <category>GSoC</category>
   <category>Blog</category>
+  <category>GSoC</category>
+  <category>Engineering</category>
   <guid>https://turinglang.org/news/posts/DoodleBUGS-Introduction/</guid>
-  <pubDate>Thu, 28 Aug 2025 00:00:00 GMT</pubDate>
+  <pubDate>Sat, 30 Aug 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Turing.jl Newsletter 11</title>
