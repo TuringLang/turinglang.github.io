@@ -71,7 +71,7 @@ The legacy tool was a desktop application driving WinBUGS [@winbugs]; the new Do
 
 ![Legacy DoodleBUGS](Legacy-DoodleBUGS.png)
 
-![New DoodleBUGS](Modern-DoodleBUGS.png)
+![JuliaBUGS DoodleBUGS](JuliaBUGS-DoodleBUGS.png)
 
 - Platform and backend
   - Legacy: Desktop UI, WinBUGS execution pipeline
