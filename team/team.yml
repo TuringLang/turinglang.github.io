@@ -227,6 +227,22 @@
 # GSOC Contributors:
 
 - title: Google Summer of Code Students
+  subtitle: GSoC 2025
+  members:
+    - name: Shravan Goswami
+      image: shravan-goswami.jpg
+      university: Uka Tarsadia University
+      gsoc_project: "DoodleBUGS: a Browser-Based Graphical Interface for JuliaBUGS"
+      gsoc_project_link:
+      gsoc_report: /news/posts/2025-08-28-DoodleBUGS-Introduction/index.html
+      links:
+        - website: https://shravangoswami.com/
+        - github: https://github.com/shravanngoswamii
+        - twitter: https://twitter.com/shravangoswamii
+        - linkedin: https://www.linkedin.com/in/shravangoswami/
+        - mail: shravanngoswamii@gmail.com
+
+- title:
   subtitle: GSoC 2023
   members:
     - name: Zuheng(David) Xu
