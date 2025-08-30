@@ -156,7 +156,7 @@
 </ul></li>
 <li>Deferred/Partial
 <ul>
-<li>Rich visualization (PPC, trace/density plots). R-hat and ESS are already included in the summary statistics.</li>
+<li>Visualization: integrate with MCMCChains.jl for plotting. R-hat and ESS are already included in the summary statistics.</li>
 <li>WebKit/Safari support</li>
 <li>UX polish for large graphs</li>
 </ul></li>
@@ -508,7 +508,7 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 <ul>
 <li>WebKit/Safari/iOS: unsupported at this time (see <code>DoodleBUGS/README.md</code>).</li>
 <li>Limited visualization beyond summary/quantiles.</li>
-<li>No persisted projects; session-based.</li>
+<li>Local storage persistence only (browser); no cloud sync or shareable links yet.</li>
 <li>Overlapped plates (multiple parents) are not supported; tracked here: https://github.com/TuringLang/JuliaBUGS.jl/issues/362</li>
 </ul>
 </section>
@@ -516,7 +516,7 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 <h2 class="anchored" data-anchor-id="future-work">Future Work</h2>
 <ul>
 <li>Backend: Add Pluto.jl as a backend for supporting compound documents and QuartoNotebookRunner.jl for running notebooks.</li>
-<li>Visualization: trace plots, density plots, PPC, posterior densities (R-hat and ESS are already included in summary statistics)</li>
+<li>Visualization: integrate with MCMCChains.jl for plotting. R-hat and ESS are already included in summary statistics.</li>
 <li>UX: richer node templates, validation, distribution hints</li>
 <li>Persistence/sharing: save/load and shareable links</li>
 <li>Browser compatibility: WebKit/Safari and iOS/iPadOS</li>

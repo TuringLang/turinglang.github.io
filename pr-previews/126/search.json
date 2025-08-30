@@ -144,14 +144,14 @@
     "href": "news/posts/DoodleBUGS-Introduction/index.html#current-limitations",
     "title": "DoodleBUGS: Graphical Interface for JuliaBUGS",
     "section": "Current Limitations",
-    "text": "Current Limitations\n\nWebKit/Safari/iOS: unsupported at this time (see DoodleBUGS/README.md).\nLimited visualization beyond summary/quantiles.\nNo persisted projects; session-based.\nOverlapped plates (multiple parents) are not supported; tracked here: https://github.com/TuringLang/JuliaBUGS.jl/issues/362"
+    "text": "Current Limitations\n\nWebKit/Safari/iOS: unsupported at this time (see DoodleBUGS/README.md).\nLimited visualization beyond summary/quantiles.\nLocal storage persistence only (browser); no cloud sync or shareable links yet.\nOverlapped plates (multiple parents) are not supported; tracked here: https://github.com/TuringLang/JuliaBUGS.jl/issues/362"
   },
   {
     "objectID": "news/posts/DoodleBUGS-Introduction/index.html#future-work",
     "href": "news/posts/DoodleBUGS-Introduction/index.html#future-work",
     "title": "DoodleBUGS: Graphical Interface for JuliaBUGS",
     "section": "Future Work",
-    "text": "Future Work\n\nBackend: Add Pluto.jl as a backend for supporting compound documents and QuartoNotebookRunner.jl for running notebooks.\nVisualization: trace plots, density plots, PPC, posterior densities (R-hat and ESS are already included in summary statistics)\nUX: richer node templates, validation, distribution hints\nPersistence/sharing: save/load and shareable links\nBrowser compatibility: WebKit/Safari and iOS/iPadOS\nPerformance: virtualization for large graphs"
+    "text": "Future Work\n\nBackend: Add Pluto.jl as a backend for supporting compound documents and QuartoNotebookRunner.jl for running notebooks.\nVisualization: integrate with MCMCChains.jl for plotting. R-hat and ESS are already included in summary statistics.\nUX: richer node templates, validation, distribution hints\nPersistence/sharing: save/load and shareable links\nBrowser compatibility: WebKit/Safari and iOS/iPadOS\nPerformance: virtualization for large graphs"
   },
   {
     "objectID": "news/posts/DoodleBUGS-Introduction/index.html#appendix-links",
@@ -214,7 +214,7 @@
     "href": "news/posts/DoodleBUGS-GSoC-2025-Report/index.html#progress-vs-proposal",
     "title": "DoodleBUGS: GSoC 2025 Report",
     "section": "Progress vs Proposal",
-    "text": "Progress vs Proposal\n\nImplemented\n\nVisual editor with nested plates and robust Drag and Drop\nBUGS code generator (topological + plate-aware)\nLocal execution + summaries/quantiles (summary includes mean, std, mcse, ess_bulk, ess_tail, rhat, etc.)\nUnified standalone script generation (frontend)\nTimeouts/resilience\nMultiple layouts and interactions (Dagre [default], fCoSE, Cola, Klay)\nExtensive cleanup/typing\n\nChanged\n\nVue 3 instead of React\nBackend responses smaller; no standalone script attachment\n\nDeferred/Partial\n\nRich visualization (PPC, trace/density plots). R-hat and ESS are already included in the summary statistics.\nWebKit/Safari support\nUX polish for large graphs"
+    "text": "Progress vs Proposal\n\nImplemented\n\nVisual editor with nested plates and robust Drag and Drop\nBUGS code generator (topological + plate-aware)\nLocal execution + summaries/quantiles (summary includes mean, std, mcse, ess_bulk, ess_tail, rhat, etc.)\nUnified standalone script generation (frontend)\nTimeouts/resilience\nMultiple layouts and interactions (Dagre [default], fCoSE, Cola, Klay)\nExtensive cleanup/typing\n\nChanged\n\nVue 3 instead of React\nBackend responses smaller; no standalone script attachment\n\nDeferred/Partial\n\nVisualization: integrate with MCMCChains.jl for plotting. R-hat and ESS are already included in the summary statistics.\nWebKit/Safari support\nUX polish for large graphs"
   },
   {
     "objectID": "news/posts/DoodleBUGS-GSoC-2025-Report/index.html#cross-links",
