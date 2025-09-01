@@ -12,7 +12,7 @@ aliases:
   - /news/posts/2025-08-28-DoodleBUGS-Introduction
   - /DoodleBUGS-Introduction
   - /DoodleBUGS-GSoC-2025-Report
-  - /GSoC-2025-Report-DoodleBUGS
+  - /GSoC-2025-Report-DoodleBUGS # submitted this to GSoC
 bibliography: references.bib
 csl: university-of-york-ieee.csl
 link-citations: true
