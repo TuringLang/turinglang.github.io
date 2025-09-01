@@ -1,6 +1,7 @@
 ---
 title: "GSoC Report for DoodleBUGS: a Browser-Based Graphical Interface for Drawing Probabilistic Graphical Models"
 description: "Shravan Goswami's GSoC 2025 final report: goals, architecture, progress vs proposal, and how to try it."
+toc: true
 categories:
   - GSoC
   - Blog
@@ -9,7 +10,7 @@ author:
     url: https://shravangoswami.com/
 date: 2025-09-01
 aliases:
-  - /GSoC-2025-Report-DoodleBUGS # submitted this to GSoC
+  - /GSoC-2025-Report-DoodleBUGS # submitted this to GSoC so please remember to update incase moving this page somewhere else
 bibliography: references.bib
 csl: university-of-york-ieee.csl
 link-citations: true
@@ -19,15 +20,14 @@ nocite: |
 
 ## TL;DR
 
-- DoodleBUGS is a browser-based graphical editor for Bayesian models that utilize JuliaBUGS for BUGS model compilation and connect to Julia inference backends (e.g., AdvancedHMC via AbstractMCMC).
+- BUGS (Bayesian Inference Using Gibbs Sampling) is a probabilistic programming language for Bayesian models, and JuliaBUGS is its modern implementation in Julia. DoodleBUGS is a browser-based graphical interface for JuliaBUGS, allowing users to draw probabilistic graphical models and generate BUGS code.
 - Implemented: visual editor (nodes, edges, nested plates), legacy BUGS code generation that compiles with [JuliaBUGS](https://github.com/TuringLang/JuliaBUGS.jl) [@JuliaBUGS; @bugs-book], local execution via a Julia backend, unified standalone script generation (frontend), timeouts, multiple layouts, and extensive cleanup/typing.
 - Changed from proposal: frontend implemented in Vue 3 (instead of React); backend simplified (frontend is the single source of truth for standalone scripts).
-- Status: Working application. Live demo (static UI) available; for running inference locally, use the backend server.
+- Status: Working application. Try it here (static UI): [https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/](https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/). For local inference, run the backend server.
 
-## Project Links
+## DoodleBUGS UI
 
-- Repo: [https://github.com/TuringLang/JuliaBUGS.jl](https://github.com/TuringLang/JuliaBUGS.jl)
-- Live demo: [https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/](https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/)
+![DoodleBUGS UI](DoodleBUGS.png)
 
 ## DoodleBUGS Project Structure
 
@@ -59,7 +59,7 @@ DoodleBUGS/                # Vite + Vue 3 app (UI editor)
 
 ## Motivation
 
-[JuliaBUGS](https://github.com/TuringLang/JuliaBUGS.jl) is a modern Julia implementation of the BUGS language [@bugs-rjournal; @bugs-book; @bugs-project]. DoodleBUGS revives the original visual modeling concept with a modern stack so users can:
+[JuliaBUGS](https://github.com/TuringLang/JuliaBUGS.jl) is a modern Julia implementation of the BUGS language [@bugs-rjournal; @bugs-book; @bugs-project]. DoodleBUGS revives the original visual modelling concept with a modern browser-based stack so users can:
 
 - Construct probabilistic graphical models visually (nodes, edges, plates).
 - Export readable legacy BUGS code that compiles with JuliaBUGS [@JuliaBUGS; @bugs-rjournal; @bugs-book].
@@ -70,20 +70,20 @@ DoodleBUGS/                # Vite + Vue 3 app (UI editor)
 - Visual editor
   - Node types: stochastic, observed, deterministic
   - Plates with arbitrary nesting; robust drag-in/out and creation inside plates
-  - Graph layouts: [WebCola](https://ialab.it.monash.edu/webcola/) and [ELK/KLay](https://www.eclipse.org/elk/); stable drag interactions
+  - Graph layouts: Dagre (default), fCoSE (Force-Directed), Cola (Physics Simulation), KLay (Layered); stable interactions
 - Legacy BUGS code generation [@bugs-rjournal; @bugs-book]
   - Topological ordering and plate-aware traversal
   - Parameter formatting and safe index expansion
   - Implemented in `DoodleBUGS/src/composables/useBugsCodeGenerator.ts`
 - Execution flow
-  - Frontend sends `model_code`, `data`, `inits`, `settings` to backend
-  - Backend compiles/samples and returns summaries and quantiles
-  - Frontend unifies standalone script generation; backend no longer attaches duplicates
+  - Frontend POSTs to `/api/run` with body: `model_code` (BUGS), `data` and `inits` (JSON), `data_string` and `inits_string` (Julia NamedTuple literals), and `settings` `{ n_samples, n_adapts, n_chains, seed, timeout_s }`. If `/api/run` returns 404, it falls back to `/api/run_model`.
+  - Backend creates a temp dir, writes `model.bugs` and `payload.json`, generates an ephemeral `run_script.jl`, compiles with `JuliaBUGS.@bugs`, wraps with `ADgradient(:ReverseDiff)`, and samples via `AdvancedHMC.NUTS` through `AbstractMCMC` (Threads or Serial). It writes summaries (incl. ESS, R-hat) and quantiles to JSON and returns `{ success, summary, quantiles, logs, files[] }`, where `files` includes `model.bugs`, `payload.json`, `run_script.jl`, and `results.json`.
+  - Frontend also generates a `standalone.jl` script locally (mirrors backend execution) and shows it alongside the backend files; the backend does not attach a standalone script.
 - Timeouts/resilience
   - Configurable timeout (frontend); enforced in backend worker
   - Safe temp directory cleanup on Windows with retries
 - Cleanup/typing
-  - TypeScript fixes in `DoodleBUGS/src/components/right-sidebar/ExecutionPanel.vue`
+  - Strong, project-wide TypeScript typing across stores, components, and composables
   - Removal of unused backend code; consistent naming and logs
 
 ## Architecture Overview
@@ -121,10 +121,10 @@ DoodleBUGS/                # Vite + Vue 3 app (UI editor)
   - Builds `NamedTuple`s from JSON or string-literal data/inits
   - Compiles via `JuliaBUGS.@bugs`, wraps with `ADgradient(:ReverseDiff)` [@ReverseDiff]
   - Samples with `AdvancedHMC.NUTS` through `AbstractMCMC` (Threads or Serial) [@AdvancedHMC; @AbstractMCMC; @HoffmanGelman2014]
-  - Emits summaries (`MCMCChains`, `DataFrames`) and quantiles to JSON
+  - Emits summaries (incl. ESS and R-hat) via `MCMCChains`/`DataFrames` and quantiles to JSON
     [@MCMCChains; @DataFrames]
-- Timeout: worker process is killed if exceeding `timeout_s`.
-- Cleanup: `safe_rmdir()` retries with GC to avoid EBUSY on Windows.
+  - Timeout: worker process is killed if exceeding `timeout_s`.
+  - Cleanup: `safe_rmdir()` retries with GC to avoid EBUSY on Windows.
 
 ## Why Vue (not React)?
 
@@ -134,7 +134,7 @@ The proposal planned React; we chose Vue 3 after evaluating the graph layer and 
 - Tried D3 force/layouts: flexible, but compound nodes (plates), nesting, and drag constraints became a significant amount of custom code to maintain.
 - [Cytoscape.js](https://js.cytoscape.org/) offered:
   - Native graph model with compound nodes (great for plates)
-  - Integrated layouts (WebCola, KLay) and rich interaction APIs [@webcola; @elk]
+  - Integrated layouts (Dagre, fCoSE, Cola, KLay) and rich interaction APIs [@webcola; @elk]
   - Mature ecosystem and performance characteristics for medium-sized graphs
 - [Vue 3](https://vuejs.org/) (vs React) for this project:
   - Composition API made integrating an imperative graph library (Cytoscape) straightforward via composables and lifecycle hooks
@@ -146,17 +146,23 @@ The proposal planned React; we chose Vue 3 after evaluating the graph layer and 
 
 ## Comparison to Legacy DoodleBUGS
 
-The legacy tool was a desktop application driving WinBUGS [@winbugs]; the new DoodleBUGS is a browser-based editor targeting JuliaBUGS [@JuliaBUGS]. Key differences:
+The legacy tool was a windows desktop application driving WinBUGS [@winbugs]; the new DoodleBUGS is a browser-based editor targeting JuliaBUGS [@JuliaBUGS]. 
+
+![Legacy DoodleBUGS](Legacy-DoodleBUGS.png)
+
+![New DoodleBUGS](New-DoodleBUGS.png)
+
+Key differences:
 
 - Platform and backend
   - Legacy: Desktop UI, WinBUGS execution pipeline
   - New: Web UI, Julia backend via `JuliaBUGS.@bugs`, sampling with `AdvancedHMC.NUTS` through `AbstractMCMC`
 - Graph engine and plates
   - Legacy: Bespoke graph handling with limited nesting semantics
-  - New: [Cytoscape.js](https://js.cytoscape.org/) with compound nodes for robust nested plates; custom DnD for drag-in/out and creating inside plates
+  - New: [Cytoscape.js](https://js.cytoscape.org/) with compound nodes for robust nested plates; custom drag-and-drop for drag-in/out and creating inside plates
 - Layouts and interactions
   - Legacy: Limited auto-layout support
-  - New: Multiple layout engines (Cola, Klay) and stable interactions; positions updated after `layoutstop` [@webcola; @elk]
+  - New: Multiple layout engines (Dagre, fCoSE, Cola, KLay) and stable interactions; positions updated after `layoutstop` [@webcola; @elk]
 - Code generation
   - Legacy: Export to BUGS without strong ordering guarantees
   - New: Deterministic topological + plate-aware traversal; parameter canonicalization and safe index expansion
@@ -169,7 +175,7 @@ The legacy tool was a desktop application driving WinBUGS [@winbugs]; the new Do
 ## Progress vs Proposal
 
 - Implemented
-  - Visual editor with nested plates and robust DnD
+  - Visual editor with nested plates and robust drag-and-drop
   - BUGS code generator (topological + plate-aware)
   - Local execution + summaries/quantiles
   - Unified standalone script generation (frontend)
@@ -177,13 +183,13 @@ The legacy tool was a desktop application driving WinBUGS [@winbugs]; the new Do
   - Multiple layouts and interactions
   - Extensive cleanup/typing
   - Execution timeout (end-to-end)
-  - Layout options (Dagre (Hierarchical), fCoSE (Force-Directed), Cola (Physics Simulation), KLay (Layered)) and interactions
+  - Layout options (Dagre (default, layered), fCoSE (force-directed), Cola (physics simulation), KLay (layered)) and interactions
   - Cleanup and stronger typing
 - Changed
   - Vue 3 instead of React
   - Backend responses smaller; no standalone script attachment
 - Deferred/Partial
-  - Rich diagnostics (R-hat, ESS, PPC, trace/density plots)
+  - Visualizations: integrate with MCMCChains.jl for plots (trace, density, PPC, diagnostics). ESS and R-hat already included in summary statistics.
   - WebKit/Safari support
   - UX polish for large graphs
 
@@ -209,14 +215,15 @@ julia --project=DoodleBUGS/runtime DoodleBUGS/runtime/server.jl
 Notes:
 
 - CORS is enabled in the backend so the dev UI can call `http://localhost:8081`.
-- Live demo (static UI): https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/
+- Try it here (static UI): [https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/](https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/)
 
-## API Summary
+## API Summary for Backend Server
 
 - GET `/api/health` → `{ "status": "ok" }`
 - POST `/api/run` (alias: `/api/run_model`)
-  - Body: `model_code`, `data`/`data_string`, `inits`/`inits_string`, `settings` `{ n_samples, n_adapts, n_chains, seed, timeout_s }`
-  - Response: `{ success, summary, quantiles, logs, files[] }`
+  - Body: `model_code`, `data` (JSON), `inits` (JSON), `data_string` (Julia literal), `inits_string` (Julia literal), `settings` `{ n_samples, n_adapts, n_chains, seed, timeout_s }`
+  - Response: `{ success, summary, quantiles, logs, files[] }` where `files[]` contains `model.bugs`, `payload.json`, `run_script.jl`, `results.json`
+  - Note: Frontend falls back to `/api/run_model` if `/api/run` is unavailable (404)
 
 See `DoodleBUGS/runtime/server.jl`.
 
@@ -224,14 +231,14 @@ See `DoodleBUGS/runtime/server.jl`.
 
 - WebKit/Safari/iOS: unsupported at this time (see `DoodleBUGS/README.md`).
 - Limited visualization beyond summary/quantiles.
-- No persisted projects; session-based.
+- Overlapped plates (nodes with multiple parent plates) are currently not supported; see [#362](https://github.com/TuringLang/JuliaBUGS.jl/issues/362).
 
 ## Future Work
 
 - Backend: Add Pluto.jl as a backend for supporting compound documents and QuartoNotebookRunner.jl for running notebooks.
-- Diagnostics/visualization: R-hat, ESS, trace plots, PPC, posterior densities
+- Diagnostics/visualization: integrate with MCMCChains.jl for plots (trace, density, PPC, diagnostics). ESS and R-hat already available in summary stats.
 - UX: richer node templates, validation, distribution hints
-- Persistence/sharing: save/load and shareable links
+- Sharing: shareable links/cloud sync (projects already persisted locally)
 - Browser compatibility: WebKit/Safari and iOS/iPadOS
 - Performance: virtualization for large graphs
 
@@ -241,3 +248,19 @@ Much appreciation goes to my mentors Xianda Sun and Hong Ge. The work is impossi
 
 - Mentors: Xianda Sun ([\@sunxd3](https://github.com/sunxd3)) and Hong Ge ([\@yebai](https://github.com/yebai))
 - TuringLang/JuliaBUGS community and contributors
+
+## Appendix: Project Links
+
+- Repo: [https://github.com/TuringLang/JuliaBUGS.jl](https://github.com/TuringLang/JuliaBUGS.jl)
+- Try it here: [https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/](https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/)
+
+## PRs during GSoC:
+
+- [#321 - Add ISSUE template for DoodleBUGS](https://github.com/TuringLang/JuliaBUGS.jl/pull/321)
+- [#339 - DoodleBUGS Project: Phase 1](https://github.com/TuringLang/JuliaBUGS.jl/pull/339)
+- [#340 - DoodleBUGS: update all workflows to run on relevent project only](https://github.com/TuringLang/JuliaBUGS.jl/pull/340)
+- [#341 - Exclude navigation bar from DoodleBUGS project](https://github.com/TuringLang/JuliaBUGS.jl/pull/341)
+- [#347 - DoodleBUGS: Basic Code Generation, Advanced Exports, and State Persistence](https://github.com/TuringLang/JuliaBUGS.jl/pull/347)
+- [#357 - DoodleBUGS: Allow Nested Plates, add new layouts and fix lot of linting issues](https://github.com/TuringLang/JuliaBUGS.jl/pull/357)
+- [#368 - New Folder Structure](https://github.com/TuringLang/JuliaBUGS.jl/pull/368)
+- [#388 - DoodleBUGS Project: Phase 2 (Backend) ](https://github.com/TuringLang/JuliaBUGS.jl/pull/388)
