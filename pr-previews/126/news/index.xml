@@ -15,11 +15,11 @@
 <link>https://turinglang.org/news/</link>
 </image>
 <generator>quarto-1.7.34</generator>
-<lastBuildDate>Thu, 28 Aug 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 01 Sep 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>GSoC Report for DoodleBUGS: a Browser-Based Graphical Interface for Drawing Probabilistic Graphical Models</title>
   <dc:creator>Shravan Goswami</dc:creator>
-  <link>https://turinglang.org/news/posts/DoodleBUGS-Introduction/</link>
+  <link>https://turinglang.org/news/posts/2025-09-01- GSoC-Report-DoodleBUGS/</link>
   <description><![CDATA[ 
 
 
@@ -481,8 +481,8 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 </div></section></div> ]]></description>
   <category>GSoC</category>
   <category>Blog</category>
-  <guid>https://turinglang.org/news/posts/DoodleBUGS-Introduction/</guid>
-  <pubDate>Thu, 28 Aug 2025 00:00:00 GMT</pubDate>
+  <guid>https://turinglang.org/news/posts/2025-09-01- GSoC-Report-DoodleBUGS/</guid>
+  <pubDate>Mon, 01 Sep 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Turing.jl Newsletter 11</title>
