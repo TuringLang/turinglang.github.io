@@ -1,5 +1,5 @@
 ---
-title: "Introducing DoodleBUGS: a Browser-Based Graphical Interface for JuliaBUGS"
+title: "GSoC Report for DoodleBUGS: a Browser-Based Graphical Interface for Drawing Probabilistic Graphical Models"
 description: "Shravan Goswami's GSoC 2025 final report: goals, architecture, progress vs proposal, and how to try it."
 categories:
   - GSoC
