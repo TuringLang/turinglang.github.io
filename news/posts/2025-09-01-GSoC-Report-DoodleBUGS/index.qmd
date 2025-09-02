@@ -31,7 +31,7 @@ nocite: |
 
 ## DoodleBUGS Project Structure
 
-```{.bash}
+```{.bash .code-overflow-scroll filename="Directory Structure"}
 DoodleBUGS/                # Vite + Vue 3 app (UI editor)
 ├── README.md              # project documentation
 ├── public/                # static assets served by Vite
@@ -197,7 +197,7 @@ Key differences:
 
 Frontend (Vite):
 
-```bash
+```{.bash}
 # from repo root
 cd DoodleBUGS
 npm install
@@ -206,7 +206,7 @@ npm run dev
 
 Backend (Julia):
 
-```bash
+```{.bash .code-overflow-scroll}
 # from repo root
 julia --project=DoodleBUGS/runtime DoodleBUGS/runtime/server.jl
 # server listens on http://localhost:8081
