@@ -1,3 +1,9 @@
+code {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
 @media (max-width: 1200px) {
     .core-packages-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -60,6 +66,7 @@
         display: block;
         margin-top: 0.3rem;
         text-align: center;
+
         .button {
             display: inline-block;
             width: auto;
@@ -136,6 +143,7 @@
                 justify-content: center;
             }
         }
+
         .partner-logo {
             flex-basis: auto;
             width: 100%;
