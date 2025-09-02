@@ -46,7 +46,11 @@
 </section>
 <section id="doodlebugs-project-structure" class="level2">
 <h2 class="anchored" data-anchor-id="doodlebugs-project-structure">DoodleBUGS Project Structure</h2>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Directory Structure</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="Directory Structure" style="background: #f1f3f5;"><pre class="sourceCode bash code-overflow-scroll code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">DoodleBUGS/</span>                <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -161,6 +165,7 @@ background-color: null;
 font-style: inherit;">└──</span> ztest/                 <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># scratch/test artifacts</span></span></code></pre></div>
+</div>
 </section>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
@@ -370,7 +375,7 @@ font-style: inherit;">npm</span> install</span>
 background-color: null;
 font-style: inherit;">npm</span> run dev</span></code></pre></div>
 <p>Backend (Julia):</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-overflow-scroll code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># from repo root</span></span>
 <span id="cb3-2"><span class="ex" style="color: null;
