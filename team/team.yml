@@ -233,8 +233,8 @@
       image: shravan-goswami.jpg
       university: Uka Tarsadia University
       gsoc_project: "DoodleBUGS: a Browser-Based Graphical Interface for JuliaBUGS"
-      gsoc_project_link:
-      gsoc_report: /news/posts/2025-08-28-DoodleBUGS-Introduction/index.html
+      gsoc_project_link: https://summerofcode.withgoogle.com/programs/2025/projects/4ecMbDwU
+      gsoc_report: /news/posts/2025-09-01-GSoC-Report-DoodleBUGS/
       links:
         - website: https://shravangoswami.com/
         - github: https://github.com/shravanngoswamii

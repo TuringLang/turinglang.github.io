@@ -254,7 +254,7 @@ Much appreciation goes to my mentors Xianda Sun and Hong Ge. The work is impossi
 - Repo: [https://github.com/TuringLang/JuliaBUGS.jl](https://github.com/TuringLang/JuliaBUGS.jl)
 - Try it here: [https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/](https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/)
 
-## PRs during GSoC:
+## PRs during GSoC
 
 - [#321 - Add ISSUE template for DoodleBUGS](https://github.com/TuringLang/JuliaBUGS.jl/pull/321)
 - [#339 - DoodleBUGS Project: Phase 1](https://github.com/TuringLang/JuliaBUGS.jl/pull/339)
