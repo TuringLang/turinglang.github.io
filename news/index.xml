@@ -14,7 +14,7 @@
 <title>Turing.jl</title>
 <link>https://turinglang.org/news/</link>
 </image>
-<generator>quarto-1.7.34</generator>
+<generator>quarto-1.8.24</generator>
 <lastBuildDate>Mon, 01 Sep 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>GSoC Report for DoodleBUGS: a Browser-Based Graphical Interface for Drawing Probabilistic Graphical Models</title>
@@ -50,7 +50,7 @@
 <div class="code-with-filename-file">
 <pre><strong>Directory Structure</strong></pre>
 </div>
-<div class="sourceCode" id="cb1" data-filename="Directory Structure" style="background: #f1f3f5;"><pre class="sourceCode bash code-overflow-scroll code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="Directory Structure" style="background: #f1f3f5;"><pre class="sourceCode bash code-overflow-scroll code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
 background-color: null;
 font-style: inherit;">DoodleBUGS/</span>                <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -164,7 +164,7 @@ font-style: inherit;"># local temporary outputs (ignored in builds)</span></span
 background-color: null;
 font-style: inherit;">└──</span> ztest/                 <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># scratch/test artifacts</span></span></code></pre></div>
+font-style: inherit;"># scratch/test artifacts</span></span></code></pre></div></div>
 </div>
 </section>
 <section id="motivation" class="level2">
@@ -362,7 +362,7 @@ font-style: inherit;"># scratch/test artifacts</span></span></code></pre></div>
 <section id="how-to-run-locally" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-run-locally">How to Run Locally</h2>
 <p>Frontend (Vite):</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># from repo root</span></span>
 <span id="cb2-2"><span class="bu" style="color: null;
@@ -373,9 +373,9 @@ background-color: null;
 font-style: inherit;">npm</span> install</span>
 <span id="cb2-4"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">npm</span> run dev</span></code></pre></div>
+font-style: inherit;">npm</span> run dev</span></code></pre></div></div>
 <p>Backend (Julia):</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-overflow-scroll code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-overflow-scroll code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># from repo root</span></span>
 <span id="cb3-2"><span class="ex" style="color: null;
@@ -387,7 +387,7 @@ background-color: null;
 font-style: inherit;">=</span>DoodleBUGS/runtime DoodleBUGS/runtime/server.jl</span>
 <span id="cb3-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># server listens on http://localhost:8081</span></span></code></pre></div>
+font-style: inherit;"># server listens on http://localhost:8081</span></span></code></pre></div></div>
 <p>Notes:</p>
 <ul>
 <li>CORS is enabled in the backend so the dev UI can call <code>http://localhost:8081</code>.</li>
@@ -442,7 +442,7 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 </ul>
 </section>
 <section id="prs-during-gsoc" class="level2">
-<h2 class="anchored" data-anchor-id="prs-during-gsoc">PRs during GSoC:</h2>
+<h2 class="anchored" data-anchor-id="prs-during-gsoc">PRs during GSoC</h2>
 <ul>
 <li><a href="https://github.com/TuringLang/JuliaBUGS.jl/pull/321">#321 - Add ISSUE template for DoodleBUGS</a></li>
 <li><a href="https://github.com/TuringLang/JuliaBUGS.jl/pull/339">#339 - DoodleBUGS Project: Phase 1</a></li>
@@ -666,7 +666,7 @@ font-style: inherit;"># server listens on http://localhost:8081</span></span></c
 
 
 <p>Turing v0.38 has just been released and incorporates the changes from DynamicPPL which were mentioned <a href="../../../news/posts/2025-04-25-newsletter-5">in the last newsletter</a>. It also contains a fix for the Gibbs sampler, so that you can now specify arbitrary VarNames for each sampler (previously, you could only specify single-symbol VarNames). For example, you can now specify the <code>a.x</code> and <code>b.x</code> VarNames here:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><span class="pp" style="color: #AD0000;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><span class="pp" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">@model</span> <span class="kw" style="color: #003B4F;
 background-color: null;
@@ -729,7 +729,7 @@ font-style: inherit;">=&gt;</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">MH</span>()), <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">100</span>)</span></code></pre></div>
+font-style: inherit;">100</span>)</span></code></pre></div></div>
 <p>It is theoretically possible that this will be slow for VarNames that involve indexing (e.g.&nbsp;<code>x[1]</code>), although we don’t have an example of this yet. If you find anything you think should be faster, let us know.</p>
 <p>One other minor point: <a href="https://turinglang.org/ADTests/">on ADTests</a> you can now hover over a model name to see its definition.</p>
 
@@ -752,7 +752,7 @@ font-style: inherit;">100</span>)</span></code></pre></div>
 
 <p><strong>DynamicPPL 0.36</strong></p>
 <p>A new minor version of DynamicPPL brings with it a few changes especially to the behaviour of submodels. These have not yet percolated up to Turing.jl, but will soon be. Firstly, prefixing behaviour is changed: consider these models</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><span class="pp" style="color: #AD0000;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><span class="pp" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">@model</span> <span class="kw" style="color: #003B4F;
 background-color: null;
@@ -794,9 +794,9 @@ font-style: inherit;">inner</span>())</span>
 <span id="cb1-7"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
-font-style: inherit;">end</span></span></code></pre></div>
+font-style: inherit;">end</span></span></code></pre></div></div>
 <p>If you ran this model, you would find that the single random variable was called <code>a[1].x</code> — but this isn’t the <code>x</code> field of the <code>1</code>st element of <code>a</code>, it’s actually a variable whose name is literally just <code>Symbol("a[1].x")</code>. DynamicPPL changes this behaviour such that the variable is correctly recognised as the <code>x</code> field of the <code>1</code>st element of <code>a</code>. This means that if you are trying to, for example, condition on the variable, you can do:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">outer</span>() <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -808,9 +808,9 @@ font-style: inherit;">1</span>].x) <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=&gt;</span> <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1.0</span>)</span></code></pre></div>
+font-style: inherit;">1.0</span>)</span></code></pre></div></div>
 <p>On the topic of conditioning, you can now also correctly condition or fix variables in a model before using it as a submodel, as this example demonstrates:</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><span class="pp" style="color: #AD0000;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><span class="pp" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">@model</span> <span class="kw" style="color: #003B4F;
 background-color: null;
@@ -853,7 +853,7 @@ font-style: inherit;">1</span>))</span>
 <span id="cb3-6"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
-font-style: inherit;">end</span></span></code></pre></div>
+font-style: inherit;">end</span></span></code></pre></div></div>
 <p>Previously, if you wanted to do this, you would have to condition on <code>@varname(a.x)</code>, meaning that you’d need to know the prefix before conditioning it. The current system allows for more modular construction of nested models.</p>
 <p>For more complete details, please see <a href="https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.36.0">the release notes</a>.</p>
 <p><strong>TuringBenchmarking.jl</strong></p>
@@ -888,11 +888,11 @@ font-style: inherit;">end</span></span></code></pre></div>
 <p>The BUGS (Bayesian inference Using Gibbs Sampling) language provides a declarative way to specify complex Bayesian statistical models. For years, implementations like WinBUGS, OpenBUGS, and JAGS have been widely used tools for researchers applying these models. JuliaBUGS.jl is a modern implementation of the BUGS language, aiming for full backwards compatibility with standard BUGS models, while also offering improved interoperability with the Julia ecosystem. (For details and examples of BUGS syntax, check out <a href="https://turinglang.org/JuliaBUGS.jl/dev/example/">the JuliaBUGS documentation</a>.)</p>
 <p><a href="https://github.com/TuringLang/JuliaBUGS.jl/pull/278/">A recent experimental update</a> introduces significant performance improvements in JuliaBUGS: instead of relying solely on the previous graph-based approach, JuliaBUGS can now directly generate Julia code to compute the model’s log-density. This code generation technique can yield &gt;10x speedups compared to the graph-based method. Currently, this provides the most benefit for models with linear or hierarchical structures; support for state space models is planned for a future update.</p>
 <p>To use it, run this after compiling your model:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1">JuliaBUGS.<span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1">JuliaBUGS.<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">set_evaluation_mode</span>(your_model, JuliaBUGS.<span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">UseGeneratedLogDensityFunction</span>())</span></code></pre></div>
+font-style: inherit;">UseGeneratedLogDensityFunction</span>())</span></code></pre></div></div>
 <p>We would love for you to test out this new functionality! If you have any feedback, please do feel free to open a GitHub issue or discussion.</p>
 <p><strong>Even more advanced HMC</strong></p>
 <p>Lastly, we have a paper of our own to share on Hamiltonian Monte Carlo methods!</p>

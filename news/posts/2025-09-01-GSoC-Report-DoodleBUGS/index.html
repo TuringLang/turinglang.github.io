@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,18 +91,19 @@ div.csl-indent {
 <link href="../../..//assets/favicon.ico" rel="icon">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-9582434199d49cc9e91654cdeeb4866b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8dcd8563ea6803ab7cbb3d71ca5772e1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-9582434199d49cc9e91654cdeeb4866b.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-a6e161b2431e1f94a14e0f5d32135a3c.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4a17e18fdf56099d4f6da1e105f33a53.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-a6e161b2431e1f94a14e0f5d32135a3c.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-544acca9225f2aeb655a03153e479b63.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-ef362557afb5564af0466bf5793c1615.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-544acca9225f2aeb655a03153e479b63.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-5d053c8c39f43f17068cfecd86831694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-edd54e70ba2f069e94023a8983b93f87.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-5d053c8c39f43f17068cfecd86831694.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -335,7 +336,8 @@ div.csl-indent {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../assets/logo/turing-logo.svg" alt="" class="navbar-logo">
+    <img src="../../../assets/logo/turing-logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../../../assets/logo/turing-logo.svg" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Turing.jl</span>
@@ -408,7 +410,7 @@ div.csl-indent {
   <li><a href="#future-work" id="toc-future-work" class="nav-link" data-scroll-target="#future-work">Future Work</a></li>
   <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
   <li><a href="#appendix-project-links" id="toc-appendix-project-links" class="nav-link" data-scroll-target="#appendix-project-links">Appendix: Project Links</a></li>
-  <li><a href="#prs-during-gsoc" id="toc-prs-during-gsoc" class="nav-link" data-scroll-target="#prs-during-gsoc">PRs during GSoC:</a></li>
+  <li><a href="#prs-during-gsoc" id="toc-prs-during-gsoc" class="nav-link" data-scroll-target="#prs-during-gsoc">PRs during GSoC</a></li>
   </ul>
 </nav>
     </div>
@@ -480,7 +482,7 @@ div.csl-indent {
 <div class="code-with-filename-file">
 <pre><strong>Directory Structure</strong></pre>
 </div>
-<div class="sourceCode" id="cb1" data-filename="Directory Structure"><pre class="sourceCode bash code-overflow-scroll code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DoodleBUGS/</span>                <span class="co"># Vite + Vue 3 app (UI editor)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="Directory Structure"><pre class="sourceCode bash code-overflow-scroll code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DoodleBUGS/</span>                <span class="co"># Vite + Vue 3 app (UI editor)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> README.md              <span class="co"># project documentation</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> public/                <span class="co"># static assets served by Vite</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── examples/          <span class="co"># example projects</span></span>
@@ -502,7 +504,7 @@ div.csl-indent {
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── stores/            <span class="co"># Pinia state stores (graph, data, execution, project, UI)</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── types/             <span class="co"># TypeScript types and ambient declarations</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> tmp/                   <span class="co"># local temporary outputs (ignored in builds)</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> ztest/                 <span class="co"># scratch/test artifacts</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> ztest/                 <span class="co"># scratch/test artifacts</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="motivation" class="level2">
@@ -700,14 +702,14 @@ div.csl-indent {
 <section id="how-to-run-locally" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-run-locally">How to Run Locally</h2>
 <p>Frontend (Vite):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from repo root</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from repo root</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> DoodleBUGS</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Backend (Julia):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-overflow-scroll code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from repo root</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-overflow-scroll code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from repo root</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">--project</span><span class="op">=</span>DoodleBUGS/runtime DoodleBUGS/runtime/server.jl</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># server listens on http://localhost:8081</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># server listens on http://localhost:8081</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notes:</p>
 <ul>
 <li>CORS is enabled in the backend so the dev UI can call <code>http://localhost:8081</code>.</li>
@@ -762,7 +764,7 @@ div.csl-indent {
 </ul>
 </section>
 <section id="prs-during-gsoc" class="level2">
-<h2 class="anchored" data-anchor-id="prs-during-gsoc">PRs during GSoC:</h2>
+<h2 class="anchored" data-anchor-id="prs-during-gsoc">PRs during GSoC</h2>
 <ul>
 <li><a href="https://github.com/TuringLang/JuliaBUGS.jl/pull/321">#321 - Add ISSUE template for DoodleBUGS</a></li>
 <li><a href="https://github.com/TuringLang/JuliaBUGS.jl/pull/339">#339 - DoodleBUGS Project: Phase 1</a></li>
@@ -904,13 +906,14 @@ div.csl-indent {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

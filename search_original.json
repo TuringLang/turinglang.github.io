@@ -185,8 +185,8 @@
     "objectID": "news/posts/2025-09-01-GSoC-Report-DoodleBUGS/index.html#prs-during-gsoc",
     "href": "news/posts/2025-09-01-GSoC-Report-DoodleBUGS/index.html#prs-during-gsoc",
     "title": "GSoC Report for DoodleBUGS: a Browser-Based Graphical Interface for Drawing Probabilistic Graphical Models",
-    "section": "PRs during GSoC:",
-    "text": "PRs during GSoC:\n\n#321 - Add ISSUE template for DoodleBUGS\n#339 - DoodleBUGS Project: Phase 1\n#340 - DoodleBUGS: update all workflows to run on relevent project only\n#341 - Exclude navigation bar from DoodleBUGS project\n#347 - DoodleBUGS: Basic Code Generation, Advanced Exports, and State Persistence\n#357 - DoodleBUGS: Allow Nested Plates, add new layouts and fix lot of linting issues\n#368 - New Folder Structure\n#388 - DoodleBUGS Project: Phase 2 (Backend)"
+    "section": "PRs during GSoC",
+    "text": "PRs during GSoC\n\n#321 - Add ISSUE template for DoodleBUGS\n#339 - DoodleBUGS Project: Phase 1\n#340 - DoodleBUGS: update all workflows to run on relevent project only\n#341 - Exclude navigation bar from DoodleBUGS project\n#347 - DoodleBUGS: Basic Code Generation, Advanced Exports, and State Persistence\n#357 - DoodleBUGS: Allow Nested Plates, add new layouts and fix lot of linting issues\n#368 - New Folder Structure\n#388 - DoodleBUGS Project: Phase 2 (Backend)"
   },
   {
     "objectID": "news/posts/2020-05-04-Imperial-Report13-analysis/index.html",
