@@ -15,7 +15,36 @@
 <link>https://turinglang.org/news/</link>
 </image>
 <generator>quarto-1.8.24</generator>
-<lastBuildDate>Mon, 01 Sep 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 26 Sep 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 12</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-09-26-newsletter-12/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>After a bit of an absence (Penny has been busy / away) the newsletter is back…</p>
+<p><strong>JuliaCon Local Paris 2025</strong></p>
+<p>Markus and Penny will be in Paris next week for JuliaCon! We have <a href="https://pretalx.com/juliacon-local-paris-2025/talk/review/EUKSNDWJEVA8TCD3RRP7A993XMLUAWBX">a poster on Friday morning</a> about all the latest developments in Turing.jl, so please feel free to come and say hi and chat about anything :)</p>
+<p><strong>Google Summer of Code projects</strong></p>
+<p>We have recently wrapped up our two GSoc projects and the reports are available to read. There is <a href="https://github.com/TuringLang/JuliaBUGS.jl/pull/389">Mateus Maia’s work on RJuliaBUGS</a> – as the name suggests this is an R interface to JuliaBUGS.jl; and also <a href="https://turinglang.org/news/posts/2025-09-01-GSoC-Report-DoodleBUGS/">Shravan Goswami’s DoodleBUGS</a> – a web frontend for creating and editing BUGS models (you can also <a href="https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/">try it out here</a>!).</p>
+<p><strong>Core updates</strong></p>
+<p>Our refactoring of DynamicPPL internals continues: DynamicPPL v0.37 / Turing v0.40 was quite a major release (for us!) and in particular overhauls the way that log-probabilities are tracked when evaluating a model. For the regular Turing.jl user you will hopefully find quite little difference, but one bonus is that in MCMC sampling log-probabilities are now correctly tracked in the returned chain: you can access <code>chn[:lp]</code> for the log-joint, but also <code>chn[:logprior]</code> and <code>chn[:loglikelihood]</code>. All of these probabilities are also consistently returned in the “unlinked space”, i.e., they don’t include any Jacobian terms obtained from transforming constrained distributions (these terms are an implementation detail and shouldn’t be ‘leaked’ to the user). Previously only <code>chn[:lp]</code> was provided and the meaning of that varied from sampler to sampler.</p>
+<p><strong>Mooncake forward-mode</strong></p>
+<p>Mooncake.jl now has a new forwards-mode AD system which you can use with <code>AutoMooncakeForward()</code>. It should work with almost all Turing models and our ADTests website has benchmarks (reverse mode is still faster for most things!)</p>
+<p><strong>Docs</strong></p>
+<p>There are some new additions to the Turing docs including <a href="https://turinglang.org/docs/faq/">a list of FAQs</a>, as well as <a href="https://turinglang.org/docs/usage/submodels/">a more thorough page on submodels</a> and how to use one of Turing’s most unique features. If you have particular requests for documentation please do let us know as I’ll be attempting to spend some consistent time working on the docs.</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-09-26-newsletter-12/</guid>
+  <pubDate>Fri, 26 Sep 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>GSoC Report for DoodleBUGS: a Browser-Based Graphical Interface for Drawing Probabilistic Graphical Models</title>
   <dc:creator>Shravan Goswami</dc:creator>
