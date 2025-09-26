@@ -1,0 +1,38 @@
+---
+title: Turing.jl Newsletter 12
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-09-26
+---
+
+After a bit of an absence (Penny has been busy / away) the newsletter is back...
+
+**JuliaCon Local Paris 2025**
+
+Markus and Penny will be in Paris next week for JuliaCon! We have [a poster on Friday morning](https://pretalx.com/juliacon-local-paris-2025/talk/review/EUKSNDWJEVA8TCD3RRP7A993XMLUAWBX) about all the latest developments in Turing.jl, so please feel free to come and say hi and chat about anything :)
+
+**Google Summer of Code projects**
+
+We have recently wrapped up our two GSoc projects and the reports are available to read.
+There is [Mateus Maia's work on RJuliaBUGS](https://github.com/TuringLang/JuliaBUGS.jl/pull/389) -- as the name suggests this is an R interface to JuliaBUGS.jl; and also [Shravan Goswami's DoodleBUGS](https://turinglang.org/news/posts/2025-09-01-GSoC-Report-DoodleBUGS/) -- a web frontend for creating and editing BUGS models (you can also [try it out here](https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/)!).
+
+**Core updates**
+
+Our refactoring of DynamicPPL internals continues: DynamicPPL v0.37 / Turing v0.40 was quite a major release (for us!) and in particular overhauls the way that log-probabilities are tracked when evaluating a model.
+For the regular Turing.jl user you will hopefully find quite little difference, but one bonus is that in MCMC sampling log-probabilities are now correctly tracked in the returned chain: you can access `chn[:lp]` for the log-joint, but also `chn[:logprior]`  and `chn[:loglikelihood]`.
+All of these probabilities are also consistently returned in the "unlinked space", i.e., they don't include any Jacobian terms obtained from transforming constrained distributions (these terms are an implementation detail and shouldn't be 'leaked' to the user).
+Previously only `chn[:lp]` was provided and the meaning of that varied from sampler to sampler.
+
+**Mooncake forward-mode**
+
+Mooncake.jl now has a new forwards-mode AD system which you can use with `AutoMooncakeForward()`.
+It should work with almost all Turing models and our ADTests website has benchmarks (reverse mode is still faster for most things!)
+
+**Docs**
+
+There are some new additions to the Turing docs including [a list of FAQs](https://turinglang.org/docs/faq/), as well as [a more thorough page on submodels](https://turinglang.org/docs/usage/submodels/) and how to use one of Turing's most unique features.
+If you have particular requests for documentation please do let us know as I'll be attempting to spend some consistent time working on the docs.
