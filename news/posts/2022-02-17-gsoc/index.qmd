@@ -13,7 +13,6 @@ author:
   - name: the TuringLang team
     url: /team/
 date: 02/17/2022
-on_landing: true
 ---
 
 It is another year of the [Google Summer of Code](https://summerofcode.withgoogle.com/) time, and we have compiled an updated list of exciting Turing projects!

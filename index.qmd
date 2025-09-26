@@ -12,8 +12,6 @@ listing:
     template: _includes/card-listing.ejs
     sort: "date desc"
     max-items: 6
-    include:
-      on_landing: true
   - id: featured-tutorials
     contents: 
       - "./_includes/featured-tutorials.yml"
