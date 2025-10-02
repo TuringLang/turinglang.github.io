@@ -35,4 +35,4 @@ It should work with almost all Turing models and our ADTests website has benchma
 **Docs**
 
 There are some new additions to the Turing docs including [a list of FAQs](https://turinglang.org/docs/faq/), as well as [a more thorough page on submodels](https://turinglang.org/docs/usage/submodels/) and how to use one of Turing's most unique features.
-If you have particular requests for documentation please do let us know as I'll be attempting to spend some consistent time working on the docs.
+If you have particular requests for documentation please do let us know as we'll be attempting to spend some consistent time working on the docs.
