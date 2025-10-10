@@ -1,0 +1,33 @@
+---
+title: Turing.jl Newsletter 13
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-10-10
+---
+
+**Julia 1.12**
+
+With the release of 1.12 comes some very nice things and some broken things.
+Particle samplers (SMC and PG) currently do not work on 1.12, and Enzyme and Mooncake will both not run.
+Fixes are being worked on, but it may well take until 1.12.1 before everything is in order.
+If you use any of the above three, you may want to stay with 1.11 for now.
+
+**JuliaCon**
+
+We were at JuliaCon Paris last week (thanks to the organising team for a wonderful conference)!
+If you didn't get the chance to say hi, feel free to take a look at the poster we did [here on GitHub](https://github.com/TuringLang/Turing-Workshop/blob/main/2025-JuliaCon/JuliaCon2025_Turing_Poster.pdf).
+It very briefly summarises what we've been up to in the last few months, what our current priorities are, and what's likely to come in the future.
+
+**MCMCChains plots + stats**
+
+In the past few months there have been a number of new plot types added to MCMCChains.
+You can see examples of [energy plots](https://turinglang.org/MCMCChains.jl/stable/statsplots/#Energy-Plot), [violin plots](https://turinglang.org/MCMCChains.jl/stable/statsplots/#Violin), and [posterior predictive plots](https://turinglang.org/MCMCChains.jl/stable/statsplots/#Posterior-Predictive-Checks-(PPC)) in the docs.
+Also, you can now use `MCMCDiagnosticTools.bfmi(::Chains)` to calculate the Bayesian fraction of missing information.
+
+**Docs**
+
+There's a new page explaining in more detail all the options you can use when sampling: https://turinglang.org/docs/usage/sampling-options/, suggestions for additions are always welcome!
