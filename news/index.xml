@@ -15,7 +15,33 @@
 <link>https://turinglang.org/news/</link>
 </image>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Fri, 26 Sep 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 10 Oct 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 13</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-10-10-newsletter-13/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><strong>Julia 1.12</strong></p>
+<p>With the release of 1.12 comes some very nice things and some broken things. Particle samplers (SMC and PG) currently do not work on 1.12, and Enzyme and Mooncake will both not run. Fixes are being worked on, but it may well take until 1.12.1 before everything is in order. If you use any of the above three, you may want to stay with 1.11 for now.</p>
+<p><strong>JuliaCon</strong></p>
+<p>We were at JuliaCon Paris last week (thanks to the organising team for a wonderful conference)! If you didn’t get the chance to say hi, feel free to take a look at the poster we did <a href="https://github.com/TuringLang/Turing-Workshop/blob/main/2025-JuliaCon/JuliaCon2025_Turing_Poster.pdf">here on GitHub</a>. It very briefly summarises what we’ve been up to in the last few months, what our current priorities are, and what’s likely to come in the future.</p>
+<p><strong>MCMCChains plots + stats</strong></p>
+<p>In the past few months there have been a number of new plot types added to MCMCChains. You can see examples of <a href="https://turinglang.org/MCMCChains.jl/stable/statsplots/#Energy-Plot">energy plots</a>, <a href="https://turinglang.org/MCMCChains.jl/stable/statsplots/#Violin">violin plots</a>, and <a href="https://turinglang.org/MCMCChains.jl/stable/statsplots/#Posterior-Predictive-Checks-(PPC)">posterior predictive plots</a> in the docs. Also, you can now use <code>MCMCDiagnosticTools.bfmi(::Chains)</code> to calculate the Bayesian fraction of missing information.</p>
+<p><strong>Docs</strong></p>
+<p>There’s a new page explaining in more detail all the options you can use when sampling: https://turinglang.org/docs/usage/sampling-options/, suggestions for additions are always welcome!</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-10-10-newsletter-13/</guid>
+  <pubDate>Fri, 10 Oct 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 12</title>
   <dc:creator>The TuringLang team</dc:creator>
