@@ -116,7 +116,7 @@ using Turing
     # Priors
     α ~ Normal(0, 1)
     β ~ Normal(0, 1)
-    σ² ~ truncated(Normal(0, 1), lower=0)
+    σ² ~ truncated(Cauchy(0, 3); lower=0)
 
     # Likelihood
     μ = α .+ β .* x
