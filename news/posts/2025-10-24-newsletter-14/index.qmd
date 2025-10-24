@@ -1,0 +1,36 @@
+---
+title: Turing.jl Newsletter 14
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-10-24
+---
+
+**Turing v0.41, DynamicPPL 0.38**
+
+The big news item this week is that we've just released new (twinned) versions of Turing + DynamicPPL!
+Many of the changes are under the hood: you might see better performance on some functions like `predict` for example.
+
+The main breaking change comes with the `initial_params` keyword argument: previously this was supplied as a vector (or vector of vectors for multiple chains).
+The problem with this is that the meaning of this vector depended on DynamicPPL internals, in a way that users shouldn't be exposed to.
+Now, it should be an `AbstractInitStrategy` (or vector thereof).
+Essentially, instead of saying "what are the parameters are", you now specify "how do I get parameters".
+This will give you more ways to initialise parameters, and also clearer code.
+
+Docs for the new version are [already live](https://turinglang.org/docs)! In the meantime, you can read more details in our [release notes](https://github.com/TuringLang/Turing.jl/releases/tag/v0.41.0).
+
+**ProductNamedTupleDistribution**
+
+...can (mostly) be used in Turing now!
+You'll need to upgrade to v0.41.
+I say mostly because there is a fairly niche edge case, where `product_distribution` of `Array` inside `product_distribution` of `NamedTuple` will fail.
+If you run into this, please feel free to open an issue!
+
+**Particle samplers in Julia 1.12**
+
+Particle samplers were broken by changes in Julia 1.12's internals.
+Over the past few months several fixes have been introduced and you should be able to use these again now!
+You will need to make sure to upgrade Libtask.jl to 0.9.6, which was [just released today](https://github.com/TuringLang/Libtask.jl/releases/tag/v0.9.6).
