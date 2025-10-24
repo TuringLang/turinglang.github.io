@@ -15,7 +15,33 @@
 <link>https://turinglang.org/news/</link>
 </image>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Fri, 10 Oct 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 24 Oct 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 14</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2025-10-24-newsletter-14/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><strong>Turing v0.41, DynamicPPL 0.38</strong></p>
+<p>The big news item this week is that we’ve just released new (twinned) versions of Turing + DynamicPPL! Many of the changes are under the hood: you might see better performance on some functions like <code>predict</code> for example.</p>
+<p>The main breaking change comes with the <code>initial_params</code> keyword argument: previously this was supplied as a vector (or vector of vectors for multiple chains). The problem with this is that the meaning of this vector depended on DynamicPPL internals, in a way that users shouldn’t be exposed to. Now, it should be an <code>AbstractInitStrategy</code> (or vector thereof). Essentially, instead of saying “what are the parameters are”, you now specify “how do I get parameters”. This will give you more ways to initialise parameters, and also clearer code.</p>
+<p>Docs for the new version are <a href="https://turinglang.org/docs">already live</a>! In the meantime, you can read more details in our <a href="https://github.com/TuringLang/Turing.jl/releases/tag/v0.41.0">release notes</a>.</p>
+<p><strong>ProductNamedTupleDistribution</strong></p>
+<p>…can (mostly) be used in Turing now! You’ll need to upgrade to v0.41. I say mostly because there is a fairly niche edge case, where <code>product_distribution</code> of <code>Array</code> inside <code>product_distribution</code> of <code>NamedTuple</code> will fail. If you run into this, please feel free to open an issue!</p>
+<p><strong>Particle samplers in Julia 1.12</strong></p>
+<p>Particle samplers were broken by changes in Julia 1.12’s internals. Over the past few months several fixes have been introduced and you should be able to use these again now! You will need to make sure to upgrade Libtask.jl to 0.9.6, which was <a href="https://github.com/TuringLang/Libtask.jl/releases/tag/v0.9.6">just released today</a>.</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2025-10-24-newsletter-14/</guid>
+  <pubDate>Fri, 24 Oct 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 13</title>
   <dc:creator>The TuringLang team</dc:creator>
@@ -1343,33 +1369,6 @@ Tim Hargreaves, Qing Li, Charles Knipp, Frederic Wantiez, Simon J. Godsill, Hong
   <category>GSoC</category>
   <guid>https://turinglang.org/news/posts/2020-02-12-jsoc/</guid>
   <pubDate>Wed, 12 Feb 2020 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Turing’s Blog</title>
-  <dc:creator>Cameron Pfiffer</dc:creator>
-  <link>https://turinglang.org/news/posts/2019-12-14-initial-post/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>All good open source projects should have a blog, and Turing is one such project. Later on, members of the Turing team may be populating this feed with posts on topics like</p>
-<ul>
-<li>Interesting things you can do with Turing, or interesting things we have seen others do.</li>
-<li>Development updates and major release announcements.</li>
-<li>Research updates.</li>
-<li>Explorations of Turing’s internals.</li>
-<li>Updates to Turing’s satellite projects <a href="https://github.com/TuringLang/AdvancedHMC.jl">AdvancedHMC.jl</a> or <a href="https://github.com/TuringLang/Bijectors.jl">Bijectors.jl</a>.</li>
-</ul>
-<p>Stay tuned!</p>
-
-
-
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
-  <category>Blog</category>
-  <guid>https://turinglang.org/news/posts/2019-12-14-initial-post/</guid>
-  <pubDate>Sat, 14 Dec 2019 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

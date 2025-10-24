@@ -1,7 +1,16 @@
 [
   {
-    "listing": "/news/index.html",
+    "listing": "/library/index.html",
+    "items": []
+  },
+  {
+    "listing": "/team/index.html",
+    "items": []
+  },
+  {
+    "listing": "/index.html",
     "items": [
+      "/news/posts/2025-10-24-newsletter-14/index.html",
       "/news/posts/2025-10-10-newsletter-13/index.html",
       "/news/posts/2025-09-26-newsletter-12/index.html",
       "/news/posts/2025-09-01-GSoC-Report-DoodleBUGS/index.html",
@@ -25,16 +34,9 @@
     ]
   },
   {
-    "listing": "/team/index.html",
-    "items": []
-  },
-  {
-    "listing": "/library/index.html",
-    "items": []
-  },
-  {
-    "listing": "/index.html",
+    "listing": "/news/index.html",
     "items": [
+      "/news/posts/2025-10-24-newsletter-14/index.html",
       "/news/posts/2025-10-10-newsletter-13/index.html",
       "/news/posts/2025-09-26-newsletter-12/index.html",
       "/news/posts/2025-09-01-GSoC-Report-DoodleBUGS/index.html",
