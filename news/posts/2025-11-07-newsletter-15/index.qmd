@@ -1,0 +1,26 @@
+---
+title: Turing.jl Newsletter 15
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-11-07
+---
+
+**Faster model evaluation**
+
+[This PR](https://github.com/TuringLang/DynamicPPL.jl/pull/1132) makes Turing faster by about 2-10x depending on the size of the model.
+(Not kidding, see the PR for examples!)
+Smaller models benefit the most, larger models less so because for those a larger proportion of your time is spent just calculating `logpdf`.
+
+The main impact is probably in inference.
+The PR contains an example where NUTS sampling on eight-schools is cut from ~ 8 seconds to ~ 1.5 seconds. 
+The general strategy should lead to speedups for other operations as well such as `returned` and `predict`, although those will be less marked as reading from / constructing a chain will be the main bottlenecks.
+
+It's not released yet, but should hopefully be in the near future!
+
+**Mooncake @ 1.12**
+
+Just a note to say that there is now a newly released version of Mooncake that works on 1.12, and Turing should be perfectly compatible with it!
