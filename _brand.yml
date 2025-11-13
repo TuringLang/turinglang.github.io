@@ -1,4 +1,4 @@
 logo:
-  medium:
-    dark: assets/logo/turing-logo-dark.svg
+  small:
     light: assets/logo/turing-logo-light.svg
+    dark: assets/logo/turing-logo-dark.svg
