@@ -26,7 +26,7 @@ website:
     location: navbar
     type: overlay
   navbar:
-    logo: /assets/logo/turing-logo.svg
+    title: false
     # logo-href: https://turinglang.org/ -- Keep this commented so clicking on logo in dev mode doesn't redirect to the site
     left:
       - text: Get Started
