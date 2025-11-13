@@ -848,7 +848,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     </div>
 </footer>
-<script>document.addEventListener('DOMContentLoaded',async()=>{const e=document.querySelector('.navbar-logo');if(!e)return;const t=await fetch('/assets/logo/turing-logo-light.svg').then(e=>e.text()),o=new DOMParser().parseFromString(t,'image/svg+xml').documentElement;o.classList.add('navbar-logo'),e.replaceWith(o)});</script>
+<script>document.addEventListener('DOMContentLoaded',async()=>{const e=document.querySelector('img.navbar-logo');if(!e)return;const t=await fetch('./assets/logo/turing-logo-light.svg').then(e=>e.text()),o=new DOMParser().parseFromString(t,'image/svg+xml').documentElement;o.classList.add('navbar-logo'),e.replaceWith(o)});</script>
 
 
 
