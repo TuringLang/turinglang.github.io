@@ -56,8 +56,8 @@
   description: "Elliptical slice sampling for inference in models with multivariate Gaussian priors"
   category: mcmc
 - name: NestedSamplers
-  api: https://turinglang.org/NestedSamplers.jl/
-  github: https://github.com/TuringLang/NestedSamplers.jl
+  api: https://chalk-lab.github.io/NestedSamplers.jl/
+  github: https://github.com/chalk-lab/NestedSamplers.jl
   description: "Single- and multi-ellipsoidal nested sampling algorithms"
   category: mcmc
 - name: ThermodynamicIntegration
