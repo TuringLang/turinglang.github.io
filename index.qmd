@@ -100,15 +100,19 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 :::
 
-::: {.code-window-title}
+::: {.code-window-tabs}
 ```{=html}
-<span>linear_regression.jl</span>
+<span class="tab active" onclick="switchTab('define', this)">Define</span>
+<span class="tab" onclick="switchTab('inference', this)">Inference</span>
+<span class="tab" onclick="switchTab('prior', this)">Prior</span>
+<span class="tab" onclick="switchTab('return', this)">Return</span>
+<span class="tab" onclick="switchTab('predict', this)">Predict</span>
 ```
 :::
 
-
 :::
 
+::: {#define .code-content .active}
 ```{.julia .code-overflow-scroll}
 using Turing
 
@@ -121,15 +125,78 @@ using Turing
     # Likelihood
     μ = α .+ β .* x
     y ~ MvNormal(μ, σ² * I)
+
+    # Return the mean
+    return μ
 end
-
-x, y = rand(10), rand(10)
-posterior = linear_regression(x) | (; y = y)
-chain = sample(posterior, NUTS(), 1000)
 ```
+:::
+
+::: {#inference .code-content}
+```{.julia .code-overflow-scroll}
+# Data
+x_data = rand(10)
+y_data = rand(10)
+
+# Condition the model on data
+model = linear_regression(x_data) | (; y = y_data)
+
+# Run the NUTS sampler
+chain = sample(model, NUTS(), 1000)
+```
+:::
+
+::: {#prior .code-content}
+```{.julia .code-overflow-scroll}
+# Fix parameters to specific values
+fixed_model = fix(
+    linear_regression(x_data), 
+    (α = 0.5, β = 2.0, σ² = 1.0)
+)
+
+# Sample from the prior predictive distribution
+prior_sample = rand(fixed_model)
+```
+:::
+
+::: {#return .code-content}
+```{.julia .code-overflow-scroll}
+# Get generated quantities (the returned μ)
+generated = generated_quantities(model, chain)
+```
+:::
+
+::: {#predict .code-content}
+```{.julia .code-overflow-scroll}
+# Make predictions on new data
+predictions = predict(linear_regression(x_new), chain)
+```
+:::
 
 :::
 :::
+
+```{=html}
+<script>
+function switchTab(tabId, element) {
+  // Remove active class from all tabs
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  // Add active class to clicked tab
+  element.classList.add('active');
+  
+  // Hide all code contents
+  document.querySelectorAll('.code-content').forEach(c => {
+    c.classList.remove('active');
+    c.style.display = 'none';
+  });
+  
+  // Show target content
+  const target = document.getElementById(tabId);
+  target.classList.add('active');
+  target.style.display = 'block';
+}
+</script>
+```
 
 :::
 <!-- What is Turing.jl Section Ends Here -->

@@ -184,6 +184,7 @@
     align-items: center;
     border-bottom: 1px solid lighten($btn-border-color, 5%);
     position: relative;
+    justify-content: space-between; /* Changed to space-between to push tabs to right */
   }
   
   .code-window-dots {
@@ -199,6 +200,48 @@
     font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
     font-size: 0.8rem;
   }
+
+  .code-window-tabs {
+    display: flex;
+    gap: 1rem;
+    z-index: 10; /* Ensure tabs are clickable above title if they overlap */
+  }
+
+  .tab {
+    cursor: pointer;
+    color: $text-muted;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    user-select: none;
+
+    &:hover {
+      color: $text-color;
+      background-color: rgba(0,0,0,0.05);
+    }
+
+    &.active {
+      color: $primary;
+      background-color: rgba($primary, 0.1);
+    }
+  }
+
+  .code-content {
+    display: none;
+    
+    &.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
 
   .dot {
     width: 13px;
