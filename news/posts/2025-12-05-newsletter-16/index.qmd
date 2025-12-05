@@ -1,0 +1,36 @@
+---
+title: Turing.jl Newsletter 16
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2025-12-05
+---
+
+It's been a while since the last one; things have been brewing in the background... This newsletter will be the last for 2025; normal service will resume in January. We'd like to wish all of you a happy holiday season!
+
+**Turing v0.42**
+
+A new version of Turing was released yesterday — there is no way we can do justice to the changes in one paragraph so please check out [the changelog](https://github.com/TuringLang/Turing.jl/releases/tag/v0.42.0) for full details. Of note are:
+
+- Threadsafe evaluation is now opt-in, if you have tilde-statements inside threaded blocks you must now write `model = setthreadsafe(model, true)`.
+  Confused?
+  Don't worry, there's a [new docs page](https://turinglang.org/docs/usage/threadsafe-evaluation/) that fully explains when and why you need this (and when you don't)
+- Changes in DynamicPPL should mean that lots of things are now faster, mostly HMC/NUTS, Prior, and `returned` / `predict`.
+  (Personally we also really recommend [trying FlexiChains](https://github.com/penelopeysm/FlexiChains.jl) if performance with chains is an issue and your model has lots of vector parameters; there are a growing number of issues on Turing/DynamicPPL where half of the solution is to use FlexiChains)
+- MCMCChains now stores the log-joint as `chn[:logjoint]` rather than `chn[:lp]` — the latter was really a remnant carried over from the times when Turing didn't track prior and likelihood separately
+- The VI interface has been changed a fair bit but in return you now have access to a whole host of new VI algorithms including natural gradient VI, batch-and-match, and Wasserstein
+- Implementing external samplers for Turing should now be much easier, you should only need to depend on AbstractMCMC and not Turing (see the [external sampler docstring](https://turinglang.org/Turing.jl/stable/api/Inference/#Turing.Inference.ExternalSampler) and [docs page](https://turinglang.org/docs/developers/inference/implementing-samplers/) for examples)
+- GibbsConditional is back after a long hiatus: the interface is slightly different to before, please see [the docstring](https://turinglang.org/Turing.jl/stable/api/Inference/#Turing.Inference.GibbsConditional) for usage examples!
+
+**Docs**
+
+Apart from the [threadsafe evaluation](https://turinglang.org/docs/usage/threadsafe-evaluation/) page we also did a refresh of Bijectors.jl's docs including a new page with some examples of [how to define your own bijector](https://turinglang.org/Bijectors.jl/stable/defining_examples/).
+And on top of that, on the main TuringLang docs page there are also new shiny links that let you download each docs page as a notebook, or open it as a notebook in Google Colab.
+Look out for the links in the right sidebar of the page!
+
+**DoodleBUGS**
+
+Now has a refreshed and much slicker UI: check it out @ https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/
