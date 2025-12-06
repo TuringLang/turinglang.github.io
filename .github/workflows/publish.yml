@@ -20,6 +20,12 @@ jobs:
       - name: Render Quarto site
         run: quarto render
 
+      # Needed for the Search action
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.11'
+
       - name: Generate augmented search index
         uses: TuringLang/actions/Search@main
 
