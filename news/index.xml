@@ -14,8 +14,36 @@
 <title>Turing.jl</title>
 <link>https://turinglang.org/news/</link>
 </image>
-<generator>quarto-1.8.26</generator>
-<lastBuildDate>Fri, 05 Dec 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.27</generator>
+<lastBuildDate>Fri, 23 Jan 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 17</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2026-01-23-newsletter-17/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><strong>VarNamedTuple</strong></p>
+<p>We have been working on a really complete overhaul of the internal VarInfo data structure (several thousand lines of code changes). Pretty much the entire thing has been rewritten from scratch. There are still a number of kinks to iron out, but CI is passing, so there is nothing really fundamental blocking it, just more test coverage and handling of edge cases, and checking that it doesn’t break anything in Turing.</p>
+<p>What you’ll get out of it:</p>
+<ul>
+<li><p>More internally consistent indexing behaviour: if you have something like <code>x ~ MvNormal(zeros(2), I)</code> and you condition your model on <code>Dict(@varname(x[1]) =&gt; 1.0, @varname(x[2]) =&gt; 2.0)</code> it will now behave correctly (previously the conditioning would have no effect). Colons also benefit a lot from this. Essentially, if I’m not wrong, every item in the table in <a href="https://github.com/TuringLang/DynamicPPL.jl/issues/1148">this issue</a> will more or less become true.</p></li>
+<li><p>Generic AbstractArray support: you should be able to use OffsetArrays, DimArrays, etc. and have them ‘just work’ the way you expect them to. For example you should be able to do <code>dimarr[X(1), Y(2)] ~ dist</code> and it should behave just as if you wrote <code>arr[1, 2] ~ dist</code>.</p></li>
+<li><p>Much improved performance on many common operations (see <a href="https://github.com/TuringLang/DynamicPPL.jl/pull/1212">this PR</a> for some benchmarks).</p></li>
+<li><p>If you develop against DynamicPPL, all our VarInfo subtypes are unified now, there’s no longer a distinction between ‘typed’, ‘untyped’, or ‘simple’ VarInfo.</p></li>
+</ul>
+<p>If you’re interested in a behind-the-scenes look at why and how we did this, <a href="https://turinglang.org/DynamicPPL.jl/previews/PR1164/vnt/motivation/">there are some docs here</a> (still in progress, but a lot of the basics are covered)! The performance aspects will mostly affect non-HMC/NUTS samplers (since Turing@0.42 / DynamicPPL@0.39, HMC and NUTS almost completely don’t use VarInfo anymore), although the correctness aspects will apply to every Turing model.</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2026-01-23-newsletter-17/</guid>
+  <pubDate>Fri, 23 Jan 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 16</title>
   <dc:creator>The TuringLang team</dc:creator>
@@ -1281,41 +1309,6 @@ Tim Hargreaves, Qing Li, Charles Knipp, Frederic Wantiez, Simon J. Godsill, Hong
   <category>GSoC</category>
   <guid>https://turinglang.org/news/posts/2021-02-04-gsoc/</guid>
   <pubDate>Wed, 10 Feb 2021 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Google Summer of Code 2020</title>
-  <dc:creator>Cameron Pfiffer</dc:creator>
-  <link>https://turinglang.org/news/posts/2020-09-11-gsoc/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>As the 2020 <a href="https://summerofcode.withgoogle.com/">Google Summer of Code</a> comes to a close, the Turing team thought it would be a good opportunity to reflect on the work that was done by our superb students this summer.</p>
-<p><a href="https://github.com/SaranjeetKaur">Saranjeet Kaur</a>’s <a href="https://summerofcode.withgoogle.com/projects/#6567464390885376">project</a> focused primarily on expanding <a href="https://github.com/TuringLang/NestedSamplers.jl">NestedSamplers.jl</a>. NestedSamplers.jl now supports <a href="https://arxiv.org/abs/1506.00171">PolyChord-style</a> nested sampling natively, which is an absolute delight. Saranjeet wrote about this <a href="https://nextjournal.com/Saranjeet-Kaur/extending-nestedsamplersjl">here</a>. She also provided a good tutorial on how to use NestedSamplers.jl <a href="https://nextjournal.com/Saranjeet-Kaur/illustrations-of-use-of-nestedsamplersjl">here</a>. The NestedSamplers.jl integration with Turing is still on-going – integrating new samplers with Turing is one of the more difficult tasks. If you are interested to see the progress on this, check out the relevant <a href="https://github.com/TuringLang/Turing.jl/pull/1333">pull request</a>.</p>
-<p><a href="https://github.com/luiarthur">Arthur Lui</a>’s <a href="https://summerofcode.withgoogle.com/projects/#5861616765108224">project</a> was to provide a much-needed set of benchmarks of Bayesian nonparametric models between Turing and other PPLs. Arthur’s work spawned a <a href="https://github.com/luiarthur/TuringBnpBenchmarks">GitHub repository</a> with good practices for benchmarking, as well as three blog posts with some (very cool!) statistics on Turing’s performance:</p>
-<ol type="1">
-<li><a href="https://luiarthur.github.io/TuringBnpBenchmarks/dpsbgmm">Dirichlet Process Gaussian mixture model via the stick-breaking construction in various PPLs</a></li>
-<li><a href="https://luiarthur.github.io/TuringBnpBenchmarks/gp">Gaussian Process Regression Model in various PPLs</a></li>
-<li><a href="https://luiarthur.github.io/TuringBnpBenchmarks/gpclassify">Gaussian Process Classification Model in various PPLs</a></li>
-</ol>
-<p>Finally, <a href="https://github.com/sharanry">Sharan Yalburgi</a> (a returning GSoC student) completed an epic amount of work Turing’s growing suite of <a href="https://summerofcode.withgoogle.com/projects/#5565948129443840">Gaussian process tools</a>. In particular, the GitHub organization <a href="https://github.com/JuliaGaussianProcesses">JuliaGaussianProcesses</a> was founded, and serves as an effort to build a robust Gaussian process framework for the Julia ecosystem. The framework consists of multiple GP related Julia packages:</p>
-<ul>
-<li><a href="https://github.com/JuliaGaussianProcesses/KernelFunctions.jl">KernelFunctions.jl</a> provides kernel functions for GPs as well as efficient AD for these kernels. KernelFunctions.jl also supports multi-output GPs by providing necessary data abstractions and multi-output kernels.</li>
-<li><a href="https://github.com/JuliaGaussianProcesses/AbstractGPs.jl">AbstractGPs.jl</a> defines GP abstractions and provides exact posteriors. It provides support for induced points based GP posteriors and for efficient sequential/online (sparse) GP updates.</li>
-<li><a href="https://github.com/JuliaGaussianProcesses/GPLikelihoods.jl">GPLikelihoods.jl</a> defines alternate likelihoods for Non-Gaussian GPs.</li>
-<li><a href="https://github.com/JuliaGaussianProcesses/GPMLj.jl">GPMLj.jl</a> provides a Julia interface for <a href="https://github.com/GPflow/GPflow">GPFlow</a>, a GP library written in Python using TensorFlow.</li>
-</ul>
-<p>Special thanks to our three GSoC students for this summer, who all did excellent work. Additional thanks to Google for supporting open source software development and the Julia language!</p>
-
-
-
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
-  <category>Blog</category>
-  <category>GSoC</category>
-  <guid>https://turinglang.org/news/posts/2020-09-11-gsoc/</guid>
-  <pubDate>Fri, 11 Sep 2020 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

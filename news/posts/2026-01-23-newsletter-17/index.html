@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="The TuringLang team">
-<meta name="dcterms.date" content="2025-10-24">
+<meta name="dcterms.date" content="2026-01-23">
 <meta name="description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
 
-<title>Turing.jl Newsletter 14 – Turing.jl</title>
+<title>Turing.jl Newsletter 17 – Turing.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
 <meta property="og:site_name" content="Turing.jl">
 <meta property="og:image:alt" content="Turing.jl Logo">
 <meta property="og:locale" content="en_GB">
-<meta name="twitter:title" content="Turing.jl Newsletter 14 – Turing.jl">
+<meta name="twitter:title" content="Turing.jl Newsletter 17 – Turing.jl">
 <meta name="twitter:description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
 <meta name="twitter:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
 <meta name="twitter:creator" content="@Hong_Ge2">
@@ -336,7 +336,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Turing.jl Newsletter 14</h1>
+<h1 class="title">Turing.jl Newsletter 17</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Newsletter</div>
   </div>
@@ -361,7 +361,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 24, 2025</p>
+      <p class="date">January 23, 2026</p>
     </div>
   </div>
   
@@ -373,14 +373,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Turing v0.41, DynamicPPL 0.38</strong></p>
-<p>The big news item this week is that we’ve just released new (twinned) versions of Turing + DynamicPPL! Many of the changes are under the hood: you might see better performance on some functions like <code>predict</code> for example.</p>
-<p>The main breaking change comes with the <code>initial_params</code> keyword argument: previously this was supplied as a vector (or vector of vectors for multiple chains). The problem with this is that the meaning of this vector depended on DynamicPPL internals, in a way that users shouldn’t be exposed to. Now, it should be an <code>AbstractInitStrategy</code> (or vector thereof). Essentially, instead of saying “what are the parameters are”, you now specify “how do I get parameters”. This will give you more ways to initialise parameters, and also clearer code.</p>
-<p>Docs for the new version are <a href="https://turinglang.org/docs">already live</a>! In the meantime, you can read more details in our <a href="https://github.com/TuringLang/Turing.jl/releases/tag/v0.41.0">release notes</a>.</p>
-<p><strong>ProductNamedTupleDistribution</strong></p>
-<p>…can (mostly) be used in Turing now! You’ll need to upgrade to v0.41. I say mostly because there is a fairly niche edge case, where <code>product_distribution</code> of <code>Array</code> inside <code>product_distribution</code> of <code>NamedTuple</code> will fail. If you run into this, please feel free to open an issue!</p>
-<p><strong>Particle samplers in Julia 1.12</strong></p>
-<p>Particle samplers were broken by changes in Julia 1.12’s internals. Over the past few months several fixes have been introduced and you should be able to use these again now! You will need to make sure to upgrade Libtask.jl to 0.9.6, which was <a href="https://github.com/TuringLang/Libtask.jl/releases/tag/v0.9.6">just released today</a>.</p>
+<p><strong>VarNamedTuple</strong></p>
+<p>We have been working on a really complete overhaul of the internal VarInfo data structure (several thousand lines of code changes). Pretty much the entire thing has been rewritten from scratch. There are still a number of kinks to iron out, but CI is passing, so there is nothing really fundamental blocking it, just more test coverage and handling of edge cases, and checking that it doesn’t break anything in Turing.</p>
+<p>What you’ll get out of it:</p>
+<ul>
+<li><p>More internally consistent indexing behaviour: if you have something like <code>x ~ MvNormal(zeros(2), I)</code> and you condition your model on <code>Dict(@varname(x[1]) =&gt; 1.0, @varname(x[2]) =&gt; 2.0)</code> it will now behave correctly (previously the conditioning would have no effect). Colons also benefit a lot from this. Essentially, if I’m not wrong, every item in the table in <a href="https://github.com/TuringLang/DynamicPPL.jl/issues/1148">this issue</a> will more or less become true.</p></li>
+<li><p>Generic AbstractArray support: you should be able to use OffsetArrays, DimArrays, etc. and have them ‘just work’ the way you expect them to. For example you should be able to do <code>dimarr[X(1), Y(2)] ~ dist</code> and it should behave just as if you wrote <code>arr[1, 2] ~ dist</code>.</p></li>
+<li><p>Much improved performance on many common operations (see <a href="https://github.com/TuringLang/DynamicPPL.jl/pull/1212">this PR</a> for some benchmarks).</p></li>
+<li><p>If you develop against DynamicPPL, all our VarInfo subtypes are unified now, there’s no longer a distinction between ‘typed’, ‘untyped’, or ‘simple’ VarInfo.</p></li>
+</ul>
+<p>If you’re interested in a behind-the-scenes look at why and how we did this, <a href="https://turinglang.org/DynamicPPL.jl/previews/PR1164/vnt/motivation/">there are some docs here</a> (still in progress, but a lot of the basics are covered)! The performance aspects will mostly affect non-HMC/NUTS samplers (since Turing@0.42 / DynamicPPL@0.39, HMC and NUTS almost completely don’t use VarInfo anymore), although the correctness aspects will apply to every Turing model.</p>
 
 
 
