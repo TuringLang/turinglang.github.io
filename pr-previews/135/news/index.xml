@@ -28,7 +28,7 @@
 
 <p>The TuringLang ecosystem has made strong progress recently: more AD backends, a maturing JuliaBUGS, and clearer inference tooling.</p>
 <p>For GSoC 2026 we offer projects from core AD work to scalable inference and user-facing tools.</p>
-<p>If a project interests you, contact the mentors listed below or open a discussion on the relevant GitHub repo. Please drop a short introduction message in the <a href="https://julialang.slack.com/archives/CCYDC34A0"><code>#turing</code></a> channel on the <a href="https://julialang.org/slack/">Julia Slack</a> and feel free to ping <a href="https://github.com/penelopeysm/">Penelope Yong</a> or <a href="https://github.com/shravanngoswamii">Shravan Goswami</a> there. Mentors will be happy to discuss project details, scope, and expectations, and you can find mentor contacts at <a href="../../../team/">team page</a>.</p>
+<p>If a project interests you, contact the mentors listed below or open a discussion on the relevant GitHub repo. Please drop a short introduction message in the <a href="https://julialang.slack.com/archives/CCYDC34A0"><code>#turing</code></a> channel on the <a href="https://julialang.org/slack/">Julia Slack</a> and feel free to ping <a href="https://github.com/shravanngoswamii">Shravan Goswami</a> there. Mentors will be happy to discuss project details, scope, and expectations, and you can find mentor contacts at <a href="../../../team/">team page</a>.</p>
 <p>Also cross-posted on <a href="https://julialang.org/jsoc/gsoc/turing/">Julia’s GSoC page</a>.</p>
 <section id="mentor-contacts-on-julia-slack" class="level2">
 <h2 class="anchored" data-anchor-id="mentor-contacts-on-julia-slack">Mentor Contacts on Julia Slack</h2>
@@ -41,14 +41,10 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>Penelope Yong</td>
-<td><a href="https://julialang.slack.com/team/U07DBR7C2LD">Slack</a></td>
-</tr>
-<tr class="even">
 <td>Hong Ge</td>
 <td><a href="https://julialang.slack.com/team/UCRDHV7PB">Slack</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Xianda Sun</td>
 <td><a href="https://julialang.slack.com/team/U03AV5JMJ8N">Slack</a></td>
 </tr>
@@ -57,7 +53,7 @@
 </section>
 <section id="new-abstractmcmc-based-gibbs-sampler-for-turing.jl-and-juliabugs.jl" class="level2">
 <h2 class="anchored" data-anchor-id="new-abstractmcmc-based-gibbs-sampler-for-turing.jl-and-juliabugs.jl">New AbstractMCMC-based Gibbs Sampler for Turing.jl and JuliaBUGS.jl</h2>
-<p><strong>Mentors</strong>: <a href="https://github.com/penelopeysm/">Penelope Yong</a>, <a href="https://github.com/yebai">Hong Ge</a></p>
+<p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a> and <a href="https://github.com/sunxd3">Xianda Sun</a></p>
 <p><strong>Project difficulty</strong>: Medium</p>
 <p><strong>Project length</strong>: 350 hrs</p>
 <p>Gibbs sampling is one of the most widely used inference strategies in Bayesian computation, but Turing.jl’s current Gibbs implementation is tightly coupled to its internals and difficult to extend.</p>
@@ -71,7 +67,7 @@
 </section>
 <section id="moving-from-paretosmooth-to-psis-posteriorstats-in-turing.jl" class="level2">
 <h2 class="anchored" data-anchor-id="moving-from-paretosmooth-to-psis-posteriorstats-in-turing.jl">Moving from ParetoSmooth to PSIS + PosteriorStats in Turing.jl</h2>
-<p><strong>Mentors</strong>: <a href="https://github.com/penelopeysm/">Penelope Yong</a>, <a href="https://github.com/yebai">Hong Ge</a></p>
+<p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a></p>
 <p><strong>Project difficulty</strong>: Medium</p>
 <p><strong>Project length</strong>: 175 hrs</p>
 <p>Turing.jl currently uses <a href="https://github.com/TuringLang/ParetoSmooth.jl">ParetoSmooth.jl</a> for Pareto-smoothed importance sampling (PSIS) and leave-one-out cross-validation (LOO-CV). The upstream issue <a href="https://github.com/TuringLang/ParetoSmooth.jl/issues/115">TuringLang/ParetoSmooth.jl#115</a> tracks migrating this functionality to the more actively maintained <a href="https://github.com/arviz-devs/PSIS.jl">PSIS.jl</a> and <a href="https://github.com/arviz-devs/PosteriorStats.jl">PosteriorStats.jl</a> packages from the ArviZ ecosystem.</p>
@@ -85,7 +81,7 @@
 </section>
 <section id="stateful-hand-written-rules-and-thread-support-in-mooncake.jl" class="level2">
 <h2 class="anchored" data-anchor-id="stateful-hand-written-rules-and-thread-support-in-mooncake.jl">Stateful Hand-Written Rules and Thread Support in Mooncake.jl</h2>
-<p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a></p>
+<p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a> and <a href="https://github.com/sunxd3">Xianda Sun</a></p>
 <p><strong>Project difficulty</strong>: Medium to Hard</p>
 <p><strong>Project length</strong>: 350 hrs</p>
 <p><a href="https://github.com/chalk-lab/Mooncake.jl">Mooncake.jl</a> is a source-to-source reverse-mode AD package for Julia. Two open issues currently limit its performance and applicability in real-world workloads.</p>
@@ -94,7 +90,7 @@
 </section>
 <section id="pigeons.jl-integration-with-turing-and-juliabugs" class="level2">
 <h2 class="anchored" data-anchor-id="pigeons.jl-integration-with-turing-and-juliabugs">Pigeons.jl Integration with Turing and JuliaBUGS</h2>
-<p><strong>Mentors</strong>: <a href="https://github.com/sunxd3">Xianda Sun</a>, <a href="https://github.com/penelopeysm/">Penelope Yong</a></p>
+<p><strong>Mentors</strong>: <a href="https://github.com/sunxd3">Xianda Sun</a></p>
 <p><strong>Project difficulty</strong>: Medium to Hard</p>
 <p><strong>Project length</strong>: 350 hrs</p>
 <p><a href="https://github.com/Julia-Tempering/Pigeons.jl">Pigeons.jl</a> implements parallel tempering and related algorithms that are particularly effective for multimodal and high-dimensional posteriors. This project has two related goals that together make Pigeons a first-class citizen of the TuringLang ecosystem.</p>
