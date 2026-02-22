@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Turing.jl is a probabilistic programming language and Bayesian modelling framework for the Julia programming language.">
+
+<title>The Turing Language – Turing.jl</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href=".//assets/favicon.ico" rel="icon">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-382d1691af017651868e14ddb02d9784.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e6140c054f90303ffedfa9a4614b0924.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-382d1691af017651868e14ddb02d9784.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-news-and-updates .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-project','listing-website','listing-format','listing-site-url','listing-get-started','listing-tutorials-intro','listing-language','listing-toc','listing-sidebar','listing-include-in-header','listing-title','listing-description','listing-categories','listing-author','listing-date','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-resources','listing-aliases','listing-bibliography','listing-csl','listing-link-citations','listing-nocite',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      
+      searchColumns: ["listing-project","listing-website","listing-format","listing-site-url","listing-get-started","listing-tutorials-intro","listing-language","listing-toc","listing-sidebar","listing-include-in-header","listing-title","listing-description","listing-categories","listing-author","listing-date","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-resources","listing-aliases","listing-bibliography","listing-csl","listing-link-citations","listing-nocite"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-news-and-updates'] = new List('listing-news-and-updates', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-featured-tutorials .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-href','listing-description','listing-category',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-title","listing-href","listing-description","listing-category"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-featured-tutorials'] = new List('listing-featured-tutorials', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="application/ld+json">
+{
+  "@context" : "https://schema.org",
+  "@type" : "WebSite",
+  "name" : "Turing.jl",
+  "alternateName": "The Turing Language",
+  "url" : "https://turinglang.org/",
+}
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="The Turing Language">
+<meta property="og:description" content="Turing.jl is a probabilistic programming language and Bayesian modelling framework for the Julia programming language.">
+<meta property="og:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
+<meta property="og:site_name" content="Turing.jl">
+<meta property="og:image:alt" content="Turing.jl Logo">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:title" content="The Turing Language">
+<meta name="twitter:description" content="Turing.jl is a probabilistic programming language and Bayesian modelling framework for the Julia programming language.">
+<meta name="twitter:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
+<meta name="twitter:creator" content="@Hong_Ge2">
+<meta name="twitter:site" content="@TuringLang">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./assets/logo/turing-logo-light.svg" alt="" class="navbar-logo light-content">
+    <img src="./assets/logo/turing-logo-dark.svg" alt="" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://turinglang.org/docs/getting-started/"> 
+<span class="menu-text">Get Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://turinglang.org/docs/tutorials/"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://turinglang.org/docs/faq/"> 
+<span class="menu-text">FAQ</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./library/"> 
+<span class="menu-text">Libraries</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./news/"> 
+<span class="menu-text">News</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./team/"> 
+<span class="menu-text">Team</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://x.com/TuringLang" title="Turing Twitter" class="quarto-navigation-tool px-1" aria-label="Turing Twitter"><i class="bi bi-twitter-x"></i></a>
+    <a href="https://discourse.julialang.org/c/domain/probprog/48" title="Turing Discourse" class="quarto-navigation-tool px-1" aria-label="Turing Discourse"><i class="bi bi-chat-dots"></i></a>
+    <a href="https://julialang.slack.com/archives/CCYDC34A0" title="Turing Slack" class="quarto-navigation-tool px-1" aria-label="Turing Slack"><i class="bi bi-slack"></i></a>
+    <a href="https://github.com/TuringLang" title="Turing GitHub" class="quarto-navigation-tool px-1" aria-label="Turing GitHub"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+<!-- main -->
+
+
+
+
+
+<div class="side-space">
+<!-- Header -->
+<div class="logo-header">
+<div class="hero-section">
+  <div class="hero-content text-center">
+    <img src="./assets/logo/turing-logo-light.svg" alt="Turing Logo" class="hero-logo hero-logo-light">
+    <img src="./assets/logo/turing-logo-dark.svg" alt="Turing Logo" class="hero-logo hero-logo-dark">
+    <p class="hero-subtitle">Bayesian inference with probabilistic programming</p>
+  </div>
+</div>
+</div>
+<!-- Header End Here -->
+<!-- What is Turing.jl Section -->
+<div class="what-is-turing-grid section-start-space section-end-space">
+<div class="feature-text-column">
+<div class="feature-item">
+<div class="feature-item-header">
+<span class="feature-icon icon-expressive"></span>
+<h5 id="expressive">Expressive</h5>
+</div>
+<p>Turing models are easy to write and communicate, with syntax that is close to the mathematical specification of the model.</p>
+</div>
+<div class="feature-item">
+<div class="feature-item-header">
+<span class="feature-icon icon-general-purpose"></span>
+<h5 id="general-purpose">General-purpose</h5>
+</div>
+<p>Turing supports models with discrete parameters and stochastic control flow.</p>
+</div>
+<div class="feature-item">
+<div class="feature-item-header">
+<span class="feature-icon icon-composable"></span>
+<h5 id="composable">Composable</h5>
+</div>
+<p>Turing is written entirely in Julia, and is interoperable with its powerful ecosystem.</p>
+</div>
+<div class="feature-cta-button">
+<a href="https://turinglang.org/docs/getting-started/" class="button btn-lg button--fill">Get Started</a>
+</div>
+</div>
+<div class="code-example-column">
+<div class="code-window box">
+<div class="code-window-header">
+<div class="code-window-dots">
+<span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+</div>
+<div class="code-window-title">
+<span>linear_regression.jl</span>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-overflow-scroll code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Turing</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@model</span> <span class="kw">function</span> <span class="fu">linear_regression</span>(x)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Priors</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    α <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    β <span class="op">~</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    σ² <span class="op">~</span> <span class="fu">truncated</span>(<span class="fu">Cauchy</span>(<span class="fl">0</span>, <span class="fl">3</span>); lower<span class="op">=</span><span class="fl">0</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Likelihood</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    μ <span class="op">=</span> α <span class="op">.+</span> β <span class="op">.*</span> x</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    y <span class="op">~</span> <span class="fu">MvNormal</span>(μ, σ² <span class="op">*</span> I)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">10</span>), <span class="fu">rand</span>(<span class="fl">10</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> <span class="fu">linear_regression</span>(x) <span class="op">|</span> (; y <span class="op">=</span> y)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> <span class="fu">sample</span>(posterior, <span class="fu">NUTS</span>(), <span class="fl">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<!-- What is Turing.jl Section Ends Here -->
+<!-- Start Your Journey Section -->
+<div class="section-header section-start-space">
+<div id="start">
+<h3 id="start-your-journey">Start Your Journey</h3>
+<p>
+Whether you’re new to Bayesian modeling or an experienced researcher, find the resources you need.
+</p>
+</div>
+<a href="#cite" class="button desktop-only-button">Research Papers on Turing.jl →</a>
+</div>
+<div class="d-flex flex-row flex-wrap panel-wrapper gap-4 section-end-space">
+<section id="new-to-turing" class="panel-title text-center panel box">
+<h5 class="panel-title text-center">New to Turing?</h5>
+<p>
+Begin with the basics. Our step-by-step tutorials will guide you from installation to your first probabilistic models.
+</p>
+<div class="d-flex flex-column align-items-center gap-2 pt-3">
+<a href="https://turinglang.org/docs/getting-started/" class="button">Get Started</a>
+<a href="https://turinglang.org/docs/tutorials/coin-flipping/" class="link-muted" style="font-size: 0.9em;">Beginner's Walkthrough</a>
+</div>
+</section>
+<section id="for-researchers" class="panel-title text-center panel box">
+<h5 class="panel-title text-center">For Researchers</h5>
+<p>
+Dive into advanced models, explore the rich package ecosystem, and learn how to cite Turing.jl in your work.
+</p>
+<div class="d-flex flex-column align-items-center gap-2 pt-3">
+<a href="./library" class="button">Explore Ecosystem</a>
+<a href="#cite" class="link-muted" style="font-size: 0.9em;">Cite Turing.jl</a>
+</div>
+</section>
+<section id="for-developers" class="panel-title text-center panel box">
+<h5 class="panel-title text-center">For Developers</h5>
+<p>
+Join our community, contribute to the project on GitHub, and connect with fellow developers on Slack.
+</p>
+<div class="d-flex flex-column align-items-center gap-2 pt-3">
+<a href="https://github.com/TuringLang" class="button">View on GitHub</a>
+<a href="https://julialang.slack.com/archives/CCYDC34A0" class="link-muted" style="font-size: 0.9em;">Join the Slack Channel</a>
+</div>
+</section>
+</div>
+<div class="mobile-only-button-container">
+<a href="#cite" class="button">Research Papers on Turing.jl →</a>
+</div>
+<!-- Start Your Journey Section Ends Here-->
+<!-- Core Packages Section -->
+<div class="section-header section-start-space">
+<div id="core-packages-header-content">
+<h3 id="core-packages">Core Packages</h3>
+<p>
+The Turing ecosystem is built on a foundation of powerful, composable packages.
+</p>
+</div>
+<a href="./library" class="button desktop-only-button">Explore Ecosystem →</a>
+</div>
+<div class="core-packages-grid section-end-space">
+<div id="core-card" class="package-card box">
+<h5 id="dynamicppl.jl"><a href="https://turinglang.org/DynamicPPL.jl/" class="panel-title">DynamicPPL.jl <i class="bi bi-box-arrow-up-right" style="font-size: 0.4em;"></i></a></h5>
+<p>
+A domain-specific language and backend for probabilistic programming languages, used by <a href="https://github.com/TuringLang/Turing.jl">Turing.jl.</a>
+</p>
+</div>
+<div id="core-card" class="package-card box">
+<h5 id="juliabugs.jl"><a href="https://turinglang.org/JuliaBUGS.jl/" class="panel-title">JuliaBUGS.jl <i class="bi bi-box-arrow-up-right" style="font-size: 0.4em;"></i></a></h5>
+<p>
+A modern implementation of the <a href="https://en.wikipedia.org/wiki/Bayesian_inference_using_Gibbs_sampling">BUGS</a> probabilistic programming language in Julia.
+</p>
+</div>
+<div id="core-card" class="package-card box">
+<h5 id="turingglm.jl"><a href="https://turinglang.org/TuringGLM.jl/" class="panel-title">TuringGLM.jl <i class="bi bi-box-arrow-up-right" style="font-size: 0.4em;"></i></a></h5>
+<p>
+Bayesian Generalized Linear models using <a href="https://turinglang.org/TuringGLM.jl/stable/#@formula"><code>@formula</code></a> syntax and returns an instantiated <a href="https://github.com/TuringLang/Turing.jl">Turing</a> model.
+</p>
+</div>
+<div id="core-card" class="package-card box">
+<h5 id="advancedhmc.jl"><a href="https://turinglang.org/AdvancedHMC.jl/" class="panel-title">AdvancedHMC.jl <i class="bi bi-box-arrow-up-right" style="font-size: 0.4em;"></i></a></h5>
+<p>
+A robust, modular and efficient implementation of advanced HMC algorithms. (<a href="https://proceedings.mlr.press/v118/xu20a.html">abs</a>, <a href="https://proceedings.mlr.press/v118/xu20a/xu20a.pdf">pdf</a>)
+</p>
+</div>
+</div>
+<div class="mobile-only-button-container">
+<a href="./library" class="button btn">Explore Ecosystem →</a>
+</div>
+<!-- Core Packages Section Ends Here-->
+<!-- News & Updates Section -->
+<div class="section-header section-start-space">
+<div id="news">
+<h3 id="news-updates">News &amp; Updates</h3>
+<p>
+Read the latest from the Turing team.
+</p>
+</div>
+<a href="news/" class="button desktop-only-button">View more →</a>
+</div>
+<div id="listing-news-and-updates" class="quarto-listing quarto-listing-container-custom">
+<div class="unified-card-grid">
+
+  <a href="./news/posts/2026-02-21-gsoc/index.html" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Google Summer of Code 2026</h5>
+      <p class="unified-card-text">We are excited to announce our project ideas for the Google Summer of Code 2026! Below is a list of projects the Turing team would love to work on with contributors this summer. This information is also cross-posted at Julia's Turing project page.
+</p>
+      
+      
+    </div>
+    
+    
+    <div class="unified-card-footer">
+      <div class="unified-card-meta">
+        
+          <span class="unified-card-author">
+            
+              The TuringLang team
+            
+          </span>
+        
+        
+          <span class="unified-card-date">
+            Feb 22, 2026
+          </span>
+        
+      </div>
+      
+        <span class="unified-card-reading-time">5 min</span>
+      
+    </div>
+    
+  </a>
+
+  <a href="./news/posts/2026-01-23-newsletter-17/index.html" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Turing.jl Newsletter 17</h5>
+      <p class="unified-card-text">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+      
+      
+    </div>
+    
+    
+    <div class="unified-card-footer">
+      <div class="unified-card-meta">
+        
+          <span class="unified-card-author">
+            
+              The TuringLang team
+            
+          </span>
+        
+        
+          <span class="unified-card-date">
+            Jan 23, 2026
+          </span>
+        
+      </div>
+      
+        <span class="unified-card-reading-time">2 min</span>
+      
+    </div>
+    
+  </a>
+
+  <a href="./news/posts/2025-12-05-newsletter-16/index.html" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Turing.jl Newsletter 16</h5>
+      <p class="unified-card-text">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+      
+      
+    </div>
+    
+    
+    <div class="unified-card-footer">
+      <div class="unified-card-meta">
+        
+          <span class="unified-card-author">
+            
+              The TuringLang team
+            
+          </span>
+        
+        
+          <span class="unified-card-date">
+            Dec 5, 2025
+          </span>
+        
+      </div>
+      
+        <span class="unified-card-reading-time">2 min</span>
+      
+    </div>
+    
+  </a>
+
+  <a href="./news/posts/2025-11-07-newsletter-15/index.html" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Turing.jl Newsletter 15</h5>
+      <p class="unified-card-text">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+      
+      
+    </div>
+    
+    
+    <div class="unified-card-footer">
+      <div class="unified-card-meta">
+        
+          <span class="unified-card-author">
+            
+              The TuringLang team
+            
+          </span>
+        
+        
+          <span class="unified-card-date">
+            Nov 7, 2025
+          </span>
+        
+      </div>
+      
+        <span class="unified-card-reading-time">1 min</span>
+      
+    </div>
+    
+  </a>
+
+  <a href="./news/posts/2025-10-24-newsletter-14/index.html" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Turing.jl Newsletter 14</h5>
+      <p class="unified-card-text">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+      
+      
+    </div>
+    
+    
+    <div class="unified-card-footer">
+      <div class="unified-card-meta">
+        
+          <span class="unified-card-author">
+            
+              The TuringLang team
+            
+          </span>
+        
+        
+          <span class="unified-card-date">
+            Oct 24, 2025
+          </span>
+        
+      </div>
+      
+        <span class="unified-card-reading-time">2 min</span>
+      
+    </div>
+    
+  </a>
+
+  <a href="./news/posts/2025-10-10-newsletter-13/index.html" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Turing.jl Newsletter 13</h5>
+      <p class="unified-card-text">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+      
+      
+    </div>
+    
+    
+    <div class="unified-card-footer">
+      <div class="unified-card-meta">
+        
+          <span class="unified-card-author">
+            
+              The TuringLang team
+            
+          </span>
+        
+        
+          <span class="unified-card-date">
+            Oct 10, 2025
+          </span>
+        
+      </div>
+      
+        <span class="unified-card-reading-time">1 min</span>
+      
+    </div>
+    
+  </a>
+
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+<div class="mobile-only-button-container">
+<a href="news/" class="button">View more →</a>
+</div>
+<!-- News & Updates Section Ends Here-->
+<!-- Featured Tutorials Section -->
+<div class="section-header section-start-space">
+<div id="tutorials">
+<h3 id="featured-tutorials">Featured Tutorials</h3>
+<p>
+A selection of tutorials to get you started.
+</p>
+</div>
+<a href="https://turinglang.org/docs/tutorials/" class="button desktop-only-button">View all tutorials →</a>
+</div>
+<div id="listing-featured-tutorials" class="quarto-listing quarto-listing-container-custom">
+<div class="unified-card-grid">
+
+  <a href="https://turinglang.org/docs/getting-started/" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Get Started with Turing.jl</h5>
+      <p class="unified-card-text">Our step-by-step tutorials will guide you from installation to your first probabilistic models.</p>
+      
+      
+        <div class="unified-card-categories">
+          
+            
+              <span class="category-tag">Basics</span>
+            
+              <span class="category-tag">Getting Started</span>
+            
+          
+        </div>
+      
+    </div>
+    
+    
+  </a>
+
+  <a href="https://turinglang.org/docs/tutorials/coin-flipping/" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Introduction: Coin Flipping</h5>
+      <p class="unified-card-text">Learn the basic concepts of Bayesian modeling by working through a simple coin-flipping example.</p>
+      
+      
+        <div class="unified-card-categories">
+          
+            
+              <span class="category-tag">Basics</span>
+            
+              <span class="category-tag">Modeling</span>
+            
+          
+        </div>
+      
+    </div>
+    
+    
+  </a>
+
+  <a href="https://turinglang.org/docs/core-functionality/" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Core Functionality</h5>
+      <p class="unified-card-text">This article provides an overview of the core functionality in Turing.jl, which are likely to be used across a wide range of models.</p>
+      
+      
+        <div class="unified-card-categories">
+          
+            
+              <span class="category-tag">Basics</span>
+            
+              <span class="category-tag">Features</span>
+            
+          
+        </div>
+      
+    </div>
+    
+    
+  </a>
+
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+<div class="mobile-only-button-container">
+<a href="https://turinglang.org/docs/tutorials/" class="button">View all tutorials →</a>
+</div>
+<!-- Featured Tutorials Section End Here -->
+<!-- Citations Section -->
+<div class="section-start-space section-end-space">
+<!-- TODO: Add a better citations (maybe publication system) to list research work of all Turing ecosystem packages ) -->
+<div class="citation-container">
+  <h3 id="cite" class="pb-1 text-center">Turing.jl is an <a href="https://github.com/TuringLang/Turing.jl/blob/main/LICENCE" class="turing-license-link"><code>MIT</code></a> Licensed Open Source Project</h3>
+  <p class="text-center">If you use Turing.jl in your research, please consider citing our papers.</p>
+
+  <ul id="citation-list" class="citation-list">
+    <!-- Citations will be dynamically injected here -->
+  </ul>
+</div>
+
+<style>
+.citation-icon-btn[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 108%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    white-space: nowrap;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    transform: translateX(-50%) translateY(5px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.citation-icon-btn[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.citation-icon-btn {
+    position: relative;
+}
+</style>
+
+<script>
+// DATA: Add new BibTeX entries here
+const bibtexData = [
+`@article{10.1145/3711897,
+  author = {Fjelde, Tor Erlend and Xu, Kai and Widmann, David and Tarek, Mohamed and Pfiffer, Cameron and Trapp, Martin and Axen, Seth D. and Sun, Xianda and Hauru, Markus and Yong, Penelope and Tebbutt, Will and Ghahramani, Zoubin and Ge, Hong},
+  title = {Turing.jl: a general-purpose probabilistic programming language},
+  year = {2025},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/3711897},
+  doi = {10.1145/3711897},
+  abstract = {Probabilistic programming languages (PPLs) are becoming increasingly important in many scientific disciplines, such as economics, epidemiology, and biology, to extract meaning from sources of data while accounting for one's uncertainty. The key idea of probabilistic programming is to decouple inference and model specification, thus allowing the practitioner to approach their task at hand using Bayesian inference, without requiring extensive knowledge in programming or computational statistics. At the same time, the complexity of problem settings in which PPLs are employed is steadily increasing, both in terms of project size and model complexity, calling for more flexible and efficient systems. In this work, we describe Turing.jl, a general-purpose PPL, which is designed to be flexible, efficient, and easy to use. Turing.jl is built on top of the Julia programming language, which is known for its high performance and ease-of-use. We describe the design of Turing.jl, contextualizing it within different types of users and use cases, its key features, and how it can be used to solve a wide range of problems. We also provide a brief overview of the ecosystem around Turing.jl, including the different libraries and tools that can be used in conjunction with it. Finally, we provide a few examples of how Turing.jl can be used in practice.},
+  note = {Just Accepted},
+  journal = {ACM Trans. Probab. Mach. Learn.},
+  month = feb,
+  keywords = {Probabilistic Programming, Probabilistic Programming Languages, Probabilistic Inference, Bayesian Inference, Markov Chain Monte Carlo, Variational Inference, Sequential Monte Carlo, Uncertainty Quantification, Modeling Methodologies, Latent Variable Models, Maximum a Posteriori Modeling, Software Libraries and Repositories, Bayesian Computation, Variational Methods, Sequential Monte Carlo Methods}
+}`,
+`@InProceedings{pmlr-v84-ge18b,
+  title = {Turing: A Language for Flexible Probabilistic Inference},
+  author = {Ge, Hong and Xu, Kai and Ghahramani, Zoubin},
+  booktitle = {Proceedings of the Twenty-First International Conference on Artificial Intelligence and Statistics},
+  pages = {1682--1690},
+  year = {2018},
+  editor = {Storkey, Amos and Perez-Cruz, Fernando},
+  volume = {84},
+  series = {Proceedings of Machine Learning Research},
+  month = {09--11 Apr},
+  publisher = {PMLR},
+  pdf = {http://proceedings.mlr.press/v84/ge18b/ge18b.pdf},
+  url = {https://proceedings.mlr.press/v84/ge18b.html},
+  abstract = {Probabilistic programming promises to simplify and democratize probabilistic machine learning, but successful probabilistic programming systems require flexible, generic and efficient inference engines. In this work, we present a system called Turing for building MCMC algorithms for probabilistic programming inference. Turing has a very simple syntax and makes full use of the numerical capabilities in the Julia programming language, including all implemented probability distributions, and automatic differentiation. Turing supports a wide range of popular Monte Carlo algorithms, including Hamiltonian Monte Carlo (HMC), HMC with No-U-Turns (NUTS), Gibbs sampling, sequential Monte Carlo (SMC), and several particle MCMC (PMCMC) samplers. Most importantly, Turing inference is composable: it combines MCMC operations on subsets of variables, for example using a combination of an HMC engine and a particle Gibbs (PG) engine. We explore several combinations of inference methods with the aim of finding approaches that are both efficient and universal, i.e. applicable to arbitrary probabilistic models. NUTS—a popular variant of HMC that adapts Hamiltonian simulation path length automatically, although quite powerful for exploring differentiable target distributions, is however not universal. We identify some failure modes for the NUTS engine, and demonstrate that composition of PG (for discrete variables) and NUTS (for continuous variables) can be useful when the NUTS engine is either not applicable, or simply does not work well. Our aim is to present Turing and its composable inference engines to the world and encourage other researchers to build on this system to help advance the field of probabilistic machine learning.}
+}`
+];
+
+/**
+ * A BibTeX parser.
+ * Extracts key-value pairs from a BibTeX string.
+ * @param {string} bibtex - The raw BibTeX string.
+ * @returns {object} - An object with parsed data.
+ */
+function parseBibtex(bibtex) {
+    const data = { raw: bibtex };
+    const regex = /(\w+)\s*=\s*[\{"']([^"'}]+)[\}"']/g;
+    let match;
+    while ((match = regex.exec(bibtex)) !== null) {
+        data[match[1].toLowerCase()] = match[2];
+    }
+    return data;
+}
+
+/**
+ * Creates an HTML string for a single citation entry.
+ * @param {object} bibData - The parsed BibTeX data.
+ * @returns {string} - The HTML string for the list item.
+ */
+function generateCitationHTML(bibData) {
+    const { author, title, journal, booktitle, year, note, url, doi, raw } = bibData;
+
+    let publicationInfo = '';
+    if (journal) {
+        publicationInfo += `<em>${journal}</em>.`;
+    } else if (booktitle) {
+        publicationInfo += `In <em>${booktitle}</em>.`;
+    }
+    if (note) {
+        publicationInfo += ` ${note}.`;
+    }
+
+    const viewUrl = url || (doi ? `https://doi.org/${doi}` : '#');
+
+    // The author string is now used directly from the bibtex data without formatting.
+    const authorsFormatted = author || 'N/A';
+
+    return `
+    <li class="citation-entry box">
+      <div class="citation-content">
+        <p class="citation-text">
+          ${authorsFormatted} (${year}). <span class="citation-title">${title}.</span> ${publicationInfo}
+        </p>
+      </div>
+      <div class="citation-actions">
+          <a href="${viewUrl}" target="_blank" rel="noopener noreferrer" class="citation-icon-btn" aria-label="View Paper: ${title}" title="View Paper" data-tooltip="View Paper">
+            <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+          <button class="citation-icon-btn copy-bibtex-btn" aria-label="Copy BibTeX for ${title}" title="Copy BibTeX" data-tooltip="Copy BibTeX">
+          <!-- Custom SVG for citation icon -->
+          <svg fill="currentColor" height="135px" width="135px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 191.029 191.029" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M44.33,88.474v15.377h38.417v82.745H0v-82.745h0.002V88.474c0-31.225,8.984-54.411,26.704-68.918 C38.964,9.521,54.48,4.433,72.824,4.433v44.326C62.866,48.759,44.33,48.759,44.33,88.474z M181.107,48.759V4.433 c-18.343,0-33.859,5.088-46.117,15.123c-17.72,14.507-26.705,37.694-26.705,68.918v15.377h0v82.745h82.744v-82.745h-38.417V88.474 C152.613,48.759,171.149,48.759,181.107,48.759z"></path> </g></svg>
+        </button>
+      </div>
+      <pre class="citation-bibtex-data" style="display:none;">${raw}</pre>
+    </li>
+    `;
+}
+
+function copyBibtex(buttonElement) {
+  const citationEntry = buttonElement.closest('.citation-entry');
+  if (!citationEntry) return;
+
+  const bibtexPreElement = citationEntry.querySelector('.citation-bibtex-data');
+  if (!bibtexPreElement) return;
+
+  const bibtexText = bibtexPreElement.textContent.trim();
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(bibtexText)
+      .then(() => showSuccess(buttonElement))
+      .catch(err => {
+        console.error('Async copy failed, falling back:', err);
+        fallbackCopy(bibtexText, buttonElement);
+      });
+  } else {
+    fallbackCopy(bibtexText, buttonElement);
+  }
+}
+
+function fallbackCopy(text, buttonElement) {
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  textArea.style.position = 'fixed';
+  textArea.style.top = '-9999px';
+  textArea.style.left = '-9999px';
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  try {
+    const successful = document.execCommand('copy');
+    if (successful) {
+      showSuccess(buttonElement);
+    } else {
+      showError(buttonElement);
+    }
+  } catch (err) {
+    console.error('Fallback copy failed:', err);
+    showError(buttonElement);
+  }
+  document.body.removeChild(textArea);
+}
+
+function showSuccess(buttonElement) {
+    const originalIcon = buttonElement.innerHTML;
+    buttonElement.innerHTML = '✓';
+    buttonElement.classList.add('citation-copied');
+    buttonElement.disabled = true;
+
+    setTimeout(() => {
+        buttonElement.innerHTML = originalIcon;
+        buttonElement.classList.remove('citation-copied');
+        buttonElement.disabled = false;
+    }, 2000);
+}
+
+function showError(buttonElement) {
+    const originalIcon = buttonElement.innerHTML;
+    buttonElement.innerHTML = 'X';
+    buttonElement.disabled = true;
+    setTimeout(() => {
+        buttonElement.innerHTML = originalIcon;
+        buttonElement.disabled = false;
+    }, 2000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('citation-list');
+    if (!container) return;
+
+    // Generate and inject HTML
+    const allCitationsHTML = bibtexData.map(bib => generateCitationHTML(parseBibtex(bib))).join('');
+    container.innerHTML = allCitationsHTML;
+
+    container.addEventListener('click', function(event) {
+        const button = event.target.closest('.copy-bibtex-btn');
+        if (button) {
+            copyBibtex(button);
+        }
+    });
+});
+</script>
+</div>
+<!-- Citations Section Ends Here-->
+</div>
+
+
+
+
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/turinglang\.org");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="custom-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-links-wrapper">
+        <div class="footer-column footer-explore">
+          <h5>Explore</h5>
+          <a href="https://turinglang.org/docs/getting-started/">Get Started</a>
+          <a href="https://turinglang.org/docs/tutorials/">Tutorials</a>
+          <a href="https://turinglang.org/docs/faq/">FAQ</a>
+          <a href="./library">Libraries</a>
+          <a href="./news">News</a>
+          <a href="./team">Team</a>
+        </div>
+
+        <div class="footer-column footer-connect">
+          <h5>Connect</h5>
+          <a href="https://github.com/TuringLang" target="_blank" rel="noopener"><i class="bi bi-github"></i> GitHub</a>
+          <a href="https://x.com/TuringLang" target="_blank" rel="noopener"><i class="bi bi-twitter-x"></i> Twitter</a>
+          <a href="https://julialang.slack.com/archives/CCYDC34A0" target="_blank" rel="noopener"><i class="bi bi-slack"></i> Slack</a>
+          <a href="https://discourse.julialang.org/c/domain/probprog/48" target="_blank" rel="noopener"><i class="bi bi-chat-dots"></i> Discourse</a>
+        </div>
+      </div>
+
+      <div class="footer-column footer-brands">
+        <h5>Supported by leading researchers</h5>
+        <p>Turing.jl is developed by researchers and engineers at the following research institutions.</p>
+        <div class="logo-grid">
+          <a href="https://mlg.eng.cam.ac.uk/" class="partner-logo" target="_blank" rel="noopener">
+            <img src="./assets/images/brands/university-cambridge-logo-black-example-640x132.png" alt="University of Cambridge Logo" class="brands-light-mode-logo">
+            <img src="./assets/images/brands/university-cambridge-logo-white-example-640x133.png" alt="University of Cambridge Logo Dark" class="brands-dark-mode-logo">
+          </a>
+          <a href="https://www.turing.ac.uk/" class="partner-logo" target="_blank" rel="noopener">
+            <img src="./assets/images/brands/Turing_Logo_1000x400px_Black.webp" alt="The Alan Turing Institute Logo" class="brands-light-mode-logo">
+            <img src="./assets/images/brands/Turing_Logo_1000x400px_White.webp" alt="The Alan Turing Institute Logo Dark" class="brands-dark-mode-logo">
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>Turing is created by <a href="https://mlg.eng.cam.ac.uk/hong/" target="_blank" rel="noopener">Hong Ge</a>, and maintained by the core <a href="./team" target="_blank" rel="noopener">team</a> of developers and <a href="https://github.com/TuringLang/Turing.jl/graphs/contributors" target="_blank" rel="noopener">contributors</a>.<br>© 2025 The Turing Project Contributors. <a href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE" target="_blank" rel="noopener">MIT License</a>.</p>
+      <a href="https://github.com/TuringLang/turinglang.github.io/" target="_blank" rel="noopener" class="footer-source-link"><i class="bi bi-github"></i> Website Source</a>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
