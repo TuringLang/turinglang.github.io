@@ -37,7 +37,6 @@ Also cross-posted on [Julia's GSoC page](https://julialang.org/jsoc/gsoc/turing/
 
 **Project length**: 350 hrs
 
-**Description**:
 Gibbs sampling is one of the most widely used inference strategies in Bayesian computation, but Turing.jl's current Gibbs implementation is tightly coupled to its internals and difficult to extend.
 
 This project is about designing a clean, composable Gibbs sampler built on top of the [AbstractMCMC.jl](https://github.com/TuringLang/AbstractMCMC.jl) interface so that it works perfectly across both Turing.jl and [JuliaBUGS.jl](https://github.com/TuringLang/JuliaBUGS.jl).
@@ -56,7 +55,6 @@ Work will include:
 
 **Project length**: 175 hrs
 
-**Description**:
 Turing.jl currently uses [ParetoSmooth.jl](https://github.com/TuringLang/ParetoSmooth.jl) for Pareto-smoothed importance sampling (PSIS) and leave-one-out cross-validation (LOO-CV).
 The upstream issue [TuringLang/ParetoSmooth.jl#115](https://github.com/TuringLang/ParetoSmooth.jl/issues/115) tracks migrating this functionality to the more actively maintained [PSIS.jl](https://github.com/arviz-devs/PSIS.jl) and [PosteriorStats.jl](https://github.com/arviz-devs/PosteriorStats.jl) packages from the ArviZ ecosystem.
 
@@ -75,7 +73,6 @@ The project involves:
 
 **Project length**: 350 hrs
 
-**Description**:
 [Mooncake.jl](https://github.com/chalk-lab/Mooncake.jl) is a source-to-source reverse-mode AD package for Julia.
 Two open issues currently limit its performance and applicability in real-world workloads.
 
@@ -98,7 +95,6 @@ The work involves writing rules for the `ccall`s that enter and exit threaded re
 
 **Project length**: 350 hrs
 
-**Description**:
 [Pigeons.jl](https://github.com/Julia-Tempering/Pigeons.jl) implements parallel tempering and related algorithms that are particularly effective for multimodal and high-dimensional posteriors.
 This project has two related goals that together make Pigeons a first-class citizen of the TuringLang ecosystem.
 
@@ -121,7 +117,6 @@ The implementation must be correct and performant, validated against standard be
 
 **Project length**: 350 hrs
 
-**Description**:
 [Mooncake.jl](https://github.com/chalk-lab/Mooncake.jl)  Mooncake.jl is a reverse-mode AD package written entirely in Julia, which addresses many of limitations of the popular [ReverseDiff.jl](https://github.com/JuliaDiff/ReverseDiff.jl) and [Zygote.jl](https://github.com/FluxML/Zygote.jl) libraries. While the library is typically fast, performance is not tested as systematically as it could be, meaning that there are probably a range of performance bugs waiting to be uncovered. Additionally, there are a range of known performance limitations which need to be addressed. This project aims to resolve known performance problems, to find new ones, and fix them too!
 
 Skills: familiarity with Julia programming, how to make Julia code performant, and a strong desire to make existing Julia code more performant! An understanding of AD is helpful, but not essential.
@@ -134,14 +129,12 @@ Skills: familiarity with Julia programming, how to make Julia code performant, a
 
 **Project length**: 350 hrs
 
-**Description**:
 The Turing.jl team is looking for a contributor to implement a lightweight Julia library to work with Jaxprs. If this could be you, get in touch and we can discuss the details.
 
 ## Contributor-proposed Project
 
 **Mentors**: Community
 
-**Description**:
 If you have an idea not listed here, propose it. Submit a short proposal with motivation, a concise plan, expected deliverables, and a timeline. Maintainers and mentors will review and help turn it into a plan. Be prepared to discuss scope with mentors early.
 
 To discuss proposals and next steps, contact [Shravan Goswami](https://julialang.slack.com/team/U04UZB5U740) on the [Julia Slack](https://julialang.org/slack/).
