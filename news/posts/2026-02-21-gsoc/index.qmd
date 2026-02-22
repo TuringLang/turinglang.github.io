@@ -17,7 +17,7 @@ The TuringLang ecosystem has made strong progress recently: more AD backends, a 
 For GSoC 2026 we offer projects from core AD work to scalable inference and user-facing tools.
 
 If a project interests you, contact the mentors listed below or open a discussion on the relevant GitHub repo.
-Please drop a short introduction message in the [`#turing`](https://julialang.slack.com/archives/CCYDC34A0) channel on the [Julia Slack](https://julialang.org/slack/) and feel free to ping [Penelope Yong](https://github.com/penelopeysm/) or [Shravan Goswami](https://github.com/shravanngoswamii) there. Mentors will be happy to discuss project details, scope, and expectations, and you can find mentor contacts at [team page](/team/).
+Please drop a short introduction message in the [`#turing`](https://julialang.slack.com/archives/CCYDC34A0) channel on the [Julia Slack](https://julialang.org/slack/) and feel free to ping [Shravan Goswami](https://github.com/shravanngoswamii) there. Mentors will be happy to discuss project details, scope, and expectations, and you can find mentor contacts at [team page](/team/).
 
 Also cross-posted on [Julia's GSoC page](https://julialang.org/jsoc/gsoc/turing/).
 
@@ -25,13 +25,12 @@ Also cross-posted on [Julia's GSoC page](https://julialang.org/jsoc/gsoc/turing/
 
 | Mentor | Slack Contact |
 |--------|---------------|
-| Penelope Yong | [Slack](https://julialang.slack.com/team/U07DBR7C2LD) |
 | Hong Ge | [Slack](https://julialang.slack.com/team/UCRDHV7PB) |
 | Xianda Sun | [Slack](https://julialang.slack.com/team/U03AV5JMJ8N) |
 
 ## New AbstractMCMC-based Gibbs Sampler for Turing.jl and JuliaBUGS.jl
 
-**Mentors**: [Penelope Yong](https://github.com/penelopeysm/), [Hong Ge](https://github.com/yebai)
+**Mentors**: [Hong Ge](https://github.com/yebai) and [Xianda Sun](https://github.com/sunxd3)
 
 **Project difficulty**: Medium
 
@@ -49,7 +48,7 @@ Work will include:
 
 ## Moving from ParetoSmooth to PSIS + PosteriorStats in Turing.jl
 
-**Mentors**: [Penelope Yong](https://github.com/penelopeysm/), [Hong Ge](https://github.com/yebai)
+**Mentors**: [Hong Ge](https://github.com/yebai)
 
 **Project difficulty**: Medium
 
@@ -67,7 +66,7 @@ The project involves:
 
 ## Stateful Hand-Written Rules and Thread Support in Mooncake.jl
 
-**Mentors**: [Hong Ge](https://github.com/yebai)
+**Mentors**: [Hong Ge](https://github.com/yebai) and [Xianda Sun](https://github.com/sunxd3)
 
 **Project difficulty**: Medium to Hard
 
@@ -89,7 +88,7 @@ The work involves writing rules for the `ccall`s that enter and exit threaded re
 
 ## Pigeons.jl Integration with Turing and JuliaBUGS
 
-**Mentors**: [Xianda Sun](https://github.com/sunxd3), [Penelope Yong](https://github.com/penelopeysm/)
+**Mentors**: [Xianda Sun](https://github.com/sunxd3)
 
 **Project difficulty**: Medium to Hard
 
