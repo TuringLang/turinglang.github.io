@@ -65,20 +65,6 @@
 <li>Ensuring JuliaBUGS.jl can plug in its own conditional samplers without modification.</li>
 </ul>
 </section>
-<section id="moving-from-paretosmooth-to-psis-posteriorstats-in-turing.jl" class="level2">
-<h2 class="anchored" data-anchor-id="moving-from-paretosmooth-to-psis-posteriorstats-in-turing.jl">Moving from ParetoSmooth to PSIS + PosteriorStats in Turing.jl</h2>
-<p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a></p>
-<p><strong>Project difficulty</strong>: Medium</p>
-<p><strong>Project length</strong>: 175 hrs</p>
-<p>Turing.jl currently uses <a href="https://github.com/TuringLang/ParetoSmooth.jl">ParetoSmooth.jl</a> for Pareto-smoothed importance sampling (PSIS) and leave-one-out cross-validation (LOO-CV). The upstream issue <a href="https://github.com/TuringLang/ParetoSmooth.jl/issues/115">TuringLang/ParetoSmooth.jl#115</a> tracks migrating this functionality to the more actively maintained <a href="https://github.com/arviz-devs/PSIS.jl">PSIS.jl</a> and <a href="https://github.com/arviz-devs/PosteriorStats.jl">PosteriorStats.jl</a> packages from the ArviZ ecosystem.</p>
-<p>The project involves:</p>
-<ul>
-<li>Studying the current ParetoSmooth usage across Turing.jl and dependent packages.</li>
-<li>Migrating to PSIS.jl + PosteriorStats.jl, making sure API compatibility for end users.</li>
-<li>Updating documentation and tutorials to reflect the new workflow.</li>
-<li>Deprecating or archiving ParetoSmooth.jl where appropriate.</li>
-</ul>
-</section>
 <section id="stateful-hand-written-rules-and-thread-support-in-mooncake.jl" class="level2">
 <h2 class="anchored" data-anchor-id="stateful-hand-written-rules-and-thread-support-in-mooncake.jl">Stateful Hand-Written Rules and Thread Support in Mooncake.jl</h2>
 <p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a> and <a href="https://github.com/sunxd3">Xianda Sun</a></p>
@@ -88,29 +74,14 @@
 <p>The first is that every hand-written <code>rrule!!</code> must allocate scratch memory on every call (<a href="https://github.com/chalk-lab/Mooncake.jl/issues/403">issue #403</a>). Derived rules already avoid this by carrying persistent state between calls, but hand-written rules have no such mechanism. The fix is a <code>StatefulRRule</code> struct that holds a <code>Stack</code> of saved state, constructed via a <code>build_primitive_rrule</code> function. Rule authors implement <code>stateful_rrule!!</code>, which receives the current state (or <code>nothing</code> on the first call) and returns updated state alongside the usual outputs – stack push/pop is handled automatically. The work is to (1) add a test that fails when a primal is allocation-free but its <code>rrule!!</code> is not, (2) audit all existing hand-written rules with that test, and (3) convert the offenders.</p>
 <p>The second is that Mooncake currently errors on any code using <code>Threads.@threads</code> (<a href="https://github.com/chalk-lab/Mooncake.jl/issues/570">issue #570</a>). Even a race-condition-free primal can produce race conditions on the reverse pass – two threads may concurrently increment the same tangent element, so increments must be atomic. Additionally, rule caches (the stacks inside <code>OpaqueClosure</code>s) must be Task-specific; sharing them across Tasks causes pushes and pops to interleave incorrectly. The work involves writing rules for the <code>ccall</code>s that enter and exit threaded regions, ensuring atomic tangent updates, and making rule caches Task-local without relying on <code>threadid()</code>.</p>
 </section>
-<section id="pigeons.jl-integration-with-turing-and-juliabugs" class="level2">
-<h2 class="anchored" data-anchor-id="pigeons.jl-integration-with-turing-and-juliabugs">Pigeons.jl Integration with Turing and JuliaBUGS</h2>
+<section id="pigeons.jl-integration-with-turing-and-juliabugs-via-abstractmcmc" class="level2">
+<h2 class="anchored" data-anchor-id="pigeons.jl-integration-with-turing-and-juliabugs-via-abstractmcmc">Pigeons.jl Integration with Turing and JuliaBUGS via AbstractMCMC</h2>
 <p><strong>Mentors</strong>: <a href="https://github.com/sunxd3">Xianda Sun</a></p>
 <p><strong>Project difficulty</strong>: Medium to Hard</p>
 <p><strong>Project length</strong>: 350 hrs</p>
 <p><a href="https://github.com/Julia-Tempering/Pigeons.jl">Pigeons.jl</a> implements parallel tempering and related algorithms that are particularly effective for multimodal and high-dimensional posteriors. This project has two related goals that together make Pigeons a first-class citizen of the TuringLang ecosystem.</p>
 <p>The first part is documentation and examples. Turing.jl models can already be used as targets for Pigeons, but the combination is under-documented. The contributor will produce reproducible tutorials that walk through common use cases – multimodal posteriors, hierarchical models, models with difficult geometry – and compare Pigeons against HMC/NUTS on the same problems. These will be published on the Turing website and any integration rough edges found along the way will be fixed.</p>
 <p>The second part is implementing the efficient Gibbs sampler from <a href="https://arxiv.org/abs/2410.03630">arXiv:2410.03630</a> in <a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS.jl</a>. The paper shows that by exploiting the structure of the compute graph (rather than the graphical model), the time per sweep of a full-scan Gibbs sampler on GLMs can be reduced from <img src="https://latex.codecogs.com/png.latex?O(d%5E2)"> to <img src="https://latex.codecogs.com/png.latex?O(d)"> in the number of parameters <img src="https://latex.codecogs.com/png.latex?d"> – making high-dimensional GLMs feasible where traditional Gibbs is not, and outperforming HMC on effective samples per unit time in many regimes. JuliaBUGS already exposes the graph structure this approach relies on. The implementation must be correct and performant, validated against standard benchmarks with comparisons to both traditional Gibbs and HMC.</p>
-</section>
-<section id="mooncake.jl-performance-optimization" class="level2">
-<h2 class="anchored" data-anchor-id="mooncake.jl-performance-optimization">Mooncake.jl Performance Optimization</h2>
-<p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a></p>
-<p><strong>Project difficulty</strong>: Medium</p>
-<p><strong>Project length</strong>: 350 hrs</p>
-<p><a href="https://github.com/chalk-lab/Mooncake.jl">Mooncake.jl</a> Mooncake.jl is a reverse-mode AD package written entirely in Julia, which addresses many of limitations of the popular <a href="https://github.com/JuliaDiff/ReverseDiff.jl">ReverseDiff.jl</a> and <a href="https://github.com/FluxML/Zygote.jl">Zygote.jl</a> libraries. While the library is typically fast, performance is not tested as systematically as it could be, meaning that there are probably a range of performance bugs waiting to be uncovered. Additionally, there are a range of known performance limitations which need to be addressed. This project aims to resolve known performance problems, to find new ones, and fix them too!</p>
-<p>Skills: familiarity with Julia programming, how to make Julia code performant, and a strong desire to make existing Julia code more performant! An understanding of AD is helpful, but not essential.</p>
-</section>
-<section id="jaxprs-in-julia" class="level2">
-<h2 class="anchored" data-anchor-id="jaxprs-in-julia">Jaxprs in Julia</h2>
-<p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a></p>
-<p><strong>Project difficulty</strong>: Hard</p>
-<p><strong>Project length</strong>: 350 hrs</p>
-<p>The Turing.jl team is looking for a contributor to implement a lightweight Julia library to work with Jaxprs. If this could be you, get in touch and we can discuss the details.</p>
 </section>
 <section id="contributor-proposed-project" class="level2">
 <h2 class="anchored" data-anchor-id="contributor-proposed-project">Contributor-proposed Project</h2>
