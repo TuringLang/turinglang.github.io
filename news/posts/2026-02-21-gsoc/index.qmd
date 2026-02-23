@@ -46,24 +46,6 @@ Work will include:
 - Migrating existing Turing.jl Gibbs usage to the new interface.
 - Ensuring JuliaBUGS.jl can plug in its own conditional samplers without modification.
 
-## Moving from ParetoSmooth to PSIS + PosteriorStats in Turing.jl
-
-**Mentors**: [Hong Ge](https://github.com/yebai)
-
-**Project difficulty**: Medium
-
-**Project length**: 175 hrs
-
-Turing.jl currently uses [ParetoSmooth.jl](https://github.com/TuringLang/ParetoSmooth.jl) for Pareto-smoothed importance sampling (PSIS) and leave-one-out cross-validation (LOO-CV).
-The upstream issue [TuringLang/ParetoSmooth.jl#115](https://github.com/TuringLang/ParetoSmooth.jl/issues/115) tracks migrating this functionality to the more actively maintained [PSIS.jl](https://github.com/arviz-devs/PSIS.jl) and [PosteriorStats.jl](https://github.com/arviz-devs/PosteriorStats.jl) packages from the ArviZ ecosystem.
-
-The project involves:
-
-- Studying the current ParetoSmooth usage across Turing.jl and dependent packages.
-- Migrating to PSIS.jl + PosteriorStats.jl, making sure API compatibility for end users.
-- Updating documentation and tutorials to reflect the new workflow.
-- Deprecating or archiving ParetoSmooth.jl where appropriate.
-
 ## Stateful Hand-Written Rules and Thread Support in Mooncake.jl
 
 **Mentors**: [Hong Ge](https://github.com/yebai) and [Xianda Sun](https://github.com/sunxd3)
@@ -86,7 +68,7 @@ Even a race-condition-free primal can produce race conditions on the reverse pas
 Additionally, rule caches (the stacks inside `OpaqueClosure`s) must be Task-specific; sharing them across Tasks causes pushes and pops to interleave incorrectly.
 The work involves writing rules for the `ccall`s that enter and exit threaded regions, ensuring atomic tangent updates, and making rule caches Task-local without relying on `threadid()`.
 
-## Pigeons.jl Integration with Turing and JuliaBUGS
+## Pigeons.jl Integration with Turing and JuliaBUGS via AbstractMCMC
 
 **Mentors**: [Xianda Sun](https://github.com/sunxd3)
 
@@ -106,29 +88,6 @@ The second part is implementing the efficient Gibbs sampler from [arXiv:2410.036
 The paper shows that by exploiting the structure of the compute graph (rather than the graphical model), the time per sweep of a full-scan Gibbs sampler on GLMs can be reduced from $O(d^2)$ to $O(d)$ in the number of parameters $d$ -- making high-dimensional GLMs feasible where traditional Gibbs is not, and outperforming HMC on effective samples per unit time in many regimes.
 JuliaBUGS already exposes the graph structure this approach relies on.
 The implementation must be correct and performant, validated against standard benchmarks with comparisons to both traditional Gibbs and HMC.
-
-
-## Mooncake.jl Performance Optimization
-
-**Mentors**: [Hong Ge](https://github.com/yebai)
-
-**Project difficulty**: Medium
-
-**Project length**: 350 hrs
-
-[Mooncake.jl](https://github.com/chalk-lab/Mooncake.jl)  Mooncake.jl is a reverse-mode AD package written entirely in Julia, which addresses many of limitations of the popular [ReverseDiff.jl](https://github.com/JuliaDiff/ReverseDiff.jl) and [Zygote.jl](https://github.com/FluxML/Zygote.jl) libraries. While the library is typically fast, performance is not tested as systematically as it could be, meaning that there are probably a range of performance bugs waiting to be uncovered. Additionally, there are a range of known performance limitations which need to be addressed. This project aims to resolve known performance problems, to find new ones, and fix them too!
-
-Skills: familiarity with Julia programming, how to make Julia code performant, and a strong desire to make existing Julia code more performant! An understanding of AD is helpful, but not essential.
-
-## Jaxprs in Julia
-
-**Mentors**: [Hong Ge](https://github.com/yebai)
-
-**Project difficulty**: Hard
-
-**Project length**: 350 hrs
-
-The Turing.jl team is looking for a contributor to implement a lightweight Julia library to work with Jaxprs. If this could be you, get in touch and we can discuss the details.
 
 ## Contributor-proposed Project
 
