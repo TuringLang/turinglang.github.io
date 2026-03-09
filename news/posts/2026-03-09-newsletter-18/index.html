@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="The TuringLang team">
-<meta name="dcterms.date" content="2025-07-25">
-<meta name="description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta name="dcterms.date" content="2026-03-09">
+<meta name="description" content="The irregular newsletter for the Turing.jl probabilistic programming language">
 
-<title>Turing.jl Newsletter 11 – Turing.jl</title>
+<title>Turing.jl Newsletter 18 – Turing.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,13 +96,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="The Turing Language">
-<meta property="og:description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta property="og:description" content="The irregular newsletter for the Turing.jl probabilistic programming language">
 <meta property="og:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
 <meta property="og:site_name" content="Turing.jl">
 <meta property="og:image:alt" content="Turing.jl Logo">
 <meta property="og:locale" content="en_GB">
-<meta name="twitter:title" content="Turing.jl Newsletter 11 – Turing.jl">
-<meta name="twitter:description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta name="twitter:title" content="Turing.jl Newsletter 18 – Turing.jl">
+<meta name="twitter:description" content="The irregular newsletter for the Turing.jl probabilistic programming language">
 <meta name="twitter:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
 <meta name="twitter:creator" content="@Hong_Ge2">
 <meta name="twitter:site" content="@TuringLang">
@@ -336,7 +336,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Turing.jl Newsletter 11</h1>
+<h1 class="title">Turing.jl Newsletter 18</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Newsletter</div>
   </div>
@@ -344,7 +344,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    The fortnightly newsletter for the Turing.jl probabilistic programming language
+    The irregular newsletter for the Turing.jl probabilistic programming language
   </div>
 </div>
 
@@ -361,7 +361,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 25, 2025</p>
+      <p class="date">March 9, 2026</p>
     </div>
   </div>
   
@@ -373,21 +373,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Libtask and Turing.jl</strong></p>
-<p>The new versions of Libtask and AdvancedPS have now been integrated into Turing.jl proper. You shouldn’t see any changes, except that particle MCMC methods will now run a lot faster!</p>
-<p>(Do note that these won’t work on Julia 1.12 just yet as it is somewhat tightly coupled to Julia internals; we’re working on a fix but if you really want to use Turing on 1.12 right now you will have to stick to Turing ≤ 0.39.6.)</p>
-<p><strong>Progress bars</strong></p>
-<p>AbstractMCMC 5.7 is released with the new progress bars! By default you get a single progress bar (but with more frequent updates). You need to opt-in to per-chain progress bars with <code>sample(...; progress=:perchain)</code></p>
-<p><strong>ADTests categories</strong></p>
-<p><a href="https://turinglang.org/ADTests/">The list of models has been split up</a> into different sections to make it a bit easier to read. I’m keen to add more examples of integrations with other packages — if you have a Turing model that uses functionality from a different package inside it, please do get in touch with an example! (I’ll be adding things like DifferentialEquations, HiddenMarkovModels, and AbstractGPs soon, since those are already in our docs)</p>
-<p><strong>Community meetings</strong></p>
-<p>The Turing.jl developer team usually meet once every week; we’re thinking of opening some of these meetings to be public (perhaps once a month) and would like to gauge whether there’s any interest in this. Our current thinking is that these meetings would be something along the lines of:</p>
+<p>Just to get it out of the way: I’m going to drop the pretense that the newsletters are regular; we’ll move to an ad hoc schedule, basically I’ll post when there’s something interesting to talk about. This will hopefully be monthly-ish (but no promises).</p>
+<p>That said, this time there are plenty of interesting stuff! We’ve rewritten quite a lot of things from scratch and now released them.</p>
 <ul>
-<li>3 guests with 1 topic each, 10 minutes each: these would be user-submitted and could really be anything you wanted to talk about, e.g.&nbsp;how to write a model, what samplers to use, … And basic stuff is totally fine as that means more people get to learn how to do Bayesian modelling :)</li>
-<li>10 minutes from us on “where Turing is going”</li>
-<li>20 minutes free Q&amp;A</li>
+<li><p><em>AbstractPPL@0.14</em> has <a href="https://turinglang.org/AbstractPPL.jl/stable/varname/">a completely new VarName data structure</a>. The high-level interface is still the same <code>@varname(x[a].b)</code> but you can now represent richer variable names, most notably <code>begin</code> and <code>end</code> indices, as well as keyword indices.</p></li>
+<li><p><em>Bijectors@0.15.17</em> has <a href="https://turinglang.org/Bijectors.jl/stable/vector/">a new interface for converting samples from distributions to/from vectors</a>. This is a slightly less pretty interface than the old Bijectors interface (which still exists), but is more tailored towards Turing’s needs and as a result you’ll get a nice performance boost from it (<a href="https://github.com/TuringLang/DynamicPPL.jl/pull/1303">some benchmarks here</a>), as well as fixing a number of bugs with unusual product distributions and LKJCholesky. This is bundled into the latest Turing release, no need to do anything on your end.</p></li>
+<li><p><em>DynamicPPL@0.40</em> is the one we’ve been going on about for a while now: VarInfo and its internal data structures have been completely reworked. You mostly get better performance from this, but also a much richer representation of random variables and their values. I can’t do it justice here, please see <a href="https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.40.0">the full changelog</a> for details!</p></li>
+<li><p><em>Turing@0.43</em> essentially brings all of that together into your favourite probprog framework. On top of all of the above, the optimisation interface has also been completely rewritten; it’s now more high-level and the inputs and outputs will be easier to work with (<a href="https://turinglang.org/docs/usage/mode-estimation/">see the new version’s docs for more info</a>).</p></li>
 </ul>
-<p>If you would be interested in attending such a meeting or bringing along a topic, do <a href="https://julialang.slack.com/archives/CCYDC34A0/p1753712389947349">let us know on Slack</a>!</p>
+<p>In recent versions of Turing one of the major focuses has been performance optimisations. I’m therefore very pleased to report now that running a couple of benchmarks on the eight-schools models, we find now that Turing + Mooncake/Enzyme has equivalent or better performance to Stan (<a href="https://gist.github.com/penelopeysm/5656697ea20c94d80a285f5f6a69b8ab">code is here</a>; do note that these aren’t very scientific!).</p>
+<p>Moving forward, on top of core improvements to DynamicPPL we’re also keen to look into other ways to interact with Turing instead of just via the Julia REPL, such as a CLI, or possibly even tools for coding agents. We are quite limited by the number of people on the project (which is too low), but if you’d be interested in that or have an idea or use case do get in touch!</p>
 
 
 
