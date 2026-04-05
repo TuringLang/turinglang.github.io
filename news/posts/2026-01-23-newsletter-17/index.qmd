@@ -1,0 +1,29 @@
+---
+title: Turing.jl Newsletter 17
+description: The fortnightly newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2026-01-23
+---
+
+**VarNamedTuple**
+
+We have been working on a really complete overhaul of the internal VarInfo data structure (several thousand lines of code changes). Pretty much the entire thing has been rewritten from scratch. There are still a number of kinks to iron out, but CI is passing, so there is nothing really fundamental blocking it, just more test coverage and handling of edge cases, and checking that it doesn't break anything in Turing.
+
+What you'll get out of it:
+
+ - More internally consistent indexing behaviour: if you have something like `x ~ MvNormal(zeros(2), I)` and you condition your model on `Dict(@varname(x[1]) => 1.0, @varname(x[2]) => 2.0)` it will now behave correctly (previously the conditioning would have no effect).
+   Colons also benefit a lot from this.
+   Essentially, if I'm not wrong, every item in the table in [this issue](https://github.com/TuringLang/DynamicPPL.jl/issues/1148) will more or less become true.
+
+- Generic AbstractArray support: you should be able to use OffsetArrays, DimArrays, etc. and have them 'just work' the way you expect them to.
+  For example you should be able to do `dimarr[X(1), Y(2)] ~ dist` and it should behave just as if you wrote `arr[1, 2] ~ dist`.
+
+- Much improved performance on many common operations (see [this PR](https://github.com/TuringLang/DynamicPPL.jl/pull/1212) for some benchmarks).
+
+- If you develop against DynamicPPL, all our VarInfo subtypes are unified now, there's no longer a distinction between 'typed', 'untyped', or 'simple' VarInfo.
+
+If you're interested in a behind-the-scenes look at why and how we did this, [there are some docs here](https://turinglang.org/DynamicPPL.jl/previews/PR1164/vnt/motivation/) (still in progress, but a lot of the basics are covered)! The performance aspects will mostly affect non-HMC/NUTS samplers (since Turing@0.42 / DynamicPPL@0.39, HMC and NUTS almost completely don't use VarInfo anymore), although the correctness aspects will apply to every Turing model.

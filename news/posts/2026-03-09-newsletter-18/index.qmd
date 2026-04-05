@@ -1,0 +1,26 @@
+---
+title: Turing.jl Newsletter 18
+description: The irregular newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2026-03-09
+---
+
+Just to get it out of the way: I'm going to drop the pretense that the newsletters are regular; we'll move to an ad hoc schedule, basically I'll post when there's something interesting to talk about. This will hopefully be monthly-ish (but no promises).
+
+That said, this time there are plenty of interesting stuff! We've rewritten quite a lot of things from scratch and now released them.
+
+- *AbstractPPL@0.14* has [a completely new VarName data structure](https://turinglang.org/AbstractPPL.jl/stable/varname/). The high-level interface is still the same `@varname(x[a].b)` but you can now represent richer variable names, most notably `begin` and `end` indices, as well as keyword indices.
+
+- *Bijectors@0.15.17* has [a new interface for converting samples from distributions to/from vectors](https://turinglang.org/Bijectors.jl/stable/vector/). This is a slightly less pretty interface than the old Bijectors interface (which still exists), but is more tailored towards Turing's needs and as a result you'll get a nice performance boost from it ([some benchmarks here](https://github.com/TuringLang/DynamicPPL.jl/pull/1303)), as well as fixing a number of bugs with unusual product distributions and LKJCholesky. This is bundled into the latest Turing release, no need to do anything on your end.
+
+- *DynamicPPL@0.40* is the one we've been going on about for a while now: VarInfo and its internal data structures have been completely reworked. You mostly get better performance from this, but also a much richer representation of random variables and their values. I can't do it justice here, please see [the full changelog](https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.40.0) for details!
+
+- *Turing@0.43* essentially brings all of that together into your favourite probprog framework. On top of all of the above, the optimisation interface has also been completely rewritten; it's now more high-level and the inputs and outputs will be easier to work with ([see the new version's docs for more info](https://turinglang.org/docs/usage/mode-estimation/)).
+
+In recent versions of Turing one of the major focuses has been performance optimisations. I'm therefore very pleased to report now that running a couple of benchmarks on the eight-schools models, we find now that Turing + Mooncake/Enzyme has equivalent or better performance to Stan ([code is here](https://gist.github.com/penelopeysm/5656697ea20c94d80a285f5f6a69b8ab); do note that these aren't very scientific!).
+
+Moving forward, on top of core improvements to DynamicPPL we're also keen to look into other ways to interact with Turing instead of just via the Julia REPL, such as a CLI, or possibly even tools for coding agents. We are quite limited by the number of people on the project (which is too low), but if you'd be interested in that or have an idea or use case do get in touch!

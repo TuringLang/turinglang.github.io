@@ -10,3 +10,16 @@ include-in-header:
           text-decoration: underline;
         }
       </style>
+comments:
+  giscus:
+    repo: TuringLang/turinglang.github.io
+    repo-id: MDEwOlJlcG9zaXRvcnkyOTExMDkxMTM=
+    category: News Comments
+    category-id: DIC_kwDOEVn4-c4C26Af
+    mapping: pathname
+    reactions-enabled: true
+    input-position: top
+    theme:
+      light: light
+      dark: transparent_dark
+    language: en

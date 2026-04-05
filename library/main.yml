@@ -100,8 +100,8 @@
   description: "Extra functionality for diagnosing samples generated with MCMC methods"
   category: diagnostics
 - name: ParetoSmooth
-  api: https://turinglang.org/ParetoSmooth.jl/
-  github: https://github.com/TuringLang/ParetoSmooth.jl
+  api: https://chalk-lab.github.io/ParetoSmooth.jl/
+  github: https://github.com/chalk-lab/ParetoSmooth.jl
   description: "Leave-one-out cross-validation for fitted Bayesian models using Pareto smoothed importance sampling"
   category: diagnostics
 
