@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="The TuringLang team">
-<meta name="dcterms.date" content="2025-03-14">
-<meta name="description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta name="dcterms.date" content="2026-02-23">
+<meta name="description" content="We are excited to announce our project ideas for the Google Summer of Code 2026! Below is a list of projects the Turing team would love to work on with contributors this summer. This information is also cross-posted at Julia’s Turing project page.">
 
-<title>Turing.jl Newsletter 2 – Turing.jl</title>
+<title>Google Summer of Code 2026 – Turing.jl</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -96,22 +96,51 @@ ul.task-list li input[type="checkbox"] {
   }
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="The Turing Language">
-<meta property="og:description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta property="og:description" content="We are excited to announce our project ideas for the Google Summer of Code 2026! Below is a list of projects the Turing team would love to work on with contributors this summer. This information is also cross-posted at Julia’s Turing project page.">
 <meta property="og:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
 <meta property="og:site_name" content="Turing.jl">
 <meta property="og:image:alt" content="Turing.jl Logo">
 <meta property="og:locale" content="en_GB">
-<meta name="twitter:title" content="Turing.jl Newsletter 2 – Turing.jl">
-<meta name="twitter:description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta name="twitter:title" content="Google Summer of Code 2026 – Turing.jl">
+<meta name="twitter:description" content="We are excited to announce our project ideas for the Google Summer of Code 2026! Below is a list of projects the Turing team would love to work on with contributors this summer. This information is also cross-posted at Julia’s Turing project page.">
 <meta name="twitter:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
 <meta name="twitter:creator" content="@Hong_Ge2">
 <meta name="twitter:site" content="@TuringLang">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -331,22 +360,35 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mentor-contacts-on-julia-slack" id="toc-mentor-contacts-on-julia-slack" class="nav-link active" data-scroll-target="#mentor-contacts-on-julia-slack">Mentor Contacts on Julia Slack</a></li>
+  <li><a href="#new-abstractmcmc-based-gibbs-sampler-for-turing.jl-and-juliabugs.jl" id="toc-new-abstractmcmc-based-gibbs-sampler-for-turing.jl-and-juliabugs.jl" class="nav-link" data-scroll-target="#new-abstractmcmc-based-gibbs-sampler-for-turing.jl-and-juliabugs.jl">New AbstractMCMC-based Gibbs Sampler for Turing.jl and JuliaBUGS.jl</a></li>
+  <li><a href="#stateful-hand-written-rules-and-thread-support-in-mooncake.jl" id="toc-stateful-hand-written-rules-and-thread-support-in-mooncake.jl" class="nav-link" data-scroll-target="#stateful-hand-written-rules-and-thread-support-in-mooncake.jl">Stateful Hand-Written Rules and Thread Support in Mooncake.jl</a></li>
+  <li><a href="#pigeons.jl-integration-with-turing-and-juliabugs-via-abstractmcmc" id="toc-pigeons.jl-integration-with-turing-and-juliabugs-via-abstractmcmc" class="nav-link" data-scroll-target="#pigeons.jl-integration-with-turing-and-juliabugs-via-abstractmcmc">Pigeons.jl Integration with Turing and JuliaBUGS via AbstractMCMC</a></li>
+  <li><a href="#contributor-proposed-project" id="toc-contributor-proposed-project" class="nav-link" data-scroll-target="#contributor-proposed-project">Contributor-proposed Project</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Turing.jl Newsletter 2</h1>
+<h1 class="title">Google Summer of Code 2026</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Newsletter</div>
+    <div class="quarto-category">Blog</div>
+    <div class="quarto-category">GSoC</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    The fortnightly newsletter for the Turing.jl probabilistic programming language
+    <p>We are excited to announce our project ideas for the Google Summer of Code 2026! Below is a list of projects the Turing team would love to work on with contributors this summer. This information is also cross-posted at Julia’s Turing project page.</p>
   </div>
 </div>
 
@@ -363,7 +405,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 14, 2025</p>
+      <p class="date">February 23, 2026</p>
     </div>
   </div>
   
@@ -375,20 +417,71 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>DynamicPPL benchmarking</strong></p>
-<p>DynamicPPL.jl now has a set of benchmarks that are run on GitHub Actions! We measure how long it takes to evaluate a small selection of models and also to run AD on them. If you think that there are specific models / features that we should add to the benchmarks, please feel free to <a href="https://github.com/TuringLang/DynamicPPL.jl/issues/new">create an issue</a> and let us know.</p>
-<p>Separately, we are planning to merge the benchmarking utilities in <a href="https://github.com/TuringLang/TuringBenchmarking.jl">TuringBenchmarking.jl</a> into DynamicPPL itself. There might be a little bit of API shake-up as part of this, but it’s for the better as it’ll allow the benchmarking code to more easily stay in sync with DynamicPPL — allowing us to catch performance regressions in PRs.</p>
-<p><strong>SSMProblems</strong></p>
-<p>The SSMProblems.jl and GeneralisedFilters.jl packages have now been merged into a single repository: <a href="https://github.com/TuringLang/SSMProblems.jl">https://github.com/TuringLang/SSMProblems.jl</a>. This won’t affect you if you are using the packages from the Julia General registry, but if you’re looking to develop off the main branch you may have to use a different URL, or specify a subdirectory in <code>Pkg.add</code>.</p>
-<p><strong>Smaller bits</strong></p>
-<p>Other code changes that have been merged:</p>
+<p>The TuringLang ecosystem has made strong progress recently: more AD backends, a maturing JuliaBUGS, and clearer inference tooling.</p>
+<p>For GSoC 2026 we offer projects from core AD work to scalable inference and user-facing tools.</p>
+<p>If a project interests you, contact the mentors listed below or open a discussion on the relevant GitHub repo. Please drop a short introduction message in the <a href="https://julialang.slack.com/archives/CCYDC34A0"><code>#turing</code></a> channel on the <a href="https://julialang.org/slack/">Julia Slack</a> and feel free to ping <a href="https://github.com/shravanngoswamii">Shravan Goswami</a> there. Mentors will be happy to discuss project details, scope, and expectations, and you can find mentor contacts at <a href="../../../team/">team page</a>.</p>
+<p>Also cross-posted on <a href="https://julialang.org/jsoc/gsoc/turing/">Julia’s GSoC page</a>.</p>
+<section id="mentor-contacts-on-julia-slack" class="level2">
+<h2 class="anchored" data-anchor-id="mentor-contacts-on-julia-slack">Mentor Contacts on Julia Slack</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Mentor</th>
+<th>Slack Contact</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hong Ge</td>
+<td><a href="https://julialang.slack.com/team/UCRDHV7PB">Slack</a></td>
+</tr>
+<tr class="even">
+<td>Xianda Sun</td>
+<td><a href="https://julialang.slack.com/team/U03AV5JMJ8N">Slack</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="new-abstractmcmc-based-gibbs-sampler-for-turing.jl-and-juliabugs.jl" class="level2">
+<h2 class="anchored" data-anchor-id="new-abstractmcmc-based-gibbs-sampler-for-turing.jl-and-juliabugs.jl">New AbstractMCMC-based Gibbs Sampler for Turing.jl and JuliaBUGS.jl</h2>
+<p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a> and <a href="https://github.com/sunxd3">Xianda Sun</a></p>
+<p><strong>Project difficulty</strong>: Medium</p>
+<p><strong>Project length</strong>: 350 hrs</p>
+<p>Gibbs sampling is one of the most widely used inference strategies in Bayesian computation, but Turing.jl’s current Gibbs implementation is tightly coupled to its internals and difficult to extend.</p>
+<p>This project is about designing a clean, composable Gibbs sampler built on top of the <a href="https://github.com/TuringLang/AbstractMCMC.jl">AbstractMCMC.jl</a> interface so that it works perfectly across both Turing.jl and <a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS.jl</a>. Work will include:</p>
 <ul>
-<li>Some old code in AdvancedHMC.jl has been cleaned up quite a bit. See the <a href="https://github.com/TuringLang/AdvancedHMC.jl/releases/tag/v0.7.0">0.7.0 release</a> for more information.</li>
-<li>Turing’s Gibbs sampler <a href="https://github.com/TuringLang/Turing.jl/pull/2502">now supports warmup steps properly</a>. We’re still thinking about how to properly encode the scenario where different sub-samplers have different numbers of warmup steps, if you have any ideas, do get in touch on that PR.</li>
-<li>We are going to formally remove support for Zygote as an AD backend. We don’t test it thoroughly in Turing’s test suite. You can of course still use Zygote yourself, simply load <code>ADTypes.AutoZygote()</code> —&nbsp;although we can’t guarantee that we will fix any bugs that arise.</li>
+<li>Agreeing on a minimal AbstractMCMC-compatible interface for conditional samplers.</li>
+<li>Implementing the new Gibbs combinator and verifying correctness on standard models.</li>
+<li>Migrating existing Turing.jl Gibbs usage to the new interface.</li>
+<li>Ensuring JuliaBUGS.jl can plug in its own conditional samplers without modification.</li>
 </ul>
+</section>
+<section id="stateful-hand-written-rules-and-thread-support-in-mooncake.jl" class="level2">
+<h2 class="anchored" data-anchor-id="stateful-hand-written-rules-and-thread-support-in-mooncake.jl">Stateful Hand-Written Rules and Thread Support in Mooncake.jl</h2>
+<p><strong>Mentors</strong>: <a href="https://github.com/yebai">Hong Ge</a> and <a href="https://github.com/sunxd3">Xianda Sun</a></p>
+<p><strong>Project difficulty</strong>: Medium to Hard</p>
+<p><strong>Project length</strong>: 350 hrs</p>
+<p><a href="https://github.com/chalk-lab/Mooncake.jl">Mooncake.jl</a> is a source-to-source reverse-mode AD package for Julia. Two open issues currently limit its performance and applicability in real-world workloads.</p>
+<p>The first is that every hand-written <code>rrule!!</code> must allocate scratch memory on every call (<a href="https://github.com/chalk-lab/Mooncake.jl/issues/403">issue #403</a>). Derived rules already avoid this by carrying persistent state between calls, but hand-written rules have no such mechanism. The fix is a <code>StatefulRRule</code> struct that holds a <code>Stack</code> of saved state, constructed via a <code>build_primitive_rrule</code> function. Rule authors implement <code>stateful_rrule!!</code>, which receives the current state (or <code>nothing</code> on the first call) and returns updated state alongside the usual outputs – stack push/pop is handled automatically. The work is to (1) add a test that fails when a primal is allocation-free but its <code>rrule!!</code> is not, (2) audit all existing hand-written rules with that test, and (3) convert the offenders.</p>
+<p>The second is that Mooncake currently errors on any code using <code>Threads.@threads</code> (<a href="https://github.com/chalk-lab/Mooncake.jl/issues/570">issue #570</a>). Even a race-condition-free primal can produce race conditions on the reverse pass – two threads may concurrently increment the same tangent element, so increments must be atomic. Additionally, rule caches (the stacks inside <code>OpaqueClosure</code>s) must be Task-specific; sharing them across Tasks causes pushes and pops to interleave incorrectly. The work involves writing rules for the <code>ccall</code>s that enter and exit threaded regions, ensuring atomic tangent updates, and making rule caches Task-local without relying on <code>threadid()</code>.</p>
+</section>
+<section id="pigeons.jl-integration-with-turing-and-juliabugs-via-abstractmcmc" class="level2">
+<h2 class="anchored" data-anchor-id="pigeons.jl-integration-with-turing-and-juliabugs-via-abstractmcmc">Pigeons.jl Integration with Turing and JuliaBUGS via AbstractMCMC</h2>
+<p><strong>Mentors</strong>: <a href="https://github.com/sunxd3">Xianda Sun</a></p>
+<p><strong>Project difficulty</strong>: Medium to Hard</p>
+<p><strong>Project length</strong>: 350 hrs</p>
+<p><a href="https://github.com/Julia-Tempering/Pigeons.jl">Pigeons.jl</a> implements parallel tempering and related algorithms that are particularly effective for multimodal and high-dimensional posteriors. This project has two related goals that together make Pigeons a first-class citizen of the TuringLang ecosystem.</p>
+<p>The first part is documentation and examples. Turing.jl models can already be used as targets for Pigeons, but the combination is under-documented. The contributor will produce reproducible tutorials that walk through common use cases – multimodal posteriors, hierarchical models, models with difficult geometry – and compare Pigeons against HMC/NUTS on the same problems. These will be published on the Turing website and any integration rough edges found along the way will be fixed.</p>
+<p>The second part is implementing the efficient Gibbs sampler from <a href="https://arxiv.org/abs/2410.03630">arXiv:2410.03630</a> in <a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS.jl</a>. The paper shows that by exploiting the structure of the compute graph (rather than the graphical model), the time per sweep of a full-scan Gibbs sampler on GLMs can be reduced from <span class="math inline">\(O(d^2)\)</span> to <span class="math inline">\(O(d)\)</span> in the number of parameters <span class="math inline">\(d\)</span> – making high-dimensional GLMs feasible where traditional Gibbs is not, and outperforming HMC on effective samples per unit time in many regimes. JuliaBUGS already exposes the graph structure this approach relies on. The implementation must be correct and performant, validated against standard benchmarks with comparisons to both traditional Gibbs and HMC.</p>
+</section>
+<section id="contributor-proposed-project" class="level2">
+<h2 class="anchored" data-anchor-id="contributor-proposed-project">Contributor-proposed Project</h2>
+<p><strong>Mentors</strong>: Community</p>
+<p>If you have an idea not listed here, propose it. Submit a short proposal with motivation, a concise plan, expected deliverables, and a timeline. Maintainers and mentors will review and help turn it into a plan. Be prepared to discuss scope with mentors early.</p>
+<p>To discuss proposals and next steps, contact <a href="https://julialang.slack.com/team/U04UZB5U740">Shravan Goswami</a> on the <a href="https://julialang.org/slack/">Julia Slack</a>.</p>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

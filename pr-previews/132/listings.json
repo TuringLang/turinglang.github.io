@@ -1,15 +1,19 @@
 [
   {
-    "listing": "/library/index.html",
+    "listing": "/team/index.html",
     "items": []
   },
   {
-    "listing": "/team/index.html",
+    "listing": "/library/index.html",
     "items": []
   },
   {
     "listing": "/index.html",
     "items": [
+      "/news/posts/2026-03-09-newsletter-18/index.html",
+      "/news/posts/2026-02-21-gsoc/index.html",
+      "/news/posts/2026-01-23-newsletter-17/index.html",
+      "/news/posts/2025-12-05-newsletter-16/index.html",
       "/news/posts/2025-11-07-newsletter-15/index.html",
       "/news/posts/2025-10-24-newsletter-14/index.html",
       "/news/posts/2025-10-10-newsletter-13/index.html",
@@ -37,6 +41,10 @@
   {
     "listing": "/news/index.html",
     "items": [
+      "/news/posts/2026-03-09-newsletter-18/index.html",
+      "/news/posts/2026-02-21-gsoc/index.html",
+      "/news/posts/2026-01-23-newsletter-17/index.html",
+      "/news/posts/2025-12-05-newsletter-16/index.html",
       "/news/posts/2025-11-07-newsletter-15/index.html",
       "/news/posts/2025-10-24-newsletter-14/index.html",
       "/news/posts/2025-10-10-newsletter-13/index.html",

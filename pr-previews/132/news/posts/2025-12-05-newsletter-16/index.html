@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="The TuringLang team">
-<meta name="dcterms.date" content="2025-03-14">
+<meta name="dcterms.date" content="2025-12-05">
 <meta name="description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
 
-<title>Turing.jl Newsletter 2 – Turing.jl</title>
+<title>Turing.jl Newsletter 16 – Turing.jl</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -103,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
 <meta property="og:site_name" content="Turing.jl">
 <meta property="og:image:alt" content="Turing.jl Logo">
 <meta property="og:locale" content="en_GB">
-<meta name="twitter:title" content="Turing.jl Newsletter 2 – Turing.jl">
+<meta name="twitter:title" content="Turing.jl Newsletter 16 – Turing.jl">
 <meta name="twitter:description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
 <meta name="twitter:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
 <meta name="twitter:creator" content="@Hong_Ge2">
@@ -338,7 +338,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Turing.jl Newsletter 2</h1>
+<h1 class="title">Turing.jl Newsletter 16</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Newsletter</div>
   </div>
@@ -363,7 +363,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 14, 2025</p>
+      <p class="date">December 5, 2025</p>
     </div>
   </div>
   
@@ -375,18 +375,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>DynamicPPL benchmarking</strong></p>
-<p>DynamicPPL.jl now has a set of benchmarks that are run on GitHub Actions! We measure how long it takes to evaluate a small selection of models and also to run AD on them. If you think that there are specific models / features that we should add to the benchmarks, please feel free to <a href="https://github.com/TuringLang/DynamicPPL.jl/issues/new">create an issue</a> and let us know.</p>
-<p>Separately, we are planning to merge the benchmarking utilities in <a href="https://github.com/TuringLang/TuringBenchmarking.jl">TuringBenchmarking.jl</a> into DynamicPPL itself. There might be a little bit of API shake-up as part of this, but it’s for the better as it’ll allow the benchmarking code to more easily stay in sync with DynamicPPL — allowing us to catch performance regressions in PRs.</p>
-<p><strong>SSMProblems</strong></p>
-<p>The SSMProblems.jl and GeneralisedFilters.jl packages have now been merged into a single repository: <a href="https://github.com/TuringLang/SSMProblems.jl">https://github.com/TuringLang/SSMProblems.jl</a>. This won’t affect you if you are using the packages from the Julia General registry, but if you’re looking to develop off the main branch you may have to use a different URL, or specify a subdirectory in <code>Pkg.add</code>.</p>
-<p><strong>Smaller bits</strong></p>
-<p>Other code changes that have been merged:</p>
+<p>It’s been a while since the last one; things have been brewing in the background… This newsletter will be the last for 2025; normal service will resume in January. We’d like to wish all of you a happy holiday season!</p>
+<p><strong>Turing v0.42</strong></p>
+<p>A new version of Turing was released yesterday — there is no way we can do justice to the changes in one paragraph so please check out <a href="https://github.com/TuringLang/Turing.jl/releases/tag/v0.42.0">the changelog</a> for full details. Of note are:</p>
 <ul>
-<li>Some old code in AdvancedHMC.jl has been cleaned up quite a bit. See the <a href="https://github.com/TuringLang/AdvancedHMC.jl/releases/tag/v0.7.0">0.7.0 release</a> for more information.</li>
-<li>Turing’s Gibbs sampler <a href="https://github.com/TuringLang/Turing.jl/pull/2502">now supports warmup steps properly</a>. We’re still thinking about how to properly encode the scenario where different sub-samplers have different numbers of warmup steps, if you have any ideas, do get in touch on that PR.</li>
-<li>We are going to formally remove support for Zygote as an AD backend. We don’t test it thoroughly in Turing’s test suite. You can of course still use Zygote yourself, simply load <code>ADTypes.AutoZygote()</code> —&nbsp;although we can’t guarantee that we will fix any bugs that arise.</li>
+<li>Threadsafe evaluation is now opt-in, if you have tilde-statements inside threaded blocks you must now write <code>model = setthreadsafe(model, true)</code>. Confused? Don’t worry, there’s a <a href="https://turinglang.org/docs/usage/threadsafe-evaluation/">new docs page</a> that fully explains when and why you need this (and when you don’t)</li>
+<li>Changes in DynamicPPL should mean that lots of things are now faster, mostly HMC/NUTS, Prior, and <code>returned</code> / <code>predict</code>. (Personally we also really recommend <a href="https://github.com/penelopeysm/FlexiChains.jl">trying FlexiChains</a> if performance with chains is an issue and your model has lots of vector parameters; there are a growing number of issues on Turing/DynamicPPL where half of the solution is to use FlexiChains)</li>
+<li>MCMCChains now stores the log-joint as <code>chn[:logjoint]</code> rather than <code>chn[:lp]</code> — the latter was really a remnant carried over from the times when Turing didn’t track prior and likelihood separately</li>
+<li>The VI interface has been changed a fair bit but in return you now have access to a whole host of new VI algorithms including natural gradient VI, batch-and-match, and Wasserstein</li>
+<li>Implementing external samplers for Turing should now be much easier, you should only need to depend on AbstractMCMC and not Turing (see the <a href="https://turinglang.org/Turing.jl/stable/api/Inference/#Turing.Inference.ExternalSampler">external sampler docstring</a> and <a href="https://turinglang.org/docs/developers/inference/implementing-samplers/">docs page</a> for examples)</li>
+<li>GibbsConditional is back after a long hiatus: the interface is slightly different to before, please see <a href="https://turinglang.org/Turing.jl/stable/api/Inference/#Turing.Inference.GibbsConditional">the docstring</a> for usage examples!</li>
 </ul>
+<p><strong>Docs</strong></p>
+<p>Apart from the <a href="https://turinglang.org/docs/usage/threadsafe-evaluation/">threadsafe evaluation</a> page we also did a refresh of Bijectors.jl’s docs including a new page with some examples of <a href="https://turinglang.org/Bijectors.jl/stable/defining_examples/">how to define your own bijector</a>. And on top of that, on the main TuringLang docs page there are also new shiny links that let you download each docs page as a notebook, or open it as a notebook in Google Colab. Look out for the links in the right sidebar of the page!</p>
+<p><strong>DoodleBUGS</strong></p>
+<p>Now has a refreshed and much slicker UI: check it out @ https://turinglang.org/JuliaBUGS.jl/DoodleBUGS/</p>
 
 
 

@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="The TuringLang team">
-<meta name="dcterms.date" content="2025-03-14">
-<meta name="description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta name="dcterms.date" content="2026-03-09">
+<meta name="description" content="The irregular newsletter for the Turing.jl probabilistic programming language">
 
-<title>Turing.jl Newsletter 2 – Turing.jl</title>
+<title>Turing.jl Newsletter 18 – Turing.jl</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -98,13 +98,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="The Turing Language">
-<meta property="og:description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta property="og:description" content="The irregular newsletter for the Turing.jl probabilistic programming language">
 <meta property="og:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
 <meta property="og:site_name" content="Turing.jl">
 <meta property="og:image:alt" content="Turing.jl Logo">
 <meta property="og:locale" content="en_GB">
-<meta name="twitter:title" content="Turing.jl Newsletter 2 – Turing.jl">
-<meta name="twitter:description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta name="twitter:title" content="Turing.jl Newsletter 18 – Turing.jl">
+<meta name="twitter:description" content="The irregular newsletter for the Turing.jl probabilistic programming language">
 <meta name="twitter:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
 <meta name="twitter:creator" content="@Hong_Ge2">
 <meta name="twitter:site" content="@TuringLang">
@@ -338,7 +338,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Turing.jl Newsletter 2</h1>
+<h1 class="title">Turing.jl Newsletter 18</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Newsletter</div>
   </div>
@@ -346,7 +346,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    The fortnightly newsletter for the Turing.jl probabilistic programming language
+    The irregular newsletter for the Turing.jl probabilistic programming language
   </div>
 </div>
 
@@ -363,7 +363,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 14, 2025</p>
+      <p class="date">March 9, 2026</p>
     </div>
   </div>
   
@@ -375,18 +375,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>DynamicPPL benchmarking</strong></p>
-<p>DynamicPPL.jl now has a set of benchmarks that are run on GitHub Actions! We measure how long it takes to evaluate a small selection of models and also to run AD on them. If you think that there are specific models / features that we should add to the benchmarks, please feel free to <a href="https://github.com/TuringLang/DynamicPPL.jl/issues/new">create an issue</a> and let us know.</p>
-<p>Separately, we are planning to merge the benchmarking utilities in <a href="https://github.com/TuringLang/TuringBenchmarking.jl">TuringBenchmarking.jl</a> into DynamicPPL itself. There might be a little bit of API shake-up as part of this, but it’s for the better as it’ll allow the benchmarking code to more easily stay in sync with DynamicPPL — allowing us to catch performance regressions in PRs.</p>
-<p><strong>SSMProblems</strong></p>
-<p>The SSMProblems.jl and GeneralisedFilters.jl packages have now been merged into a single repository: <a href="https://github.com/TuringLang/SSMProblems.jl">https://github.com/TuringLang/SSMProblems.jl</a>. This won’t affect you if you are using the packages from the Julia General registry, but if you’re looking to develop off the main branch you may have to use a different URL, or specify a subdirectory in <code>Pkg.add</code>.</p>
-<p><strong>Smaller bits</strong></p>
-<p>Other code changes that have been merged:</p>
+<p>Just to get it out of the way: I’m going to drop the pretense that the newsletters are regular; we’ll move to an ad hoc schedule, basically I’ll post when there’s something interesting to talk about. This will hopefully be monthly-ish (but no promises).</p>
+<p>That said, this time there are plenty of interesting stuff! We’ve rewritten quite a lot of things from scratch and now released them.</p>
 <ul>
-<li>Some old code in AdvancedHMC.jl has been cleaned up quite a bit. See the <a href="https://github.com/TuringLang/AdvancedHMC.jl/releases/tag/v0.7.0">0.7.0 release</a> for more information.</li>
-<li>Turing’s Gibbs sampler <a href="https://github.com/TuringLang/Turing.jl/pull/2502">now supports warmup steps properly</a>. We’re still thinking about how to properly encode the scenario where different sub-samplers have different numbers of warmup steps, if you have any ideas, do get in touch on that PR.</li>
-<li>We are going to formally remove support for Zygote as an AD backend. We don’t test it thoroughly in Turing’s test suite. You can of course still use Zygote yourself, simply load <code>ADTypes.AutoZygote()</code> —&nbsp;although we can’t guarantee that we will fix any bugs that arise.</li>
+<li><p><em>AbstractPPL@0.14</em> has <a href="https://turinglang.org/AbstractPPL.jl/stable/varname/">a completely new VarName data structure</a>. The high-level interface is still the same <code>@varname(x[a].b)</code> but you can now represent richer variable names, most notably <code>begin</code> and <code>end</code> indices, as well as keyword indices.</p></li>
+<li><p><em>Bijectors@0.15.17</em> has <a href="https://turinglang.org/Bijectors.jl/stable/vector/">a new interface for converting samples from distributions to/from vectors</a>. This is a slightly less pretty interface than the old Bijectors interface (which still exists), but is more tailored towards Turing’s needs and as a result you’ll get a nice performance boost from it (<a href="https://github.com/TuringLang/DynamicPPL.jl/pull/1303">some benchmarks here</a>), as well as fixing a number of bugs with unusual product distributions and LKJCholesky. This is bundled into the latest Turing release, no need to do anything on your end.</p></li>
+<li><p><em>DynamicPPL@0.40</em> is the one we’ve been going on about for a while now: VarInfo and its internal data structures have been completely reworked. You mostly get better performance from this, but also a much richer representation of random variables and their values. I can’t do it justice here, please see <a href="https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.40.0">the full changelog</a> for details!</p></li>
+<li><p><em>Turing@0.43</em> essentially brings all of that together into your favourite probprog framework. On top of all of the above, the optimisation interface has also been completely rewritten; it’s now more high-level and the inputs and outputs will be easier to work with (<a href="https://turinglang.org/docs/usage/mode-estimation/">see the new version’s docs for more info</a>).</p></li>
 </ul>
+<p>In recent versions of Turing one of the major focuses has been performance optimisations. I’m therefore very pleased to report now that running a couple of benchmarks on the eight-schools models, we find now that Turing + Mooncake/Enzyme has equivalent or better performance to Stan (<a href="https://gist.github.com/penelopeysm/5656697ea20c94d80a285f5f6a69b8ab">code is here</a>; do note that these aren’t very scientific!).</p>
+<p>Moving forward, on top of core improvements to DynamicPPL we’re also keen to look into other ways to interact with Turing instead of just via the Julia REPL, such as a CLI, or possibly even tools for coding agents. We are quite limited by the number of people on the project (which is too low), but if you’d be interested in that or have an idea or use case do get in touch!</p>
 
 
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>The Turing Language – Turing.jl</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,19 +74,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-dbc92dda8186f57fa2e333fbb71d6a9d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-94fade3e4024733fcc1188e3dd38e13f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-5ffe4b7ba0422d2a4f9076e2fef32349.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-94fade3e4024733fcc1188e3dd38e13f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-df604b5bfdcdd7356f7488c2ab8efe34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-835e577b920aa8b1332a60b38a6ee1dc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-df604b5bfdcdd7356f7488c2ab8efe34.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -120,9 +122,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
 
     const options = {
-      valueNames: ['listing-project','listing-website','listing-format','listing-site-url','listing-get-started','listing-tutorials-intro','listing-language','listing-toc','listing-sidebar','listing-include-in-header','listing-title','listing-description','listing-categories','listing-author','listing-date','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-resources','listing-aliases','listing-bibliography','listing-csl','listing-link-citations','listing-nocite',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
-      
-      searchColumns: ["listing-project","listing-website","listing-format","listing-site-url","listing-get-started","listing-tutorials-intro","listing-language","listing-toc","listing-sidebar","listing-include-in-header","listing-title","listing-description","listing-categories","listing-author","listing-date","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-resources","listing-aliases","listing-bibliography","listing-csl","listing-link-citations","listing-nocite"],
+      valueNames: ['listing-project','listing-website','listing-format','listing-site-url','listing-get-started','listing-tutorials-intro','listing-engines','listing-language','listing-toc','listing-sidebar','listing-include-in-header','listing-comments','listing-title','listing-description','listing-categories','listing-author','listing-date','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-resources','listing-aliases','listing-bibliography','listing-csl','listing-link-citations','listing-nocite',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      page: 25,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-project","listing-website","listing-format","listing-site-url","listing-get-started","listing-tutorials-intro","listing-engines","listing-language","listing-toc","listing-sidebar","listing-include-in-header","listing-comments","listing-title","listing-description","listing-categories","listing-author","listing-date","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-resources","listing-aliases","listing-bibliography","listing-csl","listing-link-citations","listing-nocite"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -179,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -979,6 +982,131 @@ Read the latest from the Turing team.
 <div id="listing-news-and-updates" class="quarto-listing quarto-listing-container-custom">
 <div class="unified-card-grid">
 
+  <a href="./news/posts/2026-03-09-newsletter-18/index.html" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Turing.jl Newsletter 18</h5>
+      <p class="unified-card-text">The irregular newsletter for the Turing.jl probabilistic programming language</p>
+      
+      
+    </div>
+    
+    
+    <div class="unified-card-footer">
+      <div class="unified-card-meta">
+        
+          <span class="unified-card-author">
+            
+              The TuringLang team
+            
+          </span>
+        
+        
+          <span class="unified-card-date">
+            Mar 9, 2026
+          </span>
+        
+      </div>
+      
+        <span class="unified-card-reading-time">3 min</span>
+      
+    </div>
+    
+  </a>
+
+  <a href="./news/posts/2026-02-21-gsoc/index.html" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Google Summer of Code 2026</h5>
+      <p class="unified-card-text">We are excited to announce our project ideas for the Google Summer of Code 2026! Below is a list of projects the Turing team would love to work on with contributors this summer. This information is also cross-posted at Julia's Turing project page.
+</p>
+      
+      
+    </div>
+    
+    
+    <div class="unified-card-footer">
+      <div class="unified-card-meta">
+        
+          <span class="unified-card-author">
+            
+              The TuringLang team
+            
+          </span>
+        
+        
+          <span class="unified-card-date">
+            Feb 23, 2026
+          </span>
+        
+      </div>
+      
+        <span class="unified-card-reading-time">4 min</span>
+      
+    </div>
+    
+  </a>
+
+  <a href="./news/posts/2026-01-23-newsletter-17/index.html" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Turing.jl Newsletter 17</h5>
+      <p class="unified-card-text">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+      
+      
+    </div>
+    
+    
+    <div class="unified-card-footer">
+      <div class="unified-card-meta">
+        
+          <span class="unified-card-author">
+            
+              The TuringLang team
+            
+          </span>
+        
+        
+          <span class="unified-card-date">
+            Jan 23, 2026
+          </span>
+        
+      </div>
+      
+        <span class="unified-card-reading-time">2 min</span>
+      
+    </div>
+    
+  </a>
+
+  <a href="./news/posts/2025-12-05-newsletter-16/index.html" class="unified-card box">
+    <div class="unified-card-body">
+      <h5 class="unified-card-title">Turing.jl Newsletter 16</h5>
+      <p class="unified-card-text">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
+      
+      
+    </div>
+    
+    
+    <div class="unified-card-footer">
+      <div class="unified-card-meta">
+        
+          <span class="unified-card-author">
+            
+              The TuringLang team
+            
+          </span>
+        
+        
+          <span class="unified-card-date">
+            Dec 5, 2025
+          </span>
+        
+      </div>
+      
+        <span class="unified-card-reading-time">2 min</span>
+      
+    </div>
+    
+  </a>
+
   <a href="./news/posts/2025-11-07-newsletter-15/index.html" class="unified-card box">
     <div class="unified-card-body">
       <h5 class="unified-card-title">Turing.jl Newsletter 15</h5>
@@ -1031,130 +1159,6 @@ Read the latest from the Turing team.
         
           <span class="unified-card-date">
             Oct 24, 2025
-          </span>
-        
-      </div>
-      
-        <span class="unified-card-reading-time">2 min</span>
-      
-    </div>
-    
-  </a>
-
-  <a href="./news/posts/2025-10-10-newsletter-13/index.html" class="unified-card box">
-    <div class="unified-card-body">
-      <h5 class="unified-card-title">Turing.jl Newsletter 13</h5>
-      <p class="unified-card-text">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
-      
-      
-    </div>
-    
-    
-    <div class="unified-card-footer">
-      <div class="unified-card-meta">
-        
-          <span class="unified-card-author">
-            
-              The TuringLang team
-            
-          </span>
-        
-        
-          <span class="unified-card-date">
-            Oct 10, 2025
-          </span>
-        
-      </div>
-      
-        <span class="unified-card-reading-time">1 min</span>
-      
-    </div>
-    
-  </a>
-
-  <a href="./news/posts/2025-09-26-newsletter-12/index.html" class="unified-card box">
-    <div class="unified-card-body">
-      <h5 class="unified-card-title">Turing.jl Newsletter 12</h5>
-      <p class="unified-card-text">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
-      
-      
-    </div>
-    
-    
-    <div class="unified-card-footer">
-      <div class="unified-card-meta">
-        
-          <span class="unified-card-author">
-            
-              The TuringLang team
-            
-          </span>
-        
-        
-          <span class="unified-card-date">
-            Sep 26, 2025
-          </span>
-        
-      </div>
-      
-        <span class="unified-card-reading-time">2 min</span>
-      
-    </div>
-    
-  </a>
-
-  <a href="./news/posts/2025-09-01-GSoC-Report-DoodleBUGS/index.html" class="unified-card box">
-    <div class="unified-card-body">
-      <h5 class="unified-card-title">GSoC Report for DoodleBUGS: a Browser-Based Graphical Interface for Drawing Probabilistic Graphical Models</h5>
-      <p class="unified-card-text">Shravan Goswami's GSoC 2025 final report: goals, architecture, progress vs proposal, and how to try it.</p>
-      
-      
-    </div>
-    
-    
-    <div class="unified-card-footer">
-      <div class="unified-card-meta">
-        
-          <span class="unified-card-author">
-            
-              Shravan Goswami
-            
-          </span>
-        
-        
-          <span class="unified-card-date">
-            Sep 1, 2025
-          </span>
-        
-      </div>
-      
-        <span class="unified-card-reading-time">10 min</span>
-      
-    </div>
-    
-  </a>
-
-  <a href="./news/posts/2025-07-25-newsletter-11/index.html" class="unified-card box">
-    <div class="unified-card-body">
-      <h5 class="unified-card-title">Turing.jl Newsletter 11</h5>
-      <p class="unified-card-text">The fortnightly newsletter for the Turing.jl probabilistic programming language</p>
-      
-      
-    </div>
-    
-    
-    <div class="unified-card-footer">
-      <div class="unified-card-meta">
-        
-          <span class="unified-card-author">
-            
-              The TuringLang team
-            
-          </span>
-        
-        
-          <span class="unified-card-date">
-            Jul 25, 2025
           </span>
         
       </div>
@@ -1939,7 +1943,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     </div>
     <div class="footer-bottom">
-      <p>Turing is created by <a href="https://mlg.eng.cam.ac.uk/hong/" target="_blank" rel="noopener">Hong Ge</a>, and maintained by the core <a href="./team" target="_blank" rel="noopener">team</a> of developers and <a href="https://github.com/TuringLang/Turing.jl/graphs/contributors" target="_blank" rel="noopener">contributors</a>.<br>© 2025 The Turing Project Contributors. <a href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE" target="_blank" rel="noopener">MIT License</a>.</p>
+      <p>Turing is created by <a href="https://mlg.eng.cam.ac.uk/hong/" target="_blank" rel="noopener">Hong Ge</a>, and maintained by the core <a href="./team" target="_blank" rel="noopener">team</a> of developers and <a href="https://github.com/TuringLang/Turing.jl/graphs/contributors" target="_blank" rel="noopener">contributors</a>.<br>© 2026 The Turing Project Contributors. <a href="https://github.com/TuringLang/Turing.jl/blob/master/LICENCE" target="_blank" rel="noopener">MIT License</a>.</p>
       <a href="https://github.com/TuringLang/turinglang.github.io/" target="_blank" rel="noopener" class="footer-source-link"><i class="bi bi-github"></i> Website Source</a>
     </div>
   </div>
