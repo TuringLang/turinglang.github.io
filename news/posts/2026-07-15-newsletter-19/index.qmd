@@ -1,0 +1,36 @@
+---
+title: Turing.jl Newsletter 19
+description: The irregular newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2026-07-15
+---
+
+It's been a few months since the last newsletter. Several updates have been released across the packages since then.
+
+**FlexiChains is now the default chain type**
+
+Since Turing 0.45, `sample` returns a [FlexiChains](https://github.com/penelopeysm/FlexiChains.jl) chain by default instead of an MCMCChains `Chains`. FlexiChains keys results by `VarName`, so array- and matrix-valued parameters are stored whole rather than flattened into scalar columns, and sampler statistics are kept alongside the draws. MCMCChains is still fully supported: pass `chain_type=MCMCChains.Chains` to `sample`. Note that Turing no longer re-exports MCMCChains, so if you use it you now need to `using MCMCChains` yourself.
+
+Relatedly, [MCMCChains.jl](https://github.com/TuringLang/MCMCChains.jl) has been archived. It still works and remains a supported output format, but it is no longer actively developed; new work is happening in FlexiChains. JuliaBUGS has also gained FlexiChains support (`chain_type=VNChain`), and its documentation now uses it in examples.
+
+**A new AD interface in AbstractPPL**
+
+Gradient computation now goes through a small AD interface that lives in AbstractPPL, rather than each package calling DifferentiationInterface (DI) directly. ForwardDiff and Mooncake get native paths through this interface, and every other backend is still handled by DI underneath.
+
+- **AbstractPPL@0.15** adds a "prepared evaluator" interface: `prepare(adtype, f, x)` builds a reusable evaluator, and `value_and_gradient!!` computes the value and gradient from it (second-order/Hessian and a per-call `context` override are available too). This also fixed a Mooncake reverse-mode bug where a reused cache could return an incorrect gradient after the first call ([Mooncake #1238](https://github.com/chalk-lab/Mooncake.jl/issues/1238)). The [evaluator docs](https://turinglang.org/AbstractPPL.jl/stable/evaluators/) describe the full interface.
+
+- **DynamicPPL@0.42** routes `LogDensityFunction` through this interface, so DifferentiationInterface is no longer a hard dependency. In practice, ForwardDiff and Mooncake only need their own package loaded; other backends such as ReverseDiff also need `using DifferentiationInterface`. The 0.42.1 patch fixes a type-inference problem that had made nested submodels much slower to evaluate and differentiate ([changelog](https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.42.0)).
+
+- **Bijectors@0.16** moves ChainRulesCore and EnzymeCore to weak dependencies and drops DifferentiationInterface as a direct dependency. If you were relying on Bijectors to load those for you, you now need to load them yourself.
+
+- **AdvancedVI@0.7** moves its AD onto the same interface. Two user-facing notes: `AutoReverseDiff(; compile=true)` is no longer accepted for VI, because a compiled tape can silently reuse stale gradients across optimisation steps; and `KLMinScoreGradDescent` now optimises in unconstrained space, consistent with the other `KLMin...` algorithms ([changelog](https://github.com/TuringLang/AdvancedVI.jl/releases/tag/v0.7.0)).
+
+- **Turing@0.46** brings the AD changes together. It also computes `informationmatrix`/`vcov` through AbstractPPL's second-order interface (no change in results), and fixes a missing extension declaration from 0.45 that had stopped `loadstate` and the post-sampling divergence warnings from working when MCMCChains was used ([changelog](https://github.com/TuringLang/Turing.jl/releases/tag/v0.46.0)).
+
+For most people, sampling looks much the same: choose a backend, load its package, and go. The two things worth remembering are the new default chain type and the loading rule for DI-routed backends; the [Automatic Differentiation](https://turinglang.org/docs/usage/automatic-differentiation/) page has the current details.
+
+As always this is a small team with a long to-do list, so if any of this is useful to you, or if you run into rough edges, we'd be glad to hear from you.
