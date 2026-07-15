@@ -48,9 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-c52cc3f110843804217d7824e259c34d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-c6e1cf9f2a7d584bebc3bc7e3cae4a03.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-c52cc3f110843804217d7824e259c34d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-75f0520621ff928d4153dd202a080a43.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-e4cba650f236ad6190e31b30b0ca6fa3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-75f0520621ff928d4153dd202a080a43.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -379,12 +379,12 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>FlexiChains is now the default chain type</strong></p>
 <p>Since Turing 0.45, <code>sample</code> returns a <a href="https://github.com/penelopeysm/FlexiChains.jl">FlexiChains</a> chain by default. It keeps array-valued parameters intact rather than flattening them into scalar columns. MCMCChains is still supported via <code>chain_type=MCMCChains.Chains</code> (you now need to load it yourself), but <a href="https://github.com/TuringLang/MCMCChains.jl">MCMCChains.jl</a> has been archived and new development is on FlexiChains. JuliaBUGS supports FlexiChains too.</p>
 <p><strong>A new AD interface in AbstractPPL</strong></p>
-<p>Automatic differentiation now goes through a small interface in AbstractPPL rather than calling DifferentiationInterface (DI) directly. ForwardDiff and Mooncake have native paths; other backends still go through DI.</p>
+<p>Automatic differentiation now goes through a small interface in AbstractPPL rather than calling DifferentiationInterface (DI) directly. ForwardDiff and Mooncake have native paths. Other backends still go through DI.</p>
 <ul>
 <li><strong>AbstractPPL@0.15</strong> adds the <a href="https://turinglang.org/AbstractPPL.jl/stable/evaluators/">prepared-evaluator interface</a>, and fixes a Mooncake reverse-mode correctness bug (<a href="https://github.com/chalk-lab/Mooncake.jl/issues/1238">#1238</a>).</li>
-<li><strong>DynamicPPL@0.42</strong> moves onto this interface and drops DI as a hard dependency; DI-routed backends such as ReverseDiff now need <code>using DifferentiationInterface</code> (<a href="https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.42.0">changelog</a>).</li>
+<li><strong>DynamicPPL@0.42</strong> moves onto this interface and drops DI as a hard dependency, so DI-routed backends such as ReverseDiff now need <code>using DifferentiationInterface</code> (<a href="https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.42.0">changelog</a>).</li>
 <li><strong>Bijectors@0.16</strong> moves ChainRulesCore and EnzymeCore to weak dependencies.</li>
-<li><strong>AdvancedVI@0.7</strong> follows suit; <code>AutoReverseDiff(; compile=true)</code> is no longer accepted for VI (<a href="https://github.com/TuringLang/AdvancedVI.jl/releases/tag/v0.7.0">changelog</a>).</li>
+<li><strong>AdvancedVI@0.7</strong> follows suit. <code>AutoReverseDiff(; compile=true)</code> is no longer accepted for VI (<a href="https://github.com/TuringLang/AdvancedVI.jl/releases/tag/v0.7.0">changelog</a>).</li>
 <li><strong>Turing@0.46</strong> brings this together (<a href="https://github.com/TuringLang/Turing.jl/releases/tag/v0.46.0">changelog</a>).</li>
 </ul>
 <p>As always this is a small team with a long to-do list, so if any of this is useful, or if you hit rough edges, we’d be glad to hear from you.</p>
