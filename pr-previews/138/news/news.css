@@ -1,0 +1,11 @@
+.thumbnail {
+    max-width: 0;
+}
+
+.metadata {
+    max-width: 150px;
+}
+
+.quarto-post {
+    max-height:fit-content;
+}
