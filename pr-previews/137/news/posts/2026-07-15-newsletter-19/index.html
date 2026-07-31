@@ -380,7 +380,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p>It’s been a few months since the last newsletter. Several updates have been released across the packages since then, and there is some work outside the Julia packages to share as well.</p>
 <p><strong>A new AD interface in AbstractPPL</strong></p>
-<p>Automatic differentiation now goes through a small interface in AbstractPPL rather than calling DifferentiationInterface (DI) directly. ForwardDiff and Mooncake have native paths. Other backends still go through DI.</p>
+<p>Most of our time went into reorganising how automatic differentiation works. It now goes through a small interface in AbstractPPL, rather than each package calling DifferentiationInterface (DI) directly. ForwardDiff and Mooncake get native paths, and everything else still goes through DI.</p>
 <ul>
 <li><strong>AbstractPPL@0.15</strong> adds the <a href="https://turinglang.org/AbstractPPL.jl/stable/evaluators/">prepared-evaluator interface</a>, and fixes a Mooncake reverse-mode correctness bug (<a href="https://github.com/chalk-lab/Mooncake.jl/issues/1238">#1238</a>).</li>
 <li><strong>DynamicPPL@0.42</strong> moves onto this interface and drops DI as a hard dependency, so DI-routed backends such as ReverseDiff now need <code>using DifferentiationInterface</code> (<a href="https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.42.0">changelog</a>).</li>
@@ -389,10 +389,10 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Turing@0.46</strong> brings this together (<a href="https://github.com/TuringLang/Turing.jl/releases/tag/v0.46.0">changelog</a>).</li>
 </ul>
 <p><strong>DoodleBUGS is now DoodlePPL</strong></p>
-<p>The browser-based graphical editor for BUGS models has been renamed to DoodlePPL, and you can <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/">try it here</a>. It now generates Stan code from a graph as well as BUGS and JuliaBUGS, and it can be <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/DoodleWidget/">embedded in any page</a> as a web component.</p>
+<p>DoodleBUGS has a new name. It’s now DoodlePPL, and you can <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/">try it here</a>. It generates Stan code from a graph now, as well as BUGS and JuliaBUGS, and you can <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/DoodleWidget/">embed it in any page</a> as a web component.</p>
 <p><strong>MCMC.js</strong></p>
-<p>The editor is developed in <a href="https://github.com/mcmcjs/mcmcjs">MCMC.js</a> (<code>npm i -g mcmcjs</code>), a set of TypeScript command-line tools that run and diagnose Bayesian models across Turing.jl, JuliaBUGS, and Stan. It is early alpha and the CLI is not stable yet, so treat it as something to experiment with for now.</p>
-<p>As always this is a small team with a long to-do list, so if any of this is useful, or if you hit rough edges, we’d be glad to hear from you.</p>
+<p>The editor is developed in <a href="https://github.com/mcmcjs/mcmcjs">MCMC.js</a> (<code>npm i -g mcmcjs</code>), a set of TypeScript command-line tools for running and diagnosing Bayesian models across Turing.jl, JuliaBUGS, and Stan. It’s early alpha and the CLI isn’t stable yet, so do have a play with it, but don’t build anything important on it just yet.</p>
+<p>As always we’re a small team with a long to-do list, so if any of this is useful, or if you hit rough edges, do get in touch!</p>
 
 
 
