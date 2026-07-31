@@ -9,11 +9,7 @@ author:
 date: 2026-07-15
 ---
 
-It's been a few months since the last newsletter. Several updates have been released across the packages since then.
-
-**FlexiChains is now the default chain type**
-
-Since Turing 0.45, `sample` returns a [FlexiChains](https://github.com/penelopeysm/FlexiChains.jl) chain by default. It keeps array-valued parameters intact rather than flattening them into scalar columns. MCMCChains is still supported via `chain_type=MCMCChains.Chains` (you now need to load it yourself), but [MCMCChains.jl](https://github.com/TuringLang/MCMCChains.jl) has been archived and new development is on FlexiChains. JuliaBUGS supports FlexiChains too.
+It's been a few months since the last newsletter. Several updates have been released across the packages since then, and there is some work outside the Julia packages to share as well.
 
 **A new AD interface in AbstractPPL**
 
@@ -24,5 +20,13 @@ Automatic differentiation now goes through a small interface in AbstractPPL rath
 - **Bijectors@0.16** moves ChainRulesCore and EnzymeCore to weak dependencies.
 - **AdvancedVI@0.7** follows suit. `AutoReverseDiff(; compile=true)` is no longer accepted for VI ([changelog](https://github.com/TuringLang/AdvancedVI.jl/releases/tag/v0.7.0)).
 - **Turing@0.46** brings this together ([changelog](https://github.com/TuringLang/Turing.jl/releases/tag/v0.46.0)).
+
+**DoodleBUGS is now DoodlePPL**
+
+The browser-based graphical editor for BUGS models has been renamed to DoodlePPL, and you can [try it here](https://turinglang.org/JuliaBUGS.jl/DoodlePPL/). It now generates Stan code from a graph as well as BUGS and JuliaBUGS, and it can be [embedded in any page](https://turinglang.org/JuliaBUGS.jl/DoodlePPL/DoodleWidget/) as a web component.
+
+**MCMC.js**
+
+The editor is developed in [MCMC.js](https://github.com/mcmcjs/mcmcjs) (`npm i -g mcmcjs`), a set of TypeScript command-line tools that run and diagnose Bayesian models across Turing.jl, JuliaBUGS, and Stan. It is early alpha and the CLI is not stable yet, so treat it as something to experiment with for now.
 
 As always this is a small team with a long to-do list, so if any of this is useful, or if you hit rough edges, we'd be glad to hear from you.
