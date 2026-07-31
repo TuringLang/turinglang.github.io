@@ -14,7 +14,7 @@
 <title>Turing.jl</title>
 <link>https://turinglang.org/news/</link>
 </image>
-<generator>quarto-1.9.38</generator>
+<generator>quarto-1.10.18</generator>
 <lastBuildDate>Wed, 15 Jul 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Turing.jl Newsletter 19</title>
@@ -26,9 +26,7 @@
 
 
 
-<p>It’s been a few months since the last newsletter. Several updates have been released across the packages since then.</p>
-<p><strong>FlexiChains is now the default chain type</strong></p>
-<p>Since Turing 0.45, <code>sample</code> returns a <a href="https://github.com/penelopeysm/FlexiChains.jl">FlexiChains</a> chain by default. It keeps array-valued parameters intact rather than flattening them into scalar columns. MCMCChains is still supported via <code>chain_type=MCMCChains.Chains</code> (you now need to load it yourself), but <a href="https://github.com/TuringLang/MCMCChains.jl">MCMCChains.jl</a> has been archived and new development is on FlexiChains. JuliaBUGS supports FlexiChains too.</p>
+<p>It’s been a few months since the last newsletter. Several updates have been released across the packages since then, and there is some work outside the Julia packages to share as well.</p>
 <p><strong>A new AD interface in AbstractPPL</strong></p>
 <p>Automatic differentiation now goes through a small interface in AbstractPPL rather than calling DifferentiationInterface (DI) directly. ForwardDiff and Mooncake have native paths. Other backends still go through DI.</p>
 <ul>
@@ -38,6 +36,10 @@
 <li><strong>AdvancedVI@0.7</strong> follows suit. <code>AutoReverseDiff(; compile=true)</code> is no longer accepted for VI (<a href="https://github.com/TuringLang/AdvancedVI.jl/releases/tag/v0.7.0">changelog</a>).</li>
 <li><strong>Turing@0.46</strong> brings this together (<a href="https://github.com/TuringLang/Turing.jl/releases/tag/v0.46.0">changelog</a>).</li>
 </ul>
+<p><strong>DoodleBUGS is now DoodlePPL</strong></p>
+<p>The browser-based graphical editor for BUGS models has been renamed to DoodlePPL, and you can <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/">try it here</a>. It now generates Stan code from a graph as well as BUGS and JuliaBUGS, and it can be <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/DoodleWidget/">embedded in any page</a> as a web component.</p>
+<p><strong>MCMC.js</strong></p>
+<p>The editor is developed in <a href="https://github.com/mcmcjs/mcmcjs">MCMC.js</a> (<code>npm i -g mcmcjs</code>), a set of TypeScript command-line tools that run and diagnose Bayesian models across Turing.jl, JuliaBUGS, and Stan. It is early alpha and the CLI is not stable yet, so treat it as something to experiment with for now.</p>
 <p>As always this is a small team with a long to-do list, so if any of this is useful, or if you hit rough edges, we’d be glad to hear from you.</p>
 
 

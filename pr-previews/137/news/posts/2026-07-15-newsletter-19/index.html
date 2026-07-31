@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -15,10 +15,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -43,14 +46,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-6b6957c917596b414ec0b78690761e87.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-5a1953863e1f72ef3b996ef827f01ca7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-75f0520621ff928d4153dd202a080a43.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-e4cba650f236ad6190e31b30b0ca6fa3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-75f0520621ff928d4153dd202a080a43.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-848131392ae1345b88cc2b042158fab8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-f8f34bbda3e6b1fb91ad44aabbd6edbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-848131392ae1345b88cc2b042158fab8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -375,9 +378,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>It’s been a few months since the last newsletter. Several updates have been released across the packages since then.</p>
-<p><strong>FlexiChains is now the default chain type</strong></p>
-<p>Since Turing 0.45, <code>sample</code> returns a <a href="https://github.com/penelopeysm/FlexiChains.jl">FlexiChains</a> chain by default. It keeps array-valued parameters intact rather than flattening them into scalar columns. MCMCChains is still supported via <code>chain_type=MCMCChains.Chains</code> (you now need to load it yourself), but <a href="https://github.com/TuringLang/MCMCChains.jl">MCMCChains.jl</a> has been archived and new development is on FlexiChains. JuliaBUGS supports FlexiChains too.</p>
+<p>It’s been a few months since the last newsletter. Several updates have been released across the packages since then, and there is some work outside the Julia packages to share as well.</p>
 <p><strong>A new AD interface in AbstractPPL</strong></p>
 <p>Automatic differentiation now goes through a small interface in AbstractPPL rather than calling DifferentiationInterface (DI) directly. ForwardDiff and Mooncake have native paths. Other backends still go through DI.</p>
 <ul>
@@ -387,6 +388,10 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>AdvancedVI@0.7</strong> follows suit. <code>AutoReverseDiff(; compile=true)</code> is no longer accepted for VI (<a href="https://github.com/TuringLang/AdvancedVI.jl/releases/tag/v0.7.0">changelog</a>).</li>
 <li><strong>Turing@0.46</strong> brings this together (<a href="https://github.com/TuringLang/Turing.jl/releases/tag/v0.46.0">changelog</a>).</li>
 </ul>
+<p><strong>DoodleBUGS is now DoodlePPL</strong></p>
+<p>The browser-based graphical editor for BUGS models has been renamed to DoodlePPL, and you can <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/">try it here</a>. It now generates Stan code from a graph as well as BUGS and JuliaBUGS, and it can be <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/DoodleWidget/">embedded in any page</a> as a web component.</p>
+<p><strong>MCMC.js</strong></p>
+<p>The editor is developed in <a href="https://github.com/mcmcjs/mcmcjs">MCMC.js</a> (<code>npm i -g mcmcjs</code>), a set of TypeScript command-line tools that run and diagnose Bayesian models across Turing.jl, JuliaBUGS, and Stan. It is early alpha and the CLI is not stable yet, so treat it as something to experiment with for now.</p>
 <p>As always this is a small team with a long to-do list, so if any of this is useful, or if you hit rough edges, we’d be glad to hear from you.</p>
 
 
