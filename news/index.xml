@@ -14,8 +14,41 @@
 <title>Turing.jl</title>
 <link>https://turinglang.org/news/</link>
 </image>
-<generator>quarto-1.8.27</generator>
-<lastBuildDate>Mon, 09 Mar 2026 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.10.18</generator>
+<lastBuildDate>Wed, 15 Jul 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Turing.jl Newsletter 19</title>
+  <dc:creator>The TuringLang team</dc:creator>
+  <link>https://turinglang.org/news/posts/2026-07-15-newsletter-19/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>It’s been a few months since the last newsletter. Several updates have been released across the packages since then, and there is some work outside the Julia packages to share as well.</p>
+<p><strong>A new AD interface in AbstractPPL</strong></p>
+<p>Most of our time went into reorganising how automatic differentiation works. It now goes through a small interface in AbstractPPL, rather than each package calling DifferentiationInterface (DI) directly. ForwardDiff and Mooncake get native paths, and everything else still goes through DI.</p>
+<ul>
+<li><strong>AbstractPPL@0.15</strong> adds the <a href="https://turinglang.org/AbstractPPL.jl/stable/evaluators/">prepared-evaluator interface</a>, and fixes a Mooncake reverse-mode correctness bug (<a href="https://github.com/chalk-lab/Mooncake.jl/issues/1238">#1238</a>).</li>
+<li><strong>DynamicPPL@0.42</strong> moves onto this interface and drops DI as a hard dependency, so DI-routed backends such as ReverseDiff now need <code>using DifferentiationInterface</code> (<a href="https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.42.0">changelog</a>).</li>
+<li><strong>Bijectors@0.16</strong> moves ChainRulesCore and EnzymeCore to weak dependencies.</li>
+<li><strong>AdvancedVI@0.7</strong> follows suit. <code>AutoReverseDiff(; compile=true)</code> is no longer accepted for VI (<a href="https://github.com/TuringLang/AdvancedVI.jl/releases/tag/v0.7.0">changelog</a>).</li>
+<li><strong>Turing@0.46</strong> brings this together (<a href="https://github.com/TuringLang/Turing.jl/releases/tag/v0.46.0">changelog</a>).</li>
+</ul>
+<p><strong>DoodleBUGS is now DoodlePPL</strong></p>
+<p>DoodleBUGS has a new name. It’s now DoodlePPL, and you can <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/">try it here</a>. It generates Stan code from a graph now, as well as BUGS and JuliaBUGS, and you can <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/DoodleWidget/">embed it in any page</a> as a web component.</p>
+<p><strong>MCMC.js</strong></p>
+<p>The editor is developed in <a href="https://github.com/mcmcjs/mcmcjs">MCMC.js</a> (<code>npm i -g mcmcjs</code>), a set of TypeScript command-line tools for running and diagnosing Bayesian models across Turing.jl, JuliaBUGS, and Stan. It’s early alpha and the CLI isn’t stable yet, so do have a play with it, but don’t build anything important on it just yet.</p>
+<p>As always we’re a small team with a long to-do list, so if any of this is useful, or if you hit rough edges, do get in touch!</p>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>Newsletter</category>
+  <guid>https://turinglang.org/news/posts/2026-07-15-newsletter-19/</guid>
+  <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Turing.jl Newsletter 18</title>
   <dc:creator>The TuringLang team</dc:creator>
@@ -1238,41 +1271,6 @@ font-style: inherit;">UseGeneratedLogDensityFunction</span>())</span></code></pr
   <category>Newsletter</category>
   <guid>https://turinglang.org/news/posts/2025-03-14-newsletter-2/</guid>
   <pubDate>Fri, 14 Mar 2025 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Turing.jl Newsletter 1</title>
-  <dc:creator>The TuringLang team</dc:creator>
-  <link>https://turinglang.org/news/posts/2025-02-28-newsletter-1/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Welcome to the inaugural issue of the Turing.jl newsletter!</p>
-<p><strong>What is this?!</strong></p>
-<p>Hi everyone! We (the Turing.jl team) are starting a fortnightly series of updates on what we’ve been up to and what’s in the works. We hope that this will provide you (our users) with some insight into the direction of the Turing ecosystem, and we’d also love for you to chip in with your thoughts if you have any.</p>
-<p>You can keep up with the newsletter either on this website, on the <a href="https://julialang.slack.com/archives/CCYDC34A0">#turing channel in Julia Slack</a>, or by subscribing to <a href="https://github.com/TuringLang/Turing.jl/issues/2498">our issue on GitHub</a>. We might post to other places too (like Discourse), this is still in the works!</p>
-<p><strong>New Turing behaviour, especially <code>.~</code></strong></p>
-<p>Recently we have been focused on reworking a number of internal data structures in DynamicPPL.jl (this is the package that allows you to define models). We haven’t released this yet but you might be interested to see <a href="https://github.com/TuringLang/DynamicPPL.jl/blob/e6a42dd6b410d4ed60d853222c297a391cffe6d1/HISTORY.md">the changelog on GitHub</a>. The main user-facing changes here are the simplification of broadcasted tilde <code>.~</code> , which we previously <a href="https://julialang.slack.com/archives/CCYDC34A0/p1738580415136749">posted about on Slack here</a>. We also fixed a bug where the prefixes of nested submodels were applied in the wrong order.</p>
-<p><strong>DifferentiationInterface migration</strong></p>
-<p>From a developer perspective, we have now fully switched over to DifferentiationInterface.jl for automatic differentiation of models occurs. This work of course couldn’t have been possible without Guillaume Dalle’s work on DI itself and also his help with integrating it into DynamicPPL. This also paves the way for a long-standing goal of Turing, which is to expose a series of AD testing utilities that will allow AD package developers to test against a fixed set of models — this will allow us to formalise the idea of Turing being ‘compatible’ with a given AD package.</p>
-<p><strong>The plan for submodels</strong></p>
-<p>We have been discussing for a while now about how best to fully implement submodels (i.e.&nbsp;be able to treat submodels like distributions in the sense that we can sample from them, and also condition models on values obtained from submodels). There is currently a proposal which we’ve <a href="https://github.com/TuringLang/Turing.jl/issues/2485">written up on GitHub</a>, and goes into more depth about what we’d like to see and the underlying syntax. If this is a Turing feature that you use, do feel free to let us know what you think.</p>
-<p><strong>Turing.jl is now published (again!)</strong></p>
-<p>We recently published a new paper with a high-level overview of Turing.jl’s features and implementation. Check it out!<br>
-Fjelde, T. E., Xu, K., Widmann, D., Tarek, M., Pfiffer, C., Trapp, M., Axen, S. D., Sun, X., Hauru, M., Yong, P., Tebbutt, W., Ghahramani, Z., &amp; Ge, H. (2024). Turing.jl: A General-Purpose Probabilistic Programming Language. <em>ACM Transactions on Probabilistic Machine Learning</em>, 1(1). (<a href="https://dl.acm.org/doi/10.1145/3711897">link</a>)</p>
-<p>We have also published in the conference proceedings of the workshop on Languages for Inference (LAFI), which was held as part of POPL 2025:<br>
-Tim Hargreaves, Qing Li, Charles Knipp, Frederic Wantiez, Simon J. Godsill, Hong Ge. State Space Model Programming in Turing.jl. <em>The Languages for Inference (LAFI) workshop</em>, 2025. (<a href="https://popl25.sigplan.org/details/lafi-2025/11/State-Space-Model-Programming-in-Turing-jl">link</a>)</p>
-<p><strong>Looking for Google Summer of Code students</strong></p>
-<p>We are keen to take students for <a href="https://julialang.org/jsoc/gsoc/turing/">GSoC in 2025</a>! If you are interested in working on a Python/R interface to <a href="https://github.com/TuringLang/JuliaBUGS.jl">JuliaBUGS</a>, or making some improvements to <a href="https://github.com/JasonPekos/TuringPosteriorDB.jl">TuringPosteriorDB</a>, do get in touch.</p>
-
-
-
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
-  <category>Newsletter</category>
-  <guid>https://turinglang.org/news/posts/2025-02-28-newsletter-1/</guid>
-  <pubDate>Fri, 28 Feb 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

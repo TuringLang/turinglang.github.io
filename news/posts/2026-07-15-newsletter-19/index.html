@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="The TuringLang team">
-<meta name="dcterms.date" content="2025-10-10">
-<meta name="description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta name="dcterms.date" content="2026-07-15">
+<meta name="description" content="The irregular newsletter for the Turing.jl probabilistic programming language">
 
-<title>Turing.jl Newsletter 13 – Turing.jl</title>
+<title>Turing.jl Newsletter 19 – Turing.jl</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -101,13 +101,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="The Turing Language">
-<meta property="og:description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta property="og:description" content="The irregular newsletter for the Turing.jl probabilistic programming language">
 <meta property="og:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
 <meta property="og:site_name" content="Turing.jl">
 <meta property="og:image:alt" content="Turing.jl Logo">
 <meta property="og:locale" content="en_GB">
-<meta name="twitter:title" content="Turing.jl Newsletter 13 – Turing.jl">
-<meta name="twitter:description" content="The fortnightly newsletter for the Turing.jl probabilistic programming language">
+<meta name="twitter:title" content="Turing.jl Newsletter 19 – Turing.jl">
+<meta name="twitter:description" content="The irregular newsletter for the Turing.jl probabilistic programming language">
 <meta name="twitter:image" content="https://turinglang.org/assets/logo/turing-text-logo.jpg">
 <meta name="twitter:creator" content="@Hong_Ge2">
 <meta name="twitter:site" content="@TuringLang">
@@ -341,7 +341,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Turing.jl Newsletter 13</h1>
+<h1 class="title">Turing.jl Newsletter 19</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Newsletter</div>
   </div>
@@ -349,7 +349,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    The fortnightly newsletter for the Turing.jl probabilistic programming language
+    The irregular newsletter for the Turing.jl probabilistic programming language
   </div>
 </div>
 
@@ -366,7 +366,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 10, 2025</p>
+      <p class="date">July 15, 2026</p>
     </div>
   </div>
   
@@ -378,14 +378,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Julia 1.12</strong></p>
-<p>With the release of 1.12 comes some very nice things and some broken things. Particle samplers (SMC and PG) currently do not work on 1.12, and Enzyme and Mooncake will both not run. Fixes are being worked on, but it may well take until 1.12.1 before everything is in order. If you use any of the above three, you may want to stay with 1.11 for now.</p>
-<p><strong>JuliaCon</strong></p>
-<p>We were at JuliaCon Paris last week (thanks to the organising team for a wonderful conference)! If you didn’t get the chance to say hi, feel free to take a look at the poster we did <a href="https://github.com/TuringLang/Turing-Workshop/blob/main/2025-JuliaCon/JuliaCon2025_Turing_Poster.pdf">here on GitHub</a>. It very briefly summarises what we’ve been up to in the last few months, what our current priorities are, and what’s likely to come in the future.</p>
-<p><strong>MCMCChains plots + stats</strong></p>
-<p>In the past few months there have been a number of new plot types added to MCMCChains. You can see examples of <a href="https://turinglang.org/MCMCChains.jl/stable/statsplots/#Energy-Plot">energy plots</a>, <a href="https://turinglang.org/MCMCChains.jl/stable/statsplots/#Violin">violin plots</a>, and <a href="https://turinglang.org/MCMCChains.jl/stable/statsplots/#Posterior-Predictive-Checks-(PPC)">posterior predictive plots</a> in the docs. Also, you can now use <code>MCMCDiagnosticTools.bfmi(::Chains)</code> to calculate the Bayesian fraction of missing information.</p>
-<p><strong>Docs</strong></p>
-<p>There’s a new page explaining in more detail all the options you can use when sampling: https://turinglang.org/docs/usage/sampling-options/, suggestions for additions are always welcome!</p>
+<p>It’s been a few months since the last newsletter. Several updates have been released across the packages since then, and there is some work outside the Julia packages to share as well.</p>
+<p><strong>A new AD interface in AbstractPPL</strong></p>
+<p>Most of our time went into reorganising how automatic differentiation works. It now goes through a small interface in AbstractPPL, rather than each package calling DifferentiationInterface (DI) directly. ForwardDiff and Mooncake get native paths, and everything else still goes through DI.</p>
+<ul>
+<li><strong>AbstractPPL@0.15</strong> adds the <a href="https://turinglang.org/AbstractPPL.jl/stable/evaluators/">prepared-evaluator interface</a>, and fixes a Mooncake reverse-mode correctness bug (<a href="https://github.com/chalk-lab/Mooncake.jl/issues/1238">#1238</a>).</li>
+<li><strong>DynamicPPL@0.42</strong> moves onto this interface and drops DI as a hard dependency, so DI-routed backends such as ReverseDiff now need <code>using DifferentiationInterface</code> (<a href="https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.42.0">changelog</a>).</li>
+<li><strong>Bijectors@0.16</strong> moves ChainRulesCore and EnzymeCore to weak dependencies.</li>
+<li><strong>AdvancedVI@0.7</strong> follows suit. <code>AutoReverseDiff(; compile=true)</code> is no longer accepted for VI (<a href="https://github.com/TuringLang/AdvancedVI.jl/releases/tag/v0.7.0">changelog</a>).</li>
+<li><strong>Turing@0.46</strong> brings this together (<a href="https://github.com/TuringLang/Turing.jl/releases/tag/v0.46.0">changelog</a>).</li>
+</ul>
+<p><strong>DoodleBUGS is now DoodlePPL</strong></p>
+<p>DoodleBUGS has a new name. It’s now DoodlePPL, and you can <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/">try it here</a>. It generates Stan code from a graph now, as well as BUGS and JuliaBUGS, and you can <a href="https://turinglang.org/JuliaBUGS.jl/DoodlePPL/DoodleWidget/">embed it in any page</a> as a web component.</p>
+<p><strong>MCMC.js</strong></p>
+<p>The editor is developed in <a href="https://github.com/mcmcjs/mcmcjs">MCMC.js</a> (<code>npm i -g mcmcjs</code>), a set of TypeScript command-line tools for running and diagnosing Bayesian models across Turing.jl, JuliaBUGS, and Stan. It’s early alpha and the CLI isn’t stable yet, so do have a play with it, but don’t build anything important on it just yet.</p>
+<p>As always we’re a small team with a long to-do list, so if any of this is useful, or if you hit rough edges, do get in touch!</p>
 
 
 
