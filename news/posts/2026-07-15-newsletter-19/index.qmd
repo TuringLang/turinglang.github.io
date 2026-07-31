@@ -6,7 +6,7 @@ categories:
 author:
   - name: The TuringLang team
     url: /team/
-date: 2026-07-15
+date: 2026-08-01
 ---
 
 It's been a few months since the last newsletter. Several updates have been released across the packages since then, and there is some work outside the Julia packages to share as well.
