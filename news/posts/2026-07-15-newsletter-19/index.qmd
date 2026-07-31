@@ -1,0 +1,32 @@
+---
+title: Turing.jl Newsletter 19
+description: The irregular newsletter for the Turing.jl probabilistic programming language
+categories:
+  - Newsletter
+author:
+  - name: The TuringLang team
+    url: /team/
+date: 2026-07-15
+---
+
+It's been a few months since the last newsletter. Several updates have been released across the packages since then, and there is some work outside the Julia packages to share as well.
+
+**A new AD interface in AbstractPPL**
+
+Most of our time went into reorganising how automatic differentiation works. It now goes through a small interface in AbstractPPL, rather than each package calling DifferentiationInterface (DI) directly. ForwardDiff and Mooncake get native paths, and everything else still goes through DI.
+
+- **AbstractPPL@0.15** adds the [prepared-evaluator interface](https://turinglang.org/AbstractPPL.jl/stable/evaluators/), and fixes a Mooncake reverse-mode correctness bug ([#1238](https://github.com/chalk-lab/Mooncake.jl/issues/1238)).
+- **DynamicPPL@0.42** moves onto this interface and drops DI as a hard dependency, so DI-routed backends such as ReverseDiff now need `using DifferentiationInterface` ([changelog](https://github.com/TuringLang/DynamicPPL.jl/releases/tag/v0.42.0)).
+- **Bijectors@0.16** moves ChainRulesCore and EnzymeCore to weak dependencies.
+- **AdvancedVI@0.7** follows suit. `AutoReverseDiff(; compile=true)` is no longer accepted for VI ([changelog](https://github.com/TuringLang/AdvancedVI.jl/releases/tag/v0.7.0)).
+- **Turing@0.46** brings this together ([changelog](https://github.com/TuringLang/Turing.jl/releases/tag/v0.46.0)).
+
+**DoodleBUGS is now DoodlePPL**
+
+DoodleBUGS has a new name. It's now DoodlePPL, and you can [try it here](https://turinglang.org/JuliaBUGS.jl/DoodlePPL/). It generates Stan code from a graph now, as well as BUGS and JuliaBUGS, and you can [embed it in any page](https://turinglang.org/JuliaBUGS.jl/DoodlePPL/DoodleWidget/) as a web component.
+
+**MCMC.js**
+
+The editor is developed in [MCMC.js](https://github.com/mcmcjs/mcmcjs) (`npm i -g mcmcjs`), a set of TypeScript command-line tools for running and diagnosing Bayesian models across Turing.jl, JuliaBUGS, and Stan. It's early alpha and the CLI isn't stable yet, so do have a play with it, but don't build anything important on it just yet.
+
+As always we're a small team with a long to-do list, so if any of this is useful, or if you hit rough edges, do get in touch!
