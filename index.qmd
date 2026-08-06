@@ -100,15 +100,20 @@ Turing is written entirely in Julia, and is interoperable with its powerful ecos
 
 :::
 
-::: {.code-window-title}
+::: {.code-window-tabs}
 ```{=html}
-<span>linear_regression.jl</span>
+<span class="tab active" onclick="switchTab(event, 'tab-model')">Model</span>
+<span class="tab" onclick="switchTab(event, 'tab-condition')">Condition</span>
+<span class="tab" onclick="switchTab(event, 'tab-prior')">Prior</span>
+<span class="tab" onclick="switchTab(event, 'tab-inference')">Inference</span>
+<span class="tab" onclick="switchTab(event, 'tab-analysis')">Analysis</span>
 ```
 :::
 
 
 :::
 
+::: {#tab-model .code-content .active}
 ```{.julia .code-overflow-scroll}
 using Turing
 
@@ -122,11 +127,41 @@ using Turing
     μ = α .+ β .* x
     y ~ MvNormal(μ, σ² * I)
 end
-
-x, y = rand(10), rand(10)
-posterior = linear_regression(x) | (; y = y)
-chain = sample(posterior, NUTS(), 1000)
 ```
+:::
+
+::: {#tab-condition .code-content}
+```julia
+# Data
+x_data = rand(10)
+y_data = rand(10)
+
+# Condition model on data
+model = linear_regression(x_data) | (; y = y_data)
+```
+:::
+
+::: {#tab-prior .code-content}
+```julia
+# Sample from the prior
+prior = sample(model, Prior(), 100)
+```
+:::
+
+::: {#tab-inference .code-content}
+```julia
+# Run inference using NUTS
+chain = sample(model, NUTS(), 1000)
+```
+:::
+
+::: {#tab-analysis .code-content}
+```julia
+# Analyze the posterior
+describe(chain)
+plot(chain)
+```
+:::
 
 :::
 :::
@@ -134,7 +169,374 @@ chain = sample(posterior, NUTS(), 1000)
 :::
 <!-- What is Turing.jl Section Ends Here -->
 
+<!-- Bayesian Workflow Section -->
+::: {.flowchart-section-custom}
 
+::: {.flowchart-header}
+### The Bayesian Workflow
+From model definition to posterior analysis, Turing.jl provides a seamless experience.
+:::
+
+::: {.flowchart-container}
+
+```{=html}
+<svg class="flow-svg-layer" id="flow-svg">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" class="flow-arrow-head" />
+    </marker>
+  </defs>
+</svg>
+```
+
+::: {#node-math .flow-node}
+::: {.node-header}
+Mathematical Specification
+:::
+::: {.node-body}
+$$
+\begin{align*}
+    \sigma^2 &\sim \text{InverseGamma}(3, 4/10) \\
+    \gamma &\sim \mathcal{N}(0, \sqrt{10}) \\
+    \beta &\sim \mathcal{N}(0, I) \\
+    y_i &\sim \log \mathcal{N}(\beta \cdot x_i + \gamma, \sigma)
+\end{align*}
+$$
+:::
+:::
+
+::: {#node-model .flow-node}
+::: {.node-header}
+::: {.node-dots}
+[]{.dot .red} []{.dot .yellow} []{.dot .green}
+:::
+linear_regression.jl
+:::
+::: {.node-body}
+```julia
+@model function linear_regression(x)
+    d = size(x, 1)
+    
+    # Priors
+    σ² ~ InverseGamma(3, 4 / 10)
+    γ ~ Normal(0, √10)
+    β ~ MvNormal(zeros(d), I)
+    
+    # Likelihood
+    y ~ MvLogNormal(x' * β .+ γ, σ² * I) 
+end
+
+model = linear_regression(x_data)
+```
+:::
+:::
+
+::: {#node-prior .flow-node}
+::: {.node-header}
+::: {.node-dots}
+[]{.dot .red} []{.dot .yellow} []{.dot .green}
+:::
+Prior Checks
+:::
+::: {.node-body}
+```julia
+model_gen = fix(model, params_gen)
+(; y) = rand(model_gen)
+chain_gen = sample(model | (y = y,), NUTS(), 1000)
+```
+:::
+:::
+
+::: {#node-condition .flow-node}
+::: {.node-header}
+::: {.node-dots}
+[]{.dot .red} []{.dot .yellow} []{.dot .green}
+:::
+Condition
+:::
+::: {.node-body}
+```julia
+model_conditioned = model | (y = y_data,)
+```
+:::
+:::
+
+::: {#node-determinability .flow-node}
+::: {.node-header}
+::: {.node-dots}
+[]{.dot .red} []{.dot .yellow} []{.dot .green}
+:::
+Determinability
+:::
+::: {.node-body}
+::: {.node-plot}
+![](assets/images/workflow/fff.png){fig-alt="Determinability Plot"}
+:::
+:::
+:::
+
+::: {#node-inference .flow-node}
+::: {.node-header}
+::: {.node-dots}
+[]{.dot .red} []{.dot .yellow} []{.dot .green}
+:::
+Inference
+:::
+::: {.node-body}
+```julia
+chain = sample(model_conditioned, NUTS(), 1000)
+```
+:::
+:::
+
+::: {#node-analysis .flow-node}
+::: {.node-header}
+::: {.node-dots}
+[]{.dot .red} []{.dot .yellow} []{.dot .green}
+:::
+Posterior Analysis
+:::
+::: {.node-body}
+```
+Summary Statistics
+parameters    mean      std      mcse
+σ²            0.0543    0.0032   0.0000
+γ             7.7252    0.3688   0.0066
+β[1]          -0.2270   0.1247   0.0022
+β[2]          0.0133    0.1229   0.0022
+```
+::: {.node-plot}
+![](assets/images/workflow/fff.png){fig-alt="Posterior Density"}
+:::
+:::
+:::
+
+::: {#node-predictions .flow-node}
+::: {.node-header}
+::: {.node-dots}
+[]{.dot .red} []{.dot .yellow} []{.dot .green}
+:::
+Posterior Predictions
+:::
+::: {.node-body}
+::: {.node-plot}
+![](assets/images/workflow/fff.png){fig-alt="Posterior Prediction"}
+:::
+:::
+:::
+
+:::
+
+:::
+
+```{=html}
+<script>
+  // Tab Switching Logic
+  function switchTab(event, tabId) {
+    // Remove active class from all tabs
+    const tabs = event.target.parentElement.querySelectorAll('.tab');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    
+    // Add active class to clicked tab
+    event.target.classList.add('active');
+    
+    // Hide all content
+    const container = event.target.closest('.code-window');
+    const contents = container.querySelectorAll('.code-content');
+    contents.forEach(content => content.classList.remove('active'));
+    
+    // Show selected content
+    const selectedContent = container.querySelector(`#${tabId}`);
+    if (selectedContent) {
+      selectedContent.classList.add('active');
+    }
+  }
+
+  /**
+   * Lightweight Flowchart Connector
+   * Draws SVG paths between elements without external dependencies.
+   */
+  class FlowConnector {
+    constructor(containerId, svgId) {
+      this.container = document.querySelector(containerId);
+      this.svg = document.getElementById(svgId);
+      this.paths = [];
+      
+      if (!this.container || !this.svg) return;
+
+      // Bind methods
+      this.draw = this.draw.bind(this);
+      
+      // Initial draw
+      window.addEventListener('load', this.draw);
+      window.addEventListener('resize', this.draw);
+      
+      // Wait for images to load
+      const images = this.container.querySelectorAll('img');
+      images.forEach(img => img.addEventListener('load', this.draw));
+      
+      // Initial delay to ensure layout is settled
+      setTimeout(this.draw, 100);
+      setTimeout(this.draw, 500);
+    }
+
+    getCoords(elem) {
+      const box = elem.getBoundingClientRect();
+      const containerBox = this.container.getBoundingClientRect();
+      return {
+        x: box.left - containerBox.left,
+        y: box.top - containerBox.top,
+        w: box.width,
+        h: box.height,
+        r: box.right - containerBox.left,
+        b: box.bottom - containerBox.top,
+        cx: box.left - containerBox.left + box.width / 2,
+        cy: box.top - containerBox.top + box.height / 2
+      };
+    }
+
+    createPath(id, isDashed = false) {
+      let path = document.getElementById(id);
+      if (!path) {
+        path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.id = id;
+        path.setAttribute("class", "flow-arrow-path");
+        path.setAttribute("marker-end", "url(#arrowhead)");
+        if (isDashed) {
+            path.style.strokeDasharray = "5,5";
+        }
+        this.svg.appendChild(path);
+      }
+      return path;
+    }
+
+    drawCurve(start, end, id, isDashed = false) {
+      const path = this.createPath(id, isDashed);
+      // Sigmoid Curve: Right of Start -> Left of End
+      const sx = start.r;
+      const sy = start.cy;
+      const ex = end.x;
+      const ey = end.cy;
+      
+      const dist = Math.abs(ex - sx);
+      const cp1x = sx + dist * 0.5;
+      const cp1y = sy;
+      const cp2x = ex - dist * 0.5;
+      const cp2y = ey;
+
+      path.setAttribute("d", `M ${sx} ${sy} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${ex} ${ey}`);
+    }
+
+    drawStraight(start, end, id) {
+      const path = this.createPath(id);
+      // Straight Line: Bottom of Start -> Top of End
+      const sx = start.cx;
+      const sy = start.b;
+      const ex = end.cx;
+      const ey = end.y;
+
+      path.setAttribute("d", `M ${sx} ${sy} L ${ex} ${ey}`);
+    }
+
+    drawHorizontal(start, end, id) {
+      const path = this.createPath(id);
+      // Straight Line: Right of Start -> Left of End
+      const sx = start.r;
+      const sy = start.cy;
+      const ex = end.x;
+      const ey = end.cy;
+
+      path.setAttribute("d", `M ${sx} ${sy} L ${ex} ${ey}`);
+    }
+
+    drawFeedback(start, end, id) {
+        const path = this.createPath(id, true); // Dashed
+        // Curve from Left of Start to Right of End (Backwards)
+        const sx = start.x;
+        const sy = start.cy;
+        const ex = end.r;
+        const ey = end.cy;
+        
+        // Control points to curve around
+        const cp1x = sx - 50;
+        const cp1y = sy;
+        const cp2x = ex + 50;
+        const cp2y = ey;
+        
+        // Or maybe a big C curve
+        path.setAttribute("d", `M ${sx} ${sy} C ${sx - 100} ${sy}, ${ex + 100} ${ey}, ${ex} ${ey}`);
+    }
+
+    draw() {
+      const nodes = {
+        math: document.getElementById('node-math'),
+        model: document.getElementById('node-model'),
+        prior: document.getElementById('node-prior'),
+        condition: document.getElementById('node-condition'),
+        determinability: document.getElementById('node-determinability'),
+        inference: document.getElementById('node-inference'),
+        analysis: document.getElementById('node-analysis'),
+        predictions: document.getElementById('node-predictions')
+      };
+
+      if (!nodes.model) return;
+
+      const pos = {};
+      for (const [key, el] of Object.entries(nodes)) {
+        if(el) pos[key] = this.getCoords(el);
+      }
+
+      // Desktop Layout (> 992px)
+      if (window.innerWidth > 992) {
+        // 1. Math -> Model (Horizontal)
+        if(pos.math && pos.model) this.drawHorizontal(pos.math, pos.model, 'path-math-model');
+        
+        // 2. Model -> Prior (Diagonal/Curve)
+        if(pos.model && pos.prior) {
+             const path = this.createPath('path-model-prior');
+             path.setAttribute("d", `M ${pos.model.cx} ${pos.model.b} C ${pos.model.cx} ${pos.model.b + 50}, ${pos.prior.cx} ${pos.prior.y - 50}, ${pos.prior.cx} ${pos.prior.y}`);
+        }
+
+        // 3. Model -> Condition (Vertical)
+        if(pos.model && pos.condition) this.drawStraight(pos.model, pos.condition, 'path-model-cond');
+
+        // 4. Prior -> Determinability (Vertical)
+        if(pos.prior && pos.determinability) this.drawStraight(pos.prior, pos.determinability, 'path-prior-det');
+
+        // 5. Condition -> Inference (Vertical)
+        if(pos.condition && pos.inference) this.drawStraight(pos.condition, pos.inference, 'path-cond-inf');
+
+        // 6. Inference -> Analysis (Vertical)
+        if(pos.inference && pos.analysis) this.drawStraight(pos.inference, pos.analysis, 'path-inf-ana');
+
+        // 7. Analysis -> Predictions (Vertical)
+        if(pos.analysis && pos.predictions) this.drawStraight(pos.analysis, pos.predictions, 'path-ana-pred');
+
+        // 8. Predictions -> Determinability (Feedback)
+        if(pos.predictions && pos.determinability) this.drawFeedback(pos.predictions, pos.determinability, 'path-feedback');
+        
+        // Ensure paths are visible
+        this.svg.style.display = 'block';
+      } else {
+        // Mobile Layout: Linear Flow
+        const order = ['math', 'model', 'prior', 'determinability', 'condition', 'inference', 'analysis', 'predictions'];
+        for(let i=0; i < order.length - 1; i++) {
+            const start = pos[order[i]];
+            const end = pos[order[i+1]];
+            if(start && end) this.drawStraight(start, end, `path-mobile-${i}`);
+        }
+        
+        this.svg.style.display = 'block';
+      }
+    }
+  }
+
+  // Initialize
+  new FlowConnector('.flowchart-container', 'flow-svg');
+</script>
+```
+
+<!-- Start Your Journey Section -->
 <!-- Start Your Journey Section -->
 :::: {.section-header .section-start-space}
 

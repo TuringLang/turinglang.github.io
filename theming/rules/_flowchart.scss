@@ -1,0 +1,186 @@
+.flowchart-section-custom {
+  padding: 4rem 0;
+  background-color: $body-bg;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.flowchart-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  h3 {
+    color: $text-color;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $text-muted;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
+
+.flowchart-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8rem;
+  row-gap: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  z-index: 1;
+}
+
+/* SVG Overlay Layer */
+.flow-svg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Let clicks pass through */
+  z-index: 0;
+  overflow: visible;
+}
+
+.flow-arrow-path {
+  fill: none;
+  stroke: $text-muted; // Using text-muted as a proxy for the line color
+  stroke-width: 2px;
+  transition: stroke 0.3s ease;
+  opacity: 0.5;
+}
+
+.flow-arrow-head {
+  fill: $text-muted;
+  transition: fill 0.3s ease;
+  opacity: 0.5;
+}
+
+.flow-node {
+  background: $panel-bg;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px $box-shadow-color;
+  border: 1px solid $btn-border-color;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  z-index: 2;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1); // Keep this generic or use a darker shadow var if available
+    border-color: $teal;
+  }
+}
+
+// Dark mode specific hover shadow adjustment
+body.quarto-dark .flow-node:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.5);
+}
+
+.node-header {
+  padding: 0.75rem 1rem;
+  background: rgba(0,0,0,0.03);
+  border-bottom: 1px solid $btn-border-color;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.85rem;
+  color: $text-muted;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px 12px 0 0;
+}
+
+.node-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.node-body {
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: $text-color;
+
+  pre {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: $code-block-bg !important;
+    border: none !important;
+    white-space: pre-wrap;
+    color: $text-color;
+  }
+}
+
+/* Syntax Highlighting Adjustments for Dark Mode */
+body.quarto-dark .sourceCode {
+    .kw { color: #c792ea; }
+    .fu { color: #82aaff; }
+    .fl { color: #f78c6c; }
+    .st { color: #c3e88d; }
+    .op { color: #89ddff; }
+    .pp { color: #c792ea; }
+}
+
+.node-plot {
+  margin-top: 1rem;
+  border: 1px solid $btn-border-color;
+  border-radius: 6px;
+  overflow: hidden;
+  background: white; // Plots are usually on white background
+  
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Grid Positioning */
+#node-math { grid-column: 1; grid-row: 1; }
+#node-model { grid-column: 2; grid-row: 1; }
+
+#node-prior { grid-column: 1; grid-row: 2; margin-top: 2rem; }
+#node-condition { grid-column: 2; grid-row: 2; margin-top: 2rem; }
+
+#node-determinability { grid-column: 1; grid-row: 3; }
+#node-inference { grid-column: 2; grid-row: 3; }
+
+#node-analysis { grid-column: 2; grid-row: 4; }
+#node-predictions { grid-column: 2; grid-row: 5; }
+
+#node-math .node-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .flowchart-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 1rem;
+  }
+  
+  #node-math, #node-model, #node-prior, #node-condition, 
+  #node-determinability, #node-inference, #node-analysis, #node-predictions {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 0;
+  }
+
+  /* Reorder for linear flow on mobile */
+  #node-math { order: 1; }
+  #node-model { order: 2; }
+  #node-prior { order: 3; }
+  #node-determinability { order: 4; }
+  #node-condition { order: 5; }
+  #node-inference { order: 6; }
+  #node-analysis { order: 7; }
+  #node-predictions { order: 8; }
+}
